@@ -12,22 +12,6 @@ namespace InfrastructureLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ChangePasswordRequests",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Salt = table.Column<byte[]>(type: "binary(32)", nullable: false),
-                    PasswordHash = table.Column<byte[]>(type: "binary(32)", nullable: false),
-                    DateOfRequest = table.Column<DateOnly>(type: "date", nullable: false),
-                    TimeOfRequest = table.Column<TimeOnly>(type: "time", nullable: false),
-                    Status = table.Column<byte>(type: "tinyint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ChangePasswordRequests", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Departments",
                 columns: table => new
                 {
@@ -38,6 +22,24 @@ namespace InfrastructureLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Departments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ForgotPasswordRequests",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Salt = table.Column<byte[]>(type: "binary(32)", nullable: false),
+                    PasswordHash = table.Column<byte[]>(type: "binary(32)", nullable: false),
+                    DateOfRequest = table.Column<DateOnly>(type: "date", nullable: false),
+                    TimeOfRequest = table.Column<TimeOnly>(type: "time", nullable: false),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ForgotPasswordRequests", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -176,11 +178,11 @@ namespace InfrastructureLayer.Migrations
                     Days = table.Column<byte>(type: "tinyint", nullable: false),
                     DaysAmount = table.Column<decimal>(type: "money", nullable: false),
                     RegularOT = table.Column<byte>(type: "tinyint", nullable: false),
-                    RegularOTAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RegularOTAmount = table.Column<decimal>(type: "money", nullable: false),
                     Nights = table.Column<byte>(type: "tinyint", nullable: false),
-                    NightsAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    NightsAmount = table.Column<decimal>(type: "money", nullable: false),
                     NightsOT = table.Column<byte>(type: "tinyint", nullable: false),
-                    NightsOTAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    NightsOTAmount = table.Column<decimal>(type: "money", nullable: false),
                     LatesMinutes = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
                     LatesDeductionAmount = table.Column<decimal>(type: "money", nullable: false),
                     TotalBasic = table.Column<decimal>(type: "money", nullable: false),
@@ -247,7 +249,7 @@ namespace InfrastructureLayer.Migrations
                 name: "Attendances");
 
             migrationBuilder.DropTable(
-                name: "ChangePasswordRequests");
+                name: "ForgotPasswordRequests");
 
             migrationBuilder.DropTable(
                 name: "Leaves");

@@ -32,7 +32,7 @@ namespace InfrastructureLayer.DataAccess
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<AttendanceModel> Attendances { get; set; }
-        public DbSet<ChangePasswordRequestModel> ChangePasswordRequests { get; set; }
+        public DbSet<ForgotPasswordRequestModel> ForgotPasswordRequests { get; set; }
         public DbSet<DepartmentModel> Departments { get; set; }
         public DbSet<EmployeeModel> Employees { get; set; }
         public DbSet<LeaveModel> Leaves { get; set; }

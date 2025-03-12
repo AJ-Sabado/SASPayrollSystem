@@ -16,6 +16,6 @@ namespace DomainLayer.Models.User
         string? Url { get; set; }
         string UserName { get; set; }
 
-        void ConfirmPasswordChange(IChangePasswordRequestModel request);
+        void ConfirmPasswordChange(IForgotPasswordRequestModel request);
     }
 }

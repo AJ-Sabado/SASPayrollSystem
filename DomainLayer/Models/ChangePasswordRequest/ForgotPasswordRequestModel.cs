@@ -1,5 +1,6 @@
 ﻿using DomainLayer.Common;
 using DomainLayer.Enums;
+using DomainLayer.Exceptions;
 using DomainLayer.Models.User;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.Models.ChangePasswordRequest
 {
-    public class ChangePasswordRequestModel : IChangePasswordRequestModel
+    public class ForgotPasswordRequestModel : IForgotPasswordRequestModel
     {
         private const int saltSize = 32;
         private string _password = string.Empty;
 
-        public ChangePasswordRequestModel()
+        public ForgotPasswordRequestModel()
         {
             var currentDateTime = DateTime.Now;
             DateOfRequest = DateOnly.FromDateTime(currentDateTime);
@@ -25,6 +26,14 @@ namespace DomainLayer.Models.ChangePasswordRequest
 
         [Key]
         public Guid Id { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Username is required")]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "Username must be 2 - 20 characters only")]
+        public string UserName { get; set; } = null!;
+
+        [Required]
+        [EmailAddress(ErrorMessage = "Must be a valid email address")]
+        public string Email { get; set; } = null!;
 
         [NotMapped]
         public string Password
@@ -35,8 +44,25 @@ namespace DomainLayer.Models.ChangePasswordRequest
             }
             set
             {
-                var encryption = new Encryption();
                 _password = value;
+            }
+        }
+
+        private string _confirmPassword = string.Empty;
+
+        [NotMapped]
+        public string ConfirmPassword
+        {
+            private get
+            {
+                return _confirmPassword;
+            }
+            set
+            {
+                _confirmPassword = value;
+                if (Password != ConfirmPassword)
+                    throw new MismatchedPasswordsException();
+                var encryption = new Encryption();
                 Salt = encryption.GenerateSalt(saltSize);
                 PasswordHash = encryption.GenerateHash(Password, Salt);
             }

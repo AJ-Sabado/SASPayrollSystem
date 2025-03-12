@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250312103036_InitialCreate")]
+    [Migration("20250312114718_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -56,7 +56,7 @@ namespace InfrastructureLayer.Migrations
                     b.ToTable("Attendances");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.ChangePasswordRequest.ChangePasswordRequestModel", b =>
+            modelBuilder.Entity("DomainLayer.Models.ChangePasswordRequest.ForgotPasswordRequestModel", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -64,6 +64,10 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<DateOnly>("DateOfRequest")
                         .HasColumnType("date");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
@@ -79,9 +83,14 @@ namespace InfrastructureLayer.Migrations
                     b.Property<TimeOnly>("TimeOfRequest")
                         .HasColumnType("time");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("ChangePasswordRequests");
+                    b.ToTable("ForgotPasswordRequests");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Department.DepartmentModel", b =>
@@ -253,13 +262,13 @@ namespace InfrastructureLayer.Migrations
                         .HasColumnType("tinyint");
 
                     b.Property<decimal>("NightsAmount")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("money");
 
                     b.Property<byte>("NightsOT")
                         .HasColumnType("tinyint");
 
                     b.Property<decimal>("NightsOTAmount")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("money");
 
                     b.Property<decimal>("PagIbigAmount")
                         .HasColumnType("money");
@@ -277,7 +286,7 @@ namespace InfrastructureLayer.Migrations
                         .HasColumnType("tinyint");
 
                     b.Property<decimal>("RegularOTAmount")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("money");
 
                     b.Property<decimal>("SSSAmount")
                         .HasColumnType("money");

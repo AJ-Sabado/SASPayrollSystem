@@ -86,6 +86,8 @@ namespace DomainLayer.Models.Payroll
                 RegularOTAmount = Employee.BasicSemiMonthlyRate / _totalDays / 8 * 1.25m * RegularOT;
             }
         }
+
+        [Column(TypeName = "money")]
         public decimal RegularOTAmount { get; set; } = 0;
 
         [Column(TypeName = "tinyint")]
@@ -101,6 +103,7 @@ namespace DomainLayer.Models.Payroll
                 NightsAmount = Nights * Employee.BasicSemiMonthlyRate / _totalDays;
             }
         }
+        [Column(TypeName = "money")]
         public decimal NightsAmount { get; set; } = 0;
 
         [Column(TypeName = "tinyint")]
@@ -116,6 +119,7 @@ namespace DomainLayer.Models.Payroll
                 NightsOTAmount = Employee.BasicSemiMonthlyRate / _totalDays / 8 * 1.25m * 1.10m * NightsOT;
             }
         }
+        [Column(TypeName = "money")]
         public decimal NightsOTAmount { get; set; } = 0;
 
         [Column(TypeName = "decimal")]

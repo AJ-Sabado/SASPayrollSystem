@@ -75,7 +75,7 @@ namespace DomainLayer.Models.User
         public Guid RoleId { get; set; }
         public RoleModel Role { get; set; } = null!;
 
-        public void ConfirmPasswordChange(IChangePasswordRequestModel request)
+        public void ConfirmPasswordChange(IForgotPasswordRequestModel request)
         {
             if (request.Status == FormStatus.Approved)
             {
