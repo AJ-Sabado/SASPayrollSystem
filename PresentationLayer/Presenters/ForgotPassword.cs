@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.Presenters
 {
-    public class ForgotPasswordPresenter : BasePresenter
+    public class ForgotPasswordPresenter : BasePresenter, IForgotPasswordPresenter
     {
         private readonly IUnitOfWork _unitOfWork;
 
         public ForgotPasswordPresenter(IUnitOfWork servicesMesh)
         {
-            _unitOfWork = servicesMesh;   
+            _unitOfWork = servicesMesh;
         }
 
-        /*public async bool SendPasswordResetLink(string email)
+        public async Task ForgotPasswordRequest(string username, string email, string password, string confirmPassword)
         {
-            await 
-        }*/
+            await _unitOfWork.ForgotPasswordRequest(username, email, password, confirmPassword);
+        }
     }
 }
