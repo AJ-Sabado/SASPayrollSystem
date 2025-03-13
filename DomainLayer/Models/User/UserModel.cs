@@ -1,6 +1,6 @@
 ﻿using DomainLayer.Common;
 using DomainLayer.Enums;
-using DomainLayer.Models.ChangePasswordRequest;
+using DomainLayer.Models.ForgotPasswordRequest;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.NewUserRequest;
 using DomainLayer.Models.Role;

@@ -1,4 +1,4 @@
-﻿using DomainLayer.Models.ChangePasswordRequest;
+﻿using DomainLayer.Models.ForgotPasswordRequest;
 using DomainLayer.Models.Role;
 
 namespace DomainLayer.Models.User

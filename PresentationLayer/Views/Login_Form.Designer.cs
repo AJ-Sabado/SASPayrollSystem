@@ -63,6 +63,10 @@
             panel13 = new Panel();
             panel14 = new Panel();
             label6 = new Label();
+            panel22 = new Panel();
+            label10 = new Label();
+            panel23 = new Panel();
+            textBoxExt4 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             panel15 = new Panel();
             label7 = new Label();
             panel16 = new Panel();
@@ -72,8 +76,11 @@
             panel18 = new Panel();
             textBoxExt3 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             panel19 = new Panel();
+            label9 = new Label();
+            panel21 = new Panel();
+            txtBoxConfirmPassword = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             panel20 = new Panel();
-            sfButton3 = new Syncfusion.WinForms.Controls.SfButton();
+            btnSignUp = new Syncfusion.WinForms.Controls.SfButton();
             flowLayoutPanel1.SuspendLayout();
             panel9.SuspendLayout();
             panel2.SuspendLayout();
@@ -93,12 +100,18 @@
             panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel14.SuspendLayout();
+            panel22.SuspendLayout();
+            panel23.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)textBoxExt4).BeginInit();
             panel15.SuspendLayout();
             panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)textBoxExt2).BeginInit();
             panel17.SuspendLayout();
             panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)textBoxExt3).BeginInit();
+            panel19.SuspendLayout();
+            panel21.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtBoxConfirmPassword).BeginInit();
             panel20.SuspendLayout();
             SuspendLayout();
             // 
@@ -239,7 +252,7 @@
             txtBoxUsername.Margin = new Padding(5);
             txtBoxUsername.MinimumSize = new Size(24, 20);
             txtBoxUsername.Name = "txtBoxUsername";
-            txtBoxUsername.PlaceholderText = "Enter Username";
+            txtBoxUsername.PlaceholderText = "Enter Username or Email";
             txtBoxUsername.Size = new Size(299, 24);
             txtBoxUsername.TabIndex = 0;
             // 
@@ -303,6 +316,7 @@
             btnForgotPass.Size = new Size(121, 28);
             btnForgotPass.TabIndex = 0;
             btnForgotPass.Text = "Forgot Password?";
+            btnForgotPass.Click += btnForgotPass_Click;
             // 
             // panel11
             // 
@@ -384,11 +398,14 @@
             flowLayoutPanel2.Controls.Add(panel12);
             flowLayoutPanel2.Controls.Add(panel13);
             flowLayoutPanel2.Controls.Add(panel14);
+            flowLayoutPanel2.Controls.Add(panel22);
+            flowLayoutPanel2.Controls.Add(panel23);
             flowLayoutPanel2.Controls.Add(panel15);
             flowLayoutPanel2.Controls.Add(panel16);
             flowLayoutPanel2.Controls.Add(panel17);
             flowLayoutPanel2.Controls.Add(panel18);
             flowLayoutPanel2.Controls.Add(panel19);
+            flowLayoutPanel2.Controls.Add(panel21);
             flowLayoutPanel2.Controls.Add(panel20);
             flowLayoutPanel2.Location = new Point(0, 0);
             flowLayoutPanel2.Margin = new Padding(50, 0, 40, 40);
@@ -423,14 +440,14 @@
             panel12.Location = new Point(42, 35);
             panel12.Margin = new Padding(42, 0, 0, 0);
             panel12.Name = "panel12";
-            panel12.Size = new Size(312, 86);
+            panel12.Size = new Size(312, 60);
             panel12.TabIndex = 17;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Poppins", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(78, 23);
+            label5.Location = new Point(75, 12);
             label5.Name = "label5";
             label5.Size = new Size(225, 37);
             label5.TabIndex = 1;
@@ -439,7 +456,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(3, 11);
+            pictureBox2.Location = new Point(0, 0);
             pictureBox2.Margin = new Padding(0);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(60, 60);
@@ -448,7 +465,7 @@
             // 
             // panel13
             // 
-            panel13.Location = new Point(45, 121);
+            panel13.Location = new Point(45, 95);
             panel13.Margin = new Padding(45, 0, 0, 0);
             panel13.Name = "panel13";
             panel13.Size = new Size(312, 10);
@@ -457,10 +474,10 @@
             // panel14
             // 
             panel14.Controls.Add(label6);
-            panel14.Location = new Point(40, 131);
+            panel14.Location = new Point(40, 105);
             panel14.Margin = new Padding(40, 0, 0, 0);
             panel14.Name = "panel14";
-            panel14.Size = new Size(312, 41);
+            panel14.Size = new Size(312, 30);
             panel14.TabIndex = 21;
             // 
             // label6
@@ -474,14 +491,58 @@
             label6.TabIndex = 2;
             label6.Text = "Welcome to SAS!";
             // 
+            // panel22
+            // 
+            panel22.Controls.Add(label10);
+            panel22.Location = new Point(45, 135);
+            panel22.Margin = new Padding(45, 0, 0, 0);
+            panel22.Name = "panel22";
+            panel22.Size = new Size(312, 25);
+            panel22.TabIndex = 28;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Poppins", 9F);
+            label10.Location = new Point(3, 3);
+            label10.Name = "label10";
+            label10.Size = new Size(45, 22);
+            label10.TabIndex = 0;
+            label10.Text = "Name";
+            // 
+            // panel23
+            // 
+            panel23.BackColor = SystemColors.Window;
+            panel23.BorderStyle = BorderStyle.FixedSingle;
+            panel23.Controls.Add(textBoxExt4);
+            panel23.Location = new Point(45, 160);
+            panel23.Margin = new Padding(45, 0, 0, 0);
+            panel23.Name = "panel23";
+            panel23.Size = new Size(309, 35);
+            panel23.TabIndex = 29;
+            // 
+            // textBoxExt4
+            // 
+            textBoxExt4.BeforeTouchSize = new Size(299, 24);
+            textBoxExt4.BorderStyle = BorderStyle.None;
+            textBoxExt4.CornerRadius = 5;
+            textBoxExt4.Font = new Font("Poppins", 12F);
+            textBoxExt4.Location = new Point(4, 4);
+            textBoxExt4.Margin = new Padding(5);
+            textBoxExt4.MinimumSize = new Size(24, 20);
+            textBoxExt4.Name = "textBoxExt4";
+            textBoxExt4.PlaceholderText = "Enter Full Name";
+            textBoxExt4.Size = new Size(299, 24);
+            textBoxExt4.TabIndex = 0;
+            // 
             // panel15
             // 
             panel15.Controls.Add(label7);
-            panel15.Location = new Point(45, 172);
+            panel15.Location = new Point(45, 195);
             panel15.Margin = new Padding(45, 0, 0, 0);
             panel15.Name = "panel15";
-            panel15.Size = new Size(312, 28);
-            panel15.TabIndex = 19;
+            panel15.Size = new Size(312, 25);
+            panel15.TabIndex = 30;
             // 
             // label7
             // 
@@ -498,11 +559,11 @@
             panel16.BackColor = SystemColors.Window;
             panel16.BorderStyle = BorderStyle.FixedSingle;
             panel16.Controls.Add(textBoxExt2);
-            panel16.Location = new Point(45, 200);
+            panel16.Location = new Point(45, 220);
             panel16.Margin = new Padding(45, 0, 0, 0);
             panel16.Name = "panel16";
-            panel16.Size = new Size(309, 45);
-            panel16.TabIndex = 20;
+            panel16.Size = new Size(309, 35);
+            panel16.TabIndex = 31;
             // 
             // textBoxExt2
             // 
@@ -510,28 +571,28 @@
             textBoxExt2.BorderStyle = BorderStyle.None;
             textBoxExt2.CornerRadius = 5;
             textBoxExt2.Font = new Font("Poppins", 12F);
-            textBoxExt2.Location = new Point(3, 9);
+            textBoxExt2.Location = new Point(4, 4);
             textBoxExt2.Margin = new Padding(5);
             textBoxExt2.MinimumSize = new Size(24, 20);
             textBoxExt2.Name = "textBoxExt2";
-            textBoxExt2.PlaceholderText = "Enter Username";
+            textBoxExt2.PlaceholderText = "Enter Email";
             textBoxExt2.Size = new Size(299, 24);
             textBoxExt2.TabIndex = 0;
             // 
             // panel17
             // 
             panel17.Controls.Add(label8);
-            panel17.Location = new Point(45, 245);
+            panel17.Location = new Point(45, 255);
             panel17.Margin = new Padding(45, 0, 0, 0);
             panel17.Name = "panel17";
-            panel17.Size = new Size(312, 36);
-            panel17.TabIndex = 22;
+            panel17.Size = new Size(312, 25);
+            panel17.TabIndex = 32;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Poppins", 9F);
-            label8.Location = new Point(3, 10);
+            label8.Location = new Point(3, 3);
             label8.Name = "label8";
             label8.Size = new Size(67, 22);
             label8.TabIndex = 0;
@@ -542,11 +603,11 @@
             panel18.BackColor = SystemColors.Window;
             panel18.BorderStyle = BorderStyle.FixedSingle;
             panel18.Controls.Add(textBoxExt3);
-            panel18.Location = new Point(45, 281);
+            panel18.Location = new Point(45, 280);
             panel18.Margin = new Padding(45, 0, 0, 0);
             panel18.Name = "panel18";
-            panel18.Size = new Size(309, 45);
-            panel18.TabIndex = 23;
+            panel18.Size = new Size(309, 35);
+            panel18.TabIndex = 33;
             // 
             // textBoxExt3
             // 
@@ -554,7 +615,7 @@
             textBoxExt3.BorderStyle = BorderStyle.None;
             textBoxExt3.CornerRadius = 5;
             textBoxExt3.Font = new Font("Poppins", 12F);
-            textBoxExt3.Location = new Point(3, 9);
+            textBoxExt3.Location = new Point(3, 4);
             textBoxExt3.Margin = new Padding(5);
             textBoxExt3.MinimumSize = new Size(24, 20);
             textBoxExt3.Name = "textBoxExt3";
@@ -565,35 +626,72 @@
             // 
             // panel19
             // 
-            panel19.Location = new Point(45, 326);
+            panel19.Controls.Add(label9);
+            panel19.Location = new Point(45, 315);
             panel19.Margin = new Padding(45, 0, 0, 0);
             panel19.Name = "panel19";
-            panel19.Size = new Size(309, 29);
-            panel19.TabIndex = 24;
+            panel19.Size = new Size(309, 25);
+            panel19.TabIndex = 34;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Poppins", 9F);
+            label9.Location = new Point(4, 3);
+            label9.Name = "label9";
+            label9.Size = new Size(119, 22);
+            label9.TabIndex = 1;
+            label9.Text = "Confirm Password";
+            // 
+            // panel21
+            // 
+            panel21.BackColor = SystemColors.Window;
+            panel21.BorderStyle = BorderStyle.FixedSingle;
+            panel21.Controls.Add(txtBoxConfirmPassword);
+            panel21.Location = new Point(45, 340);
+            panel21.Margin = new Padding(45, 0, 0, 0);
+            panel21.Name = "panel21";
+            panel21.Size = new Size(309, 35);
+            panel21.TabIndex = 35;
+            // 
+            // txtBoxConfirmPassword
+            // 
+            txtBoxConfirmPassword.BeforeTouchSize = new Size(299, 24);
+            txtBoxConfirmPassword.BorderStyle = BorderStyle.None;
+            txtBoxConfirmPassword.CornerRadius = 5;
+            txtBoxConfirmPassword.Font = new Font("Poppins", 12F);
+            txtBoxConfirmPassword.Location = new Point(3, 4);
+            txtBoxConfirmPassword.Margin = new Padding(5);
+            txtBoxConfirmPassword.MinimumSize = new Size(24, 20);
+            txtBoxConfirmPassword.Name = "txtBoxConfirmPassword";
+            txtBoxConfirmPassword.PasswordChar = '●';
+            txtBoxConfirmPassword.PlaceholderText = "Enter Password";
+            txtBoxConfirmPassword.Size = new Size(299, 24);
+            txtBoxConfirmPassword.TabIndex = 0;
             // 
             // panel20
             // 
-            panel20.Controls.Add(sfButton3);
-            panel20.Location = new Point(45, 355);
+            panel20.Controls.Add(btnSignUp);
+            panel20.Location = new Point(45, 375);
             panel20.Margin = new Padding(45, 0, 0, 0);
             panel20.Name = "panel20";
             panel20.Size = new Size(309, 65);
-            panel20.TabIndex = 25;
+            panel20.TabIndex = 36;
             // 
-            // sfButton3
+            // btnSignUp
             // 
-            sfButton3.BackColor = Color.FromArgb(0, 122, 255);
-            sfButton3.Font = new Font("Poppins", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            sfButton3.ForeColor = Color.White;
-            sfButton3.Location = new Point(0, 18);
-            sfButton3.Margin = new Padding(37, 0, 0, 0);
-            sfButton3.Name = "sfButton3";
-            sfButton3.Size = new Size(309, 44);
-            sfButton3.Style.BackColor = Color.FromArgb(0, 122, 255);
-            sfButton3.Style.ForeColor = Color.White;
-            sfButton3.TabIndex = 0;
-            sfButton3.Text = "Sign Up!";
-            sfButton3.UseVisualStyleBackColor = false;
+            btnSignUp.BackColor = Color.FromArgb(0, 122, 255);
+            btnSignUp.Font = new Font("Poppins", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSignUp.ForeColor = Color.White;
+            btnSignUp.Location = new Point(0, 18);
+            btnSignUp.Margin = new Padding(37, 0, 0, 0);
+            btnSignUp.Name = "btnSignUp";
+            btnSignUp.Size = new Size(309, 44);
+            btnSignUp.Style.BackColor = Color.FromArgb(0, 122, 255);
+            btnSignUp.Style.ForeColor = Color.White;
+            btnSignUp.TabIndex = 0;
+            btnSignUp.Text = "Sign Up!";
+            btnSignUp.UseVisualStyleBackColor = false;
             // 
             // Login_Form
             // 
@@ -635,6 +733,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel14.ResumeLayout(false);
             panel14.PerformLayout();
+            panel22.ResumeLayout(false);
+            panel22.PerformLayout();
+            panel23.ResumeLayout(false);
+            panel23.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)textBoxExt4).EndInit();
             panel15.ResumeLayout(false);
             panel15.PerformLayout();
             panel16.ResumeLayout(false);
@@ -645,6 +748,11 @@
             panel18.ResumeLayout(false);
             panel18.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)textBoxExt3).EndInit();
+            panel19.ResumeLayout(false);
+            panel19.PerformLayout();
+            panel21.ResumeLayout(false);
+            panel21.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)txtBoxConfirmPassword).EndInit();
             panel20.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -684,6 +792,10 @@
         private Panel panel13;
         private Panel panel14;
         private Label label6;
+        private Panel panel22;
+        private Label label10;
+        private Panel panel23;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt4;
         private Panel panel15;
         private Label label7;
         private Panel panel16;
@@ -693,7 +805,10 @@
         private Panel panel18;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt3;
         private Panel panel19;
+        private Label label9;
+        private Panel panel21;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtBoxConfirmPassword;
         private Panel panel20;
-        private Syncfusion.WinForms.Controls.SfButton sfButton3;
+        private Syncfusion.WinForms.Controls.SfButton btnSignUp;
     }
 }

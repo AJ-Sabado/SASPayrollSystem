@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLayer.Models.ChangePasswordRequest
+namespace DomainLayer.Models.ForgotPasswordRequest
 {
     public class ForgotPasswordRequestModel : IForgotPasswordRequestModel
     {

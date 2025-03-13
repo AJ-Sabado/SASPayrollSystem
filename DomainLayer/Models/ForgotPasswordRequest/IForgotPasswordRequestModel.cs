@@ -1,6 +1,6 @@
 ﻿using DomainLayer.Enums;
 
-namespace DomainLayer.Models.ChangePasswordRequest
+namespace DomainLayer.Models.ForgotPasswordRequest
 {
     public interface IForgotPasswordRequestModel
     {

@@ -1,6 +1,7 @@
 ﻿using DomainLayer.Common;
+using DomainLayer.Exceptions;
 using DomainLayer.Models.Attendance;
-using DomainLayer.Models.ChangePasswordRequest;
+using DomainLayer.Models.ForgotPasswordRequest;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.Leave;
@@ -149,6 +150,7 @@ namespace ServicesLayer
                 Password = password,
                 Email = email
             };
+            NewUserRequestRepository.ValidateModelDataAnnotations(userRequest);
             await NewUserRequestRepository.AddAsync(userRequest);
         }
 
@@ -180,6 +182,8 @@ namespace ServicesLayer
         {
             var user = await UserRepository.GetAsync(u => u.UserName == username && u.Email == email)
                 ?? throw new UserNotFoundException();
+            if (password != confirmPassword)
+                throw new MismatchedPasswordsException();
             var request = new ForgotPasswordRequestModel()
             {
                 UserName = username,

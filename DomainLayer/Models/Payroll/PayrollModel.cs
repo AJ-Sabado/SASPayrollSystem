@@ -21,8 +21,8 @@ namespace DomainLayer.Models.Payroll
 
         private const decimal _minimumPhilHealthMonthlySalaryCap = 10000;
         private const decimal _maximumPhilHealthMonthlySalaryCap = 100000;
-        private const decimal _maximumPhilHealthMonthlyContribution = 500;
-        private const decimal _minimumPhilHealthMonthlyContribution = 5000;
+        private const decimal _minimumPhilHealthMonthlyContribution = 500;
+        private const decimal _maximumPhilHealthMonthlyContribution = 5000;
         private const decimal _currentPhilHealthMonthlyRate = 0.05m;
 
         private const decimal _minimumPagIbigMonthlyComp = 1500;
@@ -34,9 +34,11 @@ namespace DomainLayer.Models.Payroll
         private decimal _latesMinutes = 0;
         private uint _totalDays = 0;
 
-        private TimeOnly DayStart = new TimeOnly(6, 0, 0);
-        private TimeOnly DayEnd = new TimeOnly(22, 0, 0);
-        private TimeOnly DayWorkShiftStart = new TimeOnly(9, 0, 0);
+        private readonly TimeOnly DayStart = new TimeOnly(6, 0, 0);
+        private readonly TimeOnly DayEnd = new TimeOnly(22, 0, 0);
+
+        private readonly TimeOnly DayWorkShiftStart = new TimeOnly(8, 0, 0);
+        private readonly TimeOnly DayWorkShiftEnd = new TimeOnly(17, 0, 0);
 
         [Key]
         public int Id { get; set; }
@@ -187,12 +189,12 @@ namespace DomainLayer.Models.Payroll
         public decimal SubtractAdjustments { get; set; } = 0;
 
         [Column(TypeName = "money")]
-        public decimal NetPay { get; set; }
+        public decimal NetPay { get; set; } = 0;
 
 
         [ForeignKey(nameof(EmployeeId))]
-        public Guid EmployeeId { get; set; }
-        public EmployeeModel Employee { get; set; } = null!;
+        public required Guid EmployeeId { get; set; }
+        public required EmployeeModel Employee { get; set; }
 
         public void UpdatePayroll(bool skipAttendancesAndLeaves = false)
         {
@@ -301,7 +303,6 @@ namespace DomainLayer.Models.Payroll
             }
             return finalMonthlyAmount / 2;
         }
-
         private decimal CalculatePagIbigAmount(decimal basicMonthlySalary)
         {
             if (basicMonthlySalary <= _minimumPagIbigMonthlyComp)
