@@ -1,6 +1,6 @@
 ﻿using DomainLayer.Common;
 using DomainLayer.Enums;
-using DomainLayer.Models.ChangePasswordRequest;
+using DomainLayer.Models.ForgotPasswordRequest;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.NewUserRequest;
 using DomainLayer.Models.Role;
@@ -77,7 +77,7 @@ namespace DomainLayer.Models.User
 
         public void ConfirmPasswordChange(IForgotPasswordRequestModel request)
         {
-            if (request.Status == FormStatus.Approved)
+            if (request.Status == FormStatus.Approved && request.UserName == UserName && request.Email == Email)
             {
                 Salt = request.Salt;
                 PasswordHash = request.PasswordHash;

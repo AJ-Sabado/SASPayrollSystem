@@ -2,7 +2,7 @@
 using DomainLayer.Models.Attendance;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Leave;
-using DomainLayer.Models.Payroll;
+using DomainLayer.Models.Salary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -55,9 +55,8 @@ namespace DomainLayer.Models.Employee
         [ForeignKey(nameof(DepartmentId))]
         public Guid DepartmentId { get; set; }
         public DepartmentModel Department { get; set; } = null!;
-
         public ICollection<AttendanceModel> Attendances { get; } = [];
         public ICollection<LeaveModel> Leaves { get; } = [];
-        public ICollection<PayrollModel> Payrolls { get; } = [];
+        public ICollection<SalaryModel> Salaries { get; } = [];
     }
 }

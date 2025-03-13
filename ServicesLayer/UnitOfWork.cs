@@ -1,12 +1,12 @@
 ﻿using DomainLayer.Common;
 using DomainLayer.Exceptions;
 using DomainLayer.Models.Attendance;
-using DomainLayer.Models.ChangePasswordRequest;
+using DomainLayer.Models.ForgotPasswordRequest;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.Leave;
 using DomainLayer.Models.NewUserRequest;
-using DomainLayer.Models.Payroll;
+using DomainLayer.Models.Salary;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
 using InfrastructureLayer.DataAccess;
@@ -14,6 +14,8 @@ using InfrastructureLayer.DataAccess.Repositories.Common;
 using ServicesLayer.Common;
 using ServicesLayer.Exceptions;
 using System.Text;
+using DomainLayer.Models.Holiday;
+using DomainLayer.Defaults;
 
 
 
@@ -27,12 +29,13 @@ namespace ServicesLayer
 
         //Repositories
         private readonly IBaseRepository<AttendanceModel> _attendanceRepository;
-        private readonly IBaseRepository<ForgotPasswordRequestModel> _forgotPasswordRequestRepository;
         private readonly IBaseRepository<DepartmentModel> _departmentRepository;
         private readonly IBaseRepository<EmployeeModel> _employeeRepository;
+        private readonly IBaseRepository<ForgotPasswordRequestModel> _forgotPasswordRequestRepository;
+        private readonly IBaseRepository<HolidayModel> _holidayRepository;
         private readonly IBaseRepository<LeaveModel> _leaveRepository;
         private readonly IBaseRepository<NewUserRequestModel> _newUserRequestRepository;
-        private readonly IBaseRepository<PayrollModel> _payrollRepository;
+        private readonly IBaseRepository<SalaryModel> _salaryRepository;
         private readonly IBaseRepository<RoleModel> _roleRepository;
         private readonly IBaseRepository<UserModel> _userRepository;
 
@@ -41,12 +44,13 @@ namespace ServicesLayer
 
         //Services List
         public IBaseServices<AttendanceModel> AttendanceRepository { get; private set; }
-        public IBaseServices<ForgotPasswordRequestModel> ForgotPasswordRequestRepository { get; private set; }
         public IBaseServices<DepartmentModel> DepartmentRepository { get; private set; }
         public IBaseServices<EmployeeModel> EmployeeRepository { get; private set; }
+        public IBaseServices<ForgotPasswordRequestModel> ForgotPasswordRequestRepository { get; private set; }
+        public IBaseServices<HolidayModel> HolidayRepository { get; private set; }
         public IBaseServices<LeaveModel> LeaveRepository { get; private set; }
         public IBaseServices<NewUserRequestModel> NewUserRequestRepository { get; private set; }
-        public IBaseServices<PayrollModel> PayrollRepository { get; private set; }
+        public IBaseServices<SalaryModel> SalaryRepository { get; private set; }
         public IBaseServices<RoleModel> RoleRepository { get; private set; }
         public IBaseServices<UserModel> UserRepository { get; private set; }
 
@@ -58,9 +62,10 @@ namespace ServicesLayer
             _forgotPasswordRequestRepository ??= new BaseRepository<ForgotPasswordRequestModel>();
             _departmentRepository ??= new BaseRepository<DepartmentModel>();
             _employeeRepository ??= new BaseRepository<EmployeeModel>();
+            _holidayRepository ??= new BaseRepository<HolidayModel>();
             _leaveRepository ??= new BaseRepository<LeaveModel>();
             _newUserRequestRepository ??= new BaseRepository<NewUserRequestModel>();
-            _payrollRepository ??= new BaseRepository<PayrollModel>();
+            _salaryRepository ??= new BaseRepository<SalaryModel>();
             _roleRepository ??= new BaseRepository<RoleModel>();
             _userRepository ??= new BaseRepository<UserModel>();
 
@@ -70,9 +75,10 @@ namespace ServicesLayer
             ForgotPasswordRequestRepository ??= new BaseServices<ForgotPasswordRequestModel>(_forgotPasswordRequestRepository, _modelDataAnnotationsCheck);
             DepartmentRepository ??= new BaseServices<DepartmentModel>(_departmentRepository, _modelDataAnnotationsCheck);
             EmployeeRepository ??= new BaseServices<EmployeeModel>(_employeeRepository, _modelDataAnnotationsCheck);
+            HolidayRepository ??= new BaseServices<HolidayModel>(_holidayRepository, _modelDataAnnotationsCheck);
             LeaveRepository ??= new BaseServices<LeaveModel>(_leaveRepository, _modelDataAnnotationsCheck);
             NewUserRequestRepository ??= new BaseServices<NewUserRequestModel>(_newUserRequestRepository, _modelDataAnnotationsCheck);
-            PayrollRepository ??= new BaseServices<PayrollModel>(_payrollRepository, _modelDataAnnotationsCheck);
+            SalaryRepository ??= new BaseServices<SalaryModel>(_salaryRepository, _modelDataAnnotationsCheck);
             RoleRepository ??= new BaseServices<RoleModel>(_roleRepository, _modelDataAnnotationsCheck);
             UserRepository ??= new BaseServices<UserModel>(_userRepository, _modelDataAnnotationsCheck);
         }
@@ -98,8 +104,48 @@ namespace ServicesLayer
         public async Task InitialSeeding()
         {
             await SeedRoles();
+            await SeedDepartments();
             await SeedAdmin();
+            await SeedHolidays();
         }
+
+        private async Task SeedHolidays()
+        {
+            var holidays = await HolidayRepository.GetAllAsync();
+            if (holidays.Count() == 0)
+            {
+                var defaults = new DefaultHolidays();
+                await HolidayRepository.AddRangeAsync(defaults.DefaultHolidaysList);
+            }
+
+        }
+
+        private async Task SeedDepartments()
+        {
+            var departments = await DepartmentRepository.GetAllAsync();
+            if (departments.Count() == 0)
+            {
+                string[] defaultDepartments =
+                {
+                    "Management",
+                    "Finance & Operations",
+                    "Administration",
+                    "Partner",
+                    "Individual Contractor"
+                };
+                var departmentModels = new List<DepartmentModel>();
+                foreach (var department in defaultDepartments)
+                {
+                    var model = new DepartmentModel()
+                    {
+                        Name = department
+                    };
+                    departmentModels.Add(model);
+                }
+                await DepartmentRepository.AddRangeAsync(departmentModels);
+            }
+        }
+
         private async Task SeedRoles()
         {
             string[] defaultRoles =

@@ -22,6 +22,7 @@ internal static class Program
         ApplicationConfiguration.Initialize();
 
         var form = new Login_Form(servicesManager);
-        Application.Run(form);
+        //Application.Run(form);
+        Application.Run(new Dashboard_Employee(servicesManager));
     }
 }

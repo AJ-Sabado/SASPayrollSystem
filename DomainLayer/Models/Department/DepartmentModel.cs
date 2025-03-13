@@ -19,7 +19,7 @@ namespace DomainLayer.Models.Department
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Department name is required")]
-        [StringLength(20, ErrorMessage = "Must not exceed 20 characters")]
+        [StringLength(50, ErrorMessage = "Must not exceed 20 characters")]
         public string Name
         {
             get
@@ -34,7 +34,7 @@ namespace DomainLayer.Models.Department
         }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(50)]
         public string NormalizedName { get; private set; } = null!;
 
         public virtual ICollection<EmployeeModel> Employees { get; set; } = [];

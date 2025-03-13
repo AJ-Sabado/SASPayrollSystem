@@ -38,19 +38,21 @@ namespace PresentationLayer.Views
             //Init Buttons
             InitButtonProperties(btnCancel);
             InitButtonProperties(btnNext);
-            InitButtonProperties(btnCancel2);
-            InitButtonProperties(btnNext2);
+            InitButtonProperties(btnOk);
+            InitButtonProperties(btnOk);
             InitButtonProperties(btnCancel3);
-            InitButtonProperties(btnNext3);
+            InitButtonProperties(btnNext2);
 
             //InitPanels
             panelForgotPass1.Visible = true;
-            panelForgotPass2.Visible = false;
             panelForgotPass3.Visible = false;
+            panelForgotPass2.Visible = false;
 
             //For Runding Form COrners
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+
+            _unitOfWork.InitialSeeding();
         }
 
         public void InitButtonProperties(Syncfusion.WinForms.Controls.SfButton btn)

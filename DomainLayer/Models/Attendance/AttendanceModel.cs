@@ -16,6 +16,9 @@ namespace DomainLayer.Models.Attendance
     {
         private TimeOnly _timeOut;
 
+        private readonly TimeOnly _breakTimeStart = new TimeOnly(12, 0, 0);
+        private readonly TimeOnly _breakTimeEnd = new TimeOnly(13, 0, 0);
+
         [Key]
         public Guid Id { get; set; }
 
@@ -51,12 +54,12 @@ namespace DomainLayer.Models.Attendance
         public FormStatus Status { get; set; } = FormStatus.Pending;
 
         [ForeignKey(nameof(EmployeeId))]
-        public Guid EmployeeId { get; set; }
+        public required Guid EmployeeId { get; set; }
         public required EmployeeModel Employee { get; set; }
 
         private uint CalculateTotalHours(TimeOnly timeIn, TimeOnly timeOut)
         {
-            var totalHoursSpan = timeIn - timeOut;
+            var totalHoursSpan = (timeIn - timeOut) - (_breakTimeStart - _breakTimeEnd);
             return TotalHours = (uint)Math.Round(totalHoursSpan.TotalHours);
         }
     }

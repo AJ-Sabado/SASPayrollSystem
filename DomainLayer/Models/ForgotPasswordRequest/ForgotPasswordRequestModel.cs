@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLayer.Models.ChangePasswordRequest
+namespace DomainLayer.Models.ForgotPasswordRequest
 {
     public class ForgotPasswordRequestModel : IForgotPasswordRequestModel
     {
@@ -29,14 +29,14 @@ namespace DomainLayer.Models.ChangePasswordRequest
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Username is required")]
         [StringLength(20, MinimumLength = 2, ErrorMessage = "Username must be 2 - 20 characters only")]
-        public string UserName { get; set; } = null!;
+        public required string UserName { get; set; } = null!;
 
         [Required]
         [EmailAddress(ErrorMessage = "Must be a valid email address")]
-        public string Email { get; set; } = null!;
+        public required string Email { get; set; } = null!;
 
         [NotMapped]
-        public string Password
+        public required string Password
         {
             private get
             {
@@ -51,7 +51,7 @@ namespace DomainLayer.Models.ChangePasswordRequest
         private string _confirmPassword = string.Empty;
 
         [NotMapped]
-        public string ConfirmPassword
+        public required string ConfirmPassword
         {
             private get
             {
