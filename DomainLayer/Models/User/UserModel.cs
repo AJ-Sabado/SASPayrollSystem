@@ -77,7 +77,7 @@ namespace DomainLayer.Models.User
 
         public void ConfirmPasswordChange(IForgotPasswordRequestModel request)
         {
-            if (request.Status == FormStatus.Approved)
+            if (request.Status == FormStatus.Approved && request.UserName == UserName && request.Email == Email)
             {
                 Salt = request.Salt;
                 PasswordHash = request.PasswordHash;

@@ -53,43 +53,6 @@ namespace InfrastructureLayer.Migrations
                     b.ToTable("Attendances");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.ChangePasswordRequest.ForgotPasswordRequestModel", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateOnly>("DateOfRequest")
-                        .HasColumnType("date");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("binary(32)");
-
-                    b.Property<byte[]>("Salt")
-                        .IsRequired()
-                        .HasColumnType("binary(32)");
-
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint");
-
-                    b.Property<TimeOnly>("TimeOfRequest")
-                        .HasColumnType("time");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ForgotPasswordRequests");
-                });
-
             modelBuilder.Entity("DomainLayer.Models.Department.DepartmentModel", b =>
                 {
                     b.Property<Guid>("Id")
@@ -98,13 +61,13 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("NormalizedName")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -147,6 +110,67 @@ namespace InfrastructureLayer.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.ForgotPasswordRequest.ForgotPasswordRequestModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateOnly>("DateOfRequest")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("binary(32)");
+
+                    b.Property<byte[]>("Salt")
+                        .IsRequired()
+                        .HasColumnType("binary(32)");
+
+                    b.Property<byte>("Status")
+                        .HasColumnType("tinyint");
+
+                    b.Property<TimeOnly>("TimeOfRequest")
+                        .HasColumnType("time");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ForgotPasswordRequests");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Holiday.HolidayModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<Guid?>("PayrollModelId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("Type")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PayrollModelId");
+
+                    b.ToTable("Holidays");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Leave.LeaveModel", b =>
@@ -213,17 +237,9 @@ namespace InfrastructureLayer.Migrations
 
             modelBuilder.Entity("DomainLayer.Models.Payroll.PayrollModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("AddAdjustments")
-                        .HasColumnType("money");
-
-                    b.Property<decimal>("CashAdvance")
-                        .HasColumnType("money");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateOnly>("CutOffEnd")
                         .HasColumnType("date");
@@ -231,11 +247,58 @@ namespace InfrastructureLayer.Migrations
                     b.Property<DateOnly>("CutOffStart")
                         .HasColumnType("date");
 
-                    b.Property<byte>("Days")
+                    b.Property<DateOnly>("PayrollDate")
+                        .HasColumnType("date");
+
+                    b.Property<byte>("TotalRegularHolidays")
                         .HasColumnType("tinyint");
+
+                    b.Property<byte>("TotalWorkingDays")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Payrolls");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Role.RoleModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("NormalizedName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Salary.SalaryModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("AddAdjustments")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("CashAdvance")
+                        .HasColumnType("money");
 
                     b.Property<decimal>("DaysAmount")
                         .HasColumnType("money");
+
+                    b.Property<byte>("DaysWorked")
+                        .HasColumnType("tinyint");
 
                     b.Property<decimal>("DisposableIncome")
                         .HasColumnType("money");
@@ -255,9 +318,6 @@ namespace InfrastructureLayer.Migrations
                     b.Property<decimal>("NetPay")
                         .HasColumnType("money");
 
-                    b.Property<byte>("Nights")
-                        .HasColumnType("tinyint");
-
                     b.Property<decimal>("NightsAmount")
                         .HasColumnType("money");
 
@@ -267,17 +327,44 @@ namespace InfrastructureLayer.Migrations
                     b.Property<decimal>("NightsOTAmount")
                         .HasColumnType("money");
 
+                    b.Property<byte>("NightsWorked")
+                        .HasColumnType("tinyint");
+
                     b.Property<decimal>("PagIbigAmount")
                         .HasColumnType("money");
 
                     b.Property<decimal>("PagIbigLoanAmount")
                         .HasColumnType("money");
 
-                    b.Property<DateOnly>("PayrollDate")
-                        .HasColumnType("date");
+                    b.Property<Guid>("PayrollId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("PhilHealthAmount")
                         .HasColumnType("money");
+
+                    b.Property<byte>("RegularHolidayNightOT")
+                        .HasColumnType("tinyint");
+
+                    b.Property<decimal>("RegularHolidayNightsAmount")
+                        .HasColumnType("money");
+
+                    b.Property<byte>("RegularHolidayNightsWorked")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("RegularHolidayOT")
+                        .HasColumnType("tinyint");
+
+                    b.Property<decimal>("RegularHolidayOTAmount")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("RegularHolidayOTNightAmount")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("RegularHolidaysAmount")
+                        .HasColumnType("money");
+
+                    b.Property<byte>("RegularHolidaysWorked")
+                        .HasColumnType("tinyint");
 
                     b.Property<byte>("RegularOT")
                         .HasColumnType("tinyint");
@@ -291,7 +378,28 @@ namespace InfrastructureLayer.Migrations
                     b.Property<decimal>("SSSLoanAmount")
                         .HasColumnType("money");
 
-                    b.Property<byte>("SkipAttendancesAndLeaves")
+                    b.Property<byte>("SpecialHolidayNightOT")
+                        .HasColumnType("tinyint");
+
+                    b.Property<decimal>("SpecialHolidayNightOTAmount")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("SpecialHolidayNightsAmount")
+                        .HasColumnType("money");
+
+                    b.Property<byte>("SpecialHolidayNightsWorked")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("SpecialHolidayOT")
+                        .HasColumnType("tinyint");
+
+                    b.Property<decimal>("SpecialHolidayOTAmount")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("SpecialHolidaysAmount")
+                        .HasColumnType("money");
+
+                    b.Property<byte>("SpecialHolidaysWorked")
                         .HasColumnType("tinyint");
 
                     b.Property<decimal>("SubtractAdjustments")
@@ -322,28 +430,9 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("Payrolls");
-                });
+                    b.HasIndex("PayrollId");
 
-            modelBuilder.Entity("DomainLayer.Models.Role.RoleModel", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("NormalizedName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
+                    b.ToTable("Salaries");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.User.UserModel", b =>
@@ -407,6 +496,13 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("Department");
                 });
 
+            modelBuilder.Entity("DomainLayer.Models.Holiday.HolidayModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Payroll.PayrollModel", null)
+                        .WithMany("Holidays")
+                        .HasForeignKey("PayrollModelId");
+                });
+
             modelBuilder.Entity("DomainLayer.Models.Leave.LeaveModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
@@ -418,15 +514,23 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.Payroll.PayrollModel", b =>
+            modelBuilder.Entity("DomainLayer.Models.Salary.SalaryModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
-                        .WithMany("Payrolls")
+                        .WithMany("Salaries")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DomainLayer.Models.Payroll.PayrollModel", "Payroll")
+                        .WithMany("Salaries")
+                        .HasForeignKey("PayrollId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Employee");
+
+                    b.Navigation("Payroll");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.User.UserModel", b =>
@@ -451,7 +555,14 @@ namespace InfrastructureLayer.Migrations
 
                     b.Navigation("Leaves");
 
-                    b.Navigation("Payrolls");
+                    b.Navigation("Salaries");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Payroll.PayrollModel", b =>
+                {
+                    b.Navigation("Holidays");
+
+                    b.Navigation("Salaries");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Role.RoleModel", b =>

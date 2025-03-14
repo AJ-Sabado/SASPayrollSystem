@@ -38,15 +38,15 @@ namespace PresentationLayer.Views
             //Init Buttons
             InitButtonProperties(btnCancel);
             InitButtonProperties(btnNext);
-            InitButtonProperties(btnCancel2);
-            InitButtonProperties(btnNext2);
+            InitButtonProperties(btnOk);
+            InitButtonProperties(btnOk);
             InitButtonProperties(btnCancel3);
-            InitButtonProperties(btnNext3);
+            InitButtonProperties(btnNext2);
 
             //InitPanels
             panelForgotPass1.Visible = true;
-            panelForgotPass2.Visible = false;
             panelForgotPass3.Visible = false;
+            panelForgotPass2.Visible = false;
 
             //For Runding Form COrners
             this.FormBorderStyle = FormBorderStyle.None;

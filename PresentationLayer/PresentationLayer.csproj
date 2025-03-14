@@ -15,6 +15,7 @@
   <ItemGroup>
     <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
     <PackageReference Include="Syncfusion.Core.WinForms" Version="28.2.11" />
+    <PackageReference Include="Syncfusion.DataGridExport.WinForms" Version="28.2.11" />
     <PackageReference Include="Syncfusion.Licensing" Version="28.2.11" />
     <PackageReference Include="Syncfusion.Pdf.WinForms" Version="28.2.11" />
     <PackageReference Include="Syncfusion.SfInput.WinForms" Version="28.2.11" />

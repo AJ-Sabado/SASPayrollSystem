@@ -60,18 +60,13 @@
             panel14 = new Panel();
             sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
             sfButton2 = new Syncfusion.WinForms.Controls.SfButton();
-            panelForgotPass2 = new FlowLayoutPanel();
+            panelForgotPass3 = new FlowLayoutPanel();
             panel15 = new Panel();
             autoLabel3 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             panel16 = new Panel();
             label7 = new Label();
-            panel19 = new Panel();
-            label9 = new Label();
-            panel20 = new Panel();
-            materialTextBox26 = new MaterialSkin.Controls.MaterialTextBox2();
             panel21 = new Panel();
-            btnCancel2 = new Syncfusion.WinForms.Controls.SfButton();
-            btnNext2 = new Syncfusion.WinForms.Controls.SfButton();
+            btnOk = new Syncfusion.WinForms.Controls.SfButton();
             flowLayoutPanel3 = new FlowLayoutPanel();
             panel22 = new Panel();
             autoLabel4 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
@@ -88,7 +83,7 @@
             panel28 = new Panel();
             sfButton5 = new Syncfusion.WinForms.Controls.SfButton();
             sfButton6 = new Syncfusion.WinForms.Controls.SfButton();
-            panelForgotPass3 = new FlowLayoutPanel();
+            panelForgotPass2 = new FlowLayoutPanel();
             panel17 = new Panel();
             autoLabel5 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             panel18 = new Panel();
@@ -103,7 +98,7 @@
             materialTextBox29 = new MaterialSkin.Controls.MaterialTextBox2();
             panel33 = new Panel();
             btnCancel3 = new Syncfusion.WinForms.Controls.SfButton();
-            btnNext3 = new Syncfusion.WinForms.Controls.SfButton();
+            btnNext2 = new Syncfusion.WinForms.Controls.SfButton();
             flowLayoutPanel4 = new FlowLayoutPanel();
             panel34 = new Panel();
             autoLabel6 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
@@ -136,11 +131,9 @@
             panel12.SuspendLayout();
             panel13.SuspendLayout();
             panel14.SuspendLayout();
-            panelForgotPass2.SuspendLayout();
+            panelForgotPass3.SuspendLayout();
             panel15.SuspendLayout();
             panel16.SuspendLayout();
-            panel19.SuspendLayout();
-            panel20.SuspendLayout();
             panel21.SuspendLayout();
             flowLayoutPanel3.SuspendLayout();
             panel22.SuspendLayout();
@@ -150,7 +143,7 @@
             panel26.SuspendLayout();
             panel27.SuspendLayout();
             panel28.SuspendLayout();
-            panelForgotPass3.SuspendLayout();
+            panelForgotPass2.SuspendLayout();
             panel17.SuspendLayout();
             panel18.SuspendLayout();
             panel29.SuspendLayout();
@@ -559,19 +552,17 @@
             sfButton2.TabIndex = 0;
             sfButton2.Text = "Next";
             // 
-            // panelForgotPass2
+            // panelForgotPass3
             // 
-            panelForgotPass2.Controls.Add(panel15);
-            panelForgotPass2.Controls.Add(panel16);
-            panelForgotPass2.Controls.Add(panel19);
-            panelForgotPass2.Controls.Add(panel20);
-            panelForgotPass2.Controls.Add(panel21);
-            panelForgotPass2.Controls.Add(flowLayoutPanel3);
-            panelForgotPass2.Dock = DockStyle.Fill;
-            panelForgotPass2.Location = new Point(0, 0);
-            panelForgotPass2.Name = "panelForgotPass2";
-            panelForgotPass2.Size = new Size(526, 378);
-            panelForgotPass2.TabIndex = 1;
+            panelForgotPass3.Controls.Add(panel15);
+            panelForgotPass3.Controls.Add(panel16);
+            panelForgotPass3.Controls.Add(panel21);
+            panelForgotPass3.Controls.Add(flowLayoutPanel3);
+            panelForgotPass3.Dock = DockStyle.Fill;
+            panelForgotPass3.Location = new Point(0, 0);
+            panelForgotPass3.Name = "panelForgotPass3";
+            panelForgotPass3.Size = new Size(526, 378);
+            panelForgotPass3.TabIndex = 1;
             // 
             // panel15
             // 
@@ -587,9 +578,9 @@
             autoLabel3.Font = new Font("Poppins", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             autoLabel3.Location = new Point(1, 5);
             autoLabel3.Name = "autoLabel3";
-            autoLabel3.Size = new Size(244, 51);
+            autoLabel3.Size = new Size(220, 51);
             autoLabel3.TabIndex = 1;
-            autoLabel3.Text = "Verify Account";
+            autoLabel3.Text = "Request Sent";
             // 
             // panel16
             // 
@@ -607,94 +598,26 @@
             label7.Name = "label7";
             label7.Size = new Size(468, 61);
             label7.TabIndex = 0;
-            label7.Text = "Please verify your account through the given code in your email.";
-            // 
-            // panel19
-            // 
-            panel19.Controls.Add(label9);
-            panel19.Location = new Point(20, 163);
-            panel19.Margin = new Padding(20, 0, 20, 0);
-            panel19.Name = "panel19";
-            panel19.Size = new Size(481, 35);
-            panel19.TabIndex = 4;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label9.Location = new Point(10, 6);
-            label9.Name = "label9";
-            label9.Size = new Size(136, 21);
-            label9.TabIndex = 0;
-            label9.Text = "Verification Code";
-            // 
-            // panel20
-            // 
-            panel20.Controls.Add(materialTextBox26);
-            panel20.Location = new Point(20, 198);
-            panel20.Margin = new Padding(20, 0, 20, 0);
-            panel20.Name = "panel20";
-            panel20.Size = new Size(481, 55);
-            panel20.TabIndex = 5;
-            // 
-            // materialTextBox26
-            // 
-            materialTextBox26.AnimateReadOnly = false;
-            materialTextBox26.BackgroundImageLayout = ImageLayout.None;
-            materialTextBox26.CharacterCasing = CharacterCasing.Normal;
-            materialTextBox26.Depth = 0;
-            materialTextBox26.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox26.HideSelection = true;
-            materialTextBox26.Hint = "Enter Verification Code";
-            materialTextBox26.LeadingIcon = null;
-            materialTextBox26.Location = new Point(10, 1);
-            materialTextBox26.MaxLength = 32767;
-            materialTextBox26.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox26.Name = "materialTextBox26";
-            materialTextBox26.PasswordChar = '\0';
-            materialTextBox26.PrefixSuffixText = null;
-            materialTextBox26.ReadOnly = false;
-            materialTextBox26.RightToLeft = RightToLeft.No;
-            materialTextBox26.SelectedText = "";
-            materialTextBox26.SelectionLength = 0;
-            materialTextBox26.SelectionStart = 0;
-            materialTextBox26.ShortcutsEnabled = true;
-            materialTextBox26.Size = new Size(461, 48);
-            materialTextBox26.TabIndex = 0;
-            materialTextBox26.TabStop = false;
-            materialTextBox26.TextAlign = HorizontalAlignment.Left;
-            materialTextBox26.TrailingIcon = null;
-            materialTextBox26.UseSystemPasswordChar = false;
+            label7.Text = "Please wait for the administrator to approve your password reset request. Thank you!";
             // 
             // panel21
             // 
-            panel21.Controls.Add(btnCancel2);
-            panel21.Controls.Add(btnNext2);
-            panel21.Location = new Point(20, 253);
+            panel21.Controls.Add(btnOk);
+            panel21.Location = new Point(20, 163);
             panel21.Margin = new Padding(20, 0, 20, 20);
             panel21.Name = "panel21";
             panel21.Size = new Size(481, 69);
             panel21.TabIndex = 6;
             // 
-            // btnCancel2
+            // btnOk
             // 
-            btnCancel2.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            btnCancel2.Location = new Point(265, 29);
-            btnCancel2.Name = "btnCancel2";
-            btnCancel2.Size = new Size(100, 37);
-            btnCancel2.TabIndex = 1;
-            btnCancel2.Text = "Cancel";
-            btnCancel2.Click += btnCancel_Click;
-            // 
-            // btnNext2
-            // 
-            btnNext2.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            btnNext2.Location = new Point(371, 29);
-            btnNext2.Name = "btnNext2";
-            btnNext2.Size = new Size(100, 37);
-            btnNext2.TabIndex = 0;
-            btnNext2.Text = "Next";
-            btnNext2.Click += btnNext2_Click;
+            btnOk.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
+            btnOk.Location = new Point(371, 29);
+            btnOk.Name = "btnOk";
+            btnOk.Size = new Size(100, 37);
+            btnOk.TabIndex = 0;
+            btnOk.Text = "Ok";
+            btnOk.Click += btnCancel_Click;
             // 
             // flowLayoutPanel3
             // 
@@ -706,7 +629,7 @@
             flowLayoutPanel3.Controls.Add(panel27);
             flowLayoutPanel3.Controls.Add(panel28);
             flowLayoutPanel3.Dock = DockStyle.Fill;
-            flowLayoutPanel3.Location = new Point(3, 345);
+            flowLayoutPanel3.Location = new Point(3, 255);
             flowLayoutPanel3.Name = "flowLayoutPanel3";
             flowLayoutPanel3.Size = new Size(526, 0);
             flowLayoutPanel3.TabIndex = 7;
@@ -890,21 +813,21 @@
             sfButton6.TabIndex = 0;
             sfButton6.Text = "Next";
             // 
-            // panelForgotPass3
+            // panelForgotPass2
             // 
-            panelForgotPass3.Controls.Add(panel17);
-            panelForgotPass3.Controls.Add(panel18);
-            panelForgotPass3.Controls.Add(panel29);
-            panelForgotPass3.Controls.Add(panel30);
-            panelForgotPass3.Controls.Add(panel31);
-            panelForgotPass3.Controls.Add(panel32);
-            panelForgotPass3.Controls.Add(panel33);
-            panelForgotPass3.Controls.Add(flowLayoutPanel4);
-            panelForgotPass3.Dock = DockStyle.Fill;
-            panelForgotPass3.Location = new Point(0, 0);
-            panelForgotPass3.Name = "panelForgotPass3";
-            panelForgotPass3.Size = new Size(526, 378);
-            panelForgotPass3.TabIndex = 2;
+            panelForgotPass2.Controls.Add(panel17);
+            panelForgotPass2.Controls.Add(panel18);
+            panelForgotPass2.Controls.Add(panel29);
+            panelForgotPass2.Controls.Add(panel30);
+            panelForgotPass2.Controls.Add(panel31);
+            panelForgotPass2.Controls.Add(panel32);
+            panelForgotPass2.Controls.Add(panel33);
+            panelForgotPass2.Controls.Add(flowLayoutPanel4);
+            panelForgotPass2.Dock = DockStyle.Fill;
+            panelForgotPass2.Location = new Point(0, 0);
+            panelForgotPass2.Name = "panelForgotPass2";
+            panelForgotPass2.Size = new Size(526, 378);
+            panelForgotPass2.TabIndex = 2;
             // 
             // panel17
             // 
@@ -1060,7 +983,7 @@
             // panel33
             // 
             panel33.Controls.Add(btnCancel3);
-            panel33.Controls.Add(btnNext3);
+            panel33.Controls.Add(btnNext2);
             panel33.Location = new Point(20, 302);
             panel33.Margin = new Padding(20, 0, 20, 20);
             panel33.Name = "panel33";
@@ -1077,14 +1000,15 @@
             btnCancel3.Text = "Cancel";
             btnCancel3.Click += btnCancel_Click;
             // 
-            // btnNext3
+            // btnNext2
             // 
-            btnNext3.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            btnNext3.Location = new Point(371, 8);
-            btnNext3.Name = "btnNext3";
-            btnNext3.Size = new Size(100, 37);
-            btnNext3.TabIndex = 0;
-            btnNext3.Text = "Next";
+            btnNext2.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
+            btnNext2.Location = new Point(371, 8);
+            btnNext2.Name = "btnNext2";
+            btnNext2.Size = new Size(100, 37);
+            btnNext2.TabIndex = 0;
+            btnNext2.Text = "Next";
+            btnNext2.Click += btnNext2_Click;
             // 
             // flowLayoutPanel4
             // 
@@ -1286,8 +1210,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(526, 378);
             Controls.Add(panelForgotPass3);
-            Controls.Add(panelForgotPass1);
             Controls.Add(panelForgotPass2);
+            Controls.Add(panelForgotPass1);
             Name = "ForgotPassword";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ForgotPassword";
@@ -1315,13 +1239,10 @@
             panel12.PerformLayout();
             panel13.ResumeLayout(false);
             panel14.ResumeLayout(false);
-            panelForgotPass2.ResumeLayout(false);
+            panelForgotPass3.ResumeLayout(false);
             panel15.ResumeLayout(false);
             panel15.PerformLayout();
             panel16.ResumeLayout(false);
-            panel19.ResumeLayout(false);
-            panel19.PerformLayout();
-            panel20.ResumeLayout(false);
             panel21.ResumeLayout(false);
             flowLayoutPanel3.ResumeLayout(false);
             panel22.ResumeLayout(false);
@@ -1335,7 +1256,7 @@
             panel26.PerformLayout();
             panel27.ResumeLayout(false);
             panel28.ResumeLayout(false);
-            panelForgotPass3.ResumeLayout(false);
+            panelForgotPass2.ResumeLayout(false);
             panel17.ResumeLayout(false);
             panel17.PerformLayout();
             panel18.ResumeLayout(false);
@@ -1396,18 +1317,13 @@
         private Panel panel14;
         private Syncfusion.WinForms.Controls.SfButton sfButton1;
         private Syncfusion.WinForms.Controls.SfButton sfButton2;
-        private FlowLayoutPanel panelForgotPass2;
+        private FlowLayoutPanel panelForgotPass3;
         private Panel panel15;
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel3;
         private Panel panel16;
         private Label label7;
-        private Panel panel19;
-        private Label label9;
-        private Panel panel20;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox26;
         private Panel panel21;
-        private Syncfusion.WinForms.Controls.SfButton btnCancel2;
-        private Syncfusion.WinForms.Controls.SfButton btnNext2;
+        private Syncfusion.WinForms.Controls.SfButton btnOk;
         private FlowLayoutPanel flowLayoutPanel3;
         private Panel panel22;
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel4;
@@ -1424,7 +1340,7 @@
         private Panel panel28;
         private Syncfusion.WinForms.Controls.SfButton sfButton5;
         private Syncfusion.WinForms.Controls.SfButton sfButton6;
-        private FlowLayoutPanel panelForgotPass3;
+        private FlowLayoutPanel panelForgotPass2;
         private Panel panel17;
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel5;
         private Panel panel18;
@@ -1439,7 +1355,7 @@
         private MaterialSkin.Controls.MaterialTextBox2 materialTextBox29;
         private Panel panel33;
         private Syncfusion.WinForms.Controls.SfButton btnCancel3;
-        private Syncfusion.WinForms.Controls.SfButton btnNext3;
+        private Syncfusion.WinForms.Controls.SfButton btnNext2;
         private FlowLayoutPanel flowLayoutPanel4;
         private Panel panel34;
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel6;

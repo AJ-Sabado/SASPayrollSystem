@@ -54,7 +54,7 @@ namespace DomainLayer.Models.Attendance
         public FormStatus Status { get; set; } = FormStatus.Pending;
 
         [ForeignKey(nameof(EmployeeId))]
-        public Guid EmployeeId { get; set; }
+        public required Guid EmployeeId { get; set; }
         public required EmployeeModel Employee { get; set; }
 
         private uint CalculateTotalHours(TimeOnly timeIn, TimeOnly timeOut)

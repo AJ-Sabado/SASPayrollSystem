@@ -37,8 +37,6 @@ namespace PresentationLayer.Views
             //For Runding Form COrners
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-
-            _unitOfWork.InitialSeeding();
         }
 
         private void Login_Form_Load(object sender, EventArgs e)
