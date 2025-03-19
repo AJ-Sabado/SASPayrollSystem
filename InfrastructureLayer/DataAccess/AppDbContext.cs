@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Payroll;
+using DomainLayer.Models.Contribution;
 
 namespace InfrastructureLayer.DataAccess
 {
@@ -25,7 +26,7 @@ namespace InfrastructureLayer.DataAccess
         private const string connectionStringTim = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SASPayrollDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionStringTim);
+            optionsBuilder.UseSqlServer(connectionStringHome);
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -35,6 +36,7 @@ namespace InfrastructureLayer.DataAccess
         }
         public DbSet<AttendanceModel> Attendances { get; set; }
         public DbSet<DepartmentModel> Departments { get; set; }
+        public DbSet<ContributionModel> Contributions { get; set; }
         public DbSet<EmployeeModel> Employees { get; set; }
         public DbSet<ForgotPasswordRequestModel> ForgotPasswordRequests { get; set; }
         public DbSet<HolidayModel> Holidays { get; set; }

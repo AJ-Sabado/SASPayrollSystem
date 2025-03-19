@@ -30,8 +30,8 @@ namespace DomainLayer.Models.Contribution
         public Guid Id { get; set; }
 
         [ForeignKey(nameof(EmployeeId))]
-        public required Guid EmployeeId { get; set; }
-        public required EmployeeModel Employee
+        public Guid EmployeeId { get; set; }
+        public EmployeeModel Employee
         {
             get
             {

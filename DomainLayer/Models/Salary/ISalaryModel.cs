@@ -21,11 +21,9 @@ namespace DomainLayer.Models.Salary
         uint NightsOT { get; set; }
         decimal NightsOTAmount { get; set; }
         uint NightsWorked { get; set; }
-        decimal PagIbigAmount { get; set; }
         decimal PagIbigLoanAmount { get; set; }
         PayrollModel Payroll { get; set; }
         Guid PayrollId { get; set; }
-        decimal PhilHealthAmount { get; set; }
         uint RegularHolidayNightOT { get; set; }
         decimal RegularHolidayNightsAmount { get; set; }
         uint RegularHolidayNightsWorked { get; set; }
@@ -44,14 +42,12 @@ namespace DomainLayer.Models.Salary
         decimal SpecialHolidayOTAmount { get; set; }
         decimal SpecialHolidaysAmount { get; set; }
         uint SpecialHolidaysWorked { get; set; }
-        decimal SSSAmount { get; set; }
         decimal SSSLoanAmount { get; set; }
         decimal SubtractAdjustments { get; set; }
         decimal TaxableIncome { get; set; }
         decimal TaxWithholdings { get; set; }
         decimal TotalBasic { get; }
         decimal TotalCompanyLoans { get; set; }
-        decimal TotalContributions { get; set; }
         decimal TotalOT { get; set; }
         decimal Vale { get; set; }
 

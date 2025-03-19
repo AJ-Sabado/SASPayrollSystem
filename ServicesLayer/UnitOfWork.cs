@@ -17,6 +17,7 @@ using System.Text;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Defaults;
 using DomainLayer.Models.Payroll;
+using DomainLayer.Models.Contribution;
 
 
 
@@ -30,6 +31,7 @@ namespace ServicesLayer
 
         //Repositories
         private readonly IBaseRepository<AttendanceModel> _attendanceRepository;
+        private readonly IBaseRepository<ContributionModel> _contributionRepository;
         private readonly IBaseRepository<DepartmentModel> _departmentRepository;
         private readonly IBaseRepository<EmployeeModel> _employeeRepository;
         private readonly IBaseRepository<ForgotPasswordRequestModel> _forgotPasswordRequestRepository;
@@ -46,6 +48,7 @@ namespace ServicesLayer
 
         //Services List
         public IBaseServices<AttendanceModel> AttendanceRepository { get; private set; }
+        public IBaseServices<ContributionModel> ContributionRepository { get; private set; }
         public IBaseServices<DepartmentModel> DepartmentRepository { get; private set; }
         public IBaseServices<EmployeeModel> EmployeeRepository { get; private set; }
         public IBaseServices<ForgotPasswordRequestModel> ForgotPasswordRequestRepository { get; private set; }
@@ -62,8 +65,9 @@ namespace ServicesLayer
             _db = new AppDbContext();
 
             _attendanceRepository ??= new BaseRepository<AttendanceModel>();
-            _forgotPasswordRequestRepository ??= new BaseRepository<ForgotPasswordRequestModel>();
+            _contributionRepository ??= new BaseRepository<ContributionModel>();
             _departmentRepository ??= new BaseRepository<DepartmentModel>();
+            _forgotPasswordRequestRepository ??= new BaseRepository<ForgotPasswordRequestModel>();
             _employeeRepository ??= new BaseRepository<EmployeeModel>();
             _holidayRepository ??= new BaseRepository<HolidayModel>();
             _leaveRepository ??= new BaseRepository<LeaveModel>();
@@ -76,8 +80,9 @@ namespace ServicesLayer
             _modelDataAnnotationsCheck ??= new ModelDataAnnotationsCheck();
 
             AttendanceRepository ??= new BaseServices<AttendanceModel>(_attendanceRepository, _modelDataAnnotationsCheck);
-            ForgotPasswordRequestRepository ??= new BaseServices<ForgotPasswordRequestModel>(_forgotPasswordRequestRepository, _modelDataAnnotationsCheck);
+            ContributionRepository ??= new BaseServices<ContributionModel>(_contributionRepository, _modelDataAnnotationsCheck);
             DepartmentRepository ??= new BaseServices<DepartmentModel>(_departmentRepository, _modelDataAnnotationsCheck);
+            ForgotPasswordRequestRepository ??= new BaseServices<ForgotPasswordRequestModel>(_forgotPasswordRequestRepository, _modelDataAnnotationsCheck);
             EmployeeRepository ??= new BaseServices<EmployeeModel>(_employeeRepository, _modelDataAnnotationsCheck);
             HolidayRepository ??= new BaseServices<HolidayModel>(_holidayRepository, _modelDataAnnotationsCheck);
             LeaveRepository ??= new BaseServices<LeaveModel>(_leaveRepository, _modelDataAnnotationsCheck);

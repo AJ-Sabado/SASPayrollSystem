@@ -99,6 +99,8 @@ namespace InfrastructureLayer.Migrations
                     JobTitle = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     BasicSemiMonthlyRate = table.Column<decimal>(type: "money", nullable: false),
                     LeaveCredits = table.Column<byte>(type: "tinyint", nullable: false),
+                    WorkShiftStart = table.Column<TimeOnly>(type: "time", nullable: false),
+                    WorkShiftEnd = table.Column<TimeOnly>(type: "time", nullable: false),
                     DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -180,6 +182,28 @@ namespace InfrastructureLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Contributions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SSSAmount = table.Column<decimal>(type: "money", nullable: false),
+                    PagIbigAmount = table.Column<decimal>(type: "money", nullable: false),
+                    PhilHealthAmount = table.Column<decimal>(type: "money", nullable: false),
+                    TotalContributions = table.Column<decimal>(type: "money", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contributions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Contributions_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Leaves",
                 columns: table => new
                 {
@@ -236,10 +260,6 @@ namespace InfrastructureLayer.Migrations
                     TotalOT = table.Column<decimal>(type: "money", nullable: false),
                     LatesMinutes = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
                     LatesDeductionAmount = table.Column<decimal>(type: "money", nullable: false),
-                    SSSAmount = table.Column<decimal>(type: "money", nullable: false),
-                    PagIbigAmount = table.Column<decimal>(type: "money", nullable: false),
-                    PhilHealthAmount = table.Column<decimal>(type: "money", nullable: false),
-                    TotalContributions = table.Column<decimal>(type: "money", nullable: false),
                     TaxableIncome = table.Column<decimal>(type: "money", nullable: false),
                     TaxWithholdings = table.Column<decimal>(type: "money", nullable: false),
                     IncomeNetOfTax = table.Column<decimal>(type: "money", nullable: false),
@@ -274,6 +294,12 @@ namespace InfrastructureLayer.Migrations
                 name: "IX_Attendances_EmployeeId",
                 table: "Attendances",
                 column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contributions_EmployeeId",
+                table: "Contributions",
+                column: "EmployeeId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_DepartmentId",
@@ -311,6 +337,9 @@ namespace InfrastructureLayer.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Attendances");
+
+            migrationBuilder.DropTable(
+                name: "Contributions");
 
             migrationBuilder.DropTable(
                 name: "ForgotPasswordRequests");

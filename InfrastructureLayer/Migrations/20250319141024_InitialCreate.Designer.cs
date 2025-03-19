@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250313232000_InitialCreate")]
+    [Migration("20250319141024_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -54,6 +54,35 @@ namespace InfrastructureLayer.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Attendances");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Contribution.ContributionModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("PagIbigAmount")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("PhilHealthAmount")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("SSSAmount")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("TotalContributions")
+                        .HasColumnType("money");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique();
+
+                    b.ToTable("Contributions");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Department.DepartmentModel", b =>
@@ -107,6 +136,12 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<byte>("LeaveCredits")
                         .HasColumnType("tinyint");
+
+                    b.Property<TimeOnly>("WorkShiftEnd")
+                        .HasColumnType("time");
+
+                    b.Property<TimeOnly>("WorkShiftStart")
+                        .HasColumnType("time");
 
                     b.HasKey("Id");
 
@@ -333,17 +368,11 @@ namespace InfrastructureLayer.Migrations
                     b.Property<byte>("NightsWorked")
                         .HasColumnType("tinyint");
 
-                    b.Property<decimal>("PagIbigAmount")
-                        .HasColumnType("money");
-
                     b.Property<decimal>("PagIbigLoanAmount")
                         .HasColumnType("money");
 
                     b.Property<Guid>("PayrollId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("PhilHealthAmount")
-                        .HasColumnType("money");
 
                     b.Property<byte>("RegularHolidayNightOT")
                         .HasColumnType("tinyint");
@@ -373,9 +402,6 @@ namespace InfrastructureLayer.Migrations
                         .HasColumnType("tinyint");
 
                     b.Property<decimal>("RegularOTAmount")
-                        .HasColumnType("money");
-
-                    b.Property<decimal>("SSSAmount")
                         .HasColumnType("money");
 
                     b.Property<decimal>("SSSLoanAmount")
@@ -418,9 +444,6 @@ namespace InfrastructureLayer.Migrations
                         .HasColumnType("money");
 
                     b.Property<decimal>("TotalCompanyLoans")
-                        .HasColumnType("money");
-
-                    b.Property<decimal>("TotalContributions")
                         .HasColumnType("money");
 
                     b.Property<decimal>("TotalOT")
@@ -482,6 +505,17 @@ namespace InfrastructureLayer.Migrations
                     b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
                         .WithMany("Attendances")
                         .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.Contribution.ContributionModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
+                        .WithOne("Contribution")
+                        .HasForeignKey("DomainLayer.Models.Contribution.ContributionModel", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -555,6 +589,9 @@ namespace InfrastructureLayer.Migrations
             modelBuilder.Entity("DomainLayer.Models.Employee.EmployeeModel", b =>
                 {
                     b.Navigation("Attendances");
+
+                    b.Navigation("Contribution")
+                        .IsRequired();
 
                     b.Navigation("Leaves");
 
