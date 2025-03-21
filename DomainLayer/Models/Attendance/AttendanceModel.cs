@@ -72,13 +72,17 @@ namespace DomainLayer.Models.Attendance
         private uint CalculateTotalHours(TimeOnly timeIn, TimeOnly timeOut)
         {
             var totalHoursSpan = (timeIn - timeOut) - (_breakTimeStart - _breakTimeEnd);
-            return TotalHours = (uint)Math.Round(totalHoursSpan.TotalHours);
+            return TotalHours = (uint)Math.Floor(totalHoursSpan.TotalHours);
         }
 
         private decimal CalculateMinutesLate(TimeOnly timeIn, TimeOnly workShiftIn)
         {
+            if (timeIn <= workShiftIn)
+            {
+                return 0;
+            }
             var span = workShiftIn - timeIn;
-            return (decimal)span.TotalMinutes;
+            return (decimal)Math.Floor(span.TotalMinutes);
         }
     }
 }
