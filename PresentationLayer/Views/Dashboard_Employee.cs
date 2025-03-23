@@ -25,6 +25,7 @@ namespace PresentationLayer
             _unitOfWork = unitOfWork;
             InitializeComponent();
 
+            //DASHBOARD PROPERTIES
             //Init MenuButtons Properties
             InitMenuButtonProperties();
 
@@ -42,6 +43,11 @@ namespace PresentationLayer
 
             //DataGrid Properties
             InitDataGrid();
+
+            //JOB DESK PROPERTIES
+
+            //InitJobDeskPanelProperties
+            InitJobDeskPanelProperties();
         }
 
         public void Dashboard_Employee_Load(object sender, EventArgs e)
@@ -112,11 +118,13 @@ namespace PresentationLayer
         public void InitDashboardCardProperties()
         {
 
-            RoundedElements.rounded(pnlDBMainCard1, 30);
-            RoundedElements.rounded(pnlDBMainCard2, 30);
-            RoundedElements.rounded(pnlDBMainCard3, 30);
-            RoundedElements.rounded(pnlDBSubCard1, 27);
-            RoundedElements.rounded(pnlDBSubCard2, 27);
+            RoundedElements.rounded(pnlDBMainCard1, 15);
+            RoundedElements.rounded(pnlDBMainCard2, 15);
+            RoundedElements.rounded(pnlDBMainCard3, 15);
+            RoundedElements.rounded(pnlDBMainCard4, 15);
+            RoundedElements.rounded(pnlDBSubCard1, 12);
+            RoundedElements.rounded(pnlDBSubCard2, 12);
+            RoundedElements.rounded(pnlDBSubCard4, 12);
 
             pnlDBMainCard1.BackColor = Color.FromArgb(252, 184, 49);
         }
@@ -167,8 +175,8 @@ namespace PresentationLayer
         public void InitSummaryPanelProperties()
         {
             //Summary Panel
-            RoundedElements.rounded(pnlSummaryBase, 30);
-            RoundedElements.rounded(pnlSummaryBase2, 27);
+            RoundedElements.rounded(pnlSummaryBase, 15);
+            RoundedElements.rounded(pnlSummaryBase2, 12);
 
             Panel[] mainSummaryCards = new Panel[] { pnlSummaryCard1, pnlSummaryCard2, pnlSummaryCard3, pnlSummaryCard4 };
             Panel[] subSummaryCards = new Panel[] { pnlSummarySubCard2, pnlSummarySubCard3, pnlSummarySubCard4 };
@@ -187,16 +195,26 @@ namespace PresentationLayer
         public void InitAttendanceLogProperties()
         {
             //Attendance Log
-            RoundedElements.rounded(pnlAttendanceLogBase1, 30);
-            RoundedElements.rounded(pnlAttendanceLogBase2, 27);
+            RoundedElements.rounded(pnlAttendanceLogBase1, 15);
+            RoundedElements.rounded(pnlAttendanceLogBase2, 12);
 
         }
 
         public void InitDataGrid()
         {
-            RoundedElements.rounded(AttendanceDataGrid, 30);
-            RoundedElements.rounded(pnlDataGridBase, 30);
+            RoundedElements.rounded(AttendanceDataGrid, 15);
+            RoundedElements.rounded(pnlDataGridBase, 15);
         }
+
+        //JobDesk Properties
+        public void InitJobDeskPanelProperties()
+        {
+            RoundedElements.rounded(pnlJobDeskDashMain, 15);
+            RoundedElements.rounded(pnlJobDeskDashSub, 12);
+            RoundedElements.rounded(pnlJobDeskProfileMain, 15);
+            RoundedElements.rounded(pnlJobDeskProfileSub, 12);
+        }
+
 
         private void Btn_LostFocus(object sender, EventArgs e)
         {
@@ -222,14 +240,6 @@ namespace PresentationLayer
             pnlJobDesk.Show();
         }
 
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
+
 }

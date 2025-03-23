@@ -149,7 +149,10 @@ namespace PresentationLayer.Views
             try
             {
                 await _unitOfWork.LoginUser(txtBoxUsername.Text, textBoxExt1.Text);
-                MessageBox.Show("Success!");
+                this.Hide();
+                new Dashboard_Employee(_unitOfWork).Show();
+                this.Show();
+
             }
 
             catch (UserNotFoundException)
