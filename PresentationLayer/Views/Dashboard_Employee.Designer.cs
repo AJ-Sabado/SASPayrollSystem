@@ -90,6 +90,7 @@
             label27 = new Label();
             label28 = new Label();
             pnlJobDeskDashMain = new Panel();
+            pnlJobDeskDashSub = new Panel();
             pnlDashboard = new FlowLayoutPanel();
             panel1 = new Panel();
             lblDahsbaordTitle = new Label();
@@ -149,7 +150,6 @@
             label5 = new Label();
             pnlDataGridBase = new Panel();
             AttendanceDataGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
-            pnlJobDeskDashSub = new Panel();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -237,7 +237,7 @@
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Margin = new Padding(10, 5, 10, 3);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(260, 1001);
+            flowLayoutPanel1.Size = new Size(260, 749);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // panel2
@@ -260,7 +260,7 @@
             // 
             // btnDashboard
             // 
-            btnDashboard.Font = new Font("Inter", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDashboard.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDashboard.ImageMargin = new Padding(5);
             btnDashboard.ImageSize = new Size(25, 25);
             btnDashboard.Location = new Point(10, 194);
@@ -275,7 +275,7 @@
             // 
             // btnJobDesk
             // 
-            btnJobDesk.Font = new Font("Inter", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnJobDesk.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnJobDesk.ImageMargin = new Padding(5);
             btnJobDesk.ImageSize = new Size(25, 25);
             btnJobDesk.Location = new Point(10, 254);
@@ -295,7 +295,7 @@
             panelMain.Controls.Add(flowLayoutPanel1);
             panelMain.Location = new Point(0, 0);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(1904, 1001);
+            panelMain.Size = new Size(1370, 749);
             panelMain.TabIndex = 2;
             // 
             // panelMainDashboard
@@ -305,7 +305,7 @@
             panelMainDashboard.Controls.Add(pnlDashboard);
             panelMainDashboard.Location = new Point(273, 3);
             panelMainDashboard.Name = "panelMainDashboard";
-            panelMainDashboard.Size = new Size(1628, 995);
+            panelMainDashboard.Size = new Size(1094, 743);
             panelMainDashboard.TabIndex = 1;
             // 
             // pnlJobDesk
@@ -316,7 +316,7 @@
             pnlJobDesk.Margin = new Padding(20);
             pnlJobDesk.Name = "pnlJobDesk";
             pnlJobDesk.Padding = new Padding(20);
-            pnlJobDesk.Size = new Size(1628, 995);
+            pnlJobDesk.Size = new Size(1094, 743);
             pnlJobDesk.TabIndex = 1;
             // 
             // flowLayoutPanel2
@@ -340,10 +340,10 @@
             // 
             label8.AutoSize = true;
             label8.Dock = DockStyle.Left;
-            label8.Font = new Font("Poppins SemiBold", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.Location = new Point(0, 0);
             label8.Name = "label8";
-            label8.Size = new Size(257, 84);
+            label8.Size = new Size(233, 55);
             label8.TabIndex = 0;
             label8.Text = "Job Desk";
             // 
@@ -410,7 +410,7 @@
             // 
             // sfButton1
             // 
-            sfButton1.Font = new Font("Poppins", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            sfButton1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             sfButton1.Location = new Point(101, 49);
             sfButton1.Name = "sfButton1";
             sfButton1.Size = new Size(130, 33);
@@ -432,11 +432,11 @@
             // lblProfileName
             // 
             lblProfileName.AutoSize = true;
-            lblProfileName.Font = new Font("Poppins Medium", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblProfileName.Font = new Font("Microsoft Sans Serif", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblProfileName.Location = new Point(93, 6);
             lblProfileName.Margin = new Padding(0);
             lblProfileName.Name = "lblProfileName";
-            lblProfileName.Size = new Size(225, 51);
+            lblProfileName.Size = new Size(197, 33);
             lblProfileName.TabIndex = 7;
             lblProfileName.Text = "Lorem Ipsum";
             // 
@@ -451,11 +451,11 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new Font("Poppins SemiBold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.Location = new Point(1, 2);
             label10.Margin = new Padding(0);
             label10.Name = "label10";
-            label10.Size = new Size(64, 42);
+            label10.Size = new Size(56, 29);
             label10.TabIndex = 8;
             label10.Text = "Info";
             // 
@@ -473,22 +473,22 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Font = new Font("Poppins Light", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label13.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label13.Location = new Point(81, 36);
             label13.Margin = new Padding(0);
             label13.Name = "label13";
-            label13.Size = new Size(89, 23);
+            label13.Size = new Size(77, 16);
             label13.TabIndex = 9;
             label13.Text = "Department";
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label12.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.Location = new Point(75, 6);
             label12.Margin = new Padding(0);
             label12.Name = "label12";
-            label12.Size = new Size(211, 37);
+            label12.Size = new Size(204, 25);
             label12.TabIndex = 8;
             label12.Text = "Human Resources";
             // 
@@ -526,22 +526,22 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Font = new Font("Poppins Light", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label14.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label14.Location = new Point(81, 36);
             label14.Margin = new Padding(0);
             label14.Name = "label14";
-            label14.Size = new Size(86, 23);
+            label14.Size = new Size(81, 16);
             label14.TabIndex = 9;
             label14.Text = "Base Salary";
             // 
             // label15
             // 
             label15.AutoSize = true;
-            label15.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label15.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.Location = new Point(75, 6);
             label15.Margin = new Padding(0);
             label15.Name = "label15";
-            label15.Size = new Size(113, 37);
+            label15.Size = new Size(112, 25);
             label15.TabIndex = 8;
             label15.Text = "P100,000";
             // 
@@ -579,22 +579,22 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Font = new Font("Poppins Light", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label16.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label16.Location = new Point(81, 36);
             label16.Margin = new Padding(0);
             label16.Name = "label16";
-            label16.Size = new Size(72, 23);
+            label16.Size = new Size(67, 16);
             label16.TabIndex = 9;
             label16.Text = "Work Shift";
             // 
             // label17
             // 
             label17.AutoSize = true;
-            label17.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label17.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label17.Location = new Point(75, 6);
             label17.Margin = new Padding(0);
             label17.Name = "label17";
-            label17.Size = new Size(213, 37);
+            label17.Size = new Size(208, 25);
             label17.TabIndex = 8;
             label17.Text = "6:00 AM - 6:00 PM";
             // 
@@ -632,22 +632,22 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Font = new Font("Poppins Light", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label18.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label18.Location = new Point(81, 36);
             label18.Margin = new Padding(0);
             label18.Name = "label18";
-            label18.Size = new Size(136, 23);
+            label18.Size = new Size(122, 16);
             label18.TabIndex = 9;
             label18.Text = "Employment Status";
             // 
             // label19
             // 
             label19.AutoSize = true;
-            label19.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label19.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label19.Location = new Point(75, 6);
             label19.Margin = new Padding(0);
             label19.Name = "label19";
-            label19.Size = new Size(275, 37);
+            label19.Size = new Size(259, 25);
             label19.TabIndex = 8;
             label19.Text = "Independent Contractor";
             // 
@@ -685,22 +685,22 @@
             // label20
             // 
             label20.AutoSize = true;
-            label20.Font = new Font("Poppins Light", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label20.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label20.Location = new Point(81, 36);
             label20.Margin = new Padding(0);
             label20.Name = "label20";
-            label20.Size = new Size(126, 23);
+            label20.Size = new Size(114, 16);
             label20.TabIndex = 9;
             label20.Text = "Employment Date";
             // 
             // label21
             // 
             label21.AutoSize = true;
-            label21.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label21.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label21.Location = new Point(75, 6);
             label21.Margin = new Padding(0);
             label21.Name = "label21";
-            label21.Size = new Size(203, 37);
+            label21.Size = new Size(205, 25);
             label21.TabIndex = 8;
             label21.Text = "February 14, 2025";
             // 
@@ -735,11 +735,11 @@
             // label22
             // 
             label22.AutoSize = true;
-            label22.Font = new Font("Poppins SemiBold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label22.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label22.Location = new Point(1, 0);
             label22.Margin = new Padding(0);
             label22.Name = "label22";
-            label22.Size = new Size(128, 42);
+            label22.Size = new Size(114, 29);
             label22.TabIndex = 8;
             label22.Text = "Contacts";
             // 
@@ -768,22 +768,22 @@
             // label23
             // 
             label23.AutoSize = true;
-            label23.Font = new Font("Poppins Light", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label23.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label23.Location = new Point(81, 41);
             label23.Margin = new Padding(0);
             label23.Name = "label23";
-            label23.Size = new Size(222, 23);
+            label23.Size = new Size(202, 16);
             label23.TabIndex = 9;
             label23.Text = "loremipsum@umindanao.edu.ph";
             // 
             // label24
             // 
             label24.AutoSize = true;
-            label24.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label24.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label24.Location = new Point(75, 11);
             label24.Margin = new Padding(0);
             label24.Name = "label24";
-            label24.Size = new Size(76, 37);
+            label24.Size = new Size(70, 25);
             label24.TabIndex = 8;
             label24.Text = "Email";
             // 
@@ -812,22 +812,22 @@
             // label25
             // 
             label25.AutoSize = true;
-            label25.Font = new Font("Poppins Light", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label25.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label25.Location = new Point(81, 41);
             label25.Margin = new Padding(0);
             label25.Name = "label25";
-            label25.Size = new Size(125, 23);
+            label25.Size = new Size(107, 16);
             label25.TabIndex = 9;
             label25.Text = "+63 978 456 8794";
             // 
             // label26
             // 
             label26.AutoSize = true;
-            label26.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label26.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label26.Location = new Point(75, 11);
             label26.Margin = new Padding(0);
             label26.Name = "label26";
-            label26.Size = new Size(84, 37);
+            label26.Size = new Size(79, 25);
             label26.TabIndex = 8;
             label26.Text = "Phone";
             // 
@@ -856,22 +856,22 @@
             // label27
             // 
             label27.AutoSize = true;
-            label27.Font = new Font("Poppins Light", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label27.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label27.Location = new Point(81, 38);
             label27.Margin = new Padding(0);
             label27.Name = "label27";
-            label27.Size = new Size(260, 23);
+            label27.Size = new Size(228, 16);
             label27.TabIndex = 9;
             label27.Text = "https://www.mywebsite.com.ph/profile";
             // 
             // label28
             // 
             label28.AutoSize = true;
-            label28.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label28.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label28.Location = new Point(75, 8);
             label28.Margin = new Padding(0);
             label28.Name = "label28";
-            label28.Size = new Size(104, 37);
+            label28.Size = new Size(97, 25);
             label28.TabIndex = 8;
             label28.Text = "Website";
             // 
@@ -885,6 +885,16 @@
             pnlJobDeskDashMain.Size = new Size(1095, 854);
             pnlJobDeskDashMain.TabIndex = 6;
             // 
+            // pnlJobDeskDashSub
+            // 
+            pnlJobDeskDashSub.BackColor = Color.White;
+            pnlJobDeskDashSub.Location = new Point(3, 3);
+            pnlJobDeskDashSub.Margin = new Padding(10, 3, 10, 3);
+            pnlJobDeskDashSub.Name = "pnlJobDeskDashSub";
+            pnlJobDeskDashSub.Padding = new Padding(20);
+            pnlJobDeskDashSub.Size = new Size(1089, 848);
+            pnlJobDeskDashSub.TabIndex = 2;
+            // 
             // pnlDashboard
             // 
             pnlDashboard.Controls.Add(panel1);
@@ -896,7 +906,7 @@
             pnlDashboard.Margin = new Padding(20);
             pnlDashboard.Name = "pnlDashboard";
             pnlDashboard.Padding = new Padding(20);
-            pnlDashboard.Size = new Size(1628, 995);
+            pnlDashboard.Size = new Size(1094, 743);
             pnlDashboard.TabIndex = 0;
             // 
             // panel1
@@ -911,10 +921,10 @@
             // 
             lblDahsbaordTitle.AutoSize = true;
             lblDahsbaordTitle.Dock = DockStyle.Left;
-            lblDahsbaordTitle.Font = new Font("Poppins SemiBold", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDahsbaordTitle.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDahsbaordTitle.Location = new Point(0, 0);
             lblDahsbaordTitle.Name = "lblDahsbaordTitle";
-            lblDahsbaordTitle.Size = new Size(334, 84);
+            lblDahsbaordTitle.Size = new Size(338, 55);
             lblDahsbaordTitle.TabIndex = 0;
             lblDahsbaordTitle.Text = "DASHBOARD";
             // 
@@ -944,10 +954,10 @@
             // lblUpcomingDate
             // 
             lblUpcomingDate.AutoSize = true;
-            lblUpcomingDate.Font = new Font("Poppins Medium", 18F, FontStyle.Bold);
+            lblUpcomingDate.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold);
             lblUpcomingDate.Location = new Point(23, 72);
             lblUpcomingDate.Name = "lblUpcomingDate";
-            lblUpcomingDate.Size = new Size(208, 42);
+            lblUpcomingDate.Size = new Size(189, 29);
             lblUpcomingDate.TabIndex = 2;
             lblUpcomingDate.Text = "March 15, 2025";
             // 
@@ -964,10 +974,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Poppins", 28F, FontStyle.Bold);
+            label1.Font = new Font("Microsoft Sans Serif", 28F, FontStyle.Bold);
             label1.Location = new Point(18, 18);
             label1.Name = "label1";
-            label1.Size = new Size(232, 67);
+            label1.Size = new Size(199, 44);
             label1.TabIndex = 0;
             label1.Text = "Upcoming";
             // 
@@ -1006,21 +1016,21 @@
             // lblDateToday
             // 
             lblDateToday.AutoSize = true;
-            lblDateToday.Font = new Font("Poppins Medium", 18F, FontStyle.Bold);
+            lblDateToday.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold);
             lblDateToday.Location = new Point(26, 66);
             lblDateToday.Name = "lblDateToday";
-            lblDateToday.Size = new Size(188, 42);
+            lblDateToday.Size = new Size(171, 29);
             lblDateToday.TabIndex = 4;
             lblDateToday.Text = "Nov. 23, 2025";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Poppins", 28F, FontStyle.Bold);
+            label3.Font = new Font("Microsoft Sans Serif", 28F, FontStyle.Bold);
             label3.Location = new Point(18, 17);
             label3.Margin = new Padding(0);
             label3.Name = "label3";
-            label3.Size = new Size(252, 67);
+            label3.Size = new Size(224, 44);
             label3.TabIndex = 3;
             label3.Text = "Date Today";
             // 
@@ -1059,21 +1069,21 @@
             // lblTotalHours
             // 
             lblTotalHours.AutoSize = true;
-            lblTotalHours.Font = new Font("Poppins Medium", 18F, FontStyle.Bold);
+            lblTotalHours.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold);
             lblTotalHours.Location = new Point(26, 66);
             lblTotalHours.Name = "lblTotalHours";
-            lblTotalHours.Size = new Size(147, 42);
+            lblTotalHours.Size = new Size(127, 29);
             lblTotalHours.TabIndex = 4;
             lblTotalHours.Text = "256 hours";
             // 
             // label30
             // 
             label30.AutoSize = true;
-            label30.Font = new Font("Poppins", 28F, FontStyle.Bold);
+            label30.Font = new Font("Microsoft Sans Serif", 28F, FontStyle.Bold);
             label30.Location = new Point(18, 17);
             label30.Margin = new Padding(0);
             label30.Name = "label30";
-            label30.Size = new Size(251, 67);
+            label30.Size = new Size(226, 44);
             label30.TabIndex = 3;
             label30.Text = "Total Hours";
             // 
@@ -1102,7 +1112,7 @@
             // btnTimeOut
             // 
             btnTimeOut.BackColor = Color.White;
-            btnTimeOut.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
+            btnTimeOut.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             btnTimeOut.Location = new Point(201, 76);
             btnTimeOut.Margin = new Padding(0);
             btnTimeOut.Name = "btnTimeOut";
@@ -1115,7 +1125,7 @@
             // btnTimeIn
             // 
             btnTimeIn.BackColor = Color.White;
-            btnTimeIn.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
+            btnTimeIn.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
             btnTimeIn.Location = new Point(24, 72);
             btnTimeIn.Margin = new Padding(0);
             btnTimeIn.Name = "btnTimeIn";
@@ -1128,11 +1138,11 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Poppins", 28F, FontStyle.Bold);
+            label4.Font = new Font("Microsoft Sans Serif", 28F, FontStyle.Bold);
             label4.Location = new Point(24, 18);
             label4.Margin = new Padding(0);
             label4.Name = "label4";
-            label4.Size = new Size(260, 67);
+            label4.Size = new Size(221, 44);
             label4.TabIndex = 5;
             label4.Text = "Attendance";
             // 
@@ -1181,10 +1191,10 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Poppins", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Microsoft Sans Serif", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(-2, 1);
             label2.Name = "label2";
-            label2.Size = new Size(208, 62);
+            label2.Size = new Size(175, 39);
             label2.TabIndex = 2;
             label2.Text = "Summary";
             // 
@@ -1214,20 +1224,20 @@
             // lblSalary
             // 
             lblSalary.AutoSize = true;
-            lblSalary.Font = new Font("Poppins Medium", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSalary.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSalary.Location = new Point(24, 52);
             lblSalary.Name = "lblSalary";
-            lblSalary.Size = new Size(185, 48);
+            lblSalary.Size = new Size(171, 31);
             lblSalary.TabIndex = 2;
             lblSalary.Text = "P 23,456.00";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Poppins", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.Location = new Point(18, 3);
             label6.Name = "label6";
-            label6.Size = new Size(195, 56);
+            label6.Size = new Size(176, 37);
             label6.TabIndex = 0;
             label6.Text = "Net Salary";
             // 
@@ -1267,20 +1277,20 @@
             // lblAllowance
             // 
             lblAllowance.AutoSize = true;
-            lblAllowance.Font = new Font("Poppins Medium", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAllowance.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAllowance.Location = new Point(27, 47);
             lblAllowance.Name = "lblAllowance";
-            lblAllowance.Size = new Size(185, 48);
+            lblAllowance.Size = new Size(171, 31);
             lblAllowance.TabIndex = 5;
             lblAllowance.Text = "P 23,456.00";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Poppins", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.Location = new Point(21, 1);
             label7.Name = "label7";
-            label7.Size = new Size(197, 56);
+            label7.Size = new Size(172, 37);
             label7.TabIndex = 4;
             label7.Text = "Allowance";
             // 
@@ -1320,20 +1330,20 @@
             // lblBonuses
             // 
             lblBonuses.AutoSize = true;
-            lblBonuses.Font = new Font("Poppins Medium", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblBonuses.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblBonuses.Location = new Point(27, 50);
             lblBonuses.Name = "lblBonuses";
-            lblBonuses.Size = new Size(185, 48);
+            lblBonuses.Size = new Size(171, 31);
             lblBonuses.TabIndex = 5;
             lblBonuses.Text = "P 23,456.00";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Poppins", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.Location = new Point(21, 1);
             label9.Name = "label9";
-            label9.Size = new Size(165, 56);
+            label9.Size = new Size(148, 37);
             label9.TabIndex = 4;
             label9.Text = "Bonuses";
             // 
@@ -1373,20 +1383,20 @@
             // lblDeductions
             // 
             lblDeductions.AutoSize = true;
-            lblDeductions.Font = new Font("Poppins Medium", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDeductions.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDeductions.Location = new Point(27, 47);
             lblDeductions.Name = "lblDeductions";
-            lblDeductions.Size = new Size(185, 48);
+            lblDeductions.Size = new Size(171, 31);
             lblDeductions.TabIndex = 5;
             lblDeductions.Text = "P 23,456.00";
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Font = new Font("Poppins", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.Location = new Point(21, -2);
             label11.Name = "label11";
-            label11.Size = new Size(212, 56);
+            label11.Size = new Size(187, 37);
             label11.TabIndex = 4;
             label11.Text = "Deductions";
             // 
@@ -1426,20 +1436,20 @@
             // lblAbsences
             // 
             lblAbsences.AutoSize = true;
-            lblAbsences.Font = new Font("Poppins Medium", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAbsences.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAbsences.Location = new Point(24, 43);
             lblAbsences.Name = "lblAbsences";
-            lblAbsences.Size = new Size(204, 48);
+            lblAbsences.Size = new Size(182, 31);
             lblAbsences.TabIndex = 5;
             lblAbsences.Text = "23 Absences";
             // 
             // label32
             // 
             label32.AutoSize = true;
-            label32.Font = new Font("Poppins", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label32.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label32.Location = new Point(21, 0);
             label32.Name = "label32";
-            label32.Size = new Size(187, 56);
+            label32.Size = new Size(165, 37);
             label32.TabIndex = 4;
             label32.Text = "Absences";
             // 
@@ -1447,7 +1457,7 @@
             // 
             pnlAttendanceLogBase1.BackColor = Color.Gray;
             pnlAttendanceLogBase1.Controls.Add(pnlAttendanceLogBase2);
-            pnlAttendanceLogBase1.Location = new Point(463, 263);
+            pnlAttendanceLogBase1.Location = new Point(23, 974);
             pnlAttendanceLogBase1.Name = "pnlAttendanceLogBase1";
             pnlAttendanceLogBase1.Size = new Size(1134, 702);
             pnlAttendanceLogBase1.TabIndex = 3;
@@ -1483,10 +1493,10 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Poppins", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Microsoft Sans Serif", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.Location = new Point(0, 3);
             label5.Name = "label5";
-            label5.Size = new Size(313, 62);
+            label5.Size = new Size(272, 39);
             label5.TabIndex = 4;
             label5.Text = "Attendance Log";
             // 
@@ -1518,26 +1528,16 @@
             AttendanceDataGrid.TabIndex = 4;
             AttendanceDataGrid.Text = "sfDataGrid1";
             // 
-            // pnlJobDeskDashSub
-            // 
-            pnlJobDeskDashSub.BackColor = Color.White;
-            pnlJobDeskDashSub.Location = new Point(3, 3);
-            pnlJobDeskDashSub.Margin = new Padding(10, 3, 10, 3);
-            pnlJobDeskDashSub.Name = "pnlJobDeskDashSub";
-            pnlJobDeskDashSub.Padding = new Padding(20);
-            pnlJobDeskDashSub.Size = new Size(1089, 848);
-            pnlJobDeskDashSub.TabIndex = 2;
-            // 
             // Dashboard_Employee
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.White;
-            ClientSize = new Size(1904, 1001);
+            ClientSize = new Size(1370, 749);
             Controls.Add(panelMain);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(1024, 765);
+            MinimumSize = new Size(1024, 726);
             Name = "Dashboard_Employee";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Strategic Assistant Employee Portal";

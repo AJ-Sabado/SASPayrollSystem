@@ -9,6 +9,9 @@ using DomainLayer.Models.Payroll;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.Salary;
 using DomainLayer.Models.User;
+using DomainLayer.ViewModels.AttendanceLog;
+using DomainLayer.ViewModels.DashboardDetails;
+using DomainLayer.ViewModels.JobDeskDetails;
 using ServicesLayer.Common;
 
 namespace ServicesLayer
@@ -33,6 +36,9 @@ namespace ServicesLayer
         Task InitialSeeding();
         Task LoginUser(string username, string password);
         Task NewUserRequest(string username, string password, string email);
+        DashboardDetailsViewModel GetDashboardDetails(IUserModel user);
+        IEnumerable<AttendanceLogViewModel> GetAttendanceLog(IUserModel user);
+        JobDeskDetailsViewModel GetJobDeskDetails(IUserModel user);
         void Save();
     }
 }

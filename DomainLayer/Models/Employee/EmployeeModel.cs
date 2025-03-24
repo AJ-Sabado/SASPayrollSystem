@@ -4,6 +4,7 @@ using DomainLayer.Models.Contribution;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Leave;
 using DomainLayer.Models.Salary;
+using DomainLayer.Models.User;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -62,6 +63,10 @@ namespace DomainLayer.Models.Employee
         [ForeignKey(nameof(DepartmentId))]
         public required Guid DepartmentId { get; set; }
         public required DepartmentModel Department { get; set; } = null!;
+
+        [ForeignKey(nameof(UserId))]
+        public required Guid UserId { get; set; }
+        public required UserModel User { get; set; }
 
         public required ContributionModel Contribution { get; set; } = null!;
 

@@ -6,6 +6,8 @@ namespace DomainLayer.Models.Salary
     public interface ISalaryModel
     {
         decimal AddAdjustments { get; set; }
+        decimal AllowancesAmount { get; set; }
+        decimal BonusesAmount { get; set; }
         decimal CashAdvance { get; set; }
         decimal DaysAmount { get; set; }
         uint DaysWorked { get; set; }
