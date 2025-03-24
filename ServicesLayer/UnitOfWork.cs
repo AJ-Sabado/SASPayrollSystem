@@ -306,6 +306,7 @@ namespace ServicesLayer
             if (user.Employee != null)
             {
                 viewModel.EmployeeName = user.Employee.FullName;
+                viewModel.Department = user.Employee.Department.Name;
                 viewModel.BaseSalary = $"Php {user.Employee.BasicSemiMonthlyRate} bimonthly";
                 viewModel.WorkShift = $"{user.Employee.WorkShiftStart.ToString("hh:mm tt")}";
                 viewModel.EmploymentStatus = user.Role.Name;
