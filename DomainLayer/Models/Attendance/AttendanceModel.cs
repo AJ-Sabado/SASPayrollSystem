@@ -41,6 +41,12 @@ namespace DomainLayer.Models.Attendance
             {
                 _timeOut = value;
                 TotalHours = CalculateTotalHours(TimeIn, TimeOut);
+                if (TotalHours > 8)
+                {
+                    OTHours = TotalHours - 8;
+                    TotalHours = 8;
+                }
+                LateMinutes = CalculateMinutesLate(TimeIn, Employee.WorkShiftStart);
             }
         }
 
@@ -48,6 +54,12 @@ namespace DomainLayer.Models.Attendance
         [Column(TypeName = "tinyint")]
         public uint TotalHours
         { get; private set; } = 0;
+
+        [Column(TypeName = "tiyint")]
+        public uint OTHours { get; private set; } = 0;
+
+        [Column(TypeName = "decimal")]
+        public decimal LateMinutes { get; private set; } = 0;
 
         [Required]
         [Column(TypeName = "tinyint")]
@@ -60,7 +72,17 @@ namespace DomainLayer.Models.Attendance
         private uint CalculateTotalHours(TimeOnly timeIn, TimeOnly timeOut)
         {
             var totalHoursSpan = (timeIn - timeOut) - (_breakTimeStart - _breakTimeEnd);
-            return TotalHours = (uint)Math.Round(totalHoursSpan.TotalHours);
+            return TotalHours = (uint)Math.Floor(totalHoursSpan.TotalHours);
+        }
+
+        private decimal CalculateMinutesLate(TimeOnly timeIn, TimeOnly workShiftIn)
+        {
+            if (timeIn <= workShiftIn)
+            {
+                return 0;
+            }
+            var span = workShiftIn - timeIn;
+            return (decimal)Math.Floor(span.TotalMinutes);
         }
     }
 }

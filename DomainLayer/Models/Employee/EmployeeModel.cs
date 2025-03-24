@@ -1,5 +1,6 @@
 ﻿using DomainLayer.Common;
 using DomainLayer.Models.Attendance;
+using DomainLayer.Models.Contribution;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Leave;
 using DomainLayer.Models.Salary;
@@ -25,21 +26,21 @@ namespace DomainLayer.Models.Employee
 
         [Required(ErrorMessage = "Full name is required")]
         [StringLength(70, MinimumLength = 2, ErrorMessage = "Must be between 2 - 70 characters")]
-        public string FullName
+        public required string FullName
         {
             get => _fullName;
             set => _fullName = formatter.ToProperCase(value);
         }
 
         [Required(ErrorMessage = "Birthday is required")]
-        public DateOnly BirthDay { get; set; }
+        public required DateOnly BirthDay { get; set; }
 
         [Required(ErrorMessage = "Employment date is required")]
-        public DateOnly EmploymentDate { get; set; }
+        public required DateOnly EmploymentDate { get; set; }
 
         [Required(ErrorMessage = "Job title is required")]
         [StringLength(20, MinimumLength = 2, ErrorMessage = "Must be between 2 - 50 characters")]
-        public string JobTitle
+        public required string JobTitle
         {
             get => _jobTitle;
             set => _jobTitle = formatter.ToProperCase(value);
@@ -47,14 +48,23 @@ namespace DomainLayer.Models.Employee
 
         [Required]
         [Column(TypeName = "money")]
-        public decimal BasicSemiMonthlyRate { get; set; }
+        public required decimal BasicSemiMonthlyRate { get; set; }
 
         [Column(TypeName = "tinyint")]
-        public uint LeaveCredits { get; set; } = 0;
+        public required uint LeaveCredits { get; set; } = 0;
+
+        [Column(TypeName = "time")]
+        public required TimeOnly WorkShiftStart { get; set; }
+
+        [Column(TypeName = "time")]
+        public required TimeOnly WorkShiftEnd { get; set; }
 
         [ForeignKey(nameof(DepartmentId))]
-        public Guid DepartmentId { get; set; }
-        public DepartmentModel Department { get; set; } = null!;
+        public required Guid DepartmentId { get; set; }
+        public required DepartmentModel Department { get; set; } = null!;
+
+        public required ContributionModel Contribution { get; set; } = null!;
+
         public ICollection<AttendanceModel> Attendances { get; } = [];
         public ICollection<LeaveModel> Leaves { get; } = [];
         public ICollection<SalaryModel> Salaries { get; } = [];

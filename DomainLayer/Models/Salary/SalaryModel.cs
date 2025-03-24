@@ -10,19 +10,6 @@ namespace DomainLayer.Models.Salary
 {
     public class SalaryModel : ISalaryModel
     {
-        private const decimal _minimumSSSMonthlyCompRange = 5250;
-        private const decimal _maximumSSSMonthlyCompRange = 34750;
-        private const decimal _minimumSSSMonthlyContribution = 250;
-        private const decimal _maximumSSSMonthlyContribution = 1750;
-
-        private const decimal _minimumPhilHealthMonthlySalaryCap = 10000;
-        private const decimal _maximumPhilHealthMonthlySalaryCap = 100000;
-        private const decimal _minimumPhilHealthMonthlyContribution = 500;
-        private const decimal _maximumPhilHealthMonthlyContribution = 5000;
-        private const decimal _currentPhilHealthMonthlyRate = 0.05m;
-
-        private const decimal _minimumPagIbigMonthlyComp = 1500;
-
         private uint _days = 0;
         private uint _regularOT = 0;
         private uint _nights = 0;
@@ -31,9 +18,6 @@ namespace DomainLayer.Models.Salary
 
         private readonly TimeOnly DayStart = new TimeOnly(6, 0, 0);
         private readonly TimeOnly DayEnd = new TimeOnly(22, 0, 0);
-
-        private readonly TimeOnly DayWorkShiftStart = new TimeOnly(8, 0, 0);
-        private readonly TimeOnly DayWorkShiftEnd = new TimeOnly(17, 0, 0);
 
         public SalaryModel()
         {
@@ -283,18 +267,18 @@ namespace DomainLayer.Models.Salary
 
 
 
-        //Contributions
-        [Column(TypeName = "money")]
-        public decimal SSSAmount { get; set; } = 0;
+        ////Contributions
+        //[Column(TypeName = "money")]
+        //public decimal SSSAmount { get; set; } = 0;
 
-        [Column(TypeName = "money")]
-        public decimal PagIbigAmount { get; set; } = 0;
+        //[Column(TypeName = "money")]
+        //public decimal PagIbigAmount { get; set; } = 0;
 
-        [Column(TypeName = "money")]
-        public decimal PhilHealthAmount { get; set; } = 0;
+        //[Column(TypeName = "money")]
+        //public decimal PhilHealthAmount { get; set; } = 0;
 
-        [Column(TypeName = "money")]
-        public decimal TotalContributions { get; set; } = 0;
+        //[Column(TypeName = "money")]
+        //public decimal TotalContributions { get; set; } = 0;
 
         //Income Tax
         [Column(TypeName = "money")]
@@ -347,9 +331,7 @@ namespace DomainLayer.Models.Salary
             TotalBasic = DaysAmount + NightsAmount + RegularHolidaysAmount + RegularHolidayNightsAmount
                 + SpecialHolidaysAmount + SpecialHolidayNightsAmount;
             TotalOT = RegularOTAmount + NightsOTAmount;
-            CalculateContributions(Employee.BasicSemiMonthlyRate * 2);
-            TotalContributions = SSSAmount + PagIbigAmount + PhilHealthAmount;
-            TaxableIncome = TotalBasic + TotalOT - TotalContributions;
+            TaxableIncome = TotalBasic + TotalOT - Employee.Contribution.TotalContributions;
             TaxWithholdings = CalculateTaxWithholdings(TaxableIncome);
             IncomeNetOfTax = TaxableIncome - TaxWithholdings;
             DisposableIncome = IncomeNetOfTax - SSSLoanAmount - PagIbigLoanAmount;
@@ -391,40 +373,40 @@ namespace DomainLayer.Models.Salary
         }
 
         //Contributions
-        private void CalculateContributions(decimal basicMonthlySalary)
-        {
-            SSSAmount = CalculateSSSAmount(basicMonthlySalary);
-            PagIbigAmount = CalculatePagIbigAmount(basicMonthlySalary);
-            PhilHealthAmount = CalculatePhilHealthAmount(basicMonthlySalary);
-        }
-        private decimal CalculateSSSAmount(decimal basicMonthlySalary)
-        {
-            decimal finalMonthlyAmount = 0;
-            if (basicMonthlySalary < _minimumSSSMonthlyCompRange)
-                finalMonthlyAmount = _minimumSSSMonthlyContribution;
-            else if (basicMonthlySalary >= _maximumSSSMonthlyCompRange)
-                finalMonthlyAmount = _maximumSSSMonthlyContribution;
-            else
-            {
-                decimal baseCompensation = basicMonthlySalary - _minimumSSSMonthlyCompRange;
-                finalMonthlyAmount = 25 * (Math.Floor(baseCompensation / 500) + 1) + _minimumSSSMonthlyContribution;
-            }
-            return finalMonthlyAmount / 2;
-        }
-        private decimal CalculatePagIbigAmount(decimal basicMonthlySalary)
-        {
-            if (basicMonthlySalary <= _minimumPagIbigMonthlyComp)
-                return basicMonthlySalary * 0.03m / 2;
-            return basicMonthlySalary * 0.04m / 2;
-        }
-        private decimal CalculatePhilHealthAmount(decimal basicMonthlySalary)
-        {
-            if (basicMonthlySalary <= _minimumPhilHealthMonthlySalaryCap)
-                return _minimumPhilHealthMonthlyContribution / 4;
-            else if (basicMonthlySalary >= _maximumPhilHealthMonthlySalaryCap)
-                return _maximumPhilHealthMonthlyContribution / 4;
-            return basicMonthlySalary * _currentPhilHealthMonthlyRate / 4;
-        }
+        //private void CalculateContributions(decimal basicMonthlySalary)
+        //{
+        //    SSSAmount = CalculateSSSAmount(basicMonthlySalary);
+        //    PagIbigAmount = CalculatePagIbigAmount(basicMonthlySalary);
+        //    PhilHealthAmount = CalculatePhilHealthAmount(basicMonthlySalary);
+        //}
+        //private decimal CalculateSSSAmount(decimal basicMonthlySalary)
+        //{
+        //    decimal finalMonthlyAmount = 0;
+        //    if (basicMonthlySalary < _minimumSSSMonthlyCompRange)
+        //        finalMonthlyAmount = _minimumSSSMonthlyContribution;
+        //    else if (basicMonthlySalary >= _maximumSSSMonthlyCompRange)
+        //        finalMonthlyAmount = _maximumSSSMonthlyContribution;
+        //    else
+        //    {
+        //        decimal baseCompensation = basicMonthlySalary - _minimumSSSMonthlyCompRange;
+        //        finalMonthlyAmount = 25 * (Math.Floor(baseCompensation / 500) + 1) + _minimumSSSMonthlyContribution;
+        //    }
+        //    return finalMonthlyAmount / 2;
+        //}
+        //private decimal CalculatePagIbigAmount(decimal basicMonthlySalary)
+        //{
+        //    if (basicMonthlySalary <= _minimumPagIbigMonthlyComp)
+        //        return basicMonthlySalary * 0.03m / 2;
+        //    return basicMonthlySalary * 0.04m / 2;
+        //}
+        //private decimal CalculatePhilHealthAmount(decimal basicMonthlySalary)
+        //{
+        //    if (basicMonthlySalary <= _minimumPhilHealthMonthlySalaryCap)
+        //        return _minimumPhilHealthMonthlyContribution / 4;
+        //    else if (basicMonthlySalary >= _maximumPhilHealthMonthlySalaryCap)
+        //        return _maximumPhilHealthMonthlyContribution / 4;
+        //    return basicMonthlySalary * _currentPhilHealthMonthlyRate / 4;
+        //}
         private decimal CalculateTaxWithholdings(decimal taxableIncome)
         {
             decimal finalAmount = 0;
@@ -618,7 +600,7 @@ namespace DomainLayer.Models.Salary
             SpecialHolidayNightsWorked = (uint)specHNights.Count();
 
             var lates = attendances
-                .Where(a => a.TimeIn > DayWorkShiftStart)
+                .Where(a => a.TimeIn > Employee.WorkShiftStart)
                 .Where(a => Payroll.Holidays.Where(h => h.Date == a.Date).FirstOrDefault() == null)
                 .ToList();
 

@@ -93,6 +93,8 @@ namespace PresentationLayer.Views
             panelForgotPass1.Visible = false;
             panelForgotPass2.Visible = false;
             panelForgotPass3.Visible = true;
+            this.Size = new Size(619, 350);
+            RoundedElements.rounded(this, 10);
         }
     }
 }
