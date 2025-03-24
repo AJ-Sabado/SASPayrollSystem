@@ -1,15 +1,9 @@
-﻿using PresentationLayer.Views;
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using PresentationLayer.Views;
 using ServicesLayer;
-using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Tools;
 using Syncfusion.WinForms.Controls;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PresentationLayer
@@ -24,6 +18,18 @@ namespace PresentationLayer
         {
             _unitOfWork = unitOfWork;
             InitializeComponent();
+
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.EnforceBackcolorOnAllComponents = false;
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT; // Set to DARK if needed
+
+            materialSkinManager.ColorScheme = new ColorScheme(
+            primary: Color.FromArgb(255, 255, 255),         //Background Colors
+            darkPrimary: Color.FromArgb(25, 118, 210),      // Dark primary color
+            lightPrimary: Color.FromArgb(230, 230, 230),    // Light primary color
+            accent: Color.FromArgb(252, 184, 49),           // Accent color
+            textShade: TextShade.BLACK                  // Text shade (WHITE/BLACK)
+        );
 
             //DASHBOARD PROPERTIES
             //Init MenuButtons Properties
@@ -48,6 +54,15 @@ namespace PresentationLayer
 
             //InitJobDeskPanelProperties
             InitJobDeskPanelProperties();
+
+            //View Profile Button Properties
+            InitViewProfileButtonProperties();
+
+            //PayslipButtons
+            InitJobDeskButtons();
+
+            //InitLeaveCarProerties
+            InitLeaveCardProperties();
         }
 
         public void Dashboard_Employee_Load(object sender, EventArgs e)
@@ -57,7 +72,7 @@ namespace PresentationLayer
 
             btnDashboard.Focus();
             pnlDashboard.Show();
-            pnlJobDesk.Hide();
+            pnlJobDeskRegular.Hide();
 
             // Track the last focused button
             lastFocusedButton = btnDashboard;
@@ -79,9 +94,10 @@ namespace PresentationLayer
             }
         }
 
+        //MENU BAR PROPERTIES
         public void InitMenuButtonProperties()
         {
-            SfButton[] menuButtons = new SfButton[] { btnDashboard, btnJobDesk };
+            SfButton[] menuButtons = new SfButton[] { btnDashboard, btnJobDesk, btnAccount };
 
             foreach (SfButton btn in menuButtons)
             {
@@ -115,6 +131,7 @@ namespace PresentationLayer
             }
         }
 
+        //DASHBOARD PROERTIES
         public void InitDashboardCardProperties()
         {
 
@@ -125,6 +142,7 @@ namespace PresentationLayer
             RoundedElements.rounded(pnlDBSubCard1, 12);
             RoundedElements.rounded(pnlDBSubCard2, 12);
             RoundedElements.rounded(pnlDBSubCard4, 12);
+
 
             pnlDBMainCard1.BackColor = Color.FromArgb(252, 184, 49);
         }
@@ -178,8 +196,8 @@ namespace PresentationLayer
             RoundedElements.rounded(pnlSummaryBase, 15);
             RoundedElements.rounded(pnlSummaryBase2, 12);
 
-            Panel[] mainSummaryCards = new Panel[] { pnlSummaryCard1, pnlSummaryCard2, pnlSummaryCard3, pnlSummaryCard4 };
-            Panel[] subSummaryCards = new Panel[] { pnlSummarySubCard2, pnlSummarySubCard3, pnlSummarySubCard4 };
+            Panel[] mainSummaryCards = new Panel[] { pnlSummaryCard1, pnlSummaryCard2, pnlSummaryCard3, pnlSummaryCard4, pnlSummaryCard5 };
+            Panel[] subSummaryCards = new Panel[] { pnlSummarySubCard2, pnlSummarySubCard3, pnlSummarySubCard4, pnlSummarySubCard5 };
 
             foreach (Panel pnl in mainSummaryCards)
             {
@@ -206,7 +224,7 @@ namespace PresentationLayer
             RoundedElements.rounded(pnlDataGridBase, 15);
         }
 
-        //JobDesk Properties
+        //JOBDESK PROPERTIES
         public void InitJobDeskPanelProperties()
         {
             RoundedElements.rounded(pnlJobDeskDashMain, 15);
@@ -215,6 +233,62 @@ namespace PresentationLayer
             RoundedElements.rounded(pnlJobDeskProfileSub, 12);
         }
 
+        public void InitViewProfileButtonProperties()
+        {
+            btnJobDeskViewProfile.Style.BackColor = Color.FromArgb(255, 255, 255);
+            btnJobDeskViewProfile.Style.ForeColor = Color.FromArgb(51, 51, 51);
+            btnJobDeskViewProfile.Style.Border = new Pen(Color.FromArgb(255, 255, 255));
+
+            btnJobDeskViewProfile.Style.HoverBackColor = Color.FromArgb(255, 255, 255);
+            btnJobDeskViewProfile.Style.HoverForeColor = Color.FromArgb(252, 184, 49);
+            btnJobDeskViewProfile.Style.HoverBorder = new Pen(Color.FromArgb(255, 255, 255));
+
+            btnJobDeskViewProfile.Style.FocusedBackColor = Color.FromArgb(255, 255, 255);
+            btnJobDeskViewProfile.Style.FocusedForeColor = Color.FromArgb(252, 184, 49);
+            btnJobDeskViewProfile.Style.FocusedBorder = new Pen(Color.FromArgb(255, 255, 255));
+
+            btnJobDeskViewProfile.Style.PressedBackColor = Color.FromArgb(255, 255, 255);
+            btnJobDeskViewProfile.Style.PressedForeColor = Color.FromArgb(209, 152, 38);
+            btnJobDeskViewProfile.Style.PressedBorder = new Pen(Color.FromArgb(255, 255, 255));
+        }
+
+        public void InitJobDeskButtons()
+        {
+            SfButton[] PayslipButtons = { btnPrint, btnPreviewDocument, btnAttendanceRequest, btnFileLeave };
+
+            foreach (SfButton btn in PayslipButtons)
+            {
+                RoundedElements.rounded(btn, 10);
+
+                btn.Style.BackColor = Color.FromArgb(255, 218, 145);
+                btn.Style.ForeColor = Color.FromArgb(189, 142, 0);
+                btn.Style.Border = new Pen(Color.FromArgb(255, 218, 145));
+
+                btn.Style.HoverBackColor = Color.FromArgb(252, 184, 49);
+                btn.Style.HoverForeColor = Color.FromArgb(255, 255, 255);
+                btn.Style.HoverBorder = new Pen(Color.FromArgb(252, 184, 49));
+
+                btn.Style.FocusedBackColor = Color.FromArgb(217, 157, 39);
+                btn.Style.FocusedForeColor = Color.FromArgb(255, 255, 255);
+                btn.Style.FocusedBorder = new Pen(Color.FromArgb(217, 157, 39));
+
+                btn.Style.PressedBackColor = Color.FromArgb(217, 157, 39);
+                btn.Style.PressedForeColor = Color.FromArgb(255, 255, 255);
+                btn.Style.PressedBorder = new Pen(Color.FromArgb(217, 157, 39));
+
+            }
+        }
+
+        public void InitLeaveCardProperties()
+        {
+            RoundedElements.rounded(pnlLeaveCard1Main, 15);
+            RoundedElements.rounded(pnlLeaveCard1Sub, 12);
+            RoundedElements.rounded(pnlLeaveCard2Main, 15);
+            RoundedElements.rounded(pnlLeaveCard2Sub, 12);
+            RoundedElements.rounded(pnlLeaveCard3Main, 15);
+        }
+
+        //Action Events
 
         private void Btn_LostFocus(object sender, EventArgs e)
         {
@@ -229,7 +303,7 @@ namespace PresentationLayer
             lastFocusedButton = btnDashboard;
             btnDashboard.Focus();
             pnlDashboard.Show();
-            pnlJobDesk.Hide();
+            pnlJobDeskRegular.Hide();
         }
 
         private void btnJobDesk_Click(object sender, EventArgs e)
@@ -237,7 +311,7 @@ namespace PresentationLayer
             lastFocusedButton = btnJobDesk;
             btnJobDesk.Focus();
             pnlDashboard.Hide();
-            pnlJobDesk.Show();
+            pnlJobDeskRegular.Show();
         }
 
     }

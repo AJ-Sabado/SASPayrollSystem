@@ -34,9 +34,10 @@
             pictureBox1 = new PictureBox();
             btnDashboard = new Syncfusion.WinForms.Controls.SfButton();
             btnJobDesk = new Syncfusion.WinForms.Controls.SfButton();
+            btnAccount = new Syncfusion.WinForms.Controls.SfButton();
             panelMain = new Panel();
             panelMainDashboard = new Panel();
-            pnlJobDesk = new FlowLayoutPanel();
+            pnlJobDeskRegular = new FlowLayoutPanel();
             flowLayoutPanel2 = new FlowLayoutPanel();
             panel3 = new Panel();
             label8 = new Label();
@@ -45,52 +46,131 @@
             pnlJobDeskProfileSub = new Panel();
             flowLayoutPanel6 = new FlowLayoutPanel();
             panel4 = new Panel();
-            sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
+            btnJobDeskViewProfile = new Syncfusion.WinForms.Controls.SfButton();
             pictureBox8 = new PictureBox();
             lblProfileName = new Label();
             panel7 = new Panel();
             label10 = new Label();
             panel8 = new Panel();
             label13 = new Label();
-            label12 = new Label();
+            lblDepartmentReg = new Label();
             panel9 = new Panel();
             pictureBox9 = new PictureBox();
             panel10 = new Panel();
             label14 = new Label();
-            label15 = new Label();
+            lblBaseSalaryReg = new Label();
             panel11 = new Panel();
             pictureBox10 = new PictureBox();
             panel12 = new Panel();
             label16 = new Label();
-            label17 = new Label();
+            lblShiftReg = new Label();
             panel13 = new Panel();
             pictureBox11 = new PictureBox();
             panel14 = new Panel();
             label18 = new Label();
-            label19 = new Label();
+            lblEmploymentStatusReg = new Label();
             panel15 = new Panel();
             pictureBox12 = new PictureBox();
             panel16 = new Panel();
             label20 = new Label();
-            label21 = new Label();
+            lblEmploymentDateReg = new Label();
             panel17 = new Panel();
             pictureBox13 = new PictureBox();
             panel18 = new Panel();
             label22 = new Label();
             panel19 = new Panel();
             pictureBox14 = new PictureBox();
-            label23 = new Label();
+            lblEmailReg = new Label();
             label24 = new Label();
             panel21 = new Panel();
             pictureBox15 = new PictureBox();
-            label25 = new Label();
+            lblPhoneReg = new Label();
             label26 = new Label();
             panel23 = new Panel();
             pictureBox16 = new PictureBox();
-            label27 = new Label();
+            lblWebsiteReg = new Label();
             label28 = new Label();
             pnlJobDeskDashMain = new Panel();
             pnlJobDeskDashSub = new Panel();
+            flowLayoutPanel7 = new FlowLayoutPanel();
+            tabSelectorPanel = new Panel();
+            panel5 = new Panel();
+            tabSelectorJobDesk = new MaterialSkin.Controls.MaterialTabSelector();
+            materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
+            tabPayslip = new TabPage();
+            flowLayoutPanel8 = new FlowLayoutPanel();
+            panel6 = new Panel();
+            btnPreviewDocument = new Syncfusion.WinForms.Controls.SfButton();
+            btnPrint = new Syncfusion.WinForms.Controls.SfButton();
+            lblPayslip = new Label();
+            panel26 = new Panel();
+            lblRegBaseSalary = new Label();
+            label29 = new Label();
+            panel27 = new Panel();
+            panel28 = new Panel();
+            lblRegBonus = new Label();
+            label33 = new Label();
+            panel29 = new Panel();
+            panel30 = new Panel();
+            label35 = new Label();
+            panel31 = new Panel();
+            lblRegTax = new Label();
+            label37 = new Label();
+            panel32 = new Panel();
+            lblRegSSS = new Label();
+            label38 = new Label();
+            panel33 = new Panel();
+            lblRegPhilHealth = new Label();
+            label40 = new Label();
+            panel34 = new Panel();
+            lblRegPagIbig = new Label();
+            label42 = new Label();
+            panel35 = new Panel();
+            panel36 = new Panel();
+            lblRegAbsence = new Label();
+            label44 = new Label();
+            panel37 = new Panel();
+            panel38 = new Panel();
+            lblRegTotal = new Label();
+            label46 = new Label();
+            panel40 = new Panel();
+            panel39 = new Panel();
+            lblRegPayrolDate = new Label();
+            label48 = new Label();
+            panel41 = new Panel();
+            lblRegStatus = new Label();
+            label50 = new Label();
+            tabAttendance = new TabPage();
+            flowLayoutPanel9 = new FlowLayoutPanel();
+            panel24 = new Panel();
+            btnAttendanceRequest = new Syncfusion.WinForms.Controls.SfButton();
+            label31 = new Label();
+            panel42 = new Panel();
+            sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            tabLeave = new TabPage();
+            flowLayoutPanel10 = new FlowLayoutPanel();
+            panel25 = new Panel();
+            btnFileLeave = new Syncfusion.WinForms.Controls.SfButton();
+            label34 = new Label();
+            flowLayoutPanel11 = new FlowLayoutPanel();
+            pnlLeaveCard1Main = new Panel();
+            pnlLeaveCard1Sub = new Panel();
+            lblApprovedLeaves = new Label();
+            label36 = new Label();
+            label39 = new Label();
+            pnlLeaveCard2Main = new Panel();
+            pnlLeaveCard2Sub = new Panel();
+            lblPendingLaaves = new Label();
+            label41 = new Label();
+            label43 = new Label();
+            pnlLeaveCard3Main = new Panel();
+            lblRemainingLeaves = new Label();
+            label45 = new Label();
+            label47 = new Label();
+            panel43 = new Panel();
+            label12 = new Label();
+            panel44 = new Panel();
+            sfDataGrid2 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             pnlDashboard = new FlowLayoutPanel();
             panel1 = new Panel();
             lblDahsbaordTitle = new Label();
@@ -138,8 +218,8 @@
             pictureBox7 = new PictureBox();
             lblDeductions = new Label();
             label11 = new Label();
-            panel24 = new Panel();
-            panel25 = new Panel();
+            pnlSummaryCard5 = new Panel();
+            pnlSummarySubCard5 = new Panel();
             pictureBox18 = new PictureBox();
             lblAbsences = new Label();
             label32 = new Label();
@@ -155,7 +235,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelMain.SuspendLayout();
             panelMainDashboard.SuspendLayout();
-            pnlJobDesk.SuspendLayout();
+            pnlJobDeskRegular.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             panel3.SuspendLayout();
             flowLayoutPanel5.SuspendLayout();
@@ -188,6 +268,42 @@
             panel23.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             pnlJobDeskDashMain.SuspendLayout();
+            pnlJobDeskDashSub.SuspendLayout();
+            flowLayoutPanel7.SuspendLayout();
+            tabSelectorPanel.SuspendLayout();
+            panel5.SuspendLayout();
+            materialTabControl1.SuspendLayout();
+            tabPayslip.SuspendLayout();
+            flowLayoutPanel8.SuspendLayout();
+            panel6.SuspendLayout();
+            panel26.SuspendLayout();
+            panel28.SuspendLayout();
+            panel30.SuspendLayout();
+            panel31.SuspendLayout();
+            panel32.SuspendLayout();
+            panel33.SuspendLayout();
+            panel34.SuspendLayout();
+            panel36.SuspendLayout();
+            panel38.SuspendLayout();
+            panel39.SuspendLayout();
+            panel41.SuspendLayout();
+            tabAttendance.SuspendLayout();
+            flowLayoutPanel9.SuspendLayout();
+            panel24.SuspendLayout();
+            panel42.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)sfDataGrid1).BeginInit();
+            tabLeave.SuspendLayout();
+            flowLayoutPanel10.SuspendLayout();
+            panel25.SuspendLayout();
+            flowLayoutPanel11.SuspendLayout();
+            pnlLeaveCard1Main.SuspendLayout();
+            pnlLeaveCard1Sub.SuspendLayout();
+            pnlLeaveCard2Main.SuspendLayout();
+            pnlLeaveCard2Sub.SuspendLayout();
+            pnlLeaveCard3Main.SuspendLayout();
+            panel43.SuspendLayout();
+            panel44.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)sfDataGrid2).BeginInit();
             pnlDashboard.SuspendLayout();
             panel1.SuspendLayout();
             panel.SuspendLayout();
@@ -216,8 +332,8 @@
             pnlSummaryCard4.SuspendLayout();
             pnlSummarySubCard4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            panel24.SuspendLayout();
-            panel25.SuspendLayout();
+            pnlSummaryCard5.SuspendLayout();
+            pnlSummarySubCard5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
             pnlAttendanceLogBase1.SuspendLayout();
             pnlAttendanceLogBase2.SuspendLayout();
@@ -234,6 +350,7 @@
             flowLayoutPanel1.Controls.Add(panel2);
             flowLayoutPanel1.Controls.Add(btnDashboard);
             flowLayoutPanel1.Controls.Add(btnJobDesk);
+            flowLayoutPanel1.Controls.Add(btnAccount);
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Margin = new Padding(10, 5, 10, 3);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -288,6 +405,21 @@
             btnJobDesk.TextMargin = new Padding(20, 3, 3, 0);
             btnJobDesk.Click += btnJobDesk_Click;
             // 
+            // btnAccount
+            // 
+            btnAccount.Font = new Font("Inter", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAccount.ImageMargin = new Padding(5);
+            btnAccount.ImageSize = new Size(25, 25);
+            btnAccount.Location = new Point(10, 314);
+            btnAccount.Margin = new Padding(10, 5, 10, 5);
+            btnAccount.Name = "btnAccount";
+            btnAccount.Size = new Size(240, 50);
+            btnAccount.Style.Image = (Image)resources.GetObject("resource.Image2");
+            btnAccount.TabIndex = 3;
+            btnAccount.TabStop = false;
+            btnAccount.Text = "Account";
+            btnAccount.TextMargin = new Padding(20, 3, 3, 0);
+            // 
             // panelMain
             // 
             panelMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -301,14 +433,14 @@
             // panelMainDashboard
             // 
             panelMainDashboard.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelMainDashboard.Controls.Add(pnlJobDesk);
+            panelMainDashboard.Controls.Add(pnlJobDeskRegular);
             panelMainDashboard.Controls.Add(pnlDashboard);
             panelMainDashboard.Location = new Point(273, 3);
             panelMainDashboard.Name = "panelMainDashboard";
             panelMainDashboard.Size = new Size(1094, 743);
             panelMainDashboard.TabIndex = 1;
             // 
-            // pnlJobDesk
+            // pnlJobDeskRegular
             // 
             pnlJobDesk.Controls.Add(flowLayoutPanel2);
             pnlJobDesk.Dock = DockStyle.Fill;
@@ -316,7 +448,7 @@
             pnlJobDesk.Margin = new Padding(20);
             pnlJobDesk.Name = "pnlJobDesk";
             pnlJobDesk.Padding = new Padding(20);
-            pnlJobDesk.Size = new Size(1094, 743);
+            pnlJobDesk.Size = new Size(1628, 995);
             pnlJobDesk.TabIndex = 1;
             // 
             // flowLayoutPanel2
@@ -399,7 +531,7 @@
             // 
             // panel4
             // 
-            panel4.Controls.Add(sfButton1);
+            panel4.Controls.Add(btnJobDeskViewProfile);
             panel4.Controls.Add(pictureBox8);
             panel4.Controls.Add(lblProfileName);
             panel4.Location = new Point(0, 0);
@@ -408,9 +540,9 @@
             panel4.Size = new Size(406, 91);
             panel4.TabIndex = 0;
             // 
-            // sfButton1
+            // btnJobDeskViewProfile
             // 
-            sfButton1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            sfButton1.Font = new Font("Poppins", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             sfButton1.Location = new Point(101, 49);
             sfButton1.Name = "sfButton1";
             sfButton1.Size = new Size(130, 33);
@@ -462,7 +594,7 @@
             // panel8
             // 
             panel8.Controls.Add(label13);
-            panel8.Controls.Add(label12);
+            panel8.Controls.Add(lblDepartmentReg);
             panel8.Controls.Add(panel9);
             panel8.Location = new Point(0, 144);
             panel8.Margin = new Padding(0);
@@ -481,14 +613,14 @@
             label13.TabIndex = 9;
             label13.Text = "Department";
             // 
-            // label12
+            // lblDepartmentReg
             // 
             label12.AutoSize = true;
-            label12.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label12.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.Location = new Point(75, 6);
             label12.Margin = new Padding(0);
             label12.Name = "label12";
-            label12.Size = new Size(204, 25);
+            label12.Size = new Size(211, 37);
             label12.TabIndex = 8;
             label12.Text = "Human Resources";
             // 
@@ -515,7 +647,7 @@
             // panel10
             // 
             panel10.Controls.Add(label14);
-            panel10.Controls.Add(label15);
+            panel10.Controls.Add(lblBaseSalaryReg);
             panel10.Controls.Add(panel11);
             panel10.Location = new Point(0, 219);
             panel10.Margin = new Padding(0);
@@ -534,14 +666,14 @@
             label14.TabIndex = 9;
             label14.Text = "Base Salary";
             // 
-            // label15
+            // lblBaseSalaryReg
             // 
             label15.AutoSize = true;
-            label15.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label15.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.Location = new Point(75, 6);
             label15.Margin = new Padding(0);
             label15.Name = "label15";
-            label15.Size = new Size(112, 25);
+            label15.Size = new Size(113, 37);
             label15.TabIndex = 8;
             label15.Text = "P100,000";
             // 
@@ -568,7 +700,7 @@
             // panel12
             // 
             panel12.Controls.Add(label16);
-            panel12.Controls.Add(label17);
+            panel12.Controls.Add(lblShiftReg);
             panel12.Controls.Add(panel13);
             panel12.Location = new Point(0, 294);
             panel12.Margin = new Padding(0);
@@ -587,14 +719,14 @@
             label16.TabIndex = 9;
             label16.Text = "Work Shift";
             // 
-            // label17
+            // lblShiftReg
             // 
             label17.AutoSize = true;
-            label17.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label17.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label17.Location = new Point(75, 6);
             label17.Margin = new Padding(0);
             label17.Name = "label17";
-            label17.Size = new Size(208, 25);
+            label17.Size = new Size(213, 37);
             label17.TabIndex = 8;
             label17.Text = "6:00 AM - 6:00 PM";
             // 
@@ -621,7 +753,7 @@
             // panel14
             // 
             panel14.Controls.Add(label18);
-            panel14.Controls.Add(label19);
+            panel14.Controls.Add(lblEmploymentStatusReg);
             panel14.Controls.Add(panel15);
             panel14.Location = new Point(0, 369);
             panel14.Margin = new Padding(0);
@@ -640,14 +772,14 @@
             label18.TabIndex = 9;
             label18.Text = "Employment Status";
             // 
-            // label19
+            // lblEmploymentStatusReg
             // 
             label19.AutoSize = true;
-            label19.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label19.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label19.Location = new Point(75, 6);
             label19.Margin = new Padding(0);
             label19.Name = "label19";
-            label19.Size = new Size(259, 25);
+            label19.Size = new Size(275, 37);
             label19.TabIndex = 8;
             label19.Text = "Independent Contractor";
             // 
@@ -674,7 +806,7 @@
             // panel16
             // 
             panel16.Controls.Add(label20);
-            panel16.Controls.Add(label21);
+            panel16.Controls.Add(lblEmploymentDateReg);
             panel16.Controls.Add(panel17);
             panel16.Location = new Point(0, 444);
             panel16.Margin = new Padding(0);
@@ -693,14 +825,14 @@
             label20.TabIndex = 9;
             label20.Text = "Employment Date";
             // 
-            // label21
+            // lblEmploymentDateReg
             // 
             label21.AutoSize = true;
-            label21.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label21.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label21.Location = new Point(75, 6);
             label21.Margin = new Padding(0);
             label21.Name = "label21";
-            label21.Size = new Size(205, 25);
+            label21.Size = new Size(203, 37);
             label21.TabIndex = 8;
             label21.Text = "February 14, 2025";
             // 
@@ -746,7 +878,7 @@
             // panel19
             // 
             panel19.Controls.Add(pictureBox14);
-            panel19.Controls.Add(label23);
+            panel19.Controls.Add(lblEmailReg);
             panel19.Controls.Add(label24);
             panel19.Location = new Point(0, 566);
             panel19.Margin = new Padding(0);
@@ -765,14 +897,14 @@
             pictureBox14.TabIndex = 10;
             pictureBox14.TabStop = false;
             // 
-            // label23
+            // lblEmailReg
             // 
             label23.AutoSize = true;
-            label23.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label23.Font = new Font("Poppins Light", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label23.Location = new Point(81, 41);
             label23.Margin = new Padding(0);
             label23.Name = "label23";
-            label23.Size = new Size(202, 16);
+            label23.Size = new Size(222, 23);
             label23.TabIndex = 9;
             label23.Text = "loremipsum@umindanao.edu.ph";
             // 
@@ -790,7 +922,7 @@
             // panel21
             // 
             panel21.Controls.Add(pictureBox15);
-            panel21.Controls.Add(label25);
+            panel21.Controls.Add(lblPhoneReg);
             panel21.Controls.Add(label26);
             panel21.Location = new Point(0, 641);
             panel21.Margin = new Padding(0);
@@ -809,14 +941,14 @@
             pictureBox15.TabIndex = 11;
             pictureBox15.TabStop = false;
             // 
-            // label25
+            // lblPhoneReg
             // 
             label25.AutoSize = true;
-            label25.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label25.Font = new Font("Poppins Light", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label25.Location = new Point(81, 41);
             label25.Margin = new Padding(0);
             label25.Name = "label25";
-            label25.Size = new Size(107, 16);
+            label25.Size = new Size(125, 23);
             label25.TabIndex = 9;
             label25.Text = "+63 978 456 8794";
             // 
@@ -834,7 +966,7 @@
             // panel23
             // 
             panel23.Controls.Add(pictureBox16);
-            panel23.Controls.Add(label27);
+            panel23.Controls.Add(lblWebsiteReg);
             panel23.Controls.Add(label28);
             panel23.Location = new Point(0, 716);
             panel23.Margin = new Padding(0);
@@ -853,14 +985,14 @@
             pictureBox16.TabIndex = 12;
             pictureBox16.TabStop = false;
             // 
-            // label27
+            // lblWebsiteReg
             // 
             label27.AutoSize = true;
-            label27.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label27.Font = new Font("Poppins Light", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label27.Location = new Point(81, 38);
             label27.Margin = new Padding(0);
             label27.Name = "label27";
-            label27.Size = new Size(228, 16);
+            label27.Size = new Size(260, 23);
             label27.TabIndex = 9;
             label27.Text = "https://www.mywebsite.com.ph/profile";
             // 
@@ -884,16 +1016,6 @@
             pnlJobDeskDashMain.Name = "pnlJobDeskDashMain";
             pnlJobDeskDashMain.Size = new Size(1095, 854);
             pnlJobDeskDashMain.TabIndex = 6;
-            // 
-            // pnlJobDeskDashSub
-            // 
-            pnlJobDeskDashSub.BackColor = Color.White;
-            pnlJobDeskDashSub.Location = new Point(3, 3);
-            pnlJobDeskDashSub.Margin = new Padding(10, 3, 10, 3);
-            pnlJobDeskDashSub.Name = "pnlJobDeskDashSub";
-            pnlJobDeskDashSub.Padding = new Padding(20);
-            pnlJobDeskDashSub.Size = new Size(1089, 848);
-            pnlJobDeskDashSub.TabIndex = 2;
             // 
             // pnlDashboard
             // 
@@ -1172,7 +1294,7 @@
             flowLayoutPanel3.Controls.Add(pnlSummaryCard2);
             flowLayoutPanel3.Controls.Add(pnlSummaryCard3);
             flowLayoutPanel3.Controls.Add(pnlSummaryCard4);
-            flowLayoutPanel3.Controls.Add(panel24);
+            flowLayoutPanel3.Controls.Add(pnlSummaryCard5);
             flowLayoutPanel3.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel3.Location = new Point(30, 14);
             flowLayoutPanel3.Margin = new Padding(30, 20, 30, 30);
@@ -1400,27 +1522,27 @@
             label11.TabIndex = 4;
             label11.Text = "Deductions";
             // 
-            // panel24
+            // pnlSummaryCard5
             // 
-            panel24.BackColor = Color.Gray;
-            panel24.Controls.Add(panel25);
-            panel24.Location = new Point(0, 557);
-            panel24.Margin = new Padding(0);
-            panel24.Name = "panel24";
-            panel24.Size = new Size(350, 100);
-            panel24.TabIndex = 11;
+            pnlSummaryCard5.BackColor = Color.Gray;
+            pnlSummaryCard5.Controls.Add(pnlSummarySubCard5);
+            pnlSummaryCard5.Location = new Point(0, 557);
+            pnlSummaryCard5.Margin = new Padding(0);
+            pnlSummaryCard5.Name = "pnlSummaryCard5";
+            pnlSummaryCard5.Size = new Size(350, 100);
+            pnlSummaryCard5.TabIndex = 11;
             // 
-            // panel25
+            // pnlSummarySubCard5
             // 
-            panel25.BackColor = Color.White;
-            panel25.Controls.Add(pictureBox18);
-            panel25.Controls.Add(lblAbsences);
-            panel25.Controls.Add(label32);
-            panel25.Location = new Point(3, 3);
-            panel25.Margin = new Padding(0);
-            panel25.Name = "panel25";
-            panel25.Size = new Size(344, 94);
-            panel25.TabIndex = 2;
+            pnlSummarySubCard5.BackColor = Color.White;
+            pnlSummarySubCard5.Controls.Add(pictureBox18);
+            pnlSummarySubCard5.Controls.Add(lblAbsences);
+            pnlSummarySubCard5.Controls.Add(label32);
+            pnlSummarySubCard5.Location = new Point(3, 3);
+            pnlSummarySubCard5.Margin = new Padding(0);
+            pnlSummarySubCard5.Name = "pnlSummarySubCard5";
+            pnlSummarySubCard5.Size = new Size(344, 94);
+            pnlSummarySubCard5.TabIndex = 2;
             // 
             // pictureBox18
             // 
@@ -1548,7 +1670,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelMain.ResumeLayout(false);
             panelMainDashboard.ResumeLayout(false);
-            pnlJobDesk.ResumeLayout(false);
+            pnlJobDeskRegular.ResumeLayout(false);
             flowLayoutPanel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -1593,6 +1715,60 @@
             panel23.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             pnlJobDeskDashMain.ResumeLayout(false);
+            pnlJobDeskDashSub.ResumeLayout(false);
+            flowLayoutPanel7.ResumeLayout(false);
+            tabSelectorPanel.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            materialTabControl1.ResumeLayout(false);
+            tabPayslip.ResumeLayout(false);
+            flowLayoutPanel8.ResumeLayout(false);
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panel26.ResumeLayout(false);
+            panel26.PerformLayout();
+            panel28.ResumeLayout(false);
+            panel28.PerformLayout();
+            panel30.ResumeLayout(false);
+            panel30.PerformLayout();
+            panel31.ResumeLayout(false);
+            panel31.PerformLayout();
+            panel32.ResumeLayout(false);
+            panel32.PerformLayout();
+            panel33.ResumeLayout(false);
+            panel33.PerformLayout();
+            panel34.ResumeLayout(false);
+            panel34.PerformLayout();
+            panel36.ResumeLayout(false);
+            panel36.PerformLayout();
+            panel38.ResumeLayout(false);
+            panel38.PerformLayout();
+            panel39.ResumeLayout(false);
+            panel39.PerformLayout();
+            panel41.ResumeLayout(false);
+            panel41.PerformLayout();
+            tabAttendance.ResumeLayout(false);
+            flowLayoutPanel9.ResumeLayout(false);
+            panel24.ResumeLayout(false);
+            panel24.PerformLayout();
+            panel42.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)sfDataGrid1).EndInit();
+            tabLeave.ResumeLayout(false);
+            flowLayoutPanel10.ResumeLayout(false);
+            panel25.ResumeLayout(false);
+            panel25.PerformLayout();
+            flowLayoutPanel11.ResumeLayout(false);
+            pnlLeaveCard1Main.ResumeLayout(false);
+            pnlLeaveCard1Sub.ResumeLayout(false);
+            pnlLeaveCard1Sub.PerformLayout();
+            pnlLeaveCard2Main.ResumeLayout(false);
+            pnlLeaveCard2Sub.ResumeLayout(false);
+            pnlLeaveCard2Sub.PerformLayout();
+            pnlLeaveCard3Main.ResumeLayout(false);
+            pnlLeaveCard3Main.PerformLayout();
+            panel43.ResumeLayout(false);
+            panel43.PerformLayout();
+            panel44.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)sfDataGrid2).EndInit();
             pnlDashboard.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -1631,9 +1807,9 @@
             pnlSummarySubCard4.ResumeLayout(false);
             pnlSummarySubCard4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            panel24.ResumeLayout(false);
-            panel25.ResumeLayout(false);
-            panel25.PerformLayout();
+            pnlSummaryCard5.ResumeLayout(false);
+            pnlSummarySubCard5.ResumeLayout(false);
+            pnlSummarySubCard5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             pnlAttendanceLogBase1.ResumeLayout(false);
             pnlAttendanceLogBase2.ResumeLayout(false);
@@ -1708,12 +1884,12 @@
         private PictureBox pictureBox7;
         private Label lblDeductions;
         private Label label11;
-        private Panel panel24;
-        private Panel panel25;
+        private Panel pnlSummaryCard5;
+        private Panel pnlSummarySubCard5;
         private PictureBox pictureBox18;
         private Label lblAbsences;
         private Label label32;
-        private FlowLayoutPanel pnlJobDesk;
+        private FlowLayoutPanel pnlJobDeskRegular;
         private FlowLayoutPanel flowLayoutPanel2;
         private Panel panel3;
         private Label label8;
@@ -1722,51 +1898,131 @@
         private Panel pnlJobDeskProfileSub;
         private FlowLayoutPanel flowLayoutPanel6;
         private Panel panel4;
-        private Syncfusion.WinForms.Controls.SfButton sfButton1;
+        private Syncfusion.WinForms.Controls.SfButton btnJobDeskViewProfile;
         private PictureBox pictureBox8;
         private Label lblProfileName;
         private Panel panel7;
         private Label label10;
         private Panel panel8;
         private Label label13;
-        private Label label12;
+        private Label lblDepartmentReg;
         private Panel panel9;
         private PictureBox pictureBox9;
         private Panel panel10;
         private Label label14;
-        private Label label15;
+        private Label lblBaseSalaryReg;
         private Panel panel11;
         private PictureBox pictureBox10;
         private Panel panel12;
         private Label label16;
-        private Label label17;
+        private Label lblShiftReg;
         private Panel panel13;
         private PictureBox pictureBox11;
         private Panel panel14;
         private Label label18;
-        private Label label19;
+        private Label lblEmploymentStatusReg;
         private Panel panel15;
         private PictureBox pictureBox12;
         private Panel panel16;
         private Label label20;
-        private Label label21;
+        private Label lblEmploymentDateReg;
         private Panel panel17;
         private PictureBox pictureBox13;
         private Panel panel18;
         private Label label22;
         private Panel panel19;
         private PictureBox pictureBox14;
-        private Label label23;
+        private Label lblEmailReg;
         private Label label24;
         private Panel panel21;
         private PictureBox pictureBox15;
-        private Label label25;
+        private Label lblPhoneReg;
         private Label label26;
         private Panel panel23;
         private PictureBox pictureBox16;
-        private Label label27;
+        private Label lblWebsiteReg;
         private Label label28;
         private Panel pnlJobDeskDashMain;
         private Panel pnlJobDeskDashSub;
+        private FlowLayoutPanel flowLayoutPanel7;
+        private Panel tabSelectorPanel;
+        private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
+        private TabPage tabPayslip;
+        private TabPage tabAttendance;
+        private Panel panel5;
+        private MaterialSkin.Controls.MaterialTabSelector tabSelectorJobDesk;
+        private FlowLayoutPanel flowLayoutPanel8;
+        private Panel panel6;
+        private Label lblPayslip;
+        private Panel panel26;
+        private Panel panel27;
+        private Panel panel28;
+        private Panel panel29;
+        private Label label29;
+        private Label lblRegBaseSalary;
+        private Label lblRegBonus;
+        private Label label33;
+        private Panel panel30;
+        private Label label35;
+        private Panel panel31;
+        private Label lblRegTax;
+        private Label label37;
+        private Panel panel32;
+        private Label lblRegSSS;
+        private Label label38;
+        private Panel panel33;
+        private Label lblRegPhilHealth;
+        private Label label40;
+        private Panel panel34;
+        private Label lblRegPagIbig;
+        private Label label42;
+        private Panel panel35;
+        private Panel panel36;
+        private Label lblRegAbsence;
+        private Label label44;
+        private Panel panel37;
+        private Panel panel38;
+        private Label lblRegTotal;
+        private Label label46;
+        private Panel panel40;
+        private Panel panel39;
+        private Label lblRegPayrolDate;
+        private Label label48;
+        private Panel panel41;
+        private Label lblRegStatus;
+        private Label label50;
+        private Syncfusion.WinForms.Controls.SfButton btnPrint;
+        private Syncfusion.WinForms.Controls.SfButton btnPreviewDocument;
+        private FlowLayoutPanel flowLayoutPanel9;
+        private Panel panel24;
+        private Syncfusion.WinForms.Controls.SfButton btnAttendanceRequest;
+        private Label label31;
+        private Panel panel42;
+        private TabPage tabLeave;
+        private FlowLayoutPanel flowLayoutPanel10;
+        private Panel panel25;
+        private Syncfusion.WinForms.Controls.SfButton btnFileLeave;
+        private Label label34;
+        private FlowLayoutPanel flowLayoutPanel11;
+        private Panel pnlLeaveCard1Main;
+        private Panel pnlLeaveCard1Sub;
+        private Label label36;
+        private Label label39;
+        private Panel pnlLeaveCard2Main;
+        private Panel pnlLeaveCard2Sub;
+        private Label label41;
+        private Label label43;
+        private Panel pnlLeaveCard3Main;
+        private Label label45;
+        private Label label47;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid sfDataGrid1;
+        private Label lblApprovedLeaves;
+        private Label lblPendingLaaves;
+        private Label lblRemainingLeaves;
+        private Panel panel43;
+        private Label label12;
+        private Panel panel44;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid sfDataGrid2;
+        private Syncfusion.WinForms.Controls.SfButton btnAccount;
     }
 }

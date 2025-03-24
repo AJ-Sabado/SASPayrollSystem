@@ -173,74 +173,73 @@
             panelForgotPass1.Controls.Add(flowLayoutPanel1);
             panelForgotPass1.Dock = DockStyle.Fill;
             panelForgotPass1.Location = new Point(0, 0);
-            panelForgotPass1.Margin = new Padding(3, 4, 3, 4);
             panelForgotPass1.Name = "panelForgotPass1";
-            panelForgotPass1.Size = new Size(601, 478);
+            panelForgotPass1.Size = new Size(526, 375);
             panelForgotPass1.TabIndex = 0;
             // 
             // panel1
             // 
             panel1.Controls.Add(autoLabel1);
-            panel1.Location = new Point(23, 20);
-            panel1.Margin = new Padding(23, 20, 23, 0);
+            panel1.Location = new Point(20, 15);
+            panel1.Margin = new Padding(20, 15, 20, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(550, 80);
+            panel1.Size = new Size(481, 60);
             panel1.TabIndex = 0;
             // 
             // autoLabel1
             // 
             autoLabel1.Font = new Font("Poppins", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            autoLabel1.Location = new Point(1, 7);
+            autoLabel1.Location = new Point(1, 5);
             autoLabel1.Name = "autoLabel1";
-            autoLabel1.Size = new Size(348, 65);
+            autoLabel1.Size = new Size(270, 51);
             autoLabel1.TabIndex = 1;
             autoLabel1.Text = "Forgot Password";
             // 
             // panel2
             // 
             panel2.Controls.Add(label3);
-            panel2.Location = new Point(23, 100);
-            panel2.Margin = new Padding(23, 0, 23, 0);
+            panel2.Location = new Point(20, 75);
+            panel2.Margin = new Padding(20, 0, 20, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(550, 56);
+            panel2.Size = new Size(481, 42);
             panel2.TabIndex = 1;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Poppins", 10F);
-            label3.Location = new Point(9, 15);
+            label3.Location = new Point(8, 11);
             label3.Name = "label3";
-            label3.Size = new Size(499, 30);
+            label3.Size = new Size(407, 25);
             label3.TabIndex = 0;
             label3.Text = "Provide necessary information to recover your password.";
             // 
             // panel3
             // 
             panel3.Controls.Add(label1);
-            panel3.Location = new Point(23, 156);
-            panel3.Margin = new Padding(23, 0, 23, 0);
+            panel3.Location = new Point(20, 117);
+            panel3.Margin = new Padding(20, 0, 20, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(550, 47);
+            panel3.Size = new Size(481, 35);
             panel3.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label1.Location = new Point(11, 7);
+            label1.Location = new Point(10, 5);
             label1.Name = "label1";
-            label1.Size = new Size(60, 28);
+            label1.Size = new Size(48, 21);
             label1.TabIndex = 0;
             label1.Text = "Email";
             // 
             // panel4
             // 
             panel4.Controls.Add(materialTextBox21);
-            panel4.Location = new Point(23, 203);
-            panel4.Margin = new Padding(23, 0, 23, 0);
+            panel4.Location = new Point(20, 152);
+            panel4.Margin = new Padding(20, 0, 20, 0);
             panel4.Name = "panel4";
-            panel4.Size = new Size(550, 73);
+            panel4.Size = new Size(481, 55);
             panel4.TabIndex = 3;
             // 
             // materialTextBox21
@@ -253,8 +252,7 @@
             materialTextBox21.HideSelection = true;
             materialTextBox21.Hint = "name@example.com";
             materialTextBox21.LeadingIcon = null;
-            materialTextBox21.Location = new Point(11, 0);
-            materialTextBox21.Margin = new Padding(3, 4, 3, 4);
+            materialTextBox21.Location = new Point(10, 0);
             materialTextBox21.MaxLength = 32767;
             materialTextBox21.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox21.Name = "materialTextBox21";
@@ -266,7 +264,7 @@
             materialTextBox21.SelectionLength = 0;
             materialTextBox21.SelectionStart = 0;
             materialTextBox21.ShortcutsEnabled = true;
-            materialTextBox21.Size = new Size(527, 48);
+            materialTextBox21.Size = new Size(461, 48);
             materialTextBox21.TabIndex = 0;
             materialTextBox21.TabStop = false;
             materialTextBox21.TextAlign = HorizontalAlignment.Left;
@@ -276,29 +274,29 @@
             // panel5
             // 
             panel5.Controls.Add(label2);
-            panel5.Location = new Point(23, 276);
-            panel5.Margin = new Padding(23, 0, 23, 0);
+            panel5.Location = new Point(20, 207);
+            panel5.Margin = new Padding(20, 0, 20, 0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(550, 47);
+            panel5.Size = new Size(481, 35);
             panel5.TabIndex = 4;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label2.Location = new Point(11, 8);
+            label2.Location = new Point(10, 6);
             label2.Name = "label2";
-            label2.Size = new Size(104, 28);
+            label2.Size = new Size(83, 21);
             label2.TabIndex = 0;
             label2.Text = "Username";
             // 
             // panel6
             // 
             panel6.Controls.Add(materialTextBox22);
-            panel6.Location = new Point(23, 323);
-            panel6.Margin = new Padding(23, 0, 23, 0);
+            panel6.Location = new Point(20, 242);
+            panel6.Margin = new Padding(20, 0, 20, 0);
             panel6.Name = "panel6";
-            panel6.Size = new Size(550, 55);
+            panel6.Size = new Size(481, 51);
             panel6.TabIndex = 5;
             // 
             // materialTextBox22
@@ -311,8 +309,7 @@
             materialTextBox22.HideSelection = true;
             materialTextBox22.Hint = "Enter Username";
             materialTextBox22.LeadingIcon = null;
-            materialTextBox22.Location = new Point(11, 0);
-            materialTextBox22.Margin = new Padding(3, 4, 3, 4);
+            materialTextBox22.Location = new Point(10, 0);
             materialTextBox22.MaxLength = 32767;
             materialTextBox22.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox22.Name = "materialTextBox22";
@@ -324,7 +321,7 @@
             materialTextBox22.SelectionLength = 0;
             materialTextBox22.SelectionStart = 0;
             materialTextBox22.ShortcutsEnabled = true;
-            materialTextBox22.Size = new Size(527, 48);
+            materialTextBox22.Size = new Size(461, 48);
             materialTextBox22.TabIndex = 0;
             materialTextBox22.TabStop = false;
             materialTextBox22.TextAlign = HorizontalAlignment.Left;
@@ -335,19 +332,18 @@
             // 
             panel7.Controls.Add(btnCancel);
             panel7.Controls.Add(btnNext);
-            panel7.Location = new Point(23, 378);
-            panel7.Margin = new Padding(23, 0, 23, 27);
+            panel7.Location = new Point(20, 293);
+            panel7.Margin = new Padding(20, 0, 20, 20);
             panel7.Name = "panel7";
-            panel7.Size = new Size(550, 61);
+            panel7.Size = new Size(481, 59);
             panel7.TabIndex = 6;
             // 
             // btnCancel
             // 
             btnCancel.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            btnCancel.Location = new Point(303, 11);
-            btnCancel.Margin = new Padding(3, 4, 3, 4);
+            btnCancel.Location = new Point(265, 15);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(114, 49);
+            btnCancel.Size = new Size(100, 37);
             btnCancel.TabIndex = 1;
             btnCancel.Text = "Cancel";
             btnCancel.Click += btnCancel_Click;
@@ -355,10 +351,9 @@
             // btnNext
             // 
             btnNext.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            btnNext.Location = new Point(424, 11);
-            btnNext.Margin = new Padding(3, 4, 3, 4);
+            btnNext.Location = new Point(371, 15);
             btnNext.Name = "btnNext";
-            btnNext.Size = new Size(114, 49);
+            btnNext.Size = new Size(100, 37);
             btnNext.TabIndex = 0;
             btnNext.Text = "Next";
             btnNext.Click += btnNext_Click;
@@ -373,75 +368,74 @@
             flowLayoutPanel1.Controls.Add(panel13);
             flowLayoutPanel1.Controls.Add(panel14);
             flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(3, 470);
-            flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
+            flowLayoutPanel1.Location = new Point(3, 375);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(601, 0);
+            flowLayoutPanel1.Size = new Size(526, 0);
             flowLayoutPanel1.TabIndex = 7;
             // 
             // panel8
             // 
             panel8.Controls.Add(autoLabel2);
-            panel8.Location = new Point(23, 27);
-            panel8.Margin = new Padding(23, 27, 23, 0);
+            panel8.Location = new Point(20, 20);
+            panel8.Margin = new Padding(20, 20, 20, 0);
             panel8.Name = "panel8";
-            panel8.Size = new Size(550, 80);
+            panel8.Size = new Size(481, 60);
             panel8.TabIndex = 0;
             // 
             // autoLabel2
             // 
             autoLabel2.Font = new Font("Poppins", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            autoLabel2.Location = new Point(1, 7);
+            autoLabel2.Location = new Point(1, 5);
             autoLabel2.Name = "autoLabel2";
-            autoLabel2.Size = new Size(348, 65);
+            autoLabel2.Size = new Size(270, 51);
             autoLabel2.TabIndex = 1;
             autoLabel2.Text = "Forgot Password";
             // 
             // panel9
             // 
             panel9.Controls.Add(label4);
-            panel9.Location = new Point(23, 107);
-            panel9.Margin = new Padding(23, 0, 23, 0);
+            panel9.Location = new Point(20, 80);
+            panel9.Margin = new Padding(20, 0, 20, 0);
             panel9.Name = "panel9";
-            panel9.Size = new Size(550, 56);
+            panel9.Size = new Size(481, 42);
             panel9.TabIndex = 1;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Poppins", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(9, 9);
+            label4.Location = new Point(8, 7);
             label4.Name = "label4";
-            label4.Size = new Size(584, 36);
+            label4.Size = new Size(468, 28);
             label4.TabIndex = 0;
             label4.Text = "Provide necessary information to recover your password.";
             // 
             // panel10
             // 
             panel10.Controls.Add(label5);
-            panel10.Location = new Point(23, 163);
-            panel10.Margin = new Padding(23, 0, 23, 0);
+            panel10.Location = new Point(20, 122);
+            panel10.Margin = new Padding(20, 0, 20, 0);
             panel10.Name = "panel10";
-            panel10.Size = new Size(550, 47);
+            panel10.Size = new Size(481, 35);
             panel10.TabIndex = 2;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label5.Location = new Point(11, 7);
+            label5.Location = new Point(10, 5);
             label5.Name = "label5";
-            label5.Size = new Size(60, 28);
+            label5.Size = new Size(48, 21);
             label5.TabIndex = 0;
             label5.Text = "Email";
             // 
             // panel11
             // 
             panel11.Controls.Add(materialTextBox23);
-            panel11.Location = new Point(23, 210);
-            panel11.Margin = new Padding(23, 0, 23, 0);
+            panel11.Location = new Point(20, 157);
+            panel11.Margin = new Padding(20, 0, 20, 0);
             panel11.Name = "panel11";
-            panel11.Size = new Size(550, 73);
+            panel11.Size = new Size(481, 55);
             panel11.TabIndex = 3;
             // 
             // materialTextBox23
@@ -454,8 +448,7 @@
             materialTextBox23.HideSelection = true;
             materialTextBox23.Hint = "name@example.com";
             materialTextBox23.LeadingIcon = null;
-            materialTextBox23.Location = new Point(11, 0);
-            materialTextBox23.Margin = new Padding(3, 4, 3, 4);
+            materialTextBox23.Location = new Point(10, 0);
             materialTextBox23.MaxLength = 32767;
             materialTextBox23.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox23.Name = "materialTextBox23";
@@ -467,7 +460,7 @@
             materialTextBox23.SelectionLength = 0;
             materialTextBox23.SelectionStart = 0;
             materialTextBox23.ShortcutsEnabled = true;
-            materialTextBox23.Size = new Size(527, 48);
+            materialTextBox23.Size = new Size(461, 48);
             materialTextBox23.TabIndex = 0;
             materialTextBox23.TabStop = false;
             materialTextBox23.TextAlign = HorizontalAlignment.Left;
@@ -477,29 +470,29 @@
             // panel12
             // 
             panel12.Controls.Add(label6);
-            panel12.Location = new Point(23, 283);
-            panel12.Margin = new Padding(23, 0, 23, 0);
+            panel12.Location = new Point(20, 212);
+            panel12.Margin = new Padding(20, 0, 20, 0);
             panel12.Name = "panel12";
-            panel12.Size = new Size(550, 47);
+            panel12.Size = new Size(481, 35);
             panel12.TabIndex = 4;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label6.Location = new Point(11, 8);
+            label6.Location = new Point(10, 6);
             label6.Name = "label6";
-            label6.Size = new Size(104, 28);
+            label6.Size = new Size(83, 21);
             label6.TabIndex = 0;
             label6.Text = "Username";
             // 
             // panel13
             // 
             panel13.Controls.Add(materialTextBox24);
-            panel13.Location = new Point(23, 330);
-            panel13.Margin = new Padding(23, 0, 23, 0);
+            panel13.Location = new Point(20, 247);
+            panel13.Margin = new Padding(20, 0, 20, 0);
             panel13.Name = "panel13";
-            panel13.Size = new Size(550, 73);
+            panel13.Size = new Size(481, 55);
             panel13.TabIndex = 5;
             // 
             // materialTextBox24
@@ -512,8 +505,7 @@
             materialTextBox24.HideSelection = true;
             materialTextBox24.Hint = "Enter Username";
             materialTextBox24.LeadingIcon = null;
-            materialTextBox24.Location = new Point(11, 0);
-            materialTextBox24.Margin = new Padding(3, 4, 3, 4);
+            materialTextBox24.Location = new Point(10, 0);
             materialTextBox24.MaxLength = 32767;
             materialTextBox24.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox24.Name = "materialTextBox24";
@@ -525,7 +517,7 @@
             materialTextBox24.SelectionLength = 0;
             materialTextBox24.SelectionStart = 0;
             materialTextBox24.ShortcutsEnabled = true;
-            materialTextBox24.Size = new Size(527, 48);
+            materialTextBox24.Size = new Size(461, 48);
             materialTextBox24.TabIndex = 0;
             materialTextBox24.TabStop = false;
             materialTextBox24.TextAlign = HorizontalAlignment.Left;
@@ -536,29 +528,27 @@
             // 
             panel14.Controls.Add(sfButton1);
             panel14.Controls.Add(sfButton2);
-            panel14.Location = new Point(23, 403);
-            panel14.Margin = new Padding(23, 0, 23, 27);
+            panel14.Location = new Point(20, 302);
+            panel14.Margin = new Padding(20, 0, 20, 20);
             panel14.Name = "panel14";
-            panel14.Size = new Size(550, 61);
+            panel14.Size = new Size(481, 46);
             panel14.TabIndex = 6;
             // 
             // sfButton1
             // 
             sfButton1.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            sfButton1.Location = new Point(303, 11);
-            sfButton1.Margin = new Padding(3, 4, 3, 4);
+            sfButton1.Location = new Point(265, 8);
             sfButton1.Name = "sfButton1";
-            sfButton1.Size = new Size(114, 49);
+            sfButton1.Size = new Size(100, 37);
             sfButton1.TabIndex = 1;
             sfButton1.Text = "Cancel";
             // 
             // sfButton2
             // 
             sfButton2.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            sfButton2.Location = new Point(424, 11);
-            sfButton2.Margin = new Padding(3, 4, 3, 4);
+            sfButton2.Location = new Point(371, 8);
             sfButton2.Name = "sfButton2";
-            sfButton2.Size = new Size(114, 49);
+            sfButton2.Size = new Size(100, 37);
             sfButton2.TabIndex = 0;
             sfButton2.Text = "Next";
             // 
@@ -570,63 +560,61 @@
             panelForgotPass3.Controls.Add(flowLayoutPanel3);
             panelForgotPass3.Dock = DockStyle.Fill;
             panelForgotPass3.Location = new Point(0, 0);
-            panelForgotPass3.Margin = new Padding(3, 4, 3, 4);
             panelForgotPass3.Name = "panelForgotPass3";
-            panelForgotPass3.Size = new Size(601, 478);
+            panelForgotPass3.Size = new Size(526, 375);
             panelForgotPass3.TabIndex = 1;
             // 
             // panel15
             // 
             panel15.Controls.Add(autoLabel3);
-            panel15.Location = new Point(23, 27);
-            panel15.Margin = new Padding(23, 27, 23, 0);
+            panel15.Location = new Point(20, 20);
+            panel15.Margin = new Padding(20, 20, 20, 0);
             panel15.Name = "panel15";
-            panel15.Size = new Size(550, 80);
+            panel15.Size = new Size(481, 60);
             panel15.TabIndex = 0;
             // 
             // autoLabel3
             // 
             autoLabel3.Font = new Font("Poppins", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            autoLabel3.Location = new Point(1, 7);
+            autoLabel3.Location = new Point(1, 5);
             autoLabel3.Name = "autoLabel3";
-            autoLabel3.Size = new Size(279, 65);
+            autoLabel3.Size = new Size(220, 51);
             autoLabel3.TabIndex = 1;
             autoLabel3.Text = "Request Sent";
             // 
             // panel16
             // 
             panel16.Controls.Add(label7);
-            panel16.Location = new Point(23, 107);
-            panel16.Margin = new Padding(23, 0, 23, 0);
+            panel16.Location = new Point(20, 80);
+            panel16.Margin = new Padding(20, 0, 20, 0);
             panel16.Name = "panel16";
-            panel16.Size = new Size(550, 111);
+            panel16.Size = new Size(481, 83);
             panel16.TabIndex = 1;
             // 
             // label7
             // 
             label7.Font = new Font("Poppins", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(8, 17);
+            label7.Location = new Point(7, 13);
             label7.Name = "label7";
-            label7.Size = new Size(535, 81);
+            label7.Size = new Size(468, 61);
             label7.TabIndex = 0;
             label7.Text = "Please wait for the administrator to approve your password reset request. Thank you!";
             // 
             // panel21
             // 
             panel21.Controls.Add(btnOk);
-            panel21.Location = new Point(23, 218);
-            panel21.Margin = new Padding(23, 0, 23, 27);
+            panel21.Location = new Point(20, 163);
+            panel21.Margin = new Padding(20, 0, 20, 20);
             panel21.Name = "panel21";
-            panel21.Size = new Size(550, 92);
+            panel21.Size = new Size(481, 69);
             panel21.TabIndex = 6;
             // 
             // btnOk
             // 
             btnOk.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            btnOk.Location = new Point(424, 39);
-            btnOk.Margin = new Padding(3, 4, 3, 4);
+            btnOk.Location = new Point(371, 29);
             btnOk.Name = "btnOk";
-            btnOk.Size = new Size(114, 49);
+            btnOk.Size = new Size(100, 37);
             btnOk.TabIndex = 0;
             btnOk.Text = "Ok";
             btnOk.Click += btnCancel_Click;
@@ -641,75 +629,74 @@
             flowLayoutPanel3.Controls.Add(panel27);
             flowLayoutPanel3.Controls.Add(panel28);
             flowLayoutPanel3.Dock = DockStyle.Fill;
-            flowLayoutPanel3.Location = new Point(3, 341);
-            flowLayoutPanel3.Margin = new Padding(3, 4, 3, 4);
+            flowLayoutPanel3.Location = new Point(3, 255);
             flowLayoutPanel3.Name = "flowLayoutPanel3";
-            flowLayoutPanel3.Size = new Size(601, 0);
+            flowLayoutPanel3.Size = new Size(526, 0);
             flowLayoutPanel3.TabIndex = 7;
             // 
             // panel22
             // 
             panel22.Controls.Add(autoLabel4);
-            panel22.Location = new Point(23, 27);
-            panel22.Margin = new Padding(23, 27, 23, 0);
+            panel22.Location = new Point(20, 20);
+            panel22.Margin = new Padding(20, 20, 20, 0);
             panel22.Name = "panel22";
-            panel22.Size = new Size(550, 80);
+            panel22.Size = new Size(481, 60);
             panel22.TabIndex = 0;
             // 
             // autoLabel4
             // 
             autoLabel4.Font = new Font("Poppins", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            autoLabel4.Location = new Point(1, 7);
+            autoLabel4.Location = new Point(1, 5);
             autoLabel4.Name = "autoLabel4";
-            autoLabel4.Size = new Size(348, 65);
+            autoLabel4.Size = new Size(270, 51);
             autoLabel4.TabIndex = 1;
             autoLabel4.Text = "Forgot Password";
             // 
             // panel23
             // 
             panel23.Controls.Add(label10);
-            panel23.Location = new Point(23, 107);
-            panel23.Margin = new Padding(23, 0, 23, 0);
+            panel23.Location = new Point(20, 80);
+            panel23.Margin = new Padding(20, 0, 20, 0);
             panel23.Name = "panel23";
-            panel23.Size = new Size(550, 56);
+            panel23.Size = new Size(481, 42);
             panel23.TabIndex = 1;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Poppins", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(9, 9);
+            label10.Location = new Point(8, 7);
             label10.Name = "label10";
-            label10.Size = new Size(584, 36);
+            label10.Size = new Size(468, 28);
             label10.TabIndex = 0;
             label10.Text = "Provide necessary information to recover your password.";
             // 
             // panel24
             // 
             panel24.Controls.Add(label11);
-            panel24.Location = new Point(23, 163);
-            panel24.Margin = new Padding(23, 0, 23, 0);
+            panel24.Location = new Point(20, 122);
+            panel24.Margin = new Padding(20, 0, 20, 0);
             panel24.Name = "panel24";
-            panel24.Size = new Size(550, 47);
+            panel24.Size = new Size(481, 35);
             panel24.TabIndex = 2;
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label11.Location = new Point(11, 7);
+            label11.Location = new Point(10, 5);
             label11.Name = "label11";
-            label11.Size = new Size(60, 28);
+            label11.Size = new Size(48, 21);
             label11.TabIndex = 0;
             label11.Text = "Email";
             // 
             // panel25
             // 
             panel25.Controls.Add(materialTextBox27);
-            panel25.Location = new Point(23, 210);
-            panel25.Margin = new Padding(23, 0, 23, 0);
+            panel25.Location = new Point(20, 157);
+            panel25.Margin = new Padding(20, 0, 20, 0);
             panel25.Name = "panel25";
-            panel25.Size = new Size(550, 73);
+            panel25.Size = new Size(481, 55);
             panel25.TabIndex = 3;
             // 
             // materialTextBox27
@@ -722,8 +709,7 @@
             materialTextBox27.HideSelection = true;
             materialTextBox27.Hint = "name@example.com";
             materialTextBox27.LeadingIcon = null;
-            materialTextBox27.Location = new Point(11, 0);
-            materialTextBox27.Margin = new Padding(3, 4, 3, 4);
+            materialTextBox27.Location = new Point(10, 0);
             materialTextBox27.MaxLength = 32767;
             materialTextBox27.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox27.Name = "materialTextBox27";
@@ -735,7 +721,7 @@
             materialTextBox27.SelectionLength = 0;
             materialTextBox27.SelectionStart = 0;
             materialTextBox27.ShortcutsEnabled = true;
-            materialTextBox27.Size = new Size(527, 48);
+            materialTextBox27.Size = new Size(461, 48);
             materialTextBox27.TabIndex = 0;
             materialTextBox27.TabStop = false;
             materialTextBox27.TextAlign = HorizontalAlignment.Left;
@@ -745,29 +731,29 @@
             // panel26
             // 
             panel26.Controls.Add(label12);
-            panel26.Location = new Point(23, 283);
-            panel26.Margin = new Padding(23, 0, 23, 0);
+            panel26.Location = new Point(20, 212);
+            panel26.Margin = new Padding(20, 0, 20, 0);
             panel26.Name = "panel26";
-            panel26.Size = new Size(550, 47);
+            panel26.Size = new Size(481, 35);
             panel26.TabIndex = 4;
             // 
             // label12
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label12.Location = new Point(11, 8);
+            label12.Location = new Point(10, 6);
             label12.Name = "label12";
-            label12.Size = new Size(104, 28);
+            label12.Size = new Size(83, 21);
             label12.TabIndex = 0;
             label12.Text = "Username";
             // 
             // panel27
             // 
             panel27.Controls.Add(materialTextBox28);
-            panel27.Location = new Point(23, 330);
-            panel27.Margin = new Padding(23, 0, 23, 0);
+            panel27.Location = new Point(20, 247);
+            panel27.Margin = new Padding(20, 0, 20, 0);
             panel27.Name = "panel27";
-            panel27.Size = new Size(550, 73);
+            panel27.Size = new Size(481, 55);
             panel27.TabIndex = 5;
             // 
             // materialTextBox28
@@ -780,8 +766,7 @@
             materialTextBox28.HideSelection = true;
             materialTextBox28.Hint = "Enter Username";
             materialTextBox28.LeadingIcon = null;
-            materialTextBox28.Location = new Point(11, 0);
-            materialTextBox28.Margin = new Padding(3, 4, 3, 4);
+            materialTextBox28.Location = new Point(10, 0);
             materialTextBox28.MaxLength = 32767;
             materialTextBox28.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox28.Name = "materialTextBox28";
@@ -793,7 +778,7 @@
             materialTextBox28.SelectionLength = 0;
             materialTextBox28.SelectionStart = 0;
             materialTextBox28.ShortcutsEnabled = true;
-            materialTextBox28.Size = new Size(527, 48);
+            materialTextBox28.Size = new Size(461, 48);
             materialTextBox28.TabIndex = 0;
             materialTextBox28.TabStop = false;
             materialTextBox28.TextAlign = HorizontalAlignment.Left;
@@ -804,29 +789,27 @@
             // 
             panel28.Controls.Add(sfButton5);
             panel28.Controls.Add(sfButton6);
-            panel28.Location = new Point(23, 403);
-            panel28.Margin = new Padding(23, 0, 23, 27);
+            panel28.Location = new Point(20, 302);
+            panel28.Margin = new Padding(20, 0, 20, 20);
             panel28.Name = "panel28";
-            panel28.Size = new Size(550, 61);
+            panel28.Size = new Size(481, 46);
             panel28.TabIndex = 6;
             // 
             // sfButton5
             // 
             sfButton5.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            sfButton5.Location = new Point(303, 11);
-            sfButton5.Margin = new Padding(3, 4, 3, 4);
+            sfButton5.Location = new Point(265, 8);
             sfButton5.Name = "sfButton5";
-            sfButton5.Size = new Size(114, 49);
+            sfButton5.Size = new Size(100, 37);
             sfButton5.TabIndex = 1;
             sfButton5.Text = "Cancel";
             // 
             // sfButton6
             // 
             sfButton6.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            sfButton6.Location = new Point(424, 11);
-            sfButton6.Margin = new Padding(3, 4, 3, 4);
+            sfButton6.Location = new Point(371, 8);
             sfButton6.Name = "sfButton6";
-            sfButton6.Size = new Size(114, 49);
+            sfButton6.Size = new Size(100, 37);
             sfButton6.TabIndex = 0;
             sfButton6.Text = "Next";
             // 
@@ -842,74 +825,73 @@
             panelForgotPass2.Controls.Add(flowLayoutPanel4);
             panelForgotPass2.Dock = DockStyle.Fill;
             panelForgotPass2.Location = new Point(0, 0);
-            panelForgotPass2.Margin = new Padding(3, 4, 3, 4);
             panelForgotPass2.Name = "panelForgotPass2";
-            panelForgotPass2.Size = new Size(601, 478);
+            panelForgotPass2.Size = new Size(526, 375);
             panelForgotPass2.TabIndex = 2;
             // 
             // panel17
             // 
             panel17.Controls.Add(autoLabel5);
-            panel17.Location = new Point(23, 20);
-            panel17.Margin = new Padding(23, 20, 23, 0);
+            panel17.Location = new Point(20, 15);
+            panel17.Margin = new Padding(20, 15, 20, 0);
             panel17.Name = "panel17";
-            panel17.Size = new Size(550, 72);
+            panel17.Size = new Size(481, 54);
             panel17.TabIndex = 0;
             // 
             // autoLabel5
             // 
             autoLabel5.Font = new Font("Poppins", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            autoLabel5.Location = new Point(1, 7);
+            autoLabel5.Location = new Point(1, 5);
             autoLabel5.Name = "autoLabel5";
-            autoLabel5.Size = new Size(330, 65);
+            autoLabel5.Size = new Size(257, 51);
             autoLabel5.TabIndex = 1;
             autoLabel5.Text = "Reset Password";
             // 
             // panel18
             // 
             panel18.Controls.Add(label8);
-            panel18.Location = new Point(23, 92);
-            panel18.Margin = new Padding(23, 0, 23, 0);
+            panel18.Location = new Point(20, 69);
+            panel18.Margin = new Padding(20, 0, 20, 0);
             panel18.Name = "panel18";
-            panel18.Size = new Size(550, 56);
+            panel18.Size = new Size(481, 42);
             panel18.TabIndex = 1;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Poppins", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(9, 9);
+            label8.Location = new Point(8, 7);
             label8.Name = "label8";
-            label8.Size = new Size(219, 36);
+            label8.Size = new Size(176, 28);
             label8.TabIndex = 0;
             label8.Text = "Enter new password.";
             // 
             // panel29
             // 
             panel29.Controls.Add(label13);
-            panel29.Location = new Point(23, 148);
-            panel29.Margin = new Padding(23, 0, 23, 0);
+            panel29.Location = new Point(20, 111);
+            panel29.Margin = new Padding(20, 0, 20, 0);
             panel29.Name = "panel29";
-            panel29.Size = new Size(550, 47);
+            panel29.Size = new Size(481, 35);
             panel29.TabIndex = 2;
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label13.Location = new Point(11, 7);
+            label13.Location = new Point(10, 5);
             label13.Name = "label13";
-            label13.Size = new Size(97, 28);
+            label13.Size = new Size(79, 21);
             label13.TabIndex = 0;
             label13.Text = "Password";
             // 
             // panel30
             // 
             panel30.Controls.Add(materialTextBox25);
-            panel30.Location = new Point(23, 195);
-            panel30.Margin = new Padding(23, 0, 23, 0);
+            panel30.Location = new Point(20, 146);
+            panel30.Margin = new Padding(20, 0, 20, 0);
             panel30.Name = "panel30";
-            panel30.Size = new Size(550, 73);
+            panel30.Size = new Size(481, 55);
             panel30.TabIndex = 3;
             // 
             // materialTextBox25
@@ -922,8 +904,7 @@
             materialTextBox25.HideSelection = true;
             materialTextBox25.Hint = "Enter Password";
             materialTextBox25.LeadingIcon = null;
-            materialTextBox25.Location = new Point(11, 0);
-            materialTextBox25.Margin = new Padding(3, 4, 3, 4);
+            materialTextBox25.Location = new Point(10, 0);
             materialTextBox25.MaxLength = 32767;
             materialTextBox25.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox25.Name = "materialTextBox25";
@@ -935,7 +916,7 @@
             materialTextBox25.SelectionLength = 0;
             materialTextBox25.SelectionStart = 0;
             materialTextBox25.ShortcutsEnabled = true;
-            materialTextBox25.Size = new Size(527, 48);
+            materialTextBox25.Size = new Size(461, 48);
             materialTextBox25.TabIndex = 0;
             materialTextBox25.TabStop = false;
             materialTextBox25.TextAlign = HorizontalAlignment.Left;
@@ -945,29 +926,29 @@
             // panel31
             // 
             panel31.Controls.Add(label14);
-            panel31.Location = new Point(23, 268);
-            panel31.Margin = new Padding(23, 0, 23, 0);
+            panel31.Location = new Point(20, 201);
+            panel31.Margin = new Padding(20, 0, 20, 0);
             panel31.Name = "panel31";
-            panel31.Size = new Size(550, 47);
+            panel31.Size = new Size(481, 35);
             panel31.TabIndex = 4;
             // 
             // label14
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label14.Location = new Point(11, 8);
+            label14.Location = new Point(10, 6);
             label14.Name = "label14";
-            label14.Size = new Size(176, 28);
+            label14.Size = new Size(142, 21);
             label14.TabIndex = 0;
             label14.Text = "Confirm Password";
             // 
             // panel32
             // 
             panel32.Controls.Add(materialTextBox29);
-            panel32.Location = new Point(23, 315);
-            panel32.Margin = new Padding(23, 0, 23, 0);
+            panel32.Location = new Point(20, 236);
+            panel32.Margin = new Padding(20, 0, 20, 0);
             panel32.Name = "panel32";
-            panel32.Size = new Size(550, 63);
+            panel32.Size = new Size(481, 47);
             panel32.TabIndex = 5;
             // 
             // materialTextBox29
@@ -980,8 +961,7 @@
             materialTextBox29.HideSelection = true;
             materialTextBox29.Hint = "Re-enter Password";
             materialTextBox29.LeadingIcon = null;
-            materialTextBox29.Location = new Point(11, 0);
-            materialTextBox29.Margin = new Padding(3, 4, 3, 4);
+            materialTextBox29.Location = new Point(10, 0);
             materialTextBox29.MaxLength = 32767;
             materialTextBox29.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox29.Name = "materialTextBox29";
@@ -993,7 +973,7 @@
             materialTextBox29.SelectionLength = 0;
             materialTextBox29.SelectionStart = 0;
             materialTextBox29.ShortcutsEnabled = true;
-            materialTextBox29.Size = new Size(527, 48);
+            materialTextBox29.Size = new Size(461, 48);
             materialTextBox29.TabIndex = 0;
             materialTextBox29.TabStop = false;
             materialTextBox29.TextAlign = HorizontalAlignment.Left;
@@ -1004,19 +984,18 @@
             // 
             panel33.Controls.Add(btnCancel3);
             panel33.Controls.Add(btnNext2);
-            panel33.Location = new Point(23, 378);
-            panel33.Margin = new Padding(23, 0, 23, 27);
+            panel33.Location = new Point(20, 283);
+            panel33.Margin = new Padding(20, 0, 20, 20);
             panel33.Name = "panel33";
-            panel33.Size = new Size(550, 61);
+            panel33.Size = new Size(481, 65);
             panel33.TabIndex = 6;
             // 
             // btnCancel3
             // 
             btnCancel3.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            btnCancel3.Location = new Point(303, 11);
-            btnCancel3.Margin = new Padding(3, 4, 3, 4);
+            btnCancel3.Location = new Point(265, 25);
             btnCancel3.Name = "btnCancel3";
-            btnCancel3.Size = new Size(114, 49);
+            btnCancel3.Size = new Size(100, 37);
             btnCancel3.TabIndex = 1;
             btnCancel3.Text = "Cancel";
             btnCancel3.Click += btnCancel_Click;
@@ -1024,10 +1003,9 @@
             // btnNext2
             // 
             btnNext2.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            btnNext2.Location = new Point(424, 11);
-            btnNext2.Margin = new Padding(3, 4, 3, 4);
+            btnNext2.Location = new Point(371, 25);
             btnNext2.Name = "btnNext2";
-            btnNext2.Size = new Size(114, 49);
+            btnNext2.Size = new Size(100, 37);
             btnNext2.TabIndex = 0;
             btnNext2.Text = "Next";
             btnNext2.Click += btnNext2_Click;
@@ -1042,75 +1020,74 @@
             flowLayoutPanel4.Controls.Add(panel39);
             flowLayoutPanel4.Controls.Add(panel40);
             flowLayoutPanel4.Dock = DockStyle.Fill;
-            flowLayoutPanel4.Location = new Point(3, 470);
-            flowLayoutPanel4.Margin = new Padding(3, 4, 3, 4);
+            flowLayoutPanel4.Location = new Point(3, 371);
             flowLayoutPanel4.Name = "flowLayoutPanel4";
-            flowLayoutPanel4.Size = new Size(601, 0);
+            flowLayoutPanel4.Size = new Size(526, 0);
             flowLayoutPanel4.TabIndex = 7;
             // 
             // panel34
             // 
             panel34.Controls.Add(autoLabel6);
-            panel34.Location = new Point(23, 27);
-            panel34.Margin = new Padding(23, 27, 23, 0);
+            panel34.Location = new Point(20, 20);
+            panel34.Margin = new Padding(20, 20, 20, 0);
             panel34.Name = "panel34";
-            panel34.Size = new Size(550, 80);
+            panel34.Size = new Size(481, 60);
             panel34.TabIndex = 0;
             // 
             // autoLabel6
             // 
             autoLabel6.Font = new Font("Poppins", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            autoLabel6.Location = new Point(1, 7);
+            autoLabel6.Location = new Point(1, 5);
             autoLabel6.Name = "autoLabel6";
-            autoLabel6.Size = new Size(348, 65);
+            autoLabel6.Size = new Size(270, 51);
             autoLabel6.TabIndex = 1;
             autoLabel6.Text = "Forgot Password";
             // 
             // panel35
             // 
             panel35.Controls.Add(label15);
-            panel35.Location = new Point(23, 107);
-            panel35.Margin = new Padding(23, 0, 23, 0);
+            panel35.Location = new Point(20, 80);
+            panel35.Margin = new Padding(20, 0, 20, 0);
             panel35.Name = "panel35";
-            panel35.Size = new Size(550, 56);
+            panel35.Size = new Size(481, 42);
             panel35.TabIndex = 1;
             // 
             // label15
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Poppins", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label15.Location = new Point(9, 9);
+            label15.Location = new Point(8, 7);
             label15.Name = "label15";
-            label15.Size = new Size(584, 36);
+            label15.Size = new Size(468, 28);
             label15.TabIndex = 0;
             label15.Text = "Provide necessary information to recover your password.";
             // 
             // panel36
             // 
             panel36.Controls.Add(label16);
-            panel36.Location = new Point(23, 163);
-            panel36.Margin = new Padding(23, 0, 23, 0);
+            panel36.Location = new Point(20, 122);
+            panel36.Margin = new Padding(20, 0, 20, 0);
             panel36.Name = "panel36";
-            panel36.Size = new Size(550, 47);
+            panel36.Size = new Size(481, 35);
             panel36.TabIndex = 2;
             // 
             // label16
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label16.Location = new Point(11, 7);
+            label16.Location = new Point(10, 5);
             label16.Name = "label16";
-            label16.Size = new Size(60, 28);
+            label16.Size = new Size(48, 21);
             label16.TabIndex = 0;
             label16.Text = "Email";
             // 
             // panel37
             // 
             panel37.Controls.Add(materialTextBox210);
-            panel37.Location = new Point(23, 210);
-            panel37.Margin = new Padding(23, 0, 23, 0);
+            panel37.Location = new Point(20, 157);
+            panel37.Margin = new Padding(20, 0, 20, 0);
             panel37.Name = "panel37";
-            panel37.Size = new Size(550, 73);
+            panel37.Size = new Size(481, 55);
             panel37.TabIndex = 3;
             // 
             // materialTextBox210
@@ -1123,8 +1100,7 @@
             materialTextBox210.HideSelection = true;
             materialTextBox210.Hint = "name@example.com";
             materialTextBox210.LeadingIcon = null;
-            materialTextBox210.Location = new Point(11, 0);
-            materialTextBox210.Margin = new Padding(3, 4, 3, 4);
+            materialTextBox210.Location = new Point(10, 0);
             materialTextBox210.MaxLength = 32767;
             materialTextBox210.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox210.Name = "materialTextBox210";
@@ -1136,7 +1112,7 @@
             materialTextBox210.SelectionLength = 0;
             materialTextBox210.SelectionStart = 0;
             materialTextBox210.ShortcutsEnabled = true;
-            materialTextBox210.Size = new Size(527, 48);
+            materialTextBox210.Size = new Size(461, 48);
             materialTextBox210.TabIndex = 0;
             materialTextBox210.TabStop = false;
             materialTextBox210.TextAlign = HorizontalAlignment.Left;
@@ -1146,29 +1122,29 @@
             // panel38
             // 
             panel38.Controls.Add(label17);
-            panel38.Location = new Point(23, 283);
-            panel38.Margin = new Padding(23, 0, 23, 0);
+            panel38.Location = new Point(20, 212);
+            panel38.Margin = new Padding(20, 0, 20, 0);
             panel38.Name = "panel38";
-            panel38.Size = new Size(550, 47);
+            panel38.Size = new Size(481, 35);
             panel38.TabIndex = 4;
             // 
             // label17
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label17.Location = new Point(11, 8);
+            label17.Location = new Point(10, 6);
             label17.Name = "label17";
-            label17.Size = new Size(104, 28);
+            label17.Size = new Size(83, 21);
             label17.TabIndex = 0;
             label17.Text = "Username";
             // 
             // panel39
             // 
             panel39.Controls.Add(materialTextBox211);
-            panel39.Location = new Point(23, 330);
-            panel39.Margin = new Padding(23, 0, 23, 0);
+            panel39.Location = new Point(20, 247);
+            panel39.Margin = new Padding(20, 0, 20, 0);
             panel39.Name = "panel39";
-            panel39.Size = new Size(550, 73);
+            panel39.Size = new Size(481, 55);
             panel39.TabIndex = 5;
             // 
             // materialTextBox211
@@ -1181,8 +1157,7 @@
             materialTextBox211.HideSelection = true;
             materialTextBox211.Hint = "Enter Username";
             materialTextBox211.LeadingIcon = null;
-            materialTextBox211.Location = new Point(11, 0);
-            materialTextBox211.Margin = new Padding(3, 4, 3, 4);
+            materialTextBox211.Location = new Point(10, 0);
             materialTextBox211.MaxLength = 32767;
             materialTextBox211.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox211.Name = "materialTextBox211";
@@ -1194,7 +1169,7 @@
             materialTextBox211.SelectionLength = 0;
             materialTextBox211.SelectionStart = 0;
             materialTextBox211.ShortcutsEnabled = true;
-            materialTextBox211.Size = new Size(527, 48);
+            materialTextBox211.Size = new Size(461, 48);
             materialTextBox211.TabIndex = 0;
             materialTextBox211.TabStop = false;
             materialTextBox211.TextAlign = HorizontalAlignment.Left;
@@ -1205,41 +1180,38 @@
             // 
             panel40.Controls.Add(sfButton7);
             panel40.Controls.Add(sfButton8);
-            panel40.Location = new Point(23, 403);
-            panel40.Margin = new Padding(23, 0, 23, 27);
+            panel40.Location = new Point(20, 302);
+            panel40.Margin = new Padding(20, 0, 20, 20);
             panel40.Name = "panel40";
-            panel40.Size = new Size(550, 61);
+            panel40.Size = new Size(481, 46);
             panel40.TabIndex = 6;
             // 
             // sfButton7
             // 
             sfButton7.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            sfButton7.Location = new Point(303, 11);
-            sfButton7.Margin = new Padding(3, 4, 3, 4);
+            sfButton7.Location = new Point(265, 8);
             sfButton7.Name = "sfButton7";
-            sfButton7.Size = new Size(114, 49);
+            sfButton7.Size = new Size(100, 37);
             sfButton7.TabIndex = 1;
             sfButton7.Text = "Cancel";
             // 
             // sfButton8
             // 
             sfButton8.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            sfButton8.Location = new Point(424, 11);
-            sfButton8.Margin = new Padding(3, 4, 3, 4);
+            sfButton8.Location = new Point(371, 8);
             sfButton8.Name = "sfButton8";
-            sfButton8.Size = new Size(114, 49);
+            sfButton8.Size = new Size(100, 37);
             sfButton8.TabIndex = 0;
             sfButton8.Text = "Next";
             // 
             // ForgotPassword
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(601, 478);
+            ClientSize = new Size(526, 375);
             Controls.Add(panelForgotPass2);
             Controls.Add(panelForgotPass1);
             Controls.Add(panelForgotPass3);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "ForgotPassword";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ForgotPassword";
