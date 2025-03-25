@@ -265,20 +265,11 @@ namespace DomainLayer.Models.Salary
         [Column(TypeName = "money")]
         public decimal LatesDeductionAmount { get; set; } = 0;
 
+        [Column(TypeName = "money")]
+        public decimal AllowancesAmount { get; set; } = 0;
 
-
-        ////Contributions
-        //[Column(TypeName = "money")]
-        //public decimal SSSAmount { get; set; } = 0;
-
-        //[Column(TypeName = "money")]
-        //public decimal PagIbigAmount { get; set; } = 0;
-
-        //[Column(TypeName = "money")]
-        //public decimal PhilHealthAmount { get; set; } = 0;
-
-        //[Column(TypeName = "money")]
-        //public decimal TotalContributions { get; set; } = 0;
+        [Column(TypeName = "money")]
+        public decimal BonusesAmount { get; set; } = 0;
 
         //Income Tax
         [Column(TypeName = "money")]
