@@ -146,7 +146,7 @@
             btnAttendanceRequest = new Syncfusion.WinForms.Controls.SfButton();
             label31 = new Label();
             panel42 = new Panel();
-            sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            tblAttendanceDataGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             tabLeave = new TabPage();
             flowLayoutPanel10 = new FlowLayoutPanel();
             panel25 = new Panel();
@@ -291,7 +291,7 @@
             flowLayoutPanel9.SuspendLayout();
             panel24.SuspendLayout();
             panel42.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)sfDataGrid1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tblAttendanceDataGrid).BeginInit();
             tabLeave.SuspendLayout();
             flowLayoutPanel10.SuspendLayout();
             panel25.SuspendLayout();
@@ -1597,26 +1597,26 @@
             // 
             // panel42
             // 
-            panel42.Controls.Add(sfDataGrid1);
+            panel42.Controls.Add(tblAttendanceDataGrid);
             panel42.Location = new Point(28, 91);
             panel42.Name = "panel42";
             panel42.Size = new Size(1021, 673);
             panel42.TabIndex = 1;
             // 
-            // sfDataGrid1
+            // tblAttendanceDataGrid
             // 
-            sfDataGrid1.AccessibleName = "Table";
-            sfDataGrid1.Dock = DockStyle.Fill;
-            sfDataGrid1.Location = new Point(0, 0);
-            sfDataGrid1.Name = "sfDataGrid1";
-            sfDataGrid1.Size = new Size(1021, 673);
-            sfDataGrid1.Style.BorderColor = Color.FromArgb(100, 100, 100);
-            sfDataGrid1.Style.CheckBoxStyle.CheckedBackColor = Color.FromArgb(0, 120, 215);
-            sfDataGrid1.Style.CheckBoxStyle.CheckedBorderColor = Color.FromArgb(0, 120, 215);
-            sfDataGrid1.Style.CheckBoxStyle.IndeterminateBorderColor = Color.FromArgb(0, 120, 215);
-            sfDataGrid1.Style.HyperlinkStyle.DefaultLinkColor = Color.FromArgb(0, 120, 215);
-            sfDataGrid1.TabIndex = 0;
-            sfDataGrid1.Text = "sfDataGrid1";
+            tblAttendanceDataGrid.AccessibleName = "Table";
+            tblAttendanceDataGrid.Dock = DockStyle.Fill;
+            tblAttendanceDataGrid.Location = new Point(0, 0);
+            tblAttendanceDataGrid.Name = "tblAttendanceDataGrid";
+            tblAttendanceDataGrid.Size = new Size(1021, 673);
+            tblAttendanceDataGrid.Style.BorderColor = Color.FromArgb(100, 100, 100);
+            tblAttendanceDataGrid.Style.CheckBoxStyle.CheckedBackColor = Color.FromArgb(0, 120, 215);
+            tblAttendanceDataGrid.Style.CheckBoxStyle.CheckedBorderColor = Color.FromArgb(0, 120, 215);
+            tblAttendanceDataGrid.Style.CheckBoxStyle.IndeterminateBorderColor = Color.FromArgb(0, 120, 215);
+            tblAttendanceDataGrid.Style.HyperlinkStyle.DefaultLinkColor = Color.FromArgb(0, 120, 215);
+            tblAttendanceDataGrid.TabIndex = 0;
+            tblAttendanceDataGrid.Text = "sfDataGrid1";
             // 
             // tabLeave
             // 
@@ -2613,7 +2613,7 @@
             panel24.ResumeLayout(false);
             panel24.PerformLayout();
             panel42.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)sfDataGrid1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tblAttendanceDataGrid).EndInit();
             tabLeave.ResumeLayout(false);
             flowLayoutPanel10.ResumeLayout(false);
             panel25.ResumeLayout(false);
@@ -2877,7 +2877,7 @@
         private Panel pnlLeaveCard3Main;
         private Label label45;
         private Label label47;
-        private Syncfusion.WinForms.DataGrid.SfDataGrid sfDataGrid1;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid tblAttendanceDataGrid;
         private Label lblApprovedLeaves;
         private Label lblPendingLaaves;
         private Label lblRemainingLeaves;

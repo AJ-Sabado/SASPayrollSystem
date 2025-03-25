@@ -63,9 +63,12 @@ namespace PresentationLayer
 
             //InitLeaveCarProerties
             InitLeaveCardProperties();
+
+            //BINDINGS
+            BindDataGrid();
         }
 
-        public void Dashboard_Employee_Load(object sender, EventArgs e)
+        public async void Dashboard_Employee_Load(object sender, EventArgs e)
         {
 
             this.MaximizeBox = false;
@@ -80,6 +83,8 @@ namespace PresentationLayer
             // Subscribe to LostFocus event
             btnDashboard.LostFocus += Btn_LostFocus;
             btnJobDesk.LostFocus += Btn_LostFocus;
+
+            await BindDataGrid();
         }
 
         private void Panel_Paint(object sender, PaintEventArgs e)
