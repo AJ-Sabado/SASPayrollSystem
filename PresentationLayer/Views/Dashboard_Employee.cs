@@ -65,7 +65,6 @@ namespace PresentationLayer
             InitLeaveCardProperties();
 
             //BINDINGS
-            BindDataGrid();
         }
 
         public async void Dashboard_Employee_Load(object sender, EventArgs e)
@@ -83,8 +82,6 @@ namespace PresentationLayer
             // Subscribe to LostFocus event
             btnDashboard.LostFocus += Btn_LostFocus;
             btnJobDesk.LostFocus += Btn_LostFocus;
-
-            await BindDataGrid();
         }
 
         private void Panel_Paint(object sender, PaintEventArgs e)
@@ -122,16 +119,18 @@ namespace PresentationLayer
                 btn.Style.PressedForeColor = Color.FromArgb(0, 0, 0);
                 btn.Style.PressedBorder = new Pen(Color.FromArgb(247, 165, 2));
 
-                Bitmap InitialBlackIcons = new Bitmap(btn.Image);
-                Bitmap InvertedWhiteIcons = ImageIconUtils.InvertImageColors(InitialBlackIcons);
+                if (btn.Image != null)
+                {
+                    Bitmap InitialBlackIcons = new Bitmap(btn.Image);
+                    Bitmap InvertedWhiteIcons = ImageIconUtils.InvertImageColors(InitialBlackIcons);
 
-                btn.Style.Image = InvertedWhiteIcons;
-                btn.Style.HoverImage = InitialBlackIcons;
-                btn.Style.FocusedImage = InitialBlackIcons;
-                btn.Style.PressedImage = InitialBlackIcons;
+                    btn.Style.Image = InvertedWhiteIcons;
+                    btn.Style.HoverImage = InitialBlackIcons;
+                    btn.Style.FocusedImage = InitialBlackIcons;
+                    btn.Style.PressedImage = InitialBlackIcons;
+                }
 
                 RoundedElements.rounded(btn, 10);
-
                 btn.Invalidate();
             }
         }
@@ -292,6 +291,13 @@ namespace PresentationLayer
             RoundedElements.rounded(pnlLeaveCard2Sub, 12);
             RoundedElements.rounded(pnlLeaveCard3Main, 15);
         }
+
+        public IUnitOfWork Get_unitOfWork()
+        {
+            return _unitOfWork;
+        }
+
+        //BINDINGS
 
         //Action Events
 

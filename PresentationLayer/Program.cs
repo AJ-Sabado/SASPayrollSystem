@@ -25,5 +25,6 @@ internal static class Program
         //Application.Run(form);
         Application.Run(new Dashboard_Employee(servicesManager));
         //Application.Run(new ForgotPassword(servicesManager));
+        //Application.Run(new Employee_Dashboard(servicesManager.CurrentUser, servicesManager));
     }
 }
