@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.Presenters
 {
-    public class SignInPresenter : BasePresenter, ISignInPresenter
+    public class SignInPresenter : ISignInPresenter
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -18,7 +18,14 @@ namespace PresentationLayer.Presenters
 
         public async Task AuthenticateUser(string userName, string password)
         {
+            if (string.IsNullOrWhiteSpace(userName))
+                throw new ArgumentException("Username cannot be empty");
+
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Password cannot be empty");
+
             await _unitOfWork.LoginUser(userName, password);
+
         }
     }
 }
