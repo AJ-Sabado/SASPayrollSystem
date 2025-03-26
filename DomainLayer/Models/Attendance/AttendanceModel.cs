@@ -55,7 +55,7 @@ namespace DomainLayer.Models.Attendance
         public uint TotalHours
         { get; private set; } = 0;
 
-        [Column(TypeName = "tiyint")]
+        [Column(TypeName = "tinyint")]
         public uint OTHours { get; private set; } = 0;
 
         [Column(TypeName = "decimal")]

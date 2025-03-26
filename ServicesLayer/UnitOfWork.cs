@@ -28,8 +28,6 @@ namespace ServicesLayer
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private AppDbContext _db;
-
         public IUserModel? CurrentUser { get; private set; } = null;
 
         //Repositories
@@ -65,8 +63,6 @@ namespace ServicesLayer
 
         public UnitOfWork()
         {
-            _db = new AppDbContext();
-
             _attendanceRepository ??= new BaseRepository<AttendanceModel>();
             _contributionRepository ??= new BaseRepository<ContributionModel>();
             _departmentRepository ??= new BaseRepository<DepartmentModel>();
@@ -237,7 +233,10 @@ namespace ServicesLayer
 
         public void Save()
         {
-            _db.SaveChanges();
+            using (var context = new AppDbContext())
+            {
+                context.SaveChanges();
+            }
         }
 
         public async Task ForgotPasswordRequest(string username, string email, string password, string confirmPassword)

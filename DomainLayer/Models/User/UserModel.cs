@@ -75,8 +75,6 @@ namespace DomainLayer.Models.User
         public Guid RoleId { get; set; }
         public RoleModel Role { get; set; } = null!;
 
-        [ForeignKey(nameof(EmployeeId))]
-        public Guid? EmployeeId { get; set; }
         public EmployeeModel? Employee { get; set; }
 
         public void ConfirmPasswordChange(IForgotPasswordRequestModel request)
