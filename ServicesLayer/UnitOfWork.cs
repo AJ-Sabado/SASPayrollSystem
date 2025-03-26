@@ -28,8 +28,6 @@ namespace ServicesLayer
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private AppDbContext _db;
-
         public IUserModel? CurrentUser { get; private set; } = null;
 
         //Repositories
@@ -65,8 +63,6 @@ namespace ServicesLayer
 
         public UnitOfWork()
         {
-            _db = new AppDbContext();
-
             _attendanceRepository ??= new BaseRepository<AttendanceModel>();
             _contributionRepository ??= new BaseRepository<ContributionModel>();
             _departmentRepository ??= new BaseRepository<DepartmentModel>();
@@ -119,9 +115,57 @@ namespace ServicesLayer
             await SeedRoles();
             await SeedDepartments();
             await SeedAdmin();
+            await SeedEmployee();
             await SeedHolidays();
         }
 
+        private async Task SeedEmployee()
+        {
+            var employeeRole = await RoleRepository.GetAsync(r => r.NormalizedName == "employee".ToUpperInvariant(), includeProperties: "Users");
+            var department = await DepartmentRepository.GetAsync(d => d.NormalizedName == "management".ToUpperInvariant());
+
+            if (employeeRole.Users.Count() == 0)
+            {
+                var employeeUser = new UserModel()
+                {
+                    UserName = "user1",
+                    Password = "password",
+                    Email = "test@test.com",
+                    PhoneNumber = "+639000000000",
+                    Url = "https://www.google.com/",
+                    RoleId = employeeRole.Id,
+                    Role = employeeRole
+                };
+
+
+                var employee = new EmployeeModel()
+                {
+                    FullName = "Sample Employee",
+                    BirthDay = new DateOnly(2007, 1, 1),
+                    EmploymentDate = DateOnly.FromDateTime(DateTime.Now),
+                    JobTitle = "Sample Job Title",
+                    BasicSemiMonthlyRate = 10000,
+                    LeaveCredits = 0,
+                    WorkShiftStart = new TimeOnly(8, 0),
+                    WorkShiftEnd = new TimeOnly(17, 0),
+                    DepartmentId = department.Id,
+                    Department = department,
+                    UserId = employeeUser.Id,
+                    User = employeeUser
+                };
+
+                employee.Contribution = new ContributionModel()
+                {
+                    EmployeeId = employee.Id,
+                    Employee = employee
+                };
+
+                employeeUser.Employee = employee;
+
+                employeeRole.Users.Add(employeeUser);
+                await RoleRepository.UpdateAsync(employeeRole);
+            }
+        }
         private async Task SeedHolidays()
         {
             var holidays = await HolidayRepository.GetAllAsync();
@@ -237,7 +281,10 @@ namespace ServicesLayer
 
         public void Save()
         {
-            _db.SaveChanges();
+            using (var context = new AppDbContext())
+            {
+                context.SaveChanges();
+            }
         }
 
         public async Task ForgotPasswordRequest(string username, string email, string password, string confirmPassword)

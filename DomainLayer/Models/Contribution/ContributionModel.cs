@@ -41,6 +41,7 @@ namespace DomainLayer.Models.Contribution
             {
                 _employee = value;
                 CalculateContributions(Employee.BasicSemiMonthlyRate * 2);
+                TotalContributions = SSSAmount + PagIbigAmount + PhilHealthAmount;
             }
         }
 

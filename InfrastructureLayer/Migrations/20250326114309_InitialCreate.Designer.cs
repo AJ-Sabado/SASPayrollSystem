@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250319141024_InitialCreate")]
+    [Migration("20250326114309_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,6 +36,12 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("LateMinutes")
+                        .HasColumnType("decimal");
+
+                    b.Property<byte>("OTHours")
+                        .HasColumnType("tinyint");
 
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
@@ -137,6 +143,9 @@ namespace InfrastructureLayer.Migrations
                     b.Property<byte>("LeaveCredits")
                         .HasColumnType("tinyint");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<TimeOnly>("WorkShiftEnd")
                         .HasColumnType("time");
 
@@ -146,6 +155,9 @@ namespace InfrastructureLayer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Employees");
                 });
@@ -327,6 +339,12 @@ namespace InfrastructureLayer.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("AddAdjustments")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("AllowancesAmount")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("BonusesAmount")
                         .HasColumnType("money");
 
                     b.Property<decimal>("CashAdvance")
@@ -530,7 +548,15 @@ namespace InfrastructureLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DomainLayer.Models.User.UserModel", "User")
+                        .WithOne("Employee")
+                        .HasForeignKey("DomainLayer.Models.Employee.EmployeeModel", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Department");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Holiday.HolidayModel", b =>
@@ -608,6 +634,11 @@ namespace InfrastructureLayer.Migrations
             modelBuilder.Entity("DomainLayer.Models.Role.RoleModel", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.User.UserModel", b =>
+                {
+                    b.Navigation("Employee");
                 });
 #pragma warning restore 612, 618
         }

@@ -89,32 +89,6 @@ namespace InfrastructureLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employees",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
-                    BirthDay = table.Column<DateOnly>(type: "date", nullable: false),
-                    EmploymentDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    JobTitle = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    BasicSemiMonthlyRate = table.Column<decimal>(type: "money", nullable: false),
-                    LeaveCredits = table.Column<byte>(type: "tinyint", nullable: false),
-                    WorkShiftStart = table.Column<TimeOnly>(type: "time", nullable: false),
-                    WorkShiftEnd = table.Column<TimeOnly>(type: "time", nullable: false),
-                    DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Employees_Departments_DepartmentId",
-                        column: x => x.DepartmentId,
-                        principalTable: "Departments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Holidays",
                 columns: table => new
                 {
@@ -159,6 +133,39 @@ namespace InfrastructureLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    BirthDay = table.Column<DateOnly>(type: "date", nullable: false),
+                    EmploymentDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    JobTitle = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    BasicSemiMonthlyRate = table.Column<decimal>(type: "money", nullable: false),
+                    LeaveCredits = table.Column<byte>(type: "tinyint", nullable: false),
+                    WorkShiftStart = table.Column<TimeOnly>(type: "time", nullable: false),
+                    WorkShiftEnd = table.Column<TimeOnly>(type: "time", nullable: false),
+                    DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Employees_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalTable: "Departments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Employees_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Attendances",
                 columns: table => new
                 {
@@ -167,6 +174,8 @@ namespace InfrastructureLayer.Migrations
                     TimeIn = table.Column<TimeOnly>(type: "time", nullable: false),
                     TimeOut = table.Column<TimeOnly>(type: "time", nullable: false),
                     TotalHours = table.Column<byte>(type: "tinyint", nullable: false),
+                    OTHours = table.Column<byte>(type: "tinyint", nullable: false),
+                    LateMinutes = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
                     Status = table.Column<byte>(type: "tinyint", nullable: false),
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -260,6 +269,8 @@ namespace InfrastructureLayer.Migrations
                     TotalOT = table.Column<decimal>(type: "money", nullable: false),
                     LatesMinutes = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
                     LatesDeductionAmount = table.Column<decimal>(type: "money", nullable: false),
+                    AllowancesAmount = table.Column<decimal>(type: "money", nullable: false),
+                    BonusesAmount = table.Column<decimal>(type: "money", nullable: false),
                     TaxableIncome = table.Column<decimal>(type: "money", nullable: false),
                     TaxWithholdings = table.Column<decimal>(type: "money", nullable: false),
                     IncomeNetOfTax = table.Column<decimal>(type: "money", nullable: false),
@@ -305,6 +316,12 @@ namespace InfrastructureLayer.Migrations
                 name: "IX_Employees_DepartmentId",
                 table: "Employees",
                 column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_UserId",
+                table: "Employees",
+                column: "UserId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Holidays_PayrollModelId",
@@ -357,19 +374,19 @@ namespace InfrastructureLayer.Migrations
                 name: "Salaries");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "Payrolls");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                name: "Departments");
 
             migrationBuilder.DropTable(
-                name: "Departments");
+                name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
         }
     }
 }

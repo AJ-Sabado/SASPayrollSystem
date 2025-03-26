@@ -8,7 +8,6 @@ namespace DomainLayer.Models.User
     {
         string? Email { get; set; }
         EmployeeModel? Employee { get; set; }
-        Guid? EmployeeId { get; set; }
         Guid Id { get; set; }
         string Password { set; }
         byte[] PasswordHash { get; }
