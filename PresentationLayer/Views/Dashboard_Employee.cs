@@ -63,8 +63,12 @@ namespace PresentationLayer
 
             //InitLeaveCarProerties
             InitLeaveCardProperties();
+            
+            //ACCOUNTS PROPERTIES
 
-            //BINDINGS
+            //AccountPanels
+            InitAccountsPanelProperties();
+
         }
 
         public async void Dashboard_Employee_Load(object sender, EventArgs e)
@@ -75,6 +79,7 @@ namespace PresentationLayer
             btnDashboard.Focus();
             pnlDashboard.Show();
             pnlJobDeskRegular.Hide();
+            pnlAccountsRegular.Hide();
 
             // Track the last focused button
             lastFocusedButton = btnDashboard;
@@ -82,6 +87,7 @@ namespace PresentationLayer
             // Subscribe to LostFocus event
             btnDashboard.LostFocus += Btn_LostFocus;
             btnJobDesk.LostFocus += Btn_LostFocus;
+            btnAccount.LostFocus += Btn_LostFocus;
         }
 
         private void Panel_Paint(object sender, PaintEventArgs e)
@@ -292,9 +298,23 @@ namespace PresentationLayer
             RoundedElements.rounded(pnlLeaveCard3Main, 15);
         }
 
-        public IUnitOfWork Get_unitOfWork()
+
+        //ACCOUNTS PROPERTIES
+        public void InitAccountsPanelProperties()
         {
-            return _unitOfWork;
+            RoundedElements.rounded(pnlPhotoCard, 70);
+            
+            var pnlMainPanes = new Panel[] { pnlAccountProfileBase, pnlPersonalInformationMain, pnlContactInformationMain, pnlEmploymentInformationMain,pnlFinancialInformationMain };
+            var pnlSubPanes = new Panel[] { pnlAccountProfileSub, pnlPersonalInformationSub, pnlContactInformationSub, pnlEmploymentInformationSub, pnlFinancialInformationSub };
+
+            foreach (Panel pnl in pnlMainPanes)
+            {
+                RoundedElements.rounded(pnl, 15);
+            }
+            foreach (Panel pnl in pnlSubPanes)
+            {
+                RoundedElements.rounded(pnl, 12);
+            }     
         }
 
         //BINDINGS
@@ -322,9 +342,18 @@ namespace PresentationLayer
             lastFocusedButton = btnJobDesk;
             btnJobDesk.Focus();
             pnlDashboard.Hide();
+            pnlAccountsRegular.Hide();
             pnlJobDeskRegular.Show();
         }
 
+        private void btnAccount_Click(object sender, EventArgs e)
+        {
+            lastFocusedButton = btnAccount;
+            btnAccount.Focus();
+            pnlAccountsRegular.Show();
+            pnlDashboard.Hide();
+            pnlJobDeskRegular.Hide();
+        }
     }
 
 }

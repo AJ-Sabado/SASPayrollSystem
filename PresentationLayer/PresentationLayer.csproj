@@ -13,6 +13,48 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\Poppins-Black.ttf" />
+    <None Remove="Resources\Fonts\Poppins-BlackItalic.ttf" />
+    <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
+    <None Remove="Resources\Fonts\Poppins-BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Poppins-ExtraBold.ttf" />
+    <None Remove="Resources\Fonts\Poppins-ExtraBoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Poppins-ExtraLight.ttf" />
+    <None Remove="Resources\Fonts\Poppins-ExtraLightItalic.ttf" />
+    <None Remove="Resources\Fonts\Poppins-Italic.ttf" />
+    <None Remove="Resources\Fonts\Poppins-Light.ttf" />
+    <None Remove="Resources\Fonts\Poppins-LightItalic.ttf" />
+    <None Remove="Resources\Fonts\Poppins-Medium.ttf" />
+    <None Remove="Resources\Fonts\Poppins-MediumItalic.ttf" />
+    <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
+    <None Remove="Resources\Fonts\Poppins-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\Poppins-SemiBoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Poppins-Thin.ttf" />
+    <None Remove="Resources\Fonts\Poppins-ThinItalic.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\Poppins-Black.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-BlackItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-BoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-ExtraBold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-ExtraBoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-ExtraLight.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-ExtraLightItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-Italic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-LightItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-Medium.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-MediumItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-SemiBold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-SemiBoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-Thin.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Poppins-ThinItalic.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
     <PackageReference Include="Syncfusion.Core.WinForms" Version="28.2.11" />
     <PackageReference Include="Syncfusion.DataGridExport.WinForms" Version="28.2.11" />
@@ -26,10 +68,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ServicesLayer\ServicesLayer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
 
   <ItemGroup>
