@@ -4,6 +4,7 @@ using PresentationLayer.Views;
 using ServicesLayer;
 using Syncfusion.Windows.Forms.Tools;
 using Syncfusion.WinForms.Controls;
+using System.Diagnostics.Contracts;
 using System.Windows.Forms;
 
 namespace PresentationLayer
@@ -13,6 +14,8 @@ namespace PresentationLayer
         private IUnitOfWork _unitOfWork;
 
         private SfButton lastFocusedButton;
+
+        private EmployeeAttendance EmployeeAttendanceForm;
 
         public Dashboard_Employee(IUnitOfWork unitOfWork)
         {
@@ -63,11 +66,12 @@ namespace PresentationLayer
 
             //InitLeaveCarProerties
             InitLeaveCardProperties();
-            
+
             //ACCOUNTS PROPERTIES
 
             //AccountPanels
             InitAccountsPanelProperties();
+            InitAccountButtonProperties();
 
         }
 
@@ -265,27 +269,33 @@ namespace PresentationLayer
         public void InitJobDeskButtons()
         {
             SfButton[] PayslipButtons = { btnPrint, btnPreviewDocument, btnAttendanceRequest, btnFileLeave };
+            Panel[] btnPanels = { btnPanel1, btnPanel2, btnPanel3, btnPanel4 };
 
             foreach (SfButton btn in PayslipButtons)
             {
-                RoundedElements.rounded(btn, 10);
+                RoundedElements.rounded(btn, 7);
 
-                btn.Style.BackColor = Color.FromArgb(255, 218, 145);
-                btn.Style.ForeColor = Color.FromArgb(189, 142, 0);
-                btn.Style.Border = new Pen(Color.FromArgb(255, 218, 145));
+                btn.Style.BackColor = Color.FromArgb(255, 249, 237);
+                btn.Style.ForeColor = Color.FromArgb(252, 184, 49);
+                btn.Style.Border = new Pen(Color.FromArgb(0, 255, 218, 145));
 
                 btn.Style.HoverBackColor = Color.FromArgb(252, 184, 49);
-                btn.Style.HoverForeColor = Color.FromArgb(255, 255, 255);
+                btn.Style.HoverForeColor = Color.FromArgb(97, 74, 27);
                 btn.Style.HoverBorder = new Pen(Color.FromArgb(252, 184, 49));
 
                 btn.Style.FocusedBackColor = Color.FromArgb(217, 157, 39);
-                btn.Style.FocusedForeColor = Color.FromArgb(255, 255, 255);
+                btn.Style.FocusedForeColor = Color.FromArgb(97, 74, 27);
                 btn.Style.FocusedBorder = new Pen(Color.FromArgb(217, 157, 39));
 
                 btn.Style.PressedBackColor = Color.FromArgb(217, 157, 39);
-                btn.Style.PressedForeColor = Color.FromArgb(255, 255, 255);
+                btn.Style.PressedForeColor = Color.FromArgb(97, 74, 27);
                 btn.Style.PressedBorder = new Pen(Color.FromArgb(217, 157, 39));
 
+            }
+
+            foreach (Panel pnl in btnPanels)
+            {
+                RoundedElements.rounded(pnl, 10);
             }
         }
 
@@ -303,8 +313,8 @@ namespace PresentationLayer
         public void InitAccountsPanelProperties()
         {
             RoundedElements.rounded(pnlPhotoCard, 70);
-            
-            var pnlMainPanes = new Panel[] { pnlAccountProfileBase, pnlPersonalInformationMain, pnlContactInformationMain, pnlEmploymentInformationMain,pnlFinancialInformationMain };
+
+            var pnlMainPanes = new Panel[] { pnlAccountProfileBase, pnlPersonalInformationMain, pnlContactInformationMain, pnlEmploymentInformationMain, pnlFinancialInformationMain };
             var pnlSubPanes = new Panel[] { pnlAccountProfileSub, pnlPersonalInformationSub, pnlContactInformationSub, pnlEmploymentInformationSub, pnlFinancialInformationSub };
 
             foreach (Panel pnl in pnlMainPanes)
@@ -314,7 +324,41 @@ namespace PresentationLayer
             foreach (Panel pnl in pnlSubPanes)
             {
                 RoundedElements.rounded(pnl, 12);
-            }     
+            }
+        }
+
+        public void InitAccountButtonProperties()
+        {
+
+            btnEditAccountInfo.Style.BackColor = Color.White;
+            btnEditAccountInfo.Style.ForeColor = Color.White;
+            btnEditAccountInfo.Style.Border = new Pen(Color.White);
+
+            btnEditAccountInfo.Style.HoverBackColor = Color.White;
+            btnEditAccountInfo.Style.HoverForeColor = Color.White;
+            btnEditAccountInfo.Style.HoverBorder = new Pen(Color.White);
+
+            btnEditAccountInfo.Style.PressedBackColor = Color.White;
+            btnEditAccountInfo.Style.PressedForeColor = Color.White;
+            btnEditAccountInfo.Style.PressedBorder = new Pen(Color.White);
+
+            btnEditAccountInfo.Style.FocusedBackColor = Color.White;
+            btnEditAccountInfo.Style.FocusedForeColor = Color.White;
+            btnEditAccountInfo.Style.FocusedBorder = new Pen(Color.White);
+
+
+
+            if (btnEditAccountInfo.Image != null)
+            {
+                Bitmap originalIcon = new Bitmap(btnEditAccountInfo.Image);
+                Bitmap lightGrayIcon = ImageIconUtils.ChangeIconColor(originalIcon, Color.LightGray);
+                Bitmap darkGrayIcon = ImageIconUtils.ChangeIconColor(originalIcon, Color.SlateGray);
+
+                btnEditAccountInfo.Style.Image = lightGrayIcon;
+                btnEditAccountInfo.Style.HoverImage = darkGrayIcon;
+                btnEditAccountInfo.Style.FocusedImage = darkGrayIcon;
+                btnEditAccountInfo.Style.PressedImage = darkGrayIcon;
+            }
         }
 
         //BINDINGS
@@ -353,6 +397,22 @@ namespace PresentationLayer
             pnlAccountsRegular.Show();
             pnlDashboard.Hide();
             pnlJobDeskRegular.Hide();
+        }
+
+        private void btnTimeIn_Click(object sender, EventArgs e)
+        {
+            EmployeeAttendanceForm = new EmployeeAttendance();
+            EmployeeAttendanceForm.isTimeIn(true);
+            EmployeeAttendanceForm.Text = "Time In";
+            EmployeeAttendanceForm.ShowDialog();
+        }
+
+        private void btnTimeOut_Click(object sender, EventArgs e)
+        {
+            EmployeeAttendanceForm.isTimeIn(false);
+            EmployeeAttendanceForm.Text = "Time Out";
+            EmployeeAttendanceForm.ShowDialog();
+            EmployeeAttendanceForm.Close();
         }
     }
 
