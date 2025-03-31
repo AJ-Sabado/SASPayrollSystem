@@ -37,65 +37,6 @@
             btnAccount = new Syncfusion.WinForms.Controls.SfButton();
             panelMain = new Panel();
             panelMainDashboard = new Panel();
-            pnlDashboard = new FlowLayoutPanel();
-            panel1 = new Panel();
-            lblDahsbaordTitle = new Label();
-            panel = new FlowLayoutPanel();
-            pnlDBMainCard1 = new Panel();
-            lblUpcomingDate = new Label();
-            pictureBox2 = new PictureBox();
-            label1 = new Label();
-            pnlDBMainCard2 = new Panel();
-            pnlDBSubCard1 = new Panel();
-            pictureBox3 = new PictureBox();
-            lblDateToday = new Label();
-            label3 = new Label();
-            pnlDBMainCard4 = new Panel();
-            pnlDBSubCard4 = new Panel();
-            pictureBox17 = new PictureBox();
-            lblTotalHours = new Label();
-            label30 = new Label();
-            pnlDBMainCard3 = new Panel();
-            pnlDBSubCard2 = new Panel();
-            btnTimeOut = new Syncfusion.WinForms.Controls.SfButton();
-            btnTimeIn = new Syncfusion.WinForms.Controls.SfButton();
-            label4 = new Label();
-            pnlSummaryBase = new Panel();
-            pnlSummaryBase2 = new Panel();
-            flowLayoutPanel3 = new FlowLayoutPanel();
-            panel22 = new Panel();
-            label2 = new Label();
-            pnlSummaryCard1 = new Panel();
-            pictureBox4 = new PictureBox();
-            lblSalary = new Label();
-            label6 = new Label();
-            pnlSummaryCard2 = new Panel();
-            pnlSummarySubCard2 = new Panel();
-            pictureBox5 = new PictureBox();
-            lblAllowance = new Label();
-            label7 = new Label();
-            pnlSummaryCard3 = new Panel();
-            pnlSummarySubCard3 = new Panel();
-            pictureBox6 = new PictureBox();
-            lblBonuses = new Label();
-            label9 = new Label();
-            pnlSummaryCard4 = new Panel();
-            pnlSummarySubCard4 = new Panel();
-            pictureBox7 = new PictureBox();
-            lblDeductions = new Label();
-            label11 = new Label();
-            pnlSummaryCard5 = new Panel();
-            pnlSummarySubCard5 = new Panel();
-            pictureBox18 = new PictureBox();
-            lblAbsences = new Label();
-            label32 = new Label();
-            pnlAttendanceLogBase1 = new Panel();
-            pnlAttendanceLogBase2 = new Panel();
-            flowLayoutPanel4 = new FlowLayoutPanel();
-            panel20 = new Panel();
-            label5 = new Label();
-            pnlDataGridBase = new Panel();
-            AttendanceDataGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             pnlAccountsRegular = new FlowLayoutPanel();
             flowLayoutPanel13 = new FlowLayoutPanel();
             panel45 = new Panel();
@@ -366,48 +307,70 @@
             label12 = new Label();
             panel44 = new Panel();
             sfDataGrid2 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            pnlDashboard = new FlowLayoutPanel();
+            panel1 = new Panel();
+            lblDahsbaordTitle = new Label();
+            panel = new FlowLayoutPanel();
+            pnlDBMainCard1 = new Panel();
+            lblUpcomingDate = new Label();
+            pictureBox2 = new PictureBox();
+            label1 = new Label();
+            pnlDBMainCard2 = new Panel();
+            pnlDBSubCard1 = new Panel();
+            pictureBox3 = new PictureBox();
+            lblDateToday = new Label();
+            label3 = new Label();
+            pnlDBMainCard4 = new Panel();
+            pnlDBSubCard4 = new Panel();
+            pictureBox17 = new PictureBox();
+            lblTotalHours = new Label();
+            label30 = new Label();
+            pnlDBMainCard3 = new Panel();
+            pnlDBSubCard2 = new Panel();
+            btnTimeOut = new Syncfusion.WinForms.Controls.SfButton();
+            btnTimeIn = new Syncfusion.WinForms.Controls.SfButton();
+            label4 = new Label();
+            pnlSummaryBase = new Panel();
+            pnlSummaryBase2 = new Panel();
+            flowLayoutPanel3 = new FlowLayoutPanel();
+            panel22 = new Panel();
+            label2 = new Label();
+            pnlSummaryCard1 = new Panel();
+            pictureBox4 = new PictureBox();
+            lblSalary = new Label();
+            label6 = new Label();
+            pnlSummaryCard2 = new Panel();
+            pnlSummarySubCard2 = new Panel();
+            pictureBox5 = new PictureBox();
+            lblAllowance = new Label();
+            label7 = new Label();
+            pnlSummaryCard3 = new Panel();
+            pnlSummarySubCard3 = new Panel();
+            pictureBox6 = new PictureBox();
+            lblBonuses = new Label();
+            label9 = new Label();
+            pnlSummaryCard4 = new Panel();
+            pnlSummarySubCard4 = new Panel();
+            pictureBox7 = new PictureBox();
+            lblDeductions = new Label();
+            label11 = new Label();
+            pnlSummaryCard5 = new Panel();
+            pnlSummarySubCard5 = new Panel();
+            pictureBox18 = new PictureBox();
+            lblAbsences = new Label();
+            label32 = new Label();
+            pnlAttendanceLogBase1 = new Panel();
+            pnlAttendanceLogBase2 = new Panel();
+            flowLayoutPanel4 = new FlowLayoutPanel();
+            panel20 = new Panel();
+            label5 = new Label();
+            pnlDataGridBase = new Panel();
+            AttendanceDataGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelMain.SuspendLayout();
             panelMainDashboard.SuspendLayout();
-            pnlDashboard.SuspendLayout();
-            panel1.SuspendLayout();
-            panel.SuspendLayout();
-            pnlDBMainCard1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            pnlDBMainCard2.SuspendLayout();
-            pnlDBSubCard1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            pnlDBMainCard4.SuspendLayout();
-            pnlDBSubCard4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
-            pnlDBMainCard3.SuspendLayout();
-            pnlDBSubCard2.SuspendLayout();
-            pnlSummaryBase.SuspendLayout();
-            pnlSummaryBase2.SuspendLayout();
-            flowLayoutPanel3.SuspendLayout();
-            panel22.SuspendLayout();
-            pnlSummaryCard1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            pnlSummaryCard2.SuspendLayout();
-            pnlSummarySubCard2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            pnlSummaryCard3.SuspendLayout();
-            pnlSummarySubCard3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            pnlSummaryCard4.SuspendLayout();
-            pnlSummarySubCard4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            pnlSummaryCard5.SuspendLayout();
-            pnlSummarySubCard5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
-            pnlAttendanceLogBase1.SuspendLayout();
-            pnlAttendanceLogBase2.SuspendLayout();
-            flowLayoutPanel4.SuspendLayout();
-            panel20.SuspendLayout();
-            pnlDataGridBase.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)AttendanceDataGrid).BeginInit();
             pnlAccountsRegular.SuspendLayout();
             flowLayoutPanel13.SuspendLayout();
             panel45.SuspendLayout();
@@ -561,6 +524,43 @@
             panel43.SuspendLayout();
             panel44.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)sfDataGrid2).BeginInit();
+            pnlDashboard.SuspendLayout();
+            panel1.SuspendLayout();
+            panel.SuspendLayout();
+            pnlDBMainCard1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            pnlDBMainCard2.SuspendLayout();
+            pnlDBSubCard1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            pnlDBMainCard4.SuspendLayout();
+            pnlDBSubCard4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox17).BeginInit();
+            pnlDBMainCard3.SuspendLayout();
+            pnlDBSubCard2.SuspendLayout();
+            pnlSummaryBase.SuspendLayout();
+            pnlSummaryBase2.SuspendLayout();
+            flowLayoutPanel3.SuspendLayout();
+            panel22.SuspendLayout();
+            pnlSummaryCard1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            pnlSummaryCard2.SuspendLayout();
+            pnlSummarySubCard2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            pnlSummaryCard3.SuspendLayout();
+            pnlSummarySubCard3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            pnlSummaryCard4.SuspendLayout();
+            pnlSummarySubCard4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            pnlSummaryCard5.SuspendLayout();
+            pnlSummarySubCard5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox18).BeginInit();
+            pnlAttendanceLogBase1.SuspendLayout();
+            pnlAttendanceLogBase2.SuspendLayout();
+            flowLayoutPanel4.SuspendLayout();
+            panel20.SuspendLayout();
+            pnlDataGridBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)AttendanceDataGrid).BeginInit();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -654,648 +654,13 @@
             // panelMainDashboard
             // 
             panelMainDashboard.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelMainDashboard.Controls.Add(pnlDashboard);
             panelMainDashboard.Controls.Add(pnlAccountsRegular);
             panelMainDashboard.Controls.Add(pnlJobDeskRegular);
+            panelMainDashboard.Controls.Add(pnlDashboard);
             panelMainDashboard.Location = new Point(273, 3);
             panelMainDashboard.Name = "panelMainDashboard";
             panelMainDashboard.Size = new Size(1628, 995);
             panelMainDashboard.TabIndex = 1;
-            // 
-            // pnlDashboard
-            // 
-            pnlDashboard.Controls.Add(panel1);
-            pnlDashboard.Controls.Add(panel);
-            pnlDashboard.Controls.Add(pnlSummaryBase);
-            pnlDashboard.Controls.Add(pnlAttendanceLogBase1);
-            pnlDashboard.Dock = DockStyle.Fill;
-            pnlDashboard.Location = new Point(0, 0);
-            pnlDashboard.Margin = new Padding(20);
-            pnlDashboard.Name = "pnlDashboard";
-            pnlDashboard.Padding = new Padding(20);
-            pnlDashboard.Size = new Size(1628, 995);
-            pnlDashboard.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(lblDahsbaordTitle);
-            panel1.Location = new Point(23, 23);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1576, 81);
-            panel1.TabIndex = 0;
-            // 
-            // lblDahsbaordTitle
-            // 
-            lblDahsbaordTitle.AutoSize = true;
-            lblDahsbaordTitle.Dock = DockStyle.Left;
-            lblDahsbaordTitle.Font = new Font("Poppins", 36F, FontStyle.Bold);
-            lblDahsbaordTitle.Location = new Point(0, 0);
-            lblDahsbaordTitle.Name = "lblDahsbaordTitle";
-            lblDahsbaordTitle.Size = new Size(341, 84);
-            lblDahsbaordTitle.TabIndex = 0;
-            lblDahsbaordTitle.Text = "DASHBOARD";
-            // 
-            // panel
-            // 
-            panel.Controls.Add(pnlDBMainCard1);
-            panel.Controls.Add(pnlDBMainCard2);
-            panel.Controls.Add(pnlDBMainCard4);
-            panel.Controls.Add(pnlDBMainCard3);
-            panel.Location = new Point(23, 110);
-            panel.Name = "panel";
-            panel.Size = new Size(1576, 147);
-            panel.TabIndex = 1;
-            // 
-            // pnlDBMainCard1
-            // 
-            pnlDBMainCard1.BackColor = Color.Orange;
-            pnlDBMainCard1.Controls.Add(lblUpcomingDate);
-            pnlDBMainCard1.Controls.Add(pictureBox2);
-            pnlDBMainCard1.Controls.Add(label1);
-            pnlDBMainCard1.Location = new Point(0, 3);
-            pnlDBMainCard1.Margin = new Padding(0, 3, 7, 3);
-            pnlDBMainCard1.Name = "pnlDBMainCard1";
-            pnlDBMainCard1.Size = new Size(383, 137);
-            pnlDBMainCard1.TabIndex = 0;
-            // 
-            // lblUpcomingDate
-            // 
-            lblUpcomingDate.AutoSize = true;
-            lblUpcomingDate.Font = new Font("Poppins", 18F);
-            lblUpcomingDate.Location = new Point(23, 72);
-            lblUpcomingDate.Name = "lblUpcomingDate";
-            lblUpcomingDate.Size = new Size(194, 42);
-            lblUpcomingDate.TabIndex = 2;
-            lblUpcomingDate.Text = "March 15, 2025";
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(256, 21);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(90, 90);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Poppins SemiBold", 27.75F, FontStyle.Bold);
-            label1.Location = new Point(18, 18);
-            label1.Name = "label1";
-            label1.Size = new Size(223, 65);
-            label1.TabIndex = 0;
-            label1.Text = "Upcoming";
-            // 
-            // pnlDBMainCard2
-            // 
-            pnlDBMainCard2.BackColor = Color.Gray;
-            pnlDBMainCard2.Controls.Add(pnlDBSubCard1);
-            pnlDBMainCard2.Location = new Point(397, 3);
-            pnlDBMainCard2.Margin = new Padding(7, 3, 7, 3);
-            pnlDBMainCard2.Name = "pnlDBMainCard2";
-            pnlDBMainCard2.Size = new Size(383, 137);
-            pnlDBMainCard2.TabIndex = 1;
-            // 
-            // pnlDBSubCard1
-            // 
-            pnlDBSubCard1.BackColor = Color.White;
-            pnlDBSubCard1.Controls.Add(pictureBox3);
-            pnlDBSubCard1.Controls.Add(lblDateToday);
-            pnlDBSubCard1.Controls.Add(label3);
-            pnlDBSubCard1.Location = new Point(3, 3);
-            pnlDBSubCard1.Margin = new Padding(7, 3, 7, 3);
-            pnlDBSubCard1.Name = "pnlDBSubCard1";
-            pnlDBSubCard1.Size = new Size(377, 131);
-            pnlDBSubCard1.TabIndex = 2;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(272, 26);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(90, 90);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 5;
-            pictureBox3.TabStop = false;
-            // 
-            // lblDateToday
-            // 
-            lblDateToday.AutoSize = true;
-            lblDateToday.Font = new Font("Poppins", 18F);
-            lblDateToday.Location = new Point(26, 66);
-            lblDateToday.Name = "lblDateToday";
-            lblDateToday.Size = new Size(173, 42);
-            lblDateToday.TabIndex = 4;
-            lblDateToday.Text = "Nov. 23, 2025";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Poppins SemiBold", 27.75F, FontStyle.Bold);
-            label3.Location = new Point(18, 17);
-            label3.Margin = new Padding(0);
-            label3.Name = "label3";
-            label3.Size = new Size(244, 65);
-            label3.TabIndex = 3;
-            label3.Text = "Date Today";
-            // 
-            // pnlDBMainCard4
-            // 
-            pnlDBMainCard4.BackColor = Color.Gray;
-            pnlDBMainCard4.Controls.Add(pnlDBSubCard4);
-            pnlDBMainCard4.Location = new Point(794, 3);
-            pnlDBMainCard4.Margin = new Padding(7, 3, 0, 3);
-            pnlDBMainCard4.Name = "pnlDBMainCard4";
-            pnlDBMainCard4.Size = new Size(383, 137);
-            pnlDBMainCard4.TabIndex = 3;
-            // 
-            // pnlDBSubCard4
-            // 
-            pnlDBSubCard4.BackColor = Color.White;
-            pnlDBSubCard4.Controls.Add(pictureBox17);
-            pnlDBSubCard4.Controls.Add(lblTotalHours);
-            pnlDBSubCard4.Controls.Add(label30);
-            pnlDBSubCard4.Location = new Point(3, 3);
-            pnlDBSubCard4.Margin = new Padding(10, 3, 10, 3);
-            pnlDBSubCard4.Name = "pnlDBSubCard4";
-            pnlDBSubCard4.Size = new Size(377, 131);
-            pnlDBSubCard4.TabIndex = 2;
-            // 
-            // pictureBox17
-            // 
-            pictureBox17.Image = (Image)resources.GetObject("pictureBox17.Image");
-            pictureBox17.Location = new Point(272, 26);
-            pictureBox17.Name = "pictureBox17";
-            pictureBox17.Size = new Size(90, 90);
-            pictureBox17.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox17.TabIndex = 5;
-            pictureBox17.TabStop = false;
-            // 
-            // lblTotalHours
-            // 
-            lblTotalHours.AutoSize = true;
-            lblTotalHours.Font = new Font("Poppins", 18F);
-            lblTotalHours.Location = new Point(26, 66);
-            lblTotalHours.Name = "lblTotalHours";
-            lblTotalHours.Size = new Size(136, 42);
-            lblTotalHours.TabIndex = 4;
-            lblTotalHours.Text = "256 hours";
-            // 
-            // label30
-            // 
-            label30.AutoSize = true;
-            label30.Font = new Font("Poppins SemiBold", 27.75F, FontStyle.Bold);
-            label30.Location = new Point(18, 17);
-            label30.Margin = new Padding(0);
-            label30.Name = "label30";
-            label30.Size = new Size(242, 65);
-            label30.TabIndex = 3;
-            label30.Text = "Total Hours";
-            // 
-            // pnlDBMainCard3
-            // 
-            pnlDBMainCard3.BackColor = Color.Gray;
-            pnlDBMainCard3.Controls.Add(pnlDBSubCard2);
-            pnlDBMainCard3.Location = new Point(1184, 3);
-            pnlDBMainCard3.Margin = new Padding(7, 3, 7, 3);
-            pnlDBMainCard3.Name = "pnlDBMainCard3";
-            pnlDBMainCard3.Size = new Size(383, 137);
-            pnlDBMainCard3.TabIndex = 4;
-            // 
-            // pnlDBSubCard2
-            // 
-            pnlDBSubCard2.BackColor = Color.White;
-            pnlDBSubCard2.Controls.Add(btnTimeOut);
-            pnlDBSubCard2.Controls.Add(btnTimeIn);
-            pnlDBSubCard2.Controls.Add(label4);
-            pnlDBSubCard2.Location = new Point(3, 3);
-            pnlDBSubCard2.Margin = new Padding(10, 3, 10, 3);
-            pnlDBSubCard2.Name = "pnlDBSubCard2";
-            pnlDBSubCard2.Size = new Size(377, 131);
-            pnlDBSubCard2.TabIndex = 3;
-            // 
-            // btnTimeOut
-            // 
-            btnTimeOut.BackColor = Color.White;
-            btnTimeOut.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            btnTimeOut.Location = new Point(201, 76);
-            btnTimeOut.Margin = new Padding(0);
-            btnTimeOut.Name = "btnTimeOut";
-            btnTimeOut.Size = new Size(150, 40);
-            btnTimeOut.Style.BackColor = Color.White;
-            btnTimeOut.TabIndex = 7;
-            btnTimeOut.Text = "Time Out";
-            btnTimeOut.UseVisualStyleBackColor = false;
-            btnTimeOut.Click += btnTimeOut_Click;
-            // 
-            // btnTimeIn
-            // 
-            btnTimeIn.BackColor = Color.White;
-            btnTimeIn.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            btnTimeIn.Location = new Point(24, 72);
-            btnTimeIn.Margin = new Padding(0);
-            btnTimeIn.Name = "btnTimeIn";
-            btnTimeIn.Size = new Size(150, 40);
-            btnTimeIn.Style.BackColor = Color.White;
-            btnTimeIn.TabIndex = 6;
-            btnTimeIn.Text = "Time In";
-            btnTimeIn.UseVisualStyleBackColor = false;
-            btnTimeIn.Click += btnTimeIn_Click;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Poppins SemiBold", 27.75F, FontStyle.Bold);
-            label4.Location = new Point(24, 18);
-            label4.Margin = new Padding(0);
-            label4.Name = "label4";
-            label4.Size = new Size(248, 65);
-            label4.TabIndex = 5;
-            label4.Text = "Attendance";
-            // 
-            // pnlSummaryBase
-            // 
-            pnlSummaryBase.BackColor = Color.Gray;
-            pnlSummaryBase.Controls.Add(pnlSummaryBase2);
-            pnlSummaryBase.Location = new Point(23, 263);
-            pnlSummaryBase.Margin = new Padding(3, 3, 18, 3);
-            pnlSummaryBase.Name = "pnlSummaryBase";
-            pnlSummaryBase.Size = new Size(419, 705);
-            pnlSummaryBase.TabIndex = 2;
-            // 
-            // pnlSummaryBase2
-            // 
-            pnlSummaryBase2.BackColor = Color.White;
-            pnlSummaryBase2.Controls.Add(flowLayoutPanel3);
-            pnlSummaryBase2.Location = new Point(3, 3);
-            pnlSummaryBase2.Name = "pnlSummaryBase2";
-            pnlSummaryBase2.Size = new Size(413, 699);
-            pnlSummaryBase2.TabIndex = 3;
-            // 
-            // flowLayoutPanel3
-            // 
-            flowLayoutPanel3.Controls.Add(panel22);
-            flowLayoutPanel3.Controls.Add(pnlSummaryCard1);
-            flowLayoutPanel3.Controls.Add(pnlSummaryCard2);
-            flowLayoutPanel3.Controls.Add(pnlSummaryCard3);
-            flowLayoutPanel3.Controls.Add(pnlSummaryCard4);
-            flowLayoutPanel3.Controls.Add(pnlSummaryCard5);
-            flowLayoutPanel3.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel3.Location = new Point(30, 14);
-            flowLayoutPanel3.Margin = new Padding(30, 20, 30, 30);
-            flowLayoutPanel3.Name = "flowLayoutPanel3";
-            flowLayoutPanel3.Size = new Size(353, 658);
-            flowLayoutPanel3.TabIndex = 0;
-            // 
-            // panel22
-            // 
-            panel22.Controls.Add(label2);
-            panel22.Location = new Point(3, 3);
-            panel22.Name = "panel22";
-            panel22.Size = new Size(347, 71);
-            panel22.TabIndex = 6;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Poppins", 26.25F, FontStyle.Bold);
-            label2.Location = new Point(-2, 1);
-            label2.Name = "label2";
-            label2.Size = new Size(208, 62);
-            label2.TabIndex = 2;
-            label2.Text = "Summary";
-            // 
-            // pnlSummaryCard1
-            // 
-            pnlSummaryCard1.BackColor = Color.Orange;
-            pnlSummaryCard1.Controls.Add(pictureBox4);
-            pnlSummaryCard1.Controls.Add(lblSalary);
-            pnlSummaryCard1.Controls.Add(label6);
-            pnlSummaryCard1.Location = new Point(0, 77);
-            pnlSummaryCard1.Margin = new Padding(0, 0, 0, 20);
-            pnlSummaryCard1.Name = "pnlSummaryCard1";
-            pnlSummaryCard1.Size = new Size(350, 100);
-            pnlSummaryCard1.TabIndex = 7;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(247, 9);
-            pictureBox4.Margin = new Padding(0);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(80, 80);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 3;
-            pictureBox4.TabStop = false;
-            // 
-            // lblSalary
-            // 
-            lblSalary.AutoSize = true;
-            lblSalary.Font = new Font("Poppins", 20.25F);
-            lblSalary.Location = new Point(24, 52);
-            lblSalary.Name = "lblSalary";
-            lblSalary.Size = new Size(172, 48);
-            lblSalary.TabIndex = 2;
-            lblSalary.Text = "P 23,456.00";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Poppins SemiBold", 24F, FontStyle.Bold);
-            label6.Location = new Point(18, 3);
-            label6.Name = "label6";
-            label6.Size = new Size(193, 56);
-            label6.TabIndex = 0;
-            label6.Text = "Net Salary";
-            // 
-            // pnlSummaryCard2
-            // 
-            pnlSummaryCard2.BackColor = Color.Gray;
-            pnlSummaryCard2.Controls.Add(pnlSummarySubCard2);
-            pnlSummaryCard2.Location = new Point(0, 197);
-            pnlSummaryCard2.Margin = new Padding(0, 0, 0, 20);
-            pnlSummaryCard2.Name = "pnlSummaryCard2";
-            pnlSummaryCard2.Size = new Size(350, 100);
-            pnlSummaryCard2.TabIndex = 8;
-            // 
-            // pnlSummarySubCard2
-            // 
-            pnlSummarySubCard2.BackColor = Color.White;
-            pnlSummarySubCard2.Controls.Add(pictureBox5);
-            pnlSummarySubCard2.Controls.Add(lblAllowance);
-            pnlSummarySubCard2.Controls.Add(label7);
-            pnlSummarySubCard2.Location = new Point(3, 3);
-            pnlSummarySubCard2.Margin = new Padding(0);
-            pnlSummarySubCard2.Name = "pnlSummarySubCard2";
-            pnlSummarySubCard2.Size = new Size(344, 94);
-            pnlSummarySubCard2.TabIndex = 2;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(244, 7);
-            pictureBox5.Margin = new Padding(0);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(80, 80);
-            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox5.TabIndex = 6;
-            pictureBox5.TabStop = false;
-            // 
-            // lblAllowance
-            // 
-            lblAllowance.AutoSize = true;
-            lblAllowance.Font = new Font("Poppins", 20.25F);
-            lblAllowance.Location = new Point(27, 47);
-            lblAllowance.Name = "lblAllowance";
-            lblAllowance.Size = new Size(172, 48);
-            lblAllowance.TabIndex = 5;
-            lblAllowance.Text = "P 23,456.00";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Poppins SemiBold", 24F, FontStyle.Bold);
-            label7.Location = new Point(21, 1);
-            label7.Name = "label7";
-            label7.Size = new Size(194, 56);
-            label7.TabIndex = 4;
-            label7.Text = "Allowance";
-            // 
-            // pnlSummaryCard3
-            // 
-            pnlSummaryCard3.BackColor = Color.Gray;
-            pnlSummaryCard3.Controls.Add(pnlSummarySubCard3);
-            pnlSummaryCard3.Location = new Point(0, 317);
-            pnlSummaryCard3.Margin = new Padding(0, 0, 0, 20);
-            pnlSummaryCard3.Name = "pnlSummaryCard3";
-            pnlSummaryCard3.Size = new Size(350, 100);
-            pnlSummaryCard3.TabIndex = 9;
-            // 
-            // pnlSummarySubCard3
-            // 
-            pnlSummarySubCard3.BackColor = Color.White;
-            pnlSummarySubCard3.Controls.Add(pictureBox6);
-            pnlSummarySubCard3.Controls.Add(lblBonuses);
-            pnlSummarySubCard3.Controls.Add(label9);
-            pnlSummarySubCard3.Location = new Point(3, 3);
-            pnlSummarySubCard3.Margin = new Padding(0);
-            pnlSummarySubCard3.Name = "pnlSummarySubCard3";
-            pnlSummarySubCard3.Size = new Size(344, 94);
-            pnlSummarySubCard3.TabIndex = 2;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(244, 7);
-            pictureBox6.Margin = new Padding(0);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(80, 80);
-            pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox6.TabIndex = 6;
-            pictureBox6.TabStop = false;
-            // 
-            // lblBonuses
-            // 
-            lblBonuses.AutoSize = true;
-            lblBonuses.Font = new Font("Poppins", 20.25F);
-            lblBonuses.Location = new Point(27, 50);
-            lblBonuses.Name = "lblBonuses";
-            lblBonuses.Size = new Size(172, 48);
-            lblBonuses.TabIndex = 5;
-            lblBonuses.Text = "P 23,456.00";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Poppins SemiBold", 24F, FontStyle.Bold);
-            label9.Location = new Point(21, 1);
-            label9.Name = "label9";
-            label9.Size = new Size(161, 56);
-            label9.TabIndex = 4;
-            label9.Text = "Bonuses";
-            // 
-            // pnlSummaryCard4
-            // 
-            pnlSummaryCard4.BackColor = Color.Gray;
-            pnlSummaryCard4.Controls.Add(pnlSummarySubCard4);
-            pnlSummaryCard4.Location = new Point(0, 437);
-            pnlSummaryCard4.Margin = new Padding(0, 0, 0, 20);
-            pnlSummaryCard4.Name = "pnlSummaryCard4";
-            pnlSummaryCard4.Size = new Size(350, 100);
-            pnlSummaryCard4.TabIndex = 10;
-            // 
-            // pnlSummarySubCard4
-            // 
-            pnlSummarySubCard4.BackColor = Color.White;
-            pnlSummarySubCard4.Controls.Add(pictureBox7);
-            pnlSummarySubCard4.Controls.Add(lblDeductions);
-            pnlSummarySubCard4.Controls.Add(label11);
-            pnlSummarySubCard4.Location = new Point(3, 3);
-            pnlSummarySubCard4.Margin = new Padding(0);
-            pnlSummarySubCard4.Name = "pnlSummarySubCard4";
-            pnlSummarySubCard4.Size = new Size(344, 94);
-            pnlSummarySubCard4.TabIndex = 2;
-            // 
-            // pictureBox7
-            // 
-            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(244, 7);
-            pictureBox7.Margin = new Padding(0);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(80, 80);
-            pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox7.TabIndex = 6;
-            pictureBox7.TabStop = false;
-            // 
-            // lblDeductions
-            // 
-            lblDeductions.AutoSize = true;
-            lblDeductions.Font = new Font("Poppins", 20.25F);
-            lblDeductions.Location = new Point(27, 47);
-            lblDeductions.Name = "lblDeductions";
-            lblDeductions.Size = new Size(172, 48);
-            lblDeductions.TabIndex = 5;
-            lblDeductions.Text = "P 23,456.00";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Poppins SemiBold", 24F, FontStyle.Bold);
-            label11.Location = new Point(21, -2);
-            label11.Name = "label11";
-            label11.Size = new Size(208, 56);
-            label11.TabIndex = 4;
-            label11.Text = "Deductions";
-            // 
-            // pnlSummaryCard5
-            // 
-            pnlSummaryCard5.BackColor = Color.Gray;
-            pnlSummaryCard5.Controls.Add(pnlSummarySubCard5);
-            pnlSummaryCard5.Location = new Point(0, 557);
-            pnlSummaryCard5.Margin = new Padding(0);
-            pnlSummaryCard5.Name = "pnlSummaryCard5";
-            pnlSummaryCard5.Size = new Size(350, 100);
-            pnlSummaryCard5.TabIndex = 11;
-            // 
-            // pnlSummarySubCard5
-            // 
-            pnlSummarySubCard5.BackColor = Color.White;
-            pnlSummarySubCard5.Controls.Add(pictureBox18);
-            pnlSummarySubCard5.Controls.Add(lblAbsences);
-            pnlSummarySubCard5.Controls.Add(label32);
-            pnlSummarySubCard5.Location = new Point(3, 3);
-            pnlSummarySubCard5.Margin = new Padding(0);
-            pnlSummarySubCard5.Name = "pnlSummarySubCard5";
-            pnlSummarySubCard5.Size = new Size(344, 94);
-            pnlSummarySubCard5.TabIndex = 2;
-            // 
-            // pictureBox18
-            // 
-            pictureBox18.Image = (Image)resources.GetObject("pictureBox18.Image");
-            pictureBox18.Location = new Point(244, 7);
-            pictureBox18.Margin = new Padding(0);
-            pictureBox18.Name = "pictureBox18";
-            pictureBox18.Size = new Size(80, 80);
-            pictureBox18.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox18.TabIndex = 6;
-            pictureBox18.TabStop = false;
-            // 
-            // lblAbsences
-            // 
-            lblAbsences.AutoSize = true;
-            lblAbsences.Font = new Font("Poppins", 20.25F);
-            lblAbsences.Location = new Point(24, 43);
-            lblAbsences.Name = "lblAbsences";
-            lblAbsences.Size = new Size(191, 48);
-            lblAbsences.TabIndex = 5;
-            lblAbsences.Text = "23 Absences";
-            // 
-            // label32
-            // 
-            label32.AutoSize = true;
-            label32.Font = new Font("Poppins SemiBold", 24F, FontStyle.Bold);
-            label32.Location = new Point(21, 0);
-            label32.Name = "label32";
-            label32.Size = new Size(183, 56);
-            label32.TabIndex = 4;
-            label32.Text = "Absences";
-            // 
-            // pnlAttendanceLogBase1
-            // 
-            pnlAttendanceLogBase1.BackColor = Color.Gray;
-            pnlAttendanceLogBase1.Controls.Add(pnlAttendanceLogBase2);
-            pnlAttendanceLogBase1.Location = new Point(463, 263);
-            pnlAttendanceLogBase1.Name = "pnlAttendanceLogBase1";
-            pnlAttendanceLogBase1.Size = new Size(1134, 702);
-            pnlAttendanceLogBase1.TabIndex = 3;
-            // 
-            // pnlAttendanceLogBase2
-            // 
-            pnlAttendanceLogBase2.BackColor = Color.White;
-            pnlAttendanceLogBase2.Controls.Add(flowLayoutPanel4);
-            pnlAttendanceLogBase2.Location = new Point(3, 3);
-            pnlAttendanceLogBase2.Name = "pnlAttendanceLogBase2";
-            pnlAttendanceLogBase2.Size = new Size(1128, 696);
-            pnlAttendanceLogBase2.TabIndex = 3;
-            // 
-            // flowLayoutPanel4
-            // 
-            flowLayoutPanel4.Controls.Add(panel20);
-            flowLayoutPanel4.Controls.Add(pnlDataGridBase);
-            flowLayoutPanel4.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel4.Location = new Point(30, 14);
-            flowLayoutPanel4.Margin = new Padding(30, 20, 30, 30);
-            flowLayoutPanel4.Name = "flowLayoutPanel4";
-            flowLayoutPanel4.Size = new Size(1068, 652);
-            flowLayoutPanel4.TabIndex = 0;
-            // 
-            // panel20
-            // 
-            panel20.Controls.Add(label5);
-            panel20.Location = new Point(3, 3);
-            panel20.Name = "panel20";
-            panel20.Size = new Size(904, 71);
-            panel20.TabIndex = 5;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Poppins", 26.25F, FontStyle.Bold);
-            label5.Location = new Point(0, 3);
-            label5.Name = "label5";
-            label5.Size = new Size(313, 62);
-            label5.TabIndex = 4;
-            label5.Text = "Attendance Log";
-            // 
-            // pnlDataGridBase
-            // 
-            pnlDataGridBase.BackColor = Color.Gray;
-            pnlDataGridBase.Controls.Add(AttendanceDataGrid);
-            pnlDataGridBase.Location = new Point(0, 77);
-            pnlDataGridBase.Margin = new Padding(0);
-            pnlDataGridBase.Name = "pnlDataGridBase";
-            pnlDataGridBase.Size = new Size(1068, 575);
-            pnlDataGridBase.TabIndex = 6;
-            // 
-            // AttendanceDataGrid
-            // 
-            AttendanceDataGrid.AccessibleName = "Table";
-            AttendanceDataGrid.AllowEditing = false;
-            AttendanceDataGrid.AllowGrouping = false;
-            AttendanceDataGrid.Location = new Point(3, 3);
-            AttendanceDataGrid.Margin = new Padding(0);
-            AttendanceDataGrid.Name = "AttendanceDataGrid";
-            AttendanceDataGrid.PreviewRowHeight = 35;
-            AttendanceDataGrid.Size = new Size(1062, 569);
-            AttendanceDataGrid.Style.BorderColor = Color.FromArgb(100, 100, 100);
-            AttendanceDataGrid.Style.CheckBoxStyle.CheckedBackColor = Color.FromArgb(0, 120, 215);
-            AttendanceDataGrid.Style.CheckBoxStyle.CheckedBorderColor = Color.FromArgb(0, 120, 215);
-            AttendanceDataGrid.Style.CheckBoxStyle.IndeterminateBorderColor = Color.FromArgb(0, 120, 215);
-            AttendanceDataGrid.Style.HyperlinkStyle.DefaultLinkColor = Color.FromArgb(0, 120, 215);
-            AttendanceDataGrid.TabIndex = 4;
-            AttendanceDataGrid.Text = "sfDataGrid1";
             // 
             // pnlAccountsRegular
             // 
@@ -4175,6 +3540,641 @@
             sfDataGrid2.TabIndex = 0;
             sfDataGrid2.Text = "sfDataGrid2";
             // 
+            // pnlDashboard
+            // 
+            pnlDashboard.Controls.Add(panel1);
+            pnlDashboard.Controls.Add(panel);
+            pnlDashboard.Controls.Add(pnlSummaryBase);
+            pnlDashboard.Controls.Add(pnlAttendanceLogBase1);
+            pnlDashboard.Dock = DockStyle.Fill;
+            pnlDashboard.Location = new Point(0, 0);
+            pnlDashboard.Margin = new Padding(20);
+            pnlDashboard.Name = "pnlDashboard";
+            pnlDashboard.Padding = new Padding(20);
+            pnlDashboard.Size = new Size(1628, 995);
+            pnlDashboard.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(lblDahsbaordTitle);
+            panel1.Location = new Point(23, 23);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1576, 81);
+            panel1.TabIndex = 0;
+            // 
+            // lblDahsbaordTitle
+            // 
+            lblDahsbaordTitle.AutoSize = true;
+            lblDahsbaordTitle.Dock = DockStyle.Left;
+            lblDahsbaordTitle.Font = new Font("Poppins", 36F, FontStyle.Bold);
+            lblDahsbaordTitle.Location = new Point(0, 0);
+            lblDahsbaordTitle.Name = "lblDahsbaordTitle";
+            lblDahsbaordTitle.Size = new Size(341, 84);
+            lblDahsbaordTitle.TabIndex = 0;
+            lblDahsbaordTitle.Text = "DASHBOARD";
+            // 
+            // panel
+            // 
+            panel.Controls.Add(pnlDBMainCard1);
+            panel.Controls.Add(pnlDBMainCard2);
+            panel.Controls.Add(pnlDBMainCard4);
+            panel.Controls.Add(pnlDBMainCard3);
+            panel.Location = new Point(23, 110);
+            panel.Name = "panel";
+            panel.Size = new Size(1576, 147);
+            panel.TabIndex = 1;
+            // 
+            // pnlDBMainCard1
+            // 
+            pnlDBMainCard1.BackColor = Color.Orange;
+            pnlDBMainCard1.Controls.Add(lblUpcomingDate);
+            pnlDBMainCard1.Controls.Add(pictureBox2);
+            pnlDBMainCard1.Controls.Add(label1);
+            pnlDBMainCard1.Location = new Point(0, 3);
+            pnlDBMainCard1.Margin = new Padding(0, 3, 7, 3);
+            pnlDBMainCard1.Name = "pnlDBMainCard1";
+            pnlDBMainCard1.Size = new Size(383, 137);
+            pnlDBMainCard1.TabIndex = 0;
+            // 
+            // lblUpcomingDate
+            // 
+            lblUpcomingDate.AutoSize = true;
+            lblUpcomingDate.Font = new Font("Poppins", 18F);
+            lblUpcomingDate.Location = new Point(23, 72);
+            lblUpcomingDate.Name = "lblUpcomingDate";
+            lblUpcomingDate.Size = new Size(194, 42);
+            lblUpcomingDate.TabIndex = 2;
+            lblUpcomingDate.Text = "March 15, 2025";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(256, 21);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(90, 90);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 1;
+            pictureBox2.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Poppins SemiBold", 27.75F, FontStyle.Bold);
+            label1.Location = new Point(18, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(223, 65);
+            label1.TabIndex = 0;
+            label1.Text = "Upcoming";
+            // 
+            // pnlDBMainCard2
+            // 
+            pnlDBMainCard2.BackColor = Color.Gray;
+            pnlDBMainCard2.Controls.Add(pnlDBSubCard1);
+            pnlDBMainCard2.Location = new Point(397, 3);
+            pnlDBMainCard2.Margin = new Padding(7, 3, 7, 3);
+            pnlDBMainCard2.Name = "pnlDBMainCard2";
+            pnlDBMainCard2.Size = new Size(383, 137);
+            pnlDBMainCard2.TabIndex = 1;
+            // 
+            // pnlDBSubCard1
+            // 
+            pnlDBSubCard1.BackColor = Color.White;
+            pnlDBSubCard1.Controls.Add(pictureBox3);
+            pnlDBSubCard1.Controls.Add(lblDateToday);
+            pnlDBSubCard1.Controls.Add(label3);
+            pnlDBSubCard1.Location = new Point(3, 3);
+            pnlDBSubCard1.Margin = new Padding(7, 3, 7, 3);
+            pnlDBSubCard1.Name = "pnlDBSubCard1";
+            pnlDBSubCard1.Size = new Size(377, 131);
+            pnlDBSubCard1.TabIndex = 2;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(272, 26);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(90, 90);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 5;
+            pictureBox3.TabStop = false;
+            // 
+            // lblDateToday
+            // 
+            lblDateToday.AutoSize = true;
+            lblDateToday.Font = new Font("Poppins", 18F);
+            lblDateToday.Location = new Point(26, 66);
+            lblDateToday.Name = "lblDateToday";
+            lblDateToday.Size = new Size(173, 42);
+            lblDateToday.TabIndex = 4;
+            lblDateToday.Text = "Nov. 23, 2025";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Poppins SemiBold", 27.75F, FontStyle.Bold);
+            label3.Location = new Point(18, 17);
+            label3.Margin = new Padding(0);
+            label3.Name = "label3";
+            label3.Size = new Size(244, 65);
+            label3.TabIndex = 3;
+            label3.Text = "Date Today";
+            // 
+            // pnlDBMainCard4
+            // 
+            pnlDBMainCard4.BackColor = Color.Gray;
+            pnlDBMainCard4.Controls.Add(pnlDBSubCard4);
+            pnlDBMainCard4.Location = new Point(794, 3);
+            pnlDBMainCard4.Margin = new Padding(7, 3, 0, 3);
+            pnlDBMainCard4.Name = "pnlDBMainCard4";
+            pnlDBMainCard4.Size = new Size(383, 137);
+            pnlDBMainCard4.TabIndex = 3;
+            // 
+            // pnlDBSubCard4
+            // 
+            pnlDBSubCard4.BackColor = Color.White;
+            pnlDBSubCard4.Controls.Add(pictureBox17);
+            pnlDBSubCard4.Controls.Add(lblTotalHours);
+            pnlDBSubCard4.Controls.Add(label30);
+            pnlDBSubCard4.Location = new Point(3, 3);
+            pnlDBSubCard4.Margin = new Padding(10, 3, 10, 3);
+            pnlDBSubCard4.Name = "pnlDBSubCard4";
+            pnlDBSubCard4.Size = new Size(377, 131);
+            pnlDBSubCard4.TabIndex = 2;
+            // 
+            // pictureBox17
+            // 
+            pictureBox17.Image = (Image)resources.GetObject("pictureBox17.Image");
+            pictureBox17.Location = new Point(272, 26);
+            pictureBox17.Name = "pictureBox17";
+            pictureBox17.Size = new Size(90, 90);
+            pictureBox17.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox17.TabIndex = 5;
+            pictureBox17.TabStop = false;
+            // 
+            // lblTotalHours
+            // 
+            lblTotalHours.AutoSize = true;
+            lblTotalHours.Font = new Font("Poppins", 18F);
+            lblTotalHours.Location = new Point(26, 66);
+            lblTotalHours.Name = "lblTotalHours";
+            lblTotalHours.Size = new Size(136, 42);
+            lblTotalHours.TabIndex = 4;
+            lblTotalHours.Text = "256 hours";
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Font = new Font("Poppins SemiBold", 27.75F, FontStyle.Bold);
+            label30.Location = new Point(18, 17);
+            label30.Margin = new Padding(0);
+            label30.Name = "label30";
+            label30.Size = new Size(242, 65);
+            label30.TabIndex = 3;
+            label30.Text = "Total Hours";
+            // 
+            // pnlDBMainCard3
+            // 
+            pnlDBMainCard3.BackColor = Color.Gray;
+            pnlDBMainCard3.Controls.Add(pnlDBSubCard2);
+            pnlDBMainCard3.Location = new Point(1184, 3);
+            pnlDBMainCard3.Margin = new Padding(7, 3, 7, 3);
+            pnlDBMainCard3.Name = "pnlDBMainCard3";
+            pnlDBMainCard3.Size = new Size(383, 137);
+            pnlDBMainCard3.TabIndex = 4;
+            // 
+            // pnlDBSubCard2
+            // 
+            pnlDBSubCard2.BackColor = Color.White;
+            pnlDBSubCard2.Controls.Add(btnTimeOut);
+            pnlDBSubCard2.Controls.Add(btnTimeIn);
+            pnlDBSubCard2.Controls.Add(label4);
+            pnlDBSubCard2.Location = new Point(3, 3);
+            pnlDBSubCard2.Margin = new Padding(10, 3, 10, 3);
+            pnlDBSubCard2.Name = "pnlDBSubCard2";
+            pnlDBSubCard2.Size = new Size(377, 131);
+            pnlDBSubCard2.TabIndex = 3;
+            // 
+            // btnTimeOut
+            // 
+            btnTimeOut.BackColor = Color.White;
+            btnTimeOut.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            btnTimeOut.Location = new Point(201, 76);
+            btnTimeOut.Margin = new Padding(0);
+            btnTimeOut.Name = "btnTimeOut";
+            btnTimeOut.Size = new Size(150, 40);
+            btnTimeOut.Style.BackColor = Color.White;
+            btnTimeOut.TabIndex = 7;
+            btnTimeOut.Text = "Time Out";
+            btnTimeOut.UseVisualStyleBackColor = false;
+            btnTimeOut.Click += btnTimeOut_Click;
+            // 
+            // btnTimeIn
+            // 
+            btnTimeIn.BackColor = Color.White;
+            btnTimeIn.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            btnTimeIn.Location = new Point(24, 72);
+            btnTimeIn.Margin = new Padding(0);
+            btnTimeIn.Name = "btnTimeIn";
+            btnTimeIn.Size = new Size(150, 40);
+            btnTimeIn.Style.BackColor = Color.White;
+            btnTimeIn.TabIndex = 6;
+            btnTimeIn.Text = "Time In";
+            btnTimeIn.UseVisualStyleBackColor = false;
+            btnTimeIn.Click += btnTimeIn_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Poppins SemiBold", 27.75F, FontStyle.Bold);
+            label4.Location = new Point(24, 18);
+            label4.Margin = new Padding(0);
+            label4.Name = "label4";
+            label4.Size = new Size(248, 65);
+            label4.TabIndex = 5;
+            label4.Text = "Attendance";
+            // 
+            // pnlSummaryBase
+            // 
+            pnlSummaryBase.BackColor = Color.Gray;
+            pnlSummaryBase.Controls.Add(pnlSummaryBase2);
+            pnlSummaryBase.Location = new Point(23, 263);
+            pnlSummaryBase.Margin = new Padding(3, 3, 18, 3);
+            pnlSummaryBase.Name = "pnlSummaryBase";
+            pnlSummaryBase.Size = new Size(419, 705);
+            pnlSummaryBase.TabIndex = 2;
+            // 
+            // pnlSummaryBase2
+            // 
+            pnlSummaryBase2.BackColor = Color.White;
+            pnlSummaryBase2.Controls.Add(flowLayoutPanel3);
+            pnlSummaryBase2.Location = new Point(3, 3);
+            pnlSummaryBase2.Name = "pnlSummaryBase2";
+            pnlSummaryBase2.Size = new Size(413, 699);
+            pnlSummaryBase2.TabIndex = 3;
+            // 
+            // flowLayoutPanel3
+            // 
+            flowLayoutPanel3.Controls.Add(panel22);
+            flowLayoutPanel3.Controls.Add(pnlSummaryCard1);
+            flowLayoutPanel3.Controls.Add(pnlSummaryCard2);
+            flowLayoutPanel3.Controls.Add(pnlSummaryCard3);
+            flowLayoutPanel3.Controls.Add(pnlSummaryCard4);
+            flowLayoutPanel3.Controls.Add(pnlSummaryCard5);
+            flowLayoutPanel3.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel3.Location = new Point(30, 14);
+            flowLayoutPanel3.Margin = new Padding(30, 20, 30, 30);
+            flowLayoutPanel3.Name = "flowLayoutPanel3";
+            flowLayoutPanel3.Size = new Size(353, 658);
+            flowLayoutPanel3.TabIndex = 0;
+            // 
+            // panel22
+            // 
+            panel22.Controls.Add(label2);
+            panel22.Location = new Point(3, 3);
+            panel22.Name = "panel22";
+            panel22.Size = new Size(347, 71);
+            panel22.TabIndex = 6;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Poppins", 26.25F, FontStyle.Bold);
+            label2.Location = new Point(-2, 1);
+            label2.Name = "label2";
+            label2.Size = new Size(208, 62);
+            label2.TabIndex = 2;
+            label2.Text = "Summary";
+            // 
+            // pnlSummaryCard1
+            // 
+            pnlSummaryCard1.BackColor = Color.Orange;
+            pnlSummaryCard1.Controls.Add(pictureBox4);
+            pnlSummaryCard1.Controls.Add(lblSalary);
+            pnlSummaryCard1.Controls.Add(label6);
+            pnlSummaryCard1.Location = new Point(0, 77);
+            pnlSummaryCard1.Margin = new Padding(0, 0, 0, 20);
+            pnlSummaryCard1.Name = "pnlSummaryCard1";
+            pnlSummaryCard1.Size = new Size(350, 100);
+            pnlSummaryCard1.TabIndex = 7;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(247, 9);
+            pictureBox4.Margin = new Padding(0);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(80, 80);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 3;
+            pictureBox4.TabStop = false;
+            // 
+            // lblSalary
+            // 
+            lblSalary.AutoSize = true;
+            lblSalary.Font = new Font("Poppins", 20.25F);
+            lblSalary.Location = new Point(24, 52);
+            lblSalary.Name = "lblSalary";
+            lblSalary.Size = new Size(172, 48);
+            lblSalary.TabIndex = 2;
+            lblSalary.Text = "P 23,456.00";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Poppins SemiBold", 24F, FontStyle.Bold);
+            label6.Location = new Point(18, 3);
+            label6.Name = "label6";
+            label6.Size = new Size(193, 56);
+            label6.TabIndex = 0;
+            label6.Text = "Net Salary";
+            // 
+            // pnlSummaryCard2
+            // 
+            pnlSummaryCard2.BackColor = Color.Gray;
+            pnlSummaryCard2.Controls.Add(pnlSummarySubCard2);
+            pnlSummaryCard2.Location = new Point(0, 197);
+            pnlSummaryCard2.Margin = new Padding(0, 0, 0, 20);
+            pnlSummaryCard2.Name = "pnlSummaryCard2";
+            pnlSummaryCard2.Size = new Size(350, 100);
+            pnlSummaryCard2.TabIndex = 8;
+            // 
+            // pnlSummarySubCard2
+            // 
+            pnlSummarySubCard2.BackColor = Color.White;
+            pnlSummarySubCard2.Controls.Add(pictureBox5);
+            pnlSummarySubCard2.Controls.Add(lblAllowance);
+            pnlSummarySubCard2.Controls.Add(label7);
+            pnlSummarySubCard2.Location = new Point(3, 3);
+            pnlSummarySubCard2.Margin = new Padding(0);
+            pnlSummarySubCard2.Name = "pnlSummarySubCard2";
+            pnlSummarySubCard2.Size = new Size(344, 94);
+            pnlSummarySubCard2.TabIndex = 2;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(244, 7);
+            pictureBox5.Margin = new Padding(0);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(80, 80);
+            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox5.TabIndex = 6;
+            pictureBox5.TabStop = false;
+            // 
+            // lblAllowance
+            // 
+            lblAllowance.AutoSize = true;
+            lblAllowance.Font = new Font("Poppins", 20.25F);
+            lblAllowance.Location = new Point(27, 47);
+            lblAllowance.Name = "lblAllowance";
+            lblAllowance.Size = new Size(172, 48);
+            lblAllowance.TabIndex = 5;
+            lblAllowance.Text = "P 23,456.00";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Poppins SemiBold", 24F, FontStyle.Bold);
+            label7.Location = new Point(21, 1);
+            label7.Name = "label7";
+            label7.Size = new Size(194, 56);
+            label7.TabIndex = 4;
+            label7.Text = "Allowance";
+            // 
+            // pnlSummaryCard3
+            // 
+            pnlSummaryCard3.BackColor = Color.Gray;
+            pnlSummaryCard3.Controls.Add(pnlSummarySubCard3);
+            pnlSummaryCard3.Location = new Point(0, 317);
+            pnlSummaryCard3.Margin = new Padding(0, 0, 0, 20);
+            pnlSummaryCard3.Name = "pnlSummaryCard3";
+            pnlSummaryCard3.Size = new Size(350, 100);
+            pnlSummaryCard3.TabIndex = 9;
+            // 
+            // pnlSummarySubCard3
+            // 
+            pnlSummarySubCard3.BackColor = Color.White;
+            pnlSummarySubCard3.Controls.Add(pictureBox6);
+            pnlSummarySubCard3.Controls.Add(lblBonuses);
+            pnlSummarySubCard3.Controls.Add(label9);
+            pnlSummarySubCard3.Location = new Point(3, 3);
+            pnlSummarySubCard3.Margin = new Padding(0);
+            pnlSummarySubCard3.Name = "pnlSummarySubCard3";
+            pnlSummarySubCard3.Size = new Size(344, 94);
+            pnlSummarySubCard3.TabIndex = 2;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(244, 7);
+            pictureBox6.Margin = new Padding(0);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(80, 80);
+            pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox6.TabIndex = 6;
+            pictureBox6.TabStop = false;
+            // 
+            // lblBonuses
+            // 
+            lblBonuses.AutoSize = true;
+            lblBonuses.Font = new Font("Poppins", 20.25F);
+            lblBonuses.Location = new Point(27, 50);
+            lblBonuses.Name = "lblBonuses";
+            lblBonuses.Size = new Size(172, 48);
+            lblBonuses.TabIndex = 5;
+            lblBonuses.Text = "P 23,456.00";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Poppins SemiBold", 24F, FontStyle.Bold);
+            label9.Location = new Point(21, 1);
+            label9.Name = "label9";
+            label9.Size = new Size(161, 56);
+            label9.TabIndex = 4;
+            label9.Text = "Bonuses";
+            // 
+            // pnlSummaryCard4
+            // 
+            pnlSummaryCard4.BackColor = Color.Gray;
+            pnlSummaryCard4.Controls.Add(pnlSummarySubCard4);
+            pnlSummaryCard4.Location = new Point(0, 437);
+            pnlSummaryCard4.Margin = new Padding(0, 0, 0, 20);
+            pnlSummaryCard4.Name = "pnlSummaryCard4";
+            pnlSummaryCard4.Size = new Size(350, 100);
+            pnlSummaryCard4.TabIndex = 10;
+            // 
+            // pnlSummarySubCard4
+            // 
+            pnlSummarySubCard4.BackColor = Color.White;
+            pnlSummarySubCard4.Controls.Add(pictureBox7);
+            pnlSummarySubCard4.Controls.Add(lblDeductions);
+            pnlSummarySubCard4.Controls.Add(label11);
+            pnlSummarySubCard4.Location = new Point(3, 3);
+            pnlSummarySubCard4.Margin = new Padding(0);
+            pnlSummarySubCard4.Name = "pnlSummarySubCard4";
+            pnlSummarySubCard4.Size = new Size(344, 94);
+            pnlSummarySubCard4.TabIndex = 2;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
+            pictureBox7.Location = new Point(244, 7);
+            pictureBox7.Margin = new Padding(0);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(80, 80);
+            pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox7.TabIndex = 6;
+            pictureBox7.TabStop = false;
+            // 
+            // lblDeductions
+            // 
+            lblDeductions.AutoSize = true;
+            lblDeductions.Font = new Font("Poppins", 20.25F);
+            lblDeductions.Location = new Point(27, 47);
+            lblDeductions.Name = "lblDeductions";
+            lblDeductions.Size = new Size(172, 48);
+            lblDeductions.TabIndex = 5;
+            lblDeductions.Text = "P 23,456.00";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Poppins SemiBold", 24F, FontStyle.Bold);
+            label11.Location = new Point(21, -2);
+            label11.Name = "label11";
+            label11.Size = new Size(208, 56);
+            label11.TabIndex = 4;
+            label11.Text = "Deductions";
+            // 
+            // pnlSummaryCard5
+            // 
+            pnlSummaryCard5.BackColor = Color.Gray;
+            pnlSummaryCard5.Controls.Add(pnlSummarySubCard5);
+            pnlSummaryCard5.Location = new Point(0, 557);
+            pnlSummaryCard5.Margin = new Padding(0);
+            pnlSummaryCard5.Name = "pnlSummaryCard5";
+            pnlSummaryCard5.Size = new Size(350, 100);
+            pnlSummaryCard5.TabIndex = 11;
+            // 
+            // pnlSummarySubCard5
+            // 
+            pnlSummarySubCard5.BackColor = Color.White;
+            pnlSummarySubCard5.Controls.Add(pictureBox18);
+            pnlSummarySubCard5.Controls.Add(lblAbsences);
+            pnlSummarySubCard5.Controls.Add(label32);
+            pnlSummarySubCard5.Location = new Point(3, 3);
+            pnlSummarySubCard5.Margin = new Padding(0);
+            pnlSummarySubCard5.Name = "pnlSummarySubCard5";
+            pnlSummarySubCard5.Size = new Size(344, 94);
+            pnlSummarySubCard5.TabIndex = 2;
+            // 
+            // pictureBox18
+            // 
+            pictureBox18.Image = (Image)resources.GetObject("pictureBox18.Image");
+            pictureBox18.Location = new Point(244, 7);
+            pictureBox18.Margin = new Padding(0);
+            pictureBox18.Name = "pictureBox18";
+            pictureBox18.Size = new Size(80, 80);
+            pictureBox18.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox18.TabIndex = 6;
+            pictureBox18.TabStop = false;
+            // 
+            // lblAbsences
+            // 
+            lblAbsences.AutoSize = true;
+            lblAbsences.Font = new Font("Poppins", 20.25F);
+            lblAbsences.Location = new Point(24, 43);
+            lblAbsences.Name = "lblAbsences";
+            lblAbsences.Size = new Size(191, 48);
+            lblAbsences.TabIndex = 5;
+            lblAbsences.Text = "23 Absences";
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Font = new Font("Poppins SemiBold", 24F, FontStyle.Bold);
+            label32.Location = new Point(21, 0);
+            label32.Name = "label32";
+            label32.Size = new Size(183, 56);
+            label32.TabIndex = 4;
+            label32.Text = "Absences";
+            // 
+            // pnlAttendanceLogBase1
+            // 
+            pnlAttendanceLogBase1.BackColor = Color.Gray;
+            pnlAttendanceLogBase1.Controls.Add(pnlAttendanceLogBase2);
+            pnlAttendanceLogBase1.Location = new Point(463, 263);
+            pnlAttendanceLogBase1.Name = "pnlAttendanceLogBase1";
+            pnlAttendanceLogBase1.Size = new Size(1134, 702);
+            pnlAttendanceLogBase1.TabIndex = 3;
+            // 
+            // pnlAttendanceLogBase2
+            // 
+            pnlAttendanceLogBase2.BackColor = Color.White;
+            pnlAttendanceLogBase2.Controls.Add(flowLayoutPanel4);
+            pnlAttendanceLogBase2.Location = new Point(3, 3);
+            pnlAttendanceLogBase2.Name = "pnlAttendanceLogBase2";
+            pnlAttendanceLogBase2.Size = new Size(1128, 696);
+            pnlAttendanceLogBase2.TabIndex = 3;
+            // 
+            // flowLayoutPanel4
+            // 
+            flowLayoutPanel4.Controls.Add(panel20);
+            flowLayoutPanel4.Controls.Add(pnlDataGridBase);
+            flowLayoutPanel4.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel4.Location = new Point(30, 14);
+            flowLayoutPanel4.Margin = new Padding(30, 20, 30, 30);
+            flowLayoutPanel4.Name = "flowLayoutPanel4";
+            flowLayoutPanel4.Size = new Size(1068, 652);
+            flowLayoutPanel4.TabIndex = 0;
+            // 
+            // panel20
+            // 
+            panel20.Controls.Add(label5);
+            panel20.Location = new Point(3, 3);
+            panel20.Name = "panel20";
+            panel20.Size = new Size(904, 71);
+            panel20.TabIndex = 5;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Poppins", 26.25F, FontStyle.Bold);
+            label5.Location = new Point(0, 3);
+            label5.Name = "label5";
+            label5.Size = new Size(313, 62);
+            label5.TabIndex = 4;
+            label5.Text = "Attendance Log";
+            // 
+            // pnlDataGridBase
+            // 
+            pnlDataGridBase.BackColor = Color.Gray;
+            pnlDataGridBase.Controls.Add(AttendanceDataGrid);
+            pnlDataGridBase.Location = new Point(0, 77);
+            pnlDataGridBase.Margin = new Padding(0);
+            pnlDataGridBase.Name = "pnlDataGridBase";
+            pnlDataGridBase.Size = new Size(1068, 575);
+            pnlDataGridBase.TabIndex = 6;
+            // 
+            // AttendanceDataGrid
+            // 
+            AttendanceDataGrid.AccessibleName = "Table";
+            AttendanceDataGrid.AllowEditing = false;
+            AttendanceDataGrid.AllowGrouping = false;
+            AttendanceDataGrid.Location = new Point(3, 3);
+            AttendanceDataGrid.Margin = new Padding(0);
+            AttendanceDataGrid.Name = "AttendanceDataGrid";
+            AttendanceDataGrid.PreviewRowHeight = 35;
+            AttendanceDataGrid.Size = new Size(1062, 569);
+            AttendanceDataGrid.Style.BorderColor = Color.FromArgb(100, 100, 100);
+            AttendanceDataGrid.Style.CheckBoxStyle.CheckedBackColor = Color.FromArgb(0, 120, 215);
+            AttendanceDataGrid.Style.CheckBoxStyle.CheckedBorderColor = Color.FromArgb(0, 120, 215);
+            AttendanceDataGrid.Style.CheckBoxStyle.IndeterminateBorderColor = Color.FromArgb(0, 120, 215);
+            AttendanceDataGrid.Style.HyperlinkStyle.DefaultLinkColor = Color.FromArgb(0, 120, 215);
+            AttendanceDataGrid.TabIndex = 4;
+            AttendanceDataGrid.Text = "sfDataGrid1";
+            // 
             // Dashboard_Employee
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -4195,55 +4195,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelMain.ResumeLayout(false);
             panelMainDashboard.ResumeLayout(false);
-            pnlDashboard.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel.ResumeLayout(false);
-            pnlDBMainCard1.ResumeLayout(false);
-            pnlDBMainCard1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            pnlDBMainCard2.ResumeLayout(false);
-            pnlDBSubCard1.ResumeLayout(false);
-            pnlDBSubCard1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            pnlDBMainCard4.ResumeLayout(false);
-            pnlDBSubCard4.ResumeLayout(false);
-            pnlDBSubCard4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
-            pnlDBMainCard3.ResumeLayout(false);
-            pnlDBSubCard2.ResumeLayout(false);
-            pnlDBSubCard2.PerformLayout();
-            pnlSummaryBase.ResumeLayout(false);
-            pnlSummaryBase2.ResumeLayout(false);
-            flowLayoutPanel3.ResumeLayout(false);
-            panel22.ResumeLayout(false);
-            panel22.PerformLayout();
-            pnlSummaryCard1.ResumeLayout(false);
-            pnlSummaryCard1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            pnlSummaryCard2.ResumeLayout(false);
-            pnlSummarySubCard2.ResumeLayout(false);
-            pnlSummarySubCard2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            pnlSummaryCard3.ResumeLayout(false);
-            pnlSummarySubCard3.ResumeLayout(false);
-            pnlSummarySubCard3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            pnlSummaryCard4.ResumeLayout(false);
-            pnlSummarySubCard4.ResumeLayout(false);
-            pnlSummarySubCard4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            pnlSummaryCard5.ResumeLayout(false);
-            pnlSummarySubCard5.ResumeLayout(false);
-            pnlSummarySubCard5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
-            pnlAttendanceLogBase1.ResumeLayout(false);
-            pnlAttendanceLogBase2.ResumeLayout(false);
-            flowLayoutPanel4.ResumeLayout(false);
-            panel20.ResumeLayout(false);
-            panel20.PerformLayout();
-            pnlDataGridBase.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)AttendanceDataGrid).EndInit();
             pnlAccountsRegular.ResumeLayout(false);
             flowLayoutPanel13.ResumeLayout(false);
             panel45.ResumeLayout(false);
@@ -4477,6 +4428,55 @@
             panel43.PerformLayout();
             panel44.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)sfDataGrid2).EndInit();
+            pnlDashboard.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel.ResumeLayout(false);
+            pnlDBMainCard1.ResumeLayout(false);
+            pnlDBMainCard1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            pnlDBMainCard2.ResumeLayout(false);
+            pnlDBSubCard1.ResumeLayout(false);
+            pnlDBSubCard1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            pnlDBMainCard4.ResumeLayout(false);
+            pnlDBSubCard4.ResumeLayout(false);
+            pnlDBSubCard4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox17).EndInit();
+            pnlDBMainCard3.ResumeLayout(false);
+            pnlDBSubCard2.ResumeLayout(false);
+            pnlDBSubCard2.PerformLayout();
+            pnlSummaryBase.ResumeLayout(false);
+            pnlSummaryBase2.ResumeLayout(false);
+            flowLayoutPanel3.ResumeLayout(false);
+            panel22.ResumeLayout(false);
+            panel22.PerformLayout();
+            pnlSummaryCard1.ResumeLayout(false);
+            pnlSummaryCard1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            pnlSummaryCard2.ResumeLayout(false);
+            pnlSummarySubCard2.ResumeLayout(false);
+            pnlSummarySubCard2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            pnlSummaryCard3.ResumeLayout(false);
+            pnlSummarySubCard3.ResumeLayout(false);
+            pnlSummarySubCard3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            pnlSummaryCard4.ResumeLayout(false);
+            pnlSummarySubCard4.ResumeLayout(false);
+            pnlSummarySubCard4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            pnlSummaryCard5.ResumeLayout(false);
+            pnlSummarySubCard5.ResumeLayout(false);
+            pnlSummarySubCard5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
+            pnlAttendanceLogBase1.ResumeLayout(false);
+            pnlAttendanceLogBase2.ResumeLayout(false);
+            flowLayoutPanel4.ResumeLayout(false);
+            panel20.ResumeLayout(false);
+            panel20.PerformLayout();
+            pnlDataGridBase.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)AttendanceDataGrid).EndInit();
             ResumeLayout(false);
         }
 
@@ -4683,141 +4683,141 @@
         public FlowLayoutPanel flowLayoutPanel13;
         public Panel panel45;
         public Label label15;
-        private FlowLayoutPanel flowLayoutPanel12;
-        private Panel pnlAccountProfileBase;
-        private Panel pnlAccountProfileSub;
-        private Panel pnlPhotoCard;
-        private FlowLayoutPanel flowLayoutPanel14;
-        private Label lblAccountName;
-        private Panel panel49;
-        private Label lblAccountID;
-        private FlowLayoutPanel flowLayoutPanel15;
-        private Label lblRole;
-        private Label lblDepartment;
-        private PictureBox pictureBox19;
-        private FlowLayoutPanel flowLayoutPanel16;
-        private FlowLayoutPanel flowLayoutPanel17;
-        private Panel pnlPersonalInformationMain;
-        private FlowLayoutPanel flowLayoutPanel18;
-        private FlowLayoutPanel pnlPersonalInformationSub;
-        private Panel panel47;
-        private Label label17;
-        private FlowLayoutPanel flowLayoutPanel20;
-        private FlowLayoutPanel flowLayoutPanel21;
-        private Panel panel48;
-        private Label label19;
-        private Panel panel50;
-        private Label lblFullName;
-        private FlowLayoutPanel flowLayoutPanel22;
-        private Panel panel51;
-        private Label label23;
-        private Panel panel52;
-        private Label lblBirthdate;
-        private Panel panel55;
-        private Label label51;
-        private Panel panel56;
-        private Label lblGender;
-        private Panel panel53;
-        private Label label27;
-        private Panel panel54;
-        private Label lblCivilStatus;
-        private Panel panel57;
-        private Label label53;
-        private Panel panel58;
-        private Label lblHomeAddress;
-        private Panel pnlContactInformationMain;
-        private FlowLayoutPanel pnlContactInformationSub;
-        private Panel panel60;
-        private Label label55;
-        private FlowLayoutPanel flowLayoutPanel24;
-        private FlowLayoutPanel flowLayoutPanel25;
-        private Panel panel61;
-        private Label label56;
-        private Panel panel62;
-        private Label lblPhoneNumberMain;
-        private Panel panel63;
-        private Label label58;
-        private FlowLayoutPanel flowLayoutPanel26;
-        private Panel panel65;
-        private Label label60;
-        private Panel panel66;
-        private Label lblPhoneNumberAlt;
-        private Panel panel67;
-        private Label label62;
-        private Panel panel68;
-        private Label lblTelephone;
-        private Panel panel64;
-        private Label lblEmail;
-        private Panel panel69;
-        private Label label64;
-        private Panel panel70;
-        private Label lblMailingAddress;
-        private Panel pnlEmploymentInformationMain;
-        private FlowLayoutPanel pnlEmploymentInformationSub;
-        private Panel panel72;
-        private Label label21;
-        private FlowLayoutPanel flowLayoutPanel28;
-        private FlowLayoutPanel flowLayoutPanel29;
-        private Panel panel73;
-        private Label label25;
-        private Panel panel74;
-        private Label label49;
-        private Panel panel75;
-        private Label label52;
-        private FlowLayoutPanel flowLayoutPanel30;
-        private Panel panel77;
-        private Label label57;
-        private Panel panel78;
-        private Label label59;
-        private Panel panel79;
-        private Label label61;
-        private Panel panel76;
-        private Label label54;
-        private Panel panel81;
-        private Label label65;
-        private Panel panel82;
-        private Label label66;
-        private Panel panel80;
-        private Label label63;
-        private Panel panel83;
-        private Label label67;
-        private Panel panel84;
-        private Label label68;
-        private Panel pnlFinancialInformationMain;
-        private FlowLayoutPanel pnlFinancialInformationSub;
-        private Panel panel86;
-        private Label label69;
-        private FlowLayoutPanel flowLayoutPanel32;
-        private FlowLayoutPanel flowLayoutPanel33;
-        private FlowLayoutPanel flowLayoutPanel34;
-        private Panel panel93;
-        private Label label76;
-        private Panel panel94;
-        private Label label77;
-        private Panel panel95;
-        private Label label78;
-        private Panel panel96;
-        private Label label79;
-        private Label label70;
-        private Panel panel87;
-        private Label label71;
-        private Panel panel89;
-        private Label label72;
-        private Panel panel90;
-        private Label label73;
-        private Panel panel88;
-        private Label label74;
-        private Panel panel91;
-        private Label label75;
-        private Panel panel46;
-        private Syncfusion.WinForms.Controls.SfButton btnEditAccountInfo;
-        private Panel btnPanel1;
         public Syncfusion.WinForms.Controls.SfButton btnPreviewDocument;
-        private Panel btnPanel2;
         public Syncfusion.WinForms.Controls.SfButton btnPrint;
-        private Panel btnPanel3;
         public Syncfusion.WinForms.Controls.SfButton btnAttendanceRequest;
-        private Panel btnPanel4;
         public Syncfusion.WinForms.Controls.SfButton btnFileLeave;
+        public FlowLayoutPanel flowLayoutPanel12;
+        public Panel pnlAccountProfileBase;
+        public Panel pnlAccountProfileSub;
+        public Panel pnlPhotoCard;
+        public FlowLayoutPanel flowLayoutPanel14;
+        public Label lblAccountName;
+        public Panel panel49;
+        public Label lblAccountID;
+        public FlowLayoutPanel flowLayoutPanel15;
+        public Label lblRole;
+        public Label lblDepartment;
+        public PictureBox pictureBox19;
+        public FlowLayoutPanel flowLayoutPanel16;
+        public FlowLayoutPanel flowLayoutPanel17;
+        public Panel pnlPersonalInformationMain;
+        public FlowLayoutPanel flowLayoutPanel18;
+        public FlowLayoutPanel pnlPersonalInformationSub;
+        public Panel panel47;
+        public Label label17;
+        public FlowLayoutPanel flowLayoutPanel20;
+        public FlowLayoutPanel flowLayoutPanel21;
+        public Panel panel48;
+        public Label label19;
+        public Panel panel50;
+        public Label lblFullName;
+        public FlowLayoutPanel flowLayoutPanel22;
+        public Panel panel51;
+        public Label label23;
+        public Panel panel52;
+        public Label lblBirthdate;
+        public Panel panel55;
+        public Label label51;
+        public Panel panel56;
+        public Label lblGender;
+        public Panel panel53;
+        public Label label27;
+        public Panel panel54;
+        public Label lblCivilStatus;
+        public Panel panel57;
+        public Label label53;
+        public Panel panel58;
+        public Label lblHomeAddress;
+        public Panel pnlContactInformationMain;
+        public FlowLayoutPanel pnlContactInformationSub;
+        public Panel panel60;
+        public Label label55;
+        public FlowLayoutPanel flowLayoutPanel24;
+        public FlowLayoutPanel flowLayoutPanel25;
+        public Panel panel61;
+        public Label label56;
+        public Panel panel62;
+        public Label lblPhoneNumberMain;
+        public Panel panel63;
+        public Label label58;
+        public FlowLayoutPanel flowLayoutPanel26;
+        public Panel panel65;
+        public Label label60;
+        public Panel panel66;
+        public Label lblPhoneNumberAlt;
+        public Panel panel67;
+        public Label label62;
+        public Panel panel68;
+        public Label lblTelephone;
+        public Panel panel64;
+        public Label lblEmail;
+        public Panel panel69;
+        public Label label64;
+        public Panel panel70;
+        public Label lblMailingAddress;
+        public Panel pnlEmploymentInformationMain;
+        public FlowLayoutPanel pnlEmploymentInformationSub;
+        public Panel panel72;
+        public Label label21;
+        public FlowLayoutPanel flowLayoutPanel28;
+        public FlowLayoutPanel flowLayoutPanel29;
+        public Panel panel73;
+        public Label label25;
+        public Panel panel74;
+        public Label label49;
+        public Panel panel75;
+        public Label label52;
+        public FlowLayoutPanel flowLayoutPanel30;
+        public Panel panel77;
+        public Label label57;
+        public Panel panel78;
+        public Label label59;
+        public Panel panel79;
+        public Label label61;
+        public Panel panel76;
+        public Label label54;
+        public Panel panel81;
+        public Label label65;
+        public Panel panel82;
+        public Label label66;
+        public Panel panel80;
+        public Label label63;
+        public Panel panel83;
+        public Label label67;
+        public Panel panel84;
+        public Label label68;
+        public Panel pnlFinancialInformationMain;
+        public FlowLayoutPanel pnlFinancialInformationSub;
+        public Panel panel86;
+        public Label label69;
+        public FlowLayoutPanel flowLayoutPanel32;
+        public FlowLayoutPanel flowLayoutPanel33;
+        public FlowLayoutPanel flowLayoutPanel34;
+        public Panel panel93;
+        public Label label76;
+        public Panel panel94;
+        public Label label77;
+        public Panel panel95;
+        public Label label78;
+        public Panel panel96;
+        public Label label79;
+        public Label label70;
+        public Panel panel87;
+        public Label label71;
+        public Panel panel89;
+        public Label label72;
+        public Panel panel90;
+        public Label label73;
+        public Panel panel88;
+        public Label label74;
+        public Panel panel91;
+        public Label label75;
+        public Panel panel46;
+        public Syncfusion.WinForms.Controls.SfButton btnEditAccountInfo;
+        public Panel btnPanel1;
+        public Panel btnPanel2;
+        public Panel btnPanel3;
+        public Panel btnPanel4;
     }
 }

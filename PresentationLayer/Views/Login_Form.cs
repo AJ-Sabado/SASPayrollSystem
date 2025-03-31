@@ -150,7 +150,7 @@ namespace PresentationLayer.Views
             {
                 await _unitOfWork.LoginUser(txtBoxUsername.Text, textBoxExt1.Text);
                 this.Hide();
-                new Dashboard_Employee(_unitOfWork).Show();
+                new Dashboard_Employee(_unitOfWork.CurrentUser, _unitOfWork).Show();
                 this.Show();
 
             }

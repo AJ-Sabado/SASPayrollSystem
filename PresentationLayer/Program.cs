@@ -23,7 +23,7 @@ internal static class Program
 
         var form = new Login_Form(servicesManager);
         //Application.Run(form);
-        Application.Run(new Dashboard_Employee(servicesManager));
+        Application.Run(new Dashboard_Employee(servicesManager.CurrentUser, servicesManager));
         //Application.Run(new ForgotPassword(servicesManager));
         //Application.Run(new Employee_Dashboard(servicesManager.CurrentUser, servicesManager));
     }

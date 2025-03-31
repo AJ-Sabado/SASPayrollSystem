@@ -1,0 +1,19 @@
+﻿using Syncfusion.WinForms.Controls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PresentationLayer.Views
+{
+    internal interface IDashboard_Employee
+    {
+        void ShowDashboard();
+        void ShowJobDesk();
+        void ShowAccounts();
+        void SetLastFocusedButton(SfButton button);
+        void InitializeComponents();
+        void BindAttendanceTableAsync();
+    }
+}
