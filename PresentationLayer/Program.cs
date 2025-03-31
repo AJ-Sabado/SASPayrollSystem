@@ -1,5 +1,5 @@
+using PresentationLayer.Presenters.Base;
 using PresentationLayer.Views;
-using ServicesLayer;
 using Unity;
 using Unity.Lifetime;
 
@@ -15,15 +15,13 @@ internal static class Program
             .RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NMaF1cVGhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEBjWn9ZcnRQQGNaU0xxXw==");
 
         IUnityContainer UnityC = new UnityContainer();
-        UnityC.RegisterType<IUnitOfWork, UnitOfWork>(new HierarchicalLifetimeManager());
+        UnityC.RegisterType<IBasePresenter, BasePresenter>(new HierarchicalLifetimeManager());
 
-        var servicesManager = UnityC.Resolve<IUnitOfWork>();
-        servicesManager.InitialSeeding();
+        var basePresenter = UnityC.Resolve<IBasePresenter>();
         ApplicationConfiguration.Initialize();
 
-        var form = new Login_Form(servicesManager);
         //Application.Run(form);
-        Application.Run(new Dashboard_Employee(servicesManager));
+        Application.Run((Dashboard_Employee)basePresenter.DashboardEmployeeView);
         //Application.Run(new ForgotPassword(servicesManager));
         //Application.Run(new Employee_Dashboard(servicesManager.CurrentUser, servicesManager));
     }

@@ -1,5 +1,6 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using PresentationLayer.Presenters.DashboardEmployee;
 using PresentationLayer.Views;
 using ServicesLayer;
 using Syncfusion.Windows.Forms.Tools;
@@ -8,15 +9,12 @@ using System.Windows.Forms;
 
 namespace PresentationLayer
 {
-    public partial class Dashboard_Employee : Form
+    public partial class Dashboard_Employee : Form, IDashboard_Employee
     {
-        private IUnitOfWork _unitOfWork;
-
         private SfButton lastFocusedButton;
 
-        public Dashboard_Employee(IUnitOfWork unitOfWork)
+        public Dashboard_Employee()
         {
-            _unitOfWork = unitOfWork;
             InitializeComponent();
 
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -292,10 +290,10 @@ namespace PresentationLayer
             RoundedElements.rounded(pnlLeaveCard3Main, 15);
         }
 
-        public IUnitOfWork Get_unitOfWork()
-        {
-            return _unitOfWork;
-        }
+        //public IUnitOfWork Get_unitOfWork()
+        //{
+        //    return _unitOfWork;
+        //}
 
         //BINDINGS
 
