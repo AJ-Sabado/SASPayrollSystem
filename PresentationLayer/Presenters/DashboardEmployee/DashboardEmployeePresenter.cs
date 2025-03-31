@@ -9,13 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PresentationLayer.Presenters
+namespace PresentationLayer.Presenters.DashboardEmployee
 {
-    public class Dashboard : IDashboardPresenter
+    public class DashboardEmployeePresenter : IDashboardEmployeePresenter
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public Dashboard(IUnitOfWork unitOfWork)
+        public DashboardEmployeePresenter(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
