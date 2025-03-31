@@ -5,9 +5,16 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace PresentationLayer.Views
 {
-    public partial class Login_Form : Form
+    public partial class Login_Form : Form, ILogin_Form
     {
-        private IUnitOfWork _unitOfWork;
+        //private IUnitOfWork _unitOfWork;
+
+        //Event Handler for Sign In event
+        public event EventHandler SignIn;
+
+        //Field bindings
+        public string UsernameField { get => txtBoxUsername.Text; set => txtBoxUsername.Text = value; }
+        public string PasswordField { get => textBoxExt1.Text; set => textBoxExt1.Text = value; }
 
         private System.Windows.Forms.Timer timer;
         private int targetX;
@@ -24,9 +31,8 @@ namespace PresentationLayer.Views
             int nWidthEllipse, // width of ellipse
             int nHeightEllipse // height of ellipse
         );
-        public Login_Form(IUnitOfWork unitOfWork)
+        public Login_Form()
         {
-            _unitOfWork = unitOfWork;
             InitializeComponent();
 
             //Initializing Transtiion Timer
@@ -37,6 +43,12 @@ namespace PresentationLayer.Views
             //For Runding Form COrners
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+
+            //Button Delegations to Event Handler
+            btnSignIn.Click += delegate
+            {
+                SignIn?.Invoke(this, EventArgs.Empty);
+            };
         }
 
         private void Login_Form_Load(object sender, EventArgs e)
@@ -142,28 +154,28 @@ namespace PresentationLayer.Views
         {
             this.Close();
         }
-
+        //This is moved to Login Presenter
         //Async Login Example
-        private async void btnSignIn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                await _unitOfWork.LoginUser(txtBoxUsername.Text, textBoxExt1.Text);
-                this.Hide();
-                new Dashboard_Employee().Show();
-                this.Show();
+        //private async void btnSignIn_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        await _unitOfWork.LoginUser(txtBoxUsername.Text, textBoxExt1.Text);
+        //        this.Hide();
+        //        new Dashboard_Employee().Show();
+        //        this.Show();
 
-            }
+        //    }
 
-            catch (UserNotFoundException)
-            {
-                MessageBox.Show("User does not exist!");
-            }
-            catch (IncorrectPasswordException)
-            {
-                MessageBox.Show("Wrong password!");
-            }
-        }
+        //    catch (UserNotFoundException)
+        //    {
+        //        MessageBox.Show("User does not exist!");
+        //    }
+        //    catch (IncorrectPasswordException)
+        //    {
+        //        MessageBox.Show("Wrong password!");
+        //    }
+        //}
 
         private async void btnSignUp_ClickAsync(object sender, EventArgs e)
         {
@@ -201,10 +213,15 @@ namespace PresentationLayer.Views
 
         private void btnForgotPass_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var forgotPasswordForm = new ForgotPassword(_unitOfWork);
-            forgotPasswordForm.ShowDialog();
-            this.Show();
+            //this.Hide();
+            //var forgotPasswordForm = new ForgotPassword(_unitOfWork);
+            //forgotPasswordForm.ShowDialog();
+            //this.Show();
+        }
+
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message);
         }
     }
 }

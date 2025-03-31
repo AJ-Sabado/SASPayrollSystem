@@ -1,10 +1,24 @@
-﻿namespace PresentationLayer.Views
+﻿using Syncfusion.WinForms.Controls;
+
+namespace PresentationLayer.Views
 {
     public interface ILogin_Form
     {
-        void _initCloseBtnProperties();
-        void _initForgotPassBtnProperties();
-        void _initSignInButtonProperties();
-        void _initSignUpButtonProperties();
+        string PasswordField { get; set; }
+        string UsernameField { get; set; }
+
+        event EventHandler SignIn;
+
+        void InitButtonProperties(SfButton btn);
+        void InitCloseBtnProperties(SfButton btn);
+        void InitForgotPassButton();
+
+        void Hide();
+
+        void Close();
+
+        void Show();
+
+        void ShowMessage(string message);
     }
-} 
+}

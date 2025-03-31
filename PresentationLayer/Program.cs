@@ -10,6 +10,7 @@ internal static class Program
     [STAThread]
     static void Main()
     {
+        ApplicationConfiguration.Initialize();
         Syncfusion.Licensing
             .SyncfusionLicenseProvider
             .RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NMaF1cVGhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEBjWn9ZcnRQQGNaU0xxXw==");
@@ -18,10 +19,9 @@ internal static class Program
         UnityC.RegisterType<IBasePresenter, BasePresenter>(new HierarchicalLifetimeManager());
 
         var basePresenter = UnityC.Resolve<IBasePresenter>();
-        ApplicationConfiguration.Initialize();
 
         //Application.Run(form);
-        Application.Run((Dashboard_Employee)basePresenter.DashboardEmployeeView);
+        Application.Run((Login_Form)basePresenter.LoginView);
         //Application.Run(new ForgotPassword(servicesManager));
         //Application.Run(new Employee_Dashboard(servicesManager.CurrentUser, servicesManager));
     }

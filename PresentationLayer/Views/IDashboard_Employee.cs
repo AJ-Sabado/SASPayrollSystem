@@ -15,5 +15,13 @@ namespace PresentationLayer
         void InitMenuButtonProperties();
         void InitSummaryPanelProperties();
         void InitViewProfileButtonProperties();
+
+        void Hide();
+
+        void Show();
+
+        void Close();
+
+        event EventHandler Exit;
     }
 }

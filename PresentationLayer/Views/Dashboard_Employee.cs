@@ -13,6 +13,8 @@ namespace PresentationLayer
     {
         private SfButton lastFocusedButton;
 
+        public event EventHandler Exit;
+
         public Dashboard_Employee()
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace PresentationLayer
             lightPrimary: Color.FromArgb(230, 230, 230),    // Light primary color
             accent: Color.FromArgb(252, 184, 49),           // Accent color
             textShade: TextShade.BLACK                  // Text shade (WHITE/BLACK)
+
         );
 
             //DASHBOARD PROPERTIES
@@ -63,6 +66,10 @@ namespace PresentationLayer
             InitLeaveCardProperties();
 
             //BINDINGS
+            this.FormClosed += delegate
+            {
+                Exit?.Invoke(this, EventArgs.Empty);
+            };
         }
 
         public async void Dashboard_Employee_Load(object sender, EventArgs e)

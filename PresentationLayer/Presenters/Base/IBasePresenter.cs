@@ -1,10 +1,10 @@
-﻿using PresentationLayer.Presenters.DashboardEmployee;
+﻿using PresentationLayer.Views;
 
 namespace PresentationLayer.Presenters.Base
 {
     public interface IBasePresenter
     {
-        IDashboardEmployeePresenter DashboardEmployeePresenter { get; }
         IDashboard_Employee DashboardEmployeeView { get; }
+        ILogin_Form LoginView { get; }
     }
 }

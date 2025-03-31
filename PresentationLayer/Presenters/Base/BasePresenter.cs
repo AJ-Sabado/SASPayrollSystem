@@ -1,4 +1,6 @@
 ﻿using PresentationLayer.Presenters.DashboardEmployee;
+using PresentationLayer.Presenters.Login;
+using PresentationLayer.Views;
 using ServicesLayer;
 using System;
 using System.Collections.Generic;
@@ -12,15 +14,23 @@ namespace PresentationLayer.Presenters.Base
     {
         private IUnitOfWork _unitOfWork = new UnitOfWork();
 
-        public IDashboardEmployeePresenter DashboardEmployeePresenter { get; private set; }
+        private LoginPresenter LoginPresenter;
+        public ILogin_Form LoginView { get; private set; }
 
+        private IDashboardEmployeePresenter DashboardEmployeePresenter;
         public IDashboard_Employee DashboardEmployeeView { get; private set; }
 
         public BasePresenter()
         {
-            //_unitOfWork.InitialSeeding();
-            DashboardEmployeePresenter = new DashboardEmployeePresenter(_unitOfWork);
+            _unitOfWork.InitialSeeding();
+
             DashboardEmployeeView = new Dashboard_Employee();
+            LoginView = new Login_Form();
+
+            DashboardEmployeePresenter = new DashboardEmployeePresenter(_unitOfWork, DashboardEmployeeView, LoginView);
+            LoginPresenter = new LoginPresenter(_unitOfWork, LoginView, DashboardEmployeeView);
         }
+
+
     }
 }
