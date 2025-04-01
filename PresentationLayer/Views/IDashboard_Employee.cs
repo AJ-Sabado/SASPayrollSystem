@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.Views
 {
-    internal interface IDashboard_Employee
+    public interface IDashboard_Employee
     {
         void ShowDashboard();
         void ShowJobDesk();
@@ -15,5 +15,9 @@ namespace PresentationLayer.Views
         void SetLastFocusedButton(SfButton button);
         void InitializeComponents();
         void BindAttendanceTableAsync();
+        void Hide();
+        void Show();
+        void Close();
+        event EventHandler Exit;
     }
 }

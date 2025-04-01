@@ -171,7 +171,7 @@
             label1.Font = new Font("Poppins", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(75, 12);
             label1.Name = "label1";
-            label1.Size = new Size(225, 37);
+            label1.Size = new Size(224, 37);
             label1.TabIndex = 1;
             label1.Text = "Strategic Assistant";
             // 
@@ -339,7 +339,6 @@
             btnSignIn.TabIndex = 0;
             btnSignIn.Text = "Sign In!";
             btnSignIn.UseVisualStyleBackColor = false;
-            btnSignIn.Click += btnSignIn_Click;
             // 
             // lblSignInTitle
             // 
@@ -449,7 +448,7 @@
             label5.Font = new Font("Poppins", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.Location = new Point(75, 12);
             label5.Name = "label5";
-            label5.Size = new Size(225, 37);
+            label5.Size = new Size(224, 37);
             label5.TabIndex = 1;
             label5.Text = "Strategic Assistant";
             // 
@@ -550,7 +549,7 @@
             label7.Font = new Font("Poppins", 9F);
             label7.Location = new Point(3, 3);
             label7.Name = "label7";
-            label7.Size = new Size(56, 22);
+            label7.Size = new Size(55, 22);
             label7.TabIndex = 0;
             label7.Text = "Sign Up";
             // 
@@ -639,7 +638,7 @@
             label9.Font = new Font("Poppins", 9F);
             label9.Location = new Point(4, 3);
             label9.Name = "label9";
-            label9.Size = new Size(119, 22);
+            label9.Size = new Size(118, 22);
             label9.TabIndex = 1;
             label9.Text = "Confirm Password";
             // 
