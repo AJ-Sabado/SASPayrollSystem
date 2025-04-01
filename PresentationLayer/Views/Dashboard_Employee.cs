@@ -16,7 +16,6 @@ namespace PresentationLayer
 
         public event EventHandler Exit;
 
-        public Dashboard_Employee()
         private EmployeeAttendance EmployeeAttendanceForm;
 
         private Dashboard_EmployeeUIStyles _dashboardUIStyles;

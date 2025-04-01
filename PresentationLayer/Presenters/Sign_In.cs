@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.Presenters
 {
-    public class SignInPresenter : ISignInPresenter
+    public class SignInPresenter
     {
         private readonly IUnitOfWork _unitOfWork;
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.Presenters
 {
-    public class ForgotPasswordPresenter : IForgotPasswordPresenter
+    public class ForgotPasswordPresenter
     {
         private readonly IUnitOfWork _unitOfWork;
 

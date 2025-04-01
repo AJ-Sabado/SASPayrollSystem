@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.Views
 {
-    internal interface IDashboard_Employee
+    public interface IDashboard_Employee
     {
         void ShowDashboard();
         void ShowJobDesk();
