@@ -1,27 +1,23 @@
-﻿using ServicesLayer;
+﻿using Syncfusion.WinForms.Controls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PresentationLayer
+namespace PresentationLayer.Views
 {
     public interface IDashboard_Employee
     {
-        void Dashboard_Employee_Load(object sender, EventArgs e);
-        void InitAttendanceButtonProperties();
-        void InitAttendanceLogProperties();
-        void InitDashboardCardProperties();
-        void InitDataGrid();
-        void InitJobDeskButtons();
-        void InitJobDeskPanelProperties();
-        void InitLeaveCardProperties();
-        void InitMenuButtonProperties();
-        void InitSummaryPanelProperties();
-        void InitViewProfileButtonProperties();
-
+        void ShowDashboard();
+        void ShowJobDesk();
+        void ShowAccounts();
+        void SetLastFocusedButton(SfButton button);
+        void InitializeComponents();
+        void BindAttendanceTableAsync();
         void Hide();
-
         void Show();
-
         void Close();
-
         event EventHandler Exit;
     }
 }

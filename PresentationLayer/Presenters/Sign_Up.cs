@@ -2,7 +2,7 @@
 
 namespace PresentationLayer.Presenters
 {
-    public class SignUpPresenter : ISignUpPresenter
+    public class SignUpPresenter
     {
         private readonly IUnitOfWork _unitOfWork;
 
