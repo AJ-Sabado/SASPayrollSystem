@@ -8,9 +8,9 @@ namespace PresentationLayer
 {
     public partial class Dashboard_Employee : Form, IDashboard_Employee
     {
-        private IUnitOfWork _unitOfWork;
+        //private IUnitOfWork _unitOfWork;  No need since sa presenter na ang db access
 
-        private IUserModel _userModel;
+        //private IUserModel _userModel;    Also no need
 
         private SfButton lastFocusedButton;
 
@@ -18,10 +18,10 @@ namespace PresentationLayer
 
         private Dashboard_EmployeeUIStyles _dashboardUIStyles;
 
-        public Dashboard_Employee(IUserModel currentUser, IUnitOfWork unitOfWork)
+        public Dashboard_Employee() //No need
         {
-            _unitOfWork = unitOfWork;
-            _userModel = currentUser;
+            //_unitOfWork = unitOfWork;
+            //_userModel = currentUser;
             InitializeComponent();
 
             _dashboardUIStyles = new Dashboard_EmployeeUIStyles(this);
