@@ -40,19 +40,36 @@ namespace PresentationLayer
         {
 
             this.MaximizeBox = false;
-
             this.MaximizeBox = false;
             btnDashboard.Focus();
 
+            // Track the last focused button
+            lastFocusedButton = btnDashboard;
+
+            lastFocusedButton.Focus();
+            pnlDashboard.Show();
+            pnlJobDeskRegular.Hide();
+            pnlAccountsRegular.Hide();
+
+            // Subscribe to LostFocus event
+            btnDashboard.LostFocus += Btn_LostFocus;
+            btnJobDesk.LostFocus += Btn_LostFocus;
+            btnAccount.LostFocus += Btn_LostFocus;
         }
 
-
+        private void Btn_LostFocus(object sender, EventArgs e)
+        {
+            if (!(btnDashboard.Focused || btnJobDesk.Focused))
+            {
+                lastFocusedButton.Focus();
+            }
+        }
 
         //Action Events
 
         private void btnTimeIn_Click(object sender, EventArgs e)
         {
-            if(EmployeeAttendanceForm == null)
+            if (EmployeeAttendanceForm == null)
             {
                 EmployeeAttendanceForm = new EmployeeAttendance();
             }
@@ -83,32 +100,6 @@ namespace PresentationLayer
             EmployeeAttendanceForm = null;
         }
 
-        public void ShowDashboard()
-        {
-            pnlDashboard.Show();
-            pnlJobDeskRegular.Hide();
-            pnlAccountsRegular.Hide();
-        }
-
-        public void ShowJobDesk()
-        {
-            pnlJobDeskRegular.Show();
-            pnlDashboard.Hide();
-            pnlAccountsRegular.Hide();
-        }
-
-        public void ShowAccounts()
-        {
-            pnlAccountsRegular.Show();
-            pnlDashboard.Hide();
-            pnlJobDeskRegular.Hide();
-        }
-
-        public void SetLastFocusedButton(SfButton button)
-        {
-            lastFocusedButton = button;
-        }
-
         public void InitializeComponents()
         {
             throw new NotImplementedException();
@@ -121,20 +112,30 @@ namespace PresentationLayer
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-
+            lastFocusedButton = btnDashboard;
+            lastFocusedButton.Focus();
+            pnlDashboard.Show();
+            pnlJobDeskRegular.Hide();
+            pnlAccountsRegular.Hide();
         }
 
         private void btnJobDesk_Click(object sender, EventArgs e)
         {
-
+            lastFocusedButton = btnJobDesk;
+            lastFocusedButton.Focus();
+            pnlJobDeskRegular.Show();
+            pnlDashboard.Hide();
+            pnlAccountsRegular.Hide();
         }
 
         private void btnAccount_Click(object sender, EventArgs e)
         {
-
+            lastFocusedButton = btnAccount;
+            lastFocusedButton.Focus();
+            pnlAccountsRegular.Show();
+            pnlDashboard.Hide();
+            pnlJobDeskRegular.Hide();
         }
-
-        
     }
 
 }

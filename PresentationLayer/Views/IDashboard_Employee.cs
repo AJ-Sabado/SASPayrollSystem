@@ -9,10 +9,6 @@ namespace PresentationLayer.Views
 {
     public interface IDashboard_Employee
     {
-        void ShowDashboard();
-        void ShowJobDesk();
-        void ShowAccounts();
-        void SetLastFocusedButton(SfButton button);
         void InitializeComponents();
         void BindAttendanceTableAsync();
         void Hide();
