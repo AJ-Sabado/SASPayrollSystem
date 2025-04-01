@@ -1,13 +1,8 @@
 ﻿using DomainLayer.Models.User;
 using MaterialSkin;
-using MaterialSkin.Controls;
-using PresentationLayer.Presenters;
 using PresentationLayer.Views;
 using ServicesLayer;
-using Syncfusion.Windows.Forms.Tools;
 using Syncfusion.WinForms.Controls;
-using System.Diagnostics.Contracts;
-using System.Windows.Forms;
 
 namespace PresentationLayer
 {
@@ -16,8 +11,6 @@ namespace PresentationLayer
         private IUnitOfWork _unitOfWork;
 
         private IUserModel _userModel;
-
-        private Dashboard_EmployeePresenter _presenter;
 
         private SfButton lastFocusedButton;
 
@@ -30,8 +23,6 @@ namespace PresentationLayer
             _unitOfWork = unitOfWork;
             _userModel = currentUser;
             InitializeComponent();
-            _presenter = new Dashboard_EmployeePresenter(_unitOfWork);
-            _presenter.SetView(this);
 
             _dashboardUIStyles = new Dashboard_EmployeeUIStyles(this);
             _dashboardUIStyles.InitializeUI();
@@ -46,20 +37,7 @@ namespace PresentationLayer
 
             this.MaximizeBox = false;
             btnDashboard.Focus();
-            _presenter.LoadDashboard();
-
-            /*btnDashboard.Focus();
-            pnlDashboard.Show();
-            pnlJobDeskRegular.Hide();
-            pnlAccountsRegular.Hide();
-
-            // Track the last focused button
-            lastFocusedButton = btnDashboard;
-
-            // Subscribe to LostFocus event
-            btnDashboard.LostFocus += Btn_LostFocus;
-            btnJobDesk.LostFocus += Btn_LostFocus;
-            btnAccount.LostFocus += Btn_LostFocus;*/
+            
         }
 
 
@@ -120,17 +98,17 @@ namespace PresentationLayer
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            _presenter.ShowDashboard();
+            
         }
 
         private void btnJobDesk_Click(object sender, EventArgs e)
         {
-            _presenter.ShowJobDesk();
+            
         }
 
         private void btnAccount_Click(object sender, EventArgs e)
         {
-            _presenter.ShowAccounts();
+            
         }
     }
 

@@ -85,4 +85,8 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Presenters\" />
+  </ItemGroup>
+
 </Project>

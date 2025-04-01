@@ -244,6 +244,9 @@
             panel28 = new Panel();
             lblRegBonus = new Label();
             label33 = new Label();
+            panel59 = new Panel();
+            label80 = new Label();
+            label81 = new Label();
             panel29 = new Panel();
             panel30 = new Panel();
             label35 = new Label();
@@ -260,6 +263,8 @@
             lblRegPagIbig = new Label();
             label42 = new Label();
             panel35 = new Panel();
+            label82 = new Label();
+            label83 = new Label();
             panel36 = new Panel();
             lblRegAbsence = new Label();
             label44 = new Label();
@@ -496,11 +501,13 @@
             btnPanel1.SuspendLayout();
             panel26.SuspendLayout();
             panel28.SuspendLayout();
+            panel59.SuspendLayout();
             panel30.SuspendLayout();
             panel31.SuspendLayout();
             panel32.SuspendLayout();
             panel33.SuspendLayout();
             panel34.SuspendLayout();
+            panel35.SuspendLayout();
             panel36.SuspendLayout();
             panel38.SuspendLayout();
             panel39.SuspendLayout();
@@ -2704,6 +2711,7 @@
             flowLayoutPanel8.Controls.Add(panel26);
             flowLayoutPanel8.Controls.Add(panel27);
             flowLayoutPanel8.Controls.Add(panel28);
+            flowLayoutPanel8.Controls.Add(panel59);
             flowLayoutPanel8.Controls.Add(panel29);
             flowLayoutPanel8.Controls.Add(panel30);
             flowLayoutPanel8.Controls.Add(panel31);
@@ -2730,7 +2738,8 @@
             panel6.Controls.Add(btnPanel2);
             panel6.Controls.Add(btnPanel1);
             panel6.Controls.Add(lblPayslip);
-            panel6.Location = new Point(28, 23);
+            panel6.Location = new Point(27, 22);
+            panel6.Margin = new Padding(2);
             panel6.Name = "panel6";
             panel6.Size = new Size(1022, 50);
             panel6.TabIndex = 0;
@@ -2803,9 +2812,10 @@
             // 
             panel26.Controls.Add(lblRegBaseSalary);
             panel26.Controls.Add(label29);
-            panel26.Location = new Point(28, 79);
+            panel26.Location = new Point(27, 76);
+            panel26.Margin = new Padding(2);
             panel26.Name = "panel26";
-            panel26.Size = new Size(1022, 70);
+            panel26.Size = new Size(1022, 60);
             panel26.TabIndex = 1;
             // 
             // lblRegBaseSalary
@@ -2833,7 +2843,8 @@
             // panel27
             // 
             panel27.BackColor = Color.Silver;
-            panel27.Location = new Point(28, 155);
+            panel27.Location = new Point(26, 139);
+            panel27.Margin = new Padding(1);
             panel27.Name = "panel27";
             panel27.Size = new Size(1022, 2);
             panel27.TabIndex = 2;
@@ -2842,9 +2853,10 @@
             // 
             panel28.Controls.Add(lblRegBonus);
             panel28.Controls.Add(label33);
-            panel28.Location = new Point(28, 163);
+            panel28.Location = new Point(27, 144);
+            panel28.Margin = new Padding(2);
             panel28.Name = "panel28";
-            panel28.Size = new Size(1022, 58);
+            panel28.Size = new Size(1022, 50);
             panel28.TabIndex = 3;
             // 
             // lblRegBonus
@@ -2869,21 +2881,55 @@
             label33.TabIndex = 2;
             label33.Text = "Bonuses";
             // 
+            // panel59
+            // 
+            panel59.Controls.Add(label80);
+            panel59.Controls.Add(label81);
+            panel59.Location = new Point(27, 198);
+            panel59.Margin = new Padding(2);
+            panel59.Name = "panel59";
+            panel59.Size = new Size(1022, 50);
+            panel59.TabIndex = 18;
+            // 
+            // label80
+            // 
+            label80.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
+            label80.ForeColor = Color.Black;
+            label80.Location = new Point(665, 5);
+            label80.Name = "label80";
+            label80.Size = new Size(354, 49);
+            label80.TabIndex = 3;
+            label80.Text = "P10,000";
+            label80.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label81
+            // 
+            label81.AutoSize = true;
+            label81.Font = new Font("Poppins", 20.25F);
+            label81.ForeColor = Color.Black;
+            label81.Location = new Point(3, 6);
+            label81.Name = "label81";
+            label81.Size = new Size(202, 48);
+            label81.TabIndex = 2;
+            label81.Text = "Overtime Pay";
+            // 
             // panel29
             // 
             panel29.BackColor = Color.Silver;
-            panel29.Location = new Point(28, 227);
+            panel29.Location = new Point(26, 251);
+            panel29.Margin = new Padding(1);
             panel29.Name = "panel29";
             panel29.Size = new Size(1022, 2);
-            panel29.TabIndex = 4;
+            panel29.TabIndex = 19;
             // 
             // panel30
             // 
             panel30.Controls.Add(label35);
-            panel30.Location = new Point(28, 235);
+            panel30.Location = new Point(27, 256);
+            panel30.Margin = new Padding(2);
             panel30.Name = "panel30";
-            panel30.Size = new Size(1022, 58);
-            panel30.TabIndex = 5;
+            panel30.Size = new Size(1022, 50);
+            panel30.TabIndex = 20;
             // 
             // label35
             // 
@@ -2900,10 +2946,11 @@
             // 
             panel31.Controls.Add(lblRegTax);
             panel31.Controls.Add(label37);
-            panel31.Location = new Point(28, 299);
+            panel31.Location = new Point(27, 310);
+            panel31.Margin = new Padding(2);
             panel31.Name = "panel31";
-            panel31.Size = new Size(1022, 58);
-            panel31.TabIndex = 6;
+            panel31.Size = new Size(1022, 50);
+            panel31.TabIndex = 21;
             // 
             // lblRegTax
             // 
@@ -2931,10 +2978,11 @@
             // 
             panel32.Controls.Add(lblRegSSS);
             panel32.Controls.Add(label38);
-            panel32.Location = new Point(28, 363);
+            panel32.Location = new Point(27, 364);
+            panel32.Margin = new Padding(2);
             panel32.Name = "panel32";
-            panel32.Size = new Size(1022, 58);
-            panel32.TabIndex = 7;
+            panel32.Size = new Size(1022, 50);
+            panel32.TabIndex = 22;
             // 
             // lblRegSSS
             // 
@@ -2962,10 +3010,11 @@
             // 
             panel33.Controls.Add(lblRegPhilHealth);
             panel33.Controls.Add(label40);
-            panel33.Location = new Point(28, 427);
+            panel33.Location = new Point(27, 418);
+            panel33.Margin = new Padding(2);
             panel33.Name = "panel33";
-            panel33.Size = new Size(1022, 58);
-            panel33.TabIndex = 8;
+            panel33.Size = new Size(1022, 50);
+            panel33.TabIndex = 23;
             // 
             // lblRegPhilHealth
             // 
@@ -2993,10 +3042,11 @@
             // 
             panel34.Controls.Add(lblRegPagIbig);
             panel34.Controls.Add(label42);
-            panel34.Location = new Point(28, 491);
+            panel34.Location = new Point(27, 472);
+            panel34.Margin = new Padding(2);
             panel34.Name = "panel34";
-            panel34.Size = new Size(1022, 58);
-            panel34.TabIndex = 9;
+            panel34.Size = new Size(1022, 50);
+            panel34.TabIndex = 24;
             // 
             // lblRegPagIbig
             // 
@@ -3022,20 +3072,45 @@
             // 
             // panel35
             // 
-            panel35.BackColor = Color.Silver;
-            panel35.Location = new Point(28, 555);
+            panel35.Controls.Add(label82);
+            panel35.Controls.Add(label83);
+            panel35.Location = new Point(27, 526);
+            panel35.Margin = new Padding(2);
             panel35.Name = "panel35";
-            panel35.Size = new Size(1022, 2);
-            panel35.TabIndex = 10;
+            panel35.Size = new Size(1022, 50);
+            panel35.TabIndex = 31;
+            // 
+            // label82
+            // 
+            label82.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
+            label82.ForeColor = Color.Black;
+            label82.Location = new Point(666, 5);
+            label82.Name = "label82";
+            label82.Size = new Size(354, 49);
+            label82.TabIndex = 3;
+            label82.Text = "P10,000";
+            label82.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label83
+            // 
+            label83.AutoSize = true;
+            label83.Font = new Font("Poppins", 20.25F);
+            label83.ForeColor = Color.Black;
+            label83.Location = new Point(3, 5);
+            label83.Name = "label83";
+            label83.Size = new Size(244, 48);
+            label83.TabIndex = 2;
+            label83.Text = "Loan Deductions";
             // 
             // panel36
             // 
             panel36.Controls.Add(lblRegAbsence);
             panel36.Controls.Add(label44);
-            panel36.Location = new Point(28, 563);
+            panel36.Location = new Point(27, 580);
+            panel36.Margin = new Padding(2);
             panel36.Name = "panel36";
             panel36.Size = new Size(1022, 58);
-            panel36.TabIndex = 11;
+            panel36.TabIndex = 32;
             // 
             // lblRegAbsence
             // 
@@ -3062,19 +3137,21 @@
             // panel37
             // 
             panel37.BackColor = Color.Silver;
-            panel37.Location = new Point(28, 627);
+            panel37.Location = new Point(26, 641);
+            panel37.Margin = new Padding(1);
             panel37.Name = "panel37";
             panel37.Size = new Size(1022, 2);
-            panel37.TabIndex = 12;
+            panel37.TabIndex = 33;
             // 
             // panel38
             // 
             panel38.Controls.Add(lblRegTotal);
             panel38.Controls.Add(label46);
-            panel38.Location = new Point(28, 635);
+            panel38.Location = new Point(27, 646);
+            panel38.Margin = new Padding(2);
             panel38.Name = "panel38";
-            panel38.Size = new Size(1022, 58);
-            panel38.TabIndex = 13;
+            panel38.Size = new Size(1022, 50);
+            panel38.TabIndex = 34;
             // 
             // lblRegTotal
             // 
@@ -3101,19 +3178,21 @@
             // panel40
             // 
             panel40.BackColor = Color.Silver;
-            panel40.Location = new Point(28, 699);
+            panel40.Location = new Point(26, 699);
+            panel40.Margin = new Padding(1);
             panel40.Name = "panel40";
             panel40.Size = new Size(1022, 2);
-            panel40.TabIndex = 15;
+            panel40.TabIndex = 35;
             // 
             // panel39
             // 
             panel39.Controls.Add(lblRegPayrolDate);
             panel39.Controls.Add(label48);
-            panel39.Location = new Point(28, 707);
+            panel39.Location = new Point(27, 704);
+            panel39.Margin = new Padding(2);
             panel39.Name = "panel39";
             panel39.Size = new Size(1022, 30);
-            panel39.TabIndex = 16;
+            panel39.TabIndex = 36;
             // 
             // lblRegPayrolDate
             // 
@@ -3141,10 +3220,11 @@
             // 
             panel41.Controls.Add(lblRegStatus);
             panel41.Controls.Add(label50);
-            panel41.Location = new Point(28, 743);
+            panel41.Location = new Point(27, 738);
+            panel41.Margin = new Padding(2);
             panel41.Name = "panel41";
             panel41.Size = new Size(1022, 30);
-            panel41.TabIndex = 17;
+            panel41.TabIndex = 37;
             // 
             // lblRegStatus
             // 
@@ -3230,12 +3310,12 @@
             // label31
             // 
             label31.AutoSize = true;
-            label31.Font = new Font("Microsoft Sans Serif", 30F, FontStyle.Bold);
+            label31.Font = new Font("Poppins SemiBold", 30F, FontStyle.Bold);
             label31.ForeColor = Color.FromArgb(28, 28, 28);
-            label31.Location = new Point(3, -2);
+            label31.Location = new Point(2, -2);
             label31.Margin = new Padding(0);
             label31.Name = "label31";
-            label31.Size = new Size(232, 46);
+            label31.Size = new Size(271, 70);
             label31.TabIndex = 0;
             label31.Text = "Attendance";
             // 
@@ -3324,12 +3404,12 @@
             // label34
             // 
             label34.AutoSize = true;
-            label34.Font = new Font("Microsoft Sans Serif", 30F, FontStyle.Bold);
+            label34.Font = new Font("Poppins SemiBold", 30F, FontStyle.Bold);
             label34.ForeColor = Color.FromArgb(28, 28, 28);
             label34.Location = new Point(3, -2);
             label34.Margin = new Padding(0);
             label34.Name = "label34";
-            label34.Size = new Size(132, 46);
+            label34.Size = new Size(149, 70);
             label34.TabIndex = 0;
             label34.Text = "Leave";
             // 
@@ -3370,32 +3450,32 @@
             // lblApprovedLeaves
             // 
             lblApprovedLeaves.AutoSize = true;
-            lblApprovedLeaves.Font = new Font("Microsoft Sans Serif", 42F, FontStyle.Bold);
-            lblApprovedLeaves.Location = new Point(207, 0);
+            lblApprovedLeaves.Font = new Font("Poppins", 42F, FontStyle.Bold);
+            lblApprovedLeaves.Location = new Point(207, 7);
             lblApprovedLeaves.Margin = new Padding(0);
             lblApprovedLeaves.Name = "lblApprovedLeaves";
-            lblApprovedLeaves.Size = new Size(91, 64);
+            lblApprovedLeaves.Size = new Size(116, 99);
             lblApprovedLeaves.TabIndex = 5;
             lblApprovedLeaves.Text = "00";
             // 
             // label36
             // 
             label36.AutoSize = true;
-            label36.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Bold);
+            label36.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
             label36.Location = new Point(23, 53);
             label36.Name = "label36";
-            label36.Size = new Size(80, 22);
+            label36.Size = new Size(82, 31);
             label36.TabIndex = 4;
             label36.Text = "Leaves:";
             // 
             // label39
             // 
             label39.AutoSize = true;
-            label39.Font = new Font("Microsoft Sans Serif", 23F, FontStyle.Bold);
-            label39.Location = new Point(18, 16);
+            label39.Font = new Font("Poppins SemiBold", 23F, FontStyle.Bold);
+            label39.Location = new Point(18, 10);
             label39.Margin = new Padding(0);
             label39.Name = "label39";
-            label39.Size = new Size(155, 35);
+            label39.Size = new Size(179, 54);
             label39.TabIndex = 3;
             label39.Text = "Approved";
             // 
@@ -3424,32 +3504,32 @@
             // lblPendingLaaves
             // 
             lblPendingLaaves.AutoSize = true;
-            lblPendingLaaves.Font = new Font("Microsoft Sans Serif", 42F, FontStyle.Bold);
-            lblPendingLaaves.Location = new Point(206, 1);
+            lblPendingLaaves.Font = new Font("Poppins", 42F, FontStyle.Bold);
+            lblPendingLaaves.Location = new Point(206, 8);
             lblPendingLaaves.Margin = new Padding(0);
             lblPendingLaaves.Name = "lblPendingLaaves";
-            lblPendingLaaves.Size = new Size(91, 64);
+            lblPendingLaaves.Size = new Size(116, 99);
             lblPendingLaaves.TabIndex = 6;
             lblPendingLaaves.Text = "00";
             // 
             // label41
             // 
             label41.AutoSize = true;
-            label41.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Bold);
-            label41.Location = new Point(26, 54);
+            label41.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
+            label41.Location = new Point(26, 53);
             label41.Name = "label41";
-            label41.Size = new Size(125, 22);
+            label41.Size = new Size(130, 31);
             label41.TabIndex = 4;
             label41.Text = "For Approval";
             // 
             // label43
             // 
             label43.AutoSize = true;
-            label43.Font = new Font("Microsoft Sans Serif", 23F, FontStyle.Bold);
-            label43.Location = new Point(21, 16);
+            label43.Font = new Font("Poppins SemiBold", 23F, FontStyle.Bold);
+            label43.Location = new Point(21, 10);
             label43.Margin = new Padding(0);
             label43.Name = "label43";
-            label43.Size = new Size(135, 35);
+            label43.Size = new Size(152, 54);
             label43.TabIndex = 3;
             label43.Text = "Pending";
             // 
@@ -3468,32 +3548,32 @@
             // lblRemainingLeaves
             // 
             lblRemainingLeaves.AutoSize = true;
-            lblRemainingLeaves.Font = new Font("Microsoft Sans Serif", 42F, FontStyle.Bold);
-            lblRemainingLeaves.Location = new Point(211, 4);
+            lblRemainingLeaves.Font = new Font("Poppins", 42F, FontStyle.Bold);
+            lblRemainingLeaves.Location = new Point(211, 11);
             lblRemainingLeaves.Margin = new Padding(0);
             lblRemainingLeaves.Name = "lblRemainingLeaves";
-            lblRemainingLeaves.Size = new Size(91, 64);
+            lblRemainingLeaves.Size = new Size(116, 99);
             lblRemainingLeaves.TabIndex = 8;
             lblRemainingLeaves.Text = "00";
             // 
             // label45
             // 
             label45.AutoSize = true;
-            label45.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Bold);
-            label45.Location = new Point(30, 56);
+            label45.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
+            label45.Location = new Point(30, 53);
             label45.Name = "label45";
-            label45.Size = new Size(140, 22);
+            label45.Size = new Size(143, 31);
             label45.TabIndex = 7;
             label45.Text = "Leave Credits:";
             // 
             // label47
             // 
             label47.AutoSize = true;
-            label47.Font = new Font("Microsoft Sans Serif", 23F, FontStyle.Bold);
-            label47.Location = new Point(25, 18);
+            label47.Font = new Font("Poppins SemiBold", 23F, FontStyle.Bold);
+            label47.Location = new Point(25, 10);
             label47.Margin = new Padding(0);
             label47.Name = "label47";
-            label47.Size = new Size(170, 35);
+            label47.Size = new Size(194, 54);
             label47.TabIndex = 6;
             label47.Text = "Remaining";
             // 
@@ -3508,12 +3588,12 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new Font("Microsoft Sans Serif", 26.2499962F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label12.Font = new Font("Poppins SemiBold", 23F, FontStyle.Bold);
             label12.ForeColor = Color.FromArgb(28, 28, 28);
             label12.Location = new Point(3, -2);
             label12.Margin = new Padding(0);
             label12.Name = "label12";
-            label12.Size = new Size(134, 39);
+            label12.Size = new Size(135, 54);
             label12.TabIndex = 0;
             label12.Text = "History";
             // 
@@ -4385,6 +4465,8 @@
             panel26.PerformLayout();
             panel28.ResumeLayout(false);
             panel28.PerformLayout();
+            panel59.ResumeLayout(false);
+            panel59.PerformLayout();
             panel30.ResumeLayout(false);
             panel30.PerformLayout();
             panel31.ResumeLayout(false);
@@ -4395,6 +4477,8 @@
             panel33.PerformLayout();
             panel34.ResumeLayout(false);
             panel34.PerformLayout();
+            panel35.ResumeLayout(false);
+            panel35.PerformLayout();
             panel36.ResumeLayout(false);
             panel36.PerformLayout();
             panel38.ResumeLayout(false);
@@ -4615,41 +4699,8 @@
         public Label lblPayslip;
         public Panel panel26;
         public Panel panel27;
-        public Panel panel28;
-        public Panel panel29;
         public Label label29;
         public Label lblRegBaseSalary;
-        public Label lblRegBonus;
-        public Label label33;
-        public Panel panel30;
-        public Label label35;
-        public Panel panel31;
-        public Label lblRegTax;
-        public Label label37;
-        public Panel panel32;
-        public Label lblRegSSS;
-        public Label label38;
-        public Panel panel33;
-        public Label lblRegPhilHealth;
-        public Label label40;
-        public Panel panel34;
-        public Label lblRegPagIbig;
-        public Label label42;
-        public Panel panel35;
-        public Panel panel36;
-        public Label lblRegAbsence;
-        public Label label44;
-        public Panel panel37;
-        public Panel panel38;
-        public Label lblRegTotal;
-        public Label label46;
-        public Panel panel40;
-        public Panel panel39;
-        public Label lblRegPayrolDate;
-        public Label label48;
-        public Panel panel41;
-        public Label lblRegStatus;
-        public Label label50;
         public FlowLayoutPanel flowLayoutPanel9;
         public Panel panel24;
         public Label label31;
@@ -4819,5 +4870,43 @@
         public Panel btnPanel2;
         public Panel btnPanel3;
         public Panel btnPanel4;
+        public Panel panel28;
+        public Label lblRegBonus;
+        public Label label33;
+        public Panel panel59;
+        public Label label80;
+        public Label label81;
+        public Panel panel29;
+        public Panel panel30;
+        public Label label35;
+        public Panel panel31;
+        public Label lblRegTax;
+        public Label label37;
+        public Panel panel32;
+        public Label lblRegSSS;
+        public Label label38;
+        public Panel panel33;
+        public Label lblRegPhilHealth;
+        public Label label40;
+        public Panel panel34;
+        public Label lblRegPagIbig;
+        public Label label42;
+        public Panel panel35;
+        public Label label82;
+        public Label label83;
+        public Panel panel36;
+        public Label lblRegAbsence;
+        public Label label44;
+        public Panel panel37;
+        public Panel panel38;
+        public Label lblRegTotal;
+        public Label label46;
+        public Panel panel40;
+        public Panel panel39;
+        public Label lblRegPayrolDate;
+        public Label label48;
+        public Panel panel41;
+        public Label lblRegStatus;
+        public Label label50;
     }
 }
