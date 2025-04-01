@@ -37,7 +37,7 @@ namespace PresentationLayer
 
             this.MaximizeBox = false;
             btnDashboard.Focus();
-            
+
         }
 
 
@@ -46,18 +46,35 @@ namespace PresentationLayer
 
         private void btnTimeIn_Click(object sender, EventArgs e)
         {
-            EmployeeAttendanceForm = new EmployeeAttendance();
-            EmployeeAttendanceForm.isTimeIn(true);
+            if(EmployeeAttendanceForm == null)
+            {
+                EmployeeAttendanceForm = new EmployeeAttendance();
+            }
+            EmployeeAttendanceForm.FormStatus(1);
             EmployeeAttendanceForm.Text = "Time In";
             EmployeeAttendanceForm.ShowDialog();
         }
 
         private void btnTimeOut_Click(object sender, EventArgs e)
         {
-            EmployeeAttendanceForm.isTimeIn(false);
+            EmployeeAttendanceForm.FormStatus(2);
             EmployeeAttendanceForm.Text = "Time Out";
             EmployeeAttendanceForm.ShowDialog();
-            EmployeeAttendanceForm.Close();
+            EmployeeAttendanceForm.Dispose();
+            EmployeeAttendanceForm = null;
+        }
+
+        private void btnAttendanceRequest_Click(object sender, EventArgs e)
+        {
+            if (EmployeeAttendanceForm == null)
+            {
+                EmployeeAttendanceForm = new EmployeeAttendance();
+            }
+            EmployeeAttendanceForm.FormStatus(3);
+            EmployeeAttendanceForm.Text = "Attendance Request";
+            EmployeeAttendanceForm.ShowDialog();
+            EmployeeAttendanceForm.Dispose();
+            EmployeeAttendanceForm = null;
         }
 
         public void ShowDashboard()
@@ -98,18 +115,20 @@ namespace PresentationLayer
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnJobDesk_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnAccount_Click(object sender, EventArgs e)
         {
-            
+
         }
+
+        
     }
 
 }

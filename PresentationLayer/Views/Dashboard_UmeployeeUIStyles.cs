@@ -148,6 +148,8 @@ namespace PresentationLayer.Views
 
         private void InitJobDeskPanelProperties()
         {
+            RoundedElements.rounded(_dashboard.pnlJobDeskProfileMain, 15);
+            RoundedElements.rounded(_dashboard.pnlJobDeskProfileSub, 12);
             RoundedElements.rounded(_dashboard.pnlJobDeskDashMain, 15);
             RoundedElements.rounded(_dashboard.pnlJobDeskDashSub, 12);
         }
@@ -163,9 +165,33 @@ namespace PresentationLayer.Views
         private void InitJobDeskButtons()
         {
             SfButton[] payslipButtons = { _dashboard.btnPrint, _dashboard.btnPreviewDocument, _dashboard.btnAttendanceRequest, _dashboard.btnFileLeave };
+            Panel[] panels = { _dashboard.btnPanel1, _dashboard.btnPanel2, _dashboard.btnPanel3, _dashboard.btnPanel4 };
 
             foreach (SfButton btn in payslipButtons)
+            {
+                btn.Style.BackColor = Color.White;
+                btn.Style.ForeColor = Color.FromArgb(252, 184, 49);
+                btn.Style.Border = new Pen(Color.White);
+
+                btn.Style.HoverBackColor = Color.FromArgb(252, 184, 49);
+                btn.Style.HoverForeColor = Color.White;
+                btn.Style.HoverBorder = new Pen(Color.FromArgb(252, 184, 49));
+
+                btn.Style.PressedBackColor = Color.FromArgb(247, 165, 2);
+                btn.Style.PressedForeColor = Color.White;
+                btn.Style.PressedBorder = new Pen(Color.FromArgb(247, 165, 2));
+
+                btn.Style.FocusedBackColor = Color.White;
+                btn.Style.FocusedForeColor = Color.FromArgb(252,184,49);
+                btn.Style.FocusedBorder = new Pen(Color.White);
+
                 RoundedElements.rounded(btn, 7);
+            }
+
+            foreach(Panel panel in panels)
+            {
+                RoundedElements.rounded(panel, 10);
+            }
         }
 
         private void InitLeaveCardProperties()
@@ -193,10 +219,23 @@ namespace PresentationLayer.Views
 
         private void InitAccountButtonProperties()
         {
-            /*SfButton[] accountButtons = { _dashboard.btnChangePassword, _dashboard.btnLogout };
+            _dashboard.btnEditAccountInfo.Style.BackColor = Color.White;
+            _dashboard.btnEditAccountInfo.Style.ForeColor = Color.White;
+            _dashboard.btnEditAccountInfo.Style.Border = new Pen(Color.White);
 
-            foreach (SfButton btn in accountButtons)
-                RoundedElements.rounded(btn, 10);*/
+            _dashboard.btnEditAccountInfo.Style.HoverBackColor = Color.White;
+            _dashboard.btnEditAccountInfo.Style.HoverForeColor = Color.White;
+            _dashboard.btnEditAccountInfo.Style.HoverBorder = new Pen(Color.White);
+
+            _dashboard.btnEditAccountInfo.Style.FocusedBackColor = Color.White;
+            _dashboard.btnEditAccountInfo.Style.FocusedForeColor = Color.White;
+            _dashboard.btnEditAccountInfo.Style.FocusedBorder = new Pen(Color.White);
+
+            _dashboard.btnEditAccountInfo.Style.PressedBackColor = Color.White;
+            _dashboard.btnEditAccountInfo.Style.PressedForeColor = Color.White;
+            _dashboard.btnEditAccountInfo.Style.PressedBorder = new Pen(Color.White);
+
+            _dashboard.btnEditAccountInfo.Style.HoverImage = ImageIconUtils.ChangeIconColor((Bitmap)_dashboard.btnEditAccountInfo.Image, Color.LightGray);
         }
     }
 }

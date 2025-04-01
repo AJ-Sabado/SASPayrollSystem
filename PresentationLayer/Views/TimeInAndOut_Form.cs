@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MaterialSkin;
+using Syncfusion.WinForms.Input;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,32 +14,59 @@ namespace PresentationLayer.Views
 {
     public partial class EmployeeAttendance : Form
     {
-        bool TimeIn;
+        int formStatus;
         public EmployeeAttendance()
         {
             InitializeComponent();
 
-            UpdateButtonProperties();
+            UpdateLogButtonProperties();
+            AttendanceLogTimePickerProperties();
 
         }
 
-        public void isTimeIn(bool isTimein)
+
+        public void FormStatus(int stat)
         {
-            TimeIn = isTimein;
-            UpdateButtonProperties();
+            formStatus = stat;
+
+            if (formStatus == 1 || formStatus == 2)
+            {
+                pnlAttendanceLog.Show();
+                pnlAttendanceRequest.Hide();
+                setScreenSize();
+                UpdateLogButtonProperties();
+            }
+            else if (formStatus == 3)
+            {
+                pnlAttendanceLog.Hide();
+                pnlAttendanceRequest.Show();
+                setScreenSize();
+            }
         }
 
-        public void UpdateButtonProperties()
+        public void UpdateLogButtonProperties()
         {
             RoundedElements.rounded(btnAttendanceLog, 10);
 
-            if (TimeIn)
+            if (formStatus == 1)
             {
                 ButtonPropertiesTimeIn();
             }
-            else if (!TimeIn)
+            else if (formStatus == 2)
             {
                 ButtonPropertiesTimeOut();
+            }
+        }
+
+        public void setScreenSize()
+        {
+            if (formStatus == 1 || formStatus == 2)
+            {
+                this.Size = new Size(467, 537);
+            }
+            else if (formStatus == 3)
+            {
+                this.Size = new Size(559, 632);
             }
         }
 
@@ -81,20 +110,60 @@ namespace PresentationLayer.Views
             btnAttendanceLog.Style.PressedBorder = new Pen(Color.FromArgb(163, 29, 29));
         }
 
+        public void AttendanceLogTimePickerProperties()
+        {
+            SfDateTimeEdit[] dtp = { dtpTimeIn, dtpTimeOut };
+
+            foreach (SfDateTimeEdit d in dtp)
+            {
+                d.DateTimeEditingMode = Syncfusion.WinForms.Input.Enums.DateTimeEditingMode.Mask;
+                d.DateTimePattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.Custom;
+                d.Format = "hh:mm:ss tt";
+                d.ShowDropDown = false;
+            }
+        }
+
+        //Action Events
         private void btnAttendanceLog_Click(object sender, EventArgs e)
         {
-            if (TimeIn)
+            if (formStatus == 1)
             {
                 string timeInTime = "00:00 AM";
                 MessageBox.Show("Time in successful! Time in time @" + timeInTime);
             }
-            else if (!TimeIn)
+            else if (formStatus == 2)
             {
                 string timeOutTime = "00:00 PM";
                 string TotalHours = "256 hours";
                 MessageBox.Show("Time out successful! Time out time @" + timeOutTime + ", Total hours worked: " + TotalHours);
             }
             this.Close();
+        }
+
+        
+
+        private void sfComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sfButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAttachFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fdProof = new OpenFileDialog();
+
+            fdProof.Title = "Attach Proof of Attendance";
+            fdProof.Filter = "PDF Files|*.pdf|Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+            if (fdProof.ShowDialog() == DialogResult.OK)
+            {
+                tbAttachFile.Text = Path.GetFileName(fdProof.FileName);
+                byte[] fileData = File.ReadAllBytes(fdProof.FileName);
+            }
         }
     }
 }
