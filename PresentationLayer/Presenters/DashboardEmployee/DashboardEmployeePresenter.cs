@@ -4,11 +4,6 @@ using DomainLayer.ViewModels.DashboardDetails;
 using DomainLayer.ViewModels.JobDeskDetails;
 using PresentationLayer.Views;
 using ServicesLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PresentationLayer.Presenters.DashboardEmployee
 {

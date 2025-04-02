@@ -1,12 +1,5 @@
-﻿using Azure.Core;
-using MaterialSkin;
+﻿using MaterialSkin;
 using Syncfusion.WinForms.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PresentationLayer.Views
 {
@@ -84,6 +77,12 @@ namespace PresentationLayer.Views
                 btn.Style.PressedBorder = new Pen(Color.FromArgb(247, 165, 2));
 
                 RoundedElements.rounded(btn, 10);
+                var blackIcon = btn.Image;
+                var whiteIcon = ImageIconUtils.InvertImageColors((Bitmap)blackIcon);
+                btn.Style.Image = whiteIcon;
+                btn.Style.HoverImage = blackIcon;
+                btn.Style.PressedImage = blackIcon;
+                btn.Style.FocusedImage = blackIcon;
                 btn.Invalidate();
             }
         }
@@ -109,12 +108,38 @@ namespace PresentationLayer.Views
             btnTimeIn.Style.BackColor = Color.FromArgb(192, 235, 166);
             btnTimeIn.Style.ForeColor = Color.White;
             btnTimeIn.Style.Border = new Pen(Color.FromArgb(192, 235, 166));
+
+            btnTimeIn.Style.HoverBackColor = Color.FromArgb(52, 121, 40);
+            btnTimeIn.Style.HoverForeColor = Color.FromArgb(255, 255, 255);
+            btnTimeIn.Style.HoverBorder = new Pen(Color.FromArgb(52, 121, 40));
+
+            btnTimeIn.Style.FocusedBackColor = Color.FromArgb(192, 235, 166);
+            btnTimeIn.Style.FocusedForeColor = Color.FromArgb(255, 255, 255);
+            btnTimeIn.Style.FocusedBorder = new Pen(Color.FromArgb(192, 235, 166));
+
+            btnTimeIn.Style.PressedBackColor = Color.FromArgb(52, 121, 40);
+            btnTimeIn.Style.PressedForeColor = Color.FromArgb(255, 255, 255);
+            btnTimeIn.Style.PressedBorder = new Pen(Color.FromArgb(52, 121, 40));
+
             RoundedElements.rounded(btnTimeIn, 10);
             btnTimeIn.Invalidate();
 
+            //Time oUt
             btnTimeOut.Style.BackColor = Color.FromArgb(216, 64, 64);
             btnTimeOut.Style.ForeColor = Color.White;
             btnTimeOut.Style.Border = new Pen(Color.FromArgb(216, 64, 64));
+
+            btnTimeOut.Style.HoverBackColor = Color.FromArgb(163, 29, 29);
+            btnTimeOut.Style.HoverForeColor = Color.FromArgb(255, 255, 255);
+            btnTimeOut.Style.HoverBorder = new Pen(Color.FromArgb(163, 29, 29));
+
+            btnTimeOut.Style.FocusedBackColor = Color.FromArgb(216, 64, 64);
+            btnTimeOut.Style.FocusedForeColor = Color.FromArgb(255, 255, 255);
+            btnTimeOut.Style.FocusedBorder = new Pen(Color.FromArgb(216, 64, 64));
+
+            btnTimeOut.Style.PressedBackColor = Color.FromArgb(163, 29, 29);
+            btnTimeOut.Style.PressedForeColor = Color.FromArgb(255, 255, 255);
+            btnTimeOut.Style.PressedBorder = new Pen(Color.FromArgb(163, 29, 29));
             RoundedElements.rounded(btnTimeOut, 10);
             btnTimeOut.Invalidate();
         }

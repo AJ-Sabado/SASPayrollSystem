@@ -16,9 +16,11 @@ namespace PresentationLayer
 
         public event EventHandler Exit;
 
-        private EmployeeAttendance EmployeeAttendanceForm;
+        private EmployeeAttendance_Form? EmployeeAttendanceForm;
 
         private Dashboard_EmployeeUIStyles _dashboardUIStyles;
+
+        private bool isWorking = false;
 
         public Dashboard_Employee() //No need
         {
@@ -36,7 +38,7 @@ namespace PresentationLayer
             };
         }
 
-        public async void Dashboard_Employee_Load(object sender, EventArgs e)
+        public void Dashboard_Employee_Load(object sender, EventArgs e)
         {
 
             this.MaximizeBox = false;
@@ -55,6 +57,9 @@ namespace PresentationLayer
             btnDashboard.LostFocus += Btn_LostFocus;
             btnJobDesk.LostFocus += Btn_LostFocus;
             btnAccount.LostFocus += Btn_LostFocus;
+
+            //Attendance Button Status
+            isWorkingFunction();
         }
 
         private void Btn_LostFocus(object sender, EventArgs e)
@@ -65,17 +70,34 @@ namespace PresentationLayer
             }
         }
 
+        public void isWorkingFunction()
+        {
+            if (isWorking)
+            {
+                btnTimeOut.Enabled = true;
+                btnTimeIn.Enabled = false;
+            } else
+            {
+                btnTimeOut.Enabled = false;
+                btnTimeIn.Enabled = true;
+            }
+        }
+
+
+
         //Action Events
 
         private void btnTimeIn_Click(object sender, EventArgs e)
         {
             if (EmployeeAttendanceForm == null)
             {
-                EmployeeAttendanceForm = new EmployeeAttendance();
+                EmployeeAttendanceForm = new EmployeeAttendance_Form();
             }
             EmployeeAttendanceForm.FormStatus(1);
             EmployeeAttendanceForm.Text = "Time In";
             EmployeeAttendanceForm.ShowDialog();
+            isWorking = true;
+            isWorkingFunction();
         }
 
         private void btnTimeOut_Click(object sender, EventArgs e)
@@ -85,29 +107,24 @@ namespace PresentationLayer
             EmployeeAttendanceForm.ShowDialog();
             EmployeeAttendanceForm.Dispose();
             EmployeeAttendanceForm = null;
+            isWorking = false;
+            isWorkingFunction();
         }
 
         private void btnAttendanceRequest_Click(object sender, EventArgs e)
         {
             if (EmployeeAttendanceForm == null)
             {
-                EmployeeAttendanceForm = new EmployeeAttendance();
+                EmployeeAttendanceForm = new EmployeeAttendance_Form();
             }
             EmployeeAttendanceForm.FormStatus(3);
             EmployeeAttendanceForm.Text = "Attendance Request";
             EmployeeAttendanceForm.ShowDialog();
-            EmployeeAttendanceForm.Dispose();
-            EmployeeAttendanceForm = null;
-        }
-
-        public void InitializeComponents()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void BindAttendanceTableAsync()
-        {
-            throw new NotImplementedException();
+            if (!isWorking)
+            {
+                EmployeeAttendanceForm.Dispose();
+                EmployeeAttendanceForm = null;
+            }
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)

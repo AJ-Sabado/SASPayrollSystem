@@ -9,8 +9,6 @@ namespace PresentationLayer.Views
 {
     public interface IDashboard_Employee
     {
-        void InitializeComponents();
-        void BindAttendanceTableAsync();
         void Hide();
         void Show();
         void Close();

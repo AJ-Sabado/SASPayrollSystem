@@ -12,15 +12,16 @@ using System.Windows.Forms;
 
 namespace PresentationLayer.Views
 {
-    public partial class EmployeeAttendance : Form
+    public partial class EmployeeAttendance_Form : Form
     {
         int formStatus;
-        public EmployeeAttendance()
+        public EmployeeAttendance_Form()
         {
             InitializeComponent();
 
             UpdateLogButtonProperties();
             AttendanceLogTimePickerProperties();
+            buttonRequestProperties();
 
         }
 
@@ -110,6 +111,26 @@ namespace PresentationLayer.Views
             btnAttendanceLog.Style.PressedBorder = new Pen(Color.FromArgb(163, 29, 29));
         }
 
+        public void buttonRequestProperties()
+        {
+            btnRequest.Style.BackColor = Color.FromArgb(252, 184, 49); ;
+            btnRequest.Style.ForeColor = Color.White;
+            btnRequest.Style.Border = new Pen(Color.FromArgb(252, 184, 49));
+
+            btnRequest.Style.HoverBackColor = Color.FromArgb(247, 164, 0);
+            btnRequest.Style.HoverForeColor = Color.White;
+            btnRequest.Style.HoverBorder = new Pen(Color.FromArgb(247, 164, 0));
+
+            btnRequest.Style.FocusedBackColor = Color.FromArgb(247, 164, 0);
+            btnRequest.Style.FocusedForeColor = Color.White;
+            btnRequest.Style.FocusedBorder = new Pen(Color.FromArgb(247, 164, 0));
+
+            btnRequest.Style.PressedBackColor = Color.FromArgb(247, 164, 0);
+            btnRequest.Style.PressedForeColor = Color.White;
+            btnRequest.Style.PressedBorder = new Pen(Color.FromArgb(247, 164, 0));
+            RoundedElements.rounded(btnRequest, 10);
+        }
+
         public void AttendanceLogTimePickerProperties()
         {
             SfDateTimeEdit[] dtp = { dtpTimeIn, dtpTimeOut };
@@ -138,18 +159,6 @@ namespace PresentationLayer.Views
                 MessageBox.Show("Time out successful! Time out time @" + timeOutTime + ", Total hours worked: " + TotalHours);
             }
             this.Close();
-        }
-
-        
-
-        private void sfComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sfButton2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnAttachFile_Click(object sender, EventArgs e)

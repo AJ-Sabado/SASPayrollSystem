@@ -1,6 +1,6 @@
 ﻿namespace PresentationLayer.Views
 {
-    partial class EmployeeAttendance
+    partial class EmployeeAttendance_Form
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeAttendance));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeAttendance_Form));
             pnlAttendanceLog = new FlowLayoutPanel();
             panel1 = new Panel();
             label1 = new Label();
@@ -738,15 +738,14 @@
             // 
             // btnRequest
             // 
-            btnRequest.Font = new Font("Segoe UI Semibold", 9F);
+            btnRequest.Font = new Font("Poppins Medium", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRequest.Location = new Point(179, 3);
             btnRequest.Name = "btnRequest";
             btnRequest.Size = new Size(134, 49);
             btnRequest.TabIndex = 0;
             btnRequest.Text = "Request";
-            btnRequest.Click += sfButton2_Click;
             // 
-            // EmployeeAttendance
+            // EmployeeAttendance_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -755,7 +754,7 @@
             Controls.Add(pnlAttendanceRequest);
             Controls.Add(pnlAttendanceLog);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "EmployeeAttendance";
+            Name = "EmployeeAttendance_Form";
             Padding = new Padding(20, 10, 20, 10);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TimeInAndOut_Form";
@@ -837,23 +836,23 @@
         public Label label24;
         public Panel panel16;
         public Panel panel17;
-        private Syncfusion.WinForms.Input.SfDateTimeEdit dtpDate;
         public Panel panel20;
         public Panel panel19;
         public Label label34;
         public Panel panel18;
-        private Syncfusion.WinForms.Controls.SfButton btnAttachFile;
-        private Syncfusion.WinForms.Controls.SfButton btnRequest;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt tbAttachFile;
         public Label label19;
         public Label label20;
-        private Syncfusion.WinForms.Input.SfDateTimeEdit dtpTimeOut;
-        private Syncfusion.WinForms.Input.SfDateTimeEdit dtpTimeIn;
         public Label label26;
         public Label label30;
-        private Syncfusion.WinForms.ListView.SfComboBox sfComboBox1;
         public Label label32;
         public Label label27;
         public Label label28;
+        public Syncfusion.WinForms.Input.SfDateTimeEdit dtpDate;
+        public Syncfusion.WinForms.Controls.SfButton btnAttachFile;
+        public Syncfusion.WinForms.Controls.SfButton btnRequest;
+        public Syncfusion.Windows.Forms.Tools.TextBoxExt tbAttachFile;
+        public Syncfusion.WinForms.Input.SfDateTimeEdit dtpTimeOut;
+        public Syncfusion.WinForms.Input.SfDateTimeEdit dtpTimeIn;
+        public Syncfusion.WinForms.ListView.SfComboBox sfComboBox1;
     }
 }
