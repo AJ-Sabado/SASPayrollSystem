@@ -15,7 +15,6 @@ namespace DomainLayer.Models.Employee
     {
         ICollection<AttendanceModel> Attendances { get; }
         decimal BasicSemiMonthlyRate { get; set; }
-        DateOnly BirthDay { get; set; }
         ContributionModel Contribution { get; set; }
         DepartmentModel Department { get; set; }
         Guid DepartmentId { get; set; }
@@ -23,10 +22,7 @@ namespace DomainLayer.Models.Employee
         EmployeeEmploymentInfoModel? EmployeeEmploymentInfo { get; set; }
         EmployeeFinancialInfoModel? EmployeeFinancialInfo { get; set; }
         EmployeePersonalInfoModel? EmployeePersonalInfo { get; set; }
-        DateOnly EmploymentDate { get; set; }
-        string FullName { get; set; }
         Guid Id { get; set; }
-        string JobTitle { get; set; }
         uint LeaveCredits { get; set; }
         ICollection<LeaveModel> Leaves { get; }
         ICollection<SalaryModel> Salaries { get; }
