@@ -69,7 +69,6 @@ namespace DomainLayer.Models.Employee
         public required UserModel User { get; set; }
 
         public ContributionModel Contribution { get; set; } = null!;
-
         public ICollection<AttendanceModel> Attendances { get; } = [];
         public ICollection<LeaveModel> Leaves { get; } = [];
         public ICollection<SalaryModel> Salaries { get; } = [];
