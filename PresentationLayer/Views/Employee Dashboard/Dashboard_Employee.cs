@@ -1,7 +1,5 @@
-﻿using DomainLayer.Models.User;
-using MaterialSkin;
+﻿using MaterialSkin;
 using PresentationLayer.Views;
-using ServicesLayer;
 using Syncfusion.WinForms.Controls;
 
 namespace PresentationLayer
