@@ -1,7 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-
 namespace DomainLayer.Common
 {
     public class Encryption : IEncryption

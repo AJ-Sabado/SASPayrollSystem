@@ -115,10 +115,11 @@ namespace ServicesLayer
             await SeedRoles();
             await SeedDepartments();
             await SeedAdmin();
-            await SeedEmployee();
+            //await SeedEmployee();
             await SeedHolidays();
         }
 
+        //TO BE CHANGED ACCORDING TO NEW DB STRUCTURE
         private async Task SeedEmployee()
         {
             var employeeRole = await RoleRepository.GetAsync(r => r.NormalizedName == "employee".ToUpperInvariant(), includeProperties: "Users");
@@ -131,8 +132,8 @@ namespace ServicesLayer
                     UserName = "user1",
                     Password = "password",
                     Email = "test@test.com",
-                    PhoneNumber = "+639000000000",
-                    Url = "https://www.google.com/",
+                    //PhoneNumber = "+639000000000",
+                    //Url = "https://www.google.com/",
                     RoleId = employeeRole.Id,
                     Role = employeeRole
                 };
@@ -140,10 +141,10 @@ namespace ServicesLayer
 
                 var employee = new EmployeeModel()
                 {
-                    FullName = "Sample Employee",
-                    BirthDay = new DateOnly(2007, 1, 1),
-                    EmploymentDate = DateOnly.FromDateTime(DateTime.Now),
-                    JobTitle = "Sample Job Title",
+                    //FullName = "Sample Employee",
+                    //BirthDay = new DateOnly(2007, 1, 1),
+                    //EmploymentDate = DateOnly.FromDateTime(DateTime.Now),
+                    //JobTitle = "Sample Job Title",
                     BasicSemiMonthlyRate = 10000,
                     LeaveCredits = 0,
                     WorkShiftStart = new TimeOnly(8, 0),
@@ -248,6 +249,7 @@ namespace ServicesLayer
             }
         }
 
+        //TO BE FIXED
         public async Task NewUserRequest(string username, string password, string email)
         {
             var userRequest = new NewUserRequestModel()
@@ -352,20 +354,20 @@ namespace ServicesLayer
 
             if (user.Employee != null)
             {
-                viewModel.EmployeeName = user.Employee.FullName;
+                //viewModel.EmployeeName = user.Employee.FullName;
                 viewModel.Department = user.Employee.Department.Name;
                 viewModel.BaseSalary = $"Php {user.Employee.BasicSemiMonthlyRate} bimonthly";
                 viewModel.WorkShift = $"{user.Employee.WorkShiftStart.ToString("hh:mm tt")}";
                 viewModel.EmploymentStatus = user.Role.Name;
-                viewModel.EmploymentDate = user.Employee.EmploymentDate.ToString("MMMM dd, yyyy");
+                //viewModel.EmploymentDate = user.Employee.EmploymentDate.ToString("MMMM dd, yyyy");
             }
 
-            if (user.Email != null)
-                viewModel.Email = user.Email;
-            if (user.PhoneNumber != null)
-                viewModel.Phone = user.PhoneNumber;
-            if (user.Url != null)
-                viewModel.Website = user.Url;
+            //if (user.Email != null)
+            //    viewModel.Email = user.Email;
+            //if (user.PhoneNumber != null)
+            //    viewModel.Phone = user.PhoneNumber;
+            //if (user.Url != null)
+            //    viewModel.Website = user.Url;
 
             return viewModel;
         }

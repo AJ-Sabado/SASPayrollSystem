@@ -15,10 +15,10 @@ namespace PresentationLayer.Presenters.Base
         private IUnitOfWork _unitOfWork = new UnitOfWork();
 
         private LoginPresenter LoginPresenter;
-        public ILogin_Form LoginView { get; private set; }
-
-        private IDashboardEmployeePresenter DashboardEmployeePresenter;
+        private DashboardEmployeePresenter DashboardEmployeePresenter;
+        
         public IDashboard_Employee DashboardEmployeeView { get; private set; }
+        public ILogin_Form LoginView { get; private set; }
 
         public BasePresenter()
         {
@@ -27,10 +27,8 @@ namespace PresentationLayer.Presenters.Base
             DashboardEmployeeView = new Dashboard_Employee();
             LoginView = new Login_Form();
 
-            DashboardEmployeePresenter = new DashboardEmployeePresenter(_unitOfWork, DashboardEmployeeView, LoginView);
             LoginPresenter = new LoginPresenter(_unitOfWork, LoginView, DashboardEmployeeView);
+            DashboardEmployeePresenter = new DashboardEmployeePresenter(_unitOfWork, DashboardEmployeeView, LoginView);
         }
-
-
     }
 }

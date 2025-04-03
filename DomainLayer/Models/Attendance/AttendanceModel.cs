@@ -1,14 +1,7 @@
 ﻿using DomainLayer.Enums;
 using DomainLayer.Models.Employee;
-using DomainLayer.Models.User;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Runtime.InteropServices.Marshalling;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainLayer.Models.Attendance
 {
