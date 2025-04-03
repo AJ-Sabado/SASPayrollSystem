@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.Models.Employee
 {
-    public class EmployeeModel
+    public class EmployeeModel : IEmployeeModel
     {
         private string _fullName = string.Empty;
         private string _jobTitle = string.Empty;
