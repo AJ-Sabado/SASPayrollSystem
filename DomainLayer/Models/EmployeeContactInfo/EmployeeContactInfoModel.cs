@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.Models.EmployeeContactInfo
 {
-    public class EmployeeContactInfo : IEmployeeContactInfo
+    public class EmployeeContactInfoModel : IEmployeeContactInfoModel
     {
         [Key]
         public Guid Id { get; set; }

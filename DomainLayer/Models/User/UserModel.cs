@@ -30,10 +30,10 @@ namespace DomainLayer.Models.User
         public Guid Id { get; set; }
 
         [StringLength(20, MinimumLength = 2, ErrorMessage = "Username must be 2 - 20 characters only")]
-        public required string UserName { get; set; } = null!;
+        public string UserName { get; set; } = null!;
 
         [NotMapped]
-        public required string Password
+        public string Password
         {
             private get
             {
@@ -61,8 +61,8 @@ namespace DomainLayer.Models.User
         //[StringLength(13, MinimumLength = 12, ErrorMessage = "Must be exactly 12 characters")]
         //public string? PhoneNumber { get; set; } = null!;
 
-        //[Url(ErrorMessage = "Must be a valid Url")]
-        //public string? Url { get; set; }
+        [Url(ErrorMessage = "Must be a valid Url")]
+        public string? Url { get; set; }
 
         [ForeignKey(nameof(RoleId))]
         public Guid RoleId { get; set; }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.Models.EmployeeFinancialInfo
 {
-    public class EmployeeFinancialInfo : IEmployeeFinancialInfo
+    public class EmployeeFinancialInfoModel : IEmployeeFinancialInfoModel
     {
         [Key]
         public Guid Id { get; set; }

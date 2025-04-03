@@ -2,6 +2,10 @@
 using DomainLayer.Models.Attendance;
 using DomainLayer.Models.Contribution;
 using DomainLayer.Models.Department;
+using DomainLayer.Models.EmployeeContactInfo;
+using DomainLayer.Models.EmployeeEmploymentInfo;
+using DomainLayer.Models.EmployeeFinancialInfo;
+using DomainLayer.Models.EmployeePersonalInfo;
 using DomainLayer.Models.Leave;
 using DomainLayer.Models.Salary;
 using DomainLayer.Models.User;
@@ -15,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.Models.Employee
 {
-    public class EmployeeModel : IEmployeeModel
+    public class EmployeeModel
     {
         private string _fullName = string.Empty;
         private string _jobTitle = string.Empty;
@@ -68,9 +72,20 @@ namespace DomainLayer.Models.Employee
         public required Guid UserId { get; set; }
         public required UserModel User { get; set; }
 
+        public EmployeePersonalInfoModel? EmployeePersonalInfo { get; set; }
+
+        public EmployeeEmploymentInfoModel? EmployeeEmploymentInfo { get; set; }
+
+        public EmployeeContactInfoModel? EmployeeContactInfo { get; set; }
+
+        public EmployeeFinancialInfoModel? EmployeeFinancialInfo { get; set; }
+
         public ContributionModel Contribution { get; set; } = null!;
+
         public ICollection<AttendanceModel> Attendances { get; } = [];
+
         public ICollection<LeaveModel> Leaves { get; } = [];
+
         public ICollection<SalaryModel> Salaries { get; } = [];
     }
 }

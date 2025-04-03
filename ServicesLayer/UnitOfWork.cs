@@ -131,8 +131,8 @@ namespace ServicesLayer
                     UserName = "user1",
                     Password = "password",
                     Email = "test@test.com",
-                    PhoneNumber = "+639000000000",
-                    Url = "https://www.google.com/",
+                    //PhoneNumber = "+639000000000",
+                    //Url = "https://www.google.com/",
                     RoleId = employeeRole.Id,
                     Role = employeeRole
                 };
@@ -360,12 +360,12 @@ namespace ServicesLayer
                 viewModel.EmploymentDate = user.Employee.EmploymentDate.ToString("MMMM dd, yyyy");
             }
 
-            if (user.Email != null)
-                viewModel.Email = user.Email;
-            if (user.PhoneNumber != null)
-                viewModel.Phone = user.PhoneNumber;
-            if (user.Url != null)
-                viewModel.Website = user.Url;
+            //if (user.Email != null)
+            //    viewModel.Email = user.Email;
+            //if (user.PhoneNumber != null)
+            //    viewModel.Phone = user.PhoneNumber;
+            //if (user.Url != null)
+            //    viewModel.Website = user.Url;
 
             return viewModel;
         }

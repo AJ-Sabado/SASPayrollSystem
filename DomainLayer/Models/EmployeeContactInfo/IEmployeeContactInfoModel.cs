@@ -2,7 +2,7 @@
 
 namespace DomainLayer.Models.EmployeeContactInfo
 {
-    public interface IEmployeeContactInfo
+    public interface IEmployeeContactInfoModel
     {
         string Email { get; }
         EmployeeModel Employee { get; set; }

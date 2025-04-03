@@ -2,7 +2,7 @@
 
 namespace DomainLayer.Models.EmployeeFinancialInfo
 {
-    public interface IEmployeeFinancialInfo
+    public interface IEmployeeFinancialInfoModel
     {
         string BankingDetails { get; set; }
         EmployeeModel Employee { get; set; }
