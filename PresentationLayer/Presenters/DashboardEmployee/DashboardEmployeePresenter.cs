@@ -7,7 +7,7 @@ using ServicesLayer;
 
 namespace PresentationLayer.Presenters.DashboardEmployee
 {
-    public class DashboardEmployeePresenter : IDashboardEmployeePresenter
+    public class DashboardEmployeePresenter
     {
         private readonly ILogin_Form _loginForm;
         private readonly IDashboard_Employee _dashboardForm;
