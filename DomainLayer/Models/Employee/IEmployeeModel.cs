@@ -3,6 +3,7 @@ using DomainLayer.Models.Contribution;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Leave;
 using DomainLayer.Models.Salary;
+using DomainLayer.Models.User;
 
 namespace DomainLayer.Models.Employee
 {
@@ -21,6 +22,8 @@ namespace DomainLayer.Models.Employee
         uint LeaveCredits { get; set; }
         ICollection<LeaveModel> Leaves { get; }
         ICollection<SalaryModel> Salaries { get; }
+        UserModel User { get; set; }
+        Guid UserId { get; set; }
         TimeOnly WorkShiftEnd { get; set; }
         TimeOnly WorkShiftStart { get; set; }
     }
