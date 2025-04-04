@@ -117,7 +117,6 @@ namespace InfrastructureLayer.Migrations
                     Salt = table.Column<byte[]>(type: "binary(32)", nullable: false),
                     PasswordHash = table.Column<byte[]>(type: "binary(32)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: true),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -137,10 +136,6 @@ namespace InfrastructureLayer.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
-                    BirthDay = table.Column<DateOnly>(type: "date", nullable: false),
-                    EmploymentDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    JobTitle = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     BasicSemiMonthlyRate = table.Column<decimal>(type: "money", nullable: false),
                     LeaveCredits = table.Column<byte>(type: "tinyint", nullable: false),
                     WorkShiftStart = table.Column<TimeOnly>(type: "time", nullable: false),
@@ -206,6 +201,95 @@ namespace InfrastructureLayer.Migrations
                     table.PrimaryKey("PK_Contributions", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Contributions_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeContactInfos",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    PhoneNumberAlt = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: true),
+                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MailingAddress = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeContactInfos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmployeeContactInfos_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeEmploymentInfos",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CompanyId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    JobTitle = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    DateHired = table.Column<DateOnly>(type: "date", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeEmploymentInfos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmployeeEmploymentInfos_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeFinancialInfos",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TaxIdNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhilHealthIdNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SSSIdNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PagIbigIdNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BankingDetails = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeFinancialInfos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmployeeFinancialInfos_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeePersonalInfos",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    Gender = table.Column<byte>(type: "tinyint", nullable: false),
+                    BirthDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    CivilStatus = table.Column<byte>(type: "tinyint", nullable: false),
+                    HomeAddress = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeePersonalInfos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmployeePersonalInfos_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "Id",
@@ -313,6 +397,30 @@ namespace InfrastructureLayer.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmployeeContactInfos_EmployeeId",
+                table: "EmployeeContactInfos",
+                column: "EmployeeId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeEmploymentInfos_EmployeeId",
+                table: "EmployeeEmploymentInfos",
+                column: "EmployeeId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeFinancialInfos_EmployeeId",
+                table: "EmployeeFinancialInfos",
+                column: "EmployeeId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeePersonalInfos_EmployeeId",
+                table: "EmployeePersonalInfos",
+                column: "EmployeeId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Employees_DepartmentId",
                 table: "Employees",
                 column: "DepartmentId");
@@ -357,6 +465,18 @@ namespace InfrastructureLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Contributions");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeContactInfos");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeEmploymentInfos");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeFinancialInfos");
+
+            migrationBuilder.DropTable(
+                name: "EmployeePersonalInfos");
 
             migrationBuilder.DropTable(
                 name: "ForgotPasswordRequests");

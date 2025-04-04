@@ -1,5 +1,4 @@
-﻿using DomainLayer.Common;
-using DomainLayer.Models.Attendance;
+﻿using DomainLayer.Models.Attendance;
 using DomainLayer.Models.Contribution;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.EmployeeContactInfo;
@@ -9,13 +8,8 @@ using DomainLayer.Models.EmployeePersonalInfo;
 using DomainLayer.Models.Leave;
 using DomainLayer.Models.Salary;
 using DomainLayer.Models.User;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainLayer.Models.Employee
 {

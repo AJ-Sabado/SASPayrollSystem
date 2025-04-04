@@ -118,24 +118,8 @@ namespace InfrastructureLayer.Migrations
                     b.Property<decimal>("BasicSemiMonthlyRate")
                         .HasColumnType("money");
 
-                    b.Property<DateOnly>("BirthDay")
-                        .HasColumnType("date");
-
                     b.Property<Guid>("DepartmentId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateOnly>("EmploymentDate")
-                        .HasColumnType("date");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
-
-                    b.Property<string>("JobTitle")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
 
                     b.Property<byte>("LeaveCredits")
                         .HasColumnType("tinyint");
@@ -157,6 +141,142 @@ namespace InfrastructureLayer.Migrations
                         .IsUnique();
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.EmployeeContactInfo.EmployeeContactInfoModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("MailingAddress")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<string>("PhoneNumberAlt")
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<string>("Telephone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique();
+
+                    b.ToTable("EmployeeContactInfos");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.EmployeeEmploymentInfo.EmployeeEmploymentInfoModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CompanyId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("DateHired")
+                        .HasColumnType("date");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("JobTitle")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique();
+
+                    b.ToTable("EmployeeEmploymentInfos");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.EmployeeFinancialInfo.EmployeeFinancialInfoModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BankingDetails")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PagIbigIdNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhilHealthIdNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SSSIdNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaxIdNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique();
+
+                    b.ToTable("EmployeeFinancialInfos");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.EmployeePersonalInfo.EmployeePersonalInfoModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateOnly>("BirthDate")
+                        .HasColumnType("date");
+
+                    b.Property<byte>("CivilStatus")
+                        .HasColumnType("tinyint");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<byte>("Gender")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("HomeAddress")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique();
+
+                    b.ToTable("EmployeePersonalInfos");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.ForgotPasswordRequest.ForgotPasswordRequestModel", b =>
@@ -489,10 +609,6 @@ namespace InfrastructureLayer.Migrations
                         .IsRequired()
                         .HasColumnType("binary(32)");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
 
@@ -556,6 +672,50 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DomainLayer.Models.EmployeeContactInfo.EmployeeContactInfoModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
+                        .WithOne("EmployeeContactInfo")
+                        .HasForeignKey("DomainLayer.Models.EmployeeContactInfo.EmployeeContactInfoModel", "EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.EmployeeEmploymentInfo.EmployeeEmploymentInfoModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
+                        .WithOne("EmployeeEmploymentInfo")
+                        .HasForeignKey("DomainLayer.Models.EmployeeEmploymentInfo.EmployeeEmploymentInfoModel", "EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.EmployeeFinancialInfo.EmployeeFinancialInfoModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
+                        .WithOne("EmployeeFinancialInfo")
+                        .HasForeignKey("DomainLayer.Models.EmployeeFinancialInfo.EmployeeFinancialInfoModel", "EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.EmployeePersonalInfo.EmployeePersonalInfoModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
+                        .WithOne("EmployeePersonalInfo")
+                        .HasForeignKey("DomainLayer.Models.EmployeePersonalInfo.EmployeePersonalInfoModel", "EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("DomainLayer.Models.Holiday.HolidayModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.Payroll.PayrollModel", null)
@@ -615,6 +775,14 @@ namespace InfrastructureLayer.Migrations
 
                     b.Navigation("Contribution")
                         .IsRequired();
+
+                    b.Navigation("EmployeeContactInfo");
+
+                    b.Navigation("EmployeeEmploymentInfo");
+
+                    b.Navigation("EmployeeFinancialInfo");
+
+                    b.Navigation("EmployeePersonalInfo");
 
                     b.Navigation("Leaves");
 
