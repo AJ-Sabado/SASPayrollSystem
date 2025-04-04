@@ -1,4 +1,5 @@
-﻿using DomainLayer.Enums.EmployeePersonalInfo;
+﻿using DomainLayer.Common;
+using DomainLayer.Enums.EmployeePersonalInfo;
 using DomainLayer.Models.Employee;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +8,8 @@ namespace DomainLayer.Models.EmployeePersonalInfo
 {
     public class EmployeePersonalInfoModel : IEmployeePersonalInfoModel
     {
+        private string _fullName = string.Empty;
+
         [Key]
         public Guid Id { get; set; }
 
@@ -15,7 +18,7 @@ namespace DomainLayer.Models.EmployeePersonalInfo
         public required EmployeeModel Employee { get; set; }
 
         [StringLength(70, ErrorMessage = "Full name must not exceed 70 characters")]
-        public required string FullName { get; set; } = string.Empty;
+        public required string FullName { get => _fullName; set => _fullName = SetName(value.Trim()); }
 
         [Column(TypeName = "tinyint")]
         public GenderEnum Gender { get; set; }
@@ -28,5 +31,11 @@ namespace DomainLayer.Models.EmployeePersonalInfo
 
         [StringLength(70, ErrorMessage = "Home address must not exceed 70 characters")]
         public string HomeAddress { get; set; } = string.Empty;
+
+        private string SetName(string input)
+        {
+            var formatter = new Formatter();
+            return formatter.ToProperCase(input);
+        }
     }
 }
