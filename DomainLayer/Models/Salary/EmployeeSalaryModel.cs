@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainLayer.Models.Salary
 {
-    public class SalaryModel : ISalaryModel
+    public class EmployeeSalaryModel : IEmployeeSalaryModel
     {
         private uint _days = 0;
         private uint _regularOT = 0;
@@ -19,7 +19,7 @@ namespace DomainLayer.Models.Salary
         private readonly TimeOnly DayStart = new TimeOnly(6, 0, 0);
         private readonly TimeOnly DayEnd = new TimeOnly(22, 0, 0);
 
-        public SalaryModel()
+        public EmployeeSalaryModel()
         {
 
         }

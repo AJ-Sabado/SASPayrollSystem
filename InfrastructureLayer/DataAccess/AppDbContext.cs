@@ -23,10 +23,9 @@ namespace InfrastructureLayer.DataAccess
         private const string connectionStringHome = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SASPayrollDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         private const string connectionStringLab = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SASPayrollDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         private const string connectionStringTim = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SASPayrollDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-        private const string connectionStringNoreen = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SASPayrollDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionStringNoreen);
+            optionsBuilder.UseSqlServer(connectionStringHome);
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -48,7 +47,7 @@ namespace InfrastructureLayer.DataAccess
         public DbSet<NewUserRequestModel> NewUserRequests { get; set; }
         public DbSet<PayrollModel> Payrolls { get; set; }
         public DbSet<RoleModel> Roles { get; set; }
-        public DbSet<SalaryModel> Salaries { get; set; }
+        public DbSet<EmployeeSalaryModel> Salaries { get; set; }
         public DbSet<UserModel> Users { get; set; }
     }
 }

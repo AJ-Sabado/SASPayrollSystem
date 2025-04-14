@@ -3,7 +3,7 @@ using DomainLayer.Models.Payroll;
 
 namespace DomainLayer.Models.Salary
 {
-    public interface ISalaryModel
+    public interface IEmployeeSalaryModel
     {
         decimal AddAdjustments { get; set; }
         decimal AllowancesAmount { get; set; }

@@ -49,7 +49,7 @@ namespace ServicesLayer
         private readonly IBaseRepository<NewUserRequestModel> _newUserRequestRepository;
         private readonly IBaseRepository<PayrollModel> _payrollRepository;
         private readonly IBaseRepository<RoleModel> _roleRepository;
-        private readonly IBaseRepository<SalaryModel> _salaryRepository;
+        private readonly IBaseRepository<EmployeeSalaryModel> _salaryRepository;
         private readonly IBaseRepository<UserModel> _userRepository;
 
         //Common Services
@@ -70,7 +70,7 @@ namespace ServicesLayer
         public IBaseServices<NewUserRequestModel> NewUserRequestRepository { get; private set; }
         public IBaseServices<PayrollModel> PayrollRepository { get; private set; }
         public IBaseServices<RoleModel> RoleRepository { get; private set; }
-        public IBaseServices<SalaryModel> SalaryRepository { get; private set; }
+        public IBaseServices<EmployeeSalaryModel> SalaryRepository { get; private set; }
         public IBaseServices<UserModel> UserRepository { get; private set; }
 
         public UnitOfWork()
@@ -89,7 +89,7 @@ namespace ServicesLayer
             _newUserRequestRepository ??= new BaseRepository<NewUserRequestModel>();
             _payrollRepository ??= new BaseRepository<PayrollModel>();
             _roleRepository ??= new BaseRepository<RoleModel>();
-            _salaryRepository ??= new BaseRepository<SalaryModel>();
+            _salaryRepository ??= new BaseRepository<EmployeeSalaryModel>();
             _userRepository ??= new BaseRepository<UserModel>();
 
             _modelDataAnnotationsCheck ??= new ModelDataAnnotationsCheck();
@@ -108,7 +108,7 @@ namespace ServicesLayer
             NewUserRequestRepository ??= new BaseServices<NewUserRequestModel>(_newUserRequestRepository, _modelDataAnnotationsCheck);
             PayrollRepository ??= new BaseServices<PayrollModel>(_payrollRepository, _modelDataAnnotationsCheck);
             RoleRepository ??= new BaseServices<RoleModel>(_roleRepository, _modelDataAnnotationsCheck);
-            SalaryRepository ??= new BaseServices<SalaryModel>(_salaryRepository, _modelDataAnnotationsCheck);
+            SalaryRepository ??= new BaseServices<EmployeeSalaryModel>(_salaryRepository, _modelDataAnnotationsCheck);
             UserRepository ??= new BaseServices<UserModel>(_userRepository, _modelDataAnnotationsCheck);
         }
 

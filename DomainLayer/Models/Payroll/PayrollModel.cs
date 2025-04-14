@@ -38,7 +38,7 @@ namespace DomainLayer.Models.Payroll
         [Column(TypeName = "tinyint")]
         public uint TotalRegularHolidays { get; set; } = 0;
 
-        public ICollection<SalaryModel> Salaries { get; } = [];
+        public ICollection<EmployeeSalaryModel> Salaries { get; } = [];
 
         public void CountWorkDaysAndHolidays()
         {

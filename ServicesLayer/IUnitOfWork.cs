@@ -38,7 +38,7 @@ namespace ServicesLayer
         IBaseServices<NewUserRequestModel> NewUserRequestRepository { get; }
         IBaseServices<PayrollModel> PayrollRepository { get; }
         IBaseServices<RoleModel> RoleRepository { get; }
-        IBaseServices<SalaryModel> SalaryRepository { get; }
+        IBaseServices<EmployeeSalaryModel> SalaryRepository { get; }
         IBaseServices<UserModel> UserRepository { get; }
 
         Task ApproveNewUserRequest(string requestEmail, string roleName = null);

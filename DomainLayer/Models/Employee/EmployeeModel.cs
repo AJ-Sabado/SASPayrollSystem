@@ -80,6 +80,6 @@ namespace DomainLayer.Models.Employee
 
         public ICollection<LeaveModel> Leaves { get; } = [];
 
-        public ICollection<SalaryModel> Salaries { get; } = [];
+        public ICollection<EmployeeSalaryModel> Salaries { get; } = [];
     }
 }
