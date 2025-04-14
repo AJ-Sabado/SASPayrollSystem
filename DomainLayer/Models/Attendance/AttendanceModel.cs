@@ -9,6 +9,7 @@ namespace DomainLayer.Models.Attendance
     {
         private TimeOnly _timeOut;
 
+        //Should be stored somewhere else
         private readonly TimeOnly _breakTimeStart = new TimeOnly(12, 0, 0);
         private readonly TimeOnly _breakTimeEnd = new TimeOnly(13, 0, 0);
 

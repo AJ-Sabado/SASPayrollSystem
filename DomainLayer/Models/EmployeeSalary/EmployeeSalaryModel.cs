@@ -532,6 +532,7 @@ namespace DomainLayer.Models.EmployeeSalary
         //    LatesMinutes = totalMinutesLate;
         //}
 
+        //Will be changed because inefficient
         private void ApplyAttendances(IEnumerable<AttendanceModel> attendances)
         {
             var normalDays = attendances
