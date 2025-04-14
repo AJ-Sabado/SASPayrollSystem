@@ -12,7 +12,7 @@ using DomainLayer.Models.Leave;
 using DomainLayer.Models.NewUserRequest;
 using DomainLayer.Models.Payroll;
 using DomainLayer.Models.Role;
-using DomainLayer.Models.Salary;
+using DomainLayer.Models.EmployeeSalary;
 using DomainLayer.Models.User;
 using DomainLayer.ViewModels.AttendanceLog;
 using DomainLayer.ViewModels.DashboardDetails;

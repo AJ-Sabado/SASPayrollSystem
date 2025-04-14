@@ -6,7 +6,7 @@ using DomainLayer.Models.Payroll;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DomainLayer.Models.Salary
+namespace DomainLayer.Models.EmployeeSalary
 {
     public class EmployeeSalaryModel : IEmployeeSalaryModel
     {

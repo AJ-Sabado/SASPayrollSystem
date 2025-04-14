@@ -1,5 +1,5 @@
 ﻿using DomainLayer.Models.Holiday;
-using DomainLayer.Models.Salary;
+using DomainLayer.Models.EmployeeSalary;
 
 namespace DomainLayer.Models.Payroll
 {

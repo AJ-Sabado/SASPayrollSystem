@@ -1,7 +1,7 @@
 ﻿using DomainLayer.Models.Employee;
 using DomainLayer.Models.Payroll;
 
-namespace DomainLayer.Models.Salary
+namespace DomainLayer.Models.EmployeeSalary
 {
     public interface IEmployeeSalaryModel
     {
