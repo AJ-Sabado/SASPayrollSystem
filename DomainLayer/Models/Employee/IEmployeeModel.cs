@@ -6,7 +6,7 @@ using DomainLayer.Models.EmployeeEmploymentInfo;
 using DomainLayer.Models.EmployeeFinancialInfo;
 using DomainLayer.Models.EmployeePersonalInfo;
 using DomainLayer.Models.Leave;
-using DomainLayer.Models.Salary;
+using DomainLayer.Models.EmployeeSalary;
 using DomainLayer.Models.User;
 
 namespace DomainLayer.Models.Employee
@@ -25,7 +25,7 @@ namespace DomainLayer.Models.Employee
         Guid Id { get; set; }
         uint LeaveCredits { get; set; }
         ICollection<LeaveModel> Leaves { get; }
-        ICollection<SalaryModel> Salaries { get; }
+        ICollection<EmployeeSalaryModel> Salaries { get; }
         UserModel User { get; set; }
         Guid UserId { get; set; }
         TimeOnly WorkShiftEnd { get; set; }

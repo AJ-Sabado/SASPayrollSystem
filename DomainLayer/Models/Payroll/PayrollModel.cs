@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DomainLayer.Models.Salary;
+using DomainLayer.Models.EmployeeSalary;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Enums;
 
@@ -38,7 +38,7 @@ namespace DomainLayer.Models.Payroll
         [Column(TypeName = "tinyint")]
         public uint TotalRegularHolidays { get; set; } = 0;
 
-        public ICollection<SalaryModel> Salaries { get; } = [];
+        public ICollection<EmployeeSalaryModel> Salaries { get; } = [];
 
         public void CountWorkDaysAndHolidays()
         {

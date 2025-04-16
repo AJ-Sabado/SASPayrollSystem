@@ -1,5 +1,5 @@
 ﻿using DomainLayer.Models.Holiday;
-using DomainLayer.Models.Salary;
+using DomainLayer.Models.EmployeeSalary;
 
 namespace DomainLayer.Models.Payroll
 {
@@ -10,7 +10,7 @@ namespace DomainLayer.Models.Payroll
         ICollection<HolidayModel> Holidays { get; }
         Guid Id { get; set; }
         DateOnly PayrollDate { get; set; }
-        ICollection<SalaryModel> Salaries { get; }
+        ICollection<EmployeeSalaryModel> Salaries { get; }
         uint TotalRegularHolidays { get; set; }
         uint TotalSpecialHolidays { get; set; }
         uint TotalWorkingDays { get; set; }

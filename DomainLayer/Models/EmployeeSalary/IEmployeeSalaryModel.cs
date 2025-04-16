@@ -1,9 +1,9 @@
 ﻿using DomainLayer.Models.Employee;
 using DomainLayer.Models.Payroll;
 
-namespace DomainLayer.Models.Salary
+namespace DomainLayer.Models.EmployeeSalary
 {
-    public interface ISalaryModel
+    public interface IEmployeeSalaryModel
     {
         decimal AddAdjustments { get; set; }
         decimal AllowancesAmount { get; set; }

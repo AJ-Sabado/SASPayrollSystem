@@ -12,7 +12,7 @@ using DomainLayer.Models.Leave;
 using DomainLayer.Models.NewUserRequest;
 using DomainLayer.Models.Payroll;
 using DomainLayer.Models.Role;
-using DomainLayer.Models.Salary;
+using DomainLayer.Models.EmployeeSalary;
 using DomainLayer.Models.User;
 using DomainLayer.ViewModels.AttendanceLog;
 using DomainLayer.ViewModels.DashboardDetails;
@@ -38,7 +38,7 @@ namespace ServicesLayer
         IBaseServices<NewUserRequestModel> NewUserRequestRepository { get; }
         IBaseServices<PayrollModel> PayrollRepository { get; }
         IBaseServices<RoleModel> RoleRepository { get; }
-        IBaseServices<SalaryModel> SalaryRepository { get; }
+        IBaseServices<EmployeeSalaryModel> SalaryRepository { get; }
         IBaseServices<UserModel> UserRepository { get; }
 
         Task ApproveNewUserRequest(string requestEmail, string roleName = null);

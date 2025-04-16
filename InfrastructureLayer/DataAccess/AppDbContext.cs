@@ -12,7 +12,7 @@ using DomainLayer.Models.Leave;
 using DomainLayer.Models.NewUserRequest;
 using DomainLayer.Models.Payroll;
 using DomainLayer.Models.Role;
-using DomainLayer.Models.Salary;
+using DomainLayer.Models.EmployeeSalary;
 using DomainLayer.Models.User;
 using Microsoft.EntityFrameworkCore;
 
@@ -47,7 +47,7 @@ namespace InfrastructureLayer.DataAccess
         public DbSet<NewUserRequestModel> NewUserRequests { get; set; }
         public DbSet<PayrollModel> Payrolls { get; set; }
         public DbSet<RoleModel> Roles { get; set; }
-        public DbSet<SalaryModel> Salaries { get; set; }
+        public DbSet<EmployeeSalaryModel> Salaries { get; set; }
         public DbSet<UserModel> Users { get; set; }
     }
 }

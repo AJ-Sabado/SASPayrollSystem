@@ -6,7 +6,7 @@ using DomainLayer.Models.EmployeeEmploymentInfo;
 using DomainLayer.Models.EmployeeFinancialInfo;
 using DomainLayer.Models.EmployeePersonalInfo;
 using DomainLayer.Models.Leave;
-using DomainLayer.Models.Salary;
+using DomainLayer.Models.EmployeeSalary;
 using DomainLayer.Models.User;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -80,6 +80,6 @@ namespace DomainLayer.Models.Employee
 
         public ICollection<LeaveModel> Leaves { get; } = [];
 
-        public ICollection<SalaryModel> Salaries { get; } = [];
+        public ICollection<EmployeeSalaryModel> Salaries { get; } = [];
     }
 }
