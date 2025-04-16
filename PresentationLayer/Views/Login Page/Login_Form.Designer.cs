@@ -171,7 +171,7 @@
             label1.Font = new Font("Poppins", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(75, 12);
             label1.Name = "label1";
-            label1.Size = new Size(224, 37);
+            label1.Size = new Size(225, 37);
             label1.TabIndex = 1;
             label1.Text = "Strategic Assistant";
             // 
@@ -448,7 +448,7 @@
             label5.Font = new Font("Poppins", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.Location = new Point(75, 12);
             label5.Name = "label5";
-            label5.Size = new Size(224, 37);
+            label5.Size = new Size(225, 37);
             label5.TabIndex = 1;
             label5.Text = "Strategic Assistant";
             // 
@@ -549,7 +549,7 @@
             label7.Font = new Font("Poppins", 9F);
             label7.Location = new Point(3, 3);
             label7.Name = "label7";
-            label7.Size = new Size(55, 22);
+            label7.Size = new Size(56, 22);
             label7.TabIndex = 0;
             label7.Text = "Sign Up";
             // 
@@ -638,7 +638,7 @@
             label9.Font = new Font("Poppins", 9F);
             label9.Location = new Point(4, 3);
             label9.Name = "label9";
-            label9.Size = new Size(118, 22);
+            label9.Size = new Size(119, 22);
             label9.TabIndex = 1;
             label9.Text = "Confirm Password";
             // 
@@ -757,57 +757,58 @@
         }
 
         #endregion
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Panel panel9;
-        private Panel panel2;
-        private Label label1;
-        private PictureBox pictureBox1;
-        private Panel panel3;
-        private Panel panel5;
-        private Label label3;
-        private Panel panel4;
-        private Label label2;
-        private Panel panel6;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtBoxUsername;
-        private Panel panel7;
-        private Label label4;
-        private Panel panel8;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt1;
-        private Panel panel10;
-        private Syncfusion.WinForms.Controls.SfButton btnForgotPass;
-        private Syncfusion.WinForms.Controls.SfButton btnCloseForm;
-        private Panel panel11;
-        private Syncfusion.WinForms.Controls.SfButton btnSignIn;
-        private Syncfusion.Windows.Forms.Tools.AutoLabel lblSignInTitle;
-        private Label lblSignInDescription;
-        private Syncfusion.WinForms.Controls.SfButton btnSignUpOption;
-        private Panel bgPanelMotion;
-        private FlowLayoutPanel flowLayoutPanel2;
-        private Panel panel1;
-        private Syncfusion.WinForms.Controls.SfButton btnCloseForm2;
-        private Panel panel12;
-        private Label label5;
-        private PictureBox pictureBox2;
-        private Panel panel13;
-        private Panel panel14;
-        private Label label6;
-        private Panel panel22;
-        private Label label10;
-        private Panel panel23;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt4;
-        private Panel panel15;
-        private Label label7;
-        private Panel panel16;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt2;
-        private Panel panel17;
-        private Label label8;
-        private Panel panel18;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt3;
-        private Panel panel19;
-        private Label label9;
-        private Panel panel21;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtBoxConfirmPassword;
-        private Panel panel20;
-        private Syncfusion.WinForms.Controls.SfButton btnSignUp;
+
+        public FlowLayoutPanel flowLayoutPanel1;
+        public Panel panel9;
+        public Panel panel2;
+        public Label label1;
+        public PictureBox pictureBox1;
+        public Panel panel3;
+        public Panel panel5;
+        public Label label3;
+        public Panel panel4;
+        public Label label2;
+        public Panel panel6;
+        public Syncfusion.Windows.Forms.Tools.TextBoxExt txtBoxUsername;
+        public Panel panel7;
+        public Label label4;
+        public Panel panel8;
+        public Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt1;
+        public Panel panel10;
+        public Syncfusion.WinForms.Controls.SfButton btnForgotPass;
+        public Syncfusion.WinForms.Controls.SfButton btnCloseForm;
+        public Panel panel11;
+        public Syncfusion.WinForms.Controls.SfButton btnSignIn;
+        public Syncfusion.Windows.Forms.Tools.AutoLabel lblSignInTitle;
+        public Label lblSignInDescription;
+        public Syncfusion.WinForms.Controls.SfButton btnSignUpOption;
+        public Panel bgPanelMotion;
+        public FlowLayoutPanel flowLayoutPanel2;
+        public Panel panel1;
+        public Syncfusion.WinForms.Controls.SfButton btnCloseForm2;
+        public Panel panel12;
+        public Label label5;
+        public PictureBox pictureBox2;
+        public Panel panel13;
+        public Panel panel14;
+        public Label label6;
+        public Panel panel22;
+        public Label label10;
+        public Panel panel23;
+        public Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt4;
+        public Panel panel15;
+        public Label label7;
+        public Panel panel16;
+        public Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt2;
+        public Panel panel17;
+        public Label label8;
+        public Panel panel18;
+        public Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt3;
+        public Panel panel19;
+        public Label label9;
+        public Panel panel21;
+        public Syncfusion.Windows.Forms.Tools.TextBoxExt txtBoxConfirmPassword;
+        public Panel panel20;
+        public Syncfusion.WinForms.Controls.SfButton btnSignUp;
     }
 }

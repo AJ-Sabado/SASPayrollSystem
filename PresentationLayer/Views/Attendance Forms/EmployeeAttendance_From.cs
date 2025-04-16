@@ -1,140 +1,122 @@
-﻿using MaterialSkin;
+﻿using PresentationLayer.Presenters.Employee_Attendance;
+using PresentationLayer.Views.Attendance_Forms;
+using Syncfusion.WinForms.Controls;
 using Syncfusion.WinForms.Input;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace PresentationLayer.Views
 {
-    public partial class EmployeeAttendance_Form : Form
+    public partial class EmployeeAttendance_Form : Form, IEmployeeAttendance_View
     {
-        int formStatus;
+        private EmployeeAttendance_Presenter _presenter;
+        private int _formStatus;
+        public Action<bool> OnAttendanceLogged { get; set; } = _ => { };
+        public bool isWorking { get; set; } = false;
+
+
         public EmployeeAttendance_Form()
         {
             InitializeComponent();
-
-            UpdateLogButtonProperties();
-            AttendanceLogTimePickerProperties();
-            buttonRequestProperties();
-
+            _presenter = new EmployeeAttendance_Presenter(this);
+            InitializeControls();
+            _presenter.SetFormStatus(1);
         }
 
+        private void InitializeControls()
+        {
+            ConfigureTimePickers();
+            ConfigureButtonStyles(btnRequest, Color.FromArgb(252, 184, 49), Color.FromArgb(247, 165, 2));
+        }
+
+        public int formStatus => _formStatus;
 
         public void FormStatus(int stat)
         {
-            formStatus = stat;
+            _formStatus = stat;
 
-            if (formStatus == 1 || formStatus == 2)
+            bool isLogVisible = _formStatus == 1 || _formStatus == 2;
+            pnlAttendanceLog.Visible = isLogVisible;
+            pnlAttendanceRequest.Visible = !isLogVisible;
+
+            SetScreenSize();
+        }
+
+
+        public void UpdateLogButtonProperties(string buttonText)
+        {
+            btnAttendanceLog.Text = buttonText;
+
+            switch (buttonText)
             {
-                pnlAttendanceLog.Show();
-                pnlAttendanceRequest.Hide();
-                setScreenSize();
-                UpdateLogButtonProperties();
-            }
-            else if (formStatus == 3)
-            {
-                pnlAttendanceLog.Hide();
-                pnlAttendanceRequest.Show();
-                setScreenSize();
+                case "Time In":
+                    ApplyLogButtonStyle(Color.FromArgb(192, 235, 166), Color.FromArgb(52, 121, 40));
+                    break;
+                case "Time Out":
+                    ApplyLogButtonStyle(Color.FromArgb(216, 64, 64), Color.FromArgb(163, 29, 29));
+                    break;
             }
         }
 
-        public void UpdateLogButtonProperties()
+        private void SetScreenSize()
         {
+            this.Size = _formStatus switch
+            {
+                1 or 2 => new Size(467, 537),
+                3 => new Size(559, 632),
+                _ => this.Size
+            };
+        }
+
+        public void ShowMessage(string message) => MessageBox.Show(message);
+        public void CloseForm() => this.Close();
+
+        private void ApplyLogButtonStyle(Color baseColor, Color hoverColor)
+        {
+            var style = btnAttendanceLog.Style;
+            style.BackColor = baseColor;
+            style.ForeColor = Color.White;
+            style.Border = new Pen(baseColor);
+
+            style.HoverBackColor = hoverColor;
+            style.HoverForeColor = Color.White;
+            style.HoverBorder = new Pen(hoverColor);
+
+            style.FocusedBackColor = baseColor;
+            style.FocusedForeColor = Color.White;
+            style.FocusedBorder = new Pen(baseColor);
+
+            style.PressedBackColor = hoverColor;
+            style.PressedForeColor = Color.White;
+            style.PressedBorder = new Pen(hoverColor);
+
             RoundedElements.rounded(btnAttendanceLog, 10);
-
-            if (formStatus == 1)
-            {
-                ButtonPropertiesTimeIn();
-            }
-            else if (formStatus == 2)
-            {
-                ButtonPropertiesTimeOut();
-            }
         }
 
-        public void setScreenSize()
+        private void ConfigureButtonStyles(SfButton button, Color baseColor, Color hoverColor)
         {
-            if (formStatus == 1 || formStatus == 2)
-            {
-                this.Size = new Size(467, 537);
-            }
-            else if (formStatus == 3)
-            {
-                this.Size = new Size(559, 632);
-            }
+            var style = button.Style;
+            style.BackColor = baseColor;
+            style.ForeColor = Color.White;
+            style.Border = new Pen(baseColor);
+
+            style.HoverBackColor = hoverColor;
+            style.HoverForeColor = Color.White;
+            style.HoverBorder = new Pen(hoverColor);
+
+            style.FocusedBackColor = hoverColor;
+            style.FocusedForeColor = Color.White;
+            style.FocusedBorder = new Pen(hoverColor);
+
+            style.PressedBackColor = hoverColor;
+            style.PressedForeColor = Color.White;
+            style.PressedBorder = new Pen(hoverColor);
+
+            RoundedElements.rounded(button, 10);
         }
 
-        public void ButtonPropertiesTimeIn()
-        {
-            btnAttendanceLog.Text = "Time In";
-            btnAttendanceLog.Style.BackColor = Color.FromArgb(192, 235, 166);
-            btnAttendanceLog.Style.ForeColor = Color.FromArgb(255, 255, 255);
-            btnAttendanceLog.Style.Border = new Pen(Color.FromArgb(192, 235, 166));
-
-            btnAttendanceLog.Style.HoverBackColor = Color.FromArgb(52, 121, 40);
-            btnAttendanceLog.Style.HoverForeColor = Color.FromArgb(255, 255, 255);
-            btnAttendanceLog.Style.HoverBorder = new Pen(Color.FromArgb(52, 121, 40));
-
-            btnAttendanceLog.Style.FocusedBackColor = Color.FromArgb(192, 235, 166);
-            btnAttendanceLog.Style.FocusedForeColor = Color.FromArgb(255, 255, 255);
-            btnAttendanceLog.Style.FocusedBorder = new Pen(Color.FromArgb(192, 235, 166));
-
-            btnAttendanceLog.Style.PressedBackColor = Color.FromArgb(52, 121, 40);
-            btnAttendanceLog.Style.PressedForeColor = Color.FromArgb(255, 255, 255);
-            btnAttendanceLog.Style.PressedBorder = new Pen(Color.FromArgb(52, 121, 40));
-        }
-
-        public void ButtonPropertiesTimeOut()
-        {
-            btnAttendanceLog.Text = "Time Out";
-            btnAttendanceLog.Style.BackColor = Color.FromArgb(216, 64, 64);
-            btnAttendanceLog.Style.ForeColor = Color.FromArgb(255, 255, 255);
-            btnAttendanceLog.Style.Border = new Pen(Color.FromArgb(216, 64, 64));
-
-            btnAttendanceLog.Style.HoverBackColor = Color.FromArgb(163, 29, 29);
-            btnAttendanceLog.Style.HoverForeColor = Color.FromArgb(255, 255, 255);
-            btnAttendanceLog.Style.HoverBorder = new Pen(Color.FromArgb(163, 29, 29));
-
-            btnAttendanceLog.Style.FocusedBackColor = Color.FromArgb(216, 64, 64);
-            btnAttendanceLog.Style.FocusedForeColor = Color.FromArgb(255, 255, 255);
-            btnAttendanceLog.Style.FocusedBorder = new Pen(Color.FromArgb(216, 64, 64));
-
-            btnAttendanceLog.Style.PressedBackColor = Color.FromArgb(163, 29, 29);
-            btnAttendanceLog.Style.PressedForeColor = Color.FromArgb(255, 255, 255);
-            btnAttendanceLog.Style.PressedBorder = new Pen(Color.FromArgb(163, 29, 29));
-        }
-
-        public void buttonRequestProperties()
-        {
-            btnRequest.Style.BackColor = Color.FromArgb(252, 184, 49); ;
-            btnRequest.Style.ForeColor = Color.White;
-            btnRequest.Style.Border = new Pen(Color.FromArgb(252, 184, 49));
-
-            btnRequest.Style.HoverBackColor = Color.FromArgb(247, 164, 0);
-            btnRequest.Style.HoverForeColor = Color.White;
-            btnRequest.Style.HoverBorder = new Pen(Color.FromArgb(247, 164, 0));
-
-            btnRequest.Style.FocusedBackColor = Color.FromArgb(247, 164, 0);
-            btnRequest.Style.FocusedForeColor = Color.White;
-            btnRequest.Style.FocusedBorder = new Pen(Color.FromArgb(247, 164, 0));
-
-            btnRequest.Style.PressedBackColor = Color.FromArgb(247, 164, 0);
-            btnRequest.Style.PressedForeColor = Color.White;
-            btnRequest.Style.PressedBorder = new Pen(Color.FromArgb(247, 164, 0));
-            RoundedElements.rounded(btnRequest, 10);
-        }
-
-        public void AttendanceLogTimePickerProperties()
+        private void ConfigureTimePickers()
         {
             SfDateTimeEdit[] dtp = { dtpTimeIn, dtpTimeOut };
-
             foreach (SfDateTimeEdit d in dtp)
             {
                 d.DateTimeEditingMode = Syncfusion.WinForms.Input.Enums.DateTimeEditingMode.Mask;
@@ -144,35 +126,37 @@ namespace PresentationLayer.Views
             }
         }
 
-        //Action Events
-        private void btnAttendanceLog_Click(object sender, EventArgs e)
-        {
-            if (formStatus == 1)
-            {
-                string timeInTime = "00:00 AM";
-                MessageBox.Show("Time in successful! Time in time @" + timeInTime);
-            }
-            else if (formStatus == 2)
-            {
-                string timeOutTime = "00:00 PM";
-                string TotalHours = "256 hours";
-                MessageBox.Show("Time out successful! Time out time @" + timeOutTime + ", Total hours worked: " + TotalHours);
-            }
-            this.Close();
-        }
+        
+
+        // Event handlers
+        private void btnAttendanceLog_Click(object sender, EventArgs e) => _presenter.HandleAttendanceLogClick();
 
         private void btnAttachFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog fdProof = new OpenFileDialog();
-
-            fdProof.Title = "Attach Proof of Attendance";
-            fdProof.Filter = "PDF Files|*.pdf|Image Files|*.jpg;*.jpeg;*.png;*.bmp";
-
-            if (fdProof.ShowDialog() == DialogResult.OK)
-            {
-                tbAttachFile.Text = Path.GetFileName(fdProof.FileName);
-                byte[] fileData = File.ReadAllBytes(fdProof.FileName);
-            }
+            _presenter.HandleAttachFileClick();
         }
+
+        public string ShowFileDialog(string filter, string title)
+        {
+            using OpenFileDialog fdProof = new OpenFileDialog
+            {
+                Title = title,
+                Filter = filter
+            };
+
+            return fdProof.ShowDialog() == DialogResult.OK ? fdProof.FileName : null;
+        }
+
+        public void SetAttachedFile(string fileName, byte[] fileData)
+        {
+            tbAttachFile.Text = Path.GetFileName(fileName);
+        }
+
+        private void btnRequest_Click(object sender, EventArgs e)
+        {
+            _presenter.HandleRequestClick();
+        }
+
+        
     }
 }

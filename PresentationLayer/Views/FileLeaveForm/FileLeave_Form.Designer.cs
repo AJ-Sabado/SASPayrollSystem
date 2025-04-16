@@ -67,6 +67,7 @@
             btnLeaveAttach = new Syncfusion.WinForms.Controls.SfButton();
             panel12 = new Panel();
             btnLeaveApply = new MaterialSkin.Controls.MaterialButton();
+            materialTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
             flowLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -421,6 +422,7 @@
             flowLayoutPanel4.Controls.Add(panel9);
             flowLayoutPanel4.Controls.Add(flowLayoutPanel5);
             flowLayoutPanel4.Controls.Add(panel12);
+            flowLayoutPanel4.Controls.Add(materialTextBox1);
             flowLayoutPanel4.Location = new Point(375, 0);
             flowLayoutPanel4.Margin = new Padding(0);
             flowLayoutPanel4.Name = "flowLayoutPanel4";
@@ -544,6 +546,23 @@
             btnLeaveApply.UseAccentColor = false;
             btnLeaveApply.UseVisualStyleBackColor = true;
             // 
+            // materialTextBox1
+            // 
+            materialTextBox1.AnimateReadOnly = false;
+            materialTextBox1.BorderStyle = BorderStyle.None;
+            materialTextBox1.Depth = 0;
+            materialTextBox1.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialTextBox1.LeadingIcon = null;
+            materialTextBox1.Location = new Point(3, 184);
+            materialTextBox1.MaxLength = 50;
+            materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
+            materialTextBox1.Multiline = false;
+            materialTextBox1.Name = "materialTextBox1";
+            materialTextBox1.Size = new Size(272, 50);
+            materialTextBox1.TabIndex = 4;
+            materialTextBox1.Text = "";
+            materialTextBox1.TrailingIcon = null;
+            // 
             // FileLeave_Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -620,5 +639,6 @@
         public Label label7;
         private MaterialSkin.Controls.MaterialButton btnLeaveApply;
         private MaterialSkin.Controls.MaterialButton btnDownlaodLeaveForm;
+        private MaterialSkin.Controls.MaterialTextBox materialTextBox1;
     }
 }

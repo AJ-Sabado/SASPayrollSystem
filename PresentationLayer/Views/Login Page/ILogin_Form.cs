@@ -9,10 +9,6 @@ namespace PresentationLayer.Views
 
         event EventHandler SignIn;
 
-        void InitButtonProperties(SfButton btn);
-        void InitCloseBtnProperties(SfButton btn);
-        void InitForgotPassButton();
-
         void Hide();
 
         void Close();

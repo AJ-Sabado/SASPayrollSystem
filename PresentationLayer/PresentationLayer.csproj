@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <BaseOutputPath>C:\Users\Timro\OneDrive\Documents\PROGRAMMING PROJECTS\STRATEGIC ASSISTANT PAYROLL\DESIGN\InfrastructureLayer\bin\Debug\net8.0</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

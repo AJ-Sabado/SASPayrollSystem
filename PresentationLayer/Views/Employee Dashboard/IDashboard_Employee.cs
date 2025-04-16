@@ -9,7 +9,6 @@ namespace PresentationLayer.Views
 {
     public interface IDashboard_Employee
     {
-        void isWorkingFunction();
         void Hide();
         void Show();
         void Close();

@@ -1,14 +1,13 @@
-﻿using MaterialSkin;
+﻿using DomainLayer.Enums;
+using MaterialSkin;
 using PresentationLayer.Views;
+using PresentationLayer.Views.Attendance_Forms;
 using Syncfusion.WinForms.Controls;
 
 namespace PresentationLayer
 {
     public partial class Dashboard_Employee : Form, IDashboard_Employee
     {
-        //private IUnitOfWork _unitOfWork;  No need since sa presenter na ang db access
-
-        //private IUserModel _userModel;    Also no need
 
         private SfButton lastFocusedButton;
 
@@ -18,17 +17,17 @@ namespace PresentationLayer
 
         private Dashboard_EmployeeUIStyles _dashboardUIStyles;
 
-        private bool isWorking = false;
+        private IEmployeeAttendance_View _employeeAttendance;
 
-        public Dashboard_Employee() //No need
+        public Dashboard_Employee()
         {
-            //_unitOfWork = unitOfWork;
-            //_userModel = currentUser;
             InitializeComponent();
 
             _dashboardUIStyles = new Dashboard_EmployeeUIStyles(this);
             _dashboardUIStyles.InitializeUI();
             _dashboardUIStyles.ApplyMaterialSkin(MaterialSkinManager.Instance);
+
+            _employeeAttendance = new EmployeeAttendance_Form();
 
             this.FormClosed += delegate
             {
@@ -56,8 +55,8 @@ namespace PresentationLayer
             btnJobDesk.LostFocus += Btn_LostFocus;
             btnAccount.LostFocus += Btn_LostFocus;
 
-            //Attendance Button Status
-            isWorkingFunction();
+            //Updating Attendance Button Status
+            updateAttendanceButtonStatus();
         }
 
         private void Btn_LostFocus(object sender, EventArgs e)
@@ -68,45 +67,41 @@ namespace PresentationLayer
             }
         }
 
-        public void isWorkingFunction()
+        private void updateAttendanceButtonStatus()
         {
-            if (isWorking)
+            if (_employeeAttendance.isWorking)
             {
-                btnTimeOut.Enabled = true;
                 btnTimeIn.Enabled = false;
-            } else
+                btnTimeOut.Enabled = true;
+            }
+            else
             {
-                btnTimeOut.Enabled = false;
                 btnTimeIn.Enabled = true;
+                btnTimeOut.Enabled = false;
             }
         }
 
-
-
         //Action Events
-
         private void btnTimeIn_Click(object sender, EventArgs e)
         {
             if (EmployeeAttendanceForm == null)
             {
-                EmployeeAttendanceForm = new EmployeeAttendance_Form();
+                EmployeeAttendanceForm = (EmployeeAttendance_Form)_employeeAttendance;
             }
-            EmployeeAttendanceForm.FormStatus(1);
-            EmployeeAttendanceForm.Text = "Time In";
+
             EmployeeAttendanceForm.ShowDialog();
-            isWorking = true;
-            isWorkingFunction();
+            updateAttendanceButtonStatus();
         }
 
         private void btnTimeOut_Click(object sender, EventArgs e)
         {
-            EmployeeAttendanceForm.FormStatus(2);
-            EmployeeAttendanceForm.Text = "Time Out";
+            if (EmployeeAttendanceForm == null)
+            {
+                EmployeeAttendanceForm = (EmployeeAttendance_Form)_employeeAttendance;
+            }
+
             EmployeeAttendanceForm.ShowDialog();
-            EmployeeAttendanceForm.Dispose();
-            EmployeeAttendanceForm = null;
-            isWorking = false;
-            isWorkingFunction();
+            updateAttendanceButtonStatus();
         }
 
         private void btnAttendanceRequest_Click(object sender, EventArgs e)
@@ -118,11 +113,9 @@ namespace PresentationLayer
             EmployeeAttendanceForm.FormStatus(3);
             EmployeeAttendanceForm.Text = "Attendance Request";
             EmployeeAttendanceForm.ShowDialog();
-            if (!isWorking)
-            {
-                EmployeeAttendanceForm.Dispose();
-                EmployeeAttendanceForm = null;
-            }
+
+            EmployeeAttendanceForm.Dispose();
+            EmployeeAttendanceForm = null;
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
@@ -150,6 +143,14 @@ namespace PresentationLayer
             pnlAccountsRegular.Show();
             pnlDashboard.Hide();
             pnlJobDeskRegular.Hide();
+        }
+
+        private void btnEditAccountInfo_Click(object sender, EventArgs e)
+        {
+            var form = new EditPersonalInformation_View();
+            form.ShowDialog();
+            form.Close();
+            form.Dispose();
         }
     }
 

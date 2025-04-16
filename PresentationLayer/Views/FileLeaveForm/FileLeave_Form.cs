@@ -1,14 +1,5 @@
-﻿using MaterialSkin;
-using PresentationLayer.Presenters.FileLeave;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using PresentationLayer.Presenters.FileLeave;
+using PresentationLayer.Views.Utility_Classes;
 
 namespace PresentationLayer.Views.FileLeaveForm
 {
@@ -21,16 +12,7 @@ namespace PresentationLayer.Views.FileLeaveForm
 
             InitializeComponent();
 
-            MaterialSkinManager manager = MaterialSkinManager.Instance;
-            manager.EnforceBackcolorOnAllComponents = false;
-            manager.Theme = MaterialSkinManager.Themes.LIGHT;
-            manager.ColorScheme = new ColorScheme(
-                primary: Color.FromArgb(255, 215, 0),       // Gold
-                darkPrimary: Color.FromArgb(218, 165, 32),  // Goldenrod
-                lightPrimary: Color.FromArgb(255, 239, 184), // Light gold/yellow
-                accent: Color.FromArgb(255, 204, 0),        // Deep golden yellow
-                textShade: TextShade.BLACK
-            );
+            MaterialSkinClass.initMaterialSkin();
         }
 
         public void initStartDateTime()
@@ -118,7 +100,7 @@ namespace PresentationLayer.Views.FileLeaveForm
 
         private void slDuration_MouseClick(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void slDuration_MouseCaptureChanged(object sender, EventArgs e)
@@ -134,8 +116,8 @@ namespace PresentationLayer.Views.FileLeaveForm
             else
             {
                 MessageBox.Show("Invalid duration. Please enter a valid number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                dteEndDate.Value = DateTime.Now.AddDays(1); 
-                slDuration.Value = 1; 
+                dteEndDate.Value = DateTime.Now.AddDays(1);
+                slDuration.Value = 1;
             }
         }
     }

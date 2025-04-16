@@ -27,5 +27,6 @@ internal static class Program
         //Application.Run(new Employee_Dashboard(servicesManager.CurrentUser, servicesManager));
         //Application.Run(new Dashboard_Employee());
         //Application.Run(new FileLeave_Form());
+        //Application.Run(new Edit_Information());
     }
 }

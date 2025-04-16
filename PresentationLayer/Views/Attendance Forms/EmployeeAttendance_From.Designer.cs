@@ -744,6 +744,7 @@
             btnRequest.Size = new Size(134, 49);
             btnRequest.TabIndex = 0;
             btnRequest.Text = "Request";
+            btnRequest.Click += btnRequest_Click;
             // 
             // EmployeeAttendance_Form
             // 
