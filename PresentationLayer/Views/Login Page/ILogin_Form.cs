@@ -1,4 +1,5 @@
-﻿using Syncfusion.WinForms.Controls;
+﻿using PresentationLayer.Views.Custom_Message_Box;
+using Syncfusion.WinForms.Controls;
 
 namespace PresentationLayer.Views
 {
@@ -8,6 +9,8 @@ namespace PresentationLayer.Views
         string UsernameField { get; set; }
 
         event EventHandler SignIn;
+        event EventHandler ForgotPassword;
+        event EventHandler SignUp;
 
         void Hide();
 
@@ -15,6 +18,6 @@ namespace PresentationLayer.Views
 
         void Show();
 
-        void ShowMessage(string message);
+        void ShowMessage(string title, string message, dBoxType type);
     }
 }

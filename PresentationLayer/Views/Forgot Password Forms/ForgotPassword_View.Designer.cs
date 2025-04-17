@@ -1,6 +1,6 @@
 ﻿namespace PresentationLayer.Views
 {
-    partial class ForgotPassword
+    partial class ForgotPassword_View
     {
         /// <summary>
         /// Required designer variable.
@@ -346,7 +346,6 @@
             btnCancel.Size = new Size(100, 37);
             btnCancel.TabIndex = 1;
             btnCancel.Text = "Cancel";
-            btnCancel.Click += btnCancel_Click;
             // 
             // btnNext
             // 
@@ -356,7 +355,6 @@
             btnNext.Size = new Size(100, 37);
             btnNext.TabIndex = 0;
             btnNext.Text = "Next";
-            btnNext.Click += btnNext_Click;
             // 
             // flowLayoutPanel1
             // 
@@ -617,7 +615,6 @@
             btnOk.Size = new Size(100, 37);
             btnOk.TabIndex = 0;
             btnOk.Text = "Ok";
-            btnOk.Click += btnCancel_Click;
             // 
             // flowLayoutPanel3
             // 
@@ -998,7 +995,6 @@
             btnCancel3.Size = new Size(100, 37);
             btnCancel3.TabIndex = 1;
             btnCancel3.Text = "Cancel";
-            btnCancel3.Click += btnCancel_Click;
             // 
             // btnNext2
             // 
@@ -1007,8 +1003,7 @@
             btnNext2.Name = "btnNext2";
             btnNext2.Size = new Size(100, 37);
             btnNext2.TabIndex = 0;
-            btnNext2.Text = "Next";
-            btnNext2.Click += btnNext2_Click;
+            btnNext2.Text = "Reset";
             // 
             // flowLayoutPanel4
             // 
@@ -1204,7 +1199,7 @@
             sfButton8.TabIndex = 0;
             sfButton8.Text = "Next";
             // 
-            // ForgotPassword
+            // ForgotPassword_View
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -1212,7 +1207,7 @@
             Controls.Add(panelForgotPass2);
             Controls.Add(panelForgotPass1);
             Controls.Add(panelForgotPass3);
-            Name = "ForgotPassword";
+            Name = "ForgotPassword_View";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ForgotPassword";
             panelForgotPass1.ResumeLayout(false);
@@ -1285,92 +1280,92 @@
 
         #endregion
 
-        private FlowLayoutPanel panelForgotPass1;
-        private Panel panel1;
-        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel1;
-        private Panel panel2;
-        private Panel panel3;
-        private Panel panel4;
-        private Panel panel5;
-        private Panel panel7;
-        private Syncfusion.WinForms.Controls.SfButton btnCancel;
-        private Syncfusion.WinForms.Controls.SfButton btnNext;
-        private Label label1;
-        private Label label2;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox21;
-        private Panel panel6;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox22;
-        private Label label3;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Panel panel8;
-        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel2;
-        private Panel panel9;
-        private Label label4;
-        private Panel panel10;
-        private Label label5;
-        private Panel panel11;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox23;
-        private Panel panel12;
-        private Label label6;
-        private Panel panel13;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox24;
-        private Panel panel14;
-        private Syncfusion.WinForms.Controls.SfButton sfButton1;
-        private Syncfusion.WinForms.Controls.SfButton sfButton2;
-        private FlowLayoutPanel panelForgotPass3;
-        private Panel panel15;
-        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel3;
-        private Panel panel16;
-        private Label label7;
-        private Panel panel21;
-        private Syncfusion.WinForms.Controls.SfButton btnOk;
-        private FlowLayoutPanel flowLayoutPanel3;
-        private Panel panel22;
-        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel4;
-        private Panel panel23;
-        private Label label10;
-        private Panel panel24;
-        private Label label11;
-        private Panel panel25;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox27;
-        private Panel panel26;
-        private Label label12;
-        private Panel panel27;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox28;
-        private Panel panel28;
-        private Syncfusion.WinForms.Controls.SfButton sfButton5;
-        private Syncfusion.WinForms.Controls.SfButton sfButton6;
-        private FlowLayoutPanel panelForgotPass2;
-        private Panel panel17;
-        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel5;
-        private Panel panel18;
-        private Label label8;
-        private Panel panel29;
-        private Label label13;
-        private Panel panel30;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox25;
-        private Panel panel31;
-        private Label label14;
-        private Panel panel32;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox29;
-        private Panel panel33;
-        private Syncfusion.WinForms.Controls.SfButton btnCancel3;
-        private Syncfusion.WinForms.Controls.SfButton btnNext2;
-        private FlowLayoutPanel flowLayoutPanel4;
-        private Panel panel34;
-        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel6;
-        private Panel panel35;
-        private Label label15;
-        private Panel panel36;
-        private Label label16;
-        private Panel panel37;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox210;
-        private Panel panel38;
-        private Label label17;
-        private Panel panel39;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox211;
-        private Panel panel40;
-        private Syncfusion.WinForms.Controls.SfButton sfButton7;
-        private Syncfusion.WinForms.Controls.SfButton sfButton8;
+        public FlowLayoutPanel panelForgotPass1;
+        public Panel panel1;
+        public Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel1;
+        public Panel panel2;
+        public Panel panel3;
+        public Panel panel4;
+        public Panel panel5;
+        public Panel panel7;
+        public Syncfusion.WinForms.Controls.SfButton btnCancel;
+        public Syncfusion.WinForms.Controls.SfButton btnNext;
+        public Label label1;
+        public Label label2;
+        public MaterialSkin.Controls.MaterialTextBox2 materialTextBox21;
+        public Panel panel6;
+        public MaterialSkin.Controls.MaterialTextBox2 materialTextBox22;
+        public Label label3;
+        public FlowLayoutPanel flowLayoutPanel1;
+        public Panel panel8;
+        public Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel2;
+        public Panel panel9;
+        public Label label4;
+        public Panel panel10;
+        public Label label5;
+        public Panel panel11;
+        public MaterialSkin.Controls.MaterialTextBox2 materialTextBox23;
+        public Panel panel12;
+        public Label label6;
+        public Panel panel13;
+        public MaterialSkin.Controls.MaterialTextBox2 materialTextBox24;
+        public Panel panel14;
+        public Syncfusion.WinForms.Controls.SfButton sfButton1;
+        public Syncfusion.WinForms.Controls.SfButton sfButton2;
+        public FlowLayoutPanel panelForgotPass3;
+        public Panel panel15;
+        public Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel3;
+        public Panel panel16;
+        public Label label7;
+        public Panel panel21;
+        public Syncfusion.WinForms.Controls.SfButton btnOk;
+        public FlowLayoutPanel flowLayoutPanel3;
+        public Panel panel22;
+        public Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel4;
+        public Panel panel23;
+        public Label label10;
+        public Panel panel24;
+        public Label label11;
+        public Panel panel25;
+        public MaterialSkin.Controls.MaterialTextBox2 materialTextBox27;
+        public Panel panel26;
+        public Label label12;
+        public Panel panel27;
+        public MaterialSkin.Controls.MaterialTextBox2 materialTextBox28;
+        public Panel panel28;
+        public Syncfusion.WinForms.Controls.SfButton sfButton5;
+        public Syncfusion.WinForms.Controls.SfButton sfButton6;
+        public FlowLayoutPanel panelForgotPass2;
+        public Panel panel17;
+        public Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel5;
+        public Panel panel18;
+        public Label label8;
+        public Panel panel29;
+        public Label label13;
+        public Panel panel30;
+        public MaterialSkin.Controls.MaterialTextBox2 materialTextBox25;
+        public Panel panel31;
+        public Label label14;
+        public Panel panel32;
+        public MaterialSkin.Controls.MaterialTextBox2 materialTextBox29;
+        public Panel panel33;
+        public Syncfusion.WinForms.Controls.SfButton btnCancel3;
+        public Syncfusion.WinForms.Controls.SfButton btnNext2;
+        public FlowLayoutPanel flowLayoutPanel4;
+        public Panel panel34;
+        public Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel6;
+        public Panel panel35;
+        public Label label15;
+        public Panel panel36;
+        public Label label16;
+        public Panel panel37;
+        public MaterialSkin.Controls.MaterialTextBox2 materialTextBox210;
+        public Panel panel38;
+        public Label label17;
+        public Panel panel39;
+        public MaterialSkin.Controls.MaterialTextBox2 materialTextBox211;
+        public Panel panel40;
+        public Syncfusion.WinForms.Controls.SfButton sfButton7;
+        public Syncfusion.WinForms.Controls.SfButton sfButton8;
     }
 }

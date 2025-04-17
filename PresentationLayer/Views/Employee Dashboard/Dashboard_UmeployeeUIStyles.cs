@@ -1,6 +1,5 @@
 ﻿using MaterialSkin;
 using Syncfusion.WinForms.Controls;
-using System.Collections.Generic;
 
 namespace PresentationLayer.Views
 {

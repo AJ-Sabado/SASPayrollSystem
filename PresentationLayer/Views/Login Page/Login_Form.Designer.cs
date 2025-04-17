@@ -316,7 +316,6 @@
             btnForgotPass.Size = new Size(121, 28);
             btnForgotPass.TabIndex = 0;
             btnForgotPass.Text = "Forgot Password?";
-            btnForgotPass.Click += btnForgotPass_Click;
             // 
             // panel11
             // 

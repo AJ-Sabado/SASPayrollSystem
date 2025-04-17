@@ -1,6 +1,7 @@
 ﻿using PresentationLayer.Presenters.DashboardEmployee;
 using PresentationLayer.Presenters.Login;
 using PresentationLayer.Views;
+using PresentationLayer.Views.Forgot_Password_Forms;
 using ServicesLayer;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
 ﻿using PresentationLayer.Views;
+using PresentationLayer.Views.Forgot_Password_Forms;
 
 namespace PresentationLayer.Presenters.Base
 {
@@ -6,5 +7,6 @@ namespace PresentationLayer.Presenters.Base
     {
         IDashboard_Employee DashboardEmployeeView { get; }
         ILogin_Form LoginView { get; }
+
     }
 }

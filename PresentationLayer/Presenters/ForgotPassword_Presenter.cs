@@ -1,4 +1,5 @@
-﻿using ServicesLayer;
+﻿using PresentationLayer.Views.Forgot_Password_Forms;
+using ServicesLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,16 @@ namespace PresentationLayer.Presenters
     public class ForgotPasswordPresenter
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IForgotPassword_View _forgotPasswordView;
 
-        public ForgotPasswordPresenter(IUnitOfWork servicesMesh)
+        public ForgotPasswordPresenter(IUnitOfWork servicesMesh, IForgotPassword_View view)
         {
             _unitOfWork = servicesMesh;
+            _forgotPasswordView = view;
+
+            _forgotPasswordView.NextClick += OnNextClick;
+            _forgotPasswordView.NextClick2 += OnNextClick2;
+            _forgotPasswordView.CancelClick += CancelClick;
         }
 
         public async Task ForgotPasswordRequest(string username, string email, string password, string confirmPassword)
@@ -34,6 +41,21 @@ namespace PresentationLayer.Presenters
                 throw new ArgumentException("Passwords do not match");
 
             await _unitOfWork.ForgotPasswordRequest(username, email, password, confirmPassword);
+        }
+
+        public void OnNextClick(object? Sender, EventArgs e)
+        {
+            _forgotPasswordView.btnNext_Click();
+        }
+
+        public void OnNextClick2(object? Sender, EventArgs e)
+        {
+            _forgotPasswordView.btnNext2_Click();
+        }
+
+        public void CancelClick(object? Sender, EventArgs e)
+        {
+            _forgotPasswordView.Close();
         }
     }
 }
