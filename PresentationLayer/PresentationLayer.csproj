@@ -14,6 +14,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\absent.png" />
+    <None Remove="Resources\Account.png" />
+    <None Remove="Resources\briefcase.png" />
+    <None Remove="Resources\calendar-day.png" />
+    <None Remove="Resources\calendar.png" />
+    <None Remove="Resources\calendar2.png" />
+    <None Remove="Resources\check.png" />
+    <None Remove="Resources\crossIcon.svg" />
+    <None Remove="Resources\dashboard.png" />
+    <None Remove="Resources\department.png" />
+    <None Remove="Resources\DialogBoxIcons\Error.png" />
+    <None Remove="Resources\DialogBoxIcons\Information.png" />
+    <None Remove="Resources\DialogBoxIcons\Question.png" />
+    <None Remove="Resources\DialogBoxIcons\Success.png" />
+    <None Remove="Resources\DialogBoxIcons\Warning.png" />
+    <None Remove="Resources\document.png" />
+    <None Remove="Resources\document2.png" />
+    <None Remove="Resources\email.png" />
+    <None Remove="Resources\file-edit.png" />
+    <None Remove="Resources\file-edit.svg" />
     <None Remove="Resources\Fonts\Poppins-Black.ttf" />
     <None Remove="Resources\Fonts\Poppins-BlackItalic.ttf" />
     <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
@@ -32,6 +52,53 @@
     <None Remove="Resources\Fonts\Poppins-SemiBoldItalic.ttf" />
     <None Remove="Resources\Fonts\Poppins-Thin.ttf" />
     <None Remove="Resources\Fonts\Poppins-ThinItalic.ttf" />
+    <None Remove="Resources\hand.png" />
+    <None Remove="Resources\IMG_8277.2.jpg" />
+    <None Remove="Resources\LoginBGImage.jpg" />
+    <None Remove="Resources\money.png" />
+    <None Remove="Resources\pay.png" />
+    <None Remove="Resources\phone-call.png" />
+    <None Remove="Resources\reward.png" />
+    <None Remove="Resources\salary.png" />
+    <None Remove="Resources\Sample Signature.jpg" />
+    <None Remove="Resources\SASLogo.ico" />
+    <None Remove="Resources\SASLogo.png" />
+    <None Remove="Resources\SAS_LOGO_BLACKBG.jpg" />
+    <None Remove="Resources\shift.png" />
+    <None Remove="Resources\square-pen.png" />
+    <None Remove="Resources\user-helmet-safety.png" />
+    <None Remove="Resources\work_hours.png" />
+    <None Remove="Resources\world-wide-web.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>9</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>00020813-0000-0000-c000-000000000046</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\DialogBoxIcons\Error.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\DialogBoxIcons\Information.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\DialogBoxIcons\Question.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\DialogBoxIcons\Success.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\DialogBoxIcons\Warning.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -57,13 +124,14 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
-    <PackageReference Include="Syncfusion.Core.WinForms" Version="28.2.11" />
-    <PackageReference Include="Syncfusion.DataGridExport.WinForms" Version="28.2.11" />
-    <PackageReference Include="Syncfusion.Licensing" Version="28.2.11" />
-    <PackageReference Include="Syncfusion.Pdf.WinForms" Version="28.2.11" />
-    <PackageReference Include="Syncfusion.SfInput.WinForms" Version="28.2.11" />
-    <PackageReference Include="Syncfusion.Shared.Base" Version="28.2.11" />
-    <PackageReference Include="Syncfusion.Tools.Windows" Version="28.2.11" />
+    <PackageReference Include="Syncfusion.Core.WinForms" Version="29.1.38" />
+    <PackageReference Include="Syncfusion.DataGridExport.WinForms" Version="29.1.38" />
+    <PackageReference Include="Syncfusion.Licensing" Version="29.1.38" />
+    <PackageReference Include="Syncfusion.Pdf.WinForms" Version="29.1.38" />
+    <PackageReference Include="Syncfusion.PdfViewer.Windows" Version="29.1.38" />
+    <PackageReference Include="Syncfusion.SfInput.WinForms" Version="29.1.38" />
+    <PackageReference Include="Syncfusion.Shared.Base" Version="29.1.38" />
+    <PackageReference Include="Syncfusion.Tools.Windows" Version="29.1.38" />
     <PackageReference Include="Unity" Version="5.11.10" />
   </ItemGroup>
 
@@ -76,6 +144,105 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\absent.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Account.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\briefcase.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\calendar-day.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\calendar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\calendar2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\check.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\crossIcon.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\dashboard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\department.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\document.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\document2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\email.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\file-edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\file-edit.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\hand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\IMG_8277.2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\LoginBGImage.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\money.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\pay.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\phone-call.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\reward.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\salary.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Sample Signature.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SASLogo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SASLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SAS_LOGO_BLACKBG.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\shift.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\square-pen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\user-helmet-safety.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\work_hours.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\world-wide-web.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

@@ -12,6 +12,10 @@ namespace PresentationLayer.Views
         void Hide();
         void Show();
         void Close();
+        
         event EventHandler Exit;
+
+        event EventHandler printPayslip;
+        event EventHandler downloadPayslip;
     }
 }

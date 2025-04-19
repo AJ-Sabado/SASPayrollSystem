@@ -15,7 +15,7 @@ internal static class Program
         ApplicationConfiguration.Initialize();
         Syncfusion.Licensing
             .SyncfusionLicenseProvider
-            .RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NMaF1cVGhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEBjWn9ZcnRQQGNaU0xxXw==");
+            .RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NNaF5cXmBCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdmWXtfeHVXR2BdUUJwXUVWYUA=");
 
         IUnityContainer UnityC = new UnityContainer();
         UnityC.RegisterType<IBasePresenter, BasePresenter>(new HierarchicalLifetimeManager());

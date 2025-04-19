@@ -61,7 +61,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(20, 20);
             panel1.Name = "panel1";
-            panel1.Size = new Size(434, 275);
+            panel1.Size = new Size(434, 211);
             panel1.TabIndex = 0;
             // 
             // panel4
@@ -69,18 +69,18 @@
             panel4.BackColor = Color.White;
             panel4.Controls.Add(lblMessage);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(0, 80);
+            panel4.Location = new Point(0, 60);
             panel4.Margin = new Padding(0, 10, 0, 10);
             panel4.Name = "panel4";
-            panel4.Size = new Size(434, 148);
+            panel4.Size = new Size(434, 104);
             panel4.TabIndex = 2;
             // 
             // lblMessage
             // 
-            lblMessage.Font = new Font("Poppins", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMessage.Font = new Font("Poppins", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMessage.Location = new Point(0, 0);
             lblMessage.Name = "lblMessage";
-            lblMessage.Size = new Size(434, 140);
+            lblMessage.Size = new Size(434, 93);
             lblMessage.TabIndex = 0;
             lblMessage.Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
             // 
@@ -91,7 +91,7 @@
             panel3.Controls.Add(pnlBtn2);
             panel3.Controls.Add(pnlBtn3);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 228);
+            panel3.Location = new Point(0, 164);
             panel3.Margin = new Padding(0);
             panel3.Name = "panel3";
             panel3.Size = new Size(434, 47);
@@ -198,16 +198,16 @@
             panel2.Location = new Point(0, 0);
             panel2.Margin = new Padding(0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(434, 80);
+            panel2.Size = new Size(434, 60);
             panel2.TabIndex = 0;
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 33.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.Location = new Point(66, -1);
+            lblTitle.Font = new Font("Poppins", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.Location = new Point(42, -6);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(121, 61);
+            lblTitle.Size = new Size(104, 62);
             lblTitle.TabIndex = 1;
             lblTitle.Text = "Title";
             // 
@@ -215,7 +215,7 @@
             // 
             pbIcon.Location = new Point(0, 0);
             pbIcon.Name = "pbIcon";
-            pbIcon.Size = new Size(60, 60);
+            pbIcon.Size = new Size(40, 40);
             pbIcon.SizeMode = PictureBoxSizeMode.Zoom;
             pbIcon.TabIndex = 0;
             pbIcon.TabStop = false;
@@ -225,7 +225,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(474, 315);
+            ClientSize = new Size(474, 251);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");

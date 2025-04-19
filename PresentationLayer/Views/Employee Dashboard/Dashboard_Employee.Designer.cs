@@ -37,6 +37,149 @@
             btnAccount = new Syncfusion.WinForms.Controls.SfButton();
             panelMain = new Panel();
             panelMainDashboard = new Panel();
+            pnlJobDeskRegular = new FlowLayoutPanel();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            panel3 = new Panel();
+            label8 = new Label();
+            flowLayoutPanel5 = new FlowLayoutPanel();
+            pnlJobDeskProfileMain = new Panel();
+            pnlJobDeskProfileSub = new Panel();
+            flowLayoutPanel6 = new FlowLayoutPanel();
+            panel4 = new Panel();
+            btnJobDeskViewProfile = new Syncfusion.WinForms.Controls.SfButton();
+            pictureBox8 = new PictureBox();
+            lblProfileName = new Label();
+            panel7 = new Panel();
+            label10 = new Label();
+            panel8 = new Panel();
+            label13 = new Label();
+            lblDepartmentReg = new Label();
+            panel9 = new Panel();
+            pictureBox9 = new PictureBox();
+            panel10 = new Panel();
+            label14 = new Label();
+            lblBaseSalaryReg = new Label();
+            panel11 = new Panel();
+            pictureBox10 = new PictureBox();
+            panel12 = new Panel();
+            label16 = new Label();
+            lblShiftReg = new Label();
+            panel13 = new Panel();
+            pictureBox11 = new PictureBox();
+            panel14 = new Panel();
+            label18 = new Label();
+            lblEmploymentStatusReg = new Label();
+            panel15 = new Panel();
+            pictureBox12 = new PictureBox();
+            panel16 = new Panel();
+            label20 = new Label();
+            lblEmploymentDateReg = new Label();
+            panel17 = new Panel();
+            pictureBox13 = new PictureBox();
+            panel18 = new Panel();
+            label22 = new Label();
+            panel19 = new Panel();
+            pictureBox14 = new PictureBox();
+            lblEmailReg = new Label();
+            label24 = new Label();
+            panel21 = new Panel();
+            pictureBox15 = new PictureBox();
+            lblPhoneReg = new Label();
+            label26 = new Label();
+            panel23 = new Panel();
+            pictureBox16 = new PictureBox();
+            lblWebsiteReg = new Label();
+            label28 = new Label();
+            pnlJobDeskDashMain = new Panel();
+            pnlJobDeskDashSub = new Panel();
+            flowLayoutPanel7 = new FlowLayoutPanel();
+            tabSelectorPanel = new Panel();
+            panel5 = new Panel();
+            tabSelectorJobDesk = new MaterialSkin.Controls.MaterialTabSelector();
+            materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
+            tabPayslip = new TabPage();
+            flowLayoutPanel8 = new FlowLayoutPanel();
+            panel6 = new Panel();
+            btnPanel2 = new Panel();
+            btnPrintPayslip = new Syncfusion.WinForms.Controls.SfButton();
+            btnPanel1 = new Panel();
+            btnDownloadPayslip = new Syncfusion.WinForms.Controls.SfButton();
+            lblPayslip = new Label();
+            panel26 = new Panel();
+            lblRegBaseSalary = new Label();
+            label29 = new Label();
+            panel27 = new Panel();
+            panel28 = new Panel();
+            lblRegBonus = new Label();
+            label33 = new Label();
+            panel59 = new Panel();
+            label80 = new Label();
+            label81 = new Label();
+            panel29 = new Panel();
+            panel30 = new Panel();
+            label35 = new Label();
+            panel31 = new Panel();
+            lblRegTax = new Label();
+            label37 = new Label();
+            panel32 = new Panel();
+            lblRegSSS = new Label();
+            label38 = new Label();
+            panel33 = new Panel();
+            lblRegPhilHealth = new Label();
+            label40 = new Label();
+            panel34 = new Panel();
+            lblRegPagIbig = new Label();
+            label42 = new Label();
+            panel35 = new Panel();
+            label82 = new Label();
+            label83 = new Label();
+            panel36 = new Panel();
+            lblRegAbsence = new Label();
+            label44 = new Label();
+            panel37 = new Panel();
+            panel38 = new Panel();
+            lblRegTotal = new Label();
+            label46 = new Label();
+            panel40 = new Panel();
+            panel39 = new Panel();
+            lblRegPayrolDate = new Label();
+            label48 = new Label();
+            panel41 = new Panel();
+            lblRegStatus = new Label();
+            label50 = new Label();
+            tabAttendance = new TabPage();
+            flowLayoutPanel9 = new FlowLayoutPanel();
+            panel24 = new Panel();
+            btnPanel3 = new Panel();
+            btnAttendanceRequest = new Syncfusion.WinForms.Controls.SfButton();
+            label31 = new Label();
+            panel42 = new Panel();
+            tblAttendanceDataGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            tabLeave = new TabPage();
+            flowLayoutPanel10 = new FlowLayoutPanel();
+            panel25 = new Panel();
+            btnPanel4 = new Panel();
+            btnFileLeave = new Syncfusion.WinForms.Controls.SfButton();
+            label34 = new Label();
+            flowLayoutPanel11 = new FlowLayoutPanel();
+            pnlLeaveCard1Main = new Panel();
+            pnlLeaveCard1Sub = new Panel();
+            lblApprovedLeaves = new Label();
+            label36 = new Label();
+            label39 = new Label();
+            pnlLeaveCard2Main = new Panel();
+            pnlLeaveCard2Sub = new Panel();
+            lblPendingLaaves = new Label();
+            label41 = new Label();
+            label43 = new Label();
+            pnlLeaveCard3Main = new Panel();
+            lblRemainingLeaves = new Label();
+            label45 = new Label();
+            label47 = new Label();
+            panel43 = new Panel();
+            label12 = new Label();
+            panel44 = new Panel();
+            sfDataGrid2 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             pnlDashboard = new FlowLayoutPanel();
             panel1 = new Panel();
             lblDahsbaordTitle = new Label();
@@ -228,154 +371,86 @@
             label78 = new Label();
             panel96 = new Panel();
             label79 = new Label();
-            pnlJobDeskRegular = new FlowLayoutPanel();
-            flowLayoutPanel2 = new FlowLayoutPanel();
-            panel3 = new Panel();
-            label8 = new Label();
-            flowLayoutPanel5 = new FlowLayoutPanel();
-            pnlJobDeskProfileMain = new Panel();
-            pnlJobDeskProfileSub = new Panel();
-            flowLayoutPanel6 = new FlowLayoutPanel();
-            panel4 = new Panel();
-            btnJobDeskViewProfile = new Syncfusion.WinForms.Controls.SfButton();
-            pictureBox8 = new PictureBox();
-            lblProfileName = new Label();
-            panel7 = new Panel();
-            label10 = new Label();
-            panel8 = new Panel();
-            label13 = new Label();
-            lblDepartmentReg = new Label();
-            panel9 = new Panel();
-            pictureBox9 = new PictureBox();
-            panel10 = new Panel();
-            label14 = new Label();
-            lblBaseSalaryReg = new Label();
-            panel11 = new Panel();
-            pictureBox10 = new PictureBox();
-            panel12 = new Panel();
-            label16 = new Label();
-            lblShiftReg = new Label();
-            panel13 = new Panel();
-            pictureBox11 = new PictureBox();
-            panel14 = new Panel();
-            label18 = new Label();
-            lblEmploymentStatusReg = new Label();
-            panel15 = new Panel();
-            pictureBox12 = new PictureBox();
-            panel16 = new Panel();
-            label20 = new Label();
-            lblEmploymentDateReg = new Label();
-            panel17 = new Panel();
-            pictureBox13 = new PictureBox();
-            panel18 = new Panel();
-            label22 = new Label();
-            panel19 = new Panel();
-            pictureBox14 = new PictureBox();
-            lblEmailReg = new Label();
-            label24 = new Label();
-            panel21 = new Panel();
-            pictureBox15 = new PictureBox();
-            lblPhoneReg = new Label();
-            label26 = new Label();
-            panel23 = new Panel();
-            pictureBox16 = new PictureBox();
-            lblWebsiteReg = new Label();
-            label28 = new Label();
-            pnlJobDeskDashMain = new Panel();
-            pnlJobDeskDashSub = new Panel();
-            flowLayoutPanel7 = new FlowLayoutPanel();
-            tabSelectorPanel = new Panel();
-            panel5 = new Panel();
-            tabSelectorJobDesk = new MaterialSkin.Controls.MaterialTabSelector();
-            materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
-            tabPayslip = new TabPage();
-            flowLayoutPanel8 = new FlowLayoutPanel();
-            panel6 = new Panel();
-            btnPanel2 = new Panel();
-            btnPrint = new Syncfusion.WinForms.Controls.SfButton();
-            btnPanel1 = new Panel();
-            btnPreviewDocument = new Syncfusion.WinForms.Controls.SfButton();
-            lblPayslip = new Label();
-            panel26 = new Panel();
-            lblRegBaseSalary = new Label();
-            label29 = new Label();
-            panel27 = new Panel();
-            panel28 = new Panel();
-            lblRegBonus = new Label();
-            label33 = new Label();
-            panel59 = new Panel();
-            label80 = new Label();
-            label81 = new Label();
-            panel29 = new Panel();
-            panel30 = new Panel();
-            label35 = new Label();
-            panel31 = new Panel();
-            lblRegTax = new Label();
-            label37 = new Label();
-            panel32 = new Panel();
-            lblRegSSS = new Label();
-            label38 = new Label();
-            panel33 = new Panel();
-            lblRegPhilHealth = new Label();
-            label40 = new Label();
-            panel34 = new Panel();
-            lblRegPagIbig = new Label();
-            label42 = new Label();
-            panel35 = new Panel();
-            label82 = new Label();
-            label83 = new Label();
-            panel36 = new Panel();
-            lblRegAbsence = new Label();
-            label44 = new Label();
-            panel37 = new Panel();
-            panel38 = new Panel();
-            lblRegTotal = new Label();
-            label46 = new Label();
-            panel40 = new Panel();
-            panel39 = new Panel();
-            lblRegPayrolDate = new Label();
-            label48 = new Label();
-            panel41 = new Panel();
-            lblRegStatus = new Label();
-            label50 = new Label();
-            tabAttendance = new TabPage();
-            flowLayoutPanel9 = new FlowLayoutPanel();
-            panel24 = new Panel();
-            btnPanel3 = new Panel();
-            btnAttendanceRequest = new Syncfusion.WinForms.Controls.SfButton();
-            label31 = new Label();
-            panel42 = new Panel();
-            tblAttendanceDataGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
-            tabLeave = new TabPage();
-            flowLayoutPanel10 = new FlowLayoutPanel();
-            panel25 = new Panel();
-            btnPanel4 = new Panel();
-            btnFileLeave = new Syncfusion.WinForms.Controls.SfButton();
-            label34 = new Label();
-            flowLayoutPanel11 = new FlowLayoutPanel();
-            pnlLeaveCard1Main = new Panel();
-            pnlLeaveCard1Sub = new Panel();
-            lblApprovedLeaves = new Label();
-            label36 = new Label();
-            label39 = new Label();
-            pnlLeaveCard2Main = new Panel();
-            pnlLeaveCard2Sub = new Panel();
-            lblPendingLaaves = new Label();
-            label41 = new Label();
-            label43 = new Label();
-            pnlLeaveCard3Main = new Panel();
-            lblRemainingLeaves = new Label();
-            label45 = new Label();
-            label47 = new Label();
-            panel43 = new Panel();
-            label12 = new Label();
-            panel44 = new Panel();
-            sfDataGrid2 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelMain.SuspendLayout();
             panelMainDashboard.SuspendLayout();
+            pnlJobDeskRegular.SuspendLayout();
+            flowLayoutPanel2.SuspendLayout();
+            panel3.SuspendLayout();
+            flowLayoutPanel5.SuspendLayout();
+            pnlJobDeskProfileMain.SuspendLayout();
+            pnlJobDeskProfileSub.SuspendLayout();
+            flowLayoutPanel6.SuspendLayout();
+            panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            panel7.SuspendLayout();
+            panel8.SuspendLayout();
+            panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
+            panel10.SuspendLayout();
+            panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
+            panel12.SuspendLayout();
+            panel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
+            panel14.SuspendLayout();
+            panel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
+            panel16.SuspendLayout();
+            panel17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
+            panel18.SuspendLayout();
+            panel19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
+            panel21.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
+            panel23.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
+            pnlJobDeskDashMain.SuspendLayout();
+            pnlJobDeskDashSub.SuspendLayout();
+            flowLayoutPanel7.SuspendLayout();
+            tabSelectorPanel.SuspendLayout();
+            panel5.SuspendLayout();
+            materialTabControl1.SuspendLayout();
+            tabPayslip.SuspendLayout();
+            flowLayoutPanel8.SuspendLayout();
+            panel6.SuspendLayout();
+            btnPanel2.SuspendLayout();
+            btnPanel1.SuspendLayout();
+            panel26.SuspendLayout();
+            panel28.SuspendLayout();
+            panel59.SuspendLayout();
+            panel30.SuspendLayout();
+            panel31.SuspendLayout();
+            panel32.SuspendLayout();
+            panel33.SuspendLayout();
+            panel34.SuspendLayout();
+            panel35.SuspendLayout();
+            panel36.SuspendLayout();
+            panel38.SuspendLayout();
+            panel39.SuspendLayout();
+            panel41.SuspendLayout();
+            tabAttendance.SuspendLayout();
+            flowLayoutPanel9.SuspendLayout();
+            panel24.SuspendLayout();
+            btnPanel3.SuspendLayout();
+            panel42.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tblAttendanceDataGrid).BeginInit();
+            tabLeave.SuspendLayout();
+            flowLayoutPanel10.SuspendLayout();
+            panel25.SuspendLayout();
+            btnPanel4.SuspendLayout();
+            flowLayoutPanel11.SuspendLayout();
+            pnlLeaveCard1Main.SuspendLayout();
+            pnlLeaveCard1Sub.SuspendLayout();
+            pnlLeaveCard2Main.SuspendLayout();
+            pnlLeaveCard2Sub.SuspendLayout();
+            pnlLeaveCard3Main.SuspendLayout();
+            panel43.SuspendLayout();
+            panel44.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)sfDataGrid2).BeginInit();
             pnlDashboard.SuspendLayout();
             panel1.SuspendLayout();
             panel.SuspendLayout();
@@ -493,81 +568,6 @@
             panel91.SuspendLayout();
             panel95.SuspendLayout();
             panel96.SuspendLayout();
-            pnlJobDeskRegular.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
-            panel3.SuspendLayout();
-            flowLayoutPanel5.SuspendLayout();
-            pnlJobDeskProfileMain.SuspendLayout();
-            pnlJobDeskProfileSub.SuspendLayout();
-            flowLayoutPanel6.SuspendLayout();
-            panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            panel7.SuspendLayout();
-            panel8.SuspendLayout();
-            panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
-            panel10.SuspendLayout();
-            panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
-            panel12.SuspendLayout();
-            panel13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
-            panel14.SuspendLayout();
-            panel15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
-            panel16.SuspendLayout();
-            panel17.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
-            panel18.SuspendLayout();
-            panel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
-            panel21.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
-            panel23.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
-            pnlJobDeskDashMain.SuspendLayout();
-            pnlJobDeskDashSub.SuspendLayout();
-            flowLayoutPanel7.SuspendLayout();
-            tabSelectorPanel.SuspendLayout();
-            panel5.SuspendLayout();
-            materialTabControl1.SuspendLayout();
-            tabPayslip.SuspendLayout();
-            flowLayoutPanel8.SuspendLayout();
-            panel6.SuspendLayout();
-            btnPanel2.SuspendLayout();
-            btnPanel1.SuspendLayout();
-            panel26.SuspendLayout();
-            panel28.SuspendLayout();
-            panel59.SuspendLayout();
-            panel30.SuspendLayout();
-            panel31.SuspendLayout();
-            panel32.SuspendLayout();
-            panel33.SuspendLayout();
-            panel34.SuspendLayout();
-            panel35.SuspendLayout();
-            panel36.SuspendLayout();
-            panel38.SuspendLayout();
-            panel39.SuspendLayout();
-            panel41.SuspendLayout();
-            tabAttendance.SuspendLayout();
-            flowLayoutPanel9.SuspendLayout();
-            panel24.SuspendLayout();
-            btnPanel3.SuspendLayout();
-            panel42.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)tblAttendanceDataGrid).BeginInit();
-            tabLeave.SuspendLayout();
-            flowLayoutPanel10.SuspendLayout();
-            panel25.SuspendLayout();
-            btnPanel4.SuspendLayout();
-            flowLayoutPanel11.SuspendLayout();
-            pnlLeaveCard1Main.SuspendLayout();
-            pnlLeaveCard1Sub.SuspendLayout();
-            pnlLeaveCard2Main.SuspendLayout();
-            pnlLeaveCard2Sub.SuspendLayout();
-            pnlLeaveCard3Main.SuspendLayout();
-            panel43.SuspendLayout();
-            panel44.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)sfDataGrid2).BeginInit();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -661,13 +661,1597 @@
             // panelMainDashboard
             // 
             panelMainDashboard.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelMainDashboard.Controls.Add(pnlAccountsRegular);
             panelMainDashboard.Controls.Add(pnlJobDeskRegular);
             panelMainDashboard.Controls.Add(pnlDashboard);
+            panelMainDashboard.Controls.Add(pnlAccountsRegular);
             panelMainDashboard.Location = new Point(273, 3);
             panelMainDashboard.Name = "panelMainDashboard";
             panelMainDashboard.Size = new Size(1993, 1152);
             panelMainDashboard.TabIndex = 1;
+            // 
+            // pnlJobDeskRegular
+            // 
+            pnlJobDeskRegular.Controls.Add(flowLayoutPanel2);
+            pnlJobDeskRegular.Dock = DockStyle.Fill;
+            pnlJobDeskRegular.Location = new Point(0, 0);
+            pnlJobDeskRegular.Margin = new Padding(20);
+            pnlJobDeskRegular.Name = "pnlJobDeskRegular";
+            pnlJobDeskRegular.Padding = new Padding(20);
+            pnlJobDeskRegular.Size = new Size(1993, 1152);
+            pnlJobDeskRegular.TabIndex = 1;
+            // 
+            // flowLayoutPanel2
+            // 
+            flowLayoutPanel2.Controls.Add(panel3);
+            flowLayoutPanel2.Controls.Add(flowLayoutPanel5);
+            flowLayoutPanel2.Location = new Point(23, 23);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(1576, 945);
+            flowLayoutPanel2.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(label8);
+            panel3.Location = new Point(3, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1576, 81);
+            panel3.TabIndex = 3;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Dock = DockStyle.Left;
+            label8.Font = new Font("Poppins", 36F, FontStyle.Bold);
+            label8.Location = new Point(0, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(268, 84);
+            label8.TabIndex = 0;
+            label8.Text = "JOB DESK";
+            // 
+            // flowLayoutPanel5
+            // 
+            flowLayoutPanel5.Controls.Add(pnlJobDeskProfileMain);
+            flowLayoutPanel5.Controls.Add(pnlJobDeskDashMain);
+            flowLayoutPanel5.Location = new Point(0, 87);
+            flowLayoutPanel5.Margin = new Padding(0);
+            flowLayoutPanel5.Name = "flowLayoutPanel5";
+            flowLayoutPanel5.Size = new Size(1573, 855);
+            flowLayoutPanel5.TabIndex = 4;
+            // 
+            // pnlJobDeskProfileMain
+            // 
+            pnlJobDeskProfileMain.BackColor = Color.Gray;
+            pnlJobDeskProfileMain.Controls.Add(pnlJobDeskProfileSub);
+            pnlJobDeskProfileMain.Location = new Point(0, 0);
+            pnlJobDeskProfileMain.Margin = new Padding(0);
+            pnlJobDeskProfileMain.Name = "pnlJobDeskProfileMain";
+            pnlJobDeskProfileMain.Size = new Size(468, 854);
+            pnlJobDeskProfileMain.TabIndex = 5;
+            // 
+            // pnlJobDeskProfileSub
+            // 
+            pnlJobDeskProfileSub.BackColor = Color.White;
+            pnlJobDeskProfileSub.Controls.Add(flowLayoutPanel6);
+            pnlJobDeskProfileSub.Location = new Point(3, 3);
+            pnlJobDeskProfileSub.Margin = new Padding(10, 3, 10, 3);
+            pnlJobDeskProfileSub.Name = "pnlJobDeskProfileSub";
+            pnlJobDeskProfileSub.Padding = new Padding(20);
+            pnlJobDeskProfileSub.Size = new Size(462, 848);
+            pnlJobDeskProfileSub.TabIndex = 2;
+            // 
+            // flowLayoutPanel6
+            // 
+            flowLayoutPanel6.Controls.Add(panel4);
+            flowLayoutPanel6.Controls.Add(panel7);
+            flowLayoutPanel6.Controls.Add(panel8);
+            flowLayoutPanel6.Controls.Add(panel10);
+            flowLayoutPanel6.Controls.Add(panel12);
+            flowLayoutPanel6.Controls.Add(panel14);
+            flowLayoutPanel6.Controls.Add(panel16);
+            flowLayoutPanel6.Controls.Add(panel18);
+            flowLayoutPanel6.Controls.Add(panel19);
+            flowLayoutPanel6.Controls.Add(panel21);
+            flowLayoutPanel6.Controls.Add(panel23);
+            flowLayoutPanel6.Location = new Point(26, 29);
+            flowLayoutPanel6.Margin = new Padding(15);
+            flowLayoutPanel6.Name = "flowLayoutPanel6";
+            flowLayoutPanel6.Size = new Size(406, 795);
+            flowLayoutPanel6.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(btnJobDeskViewProfile);
+            panel4.Controls.Add(pictureBox8);
+            panel4.Controls.Add(lblProfileName);
+            panel4.Location = new Point(0, 0);
+            panel4.Margin = new Padding(0);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(406, 91);
+            panel4.TabIndex = 0;
+            // 
+            // btnJobDeskViewProfile
+            // 
+            btnJobDeskViewProfile.BackColor = SystemColors.ButtonHighlight;
+            btnJobDeskViewProfile.Font = new Font("Poppins", 12F, FontStyle.Italic);
+            btnJobDeskViewProfile.Location = new Point(96, 50);
+            btnJobDeskViewProfile.Name = "btnJobDeskViewProfile";
+            btnJobDeskViewProfile.Size = new Size(130, 33);
+            btnJobDeskViewProfile.Style.BackColor = SystemColors.ButtonHighlight;
+            btnJobDeskViewProfile.TabIndex = 9;
+            btnJobDeskViewProfile.Text = "View Profile";
+            btnJobDeskViewProfile.TextAlign = ContentAlignment.MiddleLeft;
+            btnJobDeskViewProfile.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
+            pictureBox8.Location = new Point(2, 2);
+            pictureBox8.Margin = new Padding(0);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(80, 80);
+            pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox8.TabIndex = 8;
+            pictureBox8.TabStop = false;
+            // 
+            // lblProfileName
+            // 
+            lblProfileName.AutoSize = true;
+            lblProfileName.Font = new Font("Poppins SemiBold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblProfileName.Location = new Point(93, 6);
+            lblProfileName.Margin = new Padding(0);
+            lblProfileName.Name = "lblProfileName";
+            lblProfileName.Size = new Size(215, 51);
+            lblProfileName.TabIndex = 7;
+            lblProfileName.Text = "Lorem Ipsum";
+            // 
+            // panel7
+            // 
+            panel7.Controls.Add(label10);
+            panel7.Location = new Point(3, 94);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(403, 47);
+            panel7.TabIndex = 1;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Poppins SemiBold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.Location = new Point(1, 2);
+            label10.Margin = new Padding(0);
+            label10.Name = "label10";
+            label10.Size = new Size(64, 42);
+            label10.TabIndex = 8;
+            label10.Text = "Info";
+            // 
+            // panel8
+            // 
+            panel8.Controls.Add(label13);
+            panel8.Controls.Add(lblDepartmentReg);
+            panel8.Controls.Add(panel9);
+            panel8.Location = new Point(0, 144);
+            panel8.Margin = new Padding(0);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(403, 75);
+            panel8.TabIndex = 2;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
+            label13.Location = new Point(81, 36);
+            label13.Margin = new Padding(0);
+            label13.Name = "label13";
+            label13.Size = new Size(89, 23);
+            label13.TabIndex = 9;
+            label13.Text = "Department";
+            // 
+            // lblDepartmentReg
+            // 
+            lblDepartmentReg.AutoSize = true;
+            lblDepartmentReg.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
+            lblDepartmentReg.Location = new Point(75, 6);
+            lblDepartmentReg.Margin = new Padding(0);
+            lblDepartmentReg.Name = "lblDepartmentReg";
+            lblDepartmentReg.Size = new Size(211, 37);
+            lblDepartmentReg.TabIndex = 8;
+            lblDepartmentReg.Text = "Human Resources";
+            // 
+            // panel9
+            // 
+            panel9.BackColor = SystemColors.Menu;
+            panel9.Controls.Add(pictureBox9);
+            panel9.Location = new Point(9, 6);
+            panel9.Margin = new Padding(0);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(60, 60);
+            panel9.TabIndex = 0;
+            // 
+            // pictureBox9
+            // 
+            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
+            pictureBox9.Location = new Point(10, 11);
+            pictureBox9.Name = "pictureBox9";
+            pictureBox9.Size = new Size(40, 40);
+            pictureBox9.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox9.TabIndex = 0;
+            pictureBox9.TabStop = false;
+            // 
+            // panel10
+            // 
+            panel10.Controls.Add(label14);
+            panel10.Controls.Add(lblBaseSalaryReg);
+            panel10.Controls.Add(panel11);
+            panel10.Location = new Point(0, 219);
+            panel10.Margin = new Padding(0);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(403, 75);
+            panel10.TabIndex = 3;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
+            label14.Location = new Point(81, 36);
+            label14.Margin = new Padding(0);
+            label14.Name = "label14";
+            label14.Size = new Size(87, 23);
+            label14.TabIndex = 9;
+            label14.Text = "Base Salary";
+            // 
+            // lblBaseSalaryReg
+            // 
+            lblBaseSalaryReg.AutoSize = true;
+            lblBaseSalaryReg.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblBaseSalaryReg.ForeColor = Color.Green;
+            lblBaseSalaryReg.Location = new Point(75, 6);
+            lblBaseSalaryReg.Margin = new Padding(0);
+            lblBaseSalaryReg.Name = "lblBaseSalaryReg";
+            lblBaseSalaryReg.Size = new Size(113, 37);
+            lblBaseSalaryReg.TabIndex = 8;
+            lblBaseSalaryReg.Text = "P100,000";
+            // 
+            // panel11
+            // 
+            panel11.BackColor = SystemColors.Menu;
+            panel11.Controls.Add(pictureBox10);
+            panel11.Location = new Point(9, 6);
+            panel11.Margin = new Padding(0);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(60, 60);
+            panel11.TabIndex = 0;
+            // 
+            // pictureBox10
+            // 
+            pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
+            pictureBox10.Location = new Point(10, 11);
+            pictureBox10.Name = "pictureBox10";
+            pictureBox10.Size = new Size(40, 40);
+            pictureBox10.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox10.TabIndex = 1;
+            pictureBox10.TabStop = false;
+            // 
+            // panel12
+            // 
+            panel12.Controls.Add(label16);
+            panel12.Controls.Add(lblShiftReg);
+            panel12.Controls.Add(panel13);
+            panel12.Location = new Point(0, 294);
+            panel12.Margin = new Padding(0);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(403, 75);
+            panel12.TabIndex = 4;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
+            label16.Location = new Point(81, 36);
+            label16.Margin = new Padding(0);
+            label16.Name = "label16";
+            label16.Size = new Size(75, 23);
+            label16.TabIndex = 9;
+            label16.Text = "Work Shift";
+            // 
+            // lblShiftReg
+            // 
+            lblShiftReg.AutoSize = true;
+            lblShiftReg.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
+            lblShiftReg.Location = new Point(75, 6);
+            lblShiftReg.Margin = new Padding(0);
+            lblShiftReg.Name = "lblShiftReg";
+            lblShiftReg.Size = new Size(213, 37);
+            lblShiftReg.TabIndex = 8;
+            lblShiftReg.Text = "6:00 AM - 6:00 PM";
+            // 
+            // panel13
+            // 
+            panel13.BackColor = SystemColors.Menu;
+            panel13.Controls.Add(pictureBox11);
+            panel13.Location = new Point(9, 6);
+            panel13.Margin = new Padding(0);
+            panel13.Name = "panel13";
+            panel13.Size = new Size(60, 60);
+            panel13.TabIndex = 0;
+            // 
+            // pictureBox11
+            // 
+            pictureBox11.Image = (Image)resources.GetObject("pictureBox11.Image");
+            pictureBox11.Location = new Point(10, 11);
+            pictureBox11.Name = "pictureBox11";
+            pictureBox11.Size = new Size(40, 40);
+            pictureBox11.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox11.TabIndex = 1;
+            pictureBox11.TabStop = false;
+            // 
+            // panel14
+            // 
+            panel14.Controls.Add(label18);
+            panel14.Controls.Add(lblEmploymentStatusReg);
+            panel14.Controls.Add(panel15);
+            panel14.Location = new Point(0, 369);
+            panel14.Margin = new Padding(0);
+            panel14.Name = "panel14";
+            panel14.Size = new Size(403, 75);
+            panel14.TabIndex = 5;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
+            label18.Location = new Point(81, 36);
+            label18.Margin = new Padding(0);
+            label18.Name = "label18";
+            label18.Size = new Size(137, 23);
+            label18.TabIndex = 9;
+            label18.Text = "Employment Status";
+            // 
+            // lblEmploymentStatusReg
+            // 
+            lblEmploymentStatusReg.AutoSize = true;
+            lblEmploymentStatusReg.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
+            lblEmploymentStatusReg.Location = new Point(75, 6);
+            lblEmploymentStatusReg.Margin = new Padding(0);
+            lblEmploymentStatusReg.Name = "lblEmploymentStatusReg";
+            lblEmploymentStatusReg.Size = new Size(275, 37);
+            lblEmploymentStatusReg.TabIndex = 8;
+            lblEmploymentStatusReg.Text = "Independent Contractor";
+            // 
+            // panel15
+            // 
+            panel15.BackColor = SystemColors.Menu;
+            panel15.Controls.Add(pictureBox12);
+            panel15.Location = new Point(9, 6);
+            panel15.Margin = new Padding(0);
+            panel15.Name = "panel15";
+            panel15.Size = new Size(60, 60);
+            panel15.TabIndex = 0;
+            // 
+            // pictureBox12
+            // 
+            pictureBox12.Image = (Image)resources.GetObject("pictureBox12.Image");
+            pictureBox12.Location = new Point(10, 11);
+            pictureBox12.Name = "pictureBox12";
+            pictureBox12.Size = new Size(40, 40);
+            pictureBox12.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox12.TabIndex = 1;
+            pictureBox12.TabStop = false;
+            // 
+            // panel16
+            // 
+            panel16.Controls.Add(label20);
+            panel16.Controls.Add(lblEmploymentDateReg);
+            panel16.Controls.Add(panel17);
+            panel16.Location = new Point(0, 444);
+            panel16.Margin = new Padding(0);
+            panel16.Name = "panel16";
+            panel16.Size = new Size(403, 75);
+            panel16.TabIndex = 6;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
+            label20.Location = new Point(81, 36);
+            label20.Margin = new Padding(0);
+            label20.Name = "label20";
+            label20.Size = new Size(126, 23);
+            label20.TabIndex = 9;
+            label20.Text = "Employment Date";
+            // 
+            // lblEmploymentDateReg
+            // 
+            lblEmploymentDateReg.AutoSize = true;
+            lblEmploymentDateReg.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
+            lblEmploymentDateReg.Location = new Point(75, 6);
+            lblEmploymentDateReg.Margin = new Padding(0);
+            lblEmploymentDateReg.Name = "lblEmploymentDateReg";
+            lblEmploymentDateReg.Size = new Size(203, 37);
+            lblEmploymentDateReg.TabIndex = 8;
+            lblEmploymentDateReg.Text = "February 14, 2025";
+            // 
+            // panel17
+            // 
+            panel17.BackColor = SystemColors.Menu;
+            panel17.Controls.Add(pictureBox13);
+            panel17.Location = new Point(9, 6);
+            panel17.Margin = new Padding(0);
+            panel17.Name = "panel17";
+            panel17.Size = new Size(60, 60);
+            panel17.TabIndex = 0;
+            // 
+            // pictureBox13
+            // 
+            pictureBox13.Image = (Image)resources.GetObject("pictureBox13.Image");
+            pictureBox13.Location = new Point(10, 11);
+            pictureBox13.Name = "pictureBox13";
+            pictureBox13.Size = new Size(40, 40);
+            pictureBox13.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox13.TabIndex = 1;
+            pictureBox13.TabStop = false;
+            // 
+            // panel18
+            // 
+            panel18.Controls.Add(label22);
+            panel18.Location = new Point(3, 522);
+            panel18.Name = "panel18";
+            panel18.Size = new Size(403, 41);
+            panel18.TabIndex = 7;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new Font("Poppins SemiBold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label22.Location = new Point(1, 0);
+            label22.Margin = new Padding(0);
+            label22.Name = "label22";
+            label22.Size = new Size(128, 42);
+            label22.TabIndex = 8;
+            label22.Text = "Contacts";
+            // 
+            // panel19
+            // 
+            panel19.Controls.Add(pictureBox14);
+            panel19.Controls.Add(lblEmailReg);
+            panel19.Controls.Add(label24);
+            panel19.Location = new Point(0, 566);
+            panel19.Margin = new Padding(0);
+            panel19.Name = "panel19";
+            panel19.Size = new Size(403, 75);
+            panel19.TabIndex = 8;
+            // 
+            // pictureBox14
+            // 
+            pictureBox14.Image = (Image)resources.GetObject("pictureBox14.Image");
+            pictureBox14.Location = new Point(9, 8);
+            pictureBox14.Margin = new Padding(0);
+            pictureBox14.Name = "pictureBox14";
+            pictureBox14.Size = new Size(60, 60);
+            pictureBox14.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox14.TabIndex = 10;
+            pictureBox14.TabStop = false;
+            // 
+            // lblEmailReg
+            // 
+            lblEmailReg.AutoSize = true;
+            lblEmailReg.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
+            lblEmailReg.Location = new Point(81, 41);
+            lblEmailReg.Margin = new Padding(0);
+            lblEmailReg.Name = "lblEmailReg";
+            lblEmailReg.Size = new Size(225, 23);
+            lblEmailReg.TabIndex = 9;
+            lblEmailReg.Text = "loremipsum@umindanao.edu.ph";
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
+            label24.Location = new Point(75, 11);
+            label24.Margin = new Padding(0);
+            label24.Name = "label24";
+            label24.Size = new Size(76, 37);
+            label24.TabIndex = 8;
+            label24.Text = "Email";
+            // 
+            // panel21
+            // 
+            panel21.Controls.Add(pictureBox15);
+            panel21.Controls.Add(lblPhoneReg);
+            panel21.Controls.Add(label26);
+            panel21.Location = new Point(0, 641);
+            panel21.Margin = new Padding(0);
+            panel21.Name = "panel21";
+            panel21.Size = new Size(403, 75);
+            panel21.TabIndex = 9;
+            // 
+            // pictureBox15
+            // 
+            pictureBox15.Image = (Image)resources.GetObject("pictureBox15.Image");
+            pictureBox15.Location = new Point(9, 8);
+            pictureBox15.Margin = new Padding(0);
+            pictureBox15.Name = "pictureBox15";
+            pictureBox15.Size = new Size(60, 60);
+            pictureBox15.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox15.TabIndex = 11;
+            pictureBox15.TabStop = false;
+            // 
+            // lblPhoneReg
+            // 
+            lblPhoneReg.AutoSize = true;
+            lblPhoneReg.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
+            lblPhoneReg.Location = new Point(81, 41);
+            lblPhoneReg.Margin = new Padding(0);
+            lblPhoneReg.Name = "lblPhoneReg";
+            lblPhoneReg.Size = new Size(125, 23);
+            lblPhoneReg.TabIndex = 9;
+            lblPhoneReg.Text = "+63 978 456 8794";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
+            label26.Location = new Point(75, 11);
+            label26.Margin = new Padding(0);
+            label26.Name = "label26";
+            label26.Size = new Size(84, 37);
+            label26.TabIndex = 8;
+            label26.Text = "Phone";
+            // 
+            // panel23
+            // 
+            panel23.Controls.Add(pictureBox16);
+            panel23.Controls.Add(lblWebsiteReg);
+            panel23.Controls.Add(label28);
+            panel23.Location = new Point(0, 716);
+            panel23.Margin = new Padding(0);
+            panel23.Name = "panel23";
+            panel23.Size = new Size(403, 75);
+            panel23.TabIndex = 10;
+            // 
+            // pictureBox16
+            // 
+            pictureBox16.Image = (Image)resources.GetObject("pictureBox16.Image");
+            pictureBox16.Location = new Point(9, 7);
+            pictureBox16.Margin = new Padding(0);
+            pictureBox16.Name = "pictureBox16";
+            pictureBox16.Size = new Size(60, 60);
+            pictureBox16.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox16.TabIndex = 12;
+            pictureBox16.TabStop = false;
+            // 
+            // lblWebsiteReg
+            // 
+            lblWebsiteReg.AutoSize = true;
+            lblWebsiteReg.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
+            lblWebsiteReg.Location = new Point(81, 38);
+            lblWebsiteReg.Margin = new Padding(0);
+            lblWebsiteReg.Name = "lblWebsiteReg";
+            lblWebsiteReg.Size = new Size(264, 23);
+            lblWebsiteReg.TabIndex = 9;
+            lblWebsiteReg.Text = "https://www.mywebsite.com.ph/profile";
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
+            label28.Location = new Point(75, 8);
+            label28.Margin = new Padding(0);
+            label28.Name = "label28";
+            label28.Size = new Size(104, 37);
+            label28.TabIndex = 8;
+            label28.Text = "Website";
+            // 
+            // pnlJobDeskDashMain
+            // 
+            pnlJobDeskDashMain.BackColor = Color.Gray;
+            pnlJobDeskDashMain.Controls.Add(pnlJobDeskDashSub);
+            pnlJobDeskDashMain.Location = new Point(478, 0);
+            pnlJobDeskDashMain.Margin = new Padding(10, 0, 0, 0);
+            pnlJobDeskDashMain.Name = "pnlJobDeskDashMain";
+            pnlJobDeskDashMain.Size = new Size(1095, 854);
+            pnlJobDeskDashMain.TabIndex = 6;
+            // 
+            // pnlJobDeskDashSub
+            // 
+            pnlJobDeskDashSub.BackColor = Color.White;
+            pnlJobDeskDashSub.Controls.Add(flowLayoutPanel7);
+            pnlJobDeskDashSub.Location = new Point(3, 3);
+            pnlJobDeskDashSub.Margin = new Padding(10, 3, 10, 3);
+            pnlJobDeskDashSub.Name = "pnlJobDeskDashSub";
+            pnlJobDeskDashSub.Size = new Size(1089, 848);
+            pnlJobDeskDashSub.TabIndex = 2;
+            // 
+            // flowLayoutPanel7
+            // 
+            flowLayoutPanel7.Controls.Add(tabSelectorPanel);
+            flowLayoutPanel7.Controls.Add(materialTabControl1);
+            flowLayoutPanel7.Dock = DockStyle.Fill;
+            flowLayoutPanel7.Location = new Point(0, 0);
+            flowLayoutPanel7.Margin = new Padding(0);
+            flowLayoutPanel7.Name = "flowLayoutPanel7";
+            flowLayoutPanel7.Size = new Size(1089, 848);
+            flowLayoutPanel7.TabIndex = 0;
+            // 
+            // tabSelectorPanel
+            // 
+            tabSelectorPanel.BackColor = Color.Gray;
+            tabSelectorPanel.Controls.Add(panel5);
+            tabSelectorPanel.Location = new Point(0, 0);
+            tabSelectorPanel.Margin = new Padding(0);
+            tabSelectorPanel.Name = "tabSelectorPanel";
+            tabSelectorPanel.Size = new Size(481, 52);
+            tabSelectorPanel.TabIndex = 1;
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.White;
+            panel5.Controls.Add(tabSelectorJobDesk);
+            panel5.Location = new Point(0, -1);
+            panel5.Margin = new Padding(0);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(479, 51);
+            panel5.TabIndex = 2;
+            // 
+            // tabSelectorJobDesk
+            // 
+            tabSelectorJobDesk.BackColor = Color.White;
+            tabSelectorJobDesk.BaseTabControl = materialTabControl1;
+            tabSelectorJobDesk.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Proper;
+            tabSelectorJobDesk.Depth = 0;
+            tabSelectorJobDesk.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            tabSelectorJobDesk.ForeColor = Color.FromArgb(64, 64, 64);
+            tabSelectorJobDesk.Location = new Point(-26, -1);
+            tabSelectorJobDesk.Margin = new Padding(0);
+            tabSelectorJobDesk.MouseState = MaterialSkin.MouseState.HOVER;
+            tabSelectorJobDesk.Name = "tabSelectorJobDesk";
+            tabSelectorJobDesk.Size = new Size(507, 52);
+            tabSelectorJobDesk.TabIndex = 5;
+            tabSelectorJobDesk.Text = "materialTabSelector1";
+            // 
+            // materialTabControl1
+            // 
+            materialTabControl1.Controls.Add(tabPayslip);
+            materialTabControl1.Controls.Add(tabAttendance);
+            materialTabControl1.Controls.Add(tabLeave);
+            materialTabControl1.Depth = 0;
+            materialTabControl1.Dock = DockStyle.Bottom;
+            materialTabControl1.Location = new Point(0, 52);
+            materialTabControl1.Margin = new Padding(0);
+            materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialTabControl1.Multiline = true;
+            materialTabControl1.Name = "materialTabControl1";
+            materialTabControl1.SelectedIndex = 0;
+            materialTabControl1.Size = new Size(1090, 798);
+            materialTabControl1.TabIndex = 3;
+            // 
+            // tabPayslip
+            // 
+            tabPayslip.BackColor = Color.White;
+            tabPayslip.Controls.Add(flowLayoutPanel8);
+            tabPayslip.ForeColor = Color.Black;
+            tabPayslip.Location = new Point(4, 24);
+            tabPayslip.Name = "tabPayslip";
+            tabPayslip.Padding = new Padding(3);
+            tabPayslip.Size = new Size(1082, 770);
+            tabPayslip.TabIndex = 0;
+            tabPayslip.Text = "Payslip";
+            // 
+            // flowLayoutPanel8
+            // 
+            flowLayoutPanel8.Controls.Add(panel6);
+            flowLayoutPanel8.Controls.Add(panel26);
+            flowLayoutPanel8.Controls.Add(panel27);
+            flowLayoutPanel8.Controls.Add(panel28);
+            flowLayoutPanel8.Controls.Add(panel59);
+            flowLayoutPanel8.Controls.Add(panel29);
+            flowLayoutPanel8.Controls.Add(panel30);
+            flowLayoutPanel8.Controls.Add(panel31);
+            flowLayoutPanel8.Controls.Add(panel32);
+            flowLayoutPanel8.Controls.Add(panel33);
+            flowLayoutPanel8.Controls.Add(panel34);
+            flowLayoutPanel8.Controls.Add(panel35);
+            flowLayoutPanel8.Controls.Add(panel36);
+            flowLayoutPanel8.Controls.Add(panel37);
+            flowLayoutPanel8.Controls.Add(panel38);
+            flowLayoutPanel8.Controls.Add(panel40);
+            flowLayoutPanel8.Controls.Add(panel39);
+            flowLayoutPanel8.Controls.Add(panel41);
+            flowLayoutPanel8.Dock = DockStyle.Fill;
+            flowLayoutPanel8.Location = new Point(3, 3);
+            flowLayoutPanel8.Margin = new Padding(0);
+            flowLayoutPanel8.Name = "flowLayoutPanel8";
+            flowLayoutPanel8.Padding = new Padding(25, 20, 25, 25);
+            flowLayoutPanel8.Size = new Size(1076, 764);
+            flowLayoutPanel8.TabIndex = 0;
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(btnPanel2);
+            panel6.Controls.Add(btnPanel1);
+            panel6.Controls.Add(lblPayslip);
+            panel6.Location = new Point(27, 22);
+            panel6.Margin = new Padding(2);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(1022, 50);
+            panel6.TabIndex = 0;
+            // 
+            // btnPanel2
+            // 
+            btnPanel2.BackColor = Color.FromArgb(252, 184, 49);
+            btnPanel2.Controls.Add(btnPrintPayslip);
+            btnPanel2.Location = new Point(852, 0);
+            btnPanel2.Margin = new Padding(0);
+            btnPanel2.Name = "btnPanel2";
+            btnPanel2.Padding = new Padding(3);
+            btnPanel2.Size = new Size(170, 50);
+            btnPanel2.TabIndex = 5;
+            // 
+            // btnPrintPayslip
+            // 
+            btnPrintPayslip.BackColor = Color.FromArgb(224, 224, 224);
+            btnPrintPayslip.Dock = DockStyle.Fill;
+            btnPrintPayslip.Font = new Font("Poppins", 9.75F, FontStyle.Bold);
+            btnPrintPayslip.ForeColor = Color.Black;
+            btnPrintPayslip.Location = new Point(3, 3);
+            btnPrintPayslip.Name = "btnPrintPayslip";
+            btnPrintPayslip.Size = new Size(164, 44);
+            btnPrintPayslip.Style.BackColor = Color.FromArgb(224, 224, 224);
+            btnPrintPayslip.Style.ForeColor = Color.Black;
+            btnPrintPayslip.TabIndex = 4;
+            btnPrintPayslip.Text = "Print Payslip";
+            btnPrintPayslip.UseVisualStyleBackColor = false;
+            // 
+            // btnPanel1
+            // 
+            btnPanel1.BackColor = Color.FromArgb(252, 184, 49);
+            btnPanel1.Controls.Add(btnDownloadPayslip);
+            btnPanel1.Location = new Point(675, 0);
+            btnPanel1.Margin = new Padding(0);
+            btnPanel1.Name = "btnPanel1";
+            btnPanel1.Padding = new Padding(3);
+            btnPanel1.Size = new Size(170, 50);
+            btnPanel1.TabIndex = 2;
+            // 
+            // btnDownloadPayslip
+            // 
+            btnDownloadPayslip.BackColor = Color.FromArgb(224, 224, 224);
+            btnDownloadPayslip.Dock = DockStyle.Fill;
+            btnDownloadPayslip.Font = new Font("Poppins", 9.75F, FontStyle.Bold);
+            btnDownloadPayslip.ForeColor = Color.Black;
+            btnDownloadPayslip.Location = new Point(3, 3);
+            btnDownloadPayslip.Name = "btnDownloadPayslip";
+            btnDownloadPayslip.Size = new Size(164, 44);
+            btnDownloadPayslip.Style.BackColor = Color.FromArgb(224, 224, 224);
+            btnDownloadPayslip.Style.ForeColor = Color.Black;
+            btnDownloadPayslip.TabIndex = 4;
+            btnDownloadPayslip.Text = "Download Payslip";
+            btnDownloadPayslip.UseVisualStyleBackColor = false;
+            // 
+            // lblPayslip
+            // 
+            lblPayslip.AutoSize = true;
+            lblPayslip.Font = new Font("Poppins SemiBold", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPayslip.ForeColor = Color.Black;
+            lblPayslip.Location = new Point(3, -2);
+            lblPayslip.Margin = new Padding(0);
+            lblPayslip.Name = "lblPayslip";
+            lblPayslip.Size = new Size(176, 70);
+            lblPayslip.TabIndex = 0;
+            lblPayslip.Text = "Payslip";
+            // 
+            // panel26
+            // 
+            panel26.Controls.Add(lblRegBaseSalary);
+            panel26.Controls.Add(label29);
+            panel26.Location = new Point(27, 76);
+            panel26.Margin = new Padding(2);
+            panel26.Name = "panel26";
+            panel26.Size = new Size(1022, 60);
+            panel26.TabIndex = 1;
+            // 
+            // lblRegBaseSalary
+            // 
+            lblRegBaseSalary.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
+            lblRegBaseSalary.ForeColor = Color.Black;
+            lblRegBaseSalary.Location = new Point(665, 0);
+            lblRegBaseSalary.Name = "lblRegBaseSalary";
+            lblRegBaseSalary.Size = new Size(354, 66);
+            lblRegBaseSalary.TabIndex = 1;
+            lblRegBaseSalary.Text = "P10,000";
+            lblRegBaseSalary.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Font = new Font("Poppins", 20.25F);
+            label29.ForeColor = Color.Black;
+            label29.Location = new Point(4, 17);
+            label29.Name = "label29";
+            label29.Size = new Size(178, 48);
+            label29.TabIndex = 0;
+            label29.Text = "Base Salary";
+            // 
+            // panel27
+            // 
+            panel27.BackColor = Color.Silver;
+            panel27.Location = new Point(26, 139);
+            panel27.Margin = new Padding(1);
+            panel27.Name = "panel27";
+            panel27.Size = new Size(1022, 2);
+            panel27.TabIndex = 2;
+            // 
+            // panel28
+            // 
+            panel28.Controls.Add(lblRegBonus);
+            panel28.Controls.Add(label33);
+            panel28.Location = new Point(27, 144);
+            panel28.Margin = new Padding(2);
+            panel28.Name = "panel28";
+            panel28.Size = new Size(1022, 50);
+            panel28.TabIndex = 3;
+            // 
+            // lblRegBonus
+            // 
+            lblRegBonus.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
+            lblRegBonus.ForeColor = Color.Black;
+            lblRegBonus.Location = new Point(665, 5);
+            lblRegBonus.Name = "lblRegBonus";
+            lblRegBonus.Size = new Size(354, 49);
+            lblRegBonus.TabIndex = 3;
+            lblRegBonus.Text = "P10,000";
+            lblRegBonus.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Font = new Font("Poppins", 20.25F);
+            label33.ForeColor = Color.Black;
+            label33.Location = new Point(3, 6);
+            label33.Name = "label33";
+            label33.Size = new Size(133, 48);
+            label33.TabIndex = 2;
+            label33.Text = "Bonuses";
+            // 
+            // panel59
+            // 
+            panel59.Controls.Add(label80);
+            panel59.Controls.Add(label81);
+            panel59.Location = new Point(27, 198);
+            panel59.Margin = new Padding(2);
+            panel59.Name = "panel59";
+            panel59.Size = new Size(1022, 50);
+            panel59.TabIndex = 18;
+            // 
+            // label80
+            // 
+            label80.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
+            label80.ForeColor = Color.Black;
+            label80.Location = new Point(665, 5);
+            label80.Name = "label80";
+            label80.Size = new Size(354, 49);
+            label80.TabIndex = 3;
+            label80.Text = "P10,000";
+            label80.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label81
+            // 
+            label81.AutoSize = true;
+            label81.Font = new Font("Poppins", 20.25F);
+            label81.ForeColor = Color.Black;
+            label81.Location = new Point(3, 6);
+            label81.Name = "label81";
+            label81.Size = new Size(202, 48);
+            label81.TabIndex = 2;
+            label81.Text = "Overtime Pay";
+            // 
+            // panel29
+            // 
+            panel29.BackColor = Color.Silver;
+            panel29.Location = new Point(26, 251);
+            panel29.Margin = new Padding(1);
+            panel29.Name = "panel29";
+            panel29.Size = new Size(1022, 2);
+            panel29.TabIndex = 19;
+            // 
+            // panel30
+            // 
+            panel30.Controls.Add(label35);
+            panel30.Location = new Point(27, 256);
+            panel30.Margin = new Padding(2);
+            panel30.Name = "panel30";
+            panel30.Size = new Size(1022, 50);
+            panel30.TabIndex = 20;
+            // 
+            // label35
+            // 
+            label35.AutoSize = true;
+            label35.Font = new Font("Poppins Medium", 20.25F, FontStyle.Bold);
+            label35.ForeColor = Color.Black;
+            label35.Location = new Point(3, 5);
+            label35.Name = "label35";
+            label35.Size = new Size(192, 48);
+            label35.TabIndex = 2;
+            label35.Text = "Deductions:";
+            // 
+            // panel31
+            // 
+            panel31.Controls.Add(lblRegTax);
+            panel31.Controls.Add(label37);
+            panel31.Location = new Point(27, 310);
+            panel31.Margin = new Padding(2);
+            panel31.Name = "panel31";
+            panel31.Size = new Size(1022, 50);
+            panel31.TabIndex = 21;
+            // 
+            // lblRegTax
+            // 
+            lblRegTax.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
+            lblRegTax.ForeColor = Color.Black;
+            lblRegTax.Location = new Point(666, 5);
+            lblRegTax.Name = "lblRegTax";
+            lblRegTax.Size = new Size(354, 49);
+            lblRegTax.TabIndex = 3;
+            lblRegTax.Text = "P10,000";
+            lblRegTax.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.Font = new Font("Poppins", 20.25F);
+            label37.ForeColor = Color.Black;
+            label37.Location = new Point(3, 5);
+            label37.Name = "label37";
+            label37.Size = new Size(158, 48);
+            label37.TabIndex = 2;
+            label37.Text = "Salary Tax";
+            // 
+            // panel32
+            // 
+            panel32.Controls.Add(lblRegSSS);
+            panel32.Controls.Add(label38);
+            panel32.Location = new Point(27, 364);
+            panel32.Margin = new Padding(2);
+            panel32.Name = "panel32";
+            panel32.Size = new Size(1022, 50);
+            panel32.TabIndex = 22;
+            // 
+            // lblRegSSS
+            // 
+            lblRegSSS.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
+            lblRegSSS.ForeColor = Color.Black;
+            lblRegSSS.Location = new Point(666, 5);
+            lblRegSSS.Name = "lblRegSSS";
+            lblRegSSS.Size = new Size(354, 49);
+            lblRegSSS.TabIndex = 3;
+            lblRegSSS.Text = "P10,000";
+            lblRegSSS.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label38
+            // 
+            label38.AutoSize = true;
+            label38.Font = new Font("Poppins", 20.25F);
+            label38.ForeColor = Color.Black;
+            label38.Location = new Point(3, 5);
+            label38.Name = "label38";
+            label38.Size = new Size(68, 48);
+            label38.TabIndex = 2;
+            label38.Text = "SSS";
+            // 
+            // panel33
+            // 
+            panel33.Controls.Add(lblRegPhilHealth);
+            panel33.Controls.Add(label40);
+            panel33.Location = new Point(27, 418);
+            panel33.Margin = new Padding(2);
+            panel33.Name = "panel33";
+            panel33.Size = new Size(1022, 50);
+            panel33.TabIndex = 23;
+            // 
+            // lblRegPhilHealth
+            // 
+            lblRegPhilHealth.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
+            lblRegPhilHealth.ForeColor = Color.Black;
+            lblRegPhilHealth.Location = new Point(666, 5);
+            lblRegPhilHealth.Name = "lblRegPhilHealth";
+            lblRegPhilHealth.Size = new Size(354, 49);
+            lblRegPhilHealth.TabIndex = 3;
+            lblRegPhilHealth.Text = "P10,000";
+            lblRegPhilHealth.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label40
+            // 
+            label40.AutoSize = true;
+            label40.Font = new Font("Poppins", 20.25F);
+            label40.ForeColor = Color.Black;
+            label40.Location = new Point(3, 5);
+            label40.Name = "label40";
+            label40.Size = new Size(155, 48);
+            label40.TabIndex = 2;
+            label40.Text = "PhilHealth";
+            // 
+            // panel34
+            // 
+            panel34.Controls.Add(lblRegPagIbig);
+            panel34.Controls.Add(label42);
+            panel34.Location = new Point(27, 472);
+            panel34.Margin = new Padding(2);
+            panel34.Name = "panel34";
+            panel34.Size = new Size(1022, 50);
+            panel34.TabIndex = 24;
+            // 
+            // lblRegPagIbig
+            // 
+            lblRegPagIbig.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
+            lblRegPagIbig.ForeColor = Color.Black;
+            lblRegPagIbig.Location = new Point(666, 5);
+            lblRegPagIbig.Name = "lblRegPagIbig";
+            lblRegPagIbig.Size = new Size(354, 49);
+            lblRegPagIbig.TabIndex = 3;
+            lblRegPagIbig.Text = "P10,000";
+            lblRegPagIbig.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label42
+            // 
+            label42.AutoSize = true;
+            label42.Font = new Font("Poppins", 20.25F);
+            label42.ForeColor = Color.Black;
+            label42.Location = new Point(3, 5);
+            label42.Name = "label42";
+            label42.Size = new Size(139, 48);
+            label42.TabIndex = 2;
+            label42.Text = "Pag-IBIG";
+            // 
+            // panel35
+            // 
+            panel35.Controls.Add(label82);
+            panel35.Controls.Add(label83);
+            panel35.Location = new Point(27, 526);
+            panel35.Margin = new Padding(2);
+            panel35.Name = "panel35";
+            panel35.Size = new Size(1022, 50);
+            panel35.TabIndex = 31;
+            // 
+            // label82
+            // 
+            label82.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
+            label82.ForeColor = Color.Black;
+            label82.Location = new Point(666, 5);
+            label82.Name = "label82";
+            label82.Size = new Size(354, 49);
+            label82.TabIndex = 3;
+            label82.Text = "P10,000";
+            label82.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label83
+            // 
+            label83.AutoSize = true;
+            label83.Font = new Font("Poppins", 20.25F);
+            label83.ForeColor = Color.Black;
+            label83.Location = new Point(3, 5);
+            label83.Name = "label83";
+            label83.Size = new Size(244, 48);
+            label83.TabIndex = 2;
+            label83.Text = "Loan Deductions";
+            // 
+            // panel36
+            // 
+            panel36.Controls.Add(lblRegAbsence);
+            panel36.Controls.Add(label44);
+            panel36.Location = new Point(27, 580);
+            panel36.Margin = new Padding(2);
+            panel36.Name = "panel36";
+            panel36.Size = new Size(1022, 58);
+            panel36.TabIndex = 32;
+            // 
+            // lblRegAbsence
+            // 
+            lblRegAbsence.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
+            lblRegAbsence.ForeColor = Color.Black;
+            lblRegAbsence.Location = new Point(666, 5);
+            lblRegAbsence.Name = "lblRegAbsence";
+            lblRegAbsence.Size = new Size(354, 49);
+            lblRegAbsence.TabIndex = 3;
+            lblRegAbsence.Text = "P10,000";
+            lblRegAbsence.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label44
+            // 
+            label44.AutoSize = true;
+            label44.Font = new Font("Poppins", 20.25F);
+            label44.ForeColor = Color.Black;
+            label44.Location = new Point(3, 5);
+            label44.Name = "label44";
+            label44.Size = new Size(297, 48);
+            label44.TabIndex = 2;
+            label44.Text = "Absence Deductions";
+            // 
+            // panel37
+            // 
+            panel37.BackColor = Color.Silver;
+            panel37.Location = new Point(26, 641);
+            panel37.Margin = new Padding(1);
+            panel37.Name = "panel37";
+            panel37.Size = new Size(1022, 2);
+            panel37.TabIndex = 33;
+            // 
+            // panel38
+            // 
+            panel38.Controls.Add(lblRegTotal);
+            panel38.Controls.Add(label46);
+            panel38.Location = new Point(27, 646);
+            panel38.Margin = new Padding(2);
+            panel38.Name = "panel38";
+            panel38.Size = new Size(1022, 50);
+            panel38.TabIndex = 34;
+            // 
+            // lblRegTotal
+            // 
+            lblRegTotal.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
+            lblRegTotal.ForeColor = Color.Black;
+            lblRegTotal.Location = new Point(666, 5);
+            lblRegTotal.Name = "lblRegTotal";
+            lblRegTotal.Size = new Size(354, 49);
+            lblRegTotal.TabIndex = 3;
+            lblRegTotal.Text = "P10,000";
+            lblRegTotal.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label46
+            // 
+            label46.AutoSize = true;
+            label46.Font = new Font("Poppins Medium", 20.25F, FontStyle.Bold);
+            label46.ForeColor = Color.Black;
+            label46.Location = new Point(3, 5);
+            label46.Name = "label46";
+            label46.Size = new Size(100, 48);
+            label46.TabIndex = 2;
+            label46.Text = "Total:";
+            // 
+            // panel40
+            // 
+            panel40.BackColor = Color.Silver;
+            panel40.Location = new Point(26, 699);
+            panel40.Margin = new Padding(1);
+            panel40.Name = "panel40";
+            panel40.Size = new Size(1022, 2);
+            panel40.TabIndex = 35;
+            // 
+            // panel39
+            // 
+            panel39.Controls.Add(lblRegPayrolDate);
+            panel39.Controls.Add(label48);
+            panel39.Location = new Point(27, 704);
+            panel39.Margin = new Padding(2);
+            panel39.Name = "panel39";
+            panel39.Size = new Size(1022, 30);
+            panel39.TabIndex = 36;
+            // 
+            // lblRegPayrolDate
+            // 
+            lblRegPayrolDate.Font = new Font("Poppins", 12F, FontStyle.Italic);
+            lblRegPayrolDate.ForeColor = Color.Black;
+            lblRegPayrolDate.Location = new Point(497, 5);
+            lblRegPayrolDate.Name = "lblRegPayrolDate";
+            lblRegPayrolDate.Size = new Size(523, 23);
+            lblRegPayrolDate.TabIndex = 3;
+            lblRegPayrolDate.Text = "January 15, 2025 - February 15, 2025";
+            lblRegPayrolDate.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label48
+            // 
+            label48.AutoSize = true;
+            label48.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
+            label48.ForeColor = Color.Black;
+            label48.Location = new Point(4, 1);
+            label48.Name = "label48";
+            label48.Size = new Size(126, 28);
+            label48.TabIndex = 2;
+            label48.Text = "Payroll Date:";
+            // 
+            // panel41
+            // 
+            panel41.Controls.Add(lblRegStatus);
+            panel41.Controls.Add(label50);
+            panel41.Location = new Point(27, 738);
+            panel41.Margin = new Padding(2);
+            panel41.Name = "panel41";
+            panel41.Size = new Size(1022, 30);
+            panel41.TabIndex = 37;
+            // 
+            // lblRegStatus
+            // 
+            lblRegStatus.Font = new Font("Poppins Medium", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRegStatus.ForeColor = Color.Black;
+            lblRegStatus.Location = new Point(497, 5);
+            lblRegStatus.Name = "lblRegStatus";
+            lblRegStatus.Size = new Size(523, 23);
+            lblRegStatus.TabIndex = 3;
+            lblRegStatus.Text = "Completed";
+            lblRegStatus.TextAlign = ContentAlignment.BottomRight;
+            // 
+            // label50
+            // 
+            label50.AutoSize = true;
+            label50.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
+            label50.ForeColor = Color.Black;
+            label50.Location = new Point(4, 1);
+            label50.Name = "label50";
+            label50.Size = new Size(70, 28);
+            label50.TabIndex = 2;
+            label50.Text = "Status";
+            // 
+            // tabAttendance
+            // 
+            tabAttendance.BackColor = Color.White;
+            tabAttendance.Controls.Add(flowLayoutPanel9);
+            tabAttendance.Location = new Point(4, 24);
+            tabAttendance.Name = "tabAttendance";
+            tabAttendance.Padding = new Padding(3);
+            tabAttendance.Size = new Size(1082, 770);
+            tabAttendance.TabIndex = 1;
+            tabAttendance.Text = "Attendance";
+            // 
+            // flowLayoutPanel9
+            // 
+            flowLayoutPanel9.Controls.Add(panel24);
+            flowLayoutPanel9.Controls.Add(panel42);
+            flowLayoutPanel9.Dock = DockStyle.Fill;
+            flowLayoutPanel9.Location = new Point(3, 3);
+            flowLayoutPanel9.Margin = new Padding(0);
+            flowLayoutPanel9.Name = "flowLayoutPanel9";
+            flowLayoutPanel9.Padding = new Padding(25, 20, 25, 25);
+            flowLayoutPanel9.Size = new Size(1076, 764);
+            flowLayoutPanel9.TabIndex = 1;
+            // 
+            // panel24
+            // 
+            panel24.Controls.Add(btnPanel3);
+            panel24.Controls.Add(label31);
+            panel24.Location = new Point(28, 23);
+            panel24.Margin = new Padding(3, 3, 3, 15);
+            panel24.Name = "panel24";
+            panel24.Size = new Size(1022, 50);
+            panel24.TabIndex = 0;
+            // 
+            // btnPanel3
+            // 
+            btnPanel3.BackColor = Color.FromArgb(252, 184, 49);
+            btnPanel3.Controls.Add(btnAttendanceRequest);
+            btnPanel3.Location = new Point(852, 0);
+            btnPanel3.Margin = new Padding(0);
+            btnPanel3.Name = "btnPanel3";
+            btnPanel3.Padding = new Padding(3);
+            btnPanel3.Size = new Size(170, 50);
+            btnPanel3.TabIndex = 3;
+            // 
+            // btnAttendanceRequest
+            // 
+            btnAttendanceRequest.BackColor = Color.FromArgb(224, 224, 224);
+            btnAttendanceRequest.Dock = DockStyle.Fill;
+            btnAttendanceRequest.Font = new Font("Poppins", 9.75F, FontStyle.Bold);
+            btnAttendanceRequest.ForeColor = Color.Black;
+            btnAttendanceRequest.Location = new Point(3, 3);
+            btnAttendanceRequest.Name = "btnAttendanceRequest";
+            btnAttendanceRequest.Size = new Size(164, 44);
+            btnAttendanceRequest.Style.BackColor = Color.FromArgb(224, 224, 224);
+            btnAttendanceRequest.Style.ForeColor = Color.Black;
+            btnAttendanceRequest.TabIndex = 4;
+            btnAttendanceRequest.Text = "Request";
+            btnAttendanceRequest.UseVisualStyleBackColor = false;
+            btnAttendanceRequest.Click += btnAttendanceRequest_Click;
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Font = new Font("Poppins SemiBold", 30F, FontStyle.Bold);
+            label31.ForeColor = Color.FromArgb(28, 28, 28);
+            label31.Location = new Point(2, -2);
+            label31.Margin = new Padding(0);
+            label31.Name = "label31";
+            label31.Size = new Size(271, 70);
+            label31.TabIndex = 0;
+            label31.Text = "Attendance";
+            // 
+            // panel42
+            // 
+            panel42.Controls.Add(tblAttendanceDataGrid);
+            panel42.Location = new Point(28, 91);
+            panel42.Name = "panel42";
+            panel42.Size = new Size(1021, 673);
+            panel42.TabIndex = 1;
+            // 
+            // tblAttendanceDataGrid
+            // 
+            tblAttendanceDataGrid.AccessibleName = "Table";
+            tblAttendanceDataGrid.Dock = DockStyle.Fill;
+            tblAttendanceDataGrid.Location = new Point(0, 0);
+            tblAttendanceDataGrid.Name = "tblAttendanceDataGrid";
+            tblAttendanceDataGrid.PreviewRowHeight = 35;
+            tblAttendanceDataGrid.Size = new Size(1021, 673);
+            tblAttendanceDataGrid.Style.BorderColor = Color.FromArgb(100, 100, 100);
+            tblAttendanceDataGrid.Style.CheckBoxStyle.CheckedBackColor = Color.FromArgb(0, 120, 215);
+            tblAttendanceDataGrid.Style.CheckBoxStyle.CheckedBorderColor = Color.FromArgb(0, 120, 215);
+            tblAttendanceDataGrid.Style.CheckBoxStyle.IndeterminateBorderColor = Color.FromArgb(0, 120, 215);
+            tblAttendanceDataGrid.Style.HyperlinkStyle.DefaultLinkColor = Color.FromArgb(0, 120, 215);
+            tblAttendanceDataGrid.TabIndex = 0;
+            tblAttendanceDataGrid.Text = "sfDataGrid1";
+            // 
+            // tabLeave
+            // 
+            tabLeave.BackColor = Color.White;
+            tabLeave.Controls.Add(flowLayoutPanel10);
+            tabLeave.Location = new Point(4, 24);
+            tabLeave.Name = "tabLeave";
+            tabLeave.Size = new Size(1082, 770);
+            tabLeave.TabIndex = 2;
+            tabLeave.Text = "Leave";
+            // 
+            // flowLayoutPanel10
+            // 
+            flowLayoutPanel10.Controls.Add(panel25);
+            flowLayoutPanel10.Controls.Add(flowLayoutPanel11);
+            flowLayoutPanel10.Controls.Add(panel43);
+            flowLayoutPanel10.Controls.Add(panel44);
+            flowLayoutPanel10.Dock = DockStyle.Fill;
+            flowLayoutPanel10.Location = new Point(0, 0);
+            flowLayoutPanel10.Margin = new Padding(0);
+            flowLayoutPanel10.Name = "flowLayoutPanel10";
+            flowLayoutPanel10.Padding = new Padding(25, 20, 25, 25);
+            flowLayoutPanel10.Size = new Size(1082, 770);
+            flowLayoutPanel10.TabIndex = 2;
+            // 
+            // panel25
+            // 
+            panel25.Controls.Add(btnPanel4);
+            panel25.Controls.Add(label34);
+            panel25.Location = new Point(28, 23);
+            panel25.Name = "panel25";
+            panel25.Size = new Size(1022, 50);
+            panel25.TabIndex = 0;
+            // 
+            // btnPanel4
+            // 
+            btnPanel4.BackColor = Color.FromArgb(252, 184, 49);
+            btnPanel4.Controls.Add(btnFileLeave);
+            btnPanel4.Location = new Point(851, 0);
+            btnPanel4.Margin = new Padding(0);
+            btnPanel4.Name = "btnPanel4";
+            btnPanel4.Padding = new Padding(3);
+            btnPanel4.Size = new Size(170, 50);
+            btnPanel4.TabIndex = 4;
+            // 
+            // btnFileLeave
+            // 
+            btnFileLeave.BackColor = Color.FromArgb(224, 224, 224);
+            btnFileLeave.Dock = DockStyle.Fill;
+            btnFileLeave.Font = new Font("Poppins", 9.75F, FontStyle.Bold);
+            btnFileLeave.ForeColor = Color.Black;
+            btnFileLeave.Location = new Point(3, 3);
+            btnFileLeave.Name = "btnFileLeave";
+            btnFileLeave.Size = new Size(164, 44);
+            btnFileLeave.Style.BackColor = Color.FromArgb(224, 224, 224);
+            btnFileLeave.Style.ForeColor = Color.Black;
+            btnFileLeave.TabIndex = 4;
+            btnFileLeave.Text = "File";
+            btnFileLeave.UseVisualStyleBackColor = false;
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Font = new Font("Poppins SemiBold", 30F, FontStyle.Bold);
+            label34.ForeColor = Color.FromArgb(28, 28, 28);
+            label34.Location = new Point(3, -2);
+            label34.Margin = new Padding(0);
+            label34.Name = "label34";
+            label34.Size = new Size(149, 70);
+            label34.TabIndex = 0;
+            label34.Text = "Leave";
+            // 
+            // flowLayoutPanel11
+            // 
+            flowLayoutPanel11.Controls.Add(pnlLeaveCard1Main);
+            flowLayoutPanel11.Controls.Add(pnlLeaveCard2Main);
+            flowLayoutPanel11.Controls.Add(pnlLeaveCard3Main);
+            flowLayoutPanel11.Location = new Point(28, 79);
+            flowLayoutPanel11.Margin = new Padding(3, 3, 3, 15);
+            flowLayoutPanel11.Name = "flowLayoutPanel11";
+            flowLayoutPanel11.Padding = new Padding(0, 15, 0, 0);
+            flowLayoutPanel11.Size = new Size(1025, 121);
+            flowLayoutPanel11.TabIndex = 1;
+            // 
+            // pnlLeaveCard1Main
+            // 
+            pnlLeaveCard1Main.BackColor = Color.Gray;
+            pnlLeaveCard1Main.Controls.Add(pnlLeaveCard1Sub);
+            pnlLeaveCard1Main.Location = new Point(0, 15);
+            pnlLeaveCard1Main.Margin = new Padding(0);
+            pnlLeaveCard1Main.Name = "pnlLeaveCard1Main";
+            pnlLeaveCard1Main.Size = new Size(329, 106);
+            pnlLeaveCard1Main.TabIndex = 6;
+            // 
+            // pnlLeaveCard1Sub
+            // 
+            pnlLeaveCard1Sub.BackColor = Color.White;
+            pnlLeaveCard1Sub.Controls.Add(lblApprovedLeaves);
+            pnlLeaveCard1Sub.Controls.Add(label36);
+            pnlLeaveCard1Sub.Controls.Add(label39);
+            pnlLeaveCard1Sub.Location = new Point(3, 3);
+            pnlLeaveCard1Sub.Margin = new Padding(10, 3, 10, 3);
+            pnlLeaveCard1Sub.Name = "pnlLeaveCard1Sub";
+            pnlLeaveCard1Sub.Size = new Size(323, 100);
+            pnlLeaveCard1Sub.TabIndex = 2;
+            // 
+            // lblApprovedLeaves
+            // 
+            lblApprovedLeaves.AutoSize = true;
+            lblApprovedLeaves.Font = new Font("Poppins", 42F, FontStyle.Bold);
+            lblApprovedLeaves.Location = new Point(207, 7);
+            lblApprovedLeaves.Margin = new Padding(0);
+            lblApprovedLeaves.Name = "lblApprovedLeaves";
+            lblApprovedLeaves.Size = new Size(116, 99);
+            lblApprovedLeaves.TabIndex = 5;
+            lblApprovedLeaves.Text = "00";
+            // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
+            label36.Location = new Point(23, 53);
+            label36.Name = "label36";
+            label36.Size = new Size(82, 31);
+            label36.TabIndex = 4;
+            label36.Text = "Leaves:";
+            // 
+            // label39
+            // 
+            label39.AutoSize = true;
+            label39.Font = new Font("Poppins SemiBold", 23F, FontStyle.Bold);
+            label39.Location = new Point(18, 10);
+            label39.Margin = new Padding(0);
+            label39.Name = "label39";
+            label39.Size = new Size(179, 54);
+            label39.TabIndex = 3;
+            label39.Text = "Approved";
+            // 
+            // pnlLeaveCard2Main
+            // 
+            pnlLeaveCard2Main.BackColor = Color.Gray;
+            pnlLeaveCard2Main.Controls.Add(pnlLeaveCard2Sub);
+            pnlLeaveCard2Main.Location = new Point(347, 15);
+            pnlLeaveCard2Main.Margin = new Padding(18, 0, 18, 0);
+            pnlLeaveCard2Main.Name = "pnlLeaveCard2Main";
+            pnlLeaveCard2Main.Size = new Size(329, 106);
+            pnlLeaveCard2Main.TabIndex = 7;
+            // 
+            // pnlLeaveCard2Sub
+            // 
+            pnlLeaveCard2Sub.BackColor = Color.White;
+            pnlLeaveCard2Sub.Controls.Add(lblPendingLaaves);
+            pnlLeaveCard2Sub.Controls.Add(label41);
+            pnlLeaveCard2Sub.Controls.Add(label43);
+            pnlLeaveCard2Sub.Location = new Point(3, 3);
+            pnlLeaveCard2Sub.Margin = new Padding(10, 3, 10, 3);
+            pnlLeaveCard2Sub.Name = "pnlLeaveCard2Sub";
+            pnlLeaveCard2Sub.Size = new Size(323, 100);
+            pnlLeaveCard2Sub.TabIndex = 2;
+            // 
+            // lblPendingLaaves
+            // 
+            lblPendingLaaves.AutoSize = true;
+            lblPendingLaaves.Font = new Font("Poppins", 42F, FontStyle.Bold);
+            lblPendingLaaves.Location = new Point(206, 8);
+            lblPendingLaaves.Margin = new Padding(0);
+            lblPendingLaaves.Name = "lblPendingLaaves";
+            lblPendingLaaves.Size = new Size(116, 99);
+            lblPendingLaaves.TabIndex = 6;
+            lblPendingLaaves.Text = "00";
+            // 
+            // label41
+            // 
+            label41.AutoSize = true;
+            label41.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
+            label41.Location = new Point(26, 53);
+            label41.Name = "label41";
+            label41.Size = new Size(130, 31);
+            label41.TabIndex = 4;
+            label41.Text = "For Approval";
+            // 
+            // label43
+            // 
+            label43.AutoSize = true;
+            label43.Font = new Font("Poppins SemiBold", 23F, FontStyle.Bold);
+            label43.Location = new Point(21, 10);
+            label43.Margin = new Padding(0);
+            label43.Name = "label43";
+            label43.Size = new Size(152, 54);
+            label43.TabIndex = 3;
+            label43.Text = "Pending";
+            // 
+            // pnlLeaveCard3Main
+            // 
+            pnlLeaveCard3Main.BackColor = Color.FromArgb(252, 184, 49);
+            pnlLeaveCard3Main.Controls.Add(lblRemainingLeaves);
+            pnlLeaveCard3Main.Controls.Add(label45);
+            pnlLeaveCard3Main.Controls.Add(label47);
+            pnlLeaveCard3Main.Location = new Point(694, 15);
+            pnlLeaveCard3Main.Margin = new Padding(0);
+            pnlLeaveCard3Main.Name = "pnlLeaveCard3Main";
+            pnlLeaveCard3Main.Size = new Size(329, 106);
+            pnlLeaveCard3Main.TabIndex = 8;
+            // 
+            // lblRemainingLeaves
+            // 
+            lblRemainingLeaves.AutoSize = true;
+            lblRemainingLeaves.Font = new Font("Poppins", 42F, FontStyle.Bold);
+            lblRemainingLeaves.Location = new Point(211, 11);
+            lblRemainingLeaves.Margin = new Padding(0);
+            lblRemainingLeaves.Name = "lblRemainingLeaves";
+            lblRemainingLeaves.Size = new Size(116, 99);
+            lblRemainingLeaves.TabIndex = 8;
+            lblRemainingLeaves.Text = "00";
+            // 
+            // label45
+            // 
+            label45.AutoSize = true;
+            label45.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
+            label45.Location = new Point(30, 53);
+            label45.Name = "label45";
+            label45.Size = new Size(143, 31);
+            label45.TabIndex = 7;
+            label45.Text = "Leave Credits:";
+            // 
+            // label47
+            // 
+            label47.AutoSize = true;
+            label47.Font = new Font("Poppins SemiBold", 23F, FontStyle.Bold);
+            label47.Location = new Point(25, 10);
+            label47.Margin = new Padding(0);
+            label47.Name = "label47";
+            label47.Size = new Size(194, 54);
+            label47.TabIndex = 6;
+            label47.Text = "Remaining";
+            // 
+            // panel43
+            // 
+            panel43.Controls.Add(label12);
+            panel43.Location = new Point(28, 218);
+            panel43.Name = "panel43";
+            panel43.Size = new Size(1022, 39);
+            panel43.TabIndex = 2;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Poppins SemiBold", 23F, FontStyle.Bold);
+            label12.ForeColor = Color.FromArgb(28, 28, 28);
+            label12.Location = new Point(3, -2);
+            label12.Margin = new Padding(0);
+            label12.Name = "label12";
+            label12.Size = new Size(135, 54);
+            label12.TabIndex = 0;
+            label12.Text = "History";
+            // 
+            // panel44
+            // 
+            panel44.Controls.Add(sfDataGrid2);
+            panel44.Location = new Point(28, 263);
+            panel44.Name = "panel44";
+            panel44.Size = new Size(1021, 511);
+            panel44.TabIndex = 3;
+            // 
+            // sfDataGrid2
+            // 
+            sfDataGrid2.AccessibleName = "Table";
+            sfDataGrid2.Dock = DockStyle.Fill;
+            sfDataGrid2.Location = new Point(0, 0);
+            sfDataGrid2.Name = "sfDataGrid2";
+            sfDataGrid2.PreviewRowHeight = 35;
+            sfDataGrid2.Size = new Size(1021, 511);
+            sfDataGrid2.Style.BorderColor = Color.FromArgb(100, 100, 100);
+            sfDataGrid2.Style.CheckBoxStyle.CheckedBackColor = Color.FromArgb(0, 120, 215);
+            sfDataGrid2.Style.CheckBoxStyle.CheckedBorderColor = Color.FromArgb(0, 120, 215);
+            sfDataGrid2.Style.CheckBoxStyle.IndeterminateBorderColor = Color.FromArgb(0, 120, 215);
+            sfDataGrid2.Style.HyperlinkStyle.DefaultLinkColor = Color.FromArgb(0, 120, 215);
+            sfDataGrid2.TabIndex = 0;
+            sfDataGrid2.Text = "sfDataGrid2";
             // 
             // pnlDashboard
             // 
@@ -2675,1590 +4259,6 @@
             label79.TabIndex = 1;
             label79.Text = "Landbank : 1568 7894 60";
             // 
-            // pnlJobDeskRegular
-            // 
-            pnlJobDeskRegular.Controls.Add(flowLayoutPanel2);
-            pnlJobDeskRegular.Dock = DockStyle.Fill;
-            pnlJobDeskRegular.Location = new Point(0, 0);
-            pnlJobDeskRegular.Margin = new Padding(20);
-            pnlJobDeskRegular.Name = "pnlJobDeskRegular";
-            pnlJobDeskRegular.Padding = new Padding(20);
-            pnlJobDeskRegular.Size = new Size(1993, 1152);
-            pnlJobDeskRegular.TabIndex = 1;
-            // 
-            // flowLayoutPanel2
-            // 
-            flowLayoutPanel2.Controls.Add(panel3);
-            flowLayoutPanel2.Controls.Add(flowLayoutPanel5);
-            flowLayoutPanel2.Location = new Point(23, 23);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(1576, 945);
-            flowLayoutPanel2.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(label8);
-            panel3.Location = new Point(3, 3);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1576, 81);
-            panel3.TabIndex = 3;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Dock = DockStyle.Left;
-            label8.Font = new Font("Poppins", 36F, FontStyle.Bold);
-            label8.Location = new Point(0, 0);
-            label8.Name = "label8";
-            label8.Size = new Size(268, 84);
-            label8.TabIndex = 0;
-            label8.Text = "JOB DESK";
-            // 
-            // flowLayoutPanel5
-            // 
-            flowLayoutPanel5.Controls.Add(pnlJobDeskProfileMain);
-            flowLayoutPanel5.Controls.Add(pnlJobDeskDashMain);
-            flowLayoutPanel5.Location = new Point(0, 87);
-            flowLayoutPanel5.Margin = new Padding(0);
-            flowLayoutPanel5.Name = "flowLayoutPanel5";
-            flowLayoutPanel5.Size = new Size(1573, 855);
-            flowLayoutPanel5.TabIndex = 4;
-            // 
-            // pnlJobDeskProfileMain
-            // 
-            pnlJobDeskProfileMain.BackColor = Color.Gray;
-            pnlJobDeskProfileMain.Controls.Add(pnlJobDeskProfileSub);
-            pnlJobDeskProfileMain.Location = new Point(0, 0);
-            pnlJobDeskProfileMain.Margin = new Padding(0);
-            pnlJobDeskProfileMain.Name = "pnlJobDeskProfileMain";
-            pnlJobDeskProfileMain.Size = new Size(468, 854);
-            pnlJobDeskProfileMain.TabIndex = 5;
-            // 
-            // pnlJobDeskProfileSub
-            // 
-            pnlJobDeskProfileSub.BackColor = Color.White;
-            pnlJobDeskProfileSub.Controls.Add(flowLayoutPanel6);
-            pnlJobDeskProfileSub.Location = new Point(3, 3);
-            pnlJobDeskProfileSub.Margin = new Padding(10, 3, 10, 3);
-            pnlJobDeskProfileSub.Name = "pnlJobDeskProfileSub";
-            pnlJobDeskProfileSub.Padding = new Padding(20);
-            pnlJobDeskProfileSub.Size = new Size(462, 848);
-            pnlJobDeskProfileSub.TabIndex = 2;
-            // 
-            // flowLayoutPanel6
-            // 
-            flowLayoutPanel6.Controls.Add(panel4);
-            flowLayoutPanel6.Controls.Add(panel7);
-            flowLayoutPanel6.Controls.Add(panel8);
-            flowLayoutPanel6.Controls.Add(panel10);
-            flowLayoutPanel6.Controls.Add(panel12);
-            flowLayoutPanel6.Controls.Add(panel14);
-            flowLayoutPanel6.Controls.Add(panel16);
-            flowLayoutPanel6.Controls.Add(panel18);
-            flowLayoutPanel6.Controls.Add(panel19);
-            flowLayoutPanel6.Controls.Add(panel21);
-            flowLayoutPanel6.Controls.Add(panel23);
-            flowLayoutPanel6.Location = new Point(26, 29);
-            flowLayoutPanel6.Margin = new Padding(15);
-            flowLayoutPanel6.Name = "flowLayoutPanel6";
-            flowLayoutPanel6.Size = new Size(406, 795);
-            flowLayoutPanel6.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            panel4.Controls.Add(btnJobDeskViewProfile);
-            panel4.Controls.Add(pictureBox8);
-            panel4.Controls.Add(lblProfileName);
-            panel4.Location = new Point(0, 0);
-            panel4.Margin = new Padding(0);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(406, 91);
-            panel4.TabIndex = 0;
-            // 
-            // btnJobDeskViewProfile
-            // 
-            btnJobDeskViewProfile.BackColor = SystemColors.ButtonHighlight;
-            btnJobDeskViewProfile.Font = new Font("Poppins", 12F, FontStyle.Italic);
-            btnJobDeskViewProfile.Location = new Point(96, 50);
-            btnJobDeskViewProfile.Name = "btnJobDeskViewProfile";
-            btnJobDeskViewProfile.Size = new Size(130, 33);
-            btnJobDeskViewProfile.Style.BackColor = SystemColors.ButtonHighlight;
-            btnJobDeskViewProfile.TabIndex = 9;
-            btnJobDeskViewProfile.Text = "View Profile";
-            btnJobDeskViewProfile.TextAlign = ContentAlignment.MiddleLeft;
-            btnJobDeskViewProfile.UseVisualStyleBackColor = false;
-            // 
-            // pictureBox8
-            // 
-            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(2, 2);
-            pictureBox8.Margin = new Padding(0);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(80, 80);
-            pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox8.TabIndex = 8;
-            pictureBox8.TabStop = false;
-            // 
-            // lblProfileName
-            // 
-            lblProfileName.AutoSize = true;
-            lblProfileName.Font = new Font("Poppins SemiBold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblProfileName.Location = new Point(93, 6);
-            lblProfileName.Margin = new Padding(0);
-            lblProfileName.Name = "lblProfileName";
-            lblProfileName.Size = new Size(215, 51);
-            lblProfileName.TabIndex = 7;
-            lblProfileName.Text = "Lorem Ipsum";
-            // 
-            // panel7
-            // 
-            panel7.Controls.Add(label10);
-            panel7.Location = new Point(3, 94);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(403, 47);
-            panel7.TabIndex = 1;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Poppins SemiBold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(1, 2);
-            label10.Margin = new Padding(0);
-            label10.Name = "label10";
-            label10.Size = new Size(64, 42);
-            label10.TabIndex = 8;
-            label10.Text = "Info";
-            // 
-            // panel8
-            // 
-            panel8.Controls.Add(label13);
-            panel8.Controls.Add(lblDepartmentReg);
-            panel8.Controls.Add(panel9);
-            panel8.Location = new Point(0, 144);
-            panel8.Margin = new Padding(0);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(403, 75);
-            panel8.TabIndex = 2;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
-            label13.Location = new Point(81, 36);
-            label13.Margin = new Padding(0);
-            label13.Name = "label13";
-            label13.Size = new Size(89, 23);
-            label13.TabIndex = 9;
-            label13.Text = "Department";
-            // 
-            // lblDepartmentReg
-            // 
-            lblDepartmentReg.AutoSize = true;
-            lblDepartmentReg.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
-            lblDepartmentReg.Location = new Point(75, 6);
-            lblDepartmentReg.Margin = new Padding(0);
-            lblDepartmentReg.Name = "lblDepartmentReg";
-            lblDepartmentReg.Size = new Size(211, 37);
-            lblDepartmentReg.TabIndex = 8;
-            lblDepartmentReg.Text = "Human Resources";
-            // 
-            // panel9
-            // 
-            panel9.BackColor = SystemColors.Menu;
-            panel9.Controls.Add(pictureBox9);
-            panel9.Location = new Point(9, 6);
-            panel9.Margin = new Padding(0);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(60, 60);
-            panel9.TabIndex = 0;
-            // 
-            // pictureBox9
-            // 
-            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
-            pictureBox9.Location = new Point(10, 11);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(40, 40);
-            pictureBox9.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox9.TabIndex = 0;
-            pictureBox9.TabStop = false;
-            // 
-            // panel10
-            // 
-            panel10.Controls.Add(label14);
-            panel10.Controls.Add(lblBaseSalaryReg);
-            panel10.Controls.Add(panel11);
-            panel10.Location = new Point(0, 219);
-            panel10.Margin = new Padding(0);
-            panel10.Name = "panel10";
-            panel10.Size = new Size(403, 75);
-            panel10.TabIndex = 3;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
-            label14.Location = new Point(81, 36);
-            label14.Margin = new Padding(0);
-            label14.Name = "label14";
-            label14.Size = new Size(87, 23);
-            label14.TabIndex = 9;
-            label14.Text = "Base Salary";
-            // 
-            // lblBaseSalaryReg
-            // 
-            lblBaseSalaryReg.AutoSize = true;
-            lblBaseSalaryReg.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblBaseSalaryReg.ForeColor = Color.Green;
-            lblBaseSalaryReg.Location = new Point(75, 6);
-            lblBaseSalaryReg.Margin = new Padding(0);
-            lblBaseSalaryReg.Name = "lblBaseSalaryReg";
-            lblBaseSalaryReg.Size = new Size(113, 37);
-            lblBaseSalaryReg.TabIndex = 8;
-            lblBaseSalaryReg.Text = "P100,000";
-            // 
-            // panel11
-            // 
-            panel11.BackColor = SystemColors.Menu;
-            panel11.Controls.Add(pictureBox10);
-            panel11.Location = new Point(9, 6);
-            panel11.Margin = new Padding(0);
-            panel11.Name = "panel11";
-            panel11.Size = new Size(60, 60);
-            panel11.TabIndex = 0;
-            // 
-            // pictureBox10
-            // 
-            pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
-            pictureBox10.Location = new Point(10, 11);
-            pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(40, 40);
-            pictureBox10.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox10.TabIndex = 1;
-            pictureBox10.TabStop = false;
-            // 
-            // panel12
-            // 
-            panel12.Controls.Add(label16);
-            panel12.Controls.Add(lblShiftReg);
-            panel12.Controls.Add(panel13);
-            panel12.Location = new Point(0, 294);
-            panel12.Margin = new Padding(0);
-            panel12.Name = "panel12";
-            panel12.Size = new Size(403, 75);
-            panel12.TabIndex = 4;
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
-            label16.Location = new Point(81, 36);
-            label16.Margin = new Padding(0);
-            label16.Name = "label16";
-            label16.Size = new Size(75, 23);
-            label16.TabIndex = 9;
-            label16.Text = "Work Shift";
-            // 
-            // lblShiftReg
-            // 
-            lblShiftReg.AutoSize = true;
-            lblShiftReg.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
-            lblShiftReg.Location = new Point(75, 6);
-            lblShiftReg.Margin = new Padding(0);
-            lblShiftReg.Name = "lblShiftReg";
-            lblShiftReg.Size = new Size(213, 37);
-            lblShiftReg.TabIndex = 8;
-            lblShiftReg.Text = "6:00 AM - 6:00 PM";
-            // 
-            // panel13
-            // 
-            panel13.BackColor = SystemColors.Menu;
-            panel13.Controls.Add(pictureBox11);
-            panel13.Location = new Point(9, 6);
-            panel13.Margin = new Padding(0);
-            panel13.Name = "panel13";
-            panel13.Size = new Size(60, 60);
-            panel13.TabIndex = 0;
-            // 
-            // pictureBox11
-            // 
-            pictureBox11.Image = (Image)resources.GetObject("pictureBox11.Image");
-            pictureBox11.Location = new Point(10, 11);
-            pictureBox11.Name = "pictureBox11";
-            pictureBox11.Size = new Size(40, 40);
-            pictureBox11.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox11.TabIndex = 1;
-            pictureBox11.TabStop = false;
-            // 
-            // panel14
-            // 
-            panel14.Controls.Add(label18);
-            panel14.Controls.Add(lblEmploymentStatusReg);
-            panel14.Controls.Add(panel15);
-            panel14.Location = new Point(0, 369);
-            panel14.Margin = new Padding(0);
-            panel14.Name = "panel14";
-            panel14.Size = new Size(403, 75);
-            panel14.TabIndex = 5;
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
-            label18.Location = new Point(81, 36);
-            label18.Margin = new Padding(0);
-            label18.Name = "label18";
-            label18.Size = new Size(137, 23);
-            label18.TabIndex = 9;
-            label18.Text = "Employment Status";
-            // 
-            // lblEmploymentStatusReg
-            // 
-            lblEmploymentStatusReg.AutoSize = true;
-            lblEmploymentStatusReg.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
-            lblEmploymentStatusReg.Location = new Point(75, 6);
-            lblEmploymentStatusReg.Margin = new Padding(0);
-            lblEmploymentStatusReg.Name = "lblEmploymentStatusReg";
-            lblEmploymentStatusReg.Size = new Size(275, 37);
-            lblEmploymentStatusReg.TabIndex = 8;
-            lblEmploymentStatusReg.Text = "Independent Contractor";
-            // 
-            // panel15
-            // 
-            panel15.BackColor = SystemColors.Menu;
-            panel15.Controls.Add(pictureBox12);
-            panel15.Location = new Point(9, 6);
-            panel15.Margin = new Padding(0);
-            panel15.Name = "panel15";
-            panel15.Size = new Size(60, 60);
-            panel15.TabIndex = 0;
-            // 
-            // pictureBox12
-            // 
-            pictureBox12.Image = (Image)resources.GetObject("pictureBox12.Image");
-            pictureBox12.Location = new Point(10, 11);
-            pictureBox12.Name = "pictureBox12";
-            pictureBox12.Size = new Size(40, 40);
-            pictureBox12.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox12.TabIndex = 1;
-            pictureBox12.TabStop = false;
-            // 
-            // panel16
-            // 
-            panel16.Controls.Add(label20);
-            panel16.Controls.Add(lblEmploymentDateReg);
-            panel16.Controls.Add(panel17);
-            panel16.Location = new Point(0, 444);
-            panel16.Margin = new Padding(0);
-            panel16.Name = "panel16";
-            panel16.Size = new Size(403, 75);
-            panel16.TabIndex = 6;
-            // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
-            label20.Location = new Point(81, 36);
-            label20.Margin = new Padding(0);
-            label20.Name = "label20";
-            label20.Size = new Size(126, 23);
-            label20.TabIndex = 9;
-            label20.Text = "Employment Date";
-            // 
-            // lblEmploymentDateReg
-            // 
-            lblEmploymentDateReg.AutoSize = true;
-            lblEmploymentDateReg.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
-            lblEmploymentDateReg.Location = new Point(75, 6);
-            lblEmploymentDateReg.Margin = new Padding(0);
-            lblEmploymentDateReg.Name = "lblEmploymentDateReg";
-            lblEmploymentDateReg.Size = new Size(203, 37);
-            lblEmploymentDateReg.TabIndex = 8;
-            lblEmploymentDateReg.Text = "February 14, 2025";
-            // 
-            // panel17
-            // 
-            panel17.BackColor = SystemColors.Menu;
-            panel17.Controls.Add(pictureBox13);
-            panel17.Location = new Point(9, 6);
-            panel17.Margin = new Padding(0);
-            panel17.Name = "panel17";
-            panel17.Size = new Size(60, 60);
-            panel17.TabIndex = 0;
-            // 
-            // pictureBox13
-            // 
-            pictureBox13.Image = (Image)resources.GetObject("pictureBox13.Image");
-            pictureBox13.Location = new Point(10, 11);
-            pictureBox13.Name = "pictureBox13";
-            pictureBox13.Size = new Size(40, 40);
-            pictureBox13.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox13.TabIndex = 1;
-            pictureBox13.TabStop = false;
-            // 
-            // panel18
-            // 
-            panel18.Controls.Add(label22);
-            panel18.Location = new Point(3, 522);
-            panel18.Name = "panel18";
-            panel18.Size = new Size(403, 41);
-            panel18.TabIndex = 7;
-            // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.Font = new Font("Poppins SemiBold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label22.Location = new Point(1, 0);
-            label22.Margin = new Padding(0);
-            label22.Name = "label22";
-            label22.Size = new Size(128, 42);
-            label22.TabIndex = 8;
-            label22.Text = "Contacts";
-            // 
-            // panel19
-            // 
-            panel19.Controls.Add(pictureBox14);
-            panel19.Controls.Add(lblEmailReg);
-            panel19.Controls.Add(label24);
-            panel19.Location = new Point(0, 566);
-            panel19.Margin = new Padding(0);
-            panel19.Name = "panel19";
-            panel19.Size = new Size(403, 75);
-            panel19.TabIndex = 8;
-            // 
-            // pictureBox14
-            // 
-            pictureBox14.Image = (Image)resources.GetObject("pictureBox14.Image");
-            pictureBox14.Location = new Point(9, 8);
-            pictureBox14.Margin = new Padding(0);
-            pictureBox14.Name = "pictureBox14";
-            pictureBox14.Size = new Size(60, 60);
-            pictureBox14.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox14.TabIndex = 10;
-            pictureBox14.TabStop = false;
-            // 
-            // lblEmailReg
-            // 
-            lblEmailReg.AutoSize = true;
-            lblEmailReg.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
-            lblEmailReg.Location = new Point(81, 41);
-            lblEmailReg.Margin = new Padding(0);
-            lblEmailReg.Name = "lblEmailReg";
-            lblEmailReg.Size = new Size(225, 23);
-            lblEmailReg.TabIndex = 9;
-            lblEmailReg.Text = "loremipsum@umindanao.edu.ph";
-            // 
-            // label24
-            // 
-            label24.AutoSize = true;
-            label24.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
-            label24.Location = new Point(75, 11);
-            label24.Margin = new Padding(0);
-            label24.Name = "label24";
-            label24.Size = new Size(76, 37);
-            label24.TabIndex = 8;
-            label24.Text = "Email";
-            // 
-            // panel21
-            // 
-            panel21.Controls.Add(pictureBox15);
-            panel21.Controls.Add(lblPhoneReg);
-            panel21.Controls.Add(label26);
-            panel21.Location = new Point(0, 641);
-            panel21.Margin = new Padding(0);
-            panel21.Name = "panel21";
-            panel21.Size = new Size(403, 75);
-            panel21.TabIndex = 9;
-            // 
-            // pictureBox15
-            // 
-            pictureBox15.Image = (Image)resources.GetObject("pictureBox15.Image");
-            pictureBox15.Location = new Point(9, 8);
-            pictureBox15.Margin = new Padding(0);
-            pictureBox15.Name = "pictureBox15";
-            pictureBox15.Size = new Size(60, 60);
-            pictureBox15.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox15.TabIndex = 11;
-            pictureBox15.TabStop = false;
-            // 
-            // lblPhoneReg
-            // 
-            lblPhoneReg.AutoSize = true;
-            lblPhoneReg.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
-            lblPhoneReg.Location = new Point(81, 41);
-            lblPhoneReg.Margin = new Padding(0);
-            lblPhoneReg.Name = "lblPhoneReg";
-            lblPhoneReg.Size = new Size(125, 23);
-            lblPhoneReg.TabIndex = 9;
-            lblPhoneReg.Text = "+63 978 456 8794";
-            // 
-            // label26
-            // 
-            label26.AutoSize = true;
-            label26.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
-            label26.Location = new Point(75, 11);
-            label26.Margin = new Padding(0);
-            label26.Name = "label26";
-            label26.Size = new Size(84, 37);
-            label26.TabIndex = 8;
-            label26.Text = "Phone";
-            // 
-            // panel23
-            // 
-            panel23.Controls.Add(pictureBox16);
-            panel23.Controls.Add(lblWebsiteReg);
-            panel23.Controls.Add(label28);
-            panel23.Location = new Point(0, 716);
-            panel23.Margin = new Padding(0);
-            panel23.Name = "panel23";
-            panel23.Size = new Size(403, 75);
-            panel23.TabIndex = 10;
-            // 
-            // pictureBox16
-            // 
-            pictureBox16.Image = (Image)resources.GetObject("pictureBox16.Image");
-            pictureBox16.Location = new Point(9, 7);
-            pictureBox16.Margin = new Padding(0);
-            pictureBox16.Name = "pictureBox16";
-            pictureBox16.Size = new Size(60, 60);
-            pictureBox16.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox16.TabIndex = 12;
-            pictureBox16.TabStop = false;
-            // 
-            // lblWebsiteReg
-            // 
-            lblWebsiteReg.AutoSize = true;
-            lblWebsiteReg.Font = new Font("Poppins", 9.75F, FontStyle.Italic);
-            lblWebsiteReg.Location = new Point(81, 38);
-            lblWebsiteReg.Margin = new Padding(0);
-            lblWebsiteReg.Name = "lblWebsiteReg";
-            lblWebsiteReg.Size = new Size(264, 23);
-            lblWebsiteReg.TabIndex = 9;
-            lblWebsiteReg.Text = "https://www.mywebsite.com.ph/profile";
-            // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Font = new Font("Poppins SemiBold", 15.75F, FontStyle.Bold);
-            label28.Location = new Point(75, 8);
-            label28.Margin = new Padding(0);
-            label28.Name = "label28";
-            label28.Size = new Size(104, 37);
-            label28.TabIndex = 8;
-            label28.Text = "Website";
-            // 
-            // pnlJobDeskDashMain
-            // 
-            pnlJobDeskDashMain.BackColor = Color.Gray;
-            pnlJobDeskDashMain.Controls.Add(pnlJobDeskDashSub);
-            pnlJobDeskDashMain.Location = new Point(478, 0);
-            pnlJobDeskDashMain.Margin = new Padding(10, 0, 0, 0);
-            pnlJobDeskDashMain.Name = "pnlJobDeskDashMain";
-            pnlJobDeskDashMain.Size = new Size(1095, 854);
-            pnlJobDeskDashMain.TabIndex = 6;
-            // 
-            // pnlJobDeskDashSub
-            // 
-            pnlJobDeskDashSub.BackColor = Color.White;
-            pnlJobDeskDashSub.Controls.Add(flowLayoutPanel7);
-            pnlJobDeskDashSub.Location = new Point(3, 3);
-            pnlJobDeskDashSub.Margin = new Padding(10, 3, 10, 3);
-            pnlJobDeskDashSub.Name = "pnlJobDeskDashSub";
-            pnlJobDeskDashSub.Size = new Size(1089, 848);
-            pnlJobDeskDashSub.TabIndex = 2;
-            // 
-            // flowLayoutPanel7
-            // 
-            flowLayoutPanel7.Controls.Add(tabSelectorPanel);
-            flowLayoutPanel7.Controls.Add(materialTabControl1);
-            flowLayoutPanel7.Dock = DockStyle.Fill;
-            flowLayoutPanel7.Location = new Point(0, 0);
-            flowLayoutPanel7.Margin = new Padding(0);
-            flowLayoutPanel7.Name = "flowLayoutPanel7";
-            flowLayoutPanel7.Size = new Size(1089, 848);
-            flowLayoutPanel7.TabIndex = 0;
-            // 
-            // tabSelectorPanel
-            // 
-            tabSelectorPanel.BackColor = Color.Gray;
-            tabSelectorPanel.Controls.Add(panel5);
-            tabSelectorPanel.Location = new Point(0, 0);
-            tabSelectorPanel.Margin = new Padding(0);
-            tabSelectorPanel.Name = "tabSelectorPanel";
-            tabSelectorPanel.Size = new Size(481, 52);
-            tabSelectorPanel.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.White;
-            panel5.Controls.Add(tabSelectorJobDesk);
-            panel5.Location = new Point(0, -1);
-            panel5.Margin = new Padding(0);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(479, 51);
-            panel5.TabIndex = 2;
-            // 
-            // tabSelectorJobDesk
-            // 
-            tabSelectorJobDesk.BackColor = Color.White;
-            tabSelectorJobDesk.BaseTabControl = materialTabControl1;
-            tabSelectorJobDesk.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Proper;
-            tabSelectorJobDesk.Depth = 0;
-            tabSelectorJobDesk.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            tabSelectorJobDesk.ForeColor = Color.FromArgb(64, 64, 64);
-            tabSelectorJobDesk.Location = new Point(-26, -1);
-            tabSelectorJobDesk.Margin = new Padding(0);
-            tabSelectorJobDesk.MouseState = MaterialSkin.MouseState.HOVER;
-            tabSelectorJobDesk.Name = "tabSelectorJobDesk";
-            tabSelectorJobDesk.Size = new Size(507, 52);
-            tabSelectorJobDesk.TabIndex = 5;
-            tabSelectorJobDesk.Text = "materialTabSelector1";
-            // 
-            // materialTabControl1
-            // 
-            materialTabControl1.Controls.Add(tabPayslip);
-            materialTabControl1.Controls.Add(tabAttendance);
-            materialTabControl1.Controls.Add(tabLeave);
-            materialTabControl1.Depth = 0;
-            materialTabControl1.Dock = DockStyle.Bottom;
-            materialTabControl1.Location = new Point(0, 52);
-            materialTabControl1.Margin = new Padding(0);
-            materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialTabControl1.Multiline = true;
-            materialTabControl1.Name = "materialTabControl1";
-            materialTabControl1.SelectedIndex = 0;
-            materialTabControl1.Size = new Size(1090, 798);
-            materialTabControl1.TabIndex = 3;
-            // 
-            // tabPayslip
-            // 
-            tabPayslip.BackColor = Color.White;
-            tabPayslip.Controls.Add(flowLayoutPanel8);
-            tabPayslip.ForeColor = Color.Black;
-            tabPayslip.Location = new Point(4, 24);
-            tabPayslip.Name = "tabPayslip";
-            tabPayslip.Padding = new Padding(3);
-            tabPayslip.Size = new Size(1082, 770);
-            tabPayslip.TabIndex = 0;
-            tabPayslip.Text = "Payslip";
-            // 
-            // flowLayoutPanel8
-            // 
-            flowLayoutPanel8.Controls.Add(panel6);
-            flowLayoutPanel8.Controls.Add(panel26);
-            flowLayoutPanel8.Controls.Add(panel27);
-            flowLayoutPanel8.Controls.Add(panel28);
-            flowLayoutPanel8.Controls.Add(panel59);
-            flowLayoutPanel8.Controls.Add(panel29);
-            flowLayoutPanel8.Controls.Add(panel30);
-            flowLayoutPanel8.Controls.Add(panel31);
-            flowLayoutPanel8.Controls.Add(panel32);
-            flowLayoutPanel8.Controls.Add(panel33);
-            flowLayoutPanel8.Controls.Add(panel34);
-            flowLayoutPanel8.Controls.Add(panel35);
-            flowLayoutPanel8.Controls.Add(panel36);
-            flowLayoutPanel8.Controls.Add(panel37);
-            flowLayoutPanel8.Controls.Add(panel38);
-            flowLayoutPanel8.Controls.Add(panel40);
-            flowLayoutPanel8.Controls.Add(panel39);
-            flowLayoutPanel8.Controls.Add(panel41);
-            flowLayoutPanel8.Dock = DockStyle.Fill;
-            flowLayoutPanel8.Location = new Point(3, 3);
-            flowLayoutPanel8.Margin = new Padding(0);
-            flowLayoutPanel8.Name = "flowLayoutPanel8";
-            flowLayoutPanel8.Padding = new Padding(25, 20, 25, 25);
-            flowLayoutPanel8.Size = new Size(1076, 764);
-            flowLayoutPanel8.TabIndex = 0;
-            // 
-            // panel6
-            // 
-            panel6.Controls.Add(btnPanel2);
-            panel6.Controls.Add(btnPanel1);
-            panel6.Controls.Add(lblPayslip);
-            panel6.Location = new Point(27, 22);
-            panel6.Margin = new Padding(2);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(1022, 50);
-            panel6.TabIndex = 0;
-            // 
-            // btnPanel2
-            // 
-            btnPanel2.BackColor = Color.FromArgb(252, 184, 49);
-            btnPanel2.Controls.Add(btnPrint);
-            btnPanel2.Location = new Point(852, 0);
-            btnPanel2.Margin = new Padding(0);
-            btnPanel2.Name = "btnPanel2";
-            btnPanel2.Padding = new Padding(3);
-            btnPanel2.Size = new Size(170, 50);
-            btnPanel2.TabIndex = 5;
-            // 
-            // btnPrint
-            // 
-            btnPrint.BackColor = Color.FromArgb(224, 224, 224);
-            btnPrint.Dock = DockStyle.Fill;
-            btnPrint.Font = new Font("Poppins", 9.75F, FontStyle.Bold);
-            btnPrint.ForeColor = Color.Black;
-            btnPrint.Location = new Point(3, 3);
-            btnPrint.Name = "btnPrint";
-            btnPrint.Size = new Size(164, 44);
-            btnPrint.Style.BackColor = Color.FromArgb(224, 224, 224);
-            btnPrint.Style.ForeColor = Color.Black;
-            btnPrint.TabIndex = 4;
-            btnPrint.Text = "Preview Document";
-            btnPrint.UseVisualStyleBackColor = false;
-            // 
-            // btnPanel1
-            // 
-            btnPanel1.BackColor = Color.FromArgb(252, 184, 49);
-            btnPanel1.Controls.Add(btnPreviewDocument);
-            btnPanel1.Location = new Point(675, 0);
-            btnPanel1.Margin = new Padding(0);
-            btnPanel1.Name = "btnPanel1";
-            btnPanel1.Padding = new Padding(3);
-            btnPanel1.Size = new Size(170, 50);
-            btnPanel1.TabIndex = 2;
-            // 
-            // btnPreviewDocument
-            // 
-            btnPreviewDocument.BackColor = Color.FromArgb(224, 224, 224);
-            btnPreviewDocument.Dock = DockStyle.Fill;
-            btnPreviewDocument.Font = new Font("Poppins", 9.75F, FontStyle.Bold);
-            btnPreviewDocument.ForeColor = Color.Black;
-            btnPreviewDocument.Location = new Point(3, 3);
-            btnPreviewDocument.Name = "btnPreviewDocument";
-            btnPreviewDocument.Size = new Size(164, 44);
-            btnPreviewDocument.Style.BackColor = Color.FromArgb(224, 224, 224);
-            btnPreviewDocument.Style.ForeColor = Color.Black;
-            btnPreviewDocument.TabIndex = 4;
-            btnPreviewDocument.Text = "Preview Document";
-            btnPreviewDocument.UseVisualStyleBackColor = false;
-            // 
-            // lblPayslip
-            // 
-            lblPayslip.AutoSize = true;
-            lblPayslip.Font = new Font("Poppins SemiBold", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPayslip.ForeColor = Color.Black;
-            lblPayslip.Location = new Point(3, -2);
-            lblPayslip.Margin = new Padding(0);
-            lblPayslip.Name = "lblPayslip";
-            lblPayslip.Size = new Size(176, 70);
-            lblPayslip.TabIndex = 0;
-            lblPayslip.Text = "Payslip";
-            // 
-            // panel26
-            // 
-            panel26.Controls.Add(lblRegBaseSalary);
-            panel26.Controls.Add(label29);
-            panel26.Location = new Point(27, 76);
-            panel26.Margin = new Padding(2);
-            panel26.Name = "panel26";
-            panel26.Size = new Size(1022, 60);
-            panel26.TabIndex = 1;
-            // 
-            // lblRegBaseSalary
-            // 
-            lblRegBaseSalary.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
-            lblRegBaseSalary.ForeColor = Color.Black;
-            lblRegBaseSalary.Location = new Point(665, 0);
-            lblRegBaseSalary.Name = "lblRegBaseSalary";
-            lblRegBaseSalary.Size = new Size(354, 66);
-            lblRegBaseSalary.TabIndex = 1;
-            lblRegBaseSalary.Text = "P10,000";
-            lblRegBaseSalary.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // label29
-            // 
-            label29.AutoSize = true;
-            label29.Font = new Font("Poppins", 20.25F);
-            label29.ForeColor = Color.Black;
-            label29.Location = new Point(4, 17);
-            label29.Name = "label29";
-            label29.Size = new Size(178, 48);
-            label29.TabIndex = 0;
-            label29.Text = "Base Salary";
-            // 
-            // panel27
-            // 
-            panel27.BackColor = Color.Silver;
-            panel27.Location = new Point(26, 139);
-            panel27.Margin = new Padding(1);
-            panel27.Name = "panel27";
-            panel27.Size = new Size(1022, 2);
-            panel27.TabIndex = 2;
-            // 
-            // panel28
-            // 
-            panel28.Controls.Add(lblRegBonus);
-            panel28.Controls.Add(label33);
-            panel28.Location = new Point(27, 144);
-            panel28.Margin = new Padding(2);
-            panel28.Name = "panel28";
-            panel28.Size = new Size(1022, 50);
-            panel28.TabIndex = 3;
-            // 
-            // lblRegBonus
-            // 
-            lblRegBonus.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
-            lblRegBonus.ForeColor = Color.Black;
-            lblRegBonus.Location = new Point(665, 5);
-            lblRegBonus.Name = "lblRegBonus";
-            lblRegBonus.Size = new Size(354, 49);
-            lblRegBonus.TabIndex = 3;
-            lblRegBonus.Text = "P10,000";
-            lblRegBonus.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // label33
-            // 
-            label33.AutoSize = true;
-            label33.Font = new Font("Poppins", 20.25F);
-            label33.ForeColor = Color.Black;
-            label33.Location = new Point(3, 6);
-            label33.Name = "label33";
-            label33.Size = new Size(133, 48);
-            label33.TabIndex = 2;
-            label33.Text = "Bonuses";
-            // 
-            // panel59
-            // 
-            panel59.Controls.Add(label80);
-            panel59.Controls.Add(label81);
-            panel59.Location = new Point(27, 198);
-            panel59.Margin = new Padding(2);
-            panel59.Name = "panel59";
-            panel59.Size = new Size(1022, 50);
-            panel59.TabIndex = 18;
-            // 
-            // label80
-            // 
-            label80.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
-            label80.ForeColor = Color.Black;
-            label80.Location = new Point(665, 5);
-            label80.Name = "label80";
-            label80.Size = new Size(354, 49);
-            label80.TabIndex = 3;
-            label80.Text = "P10,000";
-            label80.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // label81
-            // 
-            label81.AutoSize = true;
-            label81.Font = new Font("Poppins", 20.25F);
-            label81.ForeColor = Color.Black;
-            label81.Location = new Point(3, 6);
-            label81.Name = "label81";
-            label81.Size = new Size(202, 48);
-            label81.TabIndex = 2;
-            label81.Text = "Overtime Pay";
-            // 
-            // panel29
-            // 
-            panel29.BackColor = Color.Silver;
-            panel29.Location = new Point(26, 251);
-            panel29.Margin = new Padding(1);
-            panel29.Name = "panel29";
-            panel29.Size = new Size(1022, 2);
-            panel29.TabIndex = 19;
-            // 
-            // panel30
-            // 
-            panel30.Controls.Add(label35);
-            panel30.Location = new Point(27, 256);
-            panel30.Margin = new Padding(2);
-            panel30.Name = "panel30";
-            panel30.Size = new Size(1022, 50);
-            panel30.TabIndex = 20;
-            // 
-            // label35
-            // 
-            label35.AutoSize = true;
-            label35.Font = new Font("Poppins Medium", 20.25F, FontStyle.Bold);
-            label35.ForeColor = Color.Black;
-            label35.Location = new Point(3, 5);
-            label35.Name = "label35";
-            label35.Size = new Size(192, 48);
-            label35.TabIndex = 2;
-            label35.Text = "Deductions:";
-            // 
-            // panel31
-            // 
-            panel31.Controls.Add(lblRegTax);
-            panel31.Controls.Add(label37);
-            panel31.Location = new Point(27, 310);
-            panel31.Margin = new Padding(2);
-            panel31.Name = "panel31";
-            panel31.Size = new Size(1022, 50);
-            panel31.TabIndex = 21;
-            // 
-            // lblRegTax
-            // 
-            lblRegTax.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
-            lblRegTax.ForeColor = Color.Black;
-            lblRegTax.Location = new Point(666, 5);
-            lblRegTax.Name = "lblRegTax";
-            lblRegTax.Size = new Size(354, 49);
-            lblRegTax.TabIndex = 3;
-            lblRegTax.Text = "P10,000";
-            lblRegTax.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // label37
-            // 
-            label37.AutoSize = true;
-            label37.Font = new Font("Poppins", 20.25F);
-            label37.ForeColor = Color.Black;
-            label37.Location = new Point(3, 5);
-            label37.Name = "label37";
-            label37.Size = new Size(158, 48);
-            label37.TabIndex = 2;
-            label37.Text = "Salary Tax";
-            // 
-            // panel32
-            // 
-            panel32.Controls.Add(lblRegSSS);
-            panel32.Controls.Add(label38);
-            panel32.Location = new Point(27, 364);
-            panel32.Margin = new Padding(2);
-            panel32.Name = "panel32";
-            panel32.Size = new Size(1022, 50);
-            panel32.TabIndex = 22;
-            // 
-            // lblRegSSS
-            // 
-            lblRegSSS.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
-            lblRegSSS.ForeColor = Color.Black;
-            lblRegSSS.Location = new Point(666, 5);
-            lblRegSSS.Name = "lblRegSSS";
-            lblRegSSS.Size = new Size(354, 49);
-            lblRegSSS.TabIndex = 3;
-            lblRegSSS.Text = "P10,000";
-            lblRegSSS.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // label38
-            // 
-            label38.AutoSize = true;
-            label38.Font = new Font("Poppins", 20.25F);
-            label38.ForeColor = Color.Black;
-            label38.Location = new Point(3, 5);
-            label38.Name = "label38";
-            label38.Size = new Size(68, 48);
-            label38.TabIndex = 2;
-            label38.Text = "SSS";
-            // 
-            // panel33
-            // 
-            panel33.Controls.Add(lblRegPhilHealth);
-            panel33.Controls.Add(label40);
-            panel33.Location = new Point(27, 418);
-            panel33.Margin = new Padding(2);
-            panel33.Name = "panel33";
-            panel33.Size = new Size(1022, 50);
-            panel33.TabIndex = 23;
-            // 
-            // lblRegPhilHealth
-            // 
-            lblRegPhilHealth.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
-            lblRegPhilHealth.ForeColor = Color.Black;
-            lblRegPhilHealth.Location = new Point(666, 5);
-            lblRegPhilHealth.Name = "lblRegPhilHealth";
-            lblRegPhilHealth.Size = new Size(354, 49);
-            lblRegPhilHealth.TabIndex = 3;
-            lblRegPhilHealth.Text = "P10,000";
-            lblRegPhilHealth.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // label40
-            // 
-            label40.AutoSize = true;
-            label40.Font = new Font("Poppins", 20.25F);
-            label40.ForeColor = Color.Black;
-            label40.Location = new Point(3, 5);
-            label40.Name = "label40";
-            label40.Size = new Size(155, 48);
-            label40.TabIndex = 2;
-            label40.Text = "PhilHealth";
-            // 
-            // panel34
-            // 
-            panel34.Controls.Add(lblRegPagIbig);
-            panel34.Controls.Add(label42);
-            panel34.Location = new Point(27, 472);
-            panel34.Margin = new Padding(2);
-            panel34.Name = "panel34";
-            panel34.Size = new Size(1022, 50);
-            panel34.TabIndex = 24;
-            // 
-            // lblRegPagIbig
-            // 
-            lblRegPagIbig.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
-            lblRegPagIbig.ForeColor = Color.Black;
-            lblRegPagIbig.Location = new Point(666, 5);
-            lblRegPagIbig.Name = "lblRegPagIbig";
-            lblRegPagIbig.Size = new Size(354, 49);
-            lblRegPagIbig.TabIndex = 3;
-            lblRegPagIbig.Text = "P10,000";
-            lblRegPagIbig.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // label42
-            // 
-            label42.AutoSize = true;
-            label42.Font = new Font("Poppins", 20.25F);
-            label42.ForeColor = Color.Black;
-            label42.Location = new Point(3, 5);
-            label42.Name = "label42";
-            label42.Size = new Size(139, 48);
-            label42.TabIndex = 2;
-            label42.Text = "Pag-IBIG";
-            // 
-            // panel35
-            // 
-            panel35.Controls.Add(label82);
-            panel35.Controls.Add(label83);
-            panel35.Location = new Point(27, 526);
-            panel35.Margin = new Padding(2);
-            panel35.Name = "panel35";
-            panel35.Size = new Size(1022, 50);
-            panel35.TabIndex = 31;
-            // 
-            // label82
-            // 
-            label82.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
-            label82.ForeColor = Color.Black;
-            label82.Location = new Point(666, 5);
-            label82.Name = "label82";
-            label82.Size = new Size(354, 49);
-            label82.TabIndex = 3;
-            label82.Text = "P10,000";
-            label82.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // label83
-            // 
-            label83.AutoSize = true;
-            label83.Font = new Font("Poppins", 20.25F);
-            label83.ForeColor = Color.Black;
-            label83.Location = new Point(3, 5);
-            label83.Name = "label83";
-            label83.Size = new Size(244, 48);
-            label83.TabIndex = 2;
-            label83.Text = "Loan Deductions";
-            // 
-            // panel36
-            // 
-            panel36.Controls.Add(lblRegAbsence);
-            panel36.Controls.Add(label44);
-            panel36.Location = new Point(27, 580);
-            panel36.Margin = new Padding(2);
-            panel36.Name = "panel36";
-            panel36.Size = new Size(1022, 58);
-            panel36.TabIndex = 32;
-            // 
-            // lblRegAbsence
-            // 
-            lblRegAbsence.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
-            lblRegAbsence.ForeColor = Color.Black;
-            lblRegAbsence.Location = new Point(666, 5);
-            lblRegAbsence.Name = "lblRegAbsence";
-            lblRegAbsence.Size = new Size(354, 49);
-            lblRegAbsence.TabIndex = 3;
-            lblRegAbsence.Text = "P10,000";
-            lblRegAbsence.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // label44
-            // 
-            label44.AutoSize = true;
-            label44.Font = new Font("Poppins", 20.25F);
-            label44.ForeColor = Color.Black;
-            label44.Location = new Point(3, 5);
-            label44.Name = "label44";
-            label44.Size = new Size(297, 48);
-            label44.TabIndex = 2;
-            label44.Text = "Absence Deductions";
-            // 
-            // panel37
-            // 
-            panel37.BackColor = Color.Silver;
-            panel37.Location = new Point(26, 641);
-            panel37.Margin = new Padding(1);
-            panel37.Name = "panel37";
-            panel37.Size = new Size(1022, 2);
-            panel37.TabIndex = 33;
-            // 
-            // panel38
-            // 
-            panel38.Controls.Add(lblRegTotal);
-            panel38.Controls.Add(label46);
-            panel38.Location = new Point(27, 646);
-            panel38.Margin = new Padding(2);
-            panel38.Name = "panel38";
-            panel38.Size = new Size(1022, 50);
-            panel38.TabIndex = 34;
-            // 
-            // lblRegTotal
-            // 
-            lblRegTotal.Font = new Font("Poppins SemiBold", 20.25F, FontStyle.Bold);
-            lblRegTotal.ForeColor = Color.Black;
-            lblRegTotal.Location = new Point(666, 5);
-            lblRegTotal.Name = "lblRegTotal";
-            lblRegTotal.Size = new Size(354, 49);
-            lblRegTotal.TabIndex = 3;
-            lblRegTotal.Text = "P10,000";
-            lblRegTotal.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // label46
-            // 
-            label46.AutoSize = true;
-            label46.Font = new Font("Poppins Medium", 20.25F, FontStyle.Bold);
-            label46.ForeColor = Color.Black;
-            label46.Location = new Point(3, 5);
-            label46.Name = "label46";
-            label46.Size = new Size(100, 48);
-            label46.TabIndex = 2;
-            label46.Text = "Total:";
-            // 
-            // panel40
-            // 
-            panel40.BackColor = Color.Silver;
-            panel40.Location = new Point(26, 699);
-            panel40.Margin = new Padding(1);
-            panel40.Name = "panel40";
-            panel40.Size = new Size(1022, 2);
-            panel40.TabIndex = 35;
-            // 
-            // panel39
-            // 
-            panel39.Controls.Add(lblRegPayrolDate);
-            panel39.Controls.Add(label48);
-            panel39.Location = new Point(27, 704);
-            panel39.Margin = new Padding(2);
-            panel39.Name = "panel39";
-            panel39.Size = new Size(1022, 30);
-            panel39.TabIndex = 36;
-            // 
-            // lblRegPayrolDate
-            // 
-            lblRegPayrolDate.Font = new Font("Poppins", 12F, FontStyle.Italic);
-            lblRegPayrolDate.ForeColor = Color.Black;
-            lblRegPayrolDate.Location = new Point(497, 5);
-            lblRegPayrolDate.Name = "lblRegPayrolDate";
-            lblRegPayrolDate.Size = new Size(523, 23);
-            lblRegPayrolDate.TabIndex = 3;
-            lblRegPayrolDate.Text = "January 15, 2025 - February 15, 2025";
-            lblRegPayrolDate.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // label48
-            // 
-            label48.AutoSize = true;
-            label48.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            label48.ForeColor = Color.Black;
-            label48.Location = new Point(4, 1);
-            label48.Name = "label48";
-            label48.Size = new Size(126, 28);
-            label48.TabIndex = 2;
-            label48.Text = "Payroll Date:";
-            // 
-            // panel41
-            // 
-            panel41.Controls.Add(lblRegStatus);
-            panel41.Controls.Add(label50);
-            panel41.Location = new Point(27, 738);
-            panel41.Margin = new Padding(2);
-            panel41.Name = "panel41";
-            panel41.Size = new Size(1022, 30);
-            panel41.TabIndex = 37;
-            // 
-            // lblRegStatus
-            // 
-            lblRegStatus.Font = new Font("Poppins Medium", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRegStatus.ForeColor = Color.Black;
-            lblRegStatus.Location = new Point(497, 5);
-            lblRegStatus.Name = "lblRegStatus";
-            lblRegStatus.Size = new Size(523, 23);
-            lblRegStatus.TabIndex = 3;
-            lblRegStatus.Text = "Completed";
-            lblRegStatus.TextAlign = ContentAlignment.BottomRight;
-            // 
-            // label50
-            // 
-            label50.AutoSize = true;
-            label50.Font = new Font("Poppins Medium", 12F, FontStyle.Bold);
-            label50.ForeColor = Color.Black;
-            label50.Location = new Point(4, 1);
-            label50.Name = "label50";
-            label50.Size = new Size(70, 28);
-            label50.TabIndex = 2;
-            label50.Text = "Status";
-            // 
-            // tabAttendance
-            // 
-            tabAttendance.BackColor = Color.White;
-            tabAttendance.Controls.Add(flowLayoutPanel9);
-            tabAttendance.Location = new Point(4, 24);
-            tabAttendance.Name = "tabAttendance";
-            tabAttendance.Padding = new Padding(3);
-            tabAttendance.Size = new Size(1082, 770);
-            tabAttendance.TabIndex = 1;
-            tabAttendance.Text = "Attendance";
-            // 
-            // flowLayoutPanel9
-            // 
-            flowLayoutPanel9.Controls.Add(panel24);
-            flowLayoutPanel9.Controls.Add(panel42);
-            flowLayoutPanel9.Dock = DockStyle.Fill;
-            flowLayoutPanel9.Location = new Point(3, 3);
-            flowLayoutPanel9.Margin = new Padding(0);
-            flowLayoutPanel9.Name = "flowLayoutPanel9";
-            flowLayoutPanel9.Padding = new Padding(25, 20, 25, 25);
-            flowLayoutPanel9.Size = new Size(1076, 764);
-            flowLayoutPanel9.TabIndex = 1;
-            // 
-            // panel24
-            // 
-            panel24.Controls.Add(btnPanel3);
-            panel24.Controls.Add(label31);
-            panel24.Location = new Point(28, 23);
-            panel24.Margin = new Padding(3, 3, 3, 15);
-            panel24.Name = "panel24";
-            panel24.Size = new Size(1022, 50);
-            panel24.TabIndex = 0;
-            // 
-            // btnPanel3
-            // 
-            btnPanel3.BackColor = Color.FromArgb(252, 184, 49);
-            btnPanel3.Controls.Add(btnAttendanceRequest);
-            btnPanel3.Location = new Point(852, 0);
-            btnPanel3.Margin = new Padding(0);
-            btnPanel3.Name = "btnPanel3";
-            btnPanel3.Padding = new Padding(3);
-            btnPanel3.Size = new Size(170, 50);
-            btnPanel3.TabIndex = 3;
-            // 
-            // btnAttendanceRequest
-            // 
-            btnAttendanceRequest.BackColor = Color.FromArgb(224, 224, 224);
-            btnAttendanceRequest.Dock = DockStyle.Fill;
-            btnAttendanceRequest.Font = new Font("Poppins", 9.75F, FontStyle.Bold);
-            btnAttendanceRequest.ForeColor = Color.Black;
-            btnAttendanceRequest.Location = new Point(3, 3);
-            btnAttendanceRequest.Name = "btnAttendanceRequest";
-            btnAttendanceRequest.Size = new Size(164, 44);
-            btnAttendanceRequest.Style.BackColor = Color.FromArgb(224, 224, 224);
-            btnAttendanceRequest.Style.ForeColor = Color.Black;
-            btnAttendanceRequest.TabIndex = 4;
-            btnAttendanceRequest.Text = "Request";
-            btnAttendanceRequest.UseVisualStyleBackColor = false;
-            btnAttendanceRequest.Click += btnAttendanceRequest_Click;
-            // 
-            // label31
-            // 
-            label31.AutoSize = true;
-            label31.Font = new Font("Poppins SemiBold", 30F, FontStyle.Bold);
-            label31.ForeColor = Color.FromArgb(28, 28, 28);
-            label31.Location = new Point(2, -2);
-            label31.Margin = new Padding(0);
-            label31.Name = "label31";
-            label31.Size = new Size(271, 70);
-            label31.TabIndex = 0;
-            label31.Text = "Attendance";
-            // 
-            // panel42
-            // 
-            panel42.Controls.Add(tblAttendanceDataGrid);
-            panel42.Location = new Point(28, 91);
-            panel42.Name = "panel42";
-            panel42.Size = new Size(1021, 673);
-            panel42.TabIndex = 1;
-            // 
-            // tblAttendanceDataGrid
-            // 
-            tblAttendanceDataGrid.AccessibleName = "Table";
-            tblAttendanceDataGrid.Dock = DockStyle.Fill;
-            tblAttendanceDataGrid.Location = new Point(0, 0);
-            tblAttendanceDataGrid.Name = "tblAttendanceDataGrid";
-            tblAttendanceDataGrid.PreviewRowHeight = 35;
-            tblAttendanceDataGrid.Size = new Size(1021, 673);
-            tblAttendanceDataGrid.Style.BorderColor = Color.FromArgb(100, 100, 100);
-            tblAttendanceDataGrid.Style.CheckBoxStyle.CheckedBackColor = Color.FromArgb(0, 120, 215);
-            tblAttendanceDataGrid.Style.CheckBoxStyle.CheckedBorderColor = Color.FromArgb(0, 120, 215);
-            tblAttendanceDataGrid.Style.CheckBoxStyle.IndeterminateBorderColor = Color.FromArgb(0, 120, 215);
-            tblAttendanceDataGrid.Style.HyperlinkStyle.DefaultLinkColor = Color.FromArgb(0, 120, 215);
-            tblAttendanceDataGrid.TabIndex = 0;
-            tblAttendanceDataGrid.Text = "sfDataGrid1";
-            // 
-            // tabLeave
-            // 
-            tabLeave.BackColor = Color.White;
-            tabLeave.Controls.Add(flowLayoutPanel10);
-            tabLeave.Location = new Point(4, 24);
-            tabLeave.Name = "tabLeave";
-            tabLeave.Size = new Size(1082, 770);
-            tabLeave.TabIndex = 2;
-            tabLeave.Text = "Leave";
-            // 
-            // flowLayoutPanel10
-            // 
-            flowLayoutPanel10.Controls.Add(panel25);
-            flowLayoutPanel10.Controls.Add(flowLayoutPanel11);
-            flowLayoutPanel10.Controls.Add(panel43);
-            flowLayoutPanel10.Controls.Add(panel44);
-            flowLayoutPanel10.Dock = DockStyle.Fill;
-            flowLayoutPanel10.Location = new Point(0, 0);
-            flowLayoutPanel10.Margin = new Padding(0);
-            flowLayoutPanel10.Name = "flowLayoutPanel10";
-            flowLayoutPanel10.Padding = new Padding(25, 20, 25, 25);
-            flowLayoutPanel10.Size = new Size(1082, 770);
-            flowLayoutPanel10.TabIndex = 2;
-            // 
-            // panel25
-            // 
-            panel25.Controls.Add(btnPanel4);
-            panel25.Controls.Add(label34);
-            panel25.Location = new Point(28, 23);
-            panel25.Name = "panel25";
-            panel25.Size = new Size(1022, 50);
-            panel25.TabIndex = 0;
-            // 
-            // btnPanel4
-            // 
-            btnPanel4.BackColor = Color.FromArgb(252, 184, 49);
-            btnPanel4.Controls.Add(btnFileLeave);
-            btnPanel4.Location = new Point(851, 0);
-            btnPanel4.Margin = new Padding(0);
-            btnPanel4.Name = "btnPanel4";
-            btnPanel4.Padding = new Padding(3);
-            btnPanel4.Size = new Size(170, 50);
-            btnPanel4.TabIndex = 4;
-            // 
-            // btnFileLeave
-            // 
-            btnFileLeave.BackColor = Color.FromArgb(224, 224, 224);
-            btnFileLeave.Dock = DockStyle.Fill;
-            btnFileLeave.Font = new Font("Poppins", 9.75F, FontStyle.Bold);
-            btnFileLeave.ForeColor = Color.Black;
-            btnFileLeave.Location = new Point(3, 3);
-            btnFileLeave.Name = "btnFileLeave";
-            btnFileLeave.Size = new Size(164, 44);
-            btnFileLeave.Style.BackColor = Color.FromArgb(224, 224, 224);
-            btnFileLeave.Style.ForeColor = Color.Black;
-            btnFileLeave.TabIndex = 4;
-            btnFileLeave.Text = "File";
-            btnFileLeave.UseVisualStyleBackColor = false;
-            // 
-            // label34
-            // 
-            label34.AutoSize = true;
-            label34.Font = new Font("Poppins SemiBold", 30F, FontStyle.Bold);
-            label34.ForeColor = Color.FromArgb(28, 28, 28);
-            label34.Location = new Point(3, -2);
-            label34.Margin = new Padding(0);
-            label34.Name = "label34";
-            label34.Size = new Size(149, 70);
-            label34.TabIndex = 0;
-            label34.Text = "Leave";
-            // 
-            // flowLayoutPanel11
-            // 
-            flowLayoutPanel11.Controls.Add(pnlLeaveCard1Main);
-            flowLayoutPanel11.Controls.Add(pnlLeaveCard2Main);
-            flowLayoutPanel11.Controls.Add(pnlLeaveCard3Main);
-            flowLayoutPanel11.Location = new Point(28, 79);
-            flowLayoutPanel11.Margin = new Padding(3, 3, 3, 15);
-            flowLayoutPanel11.Name = "flowLayoutPanel11";
-            flowLayoutPanel11.Padding = new Padding(0, 15, 0, 0);
-            flowLayoutPanel11.Size = new Size(1025, 121);
-            flowLayoutPanel11.TabIndex = 1;
-            // 
-            // pnlLeaveCard1Main
-            // 
-            pnlLeaveCard1Main.BackColor = Color.Gray;
-            pnlLeaveCard1Main.Controls.Add(pnlLeaveCard1Sub);
-            pnlLeaveCard1Main.Location = new Point(0, 15);
-            pnlLeaveCard1Main.Margin = new Padding(0);
-            pnlLeaveCard1Main.Name = "pnlLeaveCard1Main";
-            pnlLeaveCard1Main.Size = new Size(329, 106);
-            pnlLeaveCard1Main.TabIndex = 6;
-            // 
-            // pnlLeaveCard1Sub
-            // 
-            pnlLeaveCard1Sub.BackColor = Color.White;
-            pnlLeaveCard1Sub.Controls.Add(lblApprovedLeaves);
-            pnlLeaveCard1Sub.Controls.Add(label36);
-            pnlLeaveCard1Sub.Controls.Add(label39);
-            pnlLeaveCard1Sub.Location = new Point(3, 3);
-            pnlLeaveCard1Sub.Margin = new Padding(10, 3, 10, 3);
-            pnlLeaveCard1Sub.Name = "pnlLeaveCard1Sub";
-            pnlLeaveCard1Sub.Size = new Size(323, 100);
-            pnlLeaveCard1Sub.TabIndex = 2;
-            // 
-            // lblApprovedLeaves
-            // 
-            lblApprovedLeaves.AutoSize = true;
-            lblApprovedLeaves.Font = new Font("Poppins", 42F, FontStyle.Bold);
-            lblApprovedLeaves.Location = new Point(207, 7);
-            lblApprovedLeaves.Margin = new Padding(0);
-            lblApprovedLeaves.Name = "lblApprovedLeaves";
-            lblApprovedLeaves.Size = new Size(116, 99);
-            lblApprovedLeaves.TabIndex = 5;
-            lblApprovedLeaves.Text = "00";
-            // 
-            // label36
-            // 
-            label36.AutoSize = true;
-            label36.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
-            label36.Location = new Point(23, 53);
-            label36.Name = "label36";
-            label36.Size = new Size(82, 31);
-            label36.TabIndex = 4;
-            label36.Text = "Leaves:";
-            // 
-            // label39
-            // 
-            label39.AutoSize = true;
-            label39.Font = new Font("Poppins SemiBold", 23F, FontStyle.Bold);
-            label39.Location = new Point(18, 10);
-            label39.Margin = new Padding(0);
-            label39.Name = "label39";
-            label39.Size = new Size(179, 54);
-            label39.TabIndex = 3;
-            label39.Text = "Approved";
-            // 
-            // pnlLeaveCard2Main
-            // 
-            pnlLeaveCard2Main.BackColor = Color.Gray;
-            pnlLeaveCard2Main.Controls.Add(pnlLeaveCard2Sub);
-            pnlLeaveCard2Main.Location = new Point(347, 15);
-            pnlLeaveCard2Main.Margin = new Padding(18, 0, 18, 0);
-            pnlLeaveCard2Main.Name = "pnlLeaveCard2Main";
-            pnlLeaveCard2Main.Size = new Size(329, 106);
-            pnlLeaveCard2Main.TabIndex = 7;
-            // 
-            // pnlLeaveCard2Sub
-            // 
-            pnlLeaveCard2Sub.BackColor = Color.White;
-            pnlLeaveCard2Sub.Controls.Add(lblPendingLaaves);
-            pnlLeaveCard2Sub.Controls.Add(label41);
-            pnlLeaveCard2Sub.Controls.Add(label43);
-            pnlLeaveCard2Sub.Location = new Point(3, 3);
-            pnlLeaveCard2Sub.Margin = new Padding(10, 3, 10, 3);
-            pnlLeaveCard2Sub.Name = "pnlLeaveCard2Sub";
-            pnlLeaveCard2Sub.Size = new Size(323, 100);
-            pnlLeaveCard2Sub.TabIndex = 2;
-            // 
-            // lblPendingLaaves
-            // 
-            lblPendingLaaves.AutoSize = true;
-            lblPendingLaaves.Font = new Font("Poppins", 42F, FontStyle.Bold);
-            lblPendingLaaves.Location = new Point(206, 8);
-            lblPendingLaaves.Margin = new Padding(0);
-            lblPendingLaaves.Name = "lblPendingLaaves";
-            lblPendingLaaves.Size = new Size(116, 99);
-            lblPendingLaaves.TabIndex = 6;
-            lblPendingLaaves.Text = "00";
-            // 
-            // label41
-            // 
-            label41.AutoSize = true;
-            label41.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
-            label41.Location = new Point(26, 53);
-            label41.Name = "label41";
-            label41.Size = new Size(130, 31);
-            label41.TabIndex = 4;
-            label41.Text = "For Approval";
-            // 
-            // label43
-            // 
-            label43.AutoSize = true;
-            label43.Font = new Font("Poppins SemiBold", 23F, FontStyle.Bold);
-            label43.Location = new Point(21, 10);
-            label43.Margin = new Padding(0);
-            label43.Name = "label43";
-            label43.Size = new Size(152, 54);
-            label43.TabIndex = 3;
-            label43.Text = "Pending";
-            // 
-            // pnlLeaveCard3Main
-            // 
-            pnlLeaveCard3Main.BackColor = Color.FromArgb(252, 184, 49);
-            pnlLeaveCard3Main.Controls.Add(lblRemainingLeaves);
-            pnlLeaveCard3Main.Controls.Add(label45);
-            pnlLeaveCard3Main.Controls.Add(label47);
-            pnlLeaveCard3Main.Location = new Point(694, 15);
-            pnlLeaveCard3Main.Margin = new Padding(0);
-            pnlLeaveCard3Main.Name = "pnlLeaveCard3Main";
-            pnlLeaveCard3Main.Size = new Size(329, 106);
-            pnlLeaveCard3Main.TabIndex = 8;
-            // 
-            // lblRemainingLeaves
-            // 
-            lblRemainingLeaves.AutoSize = true;
-            lblRemainingLeaves.Font = new Font("Poppins", 42F, FontStyle.Bold);
-            lblRemainingLeaves.Location = new Point(211, 11);
-            lblRemainingLeaves.Margin = new Padding(0);
-            lblRemainingLeaves.Name = "lblRemainingLeaves";
-            lblRemainingLeaves.Size = new Size(116, 99);
-            lblRemainingLeaves.TabIndex = 8;
-            lblRemainingLeaves.Text = "00";
-            // 
-            // label45
-            // 
-            label45.AutoSize = true;
-            label45.Font = new Font("Poppins SemiBold", 13F, FontStyle.Bold);
-            label45.Location = new Point(30, 53);
-            label45.Name = "label45";
-            label45.Size = new Size(143, 31);
-            label45.TabIndex = 7;
-            label45.Text = "Leave Credits:";
-            // 
-            // label47
-            // 
-            label47.AutoSize = true;
-            label47.Font = new Font("Poppins SemiBold", 23F, FontStyle.Bold);
-            label47.Location = new Point(25, 10);
-            label47.Margin = new Padding(0);
-            label47.Name = "label47";
-            label47.Size = new Size(194, 54);
-            label47.TabIndex = 6;
-            label47.Text = "Remaining";
-            // 
-            // panel43
-            // 
-            panel43.Controls.Add(label12);
-            panel43.Location = new Point(28, 218);
-            panel43.Name = "panel43";
-            panel43.Size = new Size(1022, 39);
-            panel43.TabIndex = 2;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Poppins SemiBold", 23F, FontStyle.Bold);
-            label12.ForeColor = Color.FromArgb(28, 28, 28);
-            label12.Location = new Point(3, -2);
-            label12.Margin = new Padding(0);
-            label12.Name = "label12";
-            label12.Size = new Size(135, 54);
-            label12.TabIndex = 0;
-            label12.Text = "History";
-            // 
-            // panel44
-            // 
-            panel44.Controls.Add(sfDataGrid2);
-            panel44.Location = new Point(28, 263);
-            panel44.Name = "panel44";
-            panel44.Size = new Size(1021, 511);
-            panel44.TabIndex = 3;
-            // 
-            // sfDataGrid2
-            // 
-            sfDataGrid2.AccessibleName = "Table";
-            sfDataGrid2.Dock = DockStyle.Fill;
-            sfDataGrid2.Location = new Point(0, 0);
-            sfDataGrid2.Name = "sfDataGrid2";
-            sfDataGrid2.PreviewRowHeight = 35;
-            sfDataGrid2.Size = new Size(1021, 511);
-            sfDataGrid2.Style.BorderColor = Color.FromArgb(100, 100, 100);
-            sfDataGrid2.Style.CheckBoxStyle.CheckedBackColor = Color.FromArgb(0, 120, 215);
-            sfDataGrid2.Style.CheckBoxStyle.CheckedBorderColor = Color.FromArgb(0, 120, 215);
-            sfDataGrid2.Style.CheckBoxStyle.IndeterminateBorderColor = Color.FromArgb(0, 120, 215);
-            sfDataGrid2.Style.HyperlinkStyle.DefaultLinkColor = Color.FromArgb(0, 120, 215);
-            sfDataGrid2.TabIndex = 0;
-            sfDataGrid2.Text = "sfDataGrid2";
-            // 
             // Dashboard_Employee
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -4280,6 +4280,113 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelMain.ResumeLayout(false);
             panelMainDashboard.ResumeLayout(false);
+            pnlJobDeskRegular.ResumeLayout(false);
+            flowLayoutPanel2.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            flowLayoutPanel5.ResumeLayout(false);
+            pnlJobDeskProfileMain.ResumeLayout(false);
+            pnlJobDeskProfileSub.ResumeLayout(false);
+            flowLayoutPanel6.ResumeLayout(false);
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            panel8.ResumeLayout(false);
+            panel8.PerformLayout();
+            panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
+            panel10.ResumeLayout(false);
+            panel10.PerformLayout();
+            panel11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
+            panel12.ResumeLayout(false);
+            panel12.PerformLayout();
+            panel13.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox11).EndInit();
+            panel14.ResumeLayout(false);
+            panel14.PerformLayout();
+            panel15.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox12).EndInit();
+            panel16.ResumeLayout(false);
+            panel16.PerformLayout();
+            panel17.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
+            panel18.ResumeLayout(false);
+            panel18.PerformLayout();
+            panel19.ResumeLayout(false);
+            panel19.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
+            panel21.ResumeLayout(false);
+            panel21.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
+            panel23.ResumeLayout(false);
+            panel23.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
+            pnlJobDeskDashMain.ResumeLayout(false);
+            pnlJobDeskDashSub.ResumeLayout(false);
+            flowLayoutPanel7.ResumeLayout(false);
+            tabSelectorPanel.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            materialTabControl1.ResumeLayout(false);
+            tabPayslip.ResumeLayout(false);
+            flowLayoutPanel8.ResumeLayout(false);
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            btnPanel2.ResumeLayout(false);
+            btnPanel1.ResumeLayout(false);
+            panel26.ResumeLayout(false);
+            panel26.PerformLayout();
+            panel28.ResumeLayout(false);
+            panel28.PerformLayout();
+            panel59.ResumeLayout(false);
+            panel59.PerformLayout();
+            panel30.ResumeLayout(false);
+            panel30.PerformLayout();
+            panel31.ResumeLayout(false);
+            panel31.PerformLayout();
+            panel32.ResumeLayout(false);
+            panel32.PerformLayout();
+            panel33.ResumeLayout(false);
+            panel33.PerformLayout();
+            panel34.ResumeLayout(false);
+            panel34.PerformLayout();
+            panel35.ResumeLayout(false);
+            panel35.PerformLayout();
+            panel36.ResumeLayout(false);
+            panel36.PerformLayout();
+            panel38.ResumeLayout(false);
+            panel38.PerformLayout();
+            panel39.ResumeLayout(false);
+            panel39.PerformLayout();
+            panel41.ResumeLayout(false);
+            panel41.PerformLayout();
+            tabAttendance.ResumeLayout(false);
+            flowLayoutPanel9.ResumeLayout(false);
+            panel24.ResumeLayout(false);
+            panel24.PerformLayout();
+            btnPanel3.ResumeLayout(false);
+            panel42.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)tblAttendanceDataGrid).EndInit();
+            tabLeave.ResumeLayout(false);
+            flowLayoutPanel10.ResumeLayout(false);
+            panel25.ResumeLayout(false);
+            panel25.PerformLayout();
+            btnPanel4.ResumeLayout(false);
+            flowLayoutPanel11.ResumeLayout(false);
+            pnlLeaveCard1Main.ResumeLayout(false);
+            pnlLeaveCard1Sub.ResumeLayout(false);
+            pnlLeaveCard1Sub.PerformLayout();
+            pnlLeaveCard2Main.ResumeLayout(false);
+            pnlLeaveCard2Sub.ResumeLayout(false);
+            pnlLeaveCard2Sub.PerformLayout();
+            pnlLeaveCard3Main.ResumeLayout(false);
+            pnlLeaveCard3Main.PerformLayout();
+            panel43.ResumeLayout(false);
+            panel43.PerformLayout();
+            panel44.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)sfDataGrid2).EndInit();
             pnlDashboard.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -4459,113 +4566,6 @@
             panel95.PerformLayout();
             panel96.ResumeLayout(false);
             panel96.PerformLayout();
-            pnlJobDeskRegular.ResumeLayout(false);
-            flowLayoutPanel2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            flowLayoutPanel5.ResumeLayout(false);
-            pnlJobDeskProfileMain.ResumeLayout(false);
-            pnlJobDeskProfileSub.ResumeLayout(false);
-            flowLayoutPanel6.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
-            panel8.ResumeLayout(false);
-            panel8.PerformLayout();
-            panel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
-            panel10.ResumeLayout(false);
-            panel10.PerformLayout();
-            panel11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
-            panel12.ResumeLayout(false);
-            panel12.PerformLayout();
-            panel13.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox11).EndInit();
-            panel14.ResumeLayout(false);
-            panel14.PerformLayout();
-            panel15.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox12).EndInit();
-            panel16.ResumeLayout(false);
-            panel16.PerformLayout();
-            panel17.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
-            panel18.ResumeLayout(false);
-            panel18.PerformLayout();
-            panel19.ResumeLayout(false);
-            panel19.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
-            panel21.ResumeLayout(false);
-            panel21.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
-            panel23.ResumeLayout(false);
-            panel23.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
-            pnlJobDeskDashMain.ResumeLayout(false);
-            pnlJobDeskDashSub.ResumeLayout(false);
-            flowLayoutPanel7.ResumeLayout(false);
-            tabSelectorPanel.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            materialTabControl1.ResumeLayout(false);
-            tabPayslip.ResumeLayout(false);
-            flowLayoutPanel8.ResumeLayout(false);
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            btnPanel2.ResumeLayout(false);
-            btnPanel1.ResumeLayout(false);
-            panel26.ResumeLayout(false);
-            panel26.PerformLayout();
-            panel28.ResumeLayout(false);
-            panel28.PerformLayout();
-            panel59.ResumeLayout(false);
-            panel59.PerformLayout();
-            panel30.ResumeLayout(false);
-            panel30.PerformLayout();
-            panel31.ResumeLayout(false);
-            panel31.PerformLayout();
-            panel32.ResumeLayout(false);
-            panel32.PerformLayout();
-            panel33.ResumeLayout(false);
-            panel33.PerformLayout();
-            panel34.ResumeLayout(false);
-            panel34.PerformLayout();
-            panel35.ResumeLayout(false);
-            panel35.PerformLayout();
-            panel36.ResumeLayout(false);
-            panel36.PerformLayout();
-            panel38.ResumeLayout(false);
-            panel38.PerformLayout();
-            panel39.ResumeLayout(false);
-            panel39.PerformLayout();
-            panel41.ResumeLayout(false);
-            panel41.PerformLayout();
-            tabAttendance.ResumeLayout(false);
-            flowLayoutPanel9.ResumeLayout(false);
-            panel24.ResumeLayout(false);
-            panel24.PerformLayout();
-            btnPanel3.ResumeLayout(false);
-            panel42.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)tblAttendanceDataGrid).EndInit();
-            tabLeave.ResumeLayout(false);
-            flowLayoutPanel10.ResumeLayout(false);
-            panel25.ResumeLayout(false);
-            panel25.PerformLayout();
-            btnPanel4.ResumeLayout(false);
-            flowLayoutPanel11.ResumeLayout(false);
-            pnlLeaveCard1Main.ResumeLayout(false);
-            pnlLeaveCard1Sub.ResumeLayout(false);
-            pnlLeaveCard1Sub.PerformLayout();
-            pnlLeaveCard2Main.ResumeLayout(false);
-            pnlLeaveCard2Sub.ResumeLayout(false);
-            pnlLeaveCard2Sub.PerformLayout();
-            pnlLeaveCard3Main.ResumeLayout(false);
-            pnlLeaveCard3Main.PerformLayout();
-            panel43.ResumeLayout(false);
-            panel43.PerformLayout();
-            panel44.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)sfDataGrid2).EndInit();
             ResumeLayout(false);
         }
 
@@ -4739,8 +4739,8 @@
         public FlowLayoutPanel flowLayoutPanel13;
         public Panel panel45;
         public Label label15;
-        public Syncfusion.WinForms.Controls.SfButton btnPreviewDocument;
-        public Syncfusion.WinForms.Controls.SfButton btnPrint;
+        public Syncfusion.WinForms.Controls.SfButton btnDownloadPayslip;
+        public Syncfusion.WinForms.Controls.SfButton btnPrintPayslip;
         public Syncfusion.WinForms.Controls.SfButton btnAttendanceRequest;
         public Syncfusion.WinForms.Controls.SfButton btnFileLeave;
         public FlowLayoutPanel flowLayoutPanel12;

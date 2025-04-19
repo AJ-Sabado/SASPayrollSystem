@@ -163,7 +163,7 @@ namespace PresentationLayer.Views
 
         private void InitJobDeskButtons()
         {
-            SfButton[] jobDeskButtons = { _dashboard.btnPrint, _dashboard.btnPreviewDocument, _dashboard.btnAttendanceRequest, _dashboard.btnFileLeave };
+            SfButton[] jobDeskButtons = { _dashboard.btnPrintPayslip, _dashboard.btnDownloadPayslip, _dashboard.btnAttendanceRequest, _dashboard.btnFileLeave };
             Panel[] panels = { _dashboard.btnPanel1, _dashboard.btnPanel2, _dashboard.btnPanel3, _dashboard.btnPanel4 };
 
             foreach (var btn in jobDeskButtons)

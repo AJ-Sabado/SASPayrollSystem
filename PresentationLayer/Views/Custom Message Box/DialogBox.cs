@@ -56,11 +56,13 @@ namespace PresentationLayer.Views.Custom_Message_Box
         {
             try
             {
-                _iconInformation = Image.FromFile("C:\\Users\\Timro\\OneDrive\\Documents\\PROGRAMMING PROJECTS\\STRATEGIC ASSISTANT PAYROLL\\DESIGN\\PresentationLayer\\Resources\\DialogBoxIcons\\Information.png");
-                _iconWarning = Image.FromFile("C:\\Users\\Timro\\OneDrive\\Documents\\PROGRAMMING PROJECTS\\STRATEGIC ASSISTANT PAYROLL\\DESIGN\\PresentationLayer\\Resources\\DialogBoxIcons\\Warning.png");
-                _iconError = Image.FromFile("C:\\Users\\Timro\\OneDrive\\Documents\\PROGRAMMING PROJECTS\\STRATEGIC ASSISTANT PAYROLL\\DESIGN\\PresentationLayer\\Resources\\DialogBoxIcons\\Error.png");
-                _iconSuccess = Image.FromFile("C:\\Users\\Timro\\OneDrive\\Documents\\PROGRAMMING PROJECTS\\STRATEGIC ASSISTANT PAYROLL\\DESIGN\\PresentationLayer\\Resources\\DialogBoxIcons\\Success.png");
-                _iconQuestion = Image.FromFile("C:\\Users\\Timro\\OneDrive\\Documents\\PROGRAMMING PROJECTS\\STRATEGIC ASSISTANT PAYROLL\\DESIGN\\PresentationLayer\\Resources\\DialogBoxIcons\\Question.png");
+                string iconPath = Path.Combine(Application.StartupPath, "Resources", "DialogBoxIcons");
+
+                _iconInformation = Image.FromFile(Path.Combine(iconPath, "Information.png"));
+                _iconWarning = Image.FromFile(Path.Combine(iconPath, "Warning.png"));
+                _iconError = Image.FromFile(Path.Combine(iconPath, "Error.png"));
+                _iconSuccess = Image.FromFile(Path.Combine(iconPath, "Success.png"));
+                _iconQuestion = Image.FromFile(Path.Combine(iconPath, "Question.png"));
             }
             catch (Exception e)
             {

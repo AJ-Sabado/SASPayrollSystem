@@ -12,6 +12,8 @@ namespace PresentationLayer
         private SfButton lastFocusedButton;
 
         public event EventHandler Exit;
+        public event EventHandler printPayslip;
+        public event EventHandler downloadPayslip;
 
         private EmployeeAttendance_Form? EmployeeAttendanceForm;
 
@@ -32,6 +34,16 @@ namespace PresentationLayer
             this.FormClosed += delegate
             {
                 Exit?.Invoke(this, EventArgs.Empty);
+            };
+
+            this.btnPrintPayslip.Click += delegate
+            {
+                printPayslip?.Invoke(this, EventArgs.Empty);
+            };
+
+            this.btnDownloadPayslip.Click += delegate
+            {
+                downloadPayslip?.Invoke(this, EventArgs.Empty);
             };
         }
 
