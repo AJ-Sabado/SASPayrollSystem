@@ -1,14 +1,7 @@
 ﻿using DomainLayer.Enums;
 using DomainLayer.Models.Employee;
-using DomainLayer.Models.User;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Runtime.InteropServices.Marshalling;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainLayer.Models.Attendance
 {
@@ -16,6 +9,7 @@ namespace DomainLayer.Models.Attendance
     {
         private TimeOnly _timeOut;
 
+        //Should be stored somewhere else
         private readonly TimeOnly _breakTimeStart = new TimeOnly(12, 0, 0);
         private readonly TimeOnly _breakTimeEnd = new TimeOnly(13, 0, 0);
 

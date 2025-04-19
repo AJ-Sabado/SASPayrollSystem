@@ -1,26 +1,30 @@
 ﻿using DomainLayer.Common;
+using DomainLayer.Defaults;
+using DomainLayer.Enums.EmployeePersonalInfo;
 using DomainLayer.Exceptions;
 using DomainLayer.Models.Attendance;
-using DomainLayer.Models.ForgotPasswordRequest;
+using DomainLayer.Models.Contribution;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
+using DomainLayer.Models.EmployeeContactInfo;
+using DomainLayer.Models.EmployeeEmploymentInfo;
+using DomainLayer.Models.EmployeeFinancialInfo;
+using DomainLayer.Models.EmployeePersonalInfo;
+using DomainLayer.Models.ForgotPasswordRequest;
+using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Leave;
 using DomainLayer.Models.NewUserRequest;
-using DomainLayer.Models.Salary;
+using DomainLayer.Models.Payroll;
 using DomainLayer.Models.Role;
+using DomainLayer.Models.EmployeeSalary;
 using DomainLayer.Models.User;
+using DomainLayer.ViewModels.AttendanceLog;
+using DomainLayer.ViewModels.DashboardDetails;
+using DomainLayer.ViewModels.JobDeskDetails;
 using InfrastructureLayer.DataAccess;
 using InfrastructureLayer.DataAccess.Repositories.Common;
 using ServicesLayer.Common;
 using ServicesLayer.Exceptions;
-using System.Text;
-using DomainLayer.Models.Holiday;
-using DomainLayer.Defaults;
-using DomainLayer.Models.Payroll;
-using DomainLayer.Models.Contribution;
-using DomainLayer.ViewModels.DashboardDetails;
-using DomainLayer.ViewModels.AttendanceLog;
-using DomainLayer.ViewModels.JobDeskDetails;
 
 
 
@@ -35,13 +39,17 @@ namespace ServicesLayer
         private readonly IBaseRepository<ContributionModel> _contributionRepository;
         private readonly IBaseRepository<DepartmentModel> _departmentRepository;
         private readonly IBaseRepository<EmployeeModel> _employeeRepository;
+        private readonly IBaseRepository<EmployeeContactInfoModel> _employeeContactInfoRepository;
+        private readonly IBaseRepository<EmployeeEmploymentInfoModel> _employeeEmploymentInfoRepository;
+        private readonly IBaseRepository<EmployeeFinancialInfoModel> _employeeFinancialInfoRepository;
+        private readonly IBaseRepository<EmployeePersonalInfoModel> _employeePersonalInfoRepository;
         private readonly IBaseRepository<ForgotPasswordRequestModel> _forgotPasswordRequestRepository;
         private readonly IBaseRepository<HolidayModel> _holidayRepository;
         private readonly IBaseRepository<LeaveModel> _leaveRepository;
         private readonly IBaseRepository<NewUserRequestModel> _newUserRequestRepository;
         private readonly IBaseRepository<PayrollModel> _payrollRepository;
         private readonly IBaseRepository<RoleModel> _roleRepository;
-        private readonly IBaseRepository<SalaryModel> _salaryRepository;
+        private readonly IBaseRepository<EmployeeSalaryModel> _salaryRepository;
         private readonly IBaseRepository<UserModel> _userRepository;
 
         //Common Services
@@ -52,13 +60,17 @@ namespace ServicesLayer
         public IBaseServices<ContributionModel> ContributionRepository { get; private set; }
         public IBaseServices<DepartmentModel> DepartmentRepository { get; private set; }
         public IBaseServices<EmployeeModel> EmployeeRepository { get; private set; }
+        public IBaseServices<EmployeeContactInfoModel> EmployeeContactInfoRepository { get; private set; }
+        public IBaseServices<EmployeeEmploymentInfoModel> EmployeeEmploymentInfoRepository { get; private set; }
+        public IBaseServices<EmployeeFinancialInfoModel> EmployeeFinancialInfoRepository { get; private set; }
+        public IBaseServices<EmployeePersonalInfoModel> EmployeePersonalInfoRepository { get; private set; }
         public IBaseServices<ForgotPasswordRequestModel> ForgotPasswordRequestRepository { get; private set; }
         public IBaseServices<HolidayModel> HolidayRepository { get; private set; }
         public IBaseServices<LeaveModel> LeaveRepository { get; private set; }
         public IBaseServices<NewUserRequestModel> NewUserRequestRepository { get; private set; }
         public IBaseServices<PayrollModel> PayrollRepository { get; private set; }
         public IBaseServices<RoleModel> RoleRepository { get; private set; }
-        public IBaseServices<SalaryModel> SalaryRepository { get; private set; }
+        public IBaseServices<EmployeeSalaryModel> SalaryRepository { get; private set; }
         public IBaseServices<UserModel> UserRepository { get; private set; }
 
         public UnitOfWork()
@@ -68,12 +80,16 @@ namespace ServicesLayer
             _departmentRepository ??= new BaseRepository<DepartmentModel>();
             _forgotPasswordRequestRepository ??= new BaseRepository<ForgotPasswordRequestModel>();
             _employeeRepository ??= new BaseRepository<EmployeeModel>();
+            _employeeContactInfoRepository ??= new BaseRepository<EmployeeContactInfoModel>();
+            _employeeEmploymentInfoRepository ??= new BaseRepository<EmployeeEmploymentInfoModel>();
+            _employeeFinancialInfoRepository ??= new BaseRepository<EmployeeFinancialInfoModel>();
+            _employeePersonalInfoRepository ??= new BaseRepository<EmployeePersonalInfoModel>();
             _holidayRepository ??= new BaseRepository<HolidayModel>();
             _leaveRepository ??= new BaseRepository<LeaveModel>();
             _newUserRequestRepository ??= new BaseRepository<NewUserRequestModel>();
             _payrollRepository ??= new BaseRepository<PayrollModel>();
             _roleRepository ??= new BaseRepository<RoleModel>();
-            _salaryRepository ??= new BaseRepository<SalaryModel>();
+            _salaryRepository ??= new BaseRepository<EmployeeSalaryModel>();
             _userRepository ??= new BaseRepository<UserModel>();
 
             _modelDataAnnotationsCheck ??= new ModelDataAnnotationsCheck();
@@ -83,12 +99,16 @@ namespace ServicesLayer
             DepartmentRepository ??= new BaseServices<DepartmentModel>(_departmentRepository, _modelDataAnnotationsCheck);
             ForgotPasswordRequestRepository ??= new BaseServices<ForgotPasswordRequestModel>(_forgotPasswordRequestRepository, _modelDataAnnotationsCheck);
             EmployeeRepository ??= new BaseServices<EmployeeModel>(_employeeRepository, _modelDataAnnotationsCheck);
+            EmployeeContactInfoRepository ??= new BaseServices<EmployeeContactInfoModel>(_employeeContactInfoRepository, _modelDataAnnotationsCheck); ;
+            EmployeeEmploymentInfoRepository ??= new BaseServices<EmployeeEmploymentInfoModel>(_employeeEmploymentInfoRepository, _modelDataAnnotationsCheck);
+            EmployeeFinancialInfoRepository ??= new BaseServices<EmployeeFinancialInfoModel>(_employeeFinancialInfoRepository, _modelDataAnnotationsCheck);
+            EmployeePersonalInfoRepository ??= new BaseServices<EmployeePersonalInfoModel>(_employeePersonalInfoRepository, _modelDataAnnotationsCheck);
             HolidayRepository ??= new BaseServices<HolidayModel>(_holidayRepository, _modelDataAnnotationsCheck);
             LeaveRepository ??= new BaseServices<LeaveModel>(_leaveRepository, _modelDataAnnotationsCheck);
             NewUserRequestRepository ??= new BaseServices<NewUserRequestModel>(_newUserRequestRepository, _modelDataAnnotationsCheck);
             PayrollRepository ??= new BaseServices<PayrollModel>(_payrollRepository, _modelDataAnnotationsCheck);
             RoleRepository ??= new BaseServices<RoleModel>(_roleRepository, _modelDataAnnotationsCheck);
-            SalaryRepository ??= new BaseServices<SalaryModel>(_salaryRepository, _modelDataAnnotationsCheck);
+            SalaryRepository ??= new BaseServices<EmployeeSalaryModel>(_salaryRepository, _modelDataAnnotationsCheck);
             UserRepository ??= new BaseServices<UserModel>(_userRepository, _modelDataAnnotationsCheck);
         }
 
@@ -131,7 +151,6 @@ namespace ServicesLayer
                     UserName = "user1",
                     Password = "password",
                     Email = "test@test.com",
-                    PhoneNumber = "+639000000000",
                     Url = "https://www.google.com/",
                     RoleId = employeeRole.Id,
                     Role = employeeRole
@@ -140,10 +159,6 @@ namespace ServicesLayer
 
                 var employee = new EmployeeModel()
                 {
-                    FullName = "Sample Employee",
-                    BirthDay = new DateOnly(2007, 1, 1),
-                    EmploymentDate = DateOnly.FromDateTime(DateTime.Now),
-                    JobTitle = "Sample Job Title",
                     BasicSemiMonthlyRate = 10000,
                     LeaveCredits = 0,
                     WorkShiftStart = new TimeOnly(8, 0),
@@ -160,6 +175,46 @@ namespace ServicesLayer
                     Employee = employee
                 };
 
+                employee.EmployeeContactInfo = new EmployeeContactInfoModel()
+                {
+                    EmployeeId = employee.Id,
+                    Employee = employee,
+                    PhoneNumber = "+639000000000",
+                    PhoneNumberAlt = "+639000000001",
+                    Telephone = "02-8700",
+                    MailingAddress = "Brgy. Salvacion, Panabo City"
+                };
+
+                employee.EmployeeEmploymentInfo = new EmployeeEmploymentInfoModel()
+                {
+                    EmployeeId = employee.Id,
+                    Employee = employee,
+                    CompanyId = "598764",
+                    JobTitle = "Product Designer",
+                    DateHired = DateOnly.FromDateTime(DateTime.Now)
+                };
+
+                employee.EmployeeFinancialInfo = new EmployeeFinancialInfoModel()
+                {
+                    EmployeeId = employee.Id,
+                    Employee = employee,
+                    TaxIdNumber = "123-456-789-012",
+                    PhilHealthIdNumber = "12-34567890-0",
+                    SSSIdNumber = "123-4567890-7",
+                    PagIbigIdNumber = "1434-5678-9012"
+                };
+
+                employee.EmployeePersonalInfo = new EmployeePersonalInfoModel()
+                {
+                    EmployeeId = employee.Id,
+                    Employee = employee,
+                    FullName = "jane john s. doe smith",
+                    Gender = GenderEnum.Male,
+                    BirthDate = new DateOnly(2025, 1, 26),
+                    CivilStatus = CivilStatusEnum.Married,
+                    HomeAddress = "Brgy. Salvacion, Panabo City"
+                };
+
                 employeeUser.Employee = employee;
 
                 employeeRole.Users.Add(employeeUser);
@@ -169,13 +224,13 @@ namespace ServicesLayer
         private async Task SeedHolidays()
         {
             var holidays = await HolidayRepository.GetAllAsync();
-            
+
             if (holidays.Count() == 0)
             {
                 var defaults = new DefaultHolidays();
                 await HolidayRepository.AddRangeAsync(defaults.DefaultHolidaysList);
             }
-            
+
 
         }
 
@@ -227,7 +282,7 @@ namespace ServicesLayer
                 }
                 await RoleRepository.AddRangeAsync(rolemodels);
             }
-            
+
         }
 
         private async Task SeedAdmin()
@@ -248,6 +303,7 @@ namespace ServicesLayer
             }
         }
 
+        //TO BE FIXED
         public async Task NewUserRequest(string username, string password, string email)
         {
             var userRequest = new NewUserRequestModel()
@@ -352,20 +408,20 @@ namespace ServicesLayer
 
             if (user.Employee != null)
             {
-                viewModel.EmployeeName = user.Employee.FullName;
+                //viewModel.EmployeeName = user.Employee.FullName;
                 viewModel.Department = user.Employee.Department.Name;
                 viewModel.BaseSalary = $"Php {user.Employee.BasicSemiMonthlyRate} bimonthly";
                 viewModel.WorkShift = $"{user.Employee.WorkShiftStart.ToString("hh:mm tt")}";
                 viewModel.EmploymentStatus = user.Role.Name;
-                viewModel.EmploymentDate = user.Employee.EmploymentDate.ToString("MMMM dd, yyyy");
+                //viewModel.EmploymentDate = user.Employee.EmploymentDate.ToString("MMMM dd, yyyy");
             }
 
-            if (user.Email != null)
-                viewModel.Email = user.Email;
-            if (user.PhoneNumber != null)
-                viewModel.Phone = user.PhoneNumber;
-            if (user.Url != null)
-                viewModel.Website = user.Url;
+            //if (user.Email != null)
+            //    viewModel.Email = user.Email;
+            //if (user.PhoneNumber != null)
+            //    viewModel.Phone = user.PhoneNumber;
+            //if (user.Url != null)
+            //    viewModel.Website = user.Url;
 
             return viewModel;
         }

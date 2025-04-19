@@ -11,11 +11,9 @@ namespace DomainLayer.Models.User
         Guid Id { get; set; }
         string Password { set; }
         byte[] PasswordHash { get; }
-        string? PhoneNumber { get; set; }
         RoleModel Role { get; set; }
         Guid RoleId { get; set; }
         byte[] Salt { get; }
-        string? Url { get; set; }
         string UserName { get; set; }
 
         void ConfirmPasswordChange(IForgotPasswordRequestModel request);
