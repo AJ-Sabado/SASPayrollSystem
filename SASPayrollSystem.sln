@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureLayer", "Infr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesLayer", "ServicesLayer\ServicesLayer.csproj", "{73679738-F08A-4EDA-8B83-5F45BBFFB71B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer.WPF", "PresentationLayer.WPF\PresentationLayer.WPF.csproj", "{FEB48E84-6A8B-4D57-9538-157F055D81B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{73679738-F08A-4EDA-8B83-5F45BBFFB71B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73679738-F08A-4EDA-8B83-5F45BBFFB71B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73679738-F08A-4EDA-8B83-5F45BBFFB71B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEB48E84-6A8B-4D57-9538-157F055D81B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEB48E84-6A8B-4D57-9538-157F055D81B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEB48E84-6A8B-4D57-9538-157F055D81B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEB48E84-6A8B-4D57-9538-157F055D81B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
