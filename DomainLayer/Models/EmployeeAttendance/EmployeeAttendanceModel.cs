@@ -35,13 +35,11 @@ namespace DomainLayer.Models.EmployeeAttendance
             set
             {
                 _timeOut = value;
-                TotalHours = CalculateTotalHours(TimeIn, TimeOut, Employee.BreakTimeStart, Employee.BreakTimeEnd);
-                if (TotalHours > 8)
-                {
-                    OTMinutes = CalculateOTMinutes(TimeOut, Employee.WorkShiftEnd);
-                    TotalHours = 8;
-                }
                 LateMinutes = CalculateMinutesLate(TimeIn, Employee.WorkShiftStart);
+                OTMinutes = CalculateOTMinutes(TimeOut, Employee.WorkShiftEnd);
+                var start = TimeIn > Employee.WorkShiftStart ? TimeIn : Employee.WorkShiftStart;
+                var end = TimeOut < Employee.WorkShiftEnd ? TimeOut : Employee.WorkShiftEnd;
+                TotalHours = CalculateTotalHours(start, end, Employee.BreakTimeStart, Employee.BreakTimeEnd);
                 Status = FormStatus.Approved;
             }
         }
@@ -65,21 +63,21 @@ namespace DomainLayer.Models.EmployeeAttendance
             var totalHoursSpan = (timeIn - timeOut) - (breakTimeStart - breakTimeEnd);
             return TotalHours = (uint)Math.Floor(totalHoursSpan.TotalHours);
         }
+        private uint CalculateMinutesLate(TimeOnly timeIn, TimeOnly workShiftStart)
+        {
+            if (timeIn <= workShiftStart)
+                return 0;
+            var span = workShiftStart - timeIn;
+            return (uint)Math.Floor(span.TotalMinutes);
+        }
 
         private uint CalculateOTMinutes(TimeOnly timeOut, TimeOnly workShiftEnd)
         {
+            if (timeOut <= workShiftEnd)
+                return 0;
             var span = workShiftEnd - timeOut;
             return (uint)Math.Floor(span.TotalMinutes);
         }
 
-        private uint CalculateMinutesLate(TimeOnly timeIn, TimeOnly workShiftStart)
-        {
-            if (timeIn <= workShiftStart)
-            {
-                return 0;
-            }
-            var span = workShiftStart - timeIn;
-            return (uint)Math.Floor(span.TotalMinutes);
-        }
     }
 }
