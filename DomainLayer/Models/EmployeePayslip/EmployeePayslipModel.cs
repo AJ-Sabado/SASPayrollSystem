@@ -1,4 +1,6 @@
-﻿using DomainLayer.Models.Employee;
+﻿using DomainLayer.Enums;
+using DomainLayer.Models.Employee;
+using DomainLayer.Models.EmployeeAttendance;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -18,7 +20,8 @@ namespace DomainLayer.Models.EmployeePayslip
         [Column(TypeName = "date")]
         public DateOnly PeriodEnd { get; set; }
 
-        //CALCULATED VALUES
+
+        //CALCULATED MONEY VALUES
         [Column(TypeName = "money")]
         public decimal BasicPay { get; set; }
         [Column(TypeName = "money")]
