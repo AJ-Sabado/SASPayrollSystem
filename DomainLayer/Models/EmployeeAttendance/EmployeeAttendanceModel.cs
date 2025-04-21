@@ -38,10 +38,11 @@ namespace DomainLayer.Models.EmployeeAttendance
                 TotalHours = CalculateTotalHours(TimeIn, TimeOut, Employee.BreakTimeStart, Employee.BreakTimeEnd);
                 if (TotalHours > 8)
                 {
-                    OTHours = TotalHours - 8;
+                    OTMinutes = CalculateOTMinutes(TimeOut, Employee.WorkShiftEnd);
                     TotalHours = 8;
                 }
                 LateMinutes = CalculateMinutesLate(TimeIn, Employee.WorkShiftStart);
+                Status = FormStatus.Approved;
             }
         }
 
@@ -49,11 +50,11 @@ namespace DomainLayer.Models.EmployeeAttendance
         public uint TotalHours
         { get; private set; } = 0;
 
-        [Column(TypeName = "tinyint")]
-        public uint OTHours { get; private set; } = 0;
+        [Column(TypeName = "smallint")]
+        public uint OTMinutes { get; private set; } = 0;
 
-        [Column(TypeName = "decimal")]
-        public decimal LateMinutes { get; private set; } = 0;
+        [Column(TypeName = "smallint")]
+        public uint LateMinutes { get; private set; } = 0;
 
         [Column(TypeName = "tinyint")]
         public FormStatus Status { get; set; } = FormStatus.Pending;
@@ -65,14 +66,20 @@ namespace DomainLayer.Models.EmployeeAttendance
             return TotalHours = (uint)Math.Floor(totalHoursSpan.TotalHours);
         }
 
-        private decimal CalculateMinutesLate(TimeOnly timeIn, TimeOnly workShiftIn)
+        private uint CalculateOTMinutes(TimeOnly timeOut, TimeOnly workShiftEnd)
         {
-            if (timeIn <= workShiftIn)
+            var span = workShiftEnd - timeOut;
+            return (uint)Math.Floor(span.TotalMinutes);
+        }
+
+        private uint CalculateMinutesLate(TimeOnly timeIn, TimeOnly workShiftStart)
+        {
+            if (timeIn <= workShiftStart)
             {
                 return 0;
             }
-            var span = workShiftIn - timeIn;
-            return (decimal)Math.Floor(span.TotalMinutes);
+            var span = workShiftStart - timeIn;
+            return (uint)Math.Floor(span.TotalMinutes);
         }
     }
 }
