@@ -6,10 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Syncfusion.ExcelToPdfConverter.WinForms" Version="29.1.38" />
-    <PackageReference Include="Syncfusion.PdfViewer.Windows" Version="29.1.38" />
-    <PackageReference Include="Syncfusion.XlsIO.WinForms" Version="29.1.38" />
-  </ItemGroup>
-
 </Project>

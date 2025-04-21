@@ -1,25 +1,18 @@
 ﻿using DomainLayer.Common;
 using DomainLayer.Models.Employee;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainLayer.Models.Department
 {
     public class DepartmentModel : IDepartmentModel
     {
         private string _name = string.Empty;
-        private Formatter formatter = new Formatter();
 
         [Key]
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Department name is required")]
-        [StringLength(50, ErrorMessage = "Must not exceed 20 characters")]
+        [StringLength(50, ErrorMessage = "Must not exceed 50 characters")]
         public string Name
         {
             get
@@ -28,6 +21,7 @@ namespace DomainLayer.Models.Department
             }
             set
             {
+                var formatter = new Formatter();
                 _name = formatter.ToProperCase(value.Trim().ToLowerInvariant());
                 NormalizedName = Name.ToUpperInvariant();
             }

@@ -57,17 +57,14 @@ namespace DomainLayer.Models.User
         [EmailAddress(ErrorMessage = "Must be a valid email address")]
         public string? Email { get; set; }
 
-        //[RegularExpression(@"^\+639\d{9}")]
-        //[StringLength(13, MinimumLength = 12, ErrorMessage = "Must be exactly 12 characters")]
-        //public string? PhoneNumber { get; set; } = null!;
 
         [Url(ErrorMessage = "Must be a valid Url")]
         public string? Url { get; set; }
 
         [ForeignKey(nameof(RoleId))]
         public Guid RoleId { get; set; }
-
         public RoleModel Role { get; set; } = null!;
+
         public EmployeeModel? Employee { get; set; }
 
         public void ConfirmPasswordChange(IForgotPasswordRequestModel request)
