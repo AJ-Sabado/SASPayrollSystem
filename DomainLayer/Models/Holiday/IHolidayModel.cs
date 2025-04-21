@@ -5,7 +5,7 @@ namespace DomainLayer.Models.Holiday
     public interface IHolidayModel
     {
         DateOnly Date { get; set; }
-        int Id { get; set; }
+        int HolidayId { get; set; }
         HolidayType Type { get; set; }
     }
 }

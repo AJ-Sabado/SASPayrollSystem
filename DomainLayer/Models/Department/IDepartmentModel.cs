@@ -1,11 +1,11 @@
-﻿using DomainLayer.Models.Employee;
+﻿using DomainLayer.Models.User;
 
 namespace DomainLayer.Models.Department
 {
     public interface IDepartmentModel
     {
-        ICollection<EmployeeModel> Employees { get; set; }
-        Guid Id { get; set; }
+        ICollection<UserModel> Users { get; }
+        Guid DepartmentId { get; set; }
         string Name { get; set; }
         string NormalizedName { get; }
     }

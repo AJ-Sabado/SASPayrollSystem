@@ -1,21 +1,20 @@
-﻿using DomainLayer.Models.Employee;
-using DomainLayer.Models.ForgotPasswordRequest;
+﻿using DomainLayer.Models.Department;
 using DomainLayer.Models.Role;
 
 namespace DomainLayer.Models.User
 {
     public interface IUserModel
     {
+        DepartmentModel Department { get; set; }
+        Guid DepartmentId { get; set; }
         string? Email { get; set; }
-        EmployeeModel? Employee { get; set; }
-        Guid Id { get; set; }
+        Guid UserId { get; set; }
         string Password { set; }
-        byte[] PasswordHash { get; }
+        byte[] PasswordHash { get; set; }
         RoleModel Role { get; set; }
         Guid RoleId { get; set; }
-        byte[] Salt { get; }
+        byte[] Salt { get; set; }
+        string? Url { get; set; }
         string UserName { get; set; }
-
-        void ConfirmPasswordChange(IForgotPasswordRequestModel request);
     }
 }

@@ -14,7 +14,7 @@ namespace DomainLayer.Models.Role
         private string _name = string.Empty;
 
         [Key]
-        public Guid Id { get; set; }
+        public Guid RoleId { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Name is required")]
         [StringLength(20, MinimumLength = 2, ErrorMessage = "Must be between 2 - 20 characters only")]

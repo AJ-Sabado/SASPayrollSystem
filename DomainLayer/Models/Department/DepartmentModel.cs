@@ -1,5 +1,6 @@
 ﻿using DomainLayer.Common;
 using DomainLayer.Models.Employee;
+using DomainLayer.Models.User;
 using System.ComponentModel.DataAnnotations;
 
 namespace DomainLayer.Models.Department
@@ -9,7 +10,7 @@ namespace DomainLayer.Models.Department
         private string _name = string.Empty;
 
         [Key]
-        public Guid Id { get; set; }
+        public Guid DepartmentId { get; set; }
 
         [Required(ErrorMessage = "Department name is required")]
         [StringLength(50, ErrorMessage = "Must not exceed 50 characters")]
@@ -31,6 +32,6 @@ namespace DomainLayer.Models.Department
         [StringLength(50)]
         public string NormalizedName { get; private set; } = null!;
 
-        public virtual ICollection<EmployeeModel> Employees { get; set; } = [];
+        public virtual ICollection<UserModel> Users { get; } = [];
     }
 }

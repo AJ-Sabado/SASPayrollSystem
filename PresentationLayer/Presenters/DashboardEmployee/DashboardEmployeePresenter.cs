@@ -26,18 +26,18 @@ namespace PresentationLayer.Presenters.DashboardEmployee
             _dashboardForm.printPayslip += OnPrintPayslip;
             _dashboardForm.downloadPayslip += OnSaveAsPdf;
         }
-        public DashboardDetailsViewModel GetDashboardDetails(IUserModel user)
-        {
-            return _unitOfWork.GetDashboardDetails(user);
-        }
-        public IEnumerable<AttendanceLogViewModel> GetAttendanceLogs(IUserModel user)
-        {
-            return _unitOfWork.GetAttendanceLog(user);
-        }
-        public JobDeskDetailsViewModel GetJobDeskDetails(IUserModel user)
-        {
-            return _unitOfWork.GetJobDeskDetails(user);
-        }
+        //public DashboardDetailsViewModel GetDashboardDetails(IUserModel user)
+        //{
+        //    return _unitOfWork.GetDashboardDetails(user);
+        //}
+        //public IEnumerable<AttendanceLogViewModel> GetAttendanceLogs(IUserModel user)
+        //{
+        //    return _unitOfWork.GetAttendanceLog(user);
+        //}
+        //public JobDeskDetailsViewModel GetJobDeskDetails(IUserModel user)
+        //{
+        //    return _unitOfWork.GetJobDeskDetails(user);
+        //}
 
         private void Exit(object? Sender, EventArgs e)
         {

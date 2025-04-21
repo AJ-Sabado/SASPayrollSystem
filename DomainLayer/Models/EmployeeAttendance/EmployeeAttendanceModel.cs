@@ -3,24 +3,25 @@ using DomainLayer.Models.Employee;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DomainLayer.Models.Attendance
+namespace DomainLayer.Models.EmployeeAttendance
 {
-    public class AttendanceModel : IAttendanceModel
+    public class EmployeeAttendanceModel
     {
         private TimeOnly _timeOut;
 
-        //Should be stored somewhere else
-        private readonly TimeOnly _breakTimeStart = new TimeOnly(12, 0, 0);
-        private readonly TimeOnly _breakTimeEnd = new TimeOnly(13, 0, 0);
-
         [Key]
-        public Guid Id { get; set; }
+        public Guid EmployeeAttendanceId { get; set; }
 
-        [Required(ErrorMessage = "Date is required")]
+        [ForeignKey(nameof(EmployeeId))]
+        public required Guid EmployeeId { get; set; }
+        public required EmployeeModel Employee { get; set; }
+
         [Column(TypeName = "date")]
         public DateOnly Date { get; set; }
 
-        [Required(ErrorMessage = "Time in is required")]
+        [Column(TypeName = "tinyint")]
+        public HolidayType HolidayType { get; set; } = HolidayType.Not;
+
         [Column(TypeName = "time")]
         public TimeOnly TimeIn { get; set; }
 
@@ -34,7 +35,7 @@ namespace DomainLayer.Models.Attendance
             set
             {
                 _timeOut = value;
-                TotalHours = CalculateTotalHours(TimeIn, TimeOut);
+                TotalHours = CalculateTotalHours(TimeIn, TimeOut, Employee.BreakTimeStart, Employee.BreakTimeEnd);
                 if (TotalHours > 8)
                 {
                     OTHours = TotalHours - 8;
@@ -44,7 +45,6 @@ namespace DomainLayer.Models.Attendance
             }
         }
 
-        [Required]
         [Column(TypeName = "tinyint")]
         public uint TotalHours
         { get; private set; } = 0;
@@ -55,17 +55,13 @@ namespace DomainLayer.Models.Attendance
         [Column(TypeName = "decimal")]
         public decimal LateMinutes { get; private set; } = 0;
 
-        [Required]
         [Column(TypeName = "tinyint")]
         public FormStatus Status { get; set; } = FormStatus.Pending;
 
-        [ForeignKey(nameof(EmployeeId))]
-        public required Guid EmployeeId { get; set; }
-        public required EmployeeModel Employee { get; set; }
 
-        private uint CalculateTotalHours(TimeOnly timeIn, TimeOnly timeOut)
+        private uint CalculateTotalHours(TimeOnly timeIn, TimeOnly timeOut, TimeOnly breakTimeStart, TimeOnly breakTimeEnd)
         {
-            var totalHoursSpan = (timeIn - timeOut) - (_breakTimeStart - _breakTimeEnd);
+            var totalHoursSpan = (timeIn - timeOut) - (breakTimeStart - breakTimeEnd);
             return TotalHours = (uint)Math.Floor(totalHoursSpan.TotalHours);
         }
 

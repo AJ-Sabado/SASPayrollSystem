@@ -43,9 +43,6 @@ namespace ServicesLayer
 
         Task ApproveNewUserRequest(string requestEmail, string roleName = null);
         Task ForgotPasswordRequest(string username, string email, string password, string confirmPassword);
-        IEnumerable<AttendanceLogViewModel> GetAttendanceLog(IUserModel user);
-        DashboardDetailsViewModel GetDashboardDetails(IUserModel user);
-        JobDeskDetailsViewModel GetJobDeskDetails(IUserModel user);
         Task InitialSeeding();
         Task LoginUser(string username, string password);
         Task NewUserRequest(string username, string password, string email);

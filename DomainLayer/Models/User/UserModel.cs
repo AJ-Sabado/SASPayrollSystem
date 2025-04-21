@@ -1,8 +1,5 @@
 ﻿using DomainLayer.Common;
-using DomainLayer.Enums;
-using DomainLayer.Models.Employee;
-using DomainLayer.Models.ForgotPasswordRequest;
-using DomainLayer.Models.NewUserRequest;
+using DomainLayer.Models.Department;
 using DomainLayer.Models.Role;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,18 +13,8 @@ namespace DomainLayer.Models.User
 
         public UserModel() { }
 
-        public UserModel(INewUserRequestModel requestModel, IRoleModel roleModel)
-        {
-            UserName = requestModel.UserName;
-            Salt = requestModel.Salt;
-            PasswordHash = requestModel.PasswordHash;
-            Email = requestModel.Email;
-            RoleId = roleModel.Id;
-            Role = (RoleModel)roleModel;
-        }
-
         [Key]
-        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
 
         [StringLength(20, MinimumLength = 2, ErrorMessage = "Username must be 2 - 20 characters only")]
         public string UserName { get; set; } = null!;
@@ -49,14 +36,13 @@ namespace DomainLayer.Models.User
         }
 
         [Column(TypeName = "binary(32)")]
-        public byte[] Salt { get; private set; } = [];
+        public byte[] Salt { get; set; } = [];
 
         [Column(TypeName = "binary(32)")]
-        public byte[] PasswordHash { get; private set; } = [];
+        public byte[] PasswordHash { get; set; } = [];
 
         [EmailAddress(ErrorMessage = "Must be a valid email address")]
         public string? Email { get; set; }
-
 
         [Url(ErrorMessage = "Must be a valid Url")]
         public string? Url { get; set; }
@@ -65,15 +51,8 @@ namespace DomainLayer.Models.User
         public Guid RoleId { get; set; }
         public RoleModel Role { get; set; } = null!;
 
-        public EmployeeModel? Employee { get; set; }
-
-        public void ConfirmPasswordChange(IForgotPasswordRequestModel request)
-        {
-            if (request.Status == FormStatus.Approved && request.UserName == UserName && request.Email == Email)
-            {
-                Salt = request.Salt;
-                PasswordHash = request.PasswordHash;
-            }
-        }
+        [ForeignKey(nameof(DepartmentId))]
+        public Guid DepartmentId { get; set; }
+        public DepartmentModel Department { get; set; } = null!;
     }
 }

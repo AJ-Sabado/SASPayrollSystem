@@ -215,10 +215,10 @@ namespace ServicesLayer
                     HomeAddress = "Brgy. Salvacion, Panabo City"
                 };
 
-                employeeUser.Employee = employee;
-
+                //employeeUser.Employee = employee;
                 employeeRole.Users.Add(employeeUser);
                 await RoleRepository.UpdateAsync(employeeRole);
+                await EmployeeRepository.AddAsync(employee);
             }
         }
         private async Task SeedHolidays()
@@ -306,33 +306,33 @@ namespace ServicesLayer
         //TO BE FIXED
         public async Task NewUserRequest(string username, string password, string email)
         {
-            var userRequest = new NewUserRequestModel()
-            {
-                UserName = username,
-                Password = password,
-                Email = email
-            };
-            NewUserRequestRepository.ValidateModelDataAnnotations(userRequest);
-            await NewUserRequestRepository.AddAsync(userRequest);
+            //var userRequest = new NewUserRequestModel()
+            //{
+            //    UserName = username,
+            //    Password = password,
+            //    Email = email
+            //};
+            //NewUserRequestRepository.ValidateModelDataAnnotations(userRequest);
+            //await NewUserRequestRepository.AddAsync(userRequest);
         }
 
         public async Task ApproveNewUserRequest(string requestEmail, string roleName = null)
         {
-            var requestModel = await NewUserRequestRepository.GetAsync(r => r.Email == requestEmail)
-                ?? throw new NewUserRequestNotFoundException();
-            IRoleModel role;
-            if (roleName != null)
-            {
-                role = await RoleRepository.GetAsync(r => r.NormalizedName == roleName.Trim().ToUpperInvariant())
-                    ?? throw new RoleNotFoundException();
-            }
-            else
-            {
-                role = await RoleRepository.GetAsync(r => r.NormalizedName == "contractor".ToUpperInvariant());
-            }
-            var newUser = new UserModel(requestModel, role);
-            role.Users.Add(newUser);
-            await RoleRepository.UpdateAsync((RoleModel)role);
+            //var requestModel = await NewUserRequestRepository.GetAsync(r => r.Email == requestEmail)
+            //    ?? throw new NewUserRequestNotFoundException();
+            //IRoleModel role;
+            //if (roleName != null)
+            //{
+            //    role = await RoleRepository.GetAsync(r => r.NormalizedName == roleName.Trim().ToUpperInvariant())
+            //        ?? throw new RoleNotFoundException();
+            //}
+            //else
+            //{
+            //    role = await RoleRepository.GetAsync(r => r.NormalizedName == "contractor".ToUpperInvariant());
+            //}
+            //var newUser = new UserModel(requestModel, role);
+            //role.Users.Add(newUser);
+            //await RoleRepository.UpdateAsync((RoleModel)role);
         }
 
         public void Save()
@@ -360,70 +360,70 @@ namespace ServicesLayer
             await ForgotPasswordRequestRepository.AddAsync(request);
         }
 
-        public DashboardDetailsViewModel GetDashboardDetails(IUserModel user)
-        {
-            var currentSalary = user.Employee.Salaries.LastOrDefault();
-            var viewModel = new DashboardDetailsViewModel();
+        //public DashboardDetailsViewModel GetDashboardDetails(IUserModel user)
+        //{
+        //    var currentSalary = user.Employee.Salaries.LastOrDefault();
+        //    var viewModel = new DashboardDetailsViewModel();
 
-            if (currentSalary != null)
-            {
-                var totalHours = (currentSalary.DaysWorked * 8); //Temp calc
-                var deductions = user.Employee.Contribution.TotalContributions + currentSalary.TaxWithholdings;
+        //    if (currentSalary != null)
+        //    {
+        //        var totalHours = (currentSalary.DaysWorked * 8); //Temp calc
+        //        var deductions = user.Employee.Contribution.TotalContributions + currentSalary.TaxWithholdings;
 
-                viewModel.UpcomingDate = currentSalary.Payroll.PayrollDate.ToString("MMMM dd, yyyy");
-                viewModel.TotalHours = $"{totalHours} hours";
-                viewModel.TotalSalary = $"Php {currentSalary.TotalBasic}";
-                viewModel.Allowance = $"Php {currentSalary.AllowancesAmount}";
-                viewModel.Bonuses = $"Php {currentSalary.BonusesAmount}";
-                viewModel.Deductions = $"Php {deductions}";
-            }
+        //        viewModel.UpcomingDate = currentSalary.Payroll.PayrollDate.ToString("MMMM dd, yyyy");
+        //        viewModel.TotalHours = $"{totalHours} hours";
+        //        viewModel.TotalSalary = $"Php {currentSalary.TotalBasic}";
+        //        viewModel.Allowance = $"Php {currentSalary.AllowancesAmount}";
+        //        viewModel.Bonuses = $"Php {currentSalary.BonusesAmount}";
+        //        viewModel.Deductions = $"Php {deductions}";
+        //    }
 
-            return viewModel;
-        }
+        //    return viewModel;
+        //}
 
-        public IEnumerable<AttendanceLogViewModel> GetAttendanceLog(IUserModel user)
-        {
-            var list = new List<AttendanceLogViewModel>();
-            if (user.Employee != null)
-            {
-                foreach (var attendance in user.Employee.Attendances)
-                {
-                    var entry = new AttendanceLogViewModel()
-                    {
-                        Date = attendance.Date.ToString("MM/dd/yyyy"),
-                        TimeIn = attendance.TimeIn.ToString("hh:mm:ss tt"),
-                        TimeOut = attendance.TimeOut.ToString("hh:mm:ss tt"),
-                        TotalHours = $"{attendance.TotalHours}",
-                        Status = attendance.Status.ToString()
-                    };
-                    list.Add(entry);
-                }
-            }
-            return list;
-        }
+        //public IEnumerable<AttendanceLogViewModel> GetAttendanceLog(IUserModel user)
+        //{
+        //    var list = new List<AttendanceLogViewModel>();
+        //    if (user.Employee != null)
+        //    {
+        //        foreach (var attendance in user.Employee.Attendances)
+        //        {
+        //            var entry = new AttendanceLogViewModel()
+        //            {
+        //                Date = attendance.Date.ToString("MM/dd/yyyy"),
+        //                TimeIn = attendance.TimeIn.ToString("hh:mm:ss tt"),
+        //                TimeOut = attendance.TimeOut.ToString("hh:mm:ss tt"),
+        //                TotalHours = $"{attendance.TotalHours}",
+        //                Status = attendance.Status.ToString()
+        //            };
+        //            list.Add(entry);
+        //        }
+        //    }
+        //    return list;
+        //}
 
-        public JobDeskDetailsViewModel GetJobDeskDetails(IUserModel user)
-        {
-            var viewModel = new JobDeskDetailsViewModel();
+        //public JobDeskDetailsViewModel GetJobDeskDetails(IUserModel user)
+        //{
+        //    var viewModel = new JobDeskDetailsViewModel();
 
-            if (user.Employee != null)
-            {
-                //viewModel.EmployeeName = user.Employee.FullName;
-                viewModel.Department = user.Employee.Department.Name;
-                viewModel.BaseSalary = $"Php {user.Employee.BasicSemiMonthlyRate} bimonthly";
-                viewModel.WorkShift = $"{user.Employee.WorkShiftStart.ToString("hh:mm tt")}";
-                viewModel.EmploymentStatus = user.Role.Name;
-                //viewModel.EmploymentDate = user.Employee.EmploymentDate.ToString("MMMM dd, yyyy");
-            }
+        //    if (user.Employee != null)
+        //    {
+        //        //viewModel.EmployeeName = user.Employee.FullName;
+        //        viewModel.Department = user.Employee.Department.Name;
+        //        viewModel.BaseSalary = $"Php {user.Employee.BasicSemiMonthlyRate} bimonthly";
+        //        viewModel.WorkShift = $"{user.Employee.WorkShiftStart.ToString("hh:mm tt")}";
+        //        viewModel.EmploymentStatus = user.Role.Name;
+        //        //viewModel.EmploymentDate = user.Employee.EmploymentDate.ToString("MMMM dd, yyyy");
+        //    }
 
-            //if (user.Email != null)
-            //    viewModel.Email = user.Email;
-            //if (user.PhoneNumber != null)
-            //    viewModel.Phone = user.PhoneNumber;
-            //if (user.Url != null)
-            //    viewModel.Website = user.Url;
+        //    //if (user.Email != null)
+        //    //    viewModel.Email = user.Email;
+        //    //if (user.PhoneNumber != null)
+        //    //    viewModel.Phone = user.PhoneNumber;
+        //    //if (user.Url != null)
+        //    //    viewModel.Website = user.Url;
 
-            return viewModel;
-        }
+        //    return viewModel;
+        //}
     }
 }

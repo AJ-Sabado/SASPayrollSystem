@@ -1,85 +1,38 @@
-﻿using DomainLayer.Models.Attendance;
-using DomainLayer.Models.Contribution;
-using DomainLayer.Models.Department;
-using DomainLayer.Models.EmployeeContactInfo;
-using DomainLayer.Models.EmployeeEmploymentInfo;
-using DomainLayer.Models.EmployeeFinancialInfo;
-using DomainLayer.Models.EmployeePersonalInfo;
-using DomainLayer.Models.Leave;
-using DomainLayer.Models.EmployeeSalary;
+﻿using DomainLayer.Models.EmployeeAccountInfo;
+using DomainLayer.Models.EmployeeAttendance;
+using DomainLayer.Models.EmployeeLeave;
 using DomainLayer.Models.User;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainLayer.Models.Employee
 {
-    public class EmployeeModel : IEmployeeModel
+    public class EmployeeModel
     {
-        //private string _fullName = string.Empty;
-        //private string _jobTitle = string.Empty;
-
-        //private Formatter formatter = new Formatter();
-
         [Key]
-        public Guid Id { get; set; }
+        public Guid EmployeeId { get; set; }
 
-        //[Required(ErrorMessage = "Full name is required")]
-        //[StringLength(70, MinimumLength = 2, ErrorMessage = "Must be between 2 - 70 characters")]
-        //public required string FullName
-        //{
-        //    get => _fullName;
-        //    set => _fullName = formatter.ToProperCase(value);
-        //}
-
-        //[Required(ErrorMessage = "Birthday is required")]
-        //public required DateOnly BirthDay { get; set; }
-
-        //[Required(ErrorMessage = "Employment date is required")]
-        //public required DateOnly EmploymentDate { get; set; }
-
-        //[Required(ErrorMessage = "Job title is required")]
-        //[StringLength(20, MinimumLength = 2, ErrorMessage = "Must be between 2 - 50 characters")]
-        //public required string JobTitle
-        //{
-        //    get => _jobTitle;
-        //    set => _jobTitle = formatter.ToProperCase(value);
-        //}
-
-        [Required]
-        [Column(TypeName = "money")]
-        public required decimal BasicSemiMonthlyRate { get; set; }
-
-        [Column(TypeName = "tinyint")]
-        public required uint LeaveCredits { get; set; } = 0;
-
-        [Column(TypeName = "time")]
-        public required TimeOnly WorkShiftStart { get; set; }
-
-        [Column(TypeName = "time")]
-        public required TimeOnly WorkShiftEnd { get; set; }
-
-        [ForeignKey(nameof(DepartmentId))]
-        public required Guid DepartmentId { get; set; }
-        public required DepartmentModel Department { get; set; } = null!;
-
-        [ForeignKey(nameof(UserId))]
         public required Guid UserId { get; set; }
         public required UserModel User { get; set; }
 
-        public EmployeePersonalInfoModel? EmployeePersonalInfo { get; set; }
+        //WORK INFORMATION FOR SALARY CALCULATION
+        [Column(TypeName = "money")]
+        public decimal BasicMonthlyRate { get; set; } = 0;
 
-        public EmployeeEmploymentInfoModel? EmployeeEmploymentInfo { get; set; }
+        [Column(TypeName = "time")]
+        public TimeOnly WorkShiftStart { get; set; } = new TimeOnly(7, 0, 0);
 
-        public EmployeeContactInfoModel? EmployeeContactInfo { get; set; }
+        [Column(TypeName = "time")]
+        public TimeOnly WorkShiftEnd { get; set; } = new TimeOnly(17, 0, 0);
 
-        public EmployeeFinancialInfoModel? EmployeeFinancialInfo { get; set; }
+        [Column(TypeName = "time")]
+        public TimeOnly BreakTimeStart { get; set; } = new TimeOnly(12, 0, 0);
+        [Column(TypeName = "time")]
+        public TimeOnly BreakTimeEnd { get; set; } = new TimeOnly(13, 0, 0);
 
-        public ContributionModel Contribution { get; set; } = null!;
-
-        public ICollection<AttendanceModel> Attendances { get; } = [];
-
-        public ICollection<LeaveModel> Leaves { get; } = [];
-
-        public ICollection<EmployeeSalaryModel> Salaries { get; } = [];
+        //Navigation
+        public EmployeeAccountInfoModel? EmployeeAccountInfo { get; set; }
+        public ICollection<EmployeeAttendanceModel> EmployeeAttendances { get; } = [];
+        public ICollection<EmployeeLeaveModel> EmployeeLeaves { get; } = [];
     }
 }

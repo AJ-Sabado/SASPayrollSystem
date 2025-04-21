@@ -1,38 +1,29 @@
 ﻿using DomainLayer.Enums;
 using DomainLayer.Models.Employee;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DomainLayer.Models.Leave
+namespace DomainLayer.Models.EmployeeLeave
 {
-    public class LeaveModel : ILeaveModel
+    public class EmployeeLeaveModel
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid EmployeeLeaveId { get; set; }
 
-        [Required]
+        [ForeignKey(nameof(EmployeeId))]
+        public required Guid EmployeeId { get; set; }
+        public required EmployeeModel Employee { get; set; }
+
         [Column(TypeName = "date")]
         public DateOnly DateOfFiling { get; set; }
 
-        [Required]
         [Column(TypeName = "date")]
         public DateOnly DateOfAbsence { get; set; }
 
-        [Required]
         [Column(TypeName = "smallint")]
         public uint Duration { get; set; }
 
-        [Required]
         [Column(TypeName = "tinyint")]
         public FormStatus Status { get; set; } = FormStatus.Pending;
-
-        [ForeignKey(nameof(EmployeeId))]
-        public Guid EmployeeId { get; set; }
-        public required EmployeeModel Employee { get; set; }
     }
 }
