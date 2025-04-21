@@ -1,7 +1,6 @@
 ﻿using DomainLayer.Models.EmployeeAccountInfo;
 using DomainLayer.Models.EmployeeAttendance;
 using DomainLayer.Models.EmployeeLeave;
-using DomainLayer.Models.EmployeeSalary;
 using DomainLayer.Models.User;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

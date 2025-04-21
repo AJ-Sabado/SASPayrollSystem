@@ -19,8 +19,7 @@ namespace DomainLayer.Models.EmployeePayslip
         public DateOnly PeriodStart { get; set; }
         [Column(TypeName = "date")]
         public DateOnly PeriodEnd { get; set; }
-
-
+        
         //CALCULATED MONEY VALUES
         [Column(TypeName = "money")]
         public decimal BasicPay { get; set; }
