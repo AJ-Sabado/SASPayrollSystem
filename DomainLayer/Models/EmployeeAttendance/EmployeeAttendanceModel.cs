@@ -36,6 +36,8 @@ namespace DomainLayer.Models.EmployeeAttendance
                 LateMinutes = CalculateMinutesLate(TimeIn, Employee.WorkShiftStart);
                 OTMinutes = CalculateOTMinutes(TimeOut, Employee.WorkShiftEnd);
                 UTMinutes = CalculateUTMinutes(TimeOut, Employee.WorkShiftEnd);
+
+                TotalPayableHours = CalculateTotalPayableHours(TimeIn, TimeOut, Employee.BreakTimeStart, Employee.BreakTimeEnd);
             }
         }
 
@@ -81,6 +83,13 @@ namespace DomainLayer.Models.EmployeeAttendance
                 return 0;
             var span = timeOut - workShiftEnd;
             return (uint)Math.Floor(span.TotalMinutes);
+        }
+
+        private uint CalculateTotalPayableHours(TimeOnly timeIn, TimeOnly timeOut, TimeOnly breakTimeStart, TimeOnly breakTimeEnd)
+        {
+            var span = timeIn - timeOut;
+            var breakSpan = breakTimeStart - breakTimeEnd;
+            return (uint)Math.Floor(span.TotalHours - breakSpan.TotalHours);
         }
     }
 }
