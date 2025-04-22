@@ -1,6 +1,5 @@
 ﻿using DomainLayer.Enums;
 using DomainLayer.Models.Employee;
-using DomainLayer.Models.EmployeeAttendance;
 using DomainLayer.Models.Holiday;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,7 +25,7 @@ namespace DomainLayer.Models.EmployeePayslip
         public uint TotalRegularWorkHoursNeeded { get; private set; } = 0;
         [Column(TypeName = "tinyint")]
         public uint RegularHoursWorked { get; private set; } = 0;
-        
+
         //CALCULATED MONEY VALUES TO BE DISPLAYED
         [Column(TypeName = "money")]
         public decimal BasicPay { get; set; }
@@ -38,7 +37,6 @@ namespace DomainLayer.Models.EmployeePayslip
         public decimal GrossPay { get; set; }
         [Column(TypeName = "money")]
         public decimal Deduction { get; set; }
-
         [Column(TypeName = "money")]
         public decimal NetPay { get; set; }
 
@@ -46,7 +44,6 @@ namespace DomainLayer.Models.EmployeePayslip
         public void CalculatePaySlip(IEnumerable<HolidayModel> validHolidays)
         {
             TotalRegularWorkHoursNeeded = CalculateTotalRegularWorkHoursNeeded(PeriodStart, PeriodEnd, validHolidays);
-            
             NetPay = GrossPay - Deduction;
         }
 
