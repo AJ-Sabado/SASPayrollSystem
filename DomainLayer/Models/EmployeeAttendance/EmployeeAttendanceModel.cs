@@ -23,6 +23,7 @@ namespace DomainLayer.Models.EmployeeAttendance
         [Column(TypeName = "time")]
         public TimeOnly TimeIn { get; set; }
 
+        //Automatically fills in other fields through calculations
         [Column(TypeName = "time")]
         public TimeOnly TimeOut
         {
@@ -34,17 +35,14 @@ namespace DomainLayer.Models.EmployeeAttendance
             {
                 _timeOut = value;
                 LateMinutes = CalculateMinutesLate(TimeIn, Employee.WorkShiftStart);
+                UTMinutes = CalculateUTMinutes(TimeOut, Employee.WorkShiftEnd);
                 OTMinutes = CalculateOTMinutes(TimeOut, Employee.WorkShiftEnd);
-                var start = TimeIn > Employee.WorkShiftStart ? TimeIn : Employee.WorkShiftStart;
-                var end = TimeOut < Employee.WorkShiftEnd ? TimeOut : Employee.WorkShiftEnd;
-                TotalHours = CalculateTotalHours(start, end, Employee.BreakTimeStart, Employee.BreakTimeEnd);
                 Status = FormStatus.Approved;
             }
         }
 
-        [Column(TypeName = "tinyint")]
-        public uint TotalHours
-        { get; private set; } = 0;
+        [Column(TypeName = "smallint")]
+        public uint UTMinutes { get; private set; } = 0;
 
         [Column(TypeName = "smallint")]
         public uint OTMinutes { get; private set; } = 0;
@@ -53,17 +51,12 @@ namespace DomainLayer.Models.EmployeeAttendance
         public uint LateMinutes { get; private set; } = 0;
 
         [Column(TypeName = "tinyint")]
-        public HolidayType HolidayType { get; set; } = HolidayType.Not;
+        public HolidayType HolidayStatus { get; set; } = HolidayType.No;
 
         [Column(TypeName = "tinyint")]
         public FormStatus Status { get; set; } = FormStatus.Pending;
 
-
-        private uint CalculateTotalHours(TimeOnly timeIn, TimeOnly timeOut, TimeOnly breakTimeStart, TimeOnly breakTimeEnd)
-        {
-            var totalHoursSpan = (timeIn - timeOut) - (breakTimeStart - breakTimeEnd);
-            return TotalHours = (uint)Math.Floor(totalHoursSpan.TotalHours);
-        }
+        //INNER TIME CALCULATIONS
         private uint CalculateMinutesLate(TimeOnly timeIn, TimeOnly workShiftStart)
         {
             if (timeIn <= workShiftStart)
@@ -80,5 +73,12 @@ namespace DomainLayer.Models.EmployeeAttendance
             return (uint)Math.Floor(span.TotalMinutes);
         }
 
+        private uint CalculateUTMinutes(TimeOnly timeOut, TimeOnly workShiftEnd)
+        {
+            if (timeOut >= workShiftEnd)
+                return 0;
+            var span = timeOut - workShiftEnd;
+            return (uint)Math.Floor(span.TotalMinutes);
+        }
     }
 }

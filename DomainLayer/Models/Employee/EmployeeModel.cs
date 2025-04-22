@@ -25,11 +25,6 @@ namespace DomainLayer.Models.Employee
         [Column(TypeName = "time")]
         public TimeOnly WorkShiftEnd { get; set; } = new TimeOnly(17, 0, 0);
 
-        [Column(TypeName = "time")]
-        public TimeOnly BreakTimeStart { get; set; } = new TimeOnly(12, 0, 0);
-        [Column(TypeName = "time")]
-        public TimeOnly BreakTimeEnd { get; set; } = new TimeOnly(13, 0, 0);
-
         //Navigation
         public EmployeeAccountInfoModel? EmployeeAccountInfo { get; set; }
         public ICollection<EmployeeAttendanceModel> EmployeeAttendances { get; } = [];

@@ -2,7 +2,7 @@
 {
     public enum HolidayType
     {
-        Not,
+        No,
         Regular,
         SpecialNonWorking,
         SpecialWorking
