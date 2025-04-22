@@ -1,7 +1,6 @@
 ﻿using DomainLayer.Enums;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.EmployeeAttendance;
-using DomainLayer.Models.Holiday;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -28,15 +27,16 @@ namespace DomainLayer.Models.EmployeePayslip
         [Column(TypeName = "date")]
         public required DateOnly PeriodEnd { get; set; }
 
-        //CALCULATED MONEY VALUES TO BE DISPLAYED
+        /*--------------------CALCULATED MONEY VALUES--------------------*/
         [Column(TypeName = "money")]
         public decimal BasicPay { get; set; } = 0;
+        [Column(TypeName = "money")]
+        public decimal NightShiftDifferentialPay { get; set; } = 0;
         [Column(TypeName = "money")]
         public decimal OvertimePay { get; set; } = 0;
         [Column(TypeName = "money")]
         public decimal HolidayPay { get; set; } = 0;
-        [Column(TypeName = "money")]
-        public decimal NightShiftDifferentialPay { get; set; } = 0;
+
         [Column(TypeName = "money")]
         public decimal PaidLeaves { get; set; } = 0;
         [Column(TypeName = "money")]
@@ -48,18 +48,38 @@ namespace DomainLayer.Models.EmployeePayslip
         [Column(TypeName = "money")]
         public decimal NetPay { get; set; } = 0;
 
-        //CALCULATED TIME VALUES
+        /*--------------------CALCULATED TIME VALUES--------------------*/
         public uint TotalHolidays { get; set; } = 0;
 
-        public uint RegularDaysWorked { get; set; } = 0;
-        public uint RegularLateMinutes { get; set; } = 0;
-        public uint RegularOTMinutes { get; set; } = 0;
-        public uint RegularUTMinutes { get; set; } = 0;
+        //Basic Pay
+        public uint OrdinaryHoursWorked { get; set; } = 0;
 
+        //Night Shift Differential Pay
+        public uint OrdinaryNightHoursWorked { get; set; } = 0;
+        public uint OrdinaryNightOTHoursWorked { get; set; } = 0;
+
+        //OvertimePay
+        public uint OrdinaryOTMinutes { get; set; } = 0;
+        public uint OrdinaryNightOTMinutes { get; set; } = 0;
+
+        //Holiday Pay
         public uint HolidayHoursWorked { get; set; } = 0;
+        public uint HolidayOTHoursWorked { get; set; } = 0;
+        public uint HolidayNightHoursWorked { get; set; } = 0;
+        public uint HolidayOTNightHoursWorked { get; set; } = 0;
+        public uint SpecialHolidayHoursWorked { get; set; } = 0;
+        public uint SpecialHolidayOTHoursWorked { get; set; } = 0;
+        public uint SpecialHolidayNightHoursWorked { get; set; } = 0;
+        public uint SpecialHolidayOTNightHoursWorked { get; set; } = 0;
 
+        //Paid Leaves
+        public uint TotalApprovedLeaves { get; set; } = 0;
 
-        //RUN THIS BEFORE SAVING TO DATABASE
+        //Deductions due to infractions
+        public uint OridinaryLateMinutes { get; set; } = 0;
+        public uint OrdinaryUTMinutes { get; set; } = 0;
+
+        /*--------------------PUBLIC METHODS--------------------*/
         public void CalculatePaySlip(uint totalRegularHolidaysWithinPeriod)
         {
             TotalHolidays = totalRegularHolidaysWithinPeriod;
@@ -68,7 +88,10 @@ namespace DomainLayer.Models.EmployeePayslip
                 .ToList();
             var dailyRate = Employee.BasicMonthlyRate * 12 / _annualWorkDays;
             var hourlyRate = dailyRate / _workHoursPerDay;
-            
+
+            //TO DO - Fill in Time Calculations
+
+            //TO DO - Fill in Money Calculations
         }
 
 
@@ -80,12 +103,17 @@ namespace DomainLayer.Models.EmployeePayslip
         {
             foreach (var attendance in validAttendances)
             {
-                if (attendance.HolidayStatus == HolidayType.No)
+                if (attendance.HolidayStatus == HolidayType.No || attendance.HolidayStatus == HolidayType.SpecialWorking)
                 {
-                    RegularDaysWorked++;
-                    RegularLateMinutes += attendance.LateMinutes;
-                    RegularOTMinutes += attendance.OTMinutes;
-                    RegularUTMinutes += attendance.UTMinutes;
+                    //TO DO - Fill in ordinary/special working time readings
+                }
+                else if (attendance.HolidayStatus == HolidayType.Regular)
+                {
+                    //TO DO - Fill in regular holiday time readings
+                }
+                else if (attendance.HolidayStatus == HolidayType.SpecialNonWorking)
+                {
+                    //TO DO - Fill in special non working time readings
                 }
             }
         }
