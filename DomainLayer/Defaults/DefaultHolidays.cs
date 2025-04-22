@@ -5,7 +5,7 @@ namespace DomainLayer.Defaults
 {
     public class DefaultHolidays : IDefaultHolidays
     {
-        public HolidayModel[] DefaultHolidaysList { get; private set; } =
+        public HolidayModel[] DefaultHolidaysList { get; private set; } = 
         {
             new HolidayModel() { Date = new DateOnly(2025, 1, 1), Type = HolidayType.Regular},
             new HolidayModel() { Date = new DateOnly(2025, 4, 9), Type = HolidayType.Regular},

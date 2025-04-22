@@ -1,4 +1,5 @@
 ﻿using DomainLayer.Common;
+using DomainLayer.Enums;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Role;
 using System.ComponentModel.DataAnnotations;
@@ -46,6 +47,9 @@ namespace DomainLayer.Models.User
 
         [Url(ErrorMessage = "Must be a valid Url")]
         public string? Url { get; set; }
+
+        [Column(TypeName = "tinyint")]
+        public FormStatus Status { get; set; } = FormStatus.Pending;
 
         [ForeignKey(nameof(RoleId))]
         public Guid RoleId { get; set; }

@@ -19,8 +19,6 @@ namespace DomainLayer.Models.EmployeeAttendance
         [Column(TypeName = "date")]
         public DateOnly Date { get; set; }
 
-        [Column(TypeName = "tinyint")]
-        public HolidayType HolidayType { get; set; } = HolidayType.Not;
 
         [Column(TypeName = "time")]
         public TimeOnly TimeIn { get; set; }
@@ -53,6 +51,9 @@ namespace DomainLayer.Models.EmployeeAttendance
 
         [Column(TypeName = "smallint")]
         public uint LateMinutes { get; private set; } = 0;
+
+        [Column(TypeName = "tinyint")]
+        public HolidayType HolidayType { get; set; } = HolidayType.Not;
 
         [Column(TypeName = "tinyint")]
         public FormStatus Status { get; set; } = FormStatus.Pending;
