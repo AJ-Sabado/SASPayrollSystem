@@ -19,7 +19,6 @@ namespace DomainLayer.Models.EmployeeAttendance
         [Column(TypeName = "date")]
         public DateOnly Date { get; set; }
 
-
         [Column(TypeName = "time")]
         public TimeOnly TimeIn { get; set; }
 
@@ -35,20 +34,23 @@ namespace DomainLayer.Models.EmployeeAttendance
             {
                 _timeOut = value;
                 LateMinutes = CalculateMinutesLate(TimeIn, Employee.WorkShiftStart);
-                UTMinutes = CalculateUTMinutes(TimeOut, Employee.WorkShiftEnd);
                 OTMinutes = CalculateOTMinutes(TimeOut, Employee.WorkShiftEnd);
-                Status = FormStatus.Approved;
+                UTMinutes = CalculateUTMinutes(TimeOut, Employee.WorkShiftEnd);
             }
         }
+
+        //DERIVED VALUES
+        [Column(TypeName = "smallint")]
+        public uint TotalPayableHours { get; set; }
+
+        [Column(TypeName = "smallint")]
+        public uint LateMinutes { get; private set; } = 0;
 
         [Column(TypeName = "smallint")]
         public uint UTMinutes { get; private set; } = 0;
 
         [Column(TypeName = "smallint")]
         public uint OTMinutes { get; private set; } = 0;
-
-        [Column(TypeName = "smallint")]
-        public uint LateMinutes { get; private set; } = 0;
 
         [Column(TypeName = "tinyint")]
         public HolidayType HolidayStatus { get; set; } = HolidayType.No;

@@ -20,10 +20,16 @@ namespace DomainLayer.Models.Employee
         public decimal BasicMonthlyRate { get; set; } = 0;
 
         [Column(TypeName = "time")]
-        public TimeOnly WorkShiftStart { get; set; } = new TimeOnly(7, 0, 0);
+        public TimeOnly WorkShiftStart { get; set; } = new TimeOnly(8, 0, 0);
 
         [Column(TypeName = "time")]
         public TimeOnly WorkShiftEnd { get; set; } = new TimeOnly(17, 0, 0);
+
+        [Column(TypeName = "time")]
+        public TimeOnly BreakTimeStart { get; set; } = new TimeOnly(12, 0, 0);
+
+        [Column(TypeName = "time")]
+        public TimeOnly BreakTimeEnd { get; set; } = new TimeOnly(13, 0, 0);
 
         //Navigation
         public EmployeeAccountInfoModel? EmployeeAccountInfo { get; set; }
