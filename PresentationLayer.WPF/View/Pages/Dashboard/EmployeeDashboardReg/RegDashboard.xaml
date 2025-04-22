@@ -1,0 +1,134 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg.RegDashboard"
+             mc:Ignorable="d" 
+             d:DesignHeight="688" d:DesignWidth="1088">
+
+    <Viewbox>
+        <Grid x:Name="Canvas" Height="688" Width="1088">
+            <Grid x:Name="Base" Margin="30,0,30,30" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="76*"/>
+                </Grid.RowDefinitions>
+
+                <!---TITLE-->
+                <TextBlock Grid.Row="0" Text="DASHBOARD" 
+                           FontFamily="{StaticResource PoppinsBold}" 
+                           FontSize="30" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <!--EMPLOYEE NAME-->
+                <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,10" 
+                            VerticalAlignment="Stretch" Background="White" UniformCornerRadius="10" BorderBrush="LightGray" 
+                            BorderThickness="1" Effect="{StaticResource CardEffects}">
+                    <Grid Margin="20,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Welcome Back, " FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
+                                <TextBlock Name="txtEmployeeFirstName" Text="John Doe" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
+                            </StackPanel>
+                            <TextBlock Name="txtEmployeePosition" Text="Senior Software Developer" 
+                                       FontFamily="{StaticResource PoppinsLight}" FontSize="14" 
+                                       FontStyle="Italic"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="1" x:Name="btnLogOut"  Style="{StaticResource HeaderButtons}" 
+                                Height="40" Width="130" HorizontalAlignment="Right">
+                            
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="SignOutVariant" Height="24" Width="24"/>
+                                <TextBlock Text="  Sign Out" FontFamily="{StaticResource PoppinsRegular}"
+                                           FontWeight="Normal"/>
+                            </StackPanel>
+                            
+                        </Button>
+
+
+                    </Grid>
+                </materialDesign:Card>
+               
+                
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="75*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--SUMMARY CARDS-->
+                    <Grid Grid.Column="0" Margin="0,0,10,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="38*"/>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="24*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!--ATTENDANCE CARD-->
+                        <materialDesign:Card Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,10" 
+                            VerticalAlignment="Stretch" Background="White" UniformCornerRadius="10" BorderBrush="LightGray" 
+                            BorderThickness="1" Effect="{StaticResource CardEffects}">
+                            <Grid Margin="20,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30*"/>
+                                    <RowDefinition Height="20*"/>
+                                    <RowDefinition Height="20*"/>
+                                    <RowDefinition Height="30*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock Grid.Row="0" Text="Attendance" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Width="20" Height="20" Kind="CalendarAccount"/>
+                                    <TextBlock Text="  Date: " FontFamily="{StaticResource PoppinsMedium}" FontSize="14"/>
+                                    <TextBlock x:Name="txtCurrentDate" Text="January 25, 2025" FontFamily="{StaticResource PoppinsRegular}" FontSize="14"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Width="20" Height="20" Kind="ClockAlertOutline"/>
+                                    <TextBlock Text="  Time: " FontFamily="{StaticResource PoppinsMedium}" FontSize="14"/>
+                                    <TextBlock x:Name="txtCurrentTime" Text="4:35 PM" FontFamily="{StaticResource PoppinsRegular}" FontSize="14"/>
+                                </StackPanel>
+
+                                <Viewbox Grid.Row="3">
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button x:Name="btnTimeIn" Background="LightGreen" BorderBrush="DarkGreen" BorderThickness="2">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="DoorOpen" Foreground="DarkGreen"/>
+                                                <TextBlock Text="   Time In" Foreground="DarkGreen"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button x:Name="btnTimeOut" Background="LightPink" BorderBrush="DarkRed" BorderThickness="2" Margin="10,0,0,0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="DoorClosed" Foreground="DarkRed"/>
+                                                <TextBlock Text="  Time Out" Foreground="DarkRed"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                </Viewbox>
+
+                            </Grid>
+                        </materialDesign:Card>
+
+                        <!--ATTENDANCE CARD-->
+                        <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,10" 
+                                             VerticalAlignment="Stretch" Background="White" UniformCornerRadius="10" BorderBrush="LightGray" 
+                                             BorderThickness="1" Effect="{StaticResource CardEffects}">
+                            
+                            
+                        </materialDesign:Card>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</UserControl>

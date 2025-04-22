@@ -4,32 +4,61 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PresentationLayer.WPF.View.UserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="250">
-  
-    <Border CornerRadius="15,0,0,15" Background="Black" Padding="0,30,0,0">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25*"/>
-                <RowDefinition Height="15*"/>
-                <RowDefinition Height="60*"/>
-            </Grid.RowDefinitions>
+             mc:Ignorable="d"
+             
+             d:DesignHeight="720" d:DesignWidth="200"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
-            <Image Source="/Resources/Images/SAS_LOGO_BLACKBG.jpg"/>
-            <Grid Grid.Row="1" Margin="20,0">
+    <Border CornerRadius="5,0,0,5" Background="Black" Padding="0,30,0,0">
+        <Viewbox Stretch="Uniform">
+            <Grid Width="200" Height="688">
+                <!-- Fixed base width for scaling reference -->
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="60*"/>
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="0" VerticalAlignment="Stretch"
-                    HorizontalAlignment="Stretch" Name="btnMenuDashboard"
-                    Style="{StaticResource MenuButtons}">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <TextBlock Text="Dashboard" Margin="10,2,0,0" FontSize="16"/>
-                    </StackPanel>
-                </Button>
+                <Image Source="/Resources/Images/SAS_LOGO_BLACKBG.jpg"/>
+                <Grid Grid.Row="1" Margin="10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="0" VerticalAlignment="Stretch"
+                            FontSize="12"
+                        HorizontalAlignment="Stretch" Name="btnMenuDashboard"
+                        Style="{StaticResource MenuButtons}" Margin="0,2">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ViewDashboard" Width="20" Height="20" />
+                            <TextBlock Text="Dashboard" VerticalAlignment="Center" Margin="15,0,0,0" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button Grid.Row="1" VerticalAlignment="Stretch"
+                            FontSize="12"
+                        HorizontalAlignment="Stretch" Name="btnMenuJobDesk"
+                        Style="{StaticResource MenuButtons}" Margin="0,2">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Work" Width="20" Height="20" />
+                            <TextBlock Text="Job Desk" VerticalAlignment="Center" Margin="15,0,0,0" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button Grid.Row="2" VerticalAlignment="Stretch"
+                            FontSize="12"
+                        HorizontalAlignment="Stretch" Name="btnMenuAccount"
+                        Style="{StaticResource MenuButtons}" Margin="0,2">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Account" Width="20" Height="20" />
+                            <TextBlock Text="Account" VerticalAlignment="Center" Margin="15,0,0,0" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
             </Grid>
-        </Grid>
+        </Viewbox>
     </Border>
+
 </UserControl>

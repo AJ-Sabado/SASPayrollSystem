@@ -4,7 +4,7 @@
     <SolidColorBrush x:Key="tbBGSCB" Color="{StaticResource tbBGColor}"/>
 
     <!-- BaseColor as SolidColorBrush -->
-    <Color x:Key="BaseColor">#fcb831</Color>
+    <Color x:Key="BaseColor">#FFBF00</Color>
     <SolidColorBrush x:Key="BaseColorSCB" Color="{StaticResource BaseColor}" />
 
     <!-- LightTint as SolidColorBrush -->
