@@ -8,6 +8,7 @@ namespace DomainLayer.Models.EmployeePayslip
 {
     public class EmployeePayslipModel
     {
+        /*--------------------------CONSTANTS--------------------------*/
         private const uint _annualWorkDays = 243;
         private const uint _workHoursPerDay = 8;
         private const decimal _nightDifferential = 0.1m;
@@ -94,7 +95,7 @@ namespace DomainLayer.Models.EmployeePayslip
             //TO DO - Fill in Money Calculations
         }
 
-
+        /*--------------------INTERNAL METHODS--------------------*/
         private bool IsDateBetween(DateOnly date, DateOnly start, DateOnly end)
         {
             return date >= start && date <= end;
