@@ -9,7 +9,7 @@
         xmlns:dashPages="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg"
         
         mc:Ignorable="d"
-        Height="360" Width="640" Icon="/Resources/Images/SASLogo.png" 
+        Height="720" Width="1280" Icon="/Resources/Images/SASLogo.png" 
         WindowStartupLocation="CenterScreen"
         Title="Strategic Assistant Staffing Employee Dashboard"
         MouseDown="Window_MouseDown"

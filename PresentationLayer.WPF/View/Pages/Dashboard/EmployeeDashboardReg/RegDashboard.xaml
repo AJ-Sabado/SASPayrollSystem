@@ -10,7 +10,7 @@
 
     <Viewbox>
         <Grid x:Name="Canvas" Height="688" Width="1088">
-            <Grid x:Name="Base" Margin="30,0,30,30" Background="White">
+            <Grid x:Name="Base" Margin="15" Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="7*"/>
                     <RowDefinition Height="15*"/>
@@ -32,25 +32,29 @@
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Welcome Back, " FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
+                        <StackPanel Grid.Column="0" >
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBlock Text="Welcome Back, " FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25" />
                                 <TextBlock Name="txtEmployeeFirstName" Text="John Doe" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
                             </StackPanel>
-                            <TextBlock Name="txtEmployeePosition" Text="Senior Software Developer" 
-                                       FontFamily="{StaticResource PoppinsLight}" FontSize="14" 
-                                       FontStyle="Italic"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Name="txtEmployeeID" Text="#546908" 
+                                            FontFamily="{StaticResource PoppinsLight}" FontSize="14" 
+                                            FontStyle="Italic"/>
+                                
+                                <TextBlock Text="   |   " 
+                                           FontFamily="{StaticResource PoppinsLight}" FontSize="14" 
+                                           FontStyle="Italic"/>
+
+                                <TextBlock Name="txtEmployeePosition" Text="Senior Software Developer" 
+                                           FontFamily="{StaticResource PoppinsLight}" FontSize="14" 
+                                           FontStyle="Italic"/>
+                            </StackPanel>
                         </StackPanel>
 
                         <Button Grid.Column="1" x:Name="btnLogOut"  Style="{StaticResource HeaderButtons}" 
-                                Height="40" Width="130" HorizontalAlignment="Right">
-                            
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="SignOutVariant" Height="24" Width="24"/>
-                                <TextBlock Text="  Sign Out" FontFamily="{StaticResource PoppinsRegular}"
-                                           FontWeight="Normal"/>
-                            </StackPanel>
-                            
+                                Height="30" Width="30" HorizontalAlignment="Right">
+                            <materialDesign:PackIcon Kind="SignOutVariant" Height="20" Width="20"/>
                         </Button>
 
 
@@ -118,14 +122,117 @@
                             </Grid>
                         </materialDesign:Card>
 
-                        <!--ATTENDANCE CARD-->
+                        <!--Upcoming-->
                         <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,10" 
                                              VerticalAlignment="Stretch" Background="White" UniformCornerRadius="10" BorderBrush="LightGray" 
-                                             BorderThickness="1" Effect="{StaticResource CardEffects}">
-                            
+                                             BorderThickness="1" Effect="{StaticResource CardEffects}" Padding="20,10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70*"/>
+                                    <ColumnDefinition Width="30*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Upcoming" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
+                                    <TextBlock x:Name="txtUpcomingPayroll" Text="January 25, 2025" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                </StackPanel>
+
+                                <materialDesign:PackIcon Grid.Column="2" 
+                                                         Kind="CalendarClock"
+                                                         VerticalAlignment="Center"
+                                                         HorizontalAlignment="Right"
+                                                         Width="50" Height="50"/>
+                            </Grid>
                             
                         </materialDesign:Card>
 
+                        <!--Leave Allowance-->
+                        <materialDesign:Card Grid.Row="2" HorizontalAlignment="Stretch" Margin="0,10" 
+                                            VerticalAlignment="Stretch" Background="White" UniformCornerRadius="10" BorderBrush="LightGray" 
+                                            BorderThickness="1" Effect="{StaticResource CardEffects}" Padding="20,10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70*"/>
+                                    <ColumnDefinition Width="30*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Leaves" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Remaining: " FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                        <TextBlock x:Name="txtLeavesRemaining" Text="45" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <materialDesign:PackIcon Grid.Column="2" 
+                                                        Kind="FaceSick"
+                                                        VerticalAlignment="Center"
+                                                        HorizontalAlignment="Right"
+                                                        Width="50" Height="50"/>
+                            </Grid>
+
+                        </materialDesign:Card>
+
+                        <!--Absences-->
+                        <materialDesign:Card Grid.Row="3" HorizontalAlignment="Stretch" Margin="0,10" 
+                                VerticalAlignment="Stretch" Background="White" UniformCornerRadius="10" BorderBrush="LightGray" 
+                                BorderThickness="1" Effect="{StaticResource CardEffects}" Padding="20,10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70*"/>
+                                    <ColumnDefinition Width="30*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Absences" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Total: " FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                        <TextBlock x:Name="txtAbsencesNum" Text="10" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <materialDesign:PackIcon Grid.Column="2" 
+                                 Kind="Work"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Right"
+                                 Width="50" Height="50"/>
+                            </Grid>
+                        </materialDesign:Card>
+
+                    </Grid>
+                    
+                    <!--Attednance Log-->
+                    <Grid Grid.Column="2" Margin="5,0,0,0">
+                        <materialDesign:Card Grid.Row="3" HorizontalAlignment="Stretch" Margin="0,10" 
+                                VerticalAlignment="Stretch" Background="White" UniformCornerRadius="10" BorderBrush="LightGray" 
+                                BorderThickness="1" Effect="{StaticResource CardEffects}" Padding="20,10">
+
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="8*"/>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="90*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="Attendance Log" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
+                                
+                                <!--Data Grid-->
+                                <DataGrid  Grid.Row="2" 
+                                            AutoGenerateColumns="False"
+                                           FontSize="14">
+
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Date" Width="*"/>
+                                        <DataGridTextColumn Header="Time In" Width="*"/>
+                                        <DataGridTextColumn Header="Time Out" Width="*"/>
+                                        <DataGridTextColumn Header="Status" Width="*"/>
+                                        <DataGridTextColumn Header="Overtime" Width="*"/>
+                                        <DataGridTextColumn Header="OT Duration" Width="*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                
+                            </Grid>
+                        </materialDesign:Card>
                     </Grid>
                 </Grid>
             </Grid>

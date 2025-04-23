@@ -9,7 +9,7 @@
              d:DesignHeight="720" d:DesignWidth="200"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
-    <Border CornerRadius="5,0,0,5" Background="Black" Padding="0,30,0,0">
+    <Border CornerRadius="0" Background="Black" Padding="0,30,0,0">
         <Viewbox Stretch="Uniform">
             <Grid Width="200" Height="688">
                 <!-- Fixed base width for scaling reference -->

@@ -12,6 +12,7 @@
             <ResourceDictionary Source="/Styles/UIColors.xaml"/>
             <ResourceDictionary Source="/Styles/UIFonts.xaml"/>
             <ResourceDictionary Source="/Styles/UILibraries.xaml"/>
+                <ResourceDictionary Source="/Styles/UIDataGrid.xaml"/>
                 <ResourceDictionary Source="/Styles/UIButtons.xaml"/>
                 <ResourceDictionary Source="/Styles/UICards.xaml"/>
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Amber" SecondaryColor="Blue" />
