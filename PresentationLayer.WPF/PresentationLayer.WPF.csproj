@@ -27,6 +27,7 @@
     <None Remove="Resources\Fonts\Poppins-SemiBoldItalic.ttf" />
     <None Remove="Resources\Fonts\Poppins-Thin.ttf" />
     <None Remove="Resources\Fonts\Poppins-ThinItalic.ttf" />
+    <None Remove="Resources\Icons\document2.png" />
     <None Remove="Resources\Icons\eye_hidden.png" />
     <None Remove="Resources\Icons\eye_show.png" />
     <None Remove="Resources\Icons\SASLogo.ico" />
@@ -35,6 +36,15 @@
     <None Remove="Resources\Images\SASLogo.ico" />
     <None Remove="Resources\Images\SASLogo.png" />
     <None Remove="Resources\Images\SAS_LOGO_BLACKBG.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Icons\check.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\document2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
