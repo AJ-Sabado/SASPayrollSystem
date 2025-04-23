@@ -7,6 +7,9 @@ namespace DomainLayer.Models.EmployeeAttendance
 {
     public class EmployeeAttendanceModel
     {
+        private const int _nightStart = 22;
+        private const int _nightEnd = 6;
+
         private TimeOnly _timeOut;
 
         [Key]
@@ -33,26 +36,25 @@ namespace DomainLayer.Models.EmployeeAttendance
             set
             {
                 _timeOut = value;
-                LateMinutes = CalculateMinutesLate(TimeIn, Employee.WorkShiftStart);
-                OTMinutes = CalculateOTMinutes(TimeOut, Employee.WorkShiftEnd);
-                UTMinutes = CalculateUTMinutes(TimeOut, Employee.WorkShiftEnd);
-
-                TotalPayableHours = CalculateTotalPayableHours(TimeIn, TimeOut, Employee.BreakTimeStart, Employee.BreakTimeEnd);
+                CalculateDerivedValues();
             }
         }
 
         //DERIVED VALUES
         [Column(TypeName = "smallint")]
-        public uint TotalPayableHours { get; set; }
+        public uint PayableHours { get; set; } = 0;
 
         [Column(TypeName = "smallint")]
         public uint LateMinutes { get; private set; } = 0;
 
         [Column(TypeName = "smallint")]
-        public uint UTMinutes { get; private set; } = 0;
+        public uint UTHours { get; private set; } = 0;
 
         [Column(TypeName = "smallint")]
-        public uint OTMinutes { get; private set; } = 0;
+        public uint OTHours { get; private set; } = 0;
+
+        [Column(TypeName = "boolean")]
+        public bool IsNight { get; private set; } = false;
 
         [Column(TypeName = "tinyint")]
         public HolidayType HolidayStatus { get; set; } = HolidayType.No;
@@ -61,6 +63,19 @@ namespace DomainLayer.Models.EmployeeAttendance
         public FormStatus Status { get; set; } = FormStatus.Pending;
 
         //INNER TIME CALCULATIONS
+        public void CalculateDerivedValues()
+        {
+            LateMinutes = CalculateMinutesLate(TimeIn, Employee.WorkShiftStart);
+            OTHours = CalculateOTHours(TimeOut, Employee.WorkShiftEnd);
+            UTHours = CalculateUTHours(TimeOut, Employee.WorkShiftEnd);
+            var validStart = TimeIn > Employee.WorkShiftStart ? TimeIn : Employee.WorkShiftStart;   //Disregards early time ins
+            var validEnd = TimeOut < Employee.WorkShiftEnd ? TimeOut : Employee.WorkShiftEnd;   //Disregards overtime
+            PayableHours = CalculateTotalPayableHours(validStart, validEnd, Employee.BreakTimeStart, Employee.BreakTimeEnd);
+            IsNight = IsDayOrNight(Employee.WorkShiftStart, Employee.WorkShiftEnd);
+            //For now
+            Status = FormStatus.Approved;
+        }
+
         private uint CalculateMinutesLate(TimeOnly timeIn, TimeOnly workShiftStart)
         {
             if (timeIn <= workShiftStart)
@@ -69,27 +84,32 @@ namespace DomainLayer.Models.EmployeeAttendance
             return (uint)Math.Floor(span.TotalMinutes);
         }
 
-        private uint CalculateOTMinutes(TimeOnly timeOut, TimeOnly workShiftEnd)
+        private uint CalculateOTHours(TimeOnly timeOut, TimeOnly workShiftEnd)
         {
             if (timeOut <= workShiftEnd)
                 return 0;
             var span = workShiftEnd - timeOut;
-            return (uint)Math.Floor(span.TotalMinutes);
+            return (uint)Math.Floor(span.TotalHours);
         }
 
-        private uint CalculateUTMinutes(TimeOnly timeOut, TimeOnly workShiftEnd)
+        private uint CalculateUTHours(TimeOnly timeOut, TimeOnly workShiftEnd)
         {
             if (timeOut >= workShiftEnd)
                 return 0;
             var span = timeOut - workShiftEnd;
-            return (uint)Math.Floor(span.TotalMinutes);
+            return (uint)Math.Floor(span.TotalHours);
         }
 
-        private uint CalculateTotalPayableHours(TimeOnly timeIn, TimeOnly timeOut, TimeOnly breakTimeStart, TimeOnly breakTimeEnd)
+        private uint CalculateTotalPayableHours(TimeOnly start, TimeOnly end, TimeOnly breakTimeStart, TimeOnly breakTimeEnd)
         {
-            var span = timeIn - timeOut;
+            var span = start - end;
             var breakSpan = breakTimeStart - breakTimeEnd;
             return (uint)Math.Floor(span.TotalHours - breakSpan.TotalHours);
+        }
+
+        private bool IsDayOrNight(TimeOnly workShiftStart, TimeOnly workShiftEnd)
+        {
+            return workShiftStart.Hour >= _nightStart && workShiftEnd.Hours <= _nightEnd;
         }
     }
 }
