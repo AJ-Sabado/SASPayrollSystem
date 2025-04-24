@@ -8,5 +8,20 @@ namespace PresentationLayer.WPF.View.UserControls
         {
             InitializeComponent();
         }
+
+        private void btnMenuDashboard_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMenuJobDesk_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMenuAccount_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }

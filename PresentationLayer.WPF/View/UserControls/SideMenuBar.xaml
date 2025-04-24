@@ -30,7 +30,7 @@
                     <Button Grid.Row="0" VerticalAlignment="Stretch"
                             FontSize="12"
                         HorizontalAlignment="Stretch" Name="btnMenuDashboard"
-                        Style="{StaticResource MenuButtons}" Margin="0,2">
+                        Style="{StaticResource MenuButtons}" Margin="0,2" Click="btnMenuDashboard_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewDashboard" Width="20" Height="20" />
                             <TextBlock Text="Dashboard" VerticalAlignment="Center" Margin="15,0,0,0" />
@@ -40,7 +40,7 @@
                     <Button Grid.Row="1" VerticalAlignment="Stretch"
                             FontSize="12"
                         HorizontalAlignment="Stretch" Name="btnMenuJobDesk"
-                        Style="{StaticResource MenuButtons}" Margin="0,2">
+                        Style="{StaticResource MenuButtons}" Margin="0,2" Click="btnMenuJobDesk_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Work" Width="20" Height="20" />
                             <TextBlock Text="Job Desk" VerticalAlignment="Center" Margin="15,0,0,0" />
@@ -50,7 +50,7 @@
                     <Button Grid.Row="2" VerticalAlignment="Stretch"
                             FontSize="12"
                         HorizontalAlignment="Stretch" Name="btnMenuAccount"
-                        Style="{StaticResource MenuButtons}" Margin="0,2">
+                        Style="{StaticResource MenuButtons}" Margin="0,2" Click="btnMenuAccount_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Account" Width="20" Height="20" />
                             <TextBlock Text="Account" VerticalAlignment="Center" Margin="15,0,0,0" />

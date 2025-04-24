@@ -15,28 +15,14 @@ using System.Windows.Shapes;
 
 namespace PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg
 {
-
-    public partial class RegDashboard : UserControl
+    /// <summary>
+    /// Interaction logic for RegJobDesk.xaml
+    /// </summary>
+    public partial class RegJobDesk : UserControl
     {
-
-        public RegDashboard()
+        public RegJobDesk()
         {
             InitializeComponent();
-        }
-
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnTimeOut_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnTimeIn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
