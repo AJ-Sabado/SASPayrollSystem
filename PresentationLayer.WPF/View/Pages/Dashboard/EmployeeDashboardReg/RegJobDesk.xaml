@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg"
+             xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg"
              mc:Ignorable="d" 
              d:DesignHeight="688" d:DesignWidth="1088"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" >
 
     <Viewbox>
         <Grid x:Name="Canvas" Height="688" Width="1088">
-            <Grid x:Name="Base" Margin="15" Background="White">
+            <Grid x:Name="Base" Margin="20" Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="7*"/>
                     <RowDefinition Height="93*"/>
@@ -49,7 +49,7 @@
                             <!--EMPLOYEE DETAILS-->
                             <Grid Grid.Row="0">
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Grid.Column="0" Source="/Resources/Images/Profile.jpg" 
+                                    <Image Grid.Column="0" x:Name="imgProfilePicture" Source="/Resources/Images/Profile.jpg" 
                                             Height="46" Width="46" Stretch="UniformToFill"
                                              HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <Image.Clip>
@@ -218,6 +218,20 @@
 
                         <Grid>
                             <TabControl>
+                                <TabControl.Resources>
+                                    <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
+                                        <Setter Property="HeaderTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding}" 
+                                                                FontSize="10" 
+                                                                VerticalAlignment="Center"
+                                                                TextWrapping="Wrap" />
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </TabControl.Resources>
 
                                 <!--PAYSLIP-->
                                 <TabItem Header="Payslip">
@@ -416,7 +430,7 @@
                                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                                 <DataGrid x:Name="dataGridJobDeskAttendanceLog" AutoGenerateColumns="False"
                                                             Height="200"
-                                                            CanUserResizeColumns="True"
+                                                            CanUserResizeColumns="False"
                                                             Margin="0,5,0,5"
                                                             EnableRowVirtualization="True"
                                                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -506,7 +520,7 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <TextBlock Grid.Column="0" Text="Payslip" FontFamily="{StaticResource PoppinsSemiBold}"
+                                            <TextBlock Grid.Column="0" Text="Leave" FontFamily="{StaticResource PoppinsSemiBold}"
                                                         FontSize="24" Width="515"/>
                                             
                                             <!--BUTTONS-->
@@ -536,13 +550,14 @@
                                                 </DataGrid.Resources>
 
                                                 <DataGrid.Columns>
-                                                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="150"/>
-                                                    <DataGridTextColumn Header="Request Date" Binding="{Binding DateOfRequest}" Width="150"/>
-                                                    <DataGridTextColumn Header="Attendance Date" Binding="{Binding AttendanceDate}" Width="150"/>
-                                                    <DataGridTextColumn Header="Time In" Binding="{Binding TimeIn}" Width="150"/>
-                                                    <DataGridTextColumn Header="Time Out" Binding="{Binding TimeOut}" Width="150"/>
-                                                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="150"/>
-                                                    <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" Width="150" CanUserSort="False"/>
+                                                    <DataGridTextColumn Header="Request ID" Binding="{Binding ID}" Width="120"/>
+                                                    <DataGridTextColumn Header="Request Date" Binding="{Binding RequestDate}" Width="120"/>
+                                                    <DataGridTextColumn Header="Leave Type" Binding="{Binding LeaveType}" Width="150"/>
+                                                    <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" Width="120"/>
+                                                    <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}" Width="120"/>
+                                                    <DataGridTextColumn Header="Total Days" Binding="{Binding TotalDays}" Width="100"/>
+                                                    <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" Width="200" CanUserSort="False"/>
+                                                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
                                                     <DataGridTemplateColumn Header="Actions" Width="150">
                                                         <DataGridTemplateColumn.CellTemplate>
                                                             <DataTemplate>
@@ -556,9 +571,14 @@
                                                 </DataGrid.Columns>
                                             </DataGrid>
                                         </ScrollViewer>
+
+
                                     </StackPanel>
+                                    
                                 </TabItem>
                             </TabControl>
+                            
+                            
                         </Grid>
                     </materialDesign:Card>
                 </Grid>

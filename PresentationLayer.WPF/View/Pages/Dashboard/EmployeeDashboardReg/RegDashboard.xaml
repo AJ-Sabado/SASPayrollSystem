@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg"
+             xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              x:Class="PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg.RegDashboard"
              mc:Ignorable="d" 
