@@ -249,7 +249,7 @@
                                                 <Button Name="btnPreviewPayslip" Content="Preview" FontFamily="{StaticResource PoppinsMedium}"
                                                         FontSize="10" Height="25" Width="71" Foreground="White"/>
                                                 <Button Name="btnPrintPayslip" Content="Print" FontFamily="{StaticResource PoppinsMedium}"
-                                                        FontSize="10" Height="25" Width="71" Foreground="White" Margin="10,0,0,0"/>
+                                                        FontSize="10" Height="25" Width="71" Foreground="White" Margin="10,0,10,0"/>
                                             </StackPanel>
                                         </Grid>
 
@@ -465,7 +465,7 @@
                                                 <TextBlock Grid.Column="0" Text="Attendance Requests" FontFamily="{StaticResource PoppinsSemiBold}"
                                                             FontSize="20"/>
                                                 <Button Grid.Column="1" Name="btnAttendanceRequest" Content="Request" FontFamily="{StaticResource PoppinsMedium}"
-                                                        FontSize="10" Height="25" Width="71" Foreground="White" Margin="10,0,0,0" HorizontalAlignment="Right"/>
+                                                        FontSize="10" Height="25" Width="71" Foreground="White" Margin="10,0,10,0" HorizontalAlignment="Right"/>
                                             </Grid>
 
                                             <!--ATTENDANCE REQUEST DATAGRID-->
@@ -526,8 +526,8 @@
                                             <!--BUTTONS-->
                                             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                                                 <Button Name="btnFileLeave" Content="File" FontFamily="{StaticResource PoppinsMedium}"
-                                                        FontSize="10" Height="25" Width="71" Foreground="White"/>
-
+                                                        FontSize="10" Height="25" Width="71" Foreground="White" Margin="10,0"
+                                                        Command="{Binding FileLeaveCommand}"/>
                                             </StackPanel>
                                         </Grid>
 
