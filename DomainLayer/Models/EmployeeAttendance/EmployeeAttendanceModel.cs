@@ -109,7 +109,7 @@ namespace DomainLayer.Models.EmployeeAttendance
 
         private bool IsDayOrNight(TimeOnly workShiftStart, TimeOnly workShiftEnd)
         {
-            return workShiftStart.Hour >= _nightStart && workShiftEnd.Hours <= _nightEnd;
+            return workShiftStart.Hour >= _nightStart && workShiftEnd.Hour <= _nightEnd;
         }
     }
 }
