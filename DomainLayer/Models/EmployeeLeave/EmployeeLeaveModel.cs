@@ -18,10 +18,16 @@ namespace DomainLayer.Models.EmployeeLeave
         public DateOnly DateOfFiling { get; set; }
 
         [Column(TypeName = "date")]
-        public DateOnly DateOfAbsence { get; set; }
+        public DateOnly DateOfAbsenceStart { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateOnly DateOfAbsenceEnd { get; set; }
 
         [Column(TypeName = "smallint")]
         public uint Duration { get; set; }
+
+        [Column(TypeName = "tinyint")]
+        public LeaveType Type { get; set; } = LeaveType.Sick;
 
         [Column(TypeName = "tinyint")]
         public FormStatus Status { get; set; } = FormStatus.Pending;
