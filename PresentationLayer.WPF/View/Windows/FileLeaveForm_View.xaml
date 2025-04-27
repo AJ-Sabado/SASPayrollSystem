@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer.WPF.View.Windows"
         mc:Ignorable="d"
-        Title="FileLeaveForm_View" Height="460" Width="816"
+        Title="Leave Application Form" Height="460" Width="816"
         Icon="/Resources/Images/SASLogo.png"
         WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
