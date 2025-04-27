@@ -1,18 +1,25 @@
 ﻿<Application x:Class="SASPayrolSystemProject.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+<<<<<<< HEAD
              xmlns:local="clr-namespace:SASPayrolSystemProject"
              StartupUri="View/Windows/CustomDialogBoxUIStyles_View.xaml"
+=======
+             xmlns:userControls="clr-namespace:SASPayrolSystemProject"
+>>>>>>> 13cc45a574a6a4ab68f9982becd1aa201f4fccdf
              
+             StartupUri="View/Windows/Main/EmployeeDashboardReg_View.xaml"
+             xmlns:local="clr-namespace:SASPayrolSystemProject"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <!--  -->
 
     <Application.Resources>
     <ResourceDictionary>
         <ResourceDictionary.MergedDictionaries>
             <ResourceDictionary Source="/Styles/UIColors.xaml"/>
             <ResourceDictionary Source="/Styles/UIFonts.xaml"/>
-            <ResourceDictionary Source="/Styles/UILibraries.xaml"/>
-                <ResourceDictionary Source="/Styles/UIDataGrid.xaml"/>
+                <ResourceDictionary Source="/Styles/UILibraries.xaml"/>
                 <ResourceDictionary Source="/Styles/UIButtons.xaml"/>
                 <ResourceDictionary Source="/Styles/UICards.xaml"/>
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Amber" SecondaryColor="Blue" />

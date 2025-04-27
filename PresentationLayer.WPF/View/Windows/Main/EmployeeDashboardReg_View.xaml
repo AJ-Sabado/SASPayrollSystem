@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PresentationLayer.WPF.View.Pages"
+        xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.Pages"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="PresentationLayer.WPF.View.Pages.EmployeeDahboard_View"
         xmlns:customControl="clr-namespace:PresentationLayer.WPF.View.UserControls"
         xmlns:dashPages="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg"
+        xmlns:commonPage="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard"
+        xmlns:helpers="clr-namespace:PresentationLayer.WPF.Helpers"
         
         mc:Ignorable="d"
         Height="720" Width="1280" Icon="/Resources/Images/SASLogo.png" 
@@ -16,6 +18,10 @@
         ResizeMode="CanResize"
         WindowState="Maximized">
 
+    <Window.Resources>
+        <helpers:MenuSelectionConverter x:Key="MenuSelectionConverter"/>
+    </Window.Resources>
+
     <Grid>
         <Grid Background="Transparent">
             <Grid.ColumnDefinitions>
@@ -23,10 +29,15 @@
                 <ColumnDefinition Width="85*" />
             </Grid.ColumnDefinitions>
 
-            <customControl:SideMenuBar Grid.Column="0"/>
+            <customControl:SideMenuBar 
+                    SelectedMenu="{Binding SelectedMenu}" 
+                    DashboardCommand="{Binding ShowDashboardCommand}"
+                    JobDeskCommand="{Binding ShowJobDeskCommand}"
+                    AccountsCommand="{Binding ShowAccountsCommand}"
+                    Grid.Column="0" />
 
             <Grid Grid.Column ="1" x:Name="_showArea">
-                <dashPages:RegDashboard/>
+                <ContentControl Content="{Binding CurrentView}" />
             </Grid>
         </Grid>
     </Grid>

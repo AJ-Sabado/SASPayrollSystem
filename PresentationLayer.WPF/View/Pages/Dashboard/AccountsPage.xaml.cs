@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PresentationLayer.WPF.View.Windows
+namespace PresentationLayer.WPF.View.Pages.Dashboard
 {
     /// <summary>
-    /// Interaction logic for FileLeaveForm_View.xaml
+    /// Interaction logic for AccountsPage.xaml
     /// </summary>
-    public partial class FileLeaveForm_View : Window
+    public partial class AccountsPage : UserControl
     {
-        public FileLeaveForm_View()
+        public AccountsPage()
         {
             InitializeComponent();
         }

@@ -1,0 +1,390 @@
+﻿<UserControl x:Class="PresentationLayer.WPF.View.Pages.Dashboard.AccountsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard"
+             xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
+             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             d:DesignHeight="688" d:DesignWidth="1088">
+    
+    <Viewbox>
+        <Grid>
+            <Grid x:Name="Canvas" Height="688" Width="1088" Background="White">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="92*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0" Text="ACCOUNT SETTINGS" 
+                                FontFamily="{StaticResource PoppinsBold}" 
+                                FontSize="30" Foreground="Black" HorizontalAlignment="Left" 
+                               VerticalAlignment="Top"/>
+
+                    <materialDesign:Card Grid.Row="2"  HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch" Background="White" UniformCornerRadius="10" BorderBrush="LightGray" 
+                                BorderThickness="1" Effect="{StaticResource CardEffects}" Margin="0,0,7,0">
+
+                        <Grid Margin="5,20,30,20">
+                            <TabControl TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <TabControl.Resources>
+                                    <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
+                                        <Setter Property="HeaderTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding}" 
+                                                                FontSize="10" 
+                                                                VerticalAlignment="Center"
+                                                                TextWrapping="Wrap" />
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </TabControl.Resources>
+
+                                <TabItem Header="Basic Information">
+                                    <StackPanel Margin="30,0,0,0">
+                                        <!-- Section Header -->
+                                        <userControls:SectionHeaderControl Title="Basic Information" ButtonName="btnBasicInformationEdit" />
+
+                                        <!-- Profile Header -->
+                                        <userControls:ProfileHeaderControl ProfileImage="/Resources/Images/Profile.jpg"
+                                           ProfileName="John Jane Doe S. Smith" 
+                                           ProfilePosition="Senior Software Developer" Margin="0,0,0,30"/>
+
+                                        <!-- Name Section -->
+                                        <Grid Margin="0,0,0,40">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <userControls:LabeledTextBox Label="First Name" Text="John" />
+                                            <userControls:LabeledTextBox Label="Last Name" Text="Doe" Grid.Column="2" />
+                                            <userControls:LabeledTextBox Label="Middle Name" Text="S." Grid.Column="4" />
+                                        </Grid>
+
+                                        <!-- Username Section -->
+                                        <Grid Margin="0,0,0,40">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <userControls:LabeledTextBox Label="Username" Text="username_placeholder10" />
+                                        </Grid>
+
+                                        <!-- Other Information -->
+                                        <Grid Margin="0,0,0,40">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="Date of Birth" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
+                                                <DatePicker x:Name="dpBirthday" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" 
+                                                            SelectedDateFormat="Long" IsEnabled="False"/>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Column="2">
+                                                <TextBlock x:Name="tbGender" Text="Gender" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
+                                                <ComboBox x:Name="cbGender" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" IsEnabled="False">
+                                                    <ComboBoxItem IsEnabled="False" IsSelected="True" Content="-- Select an option --" />
+                                                </ComboBox>
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Column="4">
+                                                <TextBlock Text="Nationality" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
+                                                <ComboBox x:Name="cbNationality" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" IsEnabled="False">
+                                                    <ComboBoxItem IsEnabled="False" IsSelected="True" Content="-- Select an option --" />
+                                                </ComboBox>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </TabItem>
+
+
+
+
+
+
+                                <TabItem Header="Contact Information">
+                                    <StackPanel Margin="30,0,0,0">
+
+                                        <!-- Section Header-->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="8*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Contact Information" FontFamily="{StaticResource PoppinsBold}"
+                                                        FontSize="24" Margin="0,0,0,30"/>
+                                            <Button Grid.Column="1" Name="btnContactInformationEdit" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <materialDesign:PackIcon Kind="Edit" Height="20" Width="20" Foreground="White"/>
+                                                    <TextBlock Text="Edit" FontFamily="{StaticResource PoppinsSemiBold}" 
+                                                                FontSize="14" Margin="5,0,0,0" Foreground="White"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </Grid>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Primary Phone -->
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="Primary Phone Number" Text="{Binding PrimaryPhone}" Margin="0,0,0,30" />
+
+                                            <!-- Secondary Phone -->
+                                            <userControls:LabeledTextBox Grid.Column="2" Label="Secondary Phone Number" Text="{Binding SecondaryPhone}" Margin="0,0,0,30" />
+
+                                            <!-- Telephone -->
+                                            <userControls:LabeledTextBox Grid.Column="4" Label="Telephone" Text="{Binding Telephone}" Margin="0,0,0,30" />
+                                        </Grid>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Primary Email -->
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="Primary Email" Text="{Binding PrimaryEmail}" Margin="0,0,0,30" />
+
+                                            <!-- Mailing Address -->
+                                            <userControls:LabeledTextBox Grid.Column="2" Grid.ColumnSpan="3" Label="Mailing Address" Text="{Binding MailingAddress}" Margin="0,0,0,30" />
+                                        </Grid>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Secondary Email -->
+                                            <userControls:LabeledTextBox Label="Secondary Email" Text="{Binding SecondaryEmail}" Margin="0,0,0,30" />
+
+                                            <!-- Facebook -->
+                                            <userControls:LabeledTextBox Grid.Column="2" Grid.ColumnSpan="3" Label="Facebook" Text="{Binding FacebookLink}" Margin="0,0,0,30" />
+                                        </Grid>
+
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- LinkedIn -->
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="LinkedIn" Text="{Binding LinkedInLink}" Margin="0,0,0,30" />
+
+                                            <!-- Website -->
+                                            <userControls:LabeledTextBox Grid.Column="2" Label="Website" Text="{Binding WebsiteLinks}" Margin="0,0,0,30" />
+                                        </Grid>
+                                    </StackPanel>
+                                </TabItem>
+
+
+
+
+
+
+                                <TabItem Header="Financial Information">
+                                    <StackPanel Margin="30,0,0,0">
+
+                                        <!-- Section Header -->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="8*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Financial Information" FontFamily="{StaticResource PoppinsBold}"
+                                                    FontSize="24" Margin="0,0,0,30"/>
+                                            <Button Grid.Column="1" Name="btnFinancialInformationEdit" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <materialDesign:PackIcon Kind="Edit" Height="20" Width="20" Foreground="White"/>
+                                                    <TextBlock Text="Edit" FontFamily="{StaticResource PoppinsSemiBold}" 
+                                                                FontSize="14" Margin="5,0,0,0" Foreground="White"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </Grid>
+
+                                        <!-- Tax Identification Number (TIN) and SSS ID Number -->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="Tax Identification Number (TIN)" Text="{Binding TIN}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="2" Label="SSS ID Number" Text="{Binding SSSID}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="4" Label="PhilHealth ID" Text="{Binding PhilHealthID}" Margin="0,0,0,30" />
+                                        </Grid>
+
+                                        <!-- PagIBIG ID -->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="PagIBIG ID" Text="{Binding PagIBIGID}" Margin="0,0,0,30" />
+                                        </Grid>
+
+                                        <!-- Bank Information -->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="Bank Name" Text="{Binding BankName}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="2" Label="Bank Account Name" Text="{Binding BankAccountName}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="4" Label="Bank Account ID" Text="{Binding BankAccountID}" Margin="0,0,0,30" />
+                                        </Grid>
+
+                                    </StackPanel>
+                                </TabItem>
+
+
+
+
+
+                                <TabItem Header="Employment Information">
+                                    <StackPanel Margin="30,0,0,0">
+
+                                        <!-- Section Header -->
+                                        <TextBlock Text="Employment Information" FontFamily="{StaticResource PoppinsBold}"
+                                                    FontSize="24" Margin="0,0,0,30"/>
+
+                                        <!-- Employee ID and Role -->
+                                        <Grid Margin="0,0,0,30">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="Employee ID" Text="{Binding EmployeeID}" />
+                                            <userControls:LabeledTextBox Grid.Column="2" Label="Role" Text="{Binding Role}" />
+                                        </Grid>
+
+                                        <!-- Department and Employment Type -->
+                                        <Grid Margin="0,0,0,30">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="Department" Text="{Binding Department}" />
+                                            <userControls:LabeledTextBox Grid.Column="2" Label="Employment Type" Text="{Binding EmploymentType}" />
+                                        </Grid>
+
+                                        <!-- Date Hired -->
+                                        <Grid Margin="0,0,0,30">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <userControls:LabeledTextBox Label="Date Hired" Text="{Binding DateHired}" />
+                                        </Grid>
+
+                                    </StackPanel>
+                                </TabItem>
+
+
+
+
+
+
+
+                                <TabItem Header="Account Security">
+                                    <StackPanel Margin="30,0,0,0">
+                                        <TextBlock Text="Account Security" FontFamily="{StaticResource PoppinsBold}"
+                                                    FontSize="24" Margin="0,0,0,30"/>
+                                        
+                                        <StackPanel Margin="0,0,0,30">
+                                            <Grid Margin="0,0,0,30">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="60*"/>
+                                                    <ColumnDefinition Width="40*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0" Text="Password" FontFamily="{StaticResource PoppinsSemiBold}"
+                                                            FontSize="14" Margin="2"/>
+                                                <PasswordBox Grid.Column="1" x:Name="tbPassword" Password="123456789101112" FontFamily="{StaticResource PoppinsLight}"
+                                                            FontSize="12" Margin="2" IsEnabled="False" HorizontalAlignment="Stretch"/>
+                                            </Grid>
+
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Button Name="btnChangePassword" Margin="0,0,30,0" Width="175">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon Kind="KeyChange" Height="20" Width="20" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                                        <TextBlock Text="Change Password" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="12" Foreground="White" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </Button>
+
+                                                <Button Name="btnForgotPassword" Width="175">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon Kind="ForgotPassword" Height="20" Width="20" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                                        <TextBlock Text="Forgot Password" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="12" Foreground="White" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </Button>
+                                            </StackPanel>
+
+                                        </StackPanel>
+
+                                        <Rectangle Fill="LightGray" Height="0.5"/>
+
+                                    </StackPanel>
+
+                                </TabItem>
+
+                            </TabControl>
+                        </Grid>
+                    </materialDesign:Card>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</UserControl>
