@@ -7,18 +7,28 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
     {
         public ICommand FileLeaveCommand { get; }
 
+        public ICommand AttendanceRequestCommand { get; }
+
         public RegJobDesk_ViewModel()
         {
             FileLeaveCommand = new RelayCommand(FileLeave);
+            AttendanceRequestCommand = new RelayCommand(AttendanceRequest); // Initialize AttendanceRequestCommand  
         }
 
-        //FUNCTIONS
+        // FUNCTIONS  
 
-        //LEAVE FORM FUNCTIONS
+        // LEAVE FORM FUNCTIONS  
         private void FileLeave(object? obj)
         {
             var _fileLeaveDialog = new FileLeaveForm_View();
             _fileLeaveDialog.ShowDialog();
+        }
+
+        // ATTENDANCE REQUEST FUNCTIONS  
+        private void AttendanceRequest(object? obj)
+        {
+            var _attendanceRequestDialog = new AttendanceRequest_View();
+            _attendanceRequestDialog.ShowDialog();
         }
     }
 }

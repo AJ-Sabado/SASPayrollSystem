@@ -1,0 +1,156 @@
+﻿<Window x:Class="PresentationLayer.WPF.View.Windows.FileLeaveForm_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer.WPF.View.Windows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
+        
+        mc:Ignorable="d"
+        Title="Leave Application Form" Height="600" Width="900"
+        Icon="/Resources/Images/SASLogo.png"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Viewbox>
+        <Grid Width="800" Height="500">
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height=".5*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Header Title-->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <materialDesign:PackIcon Grid.Column="0" Grid.Row="0" 
+                                            Kind="FileDocument" Width="50" Height="50"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+
+                    <TextBlock Grid.Column="2" Text="Leave Application Form" VerticalAlignment="Center"
+                               FontFamily="{StaticResource PoppinsBold}" FontSize="36"/>
+
+                    <Button Grid.Column="5" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Downloads" Width="20" Height="20"
+                                                    Foreground="White"/>
+                            <TextBlock Text="Download Form" FontFamily="{StaticResource PoppinsSemiBold}" 
+                                         FontSize="14" Foreground="White" Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+                <!--EMPLOYEE DETAILS-->
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <userControls:LabeledTextBox x:Name="lbtbEmployeeName" Grid.Column="0" Label="Employee Name"/>
+
+                    <userControls:LabeledTextBox x:Name="lbtbEmployeeID" Grid.Column="2" Label="Employee ID"/>
+
+                    <userControls:LabeledTextBox x:Name="lbtbEmployeeDept" Grid.Column="4" Label="Department"/>
+                </Grid>
+
+                <!--TYPE AND DURATION-->
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" >
+                        <TextBlock Text="Leave Type" FontFamily="{StaticResource PoppinsSemiBold}" 
+                                   FontSize="16" Margin="0,0,0,10"/>
+                        <ComboBox x:Name="cbLeaveType"
+                                  FontFamily="{StaticResource PoppinsRegular}" 
+                                  FontSize="14" Margin="0,0,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="3" >
+                        <TextBlock Text="Duration (Number of Days)" FontFamily="{StaticResource PoppinsSemiBold}" 
+                                    FontSize="16" Margin="0,0,0,10"/>
+                        <materialDesign:NumericUpDown x:Name="nudDuration"
+                                    FontFamily="{StaticResource PoppinsRegular}" 
+                                    FontSize="14" Margin="0,0,0,10"/>
+                    </StackPanel>
+                </Grid>
+
+                <!--FROM - TO-->
+                <Grid Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" >
+                        <TextBlock Text="Start Date" FontFamily="{StaticResource PoppinsSemiBold}" 
+                                    FontSize="16" Margin="0,0,0,10"/>
+                        <DatePicker x:Name="dpStartDate"
+                                    FontFamily="{StaticResource PoppinsRegular}" 
+                                    FontSize="14" Margin="0,0,0,10"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="3" >
+                        <TextBlock Text="Return Date" FontFamily="{StaticResource PoppinsSemiBold}" 
+                                FontSize="16" Margin="0,0,0,10"/>
+                        <DatePicker x:Name="dpReturnDate"
+                                    FontFamily="{StaticResource PoppinsRegular}" 
+                                    FontSize="14" Margin="0,0,0,10"/>
+                        
+                    </StackPanel>
+                </Grid>
+
+                <!--ATTACHMENTS-->
+                <Grid Grid.Row="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <userControls:LabeledTextBox Grid.Column="0" Label="Attachments" Text="Insert Path"/>
+
+                    <Grid Grid.Column="3">
+                        <Button>
+                            <materialDesign:PackIcon Kind="FileUpload" Width="20" Height="20"
+                                            Foreground="White"/>
+                        </Button>
+                    </Grid>
+                </Grid>
+                
+                <!--Apply-->
+                <Grid  Grid.Row="10">
+                    <Button x:Name="btnApply" HorizontalAlignment="Center" Content="Apply" Foreground="White"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Viewbox>
+
+</Window>

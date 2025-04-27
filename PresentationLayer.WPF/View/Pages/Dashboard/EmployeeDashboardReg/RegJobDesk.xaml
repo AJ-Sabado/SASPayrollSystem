@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg"
+             
              mc:Ignorable="d" 
              d:DesignHeight="688" d:DesignWidth="1088"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" >
@@ -465,7 +466,8 @@
                                                 <TextBlock Grid.Column="0" Text="Attendance Requests" FontFamily="{StaticResource PoppinsSemiBold}"
                                                             FontSize="20"/>
                                                 <Button Grid.Column="1" Name="btnAttendanceRequest" Content="Request" FontFamily="{StaticResource PoppinsMedium}"
-                                                        FontSize="10" Height="25" Width="71" Foreground="White" Margin="10,0,10,0" HorizontalAlignment="Right"/>
+                                                        FontSize="10" Height="25" Width="71" Foreground="White" Margin="10,0,10,0" HorizontalAlignment="Right"
+                                                        Command="{Binding AttendanceRequestCommand}"/>
                                             </Grid>
 
                                             <!--ATTENDANCE REQUEST DATAGRID-->

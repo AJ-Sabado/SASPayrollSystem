@@ -1,0 +1,173 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:PresentationLayer.WPF.View.Windows"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
+    x:Class="PresentationLayer.WPF.View.Windows.AttendanceRequest_View"
+    
+    mc:Ignorable="d"
+    Height="600" Width="500" Icon="/Resources/Images/SASLogo.png"
+    WindowStartupLocation="CenterScreen"
+    Title="Attendance Request" 
+    ResizeMode="CanResize">
+
+    <Viewbox>
+        <Grid Height="600" Width="500">
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height=".5*"/>
+                </Grid.RowDefinitions>
+
+                <!--TITLE HEADER-->
+                <Grid Grid.Row="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <materialDesign:PackIcon x:Name="piPersonCheck" Kind="PersonCheck" Height="60" Width="60"
+                                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        <TextBlock x:Name="tbAttendanceRequest" Grid.Column="2" Text="Attendance Request" VerticalAlignment="Center"
+                                   FontFamily="{StaticResource PoppinsBold}" FontSize="36"/>
+                    </Grid>
+                </Grid>
+
+                <!--EMPLOYEE INFO-->
+                <Grid Grid.Row="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <userControls:LabeledTextBox x:Name="ltbEmployeeName" Grid.Column="0" Label="Employee Name" Text="{Binding EmployeeName}" />
+                        <userControls:LabeledTextBox x:Name="ltbEmployeeID" Grid.Column="2" Label="Employee ID" Text="{Binding EmployeeID}" />
+                    </Grid>
+                </Grid>
+
+                <!--DEPARTMENT-->
+                <Grid Grid.Row="4">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <userControls:LabeledTextBox x:Name="ltbDepartment" Grid.Column="0" Label="Department" Text="{Binding Department}" />
+                        <userControls:LabeledTextBox x:Name="ltbRole" Grid.Column="2" Label="Role" Text="{Binding Role}" />
+                    </Grid>
+                </Grid>
+
+                <!--DATE AND REASON-->
+                <Grid Grid.Row="6">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock x:Name="tbDate" Text="Date" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="dpDate" SelectedDate="{Binding Date}" 
+                                        FontFamily="{StaticResource PoppinsLight}" FontSize="12"
+                                        Margin="0,5"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock x:Name="tbReason" Text="Reason" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="cbReason" 
+                                      FontFamily="{StaticResource PoppinsLight}" FontSize="12"
+                                      Margin="0,5">
+                                <ComboBoxItem Content="Sick Leave"/>
+                                <ComboBoxItem Content="Vacation Leave"/>
+                                <ComboBoxItem Content="Emergency Leave"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+                <!--TIME IN, OUT, TOTAL-->
+                <Grid Grid.Row="8">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock x:Name="tbTimeIn" Text="Time In" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" VerticalAlignment="Center"/>
+                            <materialDesign:TimePicker x:Name="tpTimeIn" Margin="0,5" 
+                                                        FontFamily="{StaticResource PoppinsLight}"
+                                                        FontSize="12"
+                                                        SelectedTime="{Binding TimeIn}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock x:Name="tbTimeOut" Text="Time Out" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" VerticalAlignment="Center"/>
+                            <materialDesign:TimePicker x:Name="tpTimeOut" Margin="0,5" 
+                                                        FontFamily="{StaticResource PoppinsLight}"
+                                                        FontSize="12"
+                                                        SelectedTime="{Binding TimeOut}"/>
+                        </StackPanel>
+
+                        <userControls:LabeledTextBox x:Name="ltbTotalHours" Grid.Column="4" Label="Total Hours" Text="{Binding TotalHours}" />
+                    
+                    </Grid>
+                </Grid>
+
+                <!--PROOF-->
+                <Grid Grid.Row="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <userControls:LabeledTextBox x:Name="ltbProof" Label="Proof" Text="{Binding ProofFiles}" />
+
+                        <Button Grid.Column="2" x:Name="btnAttach"
+                                Command="{Binding AttachFileCommand}"
+                                FontFamily="{StaticResource PoppinsSemiBold}"
+                                Content="{materialDesign:PackIcon Kind=Folder, Size=20}"
+                                Foreground="White"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"/>
+                        
+                    </Grid>
+                </Grid>
+
+                <!--APPLY BUTTON-->
+                <Grid Grid.Row="12">
+                    <Button x:Name="btnRequest" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Request" Foreground="White"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Viewbox>
+
+</Window>
