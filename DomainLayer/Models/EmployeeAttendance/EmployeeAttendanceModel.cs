@@ -40,7 +40,19 @@ namespace DomainLayer.Models.EmployeeAttendance
             }
         }
 
-        //DERIVED VALUES
+        [Column(TypeName = "tinyint")]
+        public HolidayType HolidayStatus { get; set; } = HolidayType.No;
+
+        [Column(TypeName = "tinyint")]
+        public FormStatus Status { get; set; } = FormStatus.Pending;
+
+        [Column(TypeName = "time")]
+        public TimeOnly BreakIn { get; set; }
+
+        [Column(TypeName = "time")]
+        public TimeOnly BreakOut { get; set; }
+
+        //DERIVED VALUES - No need to fill in
         [Column(TypeName = "smallint")]
         public uint PayableHours { get; set; } = 0;
 
@@ -54,13 +66,7 @@ namespace DomainLayer.Models.EmployeeAttendance
         public uint OTHours { get; private set; } = 0;
 
         [Column(TypeName = "boolean")]
-        public bool IsNight { get; private set; } = false;
-
-        [Column(TypeName = "tinyint")]
-        public HolidayType HolidayStatus { get; set; } = HolidayType.No;
-
-        [Column(TypeName = "tinyint")]
-        public FormStatus Status { get; set; } = FormStatus.Pending;
+        public bool IsNight { get; private set; } = false;  
 
         //INNER TIME CALCULATIONS
         public void CalculateDerivedValues()
@@ -70,7 +76,7 @@ namespace DomainLayer.Models.EmployeeAttendance
             UTHours = CalculateUTHours(TimeOut, Employee.WorkShiftEnd);
             var validStart = TimeIn > Employee.WorkShiftStart ? TimeIn : Employee.WorkShiftStart;   //Disregards early time ins
             var validEnd = TimeOut < Employee.WorkShiftEnd ? TimeOut : Employee.WorkShiftEnd;   //Disregards overtime
-            PayableHours = CalculateTotalPayableHours(validStart, validEnd, Employee.BreakTimeStart, Employee.BreakTimeEnd);
+            PayableHours = CalculateTotalPayableHours(validStart, validEnd, BreakIn, BreakOut);
             IsNight = IsDayOrNight(Employee.WorkShiftStart, Employee.WorkShiftEnd);
             //For now
             Status = FormStatus.Approved;
