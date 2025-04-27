@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <FontFamily x:Key="PoppinsThin">pack://application:,,,/Resources/Fonts/#Poppins Thin</FontFamily>
+    <FontFamily x:Key="PoppinsLight">pack://application:,,,/Resources/Fonts/#Poppins Light</FontFamily>
+    <FontFamily x:Key="PoppinsRegular">pack://application:,,,/Resources/Fonts/#Poppins</FontFamily>
+    <FontFamily x:Key="PoppinsMedium">pack://application:,,,/Resources/Fonts/#Poppins Medium</FontFamily>
+    <FontFamily x:Key="PoppinsSemiBold">pack://application:,,,/Resources/Fonts/#Poppins SemiBold</FontFamily>
+    <FontFamily x:Key="PoppinsBold">pack://application:,,,/Resources/Fonts/#Poppins Bold</FontFamily>
+    <FontFamily x:Key="PoppinsExtraBold">pack://application:,,,/Resources/Fonts/#Poppins ExtraBold</FontFamily>
+    <FontFamily x:Key="PoppinsBlack">pack://application:,,,/Resources/Fonts/#Poppins Black</FontFamily>
+</ResourceDictionary>

@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="PresentationLayer.WPF.View.UserControls.SideMenuBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:helpers="clr-namespace:PresentationLayer.WPF.Helpers"
+             
+             mc:Ignorable="d"
+             d:DesignHeight="720" d:DesignWidth="200">
+    
+    <UserControl.Resources>
+        <helpers:MenuSelectionConverter x:Key="MenuSelectionConverter"/>
+    </UserControl.Resources>
+    
+    <Border CornerRadius="0" Background="Black" Padding="0,30,0,0">
+        <Viewbox Stretch="Uniform">
+            <Grid Width="200" Height="688">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="60*"/>
+                </Grid.RowDefinitions>
+
+                <Image Source="/Resources/Images/SAS_LOGO_BLACKBG.jpg"/>
+                <Grid Grid.Row="1" Margin="10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ToggleButton Grid.Row="0"
+                            FontSize="12"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,2" Style="{StaticResource MenuButtons}"
+                            Command="{Binding DashboardCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                            IsChecked="{Binding SelectedMenu, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource MenuSelectionConverter}, ConverterParameter=Dashboard}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ViewDashboard" Width="20" Height="20" />
+                            <TextBlock Text="Dashboard" VerticalAlignment="Center" Margin="15,0,0,0" />
+                        </StackPanel>
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Row="1"
+                            FontSize="12"
+                            HorizontalAlignment="Stretch"
+                            Command="{Binding JobDeskCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                            Margin="0,2" Style="{StaticResource MenuButtons}"
+                            IsChecked="{Binding SelectedMenu, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource MenuSelectionConverter}, ConverterParameter=JobDesk}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Work" Width="20" Height="20" />
+                            <TextBlock Text="Job Desk" VerticalAlignment="Center" Margin="15,0,0,0" />
+                        </StackPanel>
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Row="2"
+                            FontSize="12"
+                            HorizontalAlignment="Stretch"
+                            Command="{Binding AccountsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                            Margin="0,2" Style="{StaticResource MenuButtons}"
+                            IsChecked="{Binding SelectedMenu, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource MenuSelectionConverter}, ConverterParameter=Account}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Account" Width="20" Height="20" />
+                            <TextBlock Text="Account" VerticalAlignment="Center" Margin="15,0,0,0" />
+                        </StackPanel>
+                    </ToggleButton>
+
+                </Grid>
+            </Grid>
+        </Viewbox>
+    </Border>
+</UserControl>

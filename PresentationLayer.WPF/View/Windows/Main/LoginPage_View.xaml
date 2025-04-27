@@ -1,0 +1,311 @@
+﻿<Window x:Class="SASPayrolSystemProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SASPayrolSystemProject"
+        xmlns:userControls="clr-namespace:SASPayrolSystemProject.View.UserControls"
+        
+        mc:Ignorable="d"
+        Title="LoginView" Height="450" Width="800"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown">
+    <Window.Resources>
+
+        <Storyboard x:Key="sbFloatingPanel1">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="canvas" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00.7000000" Value="400,0,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="sbFloatingPanel2">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.CornerRadius)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00.7000000">
+                    <DiscreteObjectKeyFrame.Value>
+                        <CornerRadius>0,15,15,0</CornerRadius>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="sbFloatingPanel1Reversed">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="canvas" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="00:00:00.7000000" Value="0,0,0,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="sbFloatingPanel2Reversed">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.CornerRadius)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00.7000000">
+                    <DiscreteObjectKeyFrame.Value>
+                        <CornerRadius>15,0,0,15</CornerRadius>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </Window.Resources>
+
+
+    <Border Background="White" CornerRadius="15" BorderThickness="0">
+
+        <Grid Name="MainGrid">
+
+
+
+            <!-- Main Content -->
+            <Grid Name="FromGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0" Name="SignOutGrid" Margin="30">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height=".8*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height=".6*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height=".6*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height=".6*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1.6*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="80*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="pack://application:,,,/Resources/Images/SASLogo.png" 
+                                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0" />
+                        <TextBlock Grid.Column="1" Text="Strategic Assistant" 
+                               FontSize="25" FontWeight="Bold"
+                               FontFamily="{StaticResource PoppinsBold}"
+                               HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,10,0,0" />
+                    </Grid>
+
+                    <TextBlock Grid.Row ="1" Text="Register to SAS!" 
+                           FontSize="20" FontFamily="{StaticResource PoppinsBold}"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0" />
+
+                    <!--Enter Email-->
+                    <TextBlock Grid.Row="2" Text="Enter Email" 
+                               FontSize="14"
+                                 FontFamily="{StaticResource PoppinsRegular}"
+                                 HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" />
+
+                    <userControls:CustomTextBox Grid.Row="3" PlaceholderText="address@gmail.com"
+                                                Margin="0,1"/>
+
+                    <!--Enter username-->
+                    <TextBlock Grid.Row="4" Text="Enter Username" 
+                               FontSize="14"
+                                 FontFamily="{StaticResource PoppinsRegular}"
+                                 HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" />
+
+                    <userControls:CustomTextBox Grid.Row="5" PlaceholderText="Username"
+                            Margin="0,1"/>
+
+                    <!--Enter Password-->
+                    <TextBlock Grid.Row="6" Text="Enter Password" 
+                               FontSize="14"
+                                 FontFamily="{StaticResource PoppinsRegular}"
+                                 HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" />
+                    <userControls:CustomPasswordBox Grid.Row="7"
+                                Margin="0,1"
+                                PlaceholderText="Enter Password"/>
+
+
+                    <!--Confirm Password-->
+                    <TextBlock Grid.Row="8" Text="Confirm Password" 
+                                FontSize="14"
+                                FontFamily="{StaticResource PoppinsRegular}"
+                                HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" />
+
+                    <userControls:CustomPasswordBox Grid.Row="9"
+                                Margin="0,1"
+                                PlaceholderText="Confirm Password"/>
+
+                    <!--Sign Up Button-->
+                    <Button Grid.Row="10" Name="btnSignUp" Content="Sign Up" Height="50"
+                                FontSize="16" FontFamily="{StaticResource PoppinsSemiBold}" FontWeight="SemiBold"
+                                HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,5,0,0"
+                                Background="#0078D4" BorderBrush="{x:Null}" Foreground="White"
+                                Padding="10,5" Cursor="Hand" Click="btnSignUp_Click"/>
+                </Grid>
+
+                <!--Sign In Grid-->
+                <Grid Name="SignInGrid" Grid.Column="1" Margin="30">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height=".5*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height=".5*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height=".7*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="80*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="pack://application:,,,/Resources/Images/SASLogo.png" 
+                           HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0" />
+                        <TextBlock Grid.Column="1" Text="Strategic Assistant" 
+                               FontSize="25" FontWeight="Bold"
+                               FontFamily="{StaticResource PoppinsBold}"
+                               HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,10,0,0" />
+                    </Grid>
+                    <TextBlock Grid.Row ="1" Text="Welcome back!" 
+                               FontSize="20" FontFamily="{StaticResource PoppinsBold}"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0" />
+
+                    <!--Username Input-->
+                    <TextBlock Grid.Row="2" Text="Enter Email or Username" FontSize="16"
+                                 FontFamily="{StaticResource PoppinsRegular}"
+                                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,4,0,0" />
+                    <userControls:CustomTextBox Grid.Row="3" PlaceholderText="Username or Email"
+                                                Margin="0,7"/>
+
+                    <!--Password Input -->
+                    <TextBlock Grid.Row="4" Text="Enter Password" FontSize="16"
+                                 FontFamily="{StaticResource PoppinsRegular}"
+                                 HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" />
+                    <Grid Grid.Row="5">
+                        <!-- Placeholder Text -->
+                        <TextBlock Text="Enter your password"
+                                   FontFamily="{StaticResource PoppinsRegular}"
+                                    FontSize="16"
+                                   Foreground="Gray"
+                                   Margin="15,0,0,0"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"
+                                   x:Name="PasswordPlaceholder"
+                                   Visibility="Visible" />
+
+                        <!-- Actual Password Box -->
+                        <userControls:CustomPasswordBox Grid.Row="5"
+                                                        Margin="0,7"
+                                                        PlaceholderText="Password"/>
+                    </Grid>
+
+                    <!--Forgot Password Button-->
+                    <Button Grid.Row="6" Name="btnForgotPassword" Content="Forgot Password?" 
+                            FontSize="13" FontFamily="{StaticResource PoppinsMedium}" FontWeight="Medium"
+                            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,0,0"
+                            Background="Transparent" BorderBrush="{x:Null}" Foreground="#0078D4"
+                            Cursor="Hand" Click="btnForgotPassword_Click"/>
+                    <!--Sign In Button-->
+                    <Button Grid.Row="7" Name="btnSignIn" Content="Sign In" Height="50" 
+                            FontSize="16" FontFamily="{StaticResource PoppinsSemiBold}" FontWeight="SemiBold"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,0,0"
+                            Background="#0078D4" BorderBrush="{x:Null}" Foreground="White"
+                            Padding="10,5" Cursor="Hand" Click="btnSignIn_Click"/>
+                </Grid>
+            </Grid>
+
+            <!--Floating Panel-->
+            <Canvas x:Name="canvas" Background="Transparent" Panel.ZIndex="1" Height="450" Width="400" HorizontalAlignment="Left" Margin="0,0,0,0">
+                <Border x:Name="border" Height="450" Width="400" CornerRadius="15,0,0,15" RenderTransformOrigin="0.5,0.5" >
+                    <Border.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Border.RenderTransform>
+                    <Border.Background >
+                        <ImageBrush ImageSource="pack://application:,,,/Resources/Images/LoginBGImage.jpg" Stretch="UniformToFill"/>
+                    </Border.Background>
+
+                    <Grid Margin="30"  IsHitTestVisible="True">
+                        <!-- Content of the floating panel -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50*"/>
+                            <RowDefinition Height="30*"/>
+                            <RowDefinition Height="0*"/>
+                            <RowDefinition Height="80*"/>
+                            <RowDefinition Height="0*"/>
+                            <RowDefinition Height="40*"/>
+                            <RowDefinition Height="30*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row ="1" Name="tbFloatingTitle" Text="New here? Join us now!" 
+                                 FontSize="24" FontFamily="{StaticResource PoppinsBold}"
+                                 FontWeight="Bold"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00" />
+
+                        <TextBlock Grid.Row ="3" Name="tbFloatingDisc" Text="Don't have an account yet? Sign up today and become a valued member of our ever-growing Strategic Assistant Staffing Family! Take the first step toward a smarter, more efficient future with us." 
+                                    TextWrapping="Wrap" TextAlignment="Center"
+                                 FontSize="14" FontFamily="{StaticResource PoppinsRegular}" LineHeight="20" FontWeight="Medium"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" IsHitTestVisible="True"/>
+
+                        <Button Grid.Row="5" Name="btnFloatingPanel" Content="Sign Up" Height="50"
+                                 FontSize="16" FontFamily="{StaticResource PoppinsSemiBold}" FontWeight="SemiBold"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,0,0"
+                                Background="#0078D4" BorderBrush="{x:Null}" Foreground="White"
+                                Padding="10,5" Cursor="Hand" Click="btnFloatingPanel_Click"/>
+                    </Grid>
+                </Border>
+            </Canvas>
+
+
+            <!-- Close Button -->
+            <Button Name="btnClose" Content="✕"
+                Width="50" Height="30"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0,0,0,0"
+                Background="Transparent"
+                BorderBrush="{x:Null}"
+                FontSize="16"
+                FontWeight="Bold"
+                Foreground="Gray"
+                Cursor="Hand"
+                Click="CloseButton_Click"
+                Panel.ZIndex="4">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderBrush" Value="{x:Null}"/>
+                        <Setter Property="Foreground" Value="Gray"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        CornerRadius="0,0,15,0">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#ff4545"/>
+                                <!-- Change to #ff4545 on hover -->
+                                <Setter Property="Foreground" Value="White"/>
+                                <!-- Change text color on hover -->
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#ff0f0f"/>
+                                <!-- Change to #ff0f0f when pressed -->
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="tbBGColor">#f2f2f2</Color>
+    <SolidColorBrush x:Key="tbBGSCB" Color="{StaticResource tbBGColor}"/>
+
+    <!-- BaseColor as SolidColorBrush -->
+    <Color x:Key="BaseColor">#FFBF00</Color>
+    <SolidColorBrush x:Key="BaseColorSCB" Color="{StaticResource BaseColor}" />
+
+    <!-- LightTint as SolidColorBrush -->
+    <Color x:Key="LightTint">#fcd76e</Color>
+    <SolidColorBrush x:Key="LightTintSCB" Color="{StaticResource LightTint}" />
+
+    <!-- MediumTint (typo corrected from "Meidum") -->
+    <Color x:Key="MediumTint">#fce4a1</Color>
+    <SolidColorBrush x:Key="MediumTintSCB" Color="{StaticResource MediumTint}" />
+
+    <!-- DarkShade as SolidColorBrush -->
+    <Color x:Key="DarkShade">#d9a825</Color>
+    <SolidColorBrush x:Key="DarkShadeSCB" Color="{StaticResource DarkShade}" />
+
+    <!-- Darker as SolidColorBrush -->
+    <Color x:Key="Darker">#b68f1b</Color>
+    <SolidColorBrush x:Key="DarkerSCB" Color="{StaticResource Darker}" />
+
+    <Color x:Key="TextColor">#323743</Color>
+</ResourceDictionary>
