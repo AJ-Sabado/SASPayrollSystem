@@ -42,8 +42,7 @@
 
                     <materialDesign:PackIcon Grid.Column="0" Grid.Row="0" 
                                             Kind="FileDocument" Width="50" Height="50"
-                                            HorizontalAlignment="Center" VerticalAlignment="Center"
-                                            Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                     <TextBlock Grid.Column="2" Text="Leave Application Form" VerticalAlignment="Center"
                                FontFamily="{StaticResource PoppinsBold}" FontSize="36"/>

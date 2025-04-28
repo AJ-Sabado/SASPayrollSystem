@@ -123,10 +123,10 @@
                                 </Border>
 
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock x:Name="txtEmployeeShift" Text="40 Hours per Week"
+                                    <TextBlock x:Name="txtEmployeeShift" Text="6:00 AM - 12:00 PM"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                  HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                    <TextBlock Text="Weekly Shift"
+                                    <TextBlock Text="Shift"
                                                 FontFamily="{StaticResource PoppinsLight}" FontSize="12"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 </StackPanel>
@@ -142,10 +142,10 @@
                                 </Border>
 
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock x:Name="txtEmployeeRate" Text="Php 300.00 per Hour"
+                                    <TextBlock x:Name="txtEmployeeRate" Text="Php 500.00 per Day"
                                                     FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                    <TextBlock Text="Hourly Rate"
+                                    <TextBlock Text="Daily Rate"
                                                 FontFamily="{StaticResource PoppinsLight}" FontSize="12"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 </StackPanel>
@@ -237,7 +237,7 @@
                                 <!--PAYSLIP-->
                                 <TabItem Header="Payslip">
                                     <StackPanel Margin="30,10,30,20">
-                                        <Grid Margin="0,5">
+                                        <Grid Margin="0,3">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
@@ -255,20 +255,20 @@
                                         </Grid>
 
                                         <!--BASE SALARY-->
-                                        <Grid Margin="10,5,10,5">
+                                        <Grid Margin="10,5,10,3">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <TextBlock Grid.Column="0" Text="Base Salary" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                            <TextBlock Grid.Column="0" Text="Basic Salary" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
                                             <TextBlock Grid.Column="1" x:Name="txtEmployeeBaseSalary" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
                                         <Rectangle Fill="Gray" Height="0.5" Margin="0,2"/>
 
                                         <!--BONUSES-->
-                                        <Grid Margin="10,5">
+                                        <Grid Margin="10,3">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
@@ -279,7 +279,7 @@
                                         </Grid>
 
                                         <!--OVERTIME PAY-->
-                                        <Grid Margin="10,5">
+                                        <Grid Margin="10,3">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
@@ -289,8 +289,8 @@
                                             <TextBlock Grid.Column="1" x:Name="txtEmployeeOvertimePay" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
-                                        <!--HOLIDAY  PAY-->
-                                        <Grid Margin="10,5">
+                                        <!--HOLIDAY PAY-->
+                                        <Grid Margin="10,3">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
@@ -300,13 +300,48 @@
                                             <TextBlock Grid.Column="1" x:Name="txtEmployeeHolidayPay" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
+                                        <!--NIGHT SHIFT DIFFERENTIAL PAY-->
+                                        <Grid Margin="10,3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Night Shift Differential Pay" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeNightDifferential" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
+                                        </Grid>
+
+                                        <!--PAID LEAVES-->
+                                        <Grid Margin="10,3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Paid Leaves" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtEmployeePaidLeaves" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
+                                        </Grid>
+
+                                        <Rectangle Fill="Gray" Height="0.5" Margin="0,2"/>
+
+                                        <!--GROSS PAY-->
+                                        <Grid Margin="10,3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Gross Pay" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Foreground="{StaticResource BaseColorSCB}"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeGrossPay" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Foreground="{StaticResource BaseColorSCB}" HorizontalAlignment="Right"/>
+                                        </Grid>
+
                                         <Rectangle Fill="Gray" Height="0.5" Margin="0,2"/>
 
                                         <!--DEDUCTIONS-->
                                         <TextBlock Margin="10,3" Text="Deductions And Contributions" FontFamily="{StaticResource PoppinsBold}" FontSize="16"/>
 
                                         <!--Salary Tax-->
-                                        <Grid Margin="10,5">
+                                        <Grid Margin="10,3">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
@@ -316,41 +351,19 @@
                                             <TextBlock Grid.Column="1" x:Name="txtEmployeeSalaryTax" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
-                                        <!--SSS-->
-                                        <Grid Margin="10,5">
+                                        <!--Government Contributions-->
+                                        <Grid Margin="10,3">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <TextBlock Grid.Column="0" Text="Social Security System (SSS)" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeSSS" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
-                                        </Grid>
-
-                                        <!--PhilHealth-->
-                                        <Grid Margin="10,5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <TextBlock Grid.Column="0" Text="PhilHealth" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtEmployeePhilHealth" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
-                                        </Grid>
-
-                                        <!--PagIBIG-->
-                                        <Grid Margin="10,5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <TextBlock Grid.Column="0" Text="Pag-IBIG" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtEmployeePagIBIG" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Column="0" Text="Government Contributions" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeGovContributions" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
                                         <!--Loan Deductions-->
-                                        <Grid Margin="10,5">
+                                        <Grid Margin="10,3">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
@@ -360,21 +373,21 @@
                                             <TextBlock Grid.Column="1" x:Name="txtEmployeeLoans" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
-                                        <!--Absence Deductions-->
-                                        <Grid Margin="10,5">
+                                        <!--Late and Undertime Deductions-->
+                                        <Grid Margin="10,3">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <TextBlock Grid.Column="0" Text="Absence Deductions" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeAbsenceDeductions" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Column="0" Text="Late and Undertime Deductions" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeLateUndertimeDeductions" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
                                         <Rectangle Fill="Gray" Height="0.5" Margin="0,2"/>
 
                                         <!--Net Salary-->
-                                        <Grid Margin="10,5">
+                                        <Grid Margin="10,3">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
@@ -387,7 +400,7 @@
                                         <Rectangle Fill="Gray" Height="0.5" Margin="0,2"/>
 
                                         <!--Payroll Date-->
-                                        <Grid Margin="10,5,10,3">
+                                        <Grid Margin="10,5,10,2">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
@@ -398,21 +411,20 @@
                                         </Grid>
 
                                         <!--Payroll Status-->
-                                        <Grid Margin="10,3">
+                                        <Grid Margin="10,2">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Grid.Column="0" Text="Payroll Status" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="10"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtPayrollStatus" Text="Released (Feburary 05, 2025)" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="10" HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtPayrollStatus" Text="Released (February 05, 2025)" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="10" HorizontalAlignment="Right"/>
                                         </Grid>
-
-
-
-
                                     </StackPanel>
                                 </TabItem>
+
+
+
 
                                 <!--ATTENDANCE-->
                                 <TabItem Header="Attendance">
