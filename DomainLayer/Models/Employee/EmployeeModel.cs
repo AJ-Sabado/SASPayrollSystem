@@ -1,6 +1,7 @@
 ﻿using DomainLayer.Models.EmployeeAccountInfo;
 using DomainLayer.Models.EmployeeAttendance;
 using DomainLayer.Models.EmployeeLeave;
+using DomainLayer.Models.EmployeePayslip;
 using DomainLayer.Models.User;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,8 +13,9 @@ namespace DomainLayer.Models.Employee
         [Key]
         public Guid EmployeeId { get; set; }
 
+        [ForeignKey(nameof(UserId))]
         public required Guid UserId { get; set; }
-        public required UserModel User { get; set; }
+        public required UserModel User { get; set; } = null!;
 
         //WORK INFORMATION FOR SALARY CALCULATION
         [Column(TypeName = "money")]
@@ -38,5 +40,6 @@ namespace DomainLayer.Models.Employee
         public EmployeeAccountInfoModel? EmployeeAccountInfo { get; set; }
         public ICollection<EmployeeAttendanceModel> EmployeeAttendances { get; } = [];
         public ICollection<EmployeeLeaveModel> EmployeeLeaves { get; } = [];
+        public ICollection<EmployeePayslipModel> EmployeePayslips { get; } = [];
     }
 }

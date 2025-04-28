@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250428062617_InitialCreate")]
+    [Migration("20250428121424_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -225,7 +225,7 @@ namespace InfrastructureLayer.Migrations
                         .HasColumnType("tinyint");
 
                     b.Property<bool>("IsNight")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<short>("LateMinutes")
                         .HasColumnType("smallint");
@@ -287,6 +287,130 @@ namespace InfrastructureLayer.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("EmployeeLeaveModel");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.EmployeePayslip.EmployeePayslipModel", b =>
+                {
+                    b.Property<Guid>("EmployeePayslipId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Allowance")
+                        .HasColumnType("money");
+
+                    b.Property<long>("ApprovedHolidayNoWorkPay")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ApprovedPaidLeaves")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("BasicPay")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("BonusPay")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("CompanyLoansAmount")
+                        .HasColumnType("money");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("GovtContribution")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("GovtLoansAmount")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("GrossPay")
+                        .HasColumnType("money");
+
+                    b.Property<long>("HolidayHoursWorked")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("HolidayNightHoursWorked")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("HolidayOTHoursWorked")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("HolidayOTNightHoursWorked")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("HolidayPay")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("LateUTDeduction")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("LoanDeduction")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("NetPay")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("NightShiftDifferentialPay")
+                        .HasColumnType("money");
+
+                    b.Property<long>("OrdinaryDaysWorked")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("OrdinaryLateMinutes")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("OrdinaryNightHoursWorked")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("OrdinaryNightOTHoursWorked")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("OrdinaryOTHoursWorked")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("OrdinaryUTHours")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("OvertimePay")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("PagIbigContributionAmount")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("PaidLeaves")
+                        .HasColumnType("money");
+
+                    b.Property<DateOnly>("PeriodEnd")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly>("PeriodStart")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("PhilHealthContributionAmount")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("SSSContributionAmount")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("SalaryTax")
+                        .HasColumnType("money");
+
+                    b.Property<long>("SpecialHolidayHoursWorked")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SpecialHolidayNightHoursWorked")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SpecialHolidayOTHoursWorked")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SpecialHolidayOTNightHoursWorked")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("EmployeePayslipId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("EmployeePayslipModel");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Holiday.HolidayModel", b =>
@@ -375,7 +499,7 @@ namespace InfrastructureLayer.Migrations
             modelBuilder.Entity("DomainLayer.Models.Admin.AdminModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.User.UserModel", "User")
-                        .WithOne()
+                        .WithOne("Admin")
                         .HasForeignKey("DomainLayer.Models.Admin.AdminModel", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -386,7 +510,7 @@ namespace InfrastructureLayer.Migrations
             modelBuilder.Entity("DomainLayer.Models.Contractor.ContractorModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.User.UserModel", "User")
-                        .WithOne()
+                        .WithOne("Contractor")
                         .HasForeignKey("DomainLayer.Models.Contractor.ContractorModel", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -397,7 +521,7 @@ namespace InfrastructureLayer.Migrations
             modelBuilder.Entity("DomainLayer.Models.Employee.EmployeeModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.User.UserModel", "User")
-                        .WithOne()
+                        .WithOne("Employee")
                         .HasForeignKey("DomainLayer.Models.Employee.EmployeeModel", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -438,6 +562,17 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("Employee");
                 });
 
+            modelBuilder.Entity("DomainLayer.Models.EmployeePayslip.EmployeePayslipModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
+                        .WithMany("EmployeePayslips")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("DomainLayer.Models.User.UserModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.Department.DepartmentModel", "Department")
@@ -469,11 +604,22 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("EmployeeAttendances");
 
                     b.Navigation("EmployeeLeaves");
+
+                    b.Navigation("EmployeePayslips");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Role.RoleModel", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.User.UserModel", b =>
+                {
+                    b.Navigation("Admin");
+
+                    b.Navigation("Contractor");
+
+                    b.Navigation("Employee");
                 });
 #pragma warning restore 612, 618
         }

@@ -194,7 +194,7 @@ namespace InfrastructureLayer.Migrations
                     LateMinutes = table.Column<short>(type: "smallint", nullable: false),
                     UTHours = table.Column<short>(type: "smallint", nullable: false),
                     OTHours = table.Column<short>(type: "smallint", nullable: false),
-                    IsNight = table.Column<bool>(type: "boolean", nullable: false)
+                    IsNight = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -231,6 +231,60 @@ namespace InfrastructureLayer.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "EmployeePayslipModel",
+                columns: table => new
+                {
+                    EmployeePayslipId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PeriodStart = table.Column<DateOnly>(type: "date", nullable: false),
+                    PeriodEnd = table.Column<DateOnly>(type: "date", nullable: false),
+                    BasicPay = table.Column<decimal>(type: "money", nullable: false),
+                    BonusPay = table.Column<decimal>(type: "money", nullable: false),
+                    OvertimePay = table.Column<decimal>(type: "money", nullable: false),
+                    NightShiftDifferentialPay = table.Column<decimal>(type: "money", nullable: false),
+                    HolidayPay = table.Column<decimal>(type: "money", nullable: false),
+                    PaidLeaves = table.Column<decimal>(type: "money", nullable: false),
+                    Allowance = table.Column<decimal>(type: "money", nullable: false),
+                    GrossPay = table.Column<decimal>(type: "money", nullable: false),
+                    SalaryTax = table.Column<decimal>(type: "money", nullable: false),
+                    GovtContribution = table.Column<decimal>(type: "money", nullable: false),
+                    LoanDeduction = table.Column<decimal>(type: "money", nullable: false),
+                    LateUTDeduction = table.Column<decimal>(type: "money", nullable: false),
+                    NetPay = table.Column<decimal>(type: "money", nullable: false),
+                    OrdinaryDaysWorked = table.Column<long>(type: "bigint", nullable: false),
+                    OrdinaryNightHoursWorked = table.Column<long>(type: "bigint", nullable: false),
+                    OrdinaryNightOTHoursWorked = table.Column<long>(type: "bigint", nullable: false),
+                    OrdinaryOTHoursWorked = table.Column<long>(type: "bigint", nullable: false),
+                    ApprovedHolidayNoWorkPay = table.Column<long>(type: "bigint", nullable: false),
+                    HolidayHoursWorked = table.Column<long>(type: "bigint", nullable: false),
+                    HolidayOTHoursWorked = table.Column<long>(type: "bigint", nullable: false),
+                    HolidayNightHoursWorked = table.Column<long>(type: "bigint", nullable: false),
+                    HolidayOTNightHoursWorked = table.Column<long>(type: "bigint", nullable: false),
+                    SpecialHolidayHoursWorked = table.Column<long>(type: "bigint", nullable: false),
+                    SpecialHolidayOTHoursWorked = table.Column<long>(type: "bigint", nullable: false),
+                    SpecialHolidayNightHoursWorked = table.Column<long>(type: "bigint", nullable: false),
+                    SpecialHolidayOTNightHoursWorked = table.Column<long>(type: "bigint", nullable: false),
+                    ApprovedPaidLeaves = table.Column<long>(type: "bigint", nullable: false),
+                    SSSContributionAmount = table.Column<decimal>(type: "money", nullable: false),
+                    PagIbigContributionAmount = table.Column<decimal>(type: "money", nullable: false),
+                    PhilHealthContributionAmount = table.Column<decimal>(type: "money", nullable: false),
+                    CompanyLoansAmount = table.Column<decimal>(type: "money", nullable: false),
+                    GovtLoansAmount = table.Column<decimal>(type: "money", nullable: false),
+                    OrdinaryLateMinutes = table.Column<long>(type: "bigint", nullable: false),
+                    OrdinaryUTHours = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeePayslipModel", x => x.EmployeePayslipId);
+                    table.ForeignKey(
+                        name: "FK_EmployeePayslipModel_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_UserId",
                 table: "Admins",
@@ -257,6 +311,11 @@ namespace InfrastructureLayer.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeeLeaveModel_EmployeeId",
                 table: "EmployeeLeaveModel",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeePayslipModel_EmployeeId",
+                table: "EmployeePayslipModel",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
@@ -293,6 +352,9 @@ namespace InfrastructureLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "EmployeeLeaveModel");
+
+            migrationBuilder.DropTable(
+                name: "EmployeePayslipModel");
 
             migrationBuilder.DropTable(
                 name: "Holidays");

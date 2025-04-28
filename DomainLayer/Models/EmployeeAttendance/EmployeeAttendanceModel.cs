@@ -65,7 +65,6 @@ namespace DomainLayer.Models.EmployeeAttendance
         [Column(TypeName = "smallint")]
         public uint OTHours { get; private set; } = 0;
 
-        [Column(TypeName = "boolean")]
         public bool IsNight { get; private set; } = false;  
 
         //INNER TIME CALCULATIONS

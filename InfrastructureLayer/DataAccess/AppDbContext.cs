@@ -22,9 +22,6 @@ namespace InfrastructureLayer.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AdminModel>().HasOne(e => e.User).WithOne();
-            modelBuilder.Entity<ContractorModel>().HasOne(e => e.User).WithOne();
-            modelBuilder.Entity<EmployeeModel>().HasOne(e => e.User).WithOne();
             base.OnModelCreating(modelBuilder);
         }
 

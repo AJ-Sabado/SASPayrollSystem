@@ -71,9 +71,9 @@ namespace ServicesLayer
         {
             await SeedRoles();
             await SeedDepartments();
-            await SeedAdmin();
-            await SeedEmployee();
+            //await SeedEmployee();
             await SeedHolidays();
+            await SeedAdminUser();
         }
 
         private async Task SeedEmployee()
@@ -172,30 +172,38 @@ namespace ServicesLayer
 
         }
 
-        private async Task SeedAdmin()
+        private async Task SeedAdminUser()
         {
-            var adminRole = await RoleRepository.GetAsync(r => r.NormalizedName == "admin".ToUpperInvariant(), includeProperties: "Users");
+            var adminRole = await RoleRepository.GetAsync(r => r.NormalizedName == "ADMIN", includeProperties: "Users");
 
             if (adminRole.Users.Count() == 0)
             {
-                var adminUser = new UserModel()
+                var department = await DepartmentRepository.GetAsync(r => r.NormalizedName == "Administration".ToUpperInvariant(), includeProperties: "Users");
+
+                var user = new UserModel()
                 {
                     Username = "admin",
                     Password = "password",
+                    Email = "test@test.com",
+                    Url = "https://github.com/",
                     RoleId = adminRole.RoleId,
                     Role = adminRole,
+                    DepartmentId = department.DepartmentId,
+                    Department = department,
                     Status = FormStatus.Approved
                 };
 
-                var adminModel = new AdminModel()
+                user.Admin = new AdminModel()
                 {
-                    UserId = adminUser.UserId,
-                    User = adminUser
+                    UserId = user.UserId,
+                    User = user
                 };
 
-                adminRole.Users.Add(adminUser);
+                adminRole.Users.Add(user);
+                department.Users.Add(user);
+
                 await RoleRepository.UpdateAsync(adminRole);
-                await AdminRepository.AddAsync(adminModel);
+                await DepartmentRepository.UpdateAsync(department);
             }
         }
 

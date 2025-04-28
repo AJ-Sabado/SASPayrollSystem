@@ -1,6 +1,9 @@
 ﻿using DomainLayer.Common;
 using DomainLayer.Enums;
+using DomainLayer.Models.Admin;
+using DomainLayer.Models.Contractor;
 using DomainLayer.Models.Department;
+using DomainLayer.Models.Employee;
 using DomainLayer.Models.Role;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -58,5 +61,11 @@ namespace DomainLayer.Models.User
         [ForeignKey(nameof(DepartmentId))]
         public Guid DepartmentId { get; set; }
         public DepartmentModel Department { get; set; } = null!;
+
+
+        //Data Access on Authentication
+        public AdminModel? Admin { get; set; }
+        public ContractorModel? Contractor { get; set; }
+        public EmployeeModel? Employee { get; set; }
     }
 }
