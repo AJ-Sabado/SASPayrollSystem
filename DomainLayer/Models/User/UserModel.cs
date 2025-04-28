@@ -18,7 +18,7 @@ namespace DomainLayer.Models.User
         public Guid UserId { get; set; }
 
         [StringLength(20, MinimumLength = 2, ErrorMessage = "Username must be 2 - 20 characters only")]
-        public string UserName { get; set; } = null!;
+        public string Username { get; set; } = null!;
 
         [NotMapped]
         public string Password

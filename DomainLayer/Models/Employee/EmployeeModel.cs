@@ -20,7 +20,7 @@ namespace DomainLayer.Models.Employee
         public decimal BasicMonthlyRate { get; set; } = 0;
 
         [Column(TypeName = "money")]
-        public decimal BasicHourlyRate { get; set; } = 0;
+        public decimal BasicDailyRate { get; set; } = 0;
 
         [Column(TypeName = "time")]
         public TimeOnly WorkShiftStart { get; set; } = new TimeOnly(8, 0, 0);

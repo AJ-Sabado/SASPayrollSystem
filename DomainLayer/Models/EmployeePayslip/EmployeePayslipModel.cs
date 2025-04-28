@@ -45,6 +45,8 @@ namespace DomainLayer.Models.EmployeePayslip
         [Column(TypeName = "money")]
         public decimal BasicPay { get; set; } = 0;  //Absences already deducted as No work no pay is followed
         [Column(TypeName = "money")]
+        public decimal BonusPay { get; set; } = 0;
+        [Column(TypeName = "money")]
         public decimal OvertimePay { get; set; } = 0;
         [Column(TypeName = "money")]
         public decimal NightShiftDifferentialPay { get; set; } = 0; //All ordinary night shiftts
@@ -61,7 +63,9 @@ namespace DomainLayer.Models.EmployeePayslip
         [Column(TypeName = "money")]
         public decimal GovtContribution { get; set; } = 0;  //SSS, Pag Ibig, and PhilHealth as one
         [Column(TypeName = "money")]
-        public decimal Deduction { get; set; } = 0; //Total deduction from lates and undertimes
+        public decimal LoanDeduction { get; set; } = 0;
+        [Column(TypeName = "money")]
+        public decimal LateUTDeduction { get; set; } = 0; //Total deduction from lates and undertimes
         [Column(TypeName = "money")]
         public decimal NetPay { get; set; } = 0;
 
@@ -102,6 +106,12 @@ namespace DomainLayer.Models.EmployeePayslip
         [Column(TypeName = "money")]
         public decimal PhilHealthContributionAmount { get; set; } = 0;
 
+        //Loan Deductions
+        [Column(TypeName = "money")]
+        public decimal CompanyLoansAmount { get; set; } = 0;
+        [Column(TypeName = "money")]
+        public decimal GovtLoansAmount { get; set; } = 0;
+
         //Deductions due to infractions
         public uint OrdinaryLateMinutes { get; set; } = 0;
         public uint OrdinaryUTHours { get; set; } = 0;
@@ -116,8 +126,8 @@ namespace DomainLayer.Models.EmployeePayslip
             var validAttendances = Employee.EmployeeAttendances
                 .Where(e => IsDateBetween(e.Date, PeriodStart, PeriodEnd) && e.Status == FormStatus.Approved)
                 .ToList();
-            var hourlyRate = Employee.BasicHourlyRate;
-            var dailyRate = hourlyRate * 8;
+            var dailyRate = Employee.BasicDailyRate;
+            var hourlyRate = dailyRate / 8m;
 
             //TO DO - Fill in Time Calculations
 
@@ -161,10 +171,13 @@ namespace DomainLayer.Models.EmployeePayslip
 
             //Allowance
 
+            //Loan Deductions
+            LoanDeduction = CompanyLoansAmount + GovtLoansAmount;
+
             //Deductions
             var ordinaryLate = OrdinaryLateMinutes * hourlyRate / 60;
             var ordinaryUT = OrdinaryUTHours * hourlyRate;
-            Deduction = ordinaryLate + ordinaryUT;
+            LateUTDeduction = ordinaryLate + ordinaryUT;
 
             //Gross Pay
             GrossPay = BasicPay + NightShiftDifferentialPay + HolidayPay + PaidLeaves + Allowance;
@@ -179,7 +192,7 @@ namespace DomainLayer.Models.EmployeePayslip
 
 
             //Net Pay
-            NetPay = GrossPay - GovtContribution - Deduction;
+            NetPay = GrossPay - GovtContribution - LateUTDeduction;
         }
 
         /*---------------------------------INTERNAL METHODS-----------------s----------------*/
