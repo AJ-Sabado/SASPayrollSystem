@@ -6,6 +6,7 @@ using PresentationLayer.WPF.ViewModel.RegularViewModel;
 using ServicesLayer;
 using System.Windows;
 
+//READ ME FIRST HAHAHAHAHA
 //HERE IS WHERE WHAT VIEW IS SHOWED NOT THROUGH STARTUP URI IN APP.XML 
 
 namespace SASPayrolSystemProject
@@ -37,8 +38,10 @@ namespace SASPayrolSystemProject
 
             services.AddSingleton<Func<Type, Base_ViewModel>>(serviceProvider => viewModelType => (Base_ViewModel)serviceProvider.GetRequiredService(viewModelType));
 
+            //Navigation service func is mapped
             services.AddSingleton<INavigationService, NavigationService>();
 
+            //Unit of work is mapped in DI
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
 
             _serviceProvider = services.BuildServiceProvider();
