@@ -5,7 +5,7 @@ using PresentationLayer.WPF.ViewModel.RegularViewModel;
 using ServicesLayer;
 using System.Windows;
 
-//HERE IS WHERE WHAT VIEW IS SHOWED NOT IN APP.XML
+//HERE IS WHERE WHAT VIEW IS SHOWED NOT THROUGH STARTUP URI IN APP.XML 
 
 namespace SASPayrolSystemProject
 {
