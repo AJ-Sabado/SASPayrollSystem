@@ -1,5 +1,7 @@
-﻿using PresentationLayer.WPF.View.Pages.Dashboard;
+﻿using PresentationLayer.WPF.Services;
+using PresentationLayer.WPF.View.Pages.Dashboard;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg;
+using ServicesLayer;
 using System.Windows.Input;
 
 namespace PresentationLayer.WPF.ViewModel
@@ -7,6 +9,11 @@ namespace PresentationLayer.WPF.ViewModel
     public class EmployeeDashboardReg_ViewModel : Base_ViewModel
     {
         private object _currentView;
+
+        //If possible, use this navigation service instead of manually coding navigation in each view model
+        private INavigationService _navigationService;
+        private IUnitOfWork _unitOfWork;
+
         public object CurrentView
         {
             get => _currentView;
@@ -24,8 +31,11 @@ namespace PresentationLayer.WPF.ViewModel
         public ICommand ShowJobDeskCommand { get; }
         public ICommand ShowAccountsCommand { get; }
 
-        public EmployeeDashboardReg_ViewModel()
+        public EmployeeDashboardReg_ViewModel(INavigationService navigationService, IUnitOfWork unitOfWork)
         {
+            _navigationService = navigationService;
+            _unitOfWork = unitOfWork;
+
             ShowDashboardCommand = new RelayCommand(_ => ShowView(new RegDashboard(), "Dashboard"));
             ShowJobDeskCommand = new RelayCommand(_ => ShowView(new RegJobDesk(), "JobDesk"));
             ShowAccountsCommand = new RelayCommand(_ => ShowView(new AccountsPage(), "Accounts"));

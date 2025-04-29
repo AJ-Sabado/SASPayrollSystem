@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PresentationLayer.WPF.Services;
+using PresentationLayer.WPF.View.Pages;
 using PresentationLayer.WPF.ViewModel;
 using PresentationLayer.WPF.ViewModel.RegularViewModel;
 using ServicesLayer;
@@ -19,11 +20,20 @@ namespace SASPayrolSystemProject
 
             //Contains singletons of all application objects
             var services = new ServiceCollection();
+
+            //Login Page mapping
             services.AddSingleton<MainWindow>(provider => new MainWindow
             {
                 DataContext = DIGetRequiredService<LoginPage_ViewModel>(provider)
             });
             services.AddSingleton<LoginPage_ViewModel>();
+
+            //Employe Dashboard mapping
+            services.AddSingleton<EmployeeDahboard_View>(provider => new EmployeeDahboard_View
+            {
+                DataContext = DIGetRequiredService<EmployeeDashboardReg_ViewModel>(provider)
+            });
+            services.AddSingleton<EmployeeDashboardReg_ViewModel>();
 
             services.AddSingleton<Func<Type, Base_ViewModel>>(serviceProvider => viewModelType => (Base_ViewModel)serviceProvider.GetRequiredService(viewModelType));
 

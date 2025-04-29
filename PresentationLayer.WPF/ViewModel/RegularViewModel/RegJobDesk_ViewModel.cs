@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace PresentationLayer.WPF.ViewModel.RegularViewModel
 {
-    public class RegJobDesk_ViewModel
+    public class RegJobDesk_ViewModel : Base_ViewModel
     {
         public ICommand FileLeaveCommand { get; }
 

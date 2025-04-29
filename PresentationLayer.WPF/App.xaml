@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:userControls="clr-namespace:SASPayrolSystemProject"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-             xmlns:regularViewModels="clr-namespace:PresentationLayer.WPF.ViewModel.RegularViewModel">
+             xmlns:regularViewModels="clr-namespace:PresentationLayer.WPF.ViewModel.RegularViewModel" 
+             xmlns:regularViewModels1="clr-namespace:PresentationLayer.WPF.ViewModel" 
+             xmlns:mainViews="clr-namespace:PresentationLayer.WPF.View.Pages">
 
     <!--  -->
 
@@ -21,6 +23,9 @@
             <!-- This is where View Models are mapped to corresponding Views -->
             <DataTemplate DataType="{x:Type regularViewModels:LoginPage_ViewModel}">
                 <userControls:MainWindow/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type regularViewModels1:EmployeeDashboardReg_ViewModel}">
+                <mainViews:EmployeeDahboard_View/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

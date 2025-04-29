@@ -11,7 +11,8 @@ namespace PresentationLayer.WPF.View.Pages
         public EmployeeDahboard_View()
         {
             InitializeComponent();
-            DataContext = new ViewModel.EmployeeDashboardReg_ViewModel();
+            //No need here since this is defined in App.xaml.cs
+            //DataContext = new ViewModel.EmployeeDashboardReg_ViewModel();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
