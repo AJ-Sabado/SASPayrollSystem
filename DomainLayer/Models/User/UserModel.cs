@@ -1,4 +1,4 @@
-﻿using DomainLayer.Common;
+﻿using DomainLayer.Helpers;
 using DomainLayer.Enums;
 using DomainLayer.Models.Admin;
 using DomainLayer.Models.Contractor;
@@ -47,9 +47,6 @@ namespace DomainLayer.Models.User
 
         [EmailAddress(ErrorMessage = "Must be a valid email address")]
         public string? Email { get; set; }
-
-        [Url(ErrorMessage = "Must be a valid Url")]
-        public string? Url { get; set; }
 
         [Column(TypeName = "tinyint")]
         public FormStatus Status { get; set; } = FormStatus.Pending;

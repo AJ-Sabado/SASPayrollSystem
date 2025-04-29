@@ -1,4 +1,4 @@
-﻿using DomainLayer.Common;
+﻿using DomainLayer.Helpers;
 using DomainLayer.Enums.EmployeePersonalInfo;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.User;
@@ -9,7 +9,9 @@ namespace DomainLayer.Models.EmployeeAccountInfo
 {
     public class EmployeeAccountInfoModel
     {
-        private string _fullName = string.Empty;
+        private string _firstName = string.Empty;
+        private string _lastName = string.Empty;
+        private string _middleInitial = string.Empty;
 
         [Key]
         public Guid EmployeeAccountInfoId { get; set; }
@@ -18,32 +20,111 @@ namespace DomainLayer.Models.EmployeeAccountInfo
         public required Guid EmployeeId { get; set; }
         public required EmployeeModel Employee { get; set; }
 
-        //PERSONAL INFORMATION
+        //BASIC INFORMATION
+        [StringLength(20)]
+        public string FirstName 
+        { 
+            get => _firstName; 
+            set
+            {
+                var formatter = new Formatter();
+                _firstName = formatter.ToProperCase(value.Trim());
+            }
+        }
 
-        [StringLength(70, ErrorMessage = "Full name must not exceed 70 characters")]
-        public string FullName { get => _fullName; set => _fullName = SetName(value.Trim()); }
+        [StringLength(20)]
+        public string LastName
+        {
+            get => _lastName;
+            set
+            {
+                var formatter = new Formatter();
+                _lastName = formatter.ToProperCase(value.Trim());
+            }
+        }
+
+        [StringLength(2)]
+        [RegularExpression(@"^[A-Z]\.?$")]
+        public string MiddleInitial
+        {
+            get => _middleInitial;
+            set
+            {
+                var formatter = new Formatter();
+                _middleInitial = formatter.ToProperCase(value.Trim());
+            }
+        }
+
+        [NotMapped]
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + MiddleInitial + " " + LastName;
+            }
+        }
 
         [Column(TypeName = "tinyint")]
-        public GenderEnum Gender { get; set; }
+        public Gender Gender { get; set; }
 
         [Column(TypeName = "date")]
-        public DateOnly BirthDate { get; set; }
+        public DateOnly DateOfBirth { get; set; }
 
         [Column(TypeName = "tinyint")]
-        public CivilStatusEnum CivilStatus { get; set; }
+        public Nationality Nationality { get; set; }
 
-        [StringLength(70, ErrorMessage = "Home address must not exceed 70 characters")]
-        public string HomeAddress { get; set; } = string.Empty;
+        //CONTACT INFORMATION
+        [RegularExpression(@"^\+639\d{9}", ErrorMessage = "Invalid phone number format!")]
+        [StringLength(13, ErrorMessage = "Must be exactly 13 characters")]
+        public string PrimaryPhoneNumber { get; set; } = "+639000000000";
+
+        [RegularExpression(@"^\+639\d{9}", ErrorMessage = "Invalid phone number format!")]
+        [StringLength(13, ErrorMessage = "Must be exactly 13 characters")]
+        public string SecondaryPhoneNumber { get; set; } = "+639000000000";
+
+        //Regex to be added
+        public string Telephone { get; set; } = string.Empty;
+
+        [NotMapped]
+        public string PrimaryEmail { get => GetEmail(Employee.User); }
+
+        [EmailAddress(ErrorMessage = "Must be a valid email address")]
+        public string SecondaryEmail { get; set; } = string.Empty;
+
+        [StringLength(140, ErrorMessage = "Mailing address must not exceed 70 characters")]
+        public string MailingAddress { get; set; } = string.Empty;
+
+        [Url]
+        public string FacebookUrl { get; set; } = string.Empty;
+
+        [Url]
+        public string LinkedInUrl { get; set; } = string.Empty;
+
+        [Url]
+        public string WebsiteUrl { get; set; } = string.Empty;
+
+        //FINANCIAL INFORMATION
+        //Regex to be added
+        public string TaxIdNumber { get; set; } = string.Empty;
+        public string SSSIdNumber { get; set; } = string.Empty;
+        public string PhilHealthIdNumber { get; set; } = string.Empty;
+        public string PagIbigIdNumber { get; set; } = string.Empty;
+        public string BankName { get; set; } = string.Empty;
+        public string BankAccountName { get; set; } = string.Empty;
+        public string BankAccountId { get; set; } = string.Empty;
 
         //EMPLOYMENT INFORMATION
         [StringLength(20)]
         public string CompanyId { get; set; } = string.Empty;
 
-        [StringLength(30, ErrorMessage = "Job title must not exceed 30 characters")]
-        public string JobTitle { get; set; } = string.Empty;
+        [StringLength(30, ErrorMessage = "Role must not exceed 30 characters")]
+        public string Role { get; set; } = string.Empty;
 
         [NotMapped]
         public string Department { get => Employee.User.Department.Name; }
+
+        [Column(TypeName = "tinyint")]
+        public EmploymentType EmploymentType { get; set; }
 
         [Column(TypeName = "date")]
         public DateOnly DateHired { get; set; }
@@ -51,31 +132,7 @@ namespace DomainLayer.Models.EmployeeAccountInfo
         [NotMapped]
         public uint YearsEmployed { get => GetYearsEmployed(DateHired); }
 
-        //CONTACT INFORMATION
-        [RegularExpression(@"^\+639\d{9}", ErrorMessage = "Invalid phone number format!")]
-        [StringLength(13, ErrorMessage = "Must be exactly 13 characters")]
-        public string PhoneNumber { get; set; } = "+639000000000";
-
-        [RegularExpression(@"^\+639\d{9}", ErrorMessage = "Invalid phone number format!")]
-        [StringLength(13, ErrorMessage = "Must be exactly 13 characters")]
-        public string PhoneNumberAlt { get; set; } = "+639000000000";
-
-        //Regex to be added
-        public string Telephone { get; set; } = string.Empty;
-
-        [NotMapped]
-        public string Email { get => GetEmail(Employee.User); }
-
-        [StringLength(140, ErrorMessage = "Mailing address must not exceed 70 characters")]
-        public string MailingAddress { get; set; } = string.Empty;
-
-        //FINANCIAL INFORMATION
-        //Regex to be added
-        public string TaxIdNumber { get; set; } = string.Empty;
-        public string PhilHealthIdNumber { get; set; } = string.Empty;
-        public string SSSIdNumber { get; set; } = string.Empty;
-        public string PagIbigIdNumber { get; set; } = string.Empty;
-        public string BankingDetails { get; set; } = string.Empty;
+        
 
         //INTERNAL METHODS
         private string GetEmail(IUserModel user)

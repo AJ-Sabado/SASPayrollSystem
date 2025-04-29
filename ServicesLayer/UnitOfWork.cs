@@ -1,5 +1,7 @@
 ﻿using DomainLayer.Defaults;
 using DomainLayer.Enums;
+using DomainLayer.Enums.EmployeePersonalInfo;
+using DomainLayer.Helpers;
 using DomainLayer.Models.Admin;
 using DomainLayer.Models.Contractor;
 using DomainLayer.Models.Department;
@@ -71,43 +73,76 @@ namespace ServicesLayer
         {
             await SeedRoles();
             await SeedDepartments();
-            //await SeedEmployee();
             await SeedHolidays();
             await SeedAdminUser();
+            await SeedEmployeeUser();
         }
 
-        private async Task SeedEmployee()
+        private async Task SeedEmployeeUser()
         {
             var employeeRole = await RoleRepository.GetAsync(r => r.NormalizedName == "employee".ToUpperInvariant(), includeProperties: "Users");
             if (employeeRole.Users.Count() == 0)
             {
-                var employeeUser = new UserModel()
+                var department = await DepartmentRepository.GetAsync(d => d.NormalizedName == "Finance & Operations".ToUpperInvariant(), includeProperties: "Users");
+                var user = new UserModel()
                 {
                     Username = "user1",
                     Password = "password",
+                    Email = "test1@test.com",
                     RoleId = employeeRole.RoleId,
                     Role = employeeRole,
+                    DepartmentId = department.DepartmentId,
+                    Department = department,
                     Status = FormStatus.Approved
                 };
-
-                var employee = new EmployeeModel()
+                decimal monthlyRate = 15000;
+                user.Employee = new EmployeeModel()
                 {
-                    UserId = employeeUser.UserId,
-                    User = employeeUser,
-                    BasicMonthlyRate = 20000,
-                    BasicDailyRate = 919.54m
+                    UserId = user.UserId,
+                    User = user,
+                    BasicMonthlyRate = monthlyRate,
+                    BasicDailyRate = SalaryConverter.ConvertMonthlyToDaily(monthlyRate)
                 };
-                employee.EmployeeAccountInfo = new EmployeeAccountInfoModel()
+                user.Employee.EmployeeAccountInfo = new EmployeeAccountInfoModel()
                 {
-                    EmployeeId = employee.EmployeeId,
-                    Employee = employee
+                    EmployeeId = user.Employee.EmployeeId,
+                    Employee = user.Employee,
 
-                    //TO DO - Add sample details
+                    //TO DO - Add employee information after EmployeeAccountInfoModel is adjusted.
+                    FirstName = "Jane John",
+                    LastName = "Doe",
+                    MiddleInitial = "S.",
+                    Gender = Gender.Male,
+                    DateOfBirth = new DateOnly(2025, 1, 26),
+                    Nationality = Nationality.Filipino,
+
+                    PrimaryPhoneNumber = "+639000000001",
+                    SecondaryPhoneNumber = "+639000000002",
+                    Telephone = "(8)123-4567",
+                    SecondaryEmail = "secondary@test.com",
+                    MailingAddress = "Blk 4, Lot 47, Villa Amparo Subdivision, Brgy. Sylvacion, Panabo City",
+                    FacebookUrl = "https://www.facebook.com/",
+                    LinkedInUrl = "https://www.linkedin.com/",
+                    WebsiteUrl = "https://github.com/",
+
+                    TaxIdNumber = "123-456-789-012",
+                    SSSIdNumber = "123-4567890-0",
+                    PhilHealthIdNumber = "12-34567890-1",
+                    PagIbigIdNumber  = "1434-5678-9012",
+                    BankName = "Landbank",
+                    BankAccountName = "JANE JOHN S. DOE",
+                    BankAccountId = "4748-4478-9012-3456",
+
+                    CompanyId = "598764",
+                    Role = "Product Designer",
+                    EmploymentType = EmploymentType.Regular,
+                    DateHired = new DateOnly(1997, 1, 27)
                 };
+                employeeRole.Users.Add(user);
+                department.Users.Add(user);
 
-                employeeRole.Users.Add(employeeUser);
                 await RoleRepository.UpdateAsync(employeeRole);
-                await EmployeeRepository.AddAsync(employee);
+                await DepartmentRepository.UpdateAsync(department);
             }
         }
         private async Task SeedHolidays()
@@ -185,7 +220,6 @@ namespace ServicesLayer
                     Username = "admin",
                     Password = "password",
                     Email = "test@test.com",
-                    Url = "https://github.com/",
                     RoleId = adminRole.RoleId,
                     Role = adminRole,
                     DepartmentId = department.DepartmentId,

@@ -21,7 +21,7 @@ namespace SASPayrolSystemProject
             var services = new ServiceCollection();
             services.AddSingleton<MainWindow>(provider => new MainWindow
             {
-                DataContext = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<LoginPage_ViewModel>(provider)
+                DataContext = DIGetRequiredService<LoginPage_ViewModel>(provider)
             });
             services.AddSingleton<LoginPage_ViewModel>();
 
@@ -36,9 +36,15 @@ namespace SASPayrolSystemProject
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var mainWindow = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<MainWindow>(_serviceProvider);
+            var mainWindow = DIGetRequiredService<MainWindow>(_serviceProvider);
             mainWindow.Show();
             base.OnStartup(e);
+        }
+
+        private static T DIGetRequiredService<T>(IServiceProvider serviceProvider) where T : class
+        {
+
+            return Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<T>(serviceProvider);
         }
     }
 

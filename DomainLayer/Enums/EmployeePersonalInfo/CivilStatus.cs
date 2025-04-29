@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.Enums.EmployeePersonalInfo
 {
-    public enum CivilStatusEnum
+    public enum CivilStatus
     {
         Single,
         Married,

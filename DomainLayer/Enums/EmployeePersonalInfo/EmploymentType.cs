@@ -1,8 +1,8 @@
 ﻿namespace DomainLayer.Enums.EmployeePersonalInfo
 {
-    public enum GenderEnum
+    public enum EmploymentType
     {
-        Female,
-        Male
+        Regular,
+        Contractor
     }
 }

@@ -14,7 +14,6 @@ namespace DomainLayer.Models.User
         RoleModel Role { get; set; }
         Guid RoleId { get; set; }
         byte[] Salt { get; set; }
-        string? Url { get; set; }
         string Username { get; set; }
     }
 }
