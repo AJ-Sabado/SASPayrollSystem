@@ -13,13 +13,14 @@ namespace SASPayrolSystemProject
 {
     public partial class App : Application
     {
+        //This stores all application objects through Dependency Injection
         private IServiceProvider _serviceProvider;
 
         public App()
         {
             //TO DO - Add all Views, User controls, and View Models to Service Collection as Singletons
 
-            //Contains singletons of all application objects
+            //This creates all singletons/instances of application objects
             var services = new ServiceCollection();
 
             //Login Page mapping
@@ -29,7 +30,7 @@ namespace SASPayrolSystemProject
             });
             services.AddSingleton<LoginPage_ViewModel>();
 
-            //Employe Dashboard mapping
+            //Employee Dashboard mapping
             services.AddSingleton<EmployeeDahboard_View>(provider => new EmployeeDahboard_View
             {
                 DataContext = DIGetRequiredService<EmployeeDashboardReg_ViewModel>(provider)
@@ -44,19 +45,21 @@ namespace SASPayrolSystemProject
             //Unit of work is mapped in DI
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
 
+            //The service provider itself is built here
             _serviceProvider = services.BuildServiceProvider();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            //This determines what view is displayed on startup
             var mainWindow = DIGetRequiredService<MainWindow>(_serviceProvider);
             mainWindow.Show();
             base.OnStartup(e);
         }
 
+        //Localized version of GetRequiredService<T> method because of error lol
         private static T DIGetRequiredService<T>(IServiceProvider serviceProvider) where T : class
         {
-
             return Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<T>(serviceProvider);
         }
     }
