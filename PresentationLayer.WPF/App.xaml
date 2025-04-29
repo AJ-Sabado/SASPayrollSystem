@@ -18,6 +18,7 @@
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Amber" SecondaryColor="Blue" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <!-- This is where View Models are mapped to corresponding Views -->
             <DataTemplate DataType="{x:Type regularViewModels:LoginPage_ViewModel}">
                 <userControls:MainWindow/>
             </DataTemplate>
