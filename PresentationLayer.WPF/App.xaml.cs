@@ -5,18 +5,18 @@ using PresentationLayer.WPF.ViewModel.RegularViewModel;
 using ServicesLayer;
 using System.Windows;
 
+//HERE IS WHERE WHAT VIEW IS SHOWED NOT IN APP.XML
 
 namespace SASPayrolSystemProject
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private IServiceProvider _serviceProvider;
 
         public App()
         {
+            //TO DO - Add all Views, User controls, and View Models to Service Collection as Singletons
+
             //Contains singletons of all application objects
             var services = new ServiceCollection();
             services.AddSingleton<MainWindow>(provider => new MainWindow
