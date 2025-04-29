@@ -1,0 +1,123 @@
+﻿<Window x:Class="PresentationLayer.WPF.View.Windows.PopUps.TimeInTimeOutForm_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer.WPF.View.Windows.PopUps" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
+        mc:Ignorable="d"
+        Title="TimeInTimeOutForm_View" Height="600" Width="500"
+        Icon="/Resources/Images/SASLogo.png">
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+           
+           
+        </Grid.RowDefinitions>
+        <!--Title-->
+        <Grid Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <materialDesign:PackIcon x:Name="piPersonCheck" Kind="PersonCheck" Height="60" Width="60"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <TextBlock x:Name="tbTimeInTimeOut" Grid.Column="2" Text="Time In Time Out" VerticalAlignment="Center"
+                    FontFamily="{StaticResource PoppinsBold}" FontSize="36"/>
+            </Grid>
+        </Grid>
+
+        <!--Employee-->
+        <Grid Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <userControls:LabeledTextBox x:Name="ltbEmployeeName" Grid.Column="0" Label="Employee Name" Text="{Binding EmployeeName}" />
+                <userControls:LabeledTextBox x:Name="ltbEmployeeID" Grid.Column="2" Label="Employee ID" Text="{Binding EmployeeID}" />
+            </Grid>
+        </Grid>
+        
+        <!--Department-->
+        <Grid Grid.Row="4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    
+                </Grid.ColumnDefinitions>
+
+                <userControls:LabeledTextBox x:Name="ltbDepartment" Grid.Column="0" Label="Department" Text="{Binding Department}" />
+            </Grid>
+        </Grid>
+        
+        <!--Date-->
+        <Grid Grid.Row="6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock x:Name="tbDate" Text="Date" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" VerticalAlignment="Center"/>
+                    <TextBox TextWrapping="Wrap" Text="TextBox" Width="220"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock x:Name="tbTotalHours" Text="Total Hours" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" VerticalAlignment="Center"/>
+                    <TextBox TextWrapping="Wrap" Text="TextBox" Width="220"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        
+        <!--TImeIn TimeOut-->
+        <Grid Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+        <StackPanel Grid.Column="0">
+            <TextBlock x:Name="tbTimeIn" Text="Time In" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" VerticalAlignment="Center"/>
+            <TextBox TextWrapping="Wrap" Text="TextBox" Width="220"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2">
+                <TextBlock x:Name="tbTimeOut" Text="Time Out" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" VerticalAlignment="Center"/>
+                <TextBox TextWrapping="Wrap" Text="TextBox" Width="220"/>
+        </StackPanel>
+
+            
+
+        </Grid>
+        
+        
+        <Grid Grid.Row="10">
+            <Button x:Name="btnTimeIn" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Time In" Foreground="White"/>
+        </Grid>
+
+
+
+
+    </Grid>
+</Window>
