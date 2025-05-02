@@ -7,7 +7,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
     public class LoginPage_ViewModel : Base_ViewModel
     {
         private INavigationService _navigationService;
-        private IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public string Role { get; private set; }
 
@@ -24,6 +24,17 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         public string UsernameSignIn { private get; set; } = string.Empty;
         public string PasswordSignIn { private get; set; }
 
+        private string _loginMessage = string.Empty;
+        public string LoginMessage 
+        { 
+            get => _loginMessage; 
+            set
+            {
+                _loginMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand Login { get; set; }
 
         public LoginPage_ViewModel(INavigationService navigationService, IUnitOfWork unitOfWork)
@@ -38,10 +49,22 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
 
         private async void AuthenticateUser(object? obj)
         {
+            if (string.IsNullOrEmpty(UsernameSignIn) || string.IsNullOrEmpty(PasswordSignIn))
+            {
+                LoginMessage = "";
+                return;
+            }
+
             var user = await _unitOfWork.Login(UsernameSignIn, PasswordSignIn);
             if (user != null)
             {
+                LoginMessage = "";
+                Properties.Settings.Default.CurrentUserGuid = user.UserId;
                 System.Windows.MessageBox.Show("Login successful!");
+            }
+            else
+            {
+                LoginMessage = "Invalid username or password!";
             }
         }
     }
