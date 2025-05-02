@@ -175,8 +175,8 @@
                                  FontFamily="{StaticResource PoppinsRegular}"
                                  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,4,0,0" />
                     <userControls:CustomTextBox Grid.Row="3" PlaceholderText="Username or Email"
-                                                Margin="0,7" TextBoxText="{Binding Username, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
-
+                                                Margin="0,7" TextBoxText="{Binding UsernameSignIn, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+                    
                     <!--Password Input -->
                     <TextBlock Grid.Row="4" Text="Enter Password" FontSize="16"
                                  FontFamily="{StaticResource PoppinsRegular}"
@@ -191,7 +191,7 @@
                                    VerticalAlignment="Center"
                                    IsHitTestVisible="False"
                                    x:Name="PasswordPlaceholder"
-                                   Visibility="Visible" />
+                                   Visibility="Visible"/>
 
                         <!-- Actual Password Box -->
                         <userControls:CustomPasswordBox Grid.Row="5"

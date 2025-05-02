@@ -1,7 +1,9 @@
-﻿using System;
+﻿using PresentationLayer.WPF.ViewModel.RegularViewModel;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using static MaterialDesignThemes.Wpf.Theme;
 
 namespace SASPayrolSystemProject.View.UserControls
 {
@@ -9,7 +11,6 @@ namespace SASPayrolSystemProject.View.UserControls
     {
         public CustomPasswordBox()
         {
-            DataContext = this;
             IsPasswordVisible = false;
             InitializeComponent();
         }
@@ -36,6 +37,7 @@ namespace SASPayrolSystemProject.View.UserControls
 
         public static readonly DependencyProperty PlaceholderTextProperty =
                 DependencyProperty.Register("PlaceholderText", typeof(string), typeof(CustomPasswordBox), new PropertyMetadata("Password", OnPlaceholderTextChanged));
+       
 
         public string PlaceholderText
         {
@@ -70,6 +72,7 @@ namespace SASPayrolSystemProject.View.UserControls
             {
                 IsPlaceholderVisible = string.IsNullOrEmpty(pbPasswordBox.Password);
             }
+            SendPasswordToViewModel(pbPasswordBox.Password);
         }
 
         private void tbVisiblePassword_TextChanged(object sender, TextChangedEventArgs e)
@@ -77,6 +80,15 @@ namespace SASPayrolSystemProject.View.UserControls
             if (IsPasswordVisible)
             {
                 IsPlaceholderVisible = string.IsNullOrEmpty(tbVisiblePassword.Text);
+            }
+            SendPasswordToViewModel(tbVisiblePassword.Text);
+        }
+
+        private void SendPasswordToViewModel(string password)
+        {
+            if (this.DataContext != null)
+            {
+                ((LoginPage_ViewModel)this.DataContext).PasswordSignIn = password;
             }
         }
 

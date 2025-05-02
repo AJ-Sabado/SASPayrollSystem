@@ -63,9 +63,27 @@ namespace ServicesLayer
             UserRepository ??= new BaseServices<UserModel>(_userRepository, _modelDataAnnotationsCheck);
         }
 
-        public async Task LoginUser(string username, string password)
+        public async Task<UserModel?> LoginUser(string usernameOrEmail, string password)
         {
-            throw new NotImplementedException();
+            UserModel? user = null;
+            if (_modelDataAnnotationsCheck.IsValidEmail(usernameOrEmail))
+            { 
+                user = await UserRepository.GetAsync(u => u.Email == usernameOrEmail, includeProperties: "Role,Department");
+            }
+            else
+            {
+                user = await UserRepository.GetAsync(u => u.Username == usernameOrEmail, includeProperties: "Role,Department");
+            }
+            if (user != null)
+            {
+                var encryption = new Encryption();
+                var passwordHash = encryption.GenerateHash(password, user.Salt);
+                if (user.PasswordHash.SequenceEqual(passwordHash))
+                {
+                    return user;
+                }
+            }
+            return null;
         }
 
 

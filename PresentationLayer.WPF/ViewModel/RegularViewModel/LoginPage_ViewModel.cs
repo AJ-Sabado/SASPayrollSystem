@@ -1,10 +1,5 @@
 ﻿using PresentationLayer.WPF.Services;
 using ServicesLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PresentationLayer.WPF.ViewModel.RegularViewModel
@@ -14,7 +9,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         private INavigationService _navigationService;
         private IUnitOfWork _unitOfWork;
 
-        public INavigationService Navigation 
+        public INavigationService Navigation
         {
             get => _navigationService;
             set
@@ -24,7 +19,8 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
             }
         }
 
-        public string Username { get; set; } = string.Empty;
+        public string UsernameSignIn { private get; set; } = string.Empty;
+        public string PasswordSignIn { private get; set; }
 
         public ICommand Login { get; set; }
 
@@ -40,7 +36,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
 
         private void AuthenticateUser(object? obj)
         {
-            System.Windows.MessageBox.Show(Username);
+            System.Windows.MessageBox.Show(PasswordSignIn);
         }
     }
 }

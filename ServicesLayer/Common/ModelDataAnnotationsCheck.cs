@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ServicesLayer.Common
 {
@@ -30,6 +26,13 @@ namespace ServicesLayer.Common
             {
                 throw new ArgumentException(stringBuilder.ToString());
             }
+        }
+
+        public bool IsValidEmail(string email)
+        {
+            string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(pattern);
+            return regex.IsMatch(email);
         }
     }
 }
