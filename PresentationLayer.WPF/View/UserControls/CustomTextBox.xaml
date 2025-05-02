@@ -18,7 +18,9 @@
                 FontSize="16"
                 Foreground="SlateGray"
                 Panel.ZIndex="0"/>
+        <!-- Create bindable Property here -->
         <TextBox Name="tbTxtInput"
+                Text="{Binding TextBoxText, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  VerticalAlignment="Center" 
                  FontFamily="{DynamicResource PoppinsRegular}"
                  FontStyle="Italic"

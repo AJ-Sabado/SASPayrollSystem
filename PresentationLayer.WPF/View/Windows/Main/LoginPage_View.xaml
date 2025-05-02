@@ -175,7 +175,7 @@
                                  FontFamily="{StaticResource PoppinsRegular}"
                                  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,4,0,0" />
                     <userControls:CustomTextBox Grid.Row="3" PlaceholderText="Username or Email"
-                                                Margin="0,7"/>
+                                                Margin="0,7" TextBoxText="{Binding Username, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <!--Password Input -->
                     <TextBlock Grid.Row="4" Text="Enter Password" FontSize="16"
@@ -211,7 +211,7 @@
                             HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,0,0"
                             Background="#0078D4" BorderBrush="{x:Null}" Foreground="White"
                             Padding="10,5" Cursor="Hand" Click="btnSignIn_Click"
-                            />
+                            Command="{Binding Login}"/>
                 </Grid>
             </Grid>
 
