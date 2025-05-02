@@ -210,7 +210,8 @@
                             FontSize="16" FontFamily="{StaticResource PoppinsSemiBold}" FontWeight="SemiBold"
                             HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,0,0"
                             Background="#0078D4" BorderBrush="{x:Null}" Foreground="White"
-                            Padding="10,5" Cursor="Hand" Click="btnSignIn_Click"/>
+                            Padding="10,5" Cursor="Hand" Click="btnSignIn_Click"
+                            />
                 </Grid>
             </Grid>
 

@@ -23,15 +23,17 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
             }
         }
 
-        public RelayCommand LoginToEmployeeDashboard { get; set; }
+        public RelayCommand Login { get; set; }
 
         public LoginPage_ViewModel(INavigationService navigationService, IUnitOfWork unitOfWork)
         {
             Navigation = navigationService;
             _unitOfWork = unitOfWork;
-            LoginToEmployeeDashboard = new RelayCommand(execute: o_object => { Navigation.NavigateTo<EmployeeDashboardReg_ViewModel>(); }, canExecute: o_object => true);
+
+            //Login = new RelayCommand(execute: o_object => AuthenticateUser, canExecute: o_object => true);
 
             _unitOfWork.InitialSeeding();
         }
+
     }
 }

@@ -24,17 +24,9 @@ namespace SASPayrolSystemProject
             var services = new ServiceCollection();
 
             //Login Page mapping
-            //services.AddSingleton<MainWindow>(provider => new MainWindow
-            //{
-            //    DataContext = DIGetRequiredService<LoginPage_ViewModel>(provider)
-            //});
-            //services.AddSingleton<LoginPage_ViewModel>();
-
-            ////Employee Dashboard mapping
-            services.AddSingleton<EmployeeDashboardReg_ViewModel>();
-            services.AddSingleton<EmployeeDahboard_View>(provider => new EmployeeDahboard_View
+            services.AddSingleton<MainWindow>(provider => new MainWindow
             {
-                DataContext = Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<EmployeeDashboardReg_ViewModel>(provider)
+                DataContext = DIGetRequiredService<LoginPage_ViewModel>(provider)
             });
             services.AddSingleton<LoginPage_ViewModel>();
 
@@ -60,7 +52,7 @@ namespace SASPayrolSystemProject
         protected override void OnStartup(StartupEventArgs e)
         {
             //This determines what view is displayed on startup
-            var mainWindow = DIGetRequiredService<EmployeeDahboard_View>(_serviceProvider);
+            var mainWindow = DIGetRequiredService<MainWindow>(_serviceProvider);
             mainWindow.Show();
             base.OnStartup(e);
         }
