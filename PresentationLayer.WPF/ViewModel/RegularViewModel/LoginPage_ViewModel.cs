@@ -9,6 +9,8 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         private INavigationService _navigationService;
         private IUnitOfWork _unitOfWork;
 
+        public string Role { get; private set; }
+
         public INavigationService Navigation
         {
             get => _navigationService;
@@ -34,9 +36,13 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
             _unitOfWork.InitialSeeding();
         }
 
-        private void AuthenticateUser(object? obj)
+        private async void AuthenticateUser(object? obj)
         {
-            System.Windows.MessageBox.Show(PasswordSignIn);
+            var user = await _unitOfWork.Login(UsernameSignIn, PasswordSignIn);
+            if (user != null)
+            {
+                System.Windows.MessageBox.Show("Login successful!");
+            }
         }
     }
 }

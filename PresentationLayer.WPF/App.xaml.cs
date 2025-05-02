@@ -52,8 +52,8 @@ namespace SASPayrolSystemProject
         protected override void OnStartup(StartupEventArgs e)
         {
             //This determines what view is displayed on startup
-            var mainWindow = DIGetRequiredService<MainWindow>(_serviceProvider);
-            mainWindow.Show();
+            var windowService = DIGetRequiredService<MainWindow>(_serviceProvider);
+            windowService.Show();
             base.OnStartup(e);
         }
 

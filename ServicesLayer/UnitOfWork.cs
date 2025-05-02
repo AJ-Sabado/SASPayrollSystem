@@ -63,7 +63,7 @@ namespace ServicesLayer
             UserRepository ??= new BaseServices<UserModel>(_userRepository, _modelDataAnnotationsCheck);
         }
 
-        public async Task<UserModel?> LoginUser(string usernameOrEmail, string password)
+        public async Task<UserModel?> Login(string usernameOrEmail, string password)
         {
             UserModel? user = null;
             if (_modelDataAnnotationsCheck.IsValidEmail(usernameOrEmail))

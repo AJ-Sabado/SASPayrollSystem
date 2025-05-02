@@ -9,6 +9,8 @@ namespace SASPayrolSystemProject
     public partial class MainWindow : Window
     {
         private bool isSignIn;
+
+
         public MainWindow()
         {
             isSignIn = true;
@@ -35,7 +37,10 @@ namespace SASPayrolSystemProject
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (this.DataContext != null)
+            {
+                
+            }
         }
 
         private void btnSignUp_Click(object sender, RoutedEventArgs e)

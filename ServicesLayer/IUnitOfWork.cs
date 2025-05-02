@@ -22,7 +22,7 @@ namespace ServicesLayer
         Task ApproveNewUserRequest(string requestEmail, string roleName = null);
         Task ForgotPasswordRequest(string username, string email, string password, string confirmPassword);
         Task InitialSeeding();
-        Task<UserModel?> LoginUser(string usernameOrEmail, string password);
+        Task<UserModel?> Login(string usernameOrEmail, string password);
         Task NewUserRequest(string username, string password, string email);
         void Save();
     }
