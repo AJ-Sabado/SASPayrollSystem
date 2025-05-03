@@ -10,13 +10,11 @@ namespace PresentationLayer.WPF.View.Pages
     /// </summary>
     public partial class EmployeeDahboard_View : Window
     {
-        private IWindowService _windowService;
 
-        public EmployeeDahboard_View(EmployeeDashboardReg_ViewModel vm, IWindowService windowService)
+        public EmployeeDahboard_View(EmployeeDashboardReg_ViewModel vm)
         {
             InitializeComponent();
             DataContext = vm;
-            _windowService = windowService;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

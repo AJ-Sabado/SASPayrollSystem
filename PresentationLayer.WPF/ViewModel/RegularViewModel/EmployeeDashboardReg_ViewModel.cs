@@ -10,9 +10,8 @@ namespace PresentationLayer.WPF.ViewModel
     {
         private object _currentView;
 
-        //If possible, use this navigation service instead of manually coding navigation in each view model
-        //private INavigationService _navigationService;
         private IUnitOfWork _unitOfWork;
+        private IPageService _pageService;
 
         public object CurrentView
         {
@@ -31,14 +30,14 @@ namespace PresentationLayer.WPF.ViewModel
         public ICommand ShowJobDeskCommand { get; }
         public ICommand ShowAccountsCommand { get; }
 
-        public EmployeeDashboardReg_ViewModel(IUnitOfWork unitOfWork)
+        public EmployeeDashboardReg_ViewModel(IUnitOfWork unitOfWork, IPageService pageService)
         {
-            //_navigationService = navigationService;
             _unitOfWork = unitOfWork;
+            _pageService = pageService;
 
-            ShowDashboardCommand = new RelayCommand(_ => ShowView(new RegDashboard(), "Dashboard"));
-            ShowJobDeskCommand = new RelayCommand(_ => ShowView(new RegJobDesk(), "JobDesk"));
-            ShowAccountsCommand = new RelayCommand(_ => ShowView(new AccountsPage(), "Accounts"));
+            ShowDashboardCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<RegDashboard>(), "Dashboard"));
+            ShowJobDeskCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<RegJobDesk>(), "JobDesk"));
+            ShowAccountsCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<AccountsPage>(), "Accounts"));
 
             // Set the default page and selected menu when opening
             ShowDashboardCommand.Execute(null);
