@@ -10,7 +10,6 @@ namespace PresentationLayer.WPF.ViewModel
     {
         private object _currentView;
 
-        private IUnitOfWork _unitOfWork;
         private IPageService _pageService;
 
         public object CurrentView
@@ -32,7 +31,6 @@ namespace PresentationLayer.WPF.ViewModel
 
         public EmployeeDashboardReg_ViewModel(IUnitOfWork unitOfWork, IPageService pageService)
         {
-            _unitOfWork = unitOfWork;
             _pageService = pageService;
 
             ShowDashboardCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<RegDashboard>(), "Dashboard"));

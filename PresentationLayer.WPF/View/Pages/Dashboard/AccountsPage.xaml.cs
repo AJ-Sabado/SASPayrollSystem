@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using PresentationLayer.WPF.ViewModel.PagesViewModel;
+using System.Windows.Controls;
 
 namespace PresentationLayer.WPF.View.Pages.Dashboard
 {
@@ -7,9 +8,10 @@ namespace PresentationLayer.WPF.View.Pages.Dashboard
     /// </summary>
     public partial class AccountsPage : UserControl
     {
-        public AccountsPage()
+        public AccountsPage(AccountPage_ViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }

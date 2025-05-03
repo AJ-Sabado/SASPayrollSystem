@@ -4,6 +4,8 @@ using PresentationLayer.WPF.View.Pages;
 using PresentationLayer.WPF.View.Pages.Dashboard;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg;
 using PresentationLayer.WPF.ViewModel;
+using PresentationLayer.WPF.ViewModel.PagesViewModel;
+using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular;
 using PresentationLayer.WPF.ViewModel.RegularViewModel;
 using ServicesLayer;
 using System.Windows;
@@ -35,6 +37,7 @@ namespace SASPayrolSystemProject
 
         private void ConfigureServices(IServiceCollection services)
         {
+            //Windows
             services.AddTransient<MainWindow>();
             services.AddTransient<LoginPage_ViewModel>();
 
@@ -42,9 +45,11 @@ namespace SASPayrolSystemProject
             services.AddTransient<EmployeeDashboardReg_ViewModel>();
 
             //Pages
-            services.AddSingleton<RegDashboard>();
-            services.AddSingleton<RegJobDesk>();
-            services.AddSingleton<AccountsPage>();
+            services.AddTransient<RegDashboard>();
+            services.AddTransient<RegJobDesk>();
+            services.AddTransient<AccountsPage>();
+            services.AddTransient<RegDashboard_ViewModel>();
+            services.AddTransient<AccountPage_ViewModel>();
 
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IWindowService, WindowService>();

@@ -35,10 +35,10 @@
                         <StackPanel Grid.Column="0" >
                             <StackPanel Orientation="Horizontal" >
                                 <TextBlock Text="Welcome Back, " FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25" />
-                                <TextBlock Name="txtEmployeeFirstName" Text="John Doe" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
+                                <TextBlock Name="txtEmployeeFirstName" Text="{Binding EmployeeFirstName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Name="txtEmployeeID" Text="#546908" 
+                                <TextBlock Name="txtEmployeeID" Text="{Binding EmployeeCompanyId, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
                                             FontFamily="{StaticResource PoppinsLight}" FontSize="14" 
                                             FontStyle="Italic"/>
                                 
@@ -46,7 +46,7 @@
                                            FontFamily="{StaticResource PoppinsLight}" FontSize="14" 
                                            FontStyle="Italic"/>
 
-                                <TextBlock Name="txtEmployeePosition" Text="Senior Software Developer" 
+                                <TextBlock Name="txtEmployeePosition" Text="{Binding EmployeeRole, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
                                            FontFamily="{StaticResource PoppinsLight}" FontSize="14" 
                                            FontStyle="Italic"/>
                             </StackPanel>

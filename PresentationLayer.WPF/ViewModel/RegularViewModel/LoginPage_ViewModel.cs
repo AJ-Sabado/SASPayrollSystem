@@ -16,9 +16,9 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         public string PasswordSignIn { private get; set; }
 
         private string _loginMessage = string.Empty;
-        public string LoginMessage 
-        { 
-            get => _loginMessage; 
+        public string LoginMessage
+        {
+            get => _loginMessage;
             private set
             {
                 _loginMessage = value;
@@ -63,8 +63,14 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 ForegroundColor = "Green";
                 LoginMessage = "Login successful!";
                 Properties.Settings.Default.CurrentUserGuid = user.UserId;
+                Properties.Settings.Default.Save();
                 await Task.Delay(2000);
-                _windowService.ShowWindow<EmployeeDahboard_View>();
+                if (user.Role.NormalizedName == "EMPLOYEE")
+                    _windowService.ShowWindow<EmployeeDahboard_View>();
+                else if (user.Role.NormalizedName == "ADMIN")
+                    System.Windows.MessageBox.Show("Admin Functionality to be added");
+                else if (user.Role.NormalizedName == "CONTRACTOR")
+                    System.Windows.MessageBox.Show("Contractor Functionality to be added");
             }
             else
             {

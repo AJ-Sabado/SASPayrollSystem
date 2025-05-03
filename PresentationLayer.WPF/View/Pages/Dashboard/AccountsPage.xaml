@@ -52,8 +52,8 @@
 
                                         <!-- Profile Header -->
                                         <userControls:ProfileHeaderControl ProfileImage="/Resources/Images/Profile.jpg"
-                                           ProfileName="John Jane Doe S. Smith" 
-                                           ProfilePosition="Senior Software Developer" Margin="0,0,0,30"/>
+                                           ProfileName="{Binding FullName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                                           ProfilePosition="{Binding Role, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30"/>
 
                                         <!-- Name Section -->
                                         <Grid Margin="0,0,0,40">
@@ -65,9 +65,9 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <userControls:LabeledTextBox Label="First Name" Text="John" />
-                                            <userControls:LabeledTextBox Label="Last Name" Text="Doe" Grid.Column="2" />
-                                            <userControls:LabeledTextBox Label="Middle Name" Text="S." Grid.Column="4" />
+                                            <userControls:LabeledTextBox Label="First Name" Text="{Binding FirstName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            <userControls:LabeledTextBox Label="Last Name" Text="{Binding LastName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" />
+                                            <userControls:LabeledTextBox Label="Middle Name" Text="{Binding MiddleInitial, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" />
                                         </Grid>
 
                                         <!-- Username Section -->
@@ -80,7 +80,7 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <userControls:LabeledTextBox Label="Username" Text="username_placeholder10" />
+                                            <userControls:LabeledTextBox Label="Username" Text="{Binding Username, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </Grid>
 
                                         <!-- Other Information -->
@@ -96,7 +96,8 @@
                                             <StackPanel Grid.Column="0">
                                                 <TextBlock Text="Date of Birth" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
                                                 <DatePicker x:Name="dpBirthday" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" 
-                                                            SelectedDateFormat="Long" IsEnabled="False"/>
+                                                            SelectedDateFormat="Long" IsEnabled="False"
+                                                            DisplayDate="{Binding Path=(???).DateOfBirth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                                             </StackPanel>
 
                                             <StackPanel Grid.Column="2">

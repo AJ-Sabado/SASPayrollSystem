@@ -151,7 +151,7 @@ namespace ServicesLayer
                     BankAccountName = "JANE JOHN S. DOE",
                     BankAccountId = "4748-4478-9012-3456",
 
-                    CompanyId = "598764",
+                    CompanyId = "#598764",
                     Role = "Product Designer",
                     EmploymentType = EmploymentType.Regular,
                     DateHired = new DateOnly(1997, 1, 27)
