@@ -18,50 +18,44 @@ namespace SASPayrolSystemProject
 
         public App()
         {
-            //TO DO - Add all Views, User controls, and View Models to Service Collection as Singletons
-
-            //This creates all singletons/instances of application objects
-            var services = new ServiceCollection();
-
-            //Login Page mapping
-            services.AddSingleton<MainWindow>(provider => new MainWindow
-            {
-                DataContext = DIGetRequiredService<LoginPage_ViewModel>(provider)
-            });
-            services.AddSingleton<LoginPage_ViewModel>();
-
-            //Employee Dashboard mapping
-            services.AddSingleton<EmployeeDahboard_View>(provider => new EmployeeDahboard_View
-            {
-                DataContext = DIGetRequiredService<EmployeeDashboardReg_ViewModel>(provider)
-            });
-            services.AddSingleton<EmployeeDashboardReg_ViewModel>();
-
-            services.AddSingleton<Func<Type, Base_ViewModel>>(serviceProvider => viewModelType => (Base_ViewModel)serviceProvider.GetRequiredService(viewModelType));
-
-            //Navigation service func is mapped
-            services.AddSingleton<INavigationService, NavigationService>();
-
-            //Unit of work is mapped in DI
-            services.AddSingleton<IUnitOfWork, UnitOfWork>();
-
-            //The service provider itself is built here
-            _serviceProvider = services.BuildServiceProvider();
+            
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            //This determines what view is displayed on startup
-            var windowService = DIGetRequiredService<MainWindow>(_serviceProvider);
-            windowService.Show();
             base.OnStartup(e);
+
+            var services = new ServiceCollection();
+
+            ConfigureServices(services);
+
+            _serviceProvider = services.BuildServiceProvider();
+
+            var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
+            windowService.ShowWindow<MainWindow>();
         }
 
-        //Localized version of GetRequiredService<T> method because of error lol
-        private static T DIGetRequiredService<T>(IServiceProvider serviceProvider) where T : class
+        private void ConfigureServices(IServiceCollection services)
+        {
+            services.AddTransient<MainWindow>();
+            services.AddTransient<LoginPage_ViewModel>();
+
+            services.AddTransient<EmployeeDahboard_View>();
+            services.AddTransient<EmployeeDashboardReg_ViewModel>();
+
+            //services.AddSingleton<Func<Type, Base_ViewModel>>(serviceProvider => viewModelType => (Base_ViewModel)serviceProvider.GetRequiredService(viewModelType));
+
+            //Navigation service func is mapped
+            //services.AddSingleton<INavigationService, NavigationService>();
+
+            services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<IWindowService, WindowService>();
+        }
+
+        //Resolves GetRequiredService for DI conflict
+        private T DIGetRequiredService<T>(IServiceProvider serviceProvider) where T : class
         {
             return Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<T>(serviceProvider);
         }
     }
-
 }

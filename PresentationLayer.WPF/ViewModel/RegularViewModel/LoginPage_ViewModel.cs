@@ -1,4 +1,5 @@
 ﻿using PresentationLayer.WPF.Services;
+using PresentationLayer.WPF.View.Pages;
 using ServicesLayer;
 using System.Windows.Input;
 
@@ -6,20 +7,10 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
 {
     public class LoginPage_ViewModel : Base_ViewModel
     {
-        private INavigationService _navigationService;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWindowService _windowService;
 
-        public string Role { get; private set; }
-
-        public INavigationService Navigation
-        {
-            get => _navigationService;
-            set
-            {
-                _navigationService = value;
-                OnPropertyChanged();
-            }
-        }
+        public string Role { get; private set; } = string.Empty;
 
         public string UsernameSignIn { private get; set; } = string.Empty;
         public string PasswordSignIn { private get; set; }
@@ -28,42 +19,56 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         public string LoginMessage 
         { 
             get => _loginMessage; 
-            set
+            private set
             {
                 _loginMessage = value;
                 OnPropertyChanged();
             }
         }
 
-        public ICommand Login { get; set; }
-
-        public LoginPage_ViewModel(INavigationService navigationService, IUnitOfWork unitOfWork)
+        private string _foregroundColor = "Black";
+        public string ForegroundColor
         {
-            Navigation = navigationService;
-            _unitOfWork = unitOfWork;
-
-            Login = new RelayCommand(AuthenticateUser, canExecute: o_object => true);
-
-            _unitOfWork.InitialSeeding();
+            get => _foregroundColor;
+            set
+            {
+                _foregroundColor = value;
+                OnPropertyChanged();
+            }
         }
 
-        private async void AuthenticateUser(object? obj)
+        public LoginPage_ViewModel(IUnitOfWork unitOfWork, IWindowService windowService)
+        {
+            _unitOfWork = unitOfWork;
+            _windowService = windowService;
+            _unitOfWork.InitialSeeding();
+
+            Login = new RelayCommand(AuthenticateUser, _ => true);
+        }
+
+        public ICommand Login { get; set; }
+
+        private async void AuthenticateUser(object? parameter)
         {
             if (string.IsNullOrEmpty(UsernameSignIn) || string.IsNullOrEmpty(PasswordSignIn))
             {
-                LoginMessage = "";
+                ForegroundColor = "Black";
+                LoginMessage = "Please fill in the fields.";
                 return;
             }
 
             var user = await _unitOfWork.Login(UsernameSignIn, PasswordSignIn);
             if (user != null)
             {
-                LoginMessage = "";
+                ForegroundColor = "Green";
+                LoginMessage = "Login successful!";
                 Properties.Settings.Default.CurrentUserGuid = user.UserId;
-                System.Windows.MessageBox.Show("Login successful!");
+                await Task.Delay(2000);
+                _windowService.ShowWindow<EmployeeDahboard_View>();
             }
             else
             {
+                ForegroundColor = "Red";
                 LoginMessage = "Invalid username or password!";
             }
         }

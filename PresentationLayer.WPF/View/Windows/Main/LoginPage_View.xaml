@@ -211,10 +211,13 @@
                             HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,0,0"
                             Background="#0078D4" BorderBrush="{x:Null}" Foreground="White"
                             Padding="10,5" Cursor="Hand" Click="btnSignIn_Click"
-                            Command="{Binding Login}"/>
+                            Command="{Binding Login}"
+                            />
                     <TextBlock Grid.Row="6" Text="{Binding LoginMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontSize="12"
                         FontFamily="{StaticResource PoppinsRegular}"
-                        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,7,0,0" Foreground="Red"/>
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,7,0,0" 
+                        Foreground="{Binding ForegroundColor, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        />
                 </Grid>
             </Grid>
 

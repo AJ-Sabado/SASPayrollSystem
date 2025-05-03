@@ -1,5 +1,7 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using PresentationLayer.WPF.Services;
+using PresentationLayer.WPF.View.Pages;
+using PresentationLayer.WPF.ViewModel.RegularViewModel;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 
@@ -10,16 +12,16 @@ namespace SASPayrolSystemProject
     {
         private bool isSignIn;
 
-
-        public MainWindow()
+        public MainWindow(LoginPage_ViewModel vm)
         {
-            isSignIn = true;
             InitializeComponent();
+            isSignIn = true;
+            DataContext = vm;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();
             }
@@ -37,10 +39,7 @@ namespace SASPayrolSystemProject
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-            if (this.DataContext != null)
-            {
-                
-            }
+
         }
 
         private void btnSignUp_Click(object sender, RoutedEventArgs e)

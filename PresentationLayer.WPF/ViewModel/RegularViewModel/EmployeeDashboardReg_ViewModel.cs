@@ -11,7 +11,7 @@ namespace PresentationLayer.WPF.ViewModel
         private object _currentView;
 
         //If possible, use this navigation service instead of manually coding navigation in each view model
-        private INavigationService _navigationService;
+        //private INavigationService _navigationService;
         private IUnitOfWork _unitOfWork;
 
         public object CurrentView
@@ -31,9 +31,9 @@ namespace PresentationLayer.WPF.ViewModel
         public ICommand ShowJobDeskCommand { get; }
         public ICommand ShowAccountsCommand { get; }
 
-        public EmployeeDashboardReg_ViewModel(INavigationService navigationService, IUnitOfWork unitOfWork)
+        public EmployeeDashboardReg_ViewModel(IUnitOfWork unitOfWork)
         {
-            _navigationService = navigationService;
+            //_navigationService = navigationService;
             _unitOfWork = unitOfWork;
 
             ShowDashboardCommand = new RelayCommand(_ => ShowView(new RegDashboard(), "Dashboard"));

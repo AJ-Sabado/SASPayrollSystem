@@ -4,9 +4,8 @@
              xmlns:userControls="clr-namespace:SASPayrolSystemProject"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:regularViewModels="clr-namespace:PresentationLayer.WPF.ViewModel.RegularViewModel" 
-             xmlns:regularViewModels1="clr-namespace:PresentationLayer.WPF.ViewModel" 
+             xmlns:regularViewModels1="clr-namespace:PresentationLayer.WPF.ViewModel"
              xmlns:mainViews="clr-namespace:PresentationLayer.WPF.View.Pages">
-
     <!--  -->
 
     <Application.Resources>

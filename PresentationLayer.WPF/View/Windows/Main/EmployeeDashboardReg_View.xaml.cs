@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using PresentationLayer.WPF.Services;
+using PresentationLayer.WPF.ViewModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PresentationLayer.WPF.View.Pages
@@ -8,11 +10,13 @@ namespace PresentationLayer.WPF.View.Pages
     /// </summary>
     public partial class EmployeeDahboard_View : Window
     {
-        public EmployeeDahboard_View()
+        private IWindowService _windowService;
+
+        public EmployeeDahboard_View(EmployeeDashboardReg_ViewModel vm, IWindowService windowService)
         {
             InitializeComponent();
-            //No need here since this is defined in App.xaml.cs
-            //DataContext = new ViewModel.EmployeeDashboardReg_ViewModel();
+            DataContext = vm;
+            _windowService = windowService;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
