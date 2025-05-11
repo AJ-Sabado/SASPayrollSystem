@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250429080908_InitialCreate")]
+    [Migration("20250511084847_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -264,6 +264,9 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<short>("OTHours")
                         .HasColumnType("smallint");
+
+                    b.Property<byte>("OTStatus")
+                        .HasColumnType("tinyint");
 
                     b.Property<short>("PayableHours")
                         .HasColumnType("smallint");

@@ -262,6 +262,9 @@ namespace InfrastructureLayer.Migrations
                     b.Property<short>("OTHours")
                         .HasColumnType("smallint");
 
+                    b.Property<byte>("OTStatus")
+                        .HasColumnType("tinyint");
+
                     b.Property<short>("PayableHours")
                         .HasColumnType("smallint");
 

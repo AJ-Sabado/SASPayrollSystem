@@ -46,6 +46,9 @@ namespace DomainLayer.Models.EmployeeAttendance
         [Column(TypeName = "tinyint")]
         public FormStatus Status { get; set; } = FormStatus.Pending;
 
+        [Column(TypeName = "tinyint")]
+        public FormStatus OTStatus { get; set; } = FormStatus.Pending;
+
         [Column(TypeName = "time")]
         public TimeOnly BreakIn { get; set; }
 

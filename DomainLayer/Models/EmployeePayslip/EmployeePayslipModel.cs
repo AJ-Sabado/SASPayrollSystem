@@ -235,14 +235,17 @@ namespace DomainLayer.Models.EmployeePayslip
 
                         //This goes to Deductions
                         OrdinaryLateMinutes += attendance.LateMinutes;
-                        OrdinaryOTHoursWorked += attendance.OTHours;
+
+                        if (attendance.OTStatus == FormStatus.Approved)
+                            OrdinaryOTHoursWorked += attendance.OTHours;
                         OrdinaryUTHours += attendance.UTHours;
                     }
                     else
                     {
                         //This goes to Night Shift Differential Pay
                         OrdinaryNightHoursWorked += attendance.PayableHours;
-                        OrdinaryNightOTHoursWorked += attendance.OTHours;
+                        if (attendance.OTStatus == FormStatus.Approved)
+                            OrdinaryNightOTHoursWorked += attendance.OTHours;
                     }
                 }
                 else if (attendance.HolidayStatus == HolidayType.Regular)
@@ -251,12 +254,14 @@ namespace DomainLayer.Models.EmployeePayslip
                     if (!attendance.IsNight)
                     {
                         HolidayHoursWorked += attendance.PayableHours;
-                        HolidayOTHoursWorked += attendance.OTHours;
+                        if (attendance.OTStatus == FormStatus.Approved)
+                            HolidayOTHoursWorked += attendance.OTHours;
                     }
                     else
                     {
                         HolidayNightHoursWorked += attendance.PayableHours;
-                        HolidayOTNightHoursWorked += attendance.OTHours;
+                        if (attendance.OTStatus == FormStatus.Approved)
+                            HolidayOTNightHoursWorked += attendance.OTHours;
                     }  
                 }
                 else if (attendance.HolidayStatus == HolidayType.SpecialNonWorking)
@@ -265,12 +270,14 @@ namespace DomainLayer.Models.EmployeePayslip
                     if (!attendance.IsNight)
                     {
                         SpecialHolidayHoursWorked += attendance.PayableHours;
-                        SpecialHolidayOTHoursWorked += attendance.OTHours;
+                        if (attendance.OTStatus == FormStatus.Approved)
+                            SpecialHolidayOTHoursWorked += attendance.OTHours;
                     }
                     else
                     {
                         SpecialHolidayNightHoursWorked += attendance.PayableHours;
-                        SpecialHolidayOTNightHoursWorked += attendance.OTHours;
+                        if (attendance.OTStatus == FormStatus.Approved)
+                            SpecialHolidayOTNightHoursWorked += attendance.OTHours;
                     }
                 }
             }

@@ -195,6 +195,7 @@ namespace InfrastructureLayer.Migrations
                     TimeOut = table.Column<TimeOnly>(type: "time", nullable: false),
                     HolidayStatus = table.Column<byte>(type: "tinyint", nullable: false),
                     Status = table.Column<byte>(type: "tinyint", nullable: false),
+                    OTStatus = table.Column<byte>(type: "tinyint", nullable: false),
                     BreakIn = table.Column<TimeOnly>(type: "time", nullable: false),
                     BreakOut = table.Column<TimeOnly>(type: "time", nullable: false),
                     PayableHours = table.Column<short>(type: "smallint", nullable: false),
