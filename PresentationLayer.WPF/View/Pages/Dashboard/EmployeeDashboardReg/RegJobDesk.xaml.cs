@@ -5,10 +5,10 @@ namespace PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg
 {
     public partial class RegJobDesk : UserControl
     {
-        public RegJobDesk()
+        public RegJobDesk(RegJobDesk_ViewModel vm)
         {
             InitializeComponent();
-            DataContext = new RegJobDesk_ViewModel();
+            DataContext = vm;
         }
     }
 }

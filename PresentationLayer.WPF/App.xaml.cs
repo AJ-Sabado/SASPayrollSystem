@@ -3,6 +3,7 @@ using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages;
 using PresentationLayer.WPF.View.Pages.Dashboard;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg;
+using PresentationLayer.WPF.View.Windows;
 using PresentationLayer.WPF.ViewModel;
 using PresentationLayer.WPF.ViewModel.PagesViewModel;
 using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular;
@@ -49,11 +50,19 @@ namespace SASPayrolSystemProject
             services.AddTransient<RegJobDesk>();
             services.AddTransient<AccountsPage>();
             services.AddTransient<RegDashboard_ViewModel>();
+            services.AddTransient<RegJobDesk_ViewModel>();
             services.AddTransient<AccountPage_ViewModel>();
 
+            //Popups
+            services.AddTransient<FileLeaveForm_View>();
+            services.AddTransient<AttendanceRequest_View>();
+            services.AddTransient<FileLeaveForm_View>();
+
+            //Services
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IWindowService, WindowService>();
             services.AddSingleton<IPageService, PageService>();
+            services.AddSingleton<IPopUpService, PopUpService>();
         }
 
         //Resolves GetRequiredService for DI conflict

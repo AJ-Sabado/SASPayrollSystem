@@ -1,16 +1,20 @@
-﻿using PresentationLayer.WPF.View.Windows;
+﻿using PresentationLayer.WPF.Services;
+using PresentationLayer.WPF.View.Windows;
 using System.Windows.Input;
 
 namespace PresentationLayer.WPF.ViewModel.RegularViewModel
 {
     public class RegJobDesk_ViewModel : Base_ViewModel
     {
+        private IPopUpService _popUpService;
+
         public ICommand FileLeaveCommand { get; }
 
         public ICommand AttendanceRequestCommand { get; }
 
-        public RegJobDesk_ViewModel()
+        public RegJobDesk_ViewModel(IPopUpService popUpService)
         {
+            _popUpService = popUpService;
             FileLeaveCommand = new RelayCommand(FileLeave);
             AttendanceRequestCommand = new RelayCommand(AttendanceRequest); // Initialize AttendanceRequestCommand  
         }
@@ -20,15 +24,13 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         // LEAVE FORM FUNCTIONS  
         private void FileLeave(object? obj)
         {
-            var _fileLeaveDialog = new FileLeaveForm_View();
-            _fileLeaveDialog.ShowDialog();
+            _popUpService.ShowPopUp<FileLeaveForm_View>();
         }
 
         // ATTENDANCE REQUEST FUNCTIONS  
         private void AttendanceRequest(object? obj)
         {
-            var _attendanceRequestDialog = new AttendanceRequest_View();
-            _attendanceRequestDialog.ShowDialog();
+            _popUpService.ShowPopUp<AttendanceRequest_View>();
         }
     }
 }
