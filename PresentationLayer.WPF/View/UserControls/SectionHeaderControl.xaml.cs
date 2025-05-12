@@ -26,10 +26,37 @@ namespace PresentationLayer.WPF.View.UserControls
         public static readonly DependencyProperty ButtonNameProperty =
             DependencyProperty.Register(nameof(ButtonName), typeof(string), typeof(SectionHeaderControl));
 
+        public static readonly DependencyProperty ButtonCommandProperty =
+            DependencyProperty.Register(nameof(ButtonCommand), typeof(ICommand), typeof(SectionHeaderControl));
+
+        public static readonly DependencyProperty ButtonTextProperty =
+            DependencyProperty.Register(nameof(ButtonText), typeof(string), typeof(SectionHeaderControl));
+
+        public static readonly DependencyProperty ButtonIconProperty =
+            DependencyProperty.Register(nameof(ButtonIcon), typeof(string), typeof(SectionHeaderControl));
+
+        public string ButtonIcon
+        {
+            get => (string)GetValue(ButtonIconProperty);
+            set => SetValue(ButtonIconProperty, value);
+        }
+
+        public string ButtonText
+        {
+            get => (string)GetValue(ButtonTextProperty);
+            set => SetValue(ButtonTextProperty, value);
+        }
+
         public string Title
         {
             get => (string)GetValue(TitleProperty);
             set => SetValue(TitleProperty, value);
+        }
+
+        public ICommand ButtonCommand
+        {
+            get => (ICommand)GetValue(ButtonCommandProperty);
+            set => SetValue(ButtonCommandProperty, value);
         }
 
         public string ButtonName

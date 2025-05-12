@@ -16,6 +16,15 @@ namespace PresentationLayer.WPF.View.UserControls
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(LabeledTextBox), new PropertyMetadata(string.Empty));
 
+        public static readonly DependencyProperty IsTextBoxEnabledProperty =
+            DependencyProperty.Register("IsTextBoxEnabled", typeof(bool), typeof(LabeledTextBox), new PropertyMetadata(true));
+
+        public bool IsTextBoxEnabled
+        {
+            get { return (bool)GetValue(IsTextBoxEnabledProperty); }
+            set { SetValue(IsTextBoxEnabledProperty, value); }
+        }
+
         public string Label
         {
             get { return (string)GetValue(LabelProperty); }

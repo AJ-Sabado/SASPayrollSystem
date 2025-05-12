@@ -50,11 +50,11 @@
                                 <TabItem Header="Basic Information">
                                     <StackPanel Margin="30,0,0,0">
                                         <!-- Section Header -->
-                                        <userControls:SectionHeaderControl Title="Basic Information" ButtonName="btnBasicInformationEdit" />
+                                        <userControls:SectionHeaderControl Title="Basic Information" ButtonName="btnBasicInformationEdit" ButtonCommand="{Binding EditBasicInfoButton}" ButtonText="{Binding EditBasicInfoButtonText}" ButtonIcon="{Binding EditBasicInfoButtonIcon}"/>
 
                                         <!-- Profile Header -->
                                         <userControls:ProfileHeaderControl ProfileImage="/Resources/Images/Profile.jpg"
-                                           ProfileName="{Binding FullName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                                           ProfileName="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" 
                                            ProfilePosition="{Binding Role, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30"/>
 
                                         <!-- Name Section -->
@@ -67,9 +67,9 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <userControls:LabeledTextBox Label="First Name" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
-                                            <userControls:LabeledTextBox Label="Last Name" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" />
-                                            <userControls:LabeledTextBox Label="Middle Name" Text="{Binding MiddleInitial, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" />
+                                            <userControls:LabeledTextBox Label="First Name" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextBoxEnabled="{Binding EditBasicInfo, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <userControls:LabeledTextBox Label="Last Name" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" IsTextBoxEnabled="{Binding EditBasicInfo, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <userControls:LabeledTextBox Label="Middle Name" Text="{Binding MiddleInitial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" IsTextBoxEnabled="{Binding EditBasicInfo, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                                         </Grid>
 
                                         <!-- Username Section -->
@@ -82,7 +82,7 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <userControls:LabeledTextBox Label="Username" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
+                                            <userControls:LabeledTextBox Label="Username" Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextBoxEnabled="{Binding EditBasicInfo, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                                         </Grid>
 
                                         <!-- Other Information -->
@@ -98,24 +98,24 @@
                                             <StackPanel Grid.Column="0">
                                                 <TextBlock Text="Date of Birth" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
                                                 <DatePicker x:Name="dpBirthday" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" 
-                                                            SelectedDateFormat="Long" IsEnabled="False"
-                                                            SelectedDate="{Binding DateOfBirth, UpdateSourceTrigger=PropertyChanged}"/>
+                                                            SelectedDateFormat="Long" IsEnabled="{Binding EditBasicInfo, UpdateSourceTrigger=PropertyChanged}"
+                                                            SelectedDate="{Binding DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                             </StackPanel>
 
                                             <StackPanel Grid.Column="2">
                                                 <TextBlock x:Name="tbGender" Text="Gender" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
-                                                <ComboBox x:Name="cbGender" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" IsEnabled="False"
+                                                <ComboBox x:Name="cbGender" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" IsEnabled="{Binding EditBasicInfo, UpdateSourceTrigger=PropertyChanged}"
                                                             ItemsSource="{helpers:EnumBindingSource domainAccountInfo:Gender}"
-                                                            SelectedItem="{Binding SelectedGender, UpdateSourceTrigger=PropertyChanged}"
+                                                            SelectedItem="{Binding SelectedGender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                           />
 
                                             </StackPanel>
 
                                             <StackPanel Grid.Column="4">
                                                 <TextBlock Text="Nationality" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
-                                                <ComboBox x:Name="cbNationality" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" IsEnabled="False"
+                                                <ComboBox x:Name="cbNationality" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" IsEnabled="{Binding EditBasicInfo, UpdateSourceTrigger=PropertyChanged}"
                                                           ItemsSource="{helpers:EnumBindingSource domainAccountInfo:Nationality}"
-                                                            SelectedItem="{Binding SelectedNationality, UpdateSourceTrigger=PropertyChanged}"
+                                                            SelectedItem="{Binding SelectedNationality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                           />
 
 
@@ -141,10 +141,10 @@
 
                                             <TextBlock Grid.Column="0" Text="Contact Information" FontFamily="{StaticResource PoppinsBold}"
                                                         FontSize="24" Margin="0,0,0,30"/>
-                                            <Button Grid.Column="1" Name="btnContactInformationEdit" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                            <Button Grid.Column="1" Name="btnContactInformationEdit" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding EditContactInfoButton}">
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                    <materialDesign:PackIcon Kind="Edit" Height="20" Width="20" Foreground="White"/>
-                                                    <TextBlock Text="Edit" FontFamily="{StaticResource PoppinsSemiBold}" 
+                                                    <materialDesign:PackIcon Kind="{Binding EditContactInfoButtonIcon}" Height="20" Width="20" Foreground="White"/>
+                                                    <TextBlock Text="{Binding EditContactInfoButtonText}" FontFamily="{StaticResource PoppinsSemiBold}" 
                                                                 FontSize="14" Margin="5,0,0,0" Foreground="White"/>
                                                 </StackPanel>
                                             </Button>
@@ -160,13 +160,13 @@
                                             </Grid.ColumnDefinitions>
 
                                             <!-- Primary Phone -->
-                                            <userControls:LabeledTextBox Grid.Column="0" Label="Primary Phone Number" Text="{Binding PrimaryPhoneNumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="Primary Phone Number" Text="{Binding PrimaryPhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextBoxEnabled="{Binding EditContactInfo}" Margin="0,0,0,30" />
 
                                             <!-- Secondary Phone -->
-                                            <userControls:LabeledTextBox Grid.Column="2" Label="Secondary Phone Number" Text="{Binding SecondaryPhoneNumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="2" Label="Secondary Phone Number" Text="{Binding SecondaryPhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextBoxEnabled="{Binding EditContactInfo}" Margin="0,0,0,30"/>
 
                                             <!-- Telephone -->
-                                            <userControls:LabeledTextBox Grid.Column="4" Label="Telephone" Text="{Binding Telephone, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="4" Label="Telephone" Text="{Binding Telephone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextBoxEnabled="{Binding EditContactInfo}" Margin="0,0,0,30" />
                                         </Grid>
 
                                         <Grid>
@@ -179,10 +179,10 @@
                                             </Grid.ColumnDefinitions>
 
                                             <!-- Primary Email -->
-                                            <userControls:LabeledTextBox Grid.Column="0" Label="Primary Email" Text="{Binding PrimaryEmail, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="Primary Email" Text="{Binding PrimaryEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextBoxEnabled="{Binding EditContactInfo}" Margin="0,0,0,30" />
 
                                             <!-- Mailing Address -->
-                                            <userControls:LabeledTextBox Grid.Column="2" Grid.ColumnSpan="3" Label="Mailing Address" Text="{Binding MailingAddress, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="2" Grid.ColumnSpan="3" Label="Mailing Address" Text="{Binding MailingAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextBoxEnabled="{Binding EditContactInfo}" Margin="0,0,0,30" />
                                         </Grid>
 
                                         <Grid>
@@ -195,10 +195,10 @@
                                             </Grid.ColumnDefinitions>
 
                                             <!-- Secondary Email -->
-                                            <userControls:LabeledTextBox Label="Secondary Email" Text="{Binding SecondaryEmail, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Label="Secondary Email" Text="{Binding SecondaryEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextBoxEnabled="{Binding EditContactInfo}" Margin="0,0,0,30" />
 
                                             <!-- Facebook -->
-                                            <userControls:LabeledTextBox Grid.Column="2" Grid.ColumnSpan="3" Label="Facebook" Text="{Binding FacebookLink, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="2" Grid.ColumnSpan="3" Label="Facebook" Text="{Binding FacebookLink, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextBoxEnabled="{Binding EditContactInfo}" Margin="0,0,0,30" />
                                         </Grid>
 
 
@@ -210,10 +210,10 @@
                                             </Grid.ColumnDefinitions>
 
                                             <!-- LinkedIn -->
-                                            <userControls:LabeledTextBox Grid.Column="0" Label="LinkedIn" Text="{Binding LinkedInLink, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="LinkedIn" Text="{Binding LinkedInLink, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextBoxEnabled="{Binding EditContactInfo}" Margin="0,0,0,30" />
 
                                             <!-- Website -->
-                                            <userControls:LabeledTextBox Grid.Column="2" Label="Website" Text="{Binding WebsiteLink, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="2" Label="Website" Text="{Binding WebsiteLink, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextBoxEnabled="{Binding EditContactInfo}" Margin="0,0,0,30" />
                                         </Grid>
                                     </StackPanel>
                                 </TabItem>
@@ -235,10 +235,10 @@
 
                                             <TextBlock Grid.Column="0" Text="Financial Information" FontFamily="{StaticResource PoppinsBold}"
                                                     FontSize="24" Margin="0,0,0,30"/>
-                                            <Button Grid.Column="1" Name="btnFinancialInformationEdit" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                            <Button Grid.Column="1" Name="btnFinancialInformationEdit" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding EditFinancialInfoButton}">
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                    <materialDesign:PackIcon Kind="Edit" Height="20" Width="20" Foreground="White"/>
-                                                    <TextBlock Text="Edit" FontFamily="{StaticResource PoppinsSemiBold}" 
+                                                    <materialDesign:PackIcon Kind="{Binding EditFinancialInfoButtonIcon}" Height="20" Width="20" Foreground="White"/>
+                                                    <TextBlock Text="{Binding EditFinancialInfoButtonText}" FontFamily="{StaticResource PoppinsSemiBold}" 
                                                                 FontSize="14" Margin="5,0,0,0" Foreground="White"/>
                                                 </StackPanel>
                                             </Button>
@@ -254,9 +254,9 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <userControls:LabeledTextBox Grid.Column="0" Label="Tax Identification Number (TIN)" Text="{Binding TaxIdentificationNumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
-                                            <userControls:LabeledTextBox Grid.Column="2" Label="SSS ID Number" Text="{Binding SSSIdNumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
-                                            <userControls:LabeledTextBox Grid.Column="4" Label="PhilHealth ID" Text="{Binding PhilHealthIdNumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="Tax Identification Number (TIN)" Text="{Binding TaxIdentificationNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EditFinancialInfo}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="2" Label="SSS ID Number" Text="{Binding SSSIdNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EditFinancialInfo}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="4" Label="PhilHealth ID" Text="{Binding PhilHealthIdNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EditFinancialInfo}" Margin="0,0,0,30" />
                                         </Grid>
 
                                         <!-- PagIBIG ID -->
@@ -269,7 +269,7 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <userControls:LabeledTextBox Grid.Column="0" Label="PagIBIG ID" Text="{Binding PagIbigIdNumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="PagIBIG ID" Text="{Binding PagIbigIdNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EditFinancialInfo}" Margin="0,0,0,30" />
                                         </Grid>
 
                                         <!-- Bank Information -->
@@ -282,9 +282,9 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <userControls:LabeledTextBox Grid.Column="0" Label="Bank Name" Text="{Binding BankName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
-                                            <userControls:LabeledTextBox Grid.Column="2" Label="Bank Account Name" Text="{Binding BankAccountName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
-                                            <userControls:LabeledTextBox Grid.Column="4" Label="Bank Account ID" Text="{Binding BankAccountNumber, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="Bank Name" Text="{Binding BankName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EditFinancialInfo}" Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="2" Label="Bank Account Name" Text="{Binding BankAccountName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EditFinancialInfo}"  Margin="0,0,0,30" />
+                                            <userControls:LabeledTextBox Grid.Column="4" Label="Bank Account ID" Text="{Binding BankAccountNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding EditFinancialInfo}"  Margin="0,0,0,30" />
                                         </Grid>
 
                                     </StackPanel>
@@ -309,8 +309,8 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <userControls:LabeledTextBox Grid.Column="0" Label="Employee ID" Text="{Binding CompanyId}" />
-                                            <userControls:LabeledTextBox Grid.Column="2" Label="Role" Text="{Binding Role}" />
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="Employee ID" Text="{Binding CompanyId}" IsTextBoxEnabled="False"/>
+                                            <userControls:LabeledTextBox Grid.Column="2" Label="Role" Text="{Binding Role}" IsTextBoxEnabled="False"/>
                                         </Grid>
 
                                         <!-- Department and Employment Type -->
@@ -321,8 +321,8 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <userControls:LabeledTextBox Grid.Column="0" Label="Department" Text="{Binding Department}" />
-                                            <userControls:LabeledTextBox Grid.Column="2" Label="Employment Type" Text="{Binding EmploymentType}" />
+                                            <userControls:LabeledTextBox Grid.Column="0" Label="Department" Text="{Binding Department}" IsTextBoxEnabled="False"/>
+                                            <userControls:LabeledTextBox Grid.Column="2" Label="Employment Type" Text="{Binding EmploymentType}" IsTextBoxEnabled="False"/>
                                         </Grid>
 
                                         <!-- Date Hired -->
@@ -333,7 +333,7 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <userControls:LabeledTextBox Label="Date Hired" Text="{Binding DateHired}" />
+                                            <userControls:LabeledTextBox Label="Date Hired" Text="{Binding DateHired}" IsTextBoxEnabled="False"/>
                                         </Grid>
 
                                     </StackPanel>

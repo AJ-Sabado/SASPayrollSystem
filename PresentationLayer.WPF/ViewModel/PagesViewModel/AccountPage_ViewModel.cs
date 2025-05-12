@@ -1,5 +1,8 @@
-﻿using DomainLayer.Enums.EmployeePersonalInfo;
+﻿using System.Windows.Input;
+using DomainLayer.Enums.EmployeePersonalInfo;
 using ServicesLayer;
+using DomainLayer.Models.User;
+using System.Collections.Specialized;
 
 namespace PresentationLayer.WPF.ViewModel.PagesViewModel
 {
@@ -7,12 +10,43 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
     {
         private IUnitOfWork _unitOfWork;
 
+
         //Basic Information
+        private bool _editBasicInfo = false;
+        public bool EditBasicInfo
+        {
+            get => _editBasicInfo;
+            set
+            {
+                _editBasicInfo = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _editBasicInfoButtonText = "Edit";
+        public string EditBasicInfoButtonText
+        {
+            get => _editBasicInfoButtonText;
+            set
+            {
+                _editBasicInfoButtonText = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _editBasicInfoButtonIcon = "Edit";
+        public string EditBasicInfoButtonIcon
+        {
+            get => _editBasicInfoButtonIcon;
+            set
+            {
+                _editBasicInfoButtonIcon = value;
+                OnPropertyChanged();
+            }
+        }
         private string _fullName = "Full Name";
         public string FullName
         {
             get => _fullName;
-            private set
+            set
             {
                 _fullName = value;
                 OnPropertyChanged();
@@ -70,7 +104,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
         }
         private DateTime _dateOfBirth = DateTime.Now;
         public DateTime DateOfBirth
-        { 
+        {
             get => _dateOfBirth;
             set
             {
@@ -100,6 +134,36 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
         }
 
         //Contact Information
+        private bool _editContactInfo = false;
+        public bool EditContactInfo
+        {
+            get => _editContactInfo;
+            set
+            {
+                _editContactInfo = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _editContactInfoButtonText = "Edit";
+        public string EditContactInfoButtonText
+        {
+            get => _editContactInfoButtonText;
+            set
+            {
+                _editContactInfoButtonText = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _editContactInfoButtonIcon = "Edit";
+        public string EditContactInfoButtonIcon
+        {
+            get => _editContactInfoButtonIcon;
+            set
+            {
+                _editContactInfoButtonIcon = value;
+                OnPropertyChanged();
+            }
+        }
         private string _primaryPhoneNumber = "+639000000000";
         public string PrimaryPhoneNumber
         {
@@ -192,6 +256,36 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
         }
 
         //Financial Information
+        private bool _editFinancialInfo = false;
+        public bool EditFinancialInfo
+        {
+            get => _editFinancialInfo;
+            set
+            {
+                _editFinancialInfo = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _editFinancialInfoButtonText = "Edit";
+        public string EditFinancialInfoButtonText
+        {
+            get => _editFinancialInfoButtonText;
+            set
+            {
+                _editFinancialInfoButtonText = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _editFinancialInfoButtonIcon = "Edit";
+        public string EditFinancialInfoButtonIcon
+        {
+            get => _editFinancialInfoButtonIcon;
+            set
+            {
+                _editFinancialInfoButtonIcon = value;
+                OnPropertyChanged();
+            }
+        }
         private string _taxIdentificationNumber = "123-456-789";
         public string TaxIdentificationNumber
         {
@@ -304,13 +398,117 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
                 OnPropertyChanged();
             }
         }
-
         public AccountPage_ViewModel(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            EditBasicInfoButton = new RelayCommand(EditBasicInfoButton_Click);
+            EditContactInfoButton = new RelayCommand(EditContactInfoButton_Click);
+            EditFinancialInfoButton = new RelayCommand(EditFinancialInfoButton_Click);
             LoadUserData();
         }
 
+        //Commands
+        public ICommand EditBasicInfoButton { get; set; }
+        public ICommand EditContactInfoButton { get; set; }
+        public ICommand EditFinancialInfoButton { get; set; }
+
+        public void EditFinancialInfoButton_Click(object? obj)
+        {
+            if (EditFinancialInfo)
+            {
+                EditFinancialInfoButtonText = "Edit";
+                EditFinancialInfoButtonIcon = "Edit";
+                EditFinancialInfo = false;
+                SaveData();
+            }
+            else
+            {
+                EditFinancialInfoButtonText = "Save";
+                EditFinancialInfoButtonIcon = "Cloud";
+                EditFinancialInfo = true;
+            }
+        }
+
+        private void EditBasicInfoButton_Click(object? obj)
+        {
+            if (EditBasicInfo)
+            {
+                EditBasicInfoButtonText = "Edit";
+                EditBasicInfoButtonIcon = "Edit";
+                EditBasicInfo = false;
+                SaveData();
+            }
+            else
+            {
+                EditBasicInfoButtonText = "Save";
+                EditBasicInfoButtonIcon = "Cloud";
+                EditBasicInfo = true;
+            }
+        }
+
+        public void EditContactInfoButton_Click(object? obj)
+        {
+            if (EditContactInfo)
+            {
+                EditContactInfoButtonText = "Edit";
+                EditContactInfoButtonIcon = "Edit";
+                EditContactInfo = false;
+                SaveData();
+            }
+            else
+            {
+                EditContactInfoButtonText = "Save";
+                EditContactInfoButtonIcon = "Cloud";
+                EditContactInfo = true;
+            }
+        }
+
+        private async void SaveData()
+        { 
+            var user = await _unitOfWork.UserRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Employee,Admin,Contractor,Department");
+            if (user != null)
+            {
+                if (user.Employee != null)
+                {
+                    var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == user.UserId, includeProperties: "EmployeeAccountInfo");
+                    if (employee != null && employee.EmployeeAccountInfo != null)
+                    {
+                        // Update employee data
+                        user.Username = Username;
+                        user.Email = PrimaryEmail;
+
+                        await _unitOfWork.UserRepository.UpdateAsync(user);
+
+                        employee.EmployeeAccountInfo.FirstName = FirstName;
+                        employee.EmployeeAccountInfo.LastName = LastName;
+                        employee.EmployeeAccountInfo.MiddleInitial = MiddleInitial;
+                        employee.EmployeeAccountInfo.DateOfBirth = DateOnly.FromDateTime(DateOfBirth);
+                        employee.EmployeeAccountInfo.Gender = SelectedGender;
+                        employee.EmployeeAccountInfo.Nationality = SelectedNationality;
+
+                        employee.EmployeeAccountInfo.PrimaryPhoneNumber = PrimaryPhoneNumber;
+                        employee.EmployeeAccountInfo.SecondaryPhoneNumber = SecondaryPhoneNumber;
+                        employee.EmployeeAccountInfo.Telephone = Telephone;
+                        employee.EmployeeAccountInfo.MailingAddress = MailingAddress;
+                        employee.EmployeeAccountInfo.SecondaryEmail = SecondaryEmail;
+                        employee.EmployeeAccountInfo.FacebookUrl = FacebookLink;
+                        employee.EmployeeAccountInfo.LinkedInUrl = LinkedInLink;
+                        employee.EmployeeAccountInfo.WebsiteUrl = WebsiteLink;
+
+                        employee.EmployeeAccountInfo.TaxIdNumber = TaxIdentificationNumber;
+                        employee.EmployeeAccountInfo.SSSIdNumber = SSSIdNumber;
+                        employee.EmployeeAccountInfo.PhilHealthIdNumber = PhilHealthIdNumber;
+                        employee.EmployeeAccountInfo.PagIbigIdNumber = PagIbigIdNumber;
+                        employee.EmployeeAccountInfo.BankName = BankName;
+                        employee.EmployeeAccountInfo.BankAccountName = BankAccountName;
+                        employee.EmployeeAccountInfo.BankAccountId = BankAccountNumber;
+
+                        await _unitOfWork.EmployeeRepository.UpdateAsync(employee);
+                        LoadUserData();
+                    }
+                }
+            }
+        }
         private async void LoadUserData()
         {
             var user = await _unitOfWork.UserRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Employee,Admin,Contractor,Department");
@@ -322,6 +520,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
                     var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == user.UserId, includeProperties: "EmployeeAccountInfo");
                     if (employee != null && employee.EmployeeAccountInfo != null)
                     {
+
                         //Basic Info
                         FullName = employee.EmployeeAccountInfo.FullName;
                         Role = employee.EmployeeAccountInfo.Role;

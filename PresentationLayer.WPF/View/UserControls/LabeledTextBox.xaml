@@ -10,7 +10,7 @@
             <TextBlock Text="{Binding Label, RelativeSource={RelativeSource AncestorType=UserControl}}"
                        FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
             <TextBox Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                     FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" IsEnabled="False"/>
+                     FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" IsEnabled="{Binding IsTextBoxEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </StackPanel>
     </Grid>
 </UserControl>
