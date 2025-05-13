@@ -15,6 +15,12 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         public string UsernameSignIn { private get; set; } = string.Empty;
         public string PasswordSignIn { private get; set; }
 
+        public string UsernameSignUp { private get; set; } = string.Empty;
+        public string EmailSignUp { private get; set; } = string.Empty;
+        public string PasswordSignUp { private get; set; }
+        public string ConfirmPasswordSignUp { private get; set; } = string.Empty;
+
+
         private string _loginMessage = string.Empty;
         public string LoginMessage
         {
@@ -43,10 +49,50 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
             _windowService = windowService;
             _unitOfWork.InitialSeeding();
 
-            Login = new RelayCommand(AuthenticateUser, _ => true);
+            SignIn = new RelayCommand(AuthenticateUser, _ => true);
+            SignUp = new RelayCommand(SignUpNewUser, _ => true);
         }
 
-        public ICommand Login { get; set; }
+        public ICommand SignIn { get; set; }
+        public ICommand SignUp { get; set; }
+
+
+        private async void SignUpNewUser(object? parameter)
+        {
+            if (string.IsNullOrEmpty(UsernameSignUp)
+                || string.IsNullOrEmpty(EmailSignUp)
+                || string.IsNullOrEmpty(PasswordSignUp)
+                || string.IsNullOrEmpty(ConfirmPasswordSignUp))
+            {
+                System.Windows.MessageBox.Show("Please fill in all fields.");
+                return;
+            }
+            var result = await _unitOfWork.RegisterUser(UsernameSignUp, EmailSignUp, PasswordSignUp, ConfirmPasswordSignUp);
+            if (result == ServicesLayer.Enums.RegisterUserResult.UserAlreadyExists)
+            {
+                System.Windows.MessageBox.Show("User already exists."); 
+            }
+            else if (result == ServicesLayer.Enums.RegisterUserResult.InvalidEmail)
+            {
+                System.Windows.MessageBox.Show("Invalid email address.");
+            }
+            else if (result == ServicesLayer.Enums.RegisterUserResult.PasswordMismatch)
+            {
+                System.Windows.MessageBox.Show("Passwords do not match.");
+            }
+            else if (result == ServicesLayer.Enums.RegisterUserResult.WeakPassword)
+            {
+                System.Windows.MessageBox.Show("Password is too weak.");
+            }
+            else if (result == ServicesLayer.Enums.RegisterUserResult.Success)
+            {
+                System.Windows.MessageBox.Show("Registration successful!");
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("An unknown error occurred.");
+            }   
+        }
 
         private async void AuthenticateUser(object? parameter)
         {
@@ -71,6 +117,8 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                     System.Windows.MessageBox.Show("Admin Functionality to be added");
                 else if (user.Role.NormalizedName == "CONTRACTOR")
                     System.Windows.MessageBox.Show("Contractor Functionality to be added");
+                else
+                    System.Windows.MessageBox.Show("Please contact admin to verify account!");
             }
             else
             {

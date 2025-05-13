@@ -1,12 +1,11 @@
-﻿using DomainLayer.Services;
-using DomainLayer.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using DomainLayer.Models.Admin;
 using DomainLayer.Models.Contractor;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.Role;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using DomainLayer.Services;
 
 namespace DomainLayer.Models.User
 {
@@ -47,9 +46,6 @@ namespace DomainLayer.Models.User
 
         [EmailAddress(ErrorMessage = "Must be a valid email address")]
         public string? Email { get; set; }
-
-        [Column(TypeName = "tinyint")]
-        public FormStatus Status { get; set; } = FormStatus.Pending;
 
         [ForeignKey(nameof(RoleId))]
         public Guid RoleId { get; set; }

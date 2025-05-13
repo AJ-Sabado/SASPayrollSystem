@@ -11,8 +11,6 @@ namespace DomainLayer.Models.EmployeePayslip
     public class EmployeePayslipModel
     {
         /*--------------------------CONSTANTS--------------------------*/
-        private const uint _annualWorkDays = 243;
-        private const uint _workHoursPerDay = 8;
         private const decimal _nightDifferential = 1.1m;
         private const decimal _specialNonWorkingOrRestDayPremium = 1.3m;
         private const decimal _ordinaryOTPremium = 1.25m;

@@ -13,6 +13,8 @@ using DomainLayer.Models.User;
 using InfrastructureLayer.DataAccess;
 using InfrastructureLayer.DataAccess.Repositories.Common;
 using ServicesLayer.Common;
+using ServicesLayer.Enums;
+using ServicesLayer.Exceptions;
 
 
 
@@ -111,7 +113,7 @@ namespace ServicesLayer
                     Role = employeeRole,
                     DepartmentId = department.DepartmentId,
                     Department = department,
-                    Status = FormStatus.Approved
+                    //Status = FormStatus.Approved
                 };
                 decimal monthlyRate = 15000;
                 user.Employee = new EmployeeModel()
@@ -185,7 +187,8 @@ namespace ServicesLayer
                     "Finance & Operations",
                     "Administration",
                     "Partner",
-                    "Individual Contractor"
+                    "Individual Contractor",
+                    "Unassigned"
                 };
                 var departmentModels = new List<DepartmentModel>();
                 foreach (var department in defaultDepartments)
@@ -204,9 +207,10 @@ namespace ServicesLayer
         {
             string[] defaultRoles =
             {
-                "admin",
-                "employee",
-                "contractor"
+                "Admin",
+                "Employee",
+                "Contractor",
+                "No Access"
             };
             var roles = await RoleRepository.GetAllAsync();
             var rolemodels = new List<RoleModel>();
@@ -242,7 +246,7 @@ namespace ServicesLayer
                     Role = adminRole,
                     DepartmentId = department.DepartmentId,
                     Department = department,
-                    Status = FormStatus.Approved
+                    //Status = FormStatus.Approved
                 };
 
                 user.Admin = new AdminModel()
@@ -259,16 +263,6 @@ namespace ServicesLayer
             }
         }
 
-        public async Task NewUserRequest(string username, string password, string email)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task ApproveNewUserRequest(string requestEmail, string roleName = null)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Save()
         {
             using (var context = new AppDbContext())
@@ -277,9 +271,55 @@ namespace ServicesLayer
             }
         }
 
-        public async Task ForgotPasswordRequest(string username, string email, string password, string confirmPassword)
+        public async Task<RegisterUserResult> RegisterUser(string username, string email, string password, string confirmPassword, string roleName = null, string departmentName = null)
         {
-            throw new NotImplementedException();
+            var user = await UserRepository.GetAsync(u => u.Username == username || u.Email == email);
+            if (user != null)
+            {
+                return RegisterUserResult.UserAlreadyExists;
+            }
+            if (!_modelDataAnnotationsCheck.IsValidEmail(email))
+            {
+                return RegisterUserResult.InvalidEmail;
+            }
+            if (password != confirmPassword)
+            {
+                return RegisterUserResult.PasswordMismatch;
+            }
+            if (password.Length < 8)
+            {
+                return RegisterUserResult.WeakPassword;
+            }
+            if (string.IsNullOrEmpty(roleName))
+            {
+                roleName = "No Access";
+            }
+            if (string.IsNullOrEmpty(departmentName))
+            {
+                departmentName = "Unassigned";
+            }
+
+            var role = await RoleRepository.GetAsync(r => r.NormalizedName == roleName.ToUpperInvariant(), includeProperties: "Users");
+            var department = await DepartmentRepository.GetAsync(d => d.NormalizedName == departmentName.ToUpperInvariant(), includeProperties: "Users");
+
+            var newUser = new UserModel()
+            {
+                Username = username,
+                Password = password,
+                Email = email,
+                RoleId = role.RoleId,
+                Role = role,
+                DepartmentId = department.DepartmentId,
+                Department = department,
+            };
+
+            role.Users.Add(newUser);
+            department.Users.Add(newUser);
+
+            await RoleRepository.UpdateAsync(role);
+            await DepartmentRepository.UpdateAsync(department);
+
+            return RegisterUserResult.Success;
         }
     }
 }

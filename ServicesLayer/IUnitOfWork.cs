@@ -6,6 +6,7 @@ using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
 using ServicesLayer.Common;
+using ServicesLayer.Enums;
 
 namespace ServicesLayer
 {
@@ -19,11 +20,12 @@ namespace ServicesLayer
         IBaseServices<RoleModel> RoleRepository { get; }
         IBaseServices<UserModel> UserRepository { get; }
 
-        Task ApproveNewUserRequest(string requestEmail, string roleName = null);
-        Task ForgotPasswordRequest(string username, string email, string password, string confirmPassword);
+        //Task ApproveNewUserRequest(string requestEmail, string roleName = null);
+        //Task ForgotPasswordRequest(string username, string email, string password, string confirmPassword);
+        //Task NewUserRequest(string username, string password, string email);
         Task InitialSeeding();
         Task<UserModel?> Login(string usernameOrEmail, string password);
-        Task NewUserRequest(string username, string password, string email);
+        Task<RegisterUserResult> RegisterUser(string username, string email, string password, string confirmPassword, string roleName = null, string departmentName = null);
         void Save();
     }
 }

@@ -60,7 +60,6 @@ namespace InfrastructureLayer.Migrations
                     Salt = table.Column<byte[]>(type: "binary(32)", nullable: false),
                     PasswordHash = table.Column<byte[]>(type: "binary(32)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<byte>(type: "tinyint", nullable: false),
                     RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },

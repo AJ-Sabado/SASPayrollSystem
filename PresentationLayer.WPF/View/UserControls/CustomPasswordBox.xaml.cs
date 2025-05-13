@@ -88,7 +88,12 @@ namespace SASPayrolSystemProject.View.UserControls
         {
             if (this.DataContext != null)
             {
-                ((LoginPage_ViewModel)this.DataContext).PasswordSignIn = password;
+                if (this.Name == "SignInPasswordBox")
+                    ((LoginPage_ViewModel)this.DataContext).PasswordSignIn = password;
+                if (this.Name == "SignUpPasswordBox")
+                    ((LoginPage_ViewModel)this.DataContext).PasswordSignUp = password;
+                if (this.Name == "SignUpConfirmPasswordBox")
+                    ((LoginPage_ViewModel)this.DataContext).ConfirmPasswordSignUp = password;
             }
         }
 

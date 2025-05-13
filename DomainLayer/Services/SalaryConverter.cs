@@ -1,6 +1,6 @@
 ﻿namespace DomainLayer.Services
 {
-    public class SalaryConverter
+    public class SalaryConverter : ISalaryConverter
     {
         private const int _factor = 261;
 

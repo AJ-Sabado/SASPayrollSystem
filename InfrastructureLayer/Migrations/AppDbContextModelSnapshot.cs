@@ -508,9 +508,6 @@ namespace InfrastructureLayer.Migrations
                         .IsRequired()
                         .HasColumnType("binary(32)");
 
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(20)

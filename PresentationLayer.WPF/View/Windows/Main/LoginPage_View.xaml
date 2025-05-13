@@ -98,9 +98,11 @@
                     <TextBlock Grid.Row="2" Text="Enter Email" 
                                FontSize="14"
                                  FontFamily="{StaticResource PoppinsRegular}"
-                                 HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" />
+                                 HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" 
+                                />
 
                     <userControls:CustomTextBox Grid.Row="3" PlaceholderText="address@gmail.com"
+                                                TextBoxText="{Binding EmailSignUp, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                                                 Margin="0,1"/>
 
                     <!--Enter username-->
@@ -110,7 +112,8 @@
                                  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" />
 
                     <userControls:CustomTextBox Grid.Row="5" PlaceholderText="Username"
-                            Margin="0,1"/>
+                                                TextBoxText="{Binding UsernameSignUp, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                                                Margin="0,1"/>
 
                     <!--Enter Password-->
                     <TextBlock Grid.Row="6" Text="Enter Password" 
@@ -119,6 +122,7 @@
                                  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" />
                     <userControls:CustomPasswordBox Grid.Row="7"
                                 Margin="0,1"
+                                x:Name="SignUpPasswordBox"                               
                                 PlaceholderText="Enter Password"/>
 
 
@@ -130,6 +134,7 @@
 
                     <userControls:CustomPasswordBox Grid.Row="9"
                                 Margin="0,1"
+                                x:Name="SignUpConfirmPasswordBox"
                                 PlaceholderText="Confirm Password"/>
 
                     <!--Sign Up Button-->
@@ -137,7 +142,9 @@
                                 FontSize="16" FontFamily="{StaticResource PoppinsSemiBold}" FontWeight="SemiBold"
                                 HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,5,0,0"
                                 Background="#0078D4" BorderBrush="{x:Null}" Foreground="White"
-                                Padding="10,5" Cursor="Hand" Click="btnSignUp_Click"/>
+                                Padding="10,5" Cursor="Hand" Click="btnSignUp_Click"
+                                Command="{Binding SignUp}"
+                            />
                 </Grid>
 
                 <!--Sign In Grid-->
@@ -196,7 +203,9 @@
                         <!-- Actual Password Box -->
                         <userControls:CustomPasswordBox Grid.Row="5"
                                                         Margin="0,7"
-                                                        PlaceholderText="Password"/>
+                                                        PlaceholderText="Password"
+                                                        x:Name="SignInPasswordBox"
+                                                        />
                     </Grid>
 
                     <!--Forgot Password Button-->
@@ -211,7 +220,7 @@
                             HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,0,0"
                             Background="#0078D4" BorderBrush="{x:Null}" Foreground="White"
                             Padding="10,5" Cursor="Hand" Click="btnSignIn_Click"
-                            Command="{Binding Login}"
+                            Command="{Binding SignIn}"
                             />
                     <TextBlock Grid.Row="6" Text="{Binding LoginMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontSize="12"
                         FontFamily="{StaticResource PoppinsRegular}"

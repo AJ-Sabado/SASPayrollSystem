@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250511084847_InitialCreate")]
+    [Migration("20250513104926_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -510,9 +510,6 @@ namespace InfrastructureLayer.Migrations
                     b.Property<byte[]>("Salt")
                         .IsRequired()
                         .HasColumnType("binary(32)");
-
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint");
 
                     b.Property<string>("Username")
                         .IsRequired()
