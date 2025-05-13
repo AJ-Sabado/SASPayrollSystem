@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace DomainLayer.Helpers
+namespace DomainLayer.Services
 {
     public class Encryption : IEncryption
     {

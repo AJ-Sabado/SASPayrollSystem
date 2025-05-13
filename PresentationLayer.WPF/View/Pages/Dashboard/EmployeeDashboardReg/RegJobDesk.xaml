@@ -59,10 +59,10 @@
                                     </Image>
 
                                     <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                        <TextBlock x:Name="txtEmployeeName" Text="John Jane S. Doe Smoth"
+                                        <TextBlock x:Name="txtEmployeeName" Text="{Binding FullName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                     FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                      HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                        <TextBlock x:Name="txtEmployeePosition" Text="Senior Software Developer"
+                                        <TextBlock x:Name="txtEmployeePosition" Text="{Binding Role, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                     FontFamily="{StaticResource PoppinsLight}" FontSize="12"
                                                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                     </StackPanel>
@@ -85,7 +85,7 @@
                                 </Border>
 
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock x:Name="txtEmployeeDepartment" Text="Front End Developer"
+                                    <TextBlock x:Name="txtEmployeeDepartment" Text="{Binding Department, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                     <TextBlock Text="Department"
@@ -104,7 +104,7 @@
                                 </Border>
 
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock x:Name="txtEmployeeStatus" Text="Regular Employee"
+                                    <TextBlock x:Name="txtEmployeeStatus" Text="{Binding EmploymentStatus, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                     <TextBlock Text="Employment Status"
@@ -123,7 +123,7 @@
                                 </Border>
 
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock x:Name="txtEmployeeShift" Text="6:00 AM - 12:00 PM"
+                                    <TextBlock x:Name="txtEmployeeShift" Text="{Binding WorkShift, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                  HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                     <TextBlock Text="Shift"
@@ -142,7 +142,7 @@
                                 </Border>
 
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock x:Name="txtEmployeeRate" Text="Php 500.00 per Day"
+                                    <TextBlock x:Name="txtEmployeeRate" Text="{Binding DailyRate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                     FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                     <TextBlock Text="Daily Rate"
@@ -166,7 +166,7 @@
                                     <TextBlock Text="Email"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                    <TextBlock  x:Name="txtEmployeeEmail" Text="j.smith@umindanao.edu.ph"
+                                    <TextBlock  x:Name="txtEmployeeEmail" Text="{Binding Email, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                 FontFamily="{StaticResource PoppinsLight}" FontSize="12"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 </StackPanel>
@@ -184,7 +184,7 @@
                                     <TextBlock  Text="Phone"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                    <TextBlock x:Name="txtEmployeePhoneNumber" Text="+63 945 784 1258"
+                                    <TextBlock x:Name="txtEmployeePhoneNumber" Text="{Binding Phone, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                 FontFamily="{StaticResource PoppinsLight}" FontSize="12"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 </StackPanel>
@@ -202,7 +202,7 @@
                                     <TextBlock Text="Website"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                    <TextBlock  x:Name="txtEmployeeWebsite" Text="www.github.com/wafu"
+                                    <TextBlock  x:Name="txtEmployeeWebsite" Text="{Binding Website, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                 FontFamily="{StaticResource PoppinsLight}" FontSize="12"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 </StackPanel>

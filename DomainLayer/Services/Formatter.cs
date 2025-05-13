@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace DomainLayer.Helpers
+namespace DomainLayer.Services
 {
     public class Formatter : IFormatter
     {

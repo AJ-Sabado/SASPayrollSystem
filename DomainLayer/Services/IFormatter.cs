@@ -1,4 +1,4 @@
-﻿namespace DomainLayer.Helpers
+﻿namespace DomainLayer.Services
 {
     public interface IFormatter
     {
