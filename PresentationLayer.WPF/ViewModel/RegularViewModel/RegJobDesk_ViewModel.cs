@@ -2,6 +2,7 @@
 using DomainLayer.Enums.EmployeePersonalInfo;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Windows;
+using PresentationLayer.WPF.ViewModel.Tables;
 using ServicesLayer;
 
 namespace PresentationLayer.WPF.ViewModel.RegularViewModel
@@ -13,6 +14,8 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
 
         public ICommand FileLeaveCommand { get; }
         public ICommand AttendanceRequestCommand { get; }
+
+        public IList<AttendanceLog> AttendanceLogList { get; set; } = []; 
 
         //Information
         private string _fullName = "Full Name";
@@ -138,6 +141,22 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                             EmploymentStatus = "Regular Employee";
                         else
                             EmploymentStatus = "Independent Contractor";
+                    }
+
+                    if (employee.EmployeeAttendances != null && employee.EmployeeAttendances.Count > 0)
+                    {
+                        foreach (var attendance in employee.EmployeeAttendances)
+                        {
+                            AttendanceLogList.Add(new AttendanceLog
+                            {
+                                Date = attendance.Date,
+                                TimeIn = attendance.TimeIn,
+                                TimeOut = attendance.TimeOut,
+                                Status = attendance.Status.ToString(),
+                                Overtime = attendance.OTStatus.ToString(),
+                                OTDuration = $"{attendance.OTHours} hours"
+                            });
+                        }
                     }
                 }
             }

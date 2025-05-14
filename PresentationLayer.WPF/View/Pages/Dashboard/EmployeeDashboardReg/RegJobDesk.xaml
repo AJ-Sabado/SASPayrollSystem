@@ -445,6 +445,8 @@
                                                             Height="200"
                                                             CanUserResizeColumns="False"
                                                             Margin="0,5,0,5"
+                                                            IsReadOnly="True"
+                                                            ItemsSource="{Binding AttendanceLogList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                             EnableRowVirtualization="True"
                                                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                             ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -458,12 +460,12 @@
                                                     </DataGrid.Resources>
 
                                                     <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="Date" Width="150"/>
-                                                        <DataGridTextColumn Header="Time In" Width="150"/>
-                                                        <DataGridTextColumn Header="Time Out" Width="150"/>
-                                                        <DataGridTextColumn Header="Status" Width="150"/>
-                                                        <DataGridTextColumn Header="Overtime" Width="150"/>
-                                                        <DataGridTextColumn Header="OT Duration" Width="150"/>
+                                                        <DataGridTextColumn Header="Date" Width="150" Binding="{Binding Date}"/>
+                                                        <DataGridTextColumn Header="Time In" Width="150" Binding="{Binding TimeIn}"/>
+                                                        <DataGridTextColumn Header="Time Out" Width="150" Binding="{Binding TimeOut}"/>
+                                                        <DataGridTextColumn Header="Status" Width="150" Binding="{Binding Status}"/>
+                                                        <DataGridTextColumn Header="Overtime" Width="150" Binding="{Binding Overtime}"/>
+                                                        <DataGridTextColumn Header="OT Duration" Width="150" Binding="{Binding OTDuration}"/>
                                                     </DataGrid.Columns>
                                                 </DataGrid>
                                             </ScrollViewer>
@@ -489,6 +491,7 @@
                                                             Height="200"
                                                             CanUserResizeColumns="False"
                                                             Margin="0,5,0,5"
+                                                            IsReadOnly="True"
                                                             EnableRowVirtualization="True"
                                                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                             ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -501,13 +504,13 @@
                                                     </DataGrid.Resources>
 
                                                     <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="150"/>
-                                                        <DataGridTextColumn Header="Request Date" Binding="{Binding DateOfRequest}" Width="150"/>
-                                                        <DataGridTextColumn Header="Attendance Date" Binding="{Binding AttendanceDate}" Width="150"/>
-                                                        <DataGridTextColumn Header="Time In" Binding="{Binding TimeIn}" Width="150"/>
-                                                        <DataGridTextColumn Header="Time Out" Binding="{Binding TimeOut}" Width="150"/>
-                                                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="150"/>
-                                                        <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" Width="150" CanUserSort="False"/>
+                                                        
+                                                        <DataGridTextColumn Header="Request Date" Width="150"/>
+                                                        <DataGridTextColumn Header="Attendance Date" Width="150"/>
+                                                        <DataGridTextColumn Header="Time In" Width="150"/>
+                                                        <DataGridTextColumn Header="Time Out" Width="150"/>
+                                                        <DataGridTextColumn Header="Status" Width="150"/>
+                                                        <DataGridTextColumn Header="Reason" Width="150" CanUserSort="False"/>
                                                         <DataGridTemplateColumn Header="Actions" Width="150">
                                                             <DataGridTemplateColumn.CellTemplate>
                                                                 <DataTemplate>
