@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using System.Windows.Threading;
 using PresentationLayer.WPF.Services;
 using SASPayrolSystemProject;
 using ServicesLayer;
@@ -10,8 +11,9 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWindowService _windowService;
 
-        //Binded properties
+        public IList<AttendanceLog> AttendanceLogList {get; set;} = [];
 
+        //Binded properties
         public ICommand Logout { get; set; }
 
         private string _employeeFirstName = "First Name";
@@ -62,9 +64,10 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
             _windowService.ShowWindow<MainWindow>();
         }
 
+
         private async void LoadUserData()
         {
-            var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "User,EmployeeAccountInfo");
+            var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "User,EmployeeAccountInfo,EmployeeAttendances");
             if (employee != null)
             {
                 if (employee.EmployeeAccountInfo != null)
@@ -73,7 +76,33 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
                     EmployeeCompanyId = employee.EmployeeAccountInfo.CompanyId;
                     EmployeeRole = employee.EmployeeAccountInfo.Role;
                 }
+
+                if (employee.EmployeeAttendances != null && employee.EmployeeAttendances.Count > 0)
+                {
+                    foreach (var attendance in employee.EmployeeAttendances)
+                    {
+                        AttendanceLogList.Add(new AttendanceLog
+                        {
+                            Date = attendance.Date,
+                            TimeIn = attendance.TimeIn,
+                            TimeOut = attendance.TimeOut,
+                            Status = attendance.Status.ToString(),
+                            Overtime = attendance.OTStatus.ToString(),
+                            OTDuration = $"{attendance.OTHours} hours"
+                        });
+                    }
+                }
             }
         }
+    }
+
+    public class AttendanceLog
+    {
+        public DateOnly Date { get; set; }
+        public TimeOnly TimeIn { get; set; }
+        public TimeOnly TimeOut { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public string Overtime { get; set; } = string.Empty;
+        public string OTDuration { get; set; } = string.Empty;
     }
 }

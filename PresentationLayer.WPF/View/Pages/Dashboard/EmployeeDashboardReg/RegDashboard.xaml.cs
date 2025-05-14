@@ -12,6 +12,24 @@ namespace PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg
         {
             InitializeComponent();
             DataContext = vm;
+            StartClock();
+        }
+
+        //Clock
+        private async void StartClock()
+        {
+            await Task.Run(() =>
+            {
+                while (true)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        txtCurrentDate.Text = DateTime.Now.ToString("MMMM dd, yyyy");
+                        txtCurrentTime.Text = DateTime.Now.ToString("HH:mm:ss");
+                    });
+                    Task.Delay(1000).Wait();
+                }
+            });
         }
 
         private void btnLogOut_Click(object sender, RoutedEventArgs e)

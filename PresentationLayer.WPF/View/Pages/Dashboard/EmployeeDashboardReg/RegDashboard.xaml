@@ -219,7 +219,7 @@
                                 <TextBlock Grid.Row="0" Text="Attendance Log" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
                                 
                                 <!--Data Grid-->
-                                <DataGrid  Grid.Row="2" x:Name="dataGridDashboardAttendanceLog" AutoGenerateColumns="False" FontSize="14">
+                                <DataGrid  Grid.Row="2" x:Name="dataGridDashboardAttendanceLog" AutoGenerateColumns="False" FontSize="14" ItemsSource="{Binding AttendanceLogList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Date" Width="*"/>
                                         <DataGridTextColumn Header="Time In" Width="*"/>
