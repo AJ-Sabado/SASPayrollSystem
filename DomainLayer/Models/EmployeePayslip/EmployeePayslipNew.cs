@@ -18,22 +18,61 @@ namespace DomainLayer.Models.EmployeePayslip
         public DateOnly PeriodStart { get; set; }
         [Column(TypeName = "date")]
         public DateOnly PeriodEnd { get; set; }
+        [Column(TypeName = "date")]
+        public DateOnly PayDate { get; set; }
+
+        //Historical Data
+        public decimal AppliedHourlyRate { get; set; } = 0;
+        public decimal AppliedNDRate { get; set; } = 1.1m;
+        public decimal AppliedLegalHolidayRate { get; set; } = 1.3m;
+        public decimal AppliedOvertimeRate { get; set; } = 1.25m;
+
 
         //Gross Salary
         [Column(TypeName = "smallint")]
-        public uint HoursWorked { get; set; } = 0;
-        [Column(TypeName = "money")]
-        public decimal BasicPay { get; set; } = 0;
+        public uint HoursWorkedRegular { get; set; } = 0;
+        [NotMapped]
+        public decimal BasicPay 
+        {
+            get
+            {
+                return AppliedHourlyRate * HoursWorkedRegular;
+            }
+        }
+
 
         [Column(TypeName = "smallint")]
         public uint LegalHolidaysHours { get; set; } = 0;
-        [Column(TypeName ="money")]
-        public decimal LegalHolidaysPay { get; set; } = 0;
+        [NotMapped]
+        public decimal LegalHolidaysPay
+        {
+            get
+            {
+                return LegalHolidaysHours * LegalHolidaysHours;
+            }
+        }
 
         [Column(TypeName = "smallint")]
         public uint NDOnWorkingDayHours { get; set; } = 0;
-        [Column(TypeName = "money")]
-        public decimal NDOnWorkingDayPay { get; set; } = 0;
+        [NotMapped]
+        public decimal NDOnWorkingDayPay
+        {
+            get
+            {
+                return NDOnWorkingDayHours * AppliedHourlyRate * AppliedNDRate;
+            }
+        }
+
+        [Column(TypeName = "smallint")]
+        public uint OTHoursWorkedRegular { get; set; } = 0;
+        [NotMapped]
+        public decimal OTHoursWorkedRegularPay
+        {
+            get
+            {
+                return OTHoursWorkedRegular * AppliedHourlyRate * AppliedOvertimeRate;
+            }
+        }
 
 
         //Allowance
@@ -44,14 +83,8 @@ namespace DomainLayer.Models.EmployeePayslip
         [Column(TypeName = "money")]
         public decimal LoadAllowance { get; set; } = 0;
 
-        [NotMapped]
-        public decimal TotalGrossPay
-        {
-            get
-            {
-                return BasicPay + LegalHolidaysPay + NDOnWorkingDayPay + UtilityAllowance + MealAllowance + LoadAllowance;
-            }
-        }
+        [Column(TypeName = "money")]
+        public decimal TotalGrossPay { get; set; }
 
         //Deductions
         [Column(TypeName = "money")]
@@ -65,14 +98,8 @@ namespace DomainLayer.Models.EmployeePayslip
         [Column(TypeName = "money")]
         public decimal WithholdingTax { get; set; } = 0;
 
-        [NotMapped]
-        public decimal TotalDeductions
-        {
-            get
-            {
-                return PHIC + HDMF + DecemberSSS + DecemberHDMF + WithholdingTax;
-            }
-        }
+        [Column(TypeName = "money")]
+        public decimal TotalDeductions { get; set; } = 0;
 
         [NotMapped]
         public decimal TotalNetPay
