@@ -6,8 +6,10 @@ namespace InfrastructureLayer.DataAccess.Repositories.Common
     {
         Task AddAsync(T entity);
         Task AddRangeAsync(IEnumerable<T> entities);
-        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, string? includeProperties = null);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetManyAsync(Expression<Func<T, bool>> filter = null, string? includeProperties = null);
         Task<T> GetAsync(Expression<Func<T, bool>> filter, string? includeProperties = null);
+        Task<T> GetByIdAsync(Guid id);
         Task RemoveAsync(T entity);
         Task RemoveRangeAsync(IEnumerable<T> entities);
         Task UpdateAsync(T entity);

@@ -15,6 +15,7 @@ using InfrastructureLayer.DataAccess.Repositories.Common;
 using ServicesLayer.Common;
 using ServicesLayer.Enums;
 using ServicesLayer.Exceptions;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 
 
@@ -44,15 +45,19 @@ namespace ServicesLayer
         public IBaseServices<RoleModel> RoleRepository { get; private set; }
         public IBaseServices<UserModel> UserRepository { get; private set; }
 
-        public UnitOfWork()
+        private readonly AppDbContext _context;
+
+        public UnitOfWork(AppDbContext context)
         {
-            _adminRepository ??= new BaseRepository<AdminModel>();
-            _contractorRepository ??= new BaseRepository<ContractorModel>();
-            _departmentRepository ??= new BaseRepository<DepartmentModel>();
-            _employeeRepository ??= new BaseRepository<EmployeeModel>();
-            _holidayRepository ??= new BaseRepository<HolidayModel>();
-            _roleRepository ??= new BaseRepository<RoleModel>();
-            _userRepository ??= new BaseRepository<UserModel>();
+            _context = context ?? throw new ArgumentNullException(nameof(AppDbContext));
+
+            _adminRepository ??= new BaseRepository<AdminModel>(_context);
+            _contractorRepository ??= new BaseRepository<ContractorModel>(_context);
+            _departmentRepository ??= new BaseRepository<DepartmentModel>(_context);
+            _employeeRepository ??= new BaseRepository<EmployeeModel>(_context);
+            _holidayRepository ??= new BaseRepository<HolidayModel>(_context);
+            _roleRepository ??= new BaseRepository<RoleModel>(_context);
+            _userRepository ??= new BaseRepository<UserModel>(_context);
 
             _modelDataAnnotationsCheck ??= new ModelDataAnnotationsCheck();
 
@@ -94,8 +99,10 @@ namespace ServicesLayer
             await SeedRoles();
             await SeedDepartments();
             await SeedHolidays();
+            //await Save();
             await SeedAdminUser();
             await SeedEmployeeUser();
+            await Save();
         }
 
         private async Task SeedEmployeeUser()
@@ -161,24 +168,25 @@ namespace ServicesLayer
                 employeeRole.Users.Add(user);
                 department.Users.Add(user);
 
-                await RoleRepository.UpdateAsync(employeeRole);
-                await DepartmentRepository.UpdateAsync(department);
+                //await RoleRepository.UpdateAsync(employeeRole);
+                //await DepartmentRepository.UpdateAsync(department);
             }
         }
         private async Task SeedHolidays()
         {
-            var holidays = await HolidayRepository.GetAllAsync();
+            var holidays = await HolidayRepository.GetManyAsync();
 
             if (holidays.Count() == 0)
             {
                 var defaults = new DefaultHolidays();
                 await HolidayRepository.AddRangeAsync(defaults.DefaultHolidaysList);
+                await Save();
             }
         }
 
         private async Task SeedDepartments()
         {
-            var departments = await DepartmentRepository.GetAllAsync();
+            var departments = await DepartmentRepository.GetManyAsync();
             if (departments.Count() == 0)
             {
                 string[] defaultDepartments =
@@ -200,6 +208,7 @@ namespace ServicesLayer
                     departmentModels.Add(model);
                 }
                 await DepartmentRepository.AddRangeAsync(departmentModels);
+                await Save();
             }
         }
 
@@ -212,7 +221,7 @@ namespace ServicesLayer
                 "Contractor",
                 "No Access"
             };
-            var roles = await RoleRepository.GetAllAsync();
+            var roles = await RoleRepository.GetManyAsync();
             var rolemodels = new List<RoleModel>();
             if (roles.Count() == 0)
             {
@@ -225,6 +234,7 @@ namespace ServicesLayer
                     rolemodels.Add(role);
                 }
                 await RoleRepository.AddRangeAsync(rolemodels);
+                await Save();
             }
 
         }
@@ -258,17 +268,14 @@ namespace ServicesLayer
                 adminRole.Users.Add(user);
                 department.Users.Add(user);
 
-                await RoleRepository.UpdateAsync(adminRole);
-                await DepartmentRepository.UpdateAsync(department);
+                //await RoleRepository.UpdateAsync(adminRole);
+                //await DepartmentRepository.UpdateAsync(department);
             }
         }
 
-        public void Save()
+        public async Task Save()
         {
-            using (var context = new AppDbContext())
-            {
-                context.SaveChanges();
-            }
+            await _context.SaveChangesAsync();
         }
 
         public async Task<RegisterUserResult> RegisterUser(string username, string email, string password, string confirmPassword, string roleName = null, string departmentName = null)
@@ -302,6 +309,11 @@ namespace ServicesLayer
             var role = await RoleRepository.GetAsync(r => r.NormalizedName == roleName.ToUpperInvariant(), includeProperties: "Users");
             var department = await DepartmentRepository.GetAsync(d => d.NormalizedName == departmentName.ToUpperInvariant(), includeProperties: "Users");
 
+            if (role == null || department == null)
+            {
+                return RegisterUserResult.UnknownError;
+            }
+
             var newUser = new UserModel()
             {
                 Username = username,
@@ -316,8 +328,10 @@ namespace ServicesLayer
             role.Users.Add(newUser);
             department.Users.Add(newUser);
 
-            await RoleRepository.UpdateAsync(role);
-            await DepartmentRepository.UpdateAsync(department);
+            //await RoleRepository.UpdateAsync(role);
+            //await DepartmentRepository.UpdateAsync(department);
+
+            await Save();
 
             return RegisterUserResult.Success;
         }

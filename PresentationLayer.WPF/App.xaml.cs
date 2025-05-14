@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using InfrastructureLayer.DataAccess;
+using Microsoft.Extensions.DependencyInjection;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages;
 using PresentationLayer.WPF.View.Pages.Dashboard;
@@ -60,6 +61,7 @@ namespace SASPayrolSystemProject
 
             //Services
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            services.AddDbContext<AppDbContext>();
             services.AddSingleton<IWindowService, WindowService>();
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<IPopUpService, PopUpService>();

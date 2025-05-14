@@ -67,31 +67,41 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 System.Windows.MessageBox.Show("Please fill in all fields.");
                 return;
             }
-            var result = await _unitOfWork.RegisterUser(UsernameSignUp, EmailSignUp, PasswordSignUp, ConfirmPasswordSignUp);
-            if (result == ServicesLayer.Enums.RegisterUserResult.UserAlreadyExists)
+            try 
             {
-                System.Windows.MessageBox.Show("User already exists."); 
+                var result = await _unitOfWork.RegisterUser(UsernameSignUp, EmailSignUp, PasswordSignUp, ConfirmPasswordSignUp);
+                if (result == ServicesLayer.Enums.RegisterUserResult.UserAlreadyExists)
+                {
+                    System.Windows.MessageBox.Show("User already exists.");
+                }
+                else if (result == ServicesLayer.Enums.RegisterUserResult.InvalidEmail)
+                {
+                    System.Windows.MessageBox.Show("Invalid email address.");
+                }
+                else if (result == ServicesLayer.Enums.RegisterUserResult.PasswordMismatch)
+                {
+                    System.Windows.MessageBox.Show("Passwords do not match.");
+                }
+                else if (result == ServicesLayer.Enums.RegisterUserResult.WeakPassword)
+                {
+                    System.Windows.MessageBox.Show("Password is too weak.");
+                }
+                else if (result == ServicesLayer.Enums.RegisterUserResult.Success)
+                {
+                    System.Windows.MessageBox.Show("Registration successful!");
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("An unknown error occurred.");
+                }
             }
-            else if (result == ServicesLayer.Enums.RegisterUserResult.InvalidEmail)
+            catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("Invalid email address.");
+                System.Windows.MessageBox.Show($"An error occured! {ex.Message}");
+                return;
             }
-            else if (result == ServicesLayer.Enums.RegisterUserResult.PasswordMismatch)
-            {
-                System.Windows.MessageBox.Show("Passwords do not match.");
-            }
-            else if (result == ServicesLayer.Enums.RegisterUserResult.WeakPassword)
-            {
-                System.Windows.MessageBox.Show("Password is too weak.");
-            }
-            else if (result == ServicesLayer.Enums.RegisterUserResult.Success)
-            {
-                System.Windows.MessageBox.Show("Registration successful!");
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("An unknown error occurred.");
-            }   
+
+            
         }
 
         private async void AuthenticateUser(object? parameter)

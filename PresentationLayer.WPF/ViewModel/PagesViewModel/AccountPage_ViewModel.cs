@@ -503,7 +503,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
                         employee.EmployeeAccountInfo.BankAccountName = BankAccountName;
                         employee.EmployeeAccountInfo.BankAccountId = BankAccountNumber;
 
-                        await _unitOfWork.EmployeeRepository.UpdateAsync(employee);
+                        await _unitOfWork.Save();
                         LoadUserData();
                     }
                 }

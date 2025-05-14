@@ -30,9 +30,9 @@ namespace ServicesLayer.Common
             await _repository.AddRangeAsync(entities);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, string? includeProperties = null)
+        public async Task<IEnumerable<T>> GetManyAsync(Expression<Func<T, bool>> filter = null, string? includeProperties = null)
         {
-            return await _repository.GetAllAsync(filter, includeProperties);
+            return await _repository.GetManyAsync(filter, includeProperties);
         }
 
         public async Task<T> GetAsync(Expression<Func<T, bool>> filter, string? includeProperties = null)
@@ -63,6 +63,16 @@ namespace ServicesLayer.Common
         public void ValidateModelDataAnnotations(T domainModel)
         {
             _modelDataAnnotationsCheck.ValidateModelDataAnnotations(domainModel);
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync()
+        {
+            return await _repository.GetAllAsync();
+        }
+
+        public async Task<T> GetByIdAsync(Guid id)
+        {
+            return await _repository.GetByIdAsync(id);
         }
     }
 }

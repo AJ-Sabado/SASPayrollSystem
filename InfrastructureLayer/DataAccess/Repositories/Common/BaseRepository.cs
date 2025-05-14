@@ -7,160 +7,89 @@ namespace InfrastructureLayer.DataAccess.Repositories.Common
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
+        protected readonly AppDbContext _context;
+        protected readonly DbSet<T> _dbSet;
+
+        public BaseRepository(AppDbContext context)
+        {
+            _context = context;
+            _dbSet = context.Set<T>();
+        }
+
         public async Task AddAsync(T entity)
         {
-            try
-            {
-                using (var context = new AppDbContext())
-                {
-                    var dbSet = context.Set<T>();
-                    await dbSet.AddAsync(entity);
-                    await context.SaveChangesAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new DataAccessException("Error in BaseRepository: AddAsync method", ex);
-            }
+            await _dbSet.AddAsync(entity);
         }
 
         public async Task AddRangeAsync(IEnumerable<T> entities)
         {
-            try
-            {
-                using (var context = new AppDbContext())
-                {
-                    var dbSet = context.Set<T>();
-                    await dbSet.AddRangeAsync(entities);
-                    await context.SaveChangesAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new DataAccessException("Error in BaseRepository: AddRangeAsync method", ex);
-            }
+            await _dbSet.AddRangeAsync(entities);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, string? includeProperties = null)
+        public async Task<IEnumerable<T>> GetManyAsync(Expression<Func<T, bool>> filter = null, string? includeProperties = null)
         {
-            try
+            IQueryable<T> query = _dbSet;
+            if (filter != null)
             {
-                using (var context = new AppDbContext())
+                query = query.Where(filter);
+            }
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var property in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    var dbSet = context.Set<T>();
-                    IQueryable<T> query = dbSet;
-                    if (filter != null)
-                    {
-                        query = query.Where(filter);
-                    }
-                    if (!string.IsNullOrEmpty(includeProperties))
-                    {
-                        foreach (var property in includeProperties
-                            .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                        {
-                            query = query.Include(property);
-                        }
-                    }
-                    return await query.ToListAsync();
+                    query = query.Include(property);
                 }
             }
-            catch (Exception ex)
-            {
-                throw new DataAccessException("Error in BaseRepository: GetAllAsync method", ex);
-            }
+            return await query.ToListAsync();
         }
 
         public async Task<T> GetAsync(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
-            try
+            var query = _dbSet.Where(filter);
+            if (!string.IsNullOrEmpty(includeProperties))
             {
-                using (var context = new AppDbContext())
+                foreach (var property in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    var dbSet = context.Set<T>();
-                    var query = dbSet.Where(filter);
-                    if (!string.IsNullOrEmpty(includeProperties))
-                    {
-                        foreach (var property in includeProperties
-                            .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                        {
-                            query = query.Include(property);
-                        }
-                    }
-                    return await query.FirstOrDefaultAsync();
+                    query = query.Include(property);
                 }
             }
-            catch (Exception ex)
-            {
-                throw new DataAccessException("Error in BaseRepository: GetAsync method", ex);
-            }
+            return await query.FirstOrDefaultAsync();
         }
 
-        public async Task RemoveAsync(T entity)
+        public Task RemoveAsync(T entity)
         {
-            try
-            {
-                using (var context = new AppDbContext())
-                {
-                    var dbSet = context.Set<T>();
-                    dbSet.Remove(entity);
-                    await context.SaveChangesAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new DataAccessException("Error in BaseRepository: RemoveAsync method", ex); ;
-            }
+            _dbSet.Remove(entity);
+            return Task.CompletedTask;
         }
 
-        public async Task RemoveRangeAsync(IEnumerable<T> entities)
+        public Task RemoveRangeAsync(IEnumerable<T> entities)
         {
-            try
-            {
-                using (var context = new AppDbContext())
-                {
-                    var dbSet = context.Set<T>();
-                    dbSet.RemoveRange(entities);
-                    await context.SaveChangesAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new DataAccessException("Error in BaseRepository: RemoveRangeAsync method", ex);
-            }
+            _dbSet.RemoveRange(entities);
+            return Task.CompletedTask;
         }
 
-        public async Task UpdateAsync(T entity)
+        public Task UpdateAsync(T entity)
         {
-            try
-            {
-                using (var context = new AppDbContext())
-                {
-                    var dbSet = context.Set<T>();
-                    dbSet.Update(entity);
-                    await context.SaveChangesAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new DataAccessException("Error in BaseRepository: UpdateAsync method", ex);
-            }
+            _dbSet.Update(entity);
+            return Task.CompletedTask;
         }
 
-        public async Task UpdateRangeAsync(IEnumerable<T> entities)
+        public Task UpdateRangeAsync(IEnumerable<T> entities)
         {
-            try
-            {
-                using (var context = new AppDbContext())
-                {
-                    var dbSet = context.Set<T>();
-                    dbSet.UpdateRange(entities);
-                    await context.SaveChangesAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new DataAccessException("Error in BaseRepository: UpdateRangeAsync method", ex);
-            }
+            _dbSet.UpdateRange(entities);
+            return Task.CompletedTask;
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync()
+        {
+            return await _dbSet.ToListAsync();
+        }
+
+        public async Task<T> GetByIdAsync(Guid id)
+        {
+            return await _dbSet.FindAsync(id);
         }
     }
 }
