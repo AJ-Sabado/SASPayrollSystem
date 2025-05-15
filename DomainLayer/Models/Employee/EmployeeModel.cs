@@ -35,10 +35,10 @@ namespace DomainLayer.Models.Employee
 
         [Column(TypeName = "time")]
         public TimeOnly BreakTimeEnd { get; set; } = new TimeOnly(13, 0, 0);
-        [Column(TypeName = "tinyint")]
-        public uint LeaveCredits { get; set; } = 0;
-        [Column(TypeName = "tinyint")]
-        public uint Absences { get; set; } = 0;
+        //[Column(TypeName = "tinyint")]
+        //public uint LeaveCredits { get; set; } = 0;
+        //[Column(TypeName = "tinyint")]
+        //public uint Absences { get; set; } = 0;
 
         //Navigation
         public EmployeeAccountInfoModel? EmployeeAccountInfo { get; set; }

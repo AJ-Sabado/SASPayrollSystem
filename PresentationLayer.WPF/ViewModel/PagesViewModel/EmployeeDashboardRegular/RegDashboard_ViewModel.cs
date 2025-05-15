@@ -109,7 +109,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
                     EmployeeRole = employee.EmployeeAccountInfo.Role;
                 }
 
-                if (employee.EmployeeAttendances != null && employee.EmployeeAttendances.Count > 0)
+                if (employee.EmployeeAttendances != null && employee.EmployeeAttendances.Count > 0 && AttendanceLogList.Count == 0)
                 {
                     foreach (var attendance in employee.EmployeeAttendances)
                     {

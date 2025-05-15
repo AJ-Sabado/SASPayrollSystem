@@ -16,6 +16,7 @@ using ServicesLayer.Common;
 using ServicesLayer.Enums;
 using ServicesLayer.Exceptions;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using DomainLayer.Models.EmployeeAttendance;
 
 
 
@@ -334,6 +335,56 @@ namespace ServicesLayer
             await Save();
 
             return RegisterUserResult.Success;
+        }
+
+        public async Task UpdateEmployeeAttendanceRecords(Guid EmployeeId)
+        {
+            var employee = await EmployeeRepository.GetAsync(e => e.EmployeeId == EmployeeId, includeProperties: "User,EmployeeAttendances,EmployeeLeaves,EmployeePayslips");
+            if (employee != null && employee.EmployeeAttendances != null && employee.EmployeePayslips != null)
+            {
+                var today = DateOnly.FromDateTime(DateTime.Now);
+                DateOnly startDate;
+                DateOnly endDate;
+                if (today.Day < 16)
+                {
+                    startDate = new DateOnly(today.Year, today.Month, 1);
+                    endDate = new DateOnly(today.Year, today.Month, 15);
+                }
+                else
+                {
+                    startDate = new DateOnly(today.Year, today.Month, 16);
+                    endDate = new DateOnly(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
+                }
+                var attendances = employee.EmployeeAttendances.Where(a => IsDateBetween(a.Date, startDate, endDate)).ToList();
+                var holidays = await HolidayRepository.GetManyAsync(h => IsDateBetween(h.Date, startDate, today));
+                for (DateOnly date = startDate; date < today; date = date.AddDays(1))
+                {
+                    var attendance = attendances.FirstOrDefault(a => a.Date == date);
+                    var holiday = holidays.FirstOrDefault(h => h.Date == date);
+                    if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        //Rest days work calc
+                        continue;
+                    }
+                    //Fill in absent days
+                    if (attendance == null)
+                    {
+                        attendance = new EmployeeAttendanceModel()
+                        {
+                            EmployeeId = employee.EmployeeId,
+                            Employee = employee,
+                            Date = date,
+                            //Status = AttendanceStatus.Absent
+                        };
+                        employee.EmployeeAttendances.Add(attendance);
+                    }
+                }
+            }
+        }
+
+        private bool IsDateBetween(DateOnly date, DateOnly startDate, DateOnly endDate)
+        {
+            return date >= startDate && date <= endDate;
         }
     }
 }

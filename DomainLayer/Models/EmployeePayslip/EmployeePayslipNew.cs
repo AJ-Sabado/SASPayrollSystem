@@ -23,7 +23,7 @@ namespace DomainLayer.Models.EmployeePayslip
 
         //Historical Data
         public decimal AppliedHourlyRate { get; set; } = 0;
-        public decimal AppliedNDRate { get; set; } = 1.1m;
+        public decimal AppliedNDRate { get; set; } = 0.1m;
         public decimal AppliedLegalHolidayRate { get; set; } = 1.3m;
         public decimal AppliedOvertimeRate { get; set; } = 1.25m;
 

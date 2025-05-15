@@ -20,12 +20,6 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <!-- This is where View Models are mapped to corresponding Views -->
-            <DataTemplate DataType="{x:Type regularViewModels:LoginPage_ViewModel}">
-                <userControls:MainWindow/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type regularViewModels1:EmployeeDashboardReg_ViewModel}">
-                <mainViews:EmployeeDahboard_View/>
-            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
