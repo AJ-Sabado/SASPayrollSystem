@@ -25,7 +25,7 @@ namespace PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg
                     Dispatcher.Invoke(() =>
                     {
                         txtCurrentDate.Text = DateTime.Now.ToString("MMMM dd, yyyy");
-                        txtCurrentTime.Text = DateTime.Now.ToString("HH:mm:ss");
+                        txtCurrentTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
                     });
                     Task.Delay(1000).Wait();
                 }

@@ -136,7 +136,7 @@
 
                                 <StackPanel Grid.Column="0">
                                     <TextBlock Text="Upcoming" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
-                                    <TextBlock x:Name="txtUpcomingPayroll" Text="January 25, 2025" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                    <TextBlock x:Name="txtUpcomingPayroll" Text="{Binding Upcoming}" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
                                 </StackPanel>
 
                                 <materialDesign:PackIcon Grid.Column="2" 
@@ -162,7 +162,7 @@
                                     <TextBlock Text="Leaves" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Remaining: " FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
-                                        <TextBlock x:Name="txtLeavesRemaining" Text="45" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                        <TextBlock x:Name="txtLeavesRemaining" Text="{Binding Leaves}" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
                                     </StackPanel>
                                 </StackPanel>
 
@@ -189,7 +189,7 @@
                                     <TextBlock Text="Absences" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Total: " FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
-                                        <TextBlock x:Name="txtAbsencesNum" Text="10" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                        <TextBlock x:Name="txtAbsencesNum" Text="{Binding Absences}" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
                                     </StackPanel>
                                 </StackPanel>
 

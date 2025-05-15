@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using System.Windows.Threading;
+using DomainLayer.Enums;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.ViewModel.Tables;
 using SASPayrolSystemProject;
@@ -49,6 +50,36 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
                 OnPropertyChanged();
             }
         }
+        private string _upcoming = "January 1, 2000";
+        public string Upcoming
+        {
+            get => _upcoming;
+            private set
+            {
+                _upcoming = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _leaves = "0";
+        public string Leaves
+        {
+            get => _leaves;
+            private set
+            {
+                _leaves = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _absences = "0";
+        public string Absences
+        {
+            get => _absences;
+            private set
+            {
+                _absences = value;
+                OnPropertyChanged();
+            }
+        }
 
         public RegDashboard_ViewModel(IUnitOfWork unitOfWork, IWindowService windowService)
         {
@@ -92,6 +123,19 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
                             OTDuration = $"{attendance.OTHours} hours"
                         });
                     }
+                }
+                else
+                {
+                    //For testing purposes
+                    AttendanceLogList.Add(new AttendanceLog
+                    {
+                        Date = DateOnly.FromDateTime(DateTime.Now),
+                        TimeIn = new TimeOnly(8, 0, 0),
+                        TimeOut = new TimeOnly(17, 0, 0),
+                        Status = FormStatus.Approved.ToString(),
+                        Overtime = FormStatus.Denied.ToString(),
+                        OTDuration = "0 hours"
+                    });
                 }
             }
         }
