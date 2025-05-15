@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using ServicesLayer;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -9,6 +10,8 @@ namespace PresentationLayer.WPF.ViewModel
 {
     public class AttendanceRequest_ViewModel : Base_ViewModel
     {
+        private readonly IUnitOfWork _unitOfWork;
+
         private string _employeeName = "John Jane Doe S. Smith";
         private string _employeeID = "0000000";
         private string _department = "Accounting Management";
@@ -19,25 +22,32 @@ namespace PresentationLayer.WPF.ViewModel
         private string _totalHours = "0 hours";
         private string _proofFiles = "Attach File";
 
-        public AttendanceRequest_ViewModel()
+        public AttendanceRequest_ViewModel(IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
             AttachFileCommand = new RelayCommand(AttachFiles);
+            Request = new RelayCommand(RequestAttendance, _ => true);
             LoadEmployeeData();
         }
 
-        private void LoadEmployeeData()
+        private async void LoadEmployeeData()
         {
-            // Simulate fetching from database
-            bool databaseAvailable = false; // <- switch to true to simulate DB presence
-
-            if (databaseAvailable)
+            var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "EmployeeAccountInfo");
+            var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Department");
+            if (employee != null && employee.EmployeeAccountInfo != null && user.Department != null)
             {
-                EmployeeName = "Jane Mary Smith";
-                EmployeeID = "1234567";
-                Department = "IT Department";
-                Role = "Software Engineer";
+                EmployeeName = employee.EmployeeAccountInfo.FullName;
+                EmployeeID = employee.EmployeeAccountInfo.CompanyId;
+                Department = user.Department.Name;
+                Role = employee.EmployeeAccountInfo.Role;
+                TimeIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.WorkShiftStart.Hour, employee.WorkShiftStart.Minute, employee.WorkShiftStart.Second);
+                TimeOut = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.WorkShiftEnd.Hour, employee.WorkShiftEnd.Minute, employee.WorkShiftEnd.Second);
+                //TO DO - Add AttendanceRequestModel
             }
-            // else keep default placeholder values
+            else
+            {
+                MessageBox.Show("Employee not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public string EmployeeName
@@ -120,6 +130,12 @@ namespace PresentationLayer.WPF.ViewModel
         }
 
         public ICommand AttachFileCommand { get; }
+        public ICommand Request { get; }
+        private async void RequestAttendance(object? parameter)
+        {
+            //TO DO - Add AttendanceRequestModel 
+            MessageBox.Show("Attendance request submitted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
 
         private void AttachFiles(object? obj)
         {
@@ -140,7 +156,8 @@ namespace PresentationLayer.WPF.ViewModel
             if (TimeIn.HasValue && TimeOut.HasValue)
             {
                 var hours = (TimeOut.Value - TimeIn.Value).TotalHours;
-                hours = Math.Max(0, hours);
+                //Account mandated work break
+                hours = Math.Max(0, hours) - 1;
                 TotalHours = $"{hours:0.#} hour{(hours == 1 ? "" : "s")}";
             }
             else

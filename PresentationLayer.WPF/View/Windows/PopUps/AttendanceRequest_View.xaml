@@ -59,8 +59,8 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <userControls:LabeledTextBox x:Name="ltbEmployeeName" Grid.Column="0" Label="Employee Name" Text="{Binding EmployeeName}" />
-                        <userControls:LabeledTextBox x:Name="ltbEmployeeID" Grid.Column="2" Label="Employee ID" Text="{Binding EmployeeID}" />
+                        <userControls:LabeledTextBox x:Name="ltbEmployeeName" Grid.Column="0" Label="Employee Name" Text="{Binding EmployeeName}" IsEnabled="False"/>
+                        <userControls:LabeledTextBox x:Name="ltbEmployeeID" Grid.Column="2" Label="Employee ID" Text="{Binding EmployeeID}" IsEnabled="False" />
                     </Grid>
                 </Grid>
 
@@ -73,8 +73,8 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <userControls:LabeledTextBox x:Name="ltbDepartment" Grid.Column="0" Label="Department" Text="{Binding Department}" />
-                        <userControls:LabeledTextBox x:Name="ltbRole" Grid.Column="2" Label="Role" Text="{Binding Role}" />
+                        <userControls:LabeledTextBox x:Name="ltbDepartment" Grid.Column="0" Label="Department" Text="{Binding Department}" IsEnabled="False"/>
+                        <userControls:LabeledTextBox x:Name="ltbRole" Grid.Column="2" Label="Role" Text="{Binding Role}" IsEnabled="False"/>
                     </Grid>
                 </Grid>
 

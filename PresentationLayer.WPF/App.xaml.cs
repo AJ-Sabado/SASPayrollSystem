@@ -33,6 +33,7 @@ namespace SASPayrolSystemProject
 
             _serviceProvider = services.BuildServiceProvider();
 
+            //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
             windowService.ShowWindow<MainWindow>();
         }
@@ -57,6 +58,7 @@ namespace SASPayrolSystemProject
             //Popups
             services.AddTransient<FileLeaveForm_View>();
             services.AddTransient<AttendanceRequest_View>();
+            services.AddTransient<AttendanceRequest_ViewModel>();
             services.AddTransient<FileLeaveForm_View>();
 
             //Services
