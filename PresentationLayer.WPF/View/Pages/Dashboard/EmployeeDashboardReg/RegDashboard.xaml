@@ -4,9 +4,46 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:converter="clr-namespace:PresentationLayer.WPF.Helpers"
+             
              x:Class="PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg.RegDashboard"
              mc:Ignorable="d" 
              d:DesignHeight="688" d:DesignWidth="1088">
+
+    <UserControl.Resources>
+        <!-- Time In Style -->
+        <Style x:Key="TimeInStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+            <Setter Property="Background" Value="LightGreen"/>
+            <Setter Property="BorderBrush" Value="DarkGreen"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Foreground" Value="DarkGreen"/>
+            <Setter Property="Content">
+                <Setter.Value>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="DoorOpen" Foreground="DarkGreen"/>
+                        <TextBlock Text="   Time In" VerticalAlignment="Center" Foreground="DarkGreen"/>
+                    </StackPanel>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Time Out Style -->
+        <Style x:Key="TimeOutStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+            <Setter Property="Background" Value="LightPink"/>
+            <Setter Property="BorderBrush" Value="DarkRed"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Foreground" Value="DarkRed"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Content">
+                <Setter.Value>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="DoorClosed" Foreground="DarkRed"/>
+                        <TextBlock Text="  Time Out" VerticalAlignment="Center" Foreground="DarkRed"/>
+                    </StackPanel>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 
     <Viewbox>
         <Grid x:Name="Canvas" Height="688" Width="1088">
@@ -106,16 +143,13 @@
 
                                 <Viewbox Grid.Row="3">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button x:Name="btnTimeIn" Background="LightGreen" BorderBrush="DarkGreen" BorderThickness="2" Click="btnTimeIn_Click">
+                                        <Button x:Name="btnTimeInOut" Width="120" Height="35" 
+                                                Style="{StaticResource TimeInStyle}" 
+                                                Click="btnTimeInOut_Click"/>
+                                        <Button x:Name="btnBreak" Background="LightGoldenrodYellow" BorderBrush="Goldenrod" BorderThickness="2" Margin="10,0,0,0" Click="btnBreak_Click" Width="120" Height="35" IsEnabled="False">
                                             <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon Kind="DoorOpen" Foreground="DarkGreen"/>
-                                                <TextBlock Text="   Time In" Foreground="DarkGreen"/>
-                                            </StackPanel>
-                                        </Button>
-                                        <Button x:Name="btnTimeOut" Background="LightPink" BorderBrush="DarkRed" BorderThickness="2" Margin="10,0,0,0" Click="btnTimeOut_Click">
-                                            <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon Kind="DoorClosed" Foreground="DarkRed"/>
-                                                <TextBlock Text="  Time Out" Foreground="DarkRed"/>
+                                                <materialDesign:PackIcon Kind="ClockEnd" Foreground="Goldenrod"/>
+                                                <TextBlock Text="  Break" Foreground="Goldenrod"/>
                                             </StackPanel>
                                         </Button>
                                     </StackPanel>

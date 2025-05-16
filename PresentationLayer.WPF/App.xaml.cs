@@ -34,7 +34,9 @@ namespace SASPayrolSystemProject
             _serviceProvider = services.BuildServiceProvider();
 
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-            windowService.ShowWindow<MainWindow>();
+
+            //StartupWindows
+            windowService.ShowWindow<EmployeeDahboard_View>();
         }
 
         private void ConfigureServices(IServiceCollection services)

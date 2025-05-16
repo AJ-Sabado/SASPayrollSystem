@@ -1,10 +1,9 @@
-﻿using System.Windows.Input;
-using System.Windows.Threading;
-using DomainLayer.Enums;
+﻿using DomainLayer.Enums;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.ViewModel.Tables;
 using SASPayrolSystemProject;
 using ServicesLayer;
+using System.Windows.Input;
 
 namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular
 {
@@ -80,6 +79,26 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
                 OnPropertyChanged();
             }
         }
+
+        // ========================
+        // NEW: Property to control which style to use
+        private bool _isTimeInMode = true;
+        public bool IsTimeInMode
+        {
+            get => _isTimeInMode;
+            set
+            {
+                if (_isTimeInMode != value)
+                {
+                    _isTimeInMode = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        // NEW: Command to toggle between Time In and Time Out
+        public ICommand ToggleTimeModeCommand { get; set; }
+        // ========================
 
         public RegDashboard_ViewModel(IUnitOfWork unitOfWork, IWindowService windowService)
         {
