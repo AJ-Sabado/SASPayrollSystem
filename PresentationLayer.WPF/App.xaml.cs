@@ -1,4 +1,5 @@
-﻿using InfrastructureLayer.DataAccess;
+﻿using System.Windows;
+using InfrastructureLayer.DataAccess;
 using Microsoft.Extensions.DependencyInjection;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages;
@@ -8,9 +9,9 @@ using PresentationLayer.WPF.View.Windows;
 using PresentationLayer.WPF.ViewModel;
 using PresentationLayer.WPF.ViewModel.PagesViewModel;
 using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular;
+using PresentationLayer.WPF.ViewModel.PopUpViewModel;
 using PresentationLayer.WPF.ViewModel.RegularViewModel;
 using ServicesLayer;
-using System.Windows;
 
 namespace SASPayrolSystemProject
 {
@@ -57,6 +58,7 @@ namespace SASPayrolSystemProject
 
             //Popups
             services.AddTransient<FileLeaveForm_View>();
+            services.AddTransient<LeaveRequest_ViewModel>();
             services.AddTransient<AttendanceRequest_View>();
             services.AddTransient<AttendanceRequest_ViewModel>();
             services.AddTransient<FileLeaveForm_View>();

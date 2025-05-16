@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using PresentationLayer.WPF.ViewModel.PopUpViewModel;
 
 
 namespace PresentationLayer.WPF.View.Windows
@@ -8,9 +9,10 @@ namespace PresentationLayer.WPF.View.Windows
     /// </summary>
     public partial class FileLeaveForm_View : Window
     {
-        public FileLeaveForm_View()
+        public FileLeaveForm_View(LeaveRequest_ViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }

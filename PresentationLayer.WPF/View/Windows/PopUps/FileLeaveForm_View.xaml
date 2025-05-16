@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:enum="clr-namespace:DomainLayer.Enums;assembly=DomainLayer"
+        xmlns:helpers="clr-namespace:PresentationLayer.WPF.Helpers"
         xmlns:local="clr-namespace:PresentationLayer.WPF.View.Windows"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
@@ -67,11 +69,11 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <userControls:LabeledTextBox x:Name="lbtbEmployeeName" Grid.Column="0" Label="Employee Name"/>
+                    <userControls:LabeledTextBox x:Name="lbtbEmployeeName" Grid.Column="0" Label="Employee Name" IsEnabled="False" Text="{Binding EmployeeName}"/>
 
-                    <userControls:LabeledTextBox x:Name="lbtbEmployeeID" Grid.Column="2" Label="Employee ID"/>
+                    <userControls:LabeledTextBox x:Name="lbtbEmployeeID" Grid.Column="2" Label="Employee ID" IsEnabled="False" Text="{Binding EmployeeId}"/>
 
-                    <userControls:LabeledTextBox x:Name="lbtbEmployeeDept" Grid.Column="4" Label="Department"/>
+                    <userControls:LabeledTextBox x:Name="lbtbEmployeeDept" Grid.Column="4" Label="Department" IsEnabled="False" Text="{Binding Department}"/>
                 </Grid>
 
                 <!--TYPE AND DURATION-->
@@ -87,7 +89,10 @@
                                    FontSize="16" Margin="0,0,0,10"/>
                         <ComboBox x:Name="cbLeaveType"
                                   FontFamily="{StaticResource PoppinsRegular}" 
-                                  FontSize="14" Margin="0,0,0,10"/>
+                                  FontSize="14" Margin="0,0,0,10"
+                                  ItemsSource="{helpers:EnumBindingSource enum:LeaveType}"
+                                  SelectedItem="{Binding SelectedLeaveType}"
+                                  />
                     </StackPanel>
 
                     <StackPanel Grid.Column="3" >
@@ -95,7 +100,9 @@
                                     FontSize="16" Margin="0,0,0,10"/>
                         <materialDesign:NumericUpDown x:Name="nudDuration"
                                     FontFamily="{StaticResource PoppinsRegular}" 
-                                    FontSize="14" Margin="0,0,0,10"/>
+                                    FontSize="14" Margin="0,0,0,10"
+                                    Value="{Binding Duration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    />
                     </StackPanel>
                 </Grid>
 
@@ -112,7 +119,9 @@
                                     FontSize="16" Margin="0,0,0,10"/>
                         <DatePicker x:Name="dpStartDate"
                                     FontFamily="{StaticResource PoppinsRegular}" 
-                                    FontSize="14" Margin="0,0,0,10"/>
+                                    FontSize="14" Margin="0,0,0,10"
+                                    SelectedDate="{Binding StartDate}"
+                                    />
                     </StackPanel>
 
                     <StackPanel Grid.Column="3" >
@@ -120,7 +129,9 @@
                                 FontSize="16" Margin="0,0,0,10"/>
                         <DatePicker x:Name="dpReturnDate"
                                     FontFamily="{StaticResource PoppinsRegular}" 
-                                    FontSize="14" Margin="0,0,0,10"/>
+                                    FontSize="14" Margin="0,0,0,10"
+                                    SelectedDate="{Binding ReturnDate}"
+                                    />
                         
                     </StackPanel>
                 </Grid>
@@ -145,7 +156,7 @@
                 
                 <!--Apply-->
                 <Grid  Grid.Row="10">
-                    <Button x:Name="btnApply" HorizontalAlignment="Center" Content="Apply" Foreground="White"/>
+                    <Button x:Name="btnApply" HorizontalAlignment="Center" Content="Apply" Foreground="White" Command="{Binding SendRequest}"/>
                 </Grid>
 
             </Grid>

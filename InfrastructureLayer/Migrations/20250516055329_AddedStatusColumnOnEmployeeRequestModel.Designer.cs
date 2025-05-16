@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250516024921_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250516055329_AddedStatusColumnOnEmployeeRequestModel")]
+    partial class AddedStatusColumnOnEmployeeRequestModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -241,7 +241,7 @@ namespace InfrastructureLayer.Migrations
                     b.ToTable("EmployeeAccountInfoModel");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendance.EmployeeAttendanceNew", b =>
+            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendance.EmployeeAttendanceModel", b =>
                 {
                     b.Property<Guid>("EmployeeAttendanceId")
                         .ValueGeneratedOnAdd()
@@ -275,7 +275,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeAttendanceNew");
+                    b.ToTable("EmployeeAttendanceModel");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeAttendanceRequest.EmployeeAttendanceRequestModel", b =>
@@ -284,13 +284,16 @@ namespace InfrastructureLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateOnly>("Date")
+                    b.Property<DateOnly>("AttendanceDate")
                         .HasColumnType("date");
 
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<byte>("Reason")
+                    b.Property<DateOnly>("RequestDate")
+                        .HasColumnType("date");
+
+                    b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
                     b.Property<TimeOnly>("TimeIn")
@@ -340,7 +343,7 @@ namespace InfrastructureLayer.Migrations
                     b.ToTable("EmployeeLeaveModel");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.EmployeePayslip.EmployeePayslipNew", b =>
+            modelBuilder.Entity("DomainLayer.Models.EmployeePayslip.EmployeePayslipModel", b =>
                 {
                     b.Property<Guid>("EmployeePayslipId")
                         .ValueGeneratedOnAdd()
@@ -419,7 +422,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeePayslipNew");
+                    b.ToTable("EmployeePayslipModel");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Holiday.HolidayModel", b =>
@@ -543,7 +546,7 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendance.EmployeeAttendanceNew", b =>
+            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendance.EmployeeAttendanceModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
                         .WithMany("EmployeeAttendances")
@@ -576,7 +579,7 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.EmployeePayslip.EmployeePayslipNew", b =>
+            modelBuilder.Entity("DomainLayer.Models.EmployeePayslip.EmployeePayslipModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
                         .WithMany("EmployeePayslips")

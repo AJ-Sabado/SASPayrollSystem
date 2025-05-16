@@ -186,7 +186,7 @@ namespace InfrastructureLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeeAttendanceNew",
+                name: "EmployeeAttendanceModel",
                 columns: table => new
                 {
                     EmployeeAttendanceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -201,9 +201,9 @@ namespace InfrastructureLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeAttendanceNew", x => x.EmployeeAttendanceId);
+                    table.PrimaryKey("PK_EmployeeAttendanceModel", x => x.EmployeeAttendanceId);
                     table.ForeignKey(
-                        name: "FK_EmployeeAttendanceNew_Employees_EmployeeId",
+                        name: "FK_EmployeeAttendanceModel_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
@@ -216,8 +216,8 @@ namespace InfrastructureLayer.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Date = table.Column<DateOnly>(type: "date", nullable: false),
-                    Reason = table.Column<byte>(type: "tinyint", nullable: false),
+                    RequestDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    AttendanceDate = table.Column<DateOnly>(type: "date", nullable: false),
                     TimeIn = table.Column<TimeOnly>(type: "time", nullable: false),
                     TimeOut = table.Column<TimeOnly>(type: "time", nullable: false)
                 },
@@ -257,7 +257,7 @@ namespace InfrastructureLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeePayslipNew",
+                name: "EmployeePayslipModel",
                 columns: table => new
                 {
                     EmployeePayslipId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -287,9 +287,9 @@ namespace InfrastructureLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeePayslipNew", x => x.EmployeePayslipId);
+                    table.PrimaryKey("PK_EmployeePayslipModel", x => x.EmployeePayslipId);
                     table.ForeignKey(
-                        name: "FK_EmployeePayslipNew_Employees_EmployeeId",
+                        name: "FK_EmployeePayslipModel_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
@@ -315,8 +315,8 @@ namespace InfrastructureLayer.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeAttendanceNew_EmployeeId",
-                table: "EmployeeAttendanceNew",
+                name: "IX_EmployeeAttendanceModel_EmployeeId",
+                table: "EmployeeAttendanceModel",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
@@ -330,8 +330,8 @@ namespace InfrastructureLayer.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeePayslipNew_EmployeeId",
-                table: "EmployeePayslipNew",
+                name: "IX_EmployeePayslipModel_EmployeeId",
+                table: "EmployeePayslipModel",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
@@ -364,7 +364,7 @@ namespace InfrastructureLayer.Migrations
                 name: "EmployeeAccountInfoModel");
 
             migrationBuilder.DropTable(
-                name: "EmployeeAttendanceNew");
+                name: "EmployeeAttendanceModel");
 
             migrationBuilder.DropTable(
                 name: "EmployeeAttendanceRequestModel");
@@ -373,7 +373,7 @@ namespace InfrastructureLayer.Migrations
                 name: "EmployeeLeaveModel");
 
             migrationBuilder.DropTable(
-                name: "EmployeePayslipNew");
+                name: "EmployeePayslipModel");
 
             migrationBuilder.DropTable(
                 name: "Holidays");

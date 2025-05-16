@@ -15,13 +15,18 @@ namespace DomainLayer.Models.EmployeeAttendanceRequest
         public required EmployeeModel Employee { get; set; } = null!;
 
         [Column(TypeName = "date")]
-        public DateOnly Date { get; set; }
-        [Column(TypeName = "tinyint")]
-        public LeaveType Reason { get; set; } = LeaveType.Sick;
+        public DateOnly RequestDate { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateOnly AttendanceDate { get; set; }
+
         [Column(TypeName = "time")]
         public TimeOnly TimeIn { get; set; }
         [Column(TypeName = "time")]
         public TimeOnly TimeOut { get; set; }
+
+        [Column(TypeName = "tinyint")]
+        public FormStatus Status { get; set; } = FormStatus.Pending;
 
         [NotMapped]
         public uint TotalHours

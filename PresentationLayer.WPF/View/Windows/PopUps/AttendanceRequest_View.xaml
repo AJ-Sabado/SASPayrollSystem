@@ -163,7 +163,7 @@
 
                 <!--APPLY BUTTON-->
                 <Grid Grid.Row="12">
-                    <Button x:Name="btnRequest" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Request" Foreground="White"/>
+                    <Button x:Name="btnRequest" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Request" Foreground="White" Command="{Binding Request}"/>
                 </Grid>
 
             </Grid>

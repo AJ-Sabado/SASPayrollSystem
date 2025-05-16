@@ -1,4 +1,7 @@
-﻿using Microsoft.Win32;
+﻿using DomainLayer.Enums;
+using DomainLayer.Models.EmployeeAttendanceRequest;
+using Microsoft.Win32;
+using PresentationLayer.WPF.Services;
 using ServicesLayer;
 using System;
 using System.Collections.ObjectModel;
@@ -11,7 +14,8 @@ namespace PresentationLayer.WPF.ViewModel
     public class AttendanceRequest_ViewModel : Base_ViewModel
     {
         private readonly IUnitOfWork _unitOfWork;
-
+        private readonly IPopUpService _popUpService;
+        private Guid _employeeId;
         private string _employeeName = "John Jane Doe S. Smith";
         private string _employeeID = "0000000";
         private string _department = "Accounting Management";
@@ -22,9 +26,10 @@ namespace PresentationLayer.WPF.ViewModel
         private string _totalHours = "0 hours";
         private string _proofFiles = "Attach File";
 
-        public AttendanceRequest_ViewModel(IUnitOfWork unitOfWork)
+        public AttendanceRequest_ViewModel(IUnitOfWork unitOfWork, IPopUpService popUpService)
         {
             _unitOfWork = unitOfWork;
+            _popUpService = popUpService;
             AttachFileCommand = new RelayCommand(AttachFiles);
             Request = new RelayCommand(RequestAttendance, _ => true);
             LoadEmployeeData();
@@ -36,6 +41,7 @@ namespace PresentationLayer.WPF.ViewModel
             var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Department");
             if (employee != null && employee.EmployeeAccountInfo != null && user.Department != null)
             {
+                _employeeId = employee.EmployeeId;
                 EmployeeName = employee.EmployeeAccountInfo.FullName;
                 EmployeeID = employee.EmployeeAccountInfo.CompanyId;
                 Department = user.Department.Name;
@@ -133,8 +139,24 @@ namespace PresentationLayer.WPF.ViewModel
         public ICommand Request { get; }
         private async void RequestAttendance(object? parameter)
         {
-            //TO DO - Add AttendanceRequestModel 
-            MessageBox.Show("Attendance request submitted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            var employee = await _unitOfWork.EmployeeRepository.GetByIdAsync(_employeeId);
+            if (employee != null && TimeIn.HasValue && TimeOut.HasValue)
+            {
+                var attendanceRequest = new EmployeeAttendanceRequestModel()
+                {
+                    EmployeeId = employee.EmployeeId,
+                    Employee = employee,
+                    RequestDate = DateOnly.FromDateTime(DateTime.Now),
+                    AttendanceDate = DateOnly.FromDateTime(this.Date),
+                    TimeIn = TimeOnly.FromDateTime((DateTime)this.TimeIn),
+                    TimeOut = TimeOnly.FromDateTime((DateTime)this.TimeOut),
+                    Status = FormStatus.Pending
+                };
+                employee.EmployeeAttendanceRequests.Add(attendanceRequest);
+                await _unitOfWork.Save();
+                MessageBox.Show("Attendance request submitted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            _popUpService.ClosePopup();
         }
 
         private void AttachFiles(object? obj)

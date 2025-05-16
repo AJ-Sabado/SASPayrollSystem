@@ -5,16 +5,27 @@ namespace PresentationLayer.WPF.Services
     public class PopUpService : IPopUpService
     {
         private IServiceProvider _serviceProvider;
+        private Window? _currentPopup;
 
         public PopUpService(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
 
+        public void ClosePopup()
+        {
+            if (_currentPopup != null)
+            {
+                _currentPopup.Close();
+                _currentPopup = null;
+            }
+        }
+
         public void ShowPopUp<T>() where T : Window
         {
-            var window = DIGetRequiredService<T>(_serviceProvider);
-            window.Show();
+            ClosePopup();
+            _currentPopup = DIGetRequiredService<T>(_serviceProvider);
+            _currentPopup.Show();
         }
 
         //Resolves GetRequiredService for DI conflict

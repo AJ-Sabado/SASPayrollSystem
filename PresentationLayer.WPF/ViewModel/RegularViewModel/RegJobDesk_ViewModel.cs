@@ -16,6 +16,8 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         public ICommand AttendanceRequestCommand { get; }
 
         public IList<AttendanceLog> AttendanceLogList { get; set; } = []; 
+        public IList<AttendanceRequest> AttendanceRequestList { get; set; } = [];
+        public IList<LeaveRequest> LeaveRequestList { get; set; } = [];
 
         //Information
         private string _fullName = "Full Name";
@@ -123,7 +125,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
             var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Employee,Department");
             if (user != null)
             {
-                var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == user.UserId, includeProperties: "EmployeeAccountInfo,EmployeeAttendances,EmployeeLeaves,EmployeePayslips");
+                var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == user.UserId, includeProperties: "EmployeeAccountInfo,EmployeeAttendances,EmployeeLeaves,EmployeePayslips,EmployeeAttendanceRequests");
                 if (employee != null)
                 {
                     // Load Side Bar Data
@@ -143,8 +145,10 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                             EmploymentStatus = "Independent Contractor";
                     }
 
+                    //Load Attendances
                     if (employee.EmployeeAttendances != null && employee.EmployeeAttendances.Count > 0)
                     {
+                        AttendanceLogList.Clear();
                         foreach (var attendance in employee.EmployeeAttendances)
                         {
                             AttendanceLogList.Add(new AttendanceLog
@@ -155,6 +159,41 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                                 Status = attendance.Status.ToString(),
                                 Overtime = attendance.OTStatus.ToString(),
                                 OTDuration = $"{attendance.OTHours} hours"
+                            });
+                        }
+                    }
+
+                    //Load Attendance Requests
+                    if (employee.EmployeeAttendanceRequests != null && employee.EmployeeAttendanceRequests.Count > 0)
+                    {
+                        AttendanceRequestList.Clear();
+                        foreach (var request in employee.EmployeeAttendanceRequests)
+                        {
+                            AttendanceRequestList.Add(new AttendanceRequest
+                            {
+                                RequestDate = request.RequestDate,
+                                AttendanceDate = request.AttendanceDate,
+                                TimeIn = request.TimeIn,
+                                TimeOut = request.TimeOut,
+                                Status = request.Status.ToString(),
+                            });
+                        }
+                    }
+
+                    //Load Leaves
+                    if (employee.EmployeeLeaves != null && employee.EmployeeLeaves.Count > 0)
+                    {
+                        LeaveRequestList.Clear();
+                        foreach (var leave in employee.EmployeeLeaves)
+                        {
+                            LeaveRequestList.Add(new LeaveRequest
+                            {
+                                RequestDate = leave.DateOfFiling,
+                                StartDate = leave.DateOfAbsenceStart,
+                                EndDate = leave.DateOfAbsenceEnd,
+                                TotalDays = $"{leave.Duration} days",
+                                Reason = leave.Type.ToString(),
+                                Status = leave.Status.ToString()
                             });
                         }
                     }

@@ -43,9 +43,9 @@ namespace DomainLayer.Models.Employee
 
         //Navigation
         public EmployeeAccountInfoModel? EmployeeAccountInfo { get; set; }
-        public ICollection<EmployeeAttendanceNew> EmployeeAttendances { get; } = [];
+        public ICollection<EmployeeAttendanceModel> EmployeeAttendances { get; } = [];
         public ICollection<EmployeeLeaveModel> EmployeeLeaves { get; } = [];
-        public ICollection<EmployeePayslipNew> EmployeePayslips { get; } = [];
+        public ICollection<EmployeePayslipModel> EmployeePayslips { get; } = [];
         public ICollection<EmployeeAttendanceRequestModel> EmployeeAttendanceRequests { get; } = [];
     }
 }
