@@ -6,5 +6,6 @@ namespace PresentationLayer.WPF.ViewModel
 {
     public abstract class Base_ViewModel : ObservableObject
     {
+
     }
 }
