@@ -1,22 +1,19 @@
 ﻿using DomainLayer.Defaults;
-using DomainLayer.Enums;
 using DomainLayer.Enums.EmployeePersonalInfo;
-using DomainLayer.Services;
 using DomainLayer.Models.Admin;
 using DomainLayer.Models.Contractor;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.EmployeeAccountInfo;
+using DomainLayer.Models.EmployeeAttendance;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
+using DomainLayer.Services;
 using InfrastructureLayer.DataAccess;
 using InfrastructureLayer.DataAccess.Repositories.Common;
 using ServicesLayer.Common;
 using ServicesLayer.Enums;
-using ServicesLayer.Exceptions;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using DomainLayer.Models.EmployeeAttendance;
 
 
 
@@ -75,7 +72,7 @@ namespace ServicesLayer
         {
             UserModel? user = null;
             if (_modelDataAnnotationsCheck.IsValidEmail(usernameOrEmail))
-            { 
+            {
                 user = await UserRepository.GetAsync(u => u.Email == usernameOrEmail, includeProperties: "Role,Department");
             }
             else
@@ -156,7 +153,7 @@ namespace ServicesLayer
                     TaxIdNumber = "123-456-789-012",
                     SSSIdNumber = "123-4567890-0",
                     PhilHealthIdNumber = "12-34567890-1",
-                    PagIbigIdNumber  = "1434-5678-9012",
+                    PagIbigIdNumber = "1434-5678-9012",
                     BankName = "Landbank",
                     BankAccountName = "JANE JOHN S. DOE",
                     BankAccountId = "4748-4478-9012-3456",
@@ -339,6 +336,7 @@ namespace ServicesLayer
 
         public async Task UpdateEmployeeAttendanceRecords(Guid EmployeeId)
         {
+            //TO DO - Add logic to update employee attendance records
             var employee = await EmployeeRepository.GetAsync(e => e.EmployeeId == EmployeeId, includeProperties: "User,EmployeeAttendances,EmployeeLeaves,EmployeePayslips");
             if (employee != null && employee.EmployeeAttendances != null && employee.EmployeePayslips != null)
             {
@@ -355,31 +353,32 @@ namespace ServicesLayer
                     startDate = new DateOnly(today.Year, today.Month, 16);
                     endDate = new DateOnly(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
                 }
+                //Get all employee attendance records between start and end date
                 var attendances = employee.EmployeeAttendances.Where(a => IsDateBetween(a.Date, startDate, endDate)).ToList();
                 var holidays = await HolidayRepository.GetManyAsync(h => IsDateBetween(h.Date, startDate, today));
+
+                var payslip = employee.EmployeePayslips.FirstOrDefault(p => p.PeriodStart == startDate && p.PeriodEnd == endDate);
+                
+                //Iterate through work days
                 for (DateOnly date = startDate; date < today; date = date.AddDays(1))
                 {
+
                     var attendance = attendances.FirstOrDefault(a => a.Date == date);
                     var holiday = holidays.FirstOrDefault(h => h.Date == date);
                     if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
                     {
-                        //Rest days work calc
+                        //Rest Days Work Calculation Here
                         continue;
                     }
-                    //Fill in absent days
-                    if (attendance == null)
+                    if (holiday != null)
                     {
-                        attendance = new EmployeeAttendanceModel()
-                        {
-                            EmployeeId = employee.EmployeeId,
-                            Employee = employee,
-                            Date = date,
-                            //Status = AttendanceStatus.Absent
-                        };
-                        employee.EmployeeAttendances.Add(attendance);
+                        //Holiday Work Calculation Here
+                        continue;
                     }
                 }
             }
+
+            await Save();
         }
 
         private bool IsDateBetween(DateOnly date, DateOnly startDate, DateOnly endDate)

@@ -1,10 +1,11 @@
-﻿using DomainLayer.Models.EmployeeAccountInfo;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using DomainLayer.Models.EmployeeAccountInfo;
 using DomainLayer.Models.EmployeeAttendance;
+using DomainLayer.Models.EmployeeAttendanceRequest;
 using DomainLayer.Models.EmployeeLeave;
 using DomainLayer.Models.EmployeePayslip;
 using DomainLayer.Models.User;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainLayer.Models.Employee
 {
@@ -35,15 +36,16 @@ namespace DomainLayer.Models.Employee
 
         [Column(TypeName = "time")]
         public TimeOnly BreakTimeEnd { get; set; } = new TimeOnly(13, 0, 0);
-        //[Column(TypeName = "tinyint")]
-        //public uint LeaveCredits { get; set; } = 0;
-        //[Column(TypeName = "tinyint")]
-        //public uint Absences { get; set; } = 0;
+        [Column(TypeName = "tinyint")]
+        public uint LeaveCredits { get; set; } = 0;
+        [Column(TypeName = "tinyint")]
+        public uint Absences { get; set; } = 0;
 
         //Navigation
         public EmployeeAccountInfoModel? EmployeeAccountInfo { get; set; }
         public ICollection<EmployeeAttendanceModel> EmployeeAttendances { get; } = [];
         public ICollection<EmployeeLeaveModel> EmployeeLeaves { get; } = [];
         public ICollection<EmployeePayslipModel> EmployeePayslips { get; } = [];
+        public ICollection<EmployeeAttendanceRequestModel> EmployeeAttendanceRequests { get; } = [];
     }
 }

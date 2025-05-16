@@ -127,7 +127,9 @@ namespace InfrastructureLayer.Migrations
                     WorkShiftStart = table.Column<TimeOnly>(type: "time", nullable: false),
                     WorkShiftEnd = table.Column<TimeOnly>(type: "time", nullable: false),
                     BreakTimeStart = table.Column<TimeOnly>(type: "time", nullable: false),
-                    BreakTimeEnd = table.Column<TimeOnly>(type: "time", nullable: false)
+                    BreakTimeEnd = table.Column<TimeOnly>(type: "time", nullable: false),
+                    LeaveCredits = table.Column<byte>(type: "tinyint", nullable: false),
+                    Absences = table.Column<byte>(type: "tinyint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -191,23 +193,39 @@ namespace InfrastructureLayer.Migrations
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateOnly>(type: "date", nullable: false),
                     TimeIn = table.Column<TimeOnly>(type: "time", nullable: false),
+                    BreakTimeIn = table.Column<TimeOnly>(type: "time", nullable: false),
+                    BreakTimeOut = table.Column<TimeOnly>(type: "time", nullable: false),
                     TimeOut = table.Column<TimeOnly>(type: "time", nullable: false),
-                    HolidayStatus = table.Column<byte>(type: "tinyint", nullable: false),
                     Status = table.Column<byte>(type: "tinyint", nullable: false),
-                    OTStatus = table.Column<byte>(type: "tinyint", nullable: false),
-                    BreakIn = table.Column<TimeOnly>(type: "time", nullable: false),
-                    BreakOut = table.Column<TimeOnly>(type: "time", nullable: false),
-                    PayableHours = table.Column<short>(type: "smallint", nullable: false),
-                    LateMinutes = table.Column<short>(type: "smallint", nullable: false),
-                    UTHours = table.Column<short>(type: "smallint", nullable: false),
-                    OTHours = table.Column<short>(type: "smallint", nullable: false),
-                    IsNight = table.Column<bool>(type: "bit", nullable: false)
+                    OTStatus = table.Column<byte>(type: "tinyint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EmployeeAttendanceModel", x => x.EmployeeAttendanceId);
                     table.ForeignKey(
                         name: "FK_EmployeeAttendanceModel_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeAttendanceRequestModel",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RequestDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    AttendanceDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    TimeIn = table.Column<TimeOnly>(type: "time", nullable: false),
+                    TimeOut = table.Column<TimeOnly>(type: "time", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeAttendanceRequestModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmployeeAttendanceRequestModel_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
@@ -246,40 +264,26 @@ namespace InfrastructureLayer.Migrations
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PeriodStart = table.Column<DateOnly>(type: "date", nullable: false),
                     PeriodEnd = table.Column<DateOnly>(type: "date", nullable: false),
-                    BasicPay = table.Column<decimal>(type: "money", nullable: false),
-                    BonusPay = table.Column<decimal>(type: "money", nullable: false),
-                    OvertimePay = table.Column<decimal>(type: "money", nullable: false),
-                    NightShiftDifferentialPay = table.Column<decimal>(type: "money", nullable: false),
-                    HolidayPay = table.Column<decimal>(type: "money", nullable: false),
-                    PaidLeaves = table.Column<decimal>(type: "money", nullable: false),
-                    Allowance = table.Column<decimal>(type: "money", nullable: false),
-                    GrossPay = table.Column<decimal>(type: "money", nullable: false),
-                    SalaryTax = table.Column<decimal>(type: "money", nullable: false),
-                    GovtContribution = table.Column<decimal>(type: "money", nullable: false),
-                    LoanDeduction = table.Column<decimal>(type: "money", nullable: false),
-                    LateUTDeduction = table.Column<decimal>(type: "money", nullable: false),
-                    NetPay = table.Column<decimal>(type: "money", nullable: false),
-                    OrdinaryDaysWorked = table.Column<long>(type: "bigint", nullable: false),
-                    OrdinaryNightHoursWorked = table.Column<long>(type: "bigint", nullable: false),
-                    OrdinaryNightOTHoursWorked = table.Column<long>(type: "bigint", nullable: false),
-                    OrdinaryOTHoursWorked = table.Column<long>(type: "bigint", nullable: false),
-                    ApprovedHolidayNoWorkPay = table.Column<long>(type: "bigint", nullable: false),
-                    HolidayHoursWorked = table.Column<long>(type: "bigint", nullable: false),
-                    HolidayOTHoursWorked = table.Column<long>(type: "bigint", nullable: false),
-                    HolidayNightHoursWorked = table.Column<long>(type: "bigint", nullable: false),
-                    HolidayOTNightHoursWorked = table.Column<long>(type: "bigint", nullable: false),
-                    SpecialHolidayHoursWorked = table.Column<long>(type: "bigint", nullable: false),
-                    SpecialHolidayOTHoursWorked = table.Column<long>(type: "bigint", nullable: false),
-                    SpecialHolidayNightHoursWorked = table.Column<long>(type: "bigint", nullable: false),
-                    SpecialHolidayOTNightHoursWorked = table.Column<long>(type: "bigint", nullable: false),
-                    ApprovedPaidLeaves = table.Column<long>(type: "bigint", nullable: false),
-                    SSSContributionAmount = table.Column<decimal>(type: "money", nullable: false),
-                    PagIbigContributionAmount = table.Column<decimal>(type: "money", nullable: false),
-                    PhilHealthContributionAmount = table.Column<decimal>(type: "money", nullable: false),
-                    CompanyLoansAmount = table.Column<decimal>(type: "money", nullable: false),
-                    GovtLoansAmount = table.Column<decimal>(type: "money", nullable: false),
-                    OrdinaryLateMinutes = table.Column<long>(type: "bigint", nullable: false),
-                    OrdinaryUTHours = table.Column<long>(type: "bigint", nullable: false)
+                    PayDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    AppliedHourlyRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AppliedNDRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AppliedLegalHolidayRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AppliedOvertimeRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    HoursWorkedRegular = table.Column<short>(type: "smallint", nullable: false),
+                    LegalHolidaysHours = table.Column<short>(type: "smallint", nullable: false),
+                    NDOnWorkingDayHours = table.Column<short>(type: "smallint", nullable: false),
+                    OTHoursWorkedRegular = table.Column<short>(type: "smallint", nullable: false),
+                    UtilityAllowance = table.Column<decimal>(type: "money", nullable: false),
+                    MealAllowance = table.Column<decimal>(type: "money", nullable: false),
+                    LoadAllowance = table.Column<decimal>(type: "money", nullable: false),
+                    TotalGrossPay = table.Column<decimal>(type: "money", nullable: false),
+                    PHIC = table.Column<decimal>(type: "money", nullable: false),
+                    HDMF = table.Column<decimal>(type: "money", nullable: false),
+                    DecemberSSS = table.Column<decimal>(type: "money", nullable: false),
+                    DecemberHDMF = table.Column<decimal>(type: "money", nullable: false),
+                    WithholdingTax = table.Column<decimal>(type: "money", nullable: false),
+                    TotalDeductions = table.Column<decimal>(type: "money", nullable: false),
+                    NetPay = table.Column<decimal>(type: "money", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -313,6 +317,11 @@ namespace InfrastructureLayer.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeeAttendanceModel_EmployeeId",
                 table: "EmployeeAttendanceModel",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeAttendanceRequestModel_EmployeeId",
+                table: "EmployeeAttendanceRequestModel",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
@@ -356,6 +365,9 @@ namespace InfrastructureLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "EmployeeAttendanceModel");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeAttendanceRequestModel");
 
             migrationBuilder.DropTable(
                 name: "EmployeeLeaveModel");

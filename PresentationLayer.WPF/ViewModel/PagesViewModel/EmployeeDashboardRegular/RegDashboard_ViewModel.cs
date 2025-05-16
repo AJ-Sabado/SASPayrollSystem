@@ -151,7 +151,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
                         Date = DateOnly.FromDateTime(DateTime.Now),
                         TimeIn = new TimeOnly(8, 0, 0),
                         TimeOut = new TimeOnly(17, 0, 0),
-                        Status = FormStatus.Approved.ToString(),
+                        Status = AttendanceStatus.Present.ToString(),
                         Overtime = FormStatus.Denied.ToString(),
                         OTDuration = "0 hours"
                     });

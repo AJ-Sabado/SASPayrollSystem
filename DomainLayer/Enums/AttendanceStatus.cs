@@ -4,7 +4,8 @@
     {
         Present,
         Absent,
-        Late,
-        Excused
+        RestDay,
+        Holiday,
+        OnLeave
     }
 }

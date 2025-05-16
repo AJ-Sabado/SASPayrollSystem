@@ -8,10 +8,10 @@ namespace PresentationLayer.WPF.View.Windows
     /// </summary>
     public partial class AttendanceRequest_View : Window
     {
-        public AttendanceRequest_View()
+        public AttendanceRequest_View(AttendanceRequest_ViewModel vm)
         {
             InitializeComponent();
-            DataContext = new AttendanceRequest_ViewModel();
+            DataContext = vm;
         }
     }
 }
