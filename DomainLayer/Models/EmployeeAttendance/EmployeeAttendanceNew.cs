@@ -51,7 +51,7 @@ namespace DomainLayer.Models.EmployeeAttendance
         }
 
         [NotMapped]
-        public uint OvertimeHours
+        public uint OTHours
         {
             get
             {

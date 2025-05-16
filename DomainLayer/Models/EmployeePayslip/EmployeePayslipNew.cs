@@ -10,9 +10,11 @@ namespace DomainLayer.Models.EmployeePayslip
         [Key]
         public Guid EmployeePayslipId { get; set; }
 
+
         [ForeignKey(nameof(EmployeeId))]
         public Guid EmployeeId { get; set; }
         public EmployeeModel Employee { get; set; } = null!;
+
 
         [Column(TypeName = "date")]
         public DateOnly PeriodStart { get; set; }
@@ -101,13 +103,8 @@ namespace DomainLayer.Models.EmployeePayslip
         [Column(TypeName = "money")]
         public decimal TotalDeductions { get; set; } = 0;
 
-        [NotMapped]
-        public decimal TotalNetPay
-        {
-            get
-            {
-                return TotalGrossPay - TotalDeductions;
-            }
-        }
+        [Column(TypeName = "money")]
+        public decimal NetPay { get; set; } = 0;
+
     }
 }

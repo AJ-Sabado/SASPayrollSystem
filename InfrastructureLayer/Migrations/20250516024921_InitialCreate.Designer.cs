@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250513104926_InitialCreate")]
+    [Migration("20250516024921_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -86,6 +86,9 @@ namespace InfrastructureLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<byte>("Absences")
+                        .HasColumnType("tinyint");
+
                     b.Property<decimal>("BasicDailyRate")
                         .HasColumnType("money");
 
@@ -97,6 +100,9 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<TimeOnly>("BreakTimeStart")
                         .HasColumnType("time");
+
+                    b.Property<byte>("LeaveCredits")
+                        .HasColumnType("tinyint");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -235,16 +241,16 @@ namespace InfrastructureLayer.Migrations
                     b.ToTable("EmployeeAccountInfoModel");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendance.EmployeeAttendanceModel", b =>
+            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendance.EmployeeAttendanceNew", b =>
                 {
                     b.Property<Guid>("EmployeeAttendanceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<TimeOnly>("BreakIn")
+                    b.Property<TimeOnly>("BreakTimeIn")
                         .HasColumnType("time");
 
-                    b.Property<TimeOnly>("BreakOut")
+                    b.Property<TimeOnly>("BreakTimeOut")
                         .HasColumnType("time");
 
                     b.Property<DateOnly>("Date")
@@ -253,23 +259,8 @@ namespace InfrastructureLayer.Migrations
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<byte>("HolidayStatus")
-                        .HasColumnType("tinyint");
-
-                    b.Property<bool>("IsNight")
-                        .HasColumnType("bit");
-
-                    b.Property<short>("LateMinutes")
-                        .HasColumnType("smallint");
-
-                    b.Property<short>("OTHours")
-                        .HasColumnType("smallint");
-
                     b.Property<byte>("OTStatus")
                         .HasColumnType("tinyint");
-
-                    b.Property<short>("PayableHours")
-                        .HasColumnType("smallint");
 
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
@@ -280,14 +271,39 @@ namespace InfrastructureLayer.Migrations
                     b.Property<TimeOnly>("TimeOut")
                         .HasColumnType("time");
 
-                    b.Property<short>("UTHours")
-                        .HasColumnType("smallint");
-
                     b.HasKey("EmployeeAttendanceId");
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeAttendanceModel");
+                    b.ToTable("EmployeeAttendanceNew");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendanceRequest.EmployeeAttendanceRequestModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("Reason")
+                        .HasColumnType("tinyint");
+
+                    b.Property<TimeOnly>("TimeIn")
+                        .HasColumnType("time");
+
+                    b.Property<TimeOnly>("TimeOut")
+                        .HasColumnType("time");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("EmployeeAttendanceRequestModel");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeLeave.EmployeeLeaveModel", b =>
@@ -324,95 +340,62 @@ namespace InfrastructureLayer.Migrations
                     b.ToTable("EmployeeLeaveModel");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.EmployeePayslip.EmployeePayslipModel", b =>
+            modelBuilder.Entity("DomainLayer.Models.EmployeePayslip.EmployeePayslipNew", b =>
                 {
                     b.Property<Guid>("EmployeePayslipId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Allowance")
+                    b.Property<decimal>("AppliedHourlyRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("AppliedLegalHolidayRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("AppliedNDRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("AppliedOvertimeRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("DecemberHDMF")
                         .HasColumnType("money");
 
-                    b.Property<long>("ApprovedHolidayNoWorkPay")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ApprovedPaidLeaves")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal>("BasicPay")
-                        .HasColumnType("money");
-
-                    b.Property<decimal>("BonusPay")
-                        .HasColumnType("money");
-
-                    b.Property<decimal>("CompanyLoansAmount")
+                    b.Property<decimal>("DecemberSSS")
                         .HasColumnType("money");
 
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("GovtContribution")
+                    b.Property<decimal>("HDMF")
                         .HasColumnType("money");
 
-                    b.Property<decimal>("GovtLoansAmount")
+                    b.Property<short>("HoursWorkedRegular")
+                        .HasColumnType("smallint");
+
+                    b.Property<short>("LegalHolidaysHours")
+                        .HasColumnType("smallint");
+
+                    b.Property<decimal>("LoadAllowance")
                         .HasColumnType("money");
 
-                    b.Property<decimal>("GrossPay")
+                    b.Property<decimal>("MealAllowance")
                         .HasColumnType("money");
 
-                    b.Property<long>("HolidayHoursWorked")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("HolidayNightHoursWorked")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("HolidayOTHoursWorked")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("HolidayOTNightHoursWorked")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal>("HolidayPay")
-                        .HasColumnType("money");
-
-                    b.Property<decimal>("LateUTDeduction")
-                        .HasColumnType("money");
-
-                    b.Property<decimal>("LoanDeduction")
-                        .HasColumnType("money");
+                    b.Property<short>("NDOnWorkingDayHours")
+                        .HasColumnType("smallint");
 
                     b.Property<decimal>("NetPay")
                         .HasColumnType("money");
 
-                    b.Property<decimal>("NightShiftDifferentialPay")
+                    b.Property<short>("OTHoursWorkedRegular")
+                        .HasColumnType("smallint");
+
+                    b.Property<decimal>("PHIC")
                         .HasColumnType("money");
 
-                    b.Property<long>("OrdinaryDaysWorked")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OrdinaryLateMinutes")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OrdinaryNightHoursWorked")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OrdinaryNightOTHoursWorked")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OrdinaryOTHoursWorked")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OrdinaryUTHours")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal>("OvertimePay")
-                        .HasColumnType("money");
-
-                    b.Property<decimal>("PagIbigContributionAmount")
-                        .HasColumnType("money");
-
-                    b.Property<decimal>("PaidLeaves")
-                        .HasColumnType("money");
+                    b.Property<DateOnly>("PayDate")
+                        .HasColumnType("date");
 
                     b.Property<DateOnly>("PeriodEnd")
                         .HasColumnType("date");
@@ -420,32 +403,23 @@ namespace InfrastructureLayer.Migrations
                     b.Property<DateOnly>("PeriodStart")
                         .HasColumnType("date");
 
-                    b.Property<decimal>("PhilHealthContributionAmount")
+                    b.Property<decimal>("TotalDeductions")
                         .HasColumnType("money");
 
-                    b.Property<decimal>("SSSContributionAmount")
+                    b.Property<decimal>("TotalGrossPay")
                         .HasColumnType("money");
 
-                    b.Property<decimal>("SalaryTax")
+                    b.Property<decimal>("UtilityAllowance")
                         .HasColumnType("money");
 
-                    b.Property<long>("SpecialHolidayHoursWorked")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("SpecialHolidayNightHoursWorked")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("SpecialHolidayOTHoursWorked")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("SpecialHolidayOTNightHoursWorked")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("WithholdingTax")
+                        .HasColumnType("money");
 
                     b.HasKey("EmployeePayslipId");
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeePayslipModel");
+                    b.ToTable("EmployeePayslipNew");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Holiday.HolidayModel", b =>
@@ -569,10 +543,21 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendance.EmployeeAttendanceModel", b =>
+            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendance.EmployeeAttendanceNew", b =>
                 {
                     b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
                         .WithMany("EmployeeAttendances")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendanceRequest.EmployeeAttendanceRequestModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
+                        .WithMany("EmployeeAttendanceRequests")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -591,7 +576,7 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.EmployeePayslip.EmployeePayslipModel", b =>
+            modelBuilder.Entity("DomainLayer.Models.EmployeePayslip.EmployeePayslipNew", b =>
                 {
                     b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
                         .WithMany("EmployeePayslips")
@@ -629,6 +614,8 @@ namespace InfrastructureLayer.Migrations
             modelBuilder.Entity("DomainLayer.Models.Employee.EmployeeModel", b =>
                 {
                     b.Navigation("EmployeeAccountInfo");
+
+                    b.Navigation("EmployeeAttendanceRequests");
 
                     b.Navigation("EmployeeAttendances");
 
