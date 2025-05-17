@@ -4,7 +4,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-             xmlns:converters="clr-namespace:PresentationLayer.WPF.Converters" 
              x:Class="PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg.RegDashboard"
              mc:Ignorable="d" 
              d:DesignHeight="688" d:DesignWidth="1088">
