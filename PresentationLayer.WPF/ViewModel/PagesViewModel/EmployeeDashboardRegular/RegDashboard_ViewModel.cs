@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using System.Windows.Threading;
 using DomainLayer.Enums;
 using PresentationLayer.WPF.Services;
@@ -13,7 +14,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWindowService _windowService;
 
-        public IList<AttendanceLog> AttendanceLogList {get; set;} = [];
+        public IList<AttendanceLog> AttendanceLogList { get; set; } = [];
 
         //Binded properties
         public ICommand Logout { get; set; }
@@ -81,11 +82,125 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
             }
         }
 
+        //==============================TIME IN==================
+
+        public ICommand ToggleTimeCommand { get; }
+        public ICommand BreakCommand { get; }
+
+        private bool _isTimedIn;
+        public bool IsTimedIn
+        {
+            get => _isTimedIn;
+            set
+            {
+                if (_isTimedIn != value)
+                {
+                    _isTimedIn = value;
+                    OnPropertyChanged();
+                    UpdateTimeInState();
+                }
+            }
+        }
+
+        private bool _isBreakEnabled;
+        public bool IsBreakEnabled
+        {
+            get => _isBreakEnabled;
+            set
+            {
+                if (_isBreakEnabled != value)
+                {
+                    _isBreakEnabled = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private bool _isOnBreak;
+        public bool IsOnBreak
+        {
+            get => _isOnBreak;
+            set
+            {
+                if (_isOnBreak != value)
+                {
+                    _isOnBreak = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(BreakButtonText));
+                }
+            }
+        }
+
+        private bool _hasTakenBreak;
+        public bool HasTakenBreak
+        {
+            get => _hasTakenBreak;
+            set
+            {
+                if (_hasTakenBreak != value)
+                {
+                    _hasTakenBreak = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private void ToggleTimeIn(object? parameter)
+        {
+            IsTimedIn = !IsTimedIn;
+        }
+
+        // Handles logic when IsTimedIn is set
+        private void UpdateTimeInState()
+        {
+            if (IsTimedIn)
+            {
+                HasTakenBreak = false;
+                IsBreakEnabled = true;
+                IsOnBreak = false;
+                ShowMessage("Timed In", "Timed In", MessageBoxImage.Information);
+            }
+            else
+            {
+                IsBreakEnabled = false;
+                ShowMessage("Timed Out", "Timed Out", MessageBoxImage.Information);
+            }
+        }
+
+        // Break button logic
+        private void BreakBtn(object? parameter)
+        {
+            if (!HasTakenBreak)
+            {
+                IsOnBreak = true;
+                ShowMessage("1-hour break started!", "Break", MessageBoxImage.Information);
+            }
+            else
+            {
+                IsOnBreak = false;
+                IsBreakEnabled = false;
+                ShowMessage("1-hour break ended!", "Resume", MessageBoxImage.Warning);
+            }
+            HasTakenBreak = !HasTakenBreak;
+        }
+
+        // Helper for messages
+        private void ShowMessage(string message, string title, MessageBoxImage icon)
+        {
+            MessageBox.Show(message, title, MessageBoxButton.OK, icon);
+        }
+
+        public string BreakButtonText => IsOnBreak ? "   Resume" : "   Break";
+
+        //===================CONSTRUCTOR===============================================
+
         public RegDashboard_ViewModel(IUnitOfWork unitOfWork, IWindowService windowService)
         {
             _unitOfWork = unitOfWork;
             _windowService = windowService;
             Logout = new RelayCommand(LogoutExecute);
+            ToggleTimeCommand = new RelayCommand(ToggleTimeIn);
+            BreakCommand = new RelayCommand(BreakBtn);
             LoadUserData();
         }
 
@@ -139,5 +254,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
                 }
             }
         }
+
+        
     }
 }
