@@ -5,7 +5,6 @@ using DomainLayer.Models.Contractor;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.EmployeeAccountInfo;
-using DomainLayer.Models.EmployeeAttendance;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
@@ -334,7 +333,7 @@ namespace ServicesLayer
             return RegisterUserResult.Success;
         }
 
-        public async Task UpdateEmployeeAttendanceRecords(Guid EmployeeId)
+        public async Task EvaluateEmployeeAttendanceLog(Guid EmployeeId)
         {
             //TO DO - Add logic to update employee attendance records
             var employee = await EmployeeRepository.GetAsync(e => e.EmployeeId == EmployeeId, includeProperties: "User,EmployeeAttendances,EmployeeLeaves,EmployeePayslips");
@@ -358,7 +357,7 @@ namespace ServicesLayer
                 var holidays = await HolidayRepository.GetManyAsync(h => IsDateBetween(h.Date, startDate, today));
 
                 var payslip = employee.EmployeePayslips.FirstOrDefault(p => p.PeriodStart == startDate && p.PeriodEnd == endDate);
-                
+
                 //Iterate through work days
                 for (DateOnly date = startDate; date < today; date = date.AddDays(1))
                 {

@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using DomainLayer.Enums;
+using DomainLayer.Enums.EmployeePersonalInfo;
 using DomainLayer.Models.Employee;
 
 namespace DomainLayer.Models.EmployeeAttendance
 {
-    public class EmployeeAttendanceModelNew
+    public class EmployeeAttendanceLogModel
     {
         [Key]
         public Guid Id { get; set; }
@@ -23,5 +25,8 @@ namespace DomainLayer.Models.EmployeeAttendance
         public TimeOnly? BreakTimeOut { get; set; }
         [Column(TypeName = "time")]
         public TimeOnly? TimeOut { get; set; }
+
+        [Column(TypeName = "tinyint")]
+        public AttendanceLogEvaluationStatus EvaluationStatus { get; set; } = AttendanceLogEvaluationStatus.Pending;
     }
 }

@@ -436,7 +436,7 @@
                                         </Grid.RowDefinitions>
 
                                         <StackPanel Grid.Row="0">
-                                            <TextBlock Text="Attendance Log" FontFamily="{StaticResource PoppinsSemiBold}"
+                                            <TextBlock Text="Evaluated Attendance" FontFamily="{StaticResource PoppinsSemiBold}"
                                                         FontSize="20"/>
                                             
                                             <!--ATTENDANCE LOG DATAGRID-->
@@ -461,9 +461,9 @@
 
                                                     <DataGrid.Columns>
                                                         <DataGridTextColumn Header="Date" Width="150" Binding="{Binding Date}"/>
+                                                        <DataGridTextColumn Header="Status" Width="150" Binding="{Binding Status}"/>
                                                         <DataGridTextColumn Header="Time In" Width="150" Binding="{Binding TimeIn}"/>
                                                         <DataGridTextColumn Header="Time Out" Width="150" Binding="{Binding TimeOut}"/>
-                                                        <DataGridTextColumn Header="Status" Width="150" Binding="{Binding Status}"/>
                                                         <DataGridTextColumn Header="Overtime" Width="150" Binding="{Binding Overtime}"/>
                                                         <DataGridTextColumn Header="OT Duration" Width="150" Binding="{Binding OTDuration}"/>
                                                     </DataGrid.Columns>
