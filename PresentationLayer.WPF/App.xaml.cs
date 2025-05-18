@@ -4,10 +4,13 @@ using Microsoft.Extensions.DependencyInjection;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages;
 using PresentationLayer.WPF.View.Pages.Dashboard;
+using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardIC;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg;
 using PresentationLayer.WPF.View.Windows;
+using PresentationLayer.WPF.View.Windows.Main;
 using PresentationLayer.WPF.ViewModel;
 using PresentationLayer.WPF.ViewModel.PagesViewModel;
+using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC;
 using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular;
 using PresentationLayer.WPF.ViewModel.PopUpViewModel;
 using PresentationLayer.WPF.ViewModel.RegularViewModel;
@@ -36,7 +39,7 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-            windowService.ShowWindow<EmployeeDahboard_View>();
+            windowService.ShowWindow<EmployeeDashboardIC_View>();
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -48,6 +51,9 @@ namespace SASPayrolSystemProject
             services.AddTransient<EmployeeDahboard_View>();
             services.AddTransient<EmployeeDashboardReg_ViewModel>();
 
+            services.AddTransient<EmployeeDashboardIC_View>();
+            services.AddTransient<EmployeeDashboardIC_ViewModel>();
+
             //Pages
             services.AddTransient<RegDashboard>();
             services.AddTransient<RegJobDesk>();
@@ -55,6 +61,9 @@ namespace SASPayrolSystemProject
             services.AddTransient<RegDashboard_ViewModel>();
             services.AddTransient<RegJobDesk_ViewModel>();
             services.AddTransient<AccountPage_ViewModel>();
+
+            services.AddTransient<ICDashboard>();
+            services.AddTransient<ICDashboard_ViewModel>();
 
             //Popups
             services.AddTransient<FileLeaveForm_View>();

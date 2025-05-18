@@ -295,17 +295,22 @@
                                 <TextBlock Grid.Row="0" Text="Attendance Log" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
                                 
                                 <!--Data Grid-->
-                                <DataGrid  Grid.Row="2" x:Name="dataGridDashboardAttendanceLog" AutoGenerateColumns="False" FontSize="14" ItemsSource="{Binding AttendanceLogList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Date" Width="*" Binding="{Binding Date}"/>
-                                        <DataGridTextColumn Header="Time In" Width="*" Binding="{Binding TimeIn}"/>
-                                        <DataGridTextColumn Header="Time Out" Width="*" Binding="{Binding TimeOut}"/>
-                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Status}"/>
-                                        <DataGridTextColumn Header="Overtime" Width="*" Binding="{Binding Overtime}"/>
-                                        <DataGridTextColumn Header="OT Duration" Width="*" Binding="{Binding OTDuration}"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                                
+                                <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                    <DataGrid x:Name="dataGridDashboardAttendanceLog"
+                                              AutoGenerateColumns="False" FontSize="14"
+                                              ItemsSource="{Binding AttendanceLogList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                              IsReadOnly="True"
+                                              HorizontalScrollBarVisibility="Disabled">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Date" Width="120" Binding="{Binding Date}"/>
+                                            <DataGridTextColumn Header="Time In" Width="120" Binding="{Binding TimeIn}"/>
+                                            <DataGridTextColumn Header="Time Out" Width="120" Binding="{Binding TimeOut}"/>
+                                            <DataGridTextColumn Header="Status" Width="120" Binding="{Binding Status}"/>
+                                            <DataGridTextColumn Header="Overtime" Width="120" Binding="{Binding Overtime}"/>
+                                            <DataGridTextColumn Header="OT Duration" Width="120" Binding="{Binding OTDuration}"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </ScrollViewer>
                             </Grid>
                         </materialDesign:Card>
                     </Grid>
