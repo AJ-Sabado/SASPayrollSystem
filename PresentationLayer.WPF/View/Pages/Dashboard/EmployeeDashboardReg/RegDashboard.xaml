@@ -179,7 +179,9 @@
                                         <Button Width="120"
                                                 Height="35"
                                                 Style="{StaticResource DynamicTimeButtonStyle}"
-                                                Command="{Binding ToggleTimeCommand}" />
+                                                Command="{Binding ToggleTimeCommand}" 
+                                                IsEnabled="{Binding IsTimeEnabled}"
+                                                />
                                         <Button x:Name="btnBreak"
                                                 Width="120"
                                                 Height="35"
