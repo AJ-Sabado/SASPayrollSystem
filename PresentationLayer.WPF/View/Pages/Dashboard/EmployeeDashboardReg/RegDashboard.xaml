@@ -300,13 +300,14 @@
                                 <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                                     <DataGrid x:Name="dataGridDashboardAttendanceLog"
                                               AutoGenerateColumns="False" FontSize="14"
-                                              ItemsSource="{Binding AttendanceLogList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                              ItemsSource="{Binding AttendanceLogList, Mode=OneWay}"
+                                              IsManipulationEnabled="False"
                                               IsReadOnly="True"
                                               HorizontalScrollBarVisibility="Disabled">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Date" Width="120" Binding="{Binding Date}"/>
-                                            <DataGridTextColumn Header="Time Stamp" Width="120" Binding="{Binding TimeStamp}"/>
-                                            <DataGridTextColumn Header="Event Type" Width="120" Binding="{Binding EventType}"/>
+                                            <DataGridTextColumn Header="Date" Width="120" IsReadOnly="True" Binding="{Binding Date, Mode=OneWay}"/>
+                                            <DataGridTextColumn Header="Time Stamp" Width="120" IsReadOnly="True" Binding="{Binding TimeStamp, Mode=OneWay}"/>
+                                            <DataGridTextColumn Header="Event Type" Width="120" IsReadOnly="True" Binding="{Binding EventType, Mode=OneWay}"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </ScrollViewer>

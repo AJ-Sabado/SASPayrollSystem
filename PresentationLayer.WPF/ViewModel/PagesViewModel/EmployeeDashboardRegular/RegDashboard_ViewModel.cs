@@ -269,7 +269,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
         {
             
             var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid,
-                includeProperties: "EmployeeAccountInfo,EmployeeAttendanceLogs");
+                includeProperties: "EmployeeAccountInfo,EmployeeAttendanceLogs,EmployeePayslips");
             if (employee != null)
             {
                 _employee = employee;
@@ -279,10 +279,23 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
                     EmployeeFirstName = employee.EmployeeAccountInfo.FirstName;
                     EmployeeCompanyId = employee.EmployeeAccountInfo.CompanyId;
                     EmployeeRole = employee.EmployeeAccountInfo.Role;
+                    Leaves = employee.LeaveCredits.ToString();
+                    Absences = employee.Absences.ToString();
                 }
 
-                //Load today's attendance
-                var today = DateOnly.FromDateTime(DateTime.Now);
+                //Load Payslip info
+                if (employee.EmployeePayslips != null && employee.EmployeePayslips.Count > 0)
+                {
+                    var recentPayslip = employee.EmployeePayslips.Last();
+                    Upcoming = recentPayslip.PeriodEnd.ToString("MMMM dd, yyyy");
+                }
+                else
+                {
+                    Upcoming = "-";
+                }
+
+                    //Load today's attendance
+                    var today = DateOnly.FromDateTime(DateTime.Now);
                 if (employee.EmployeeAttendanceLogs != null && employee.EmployeeAttendanceLogs.Count > 0)
                 {
                     var attendances = employee.EmployeeAttendanceLogs.Where(x => x.Date == today).ToList();

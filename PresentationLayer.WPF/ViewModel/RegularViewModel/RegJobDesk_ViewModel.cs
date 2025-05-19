@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using DomainLayer.Enums.EmployeePersonalInfo;
 using DomainLayer.Models.EmployeeAttendanceRequest;
 using DomainLayer.Models.EmployeeEvaluatedAttendance;
@@ -140,6 +141,159 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 OnPropertyChanged();
             }
         }
+
+        //Payslip
+        private string _basicPay = "Php 0.00";
+        public string BasicPay
+        {
+            get => _basicPay;
+            set
+            {
+                _basicPay = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _holidayPay = "Php 0.00";
+        public string HolidayPay
+        {
+            get => _holidayPay;
+            set
+            {
+                _holidayPay = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _nightDifferentialPay = "Php 0.00";
+        public string NightDifferentialPay
+        {
+            get => _nightDifferentialPay;
+            set
+            {
+                _nightDifferentialPay = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _overtimePay = "Php 0.00";
+        public string OvertimePay
+        {
+            get => _overtimePay;
+            set
+            {
+                _overtimePay = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _paidLeaves = "Php 0.00";
+        public string PaidLeaves
+        {
+            get => _paidLeaves;
+            set
+            {
+                _paidLeaves = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _bonus = "Php 0.00";
+        public string Bonus
+        {
+            get => _bonus;
+            set
+            {
+                _bonus = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _allowances = "Php 0.00";
+        public string Allowances
+        {
+            get => _allowances;
+            set
+            {
+                _allowances = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _grossPay = "Php 0.00";
+        public string GrossPay
+        {
+            get => _grossPay;
+            set
+            {
+                _grossPay = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _withholdingTax = "Php 0.00";
+        public string WithholdingTax
+        {
+            get => _withholdingTax;
+            set
+            {
+                _withholdingTax = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _governmentContributions = "Php 0.00";
+        public string GovernmentContributions
+        {
+            get => _governmentContributions;
+            set
+            {
+                _governmentContributions = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _loanDeductions = "Php 0.00";
+        public string LoanDeductions
+        {
+            get => _loanDeductions;
+            set
+            {
+                _loanDeductions = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _uTDeductions = "Php 0.00";
+        public string UTDeductions
+        {
+            get => _uTDeductions;
+            set
+            {
+                _uTDeductions = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _netSalary = "Php 0.00";
+        public string NetSalary
+        {
+            get => _netSalary;
+            set
+            {
+                _netSalary = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _payrollDate = "-";
+        public string PayrollDate
+        {
+            get => _payrollDate;
+            set
+            {
+                _payrollDate = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _payrollStatus = "No payslip information available.";
+        public string PayrollStatus
+        {
+            get => _payrollStatus;
+            set
+            {
+                _payrollStatus = value;
+                OnPropertyChanged();
+            }
+        }
+
         public RegJobDesk_ViewModel(IPopUpService popUpService, IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -191,6 +345,34 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                     if (employee.EmployeeLeaveRequests != null && employee.EmployeeLeaveRequests.Count > 0)
                     {
                         LeaveRequestList = employee.EmployeeLeaveRequests.ToList();
+                    }
+
+                    //Load Payslips
+                    if (employee.EmployeePayslips != null && employee.EmployeePayslips.Count > 0)
+                    {
+                        var payslip = employee.EmployeePayslips.LastOrDefault();
+                        if (payslip != null)
+                        {
+                            BasicPay = $"Php {payslip.BasicPay.ToString("N2")}";
+                            HolidayPay = $"Php {payslip.HolidayHours.ToString("N2")}";
+                            NightDifferentialPay = $"Php {payslip.NightDifferentialPay.ToString("N2")}";
+                            OvertimePay = $"Php {payslip.OvertimePay.ToString("N2")}";
+                            PaidLeaves = $"Php {payslip.PaidLeaves.ToString("N2")}";
+                            Bonus = $"Php {payslip.Bonus.ToString("N2")}";
+                            Allowances = $"Php {payslip.Allowances.ToString("N2")}";
+                            GrossPay = $"Php {payslip.GrossPay.ToString("N2")}";
+                            WithholdingTax = $"Php {payslip.WithholdingTax.ToString("N2")}";
+                            GovernmentContributions = $"Php {payslip.GovernmentContributions.ToString("N2")}";
+                            LoanDeductions = $"Php {payslip.LoanDeductions.ToString("N2")}";
+                            UTDeductions = $"Php {payslip.UTDeductions.ToString("N2")}";
+                            NetSalary = $"Php {payslip.NetSalary.ToString("N2")}";
+                            PayrollDate = $"{payslip.PeriodStart:MMMM dd, yyyy} - {payslip.PeriodEnd:MMMM dd, yyyy}";
+                            PayrollStatus = $"{payslip.PayslipStatus.ToString()} - {payslip.PayDate:MMMM dd, yyyy}";
+                        }
+                    }
+                    else
+                    {
+                        PayrollStatus = "No payslip information available.";
                     }
                 }
             }

@@ -19,7 +19,19 @@ namespace PresentationLayer.WPF.View.Pages
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            try
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    this.DragMove();
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Handle the exception if needed
+                // For example, you can log the error or show a message to the user
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnClose_CloseButtonClicked(object sender, RoutedEventArgs e)
