@@ -64,6 +64,8 @@ namespace SASPayrolSystemProject
 
             services.AddTransient<ICDashboard>();
             services.AddTransient<ICDashboard_ViewModel>();
+            services.AddTransient<ICJobDesk>();
+            services.AddTransient<ICJobDesk_ViewModel>();
 
             //Popups
             services.AddTransient<FileLeaveForm_View>();
