@@ -35,7 +35,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
             _pageService = pageService;
 
             ShowDashboardCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<ICDashboard>(), "Dashboard"));
-            ShowJobDeskCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<RegJobDesk>(), "JobDesk"));
+            ShowJobDeskCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<ICJobDesk>(), "JobDesk"));
             ShowAccountsCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<AccountsPage>(), "Accounts"));
 
             // Set the default page and selected menu when opening
