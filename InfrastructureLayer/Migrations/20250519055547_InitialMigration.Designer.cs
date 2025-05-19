@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250516055329_AddedStatusColumnOnEmployeeRequestModel")]
-    partial class AddedStatusColumnOnEmployeeRequestModel
+    [Migration("20250519055547_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,12 @@ namespace InfrastructureLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<decimal>("BasicHourlyRate")
+                        .HasColumnType("money");
+
+                    b.Property<byte>("MaximumWeeklyHours")
+                        .HasColumnType("tinyint");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -57,6 +63,85 @@ namespace InfrastructureLayer.Migrations
                         .IsUnique();
 
                     b.ToTable("Contractors");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.ContractorAccountInformation.ContractorAccountInformationModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ContractorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContractorId")
+                        .IsUnique();
+
+                    b.ToTable("ContractorAccountInformationModel");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.ContractorAttendanceLog.ContractorAttendanceLogModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ContractorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<int>("ReviewStatus")
+                        .HasColumnType("int");
+
+                    b.Property<TimeOnly?>("TimeIn")
+                        .HasColumnType("time");
+
+                    b.Property<TimeOnly?>("TimeOut")
+                        .HasColumnType("time");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContractorId");
+
+                    b.ToTable("ContractorAttendanceLogModel");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.ContractorPayslip.ContractorPayslipModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("AppliedHourlyRate")
+                        .HasColumnType("money");
+
+                    b.Property<Guid>("ContractorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("NetPay")
+                        .HasColumnType("money");
+
+                    b.Property<DateOnly>("PayDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly>("PeriodEnd")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly>("PeriodStart")
+                        .HasColumnType("date");
+
+                    b.Property<byte>("TotalHoursWorked")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContractorId");
+
+                    b.ToTable("ContractorPayslipModel");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Department.DepartmentModel", b =>
@@ -95,10 +180,16 @@ namespace InfrastructureLayer.Migrations
                     b.Property<decimal>("BasicMonthlyRate")
                         .HasColumnType("money");
 
-                    b.Property<TimeOnly>("BreakTimeEnd")
+                    b.Property<TimeOnly>("DefaultBreakTimeEnd")
                         .HasColumnType("time");
 
-                    b.Property<TimeOnly>("BreakTimeStart")
+                    b.Property<TimeOnly>("DefaultBreakTimeStart")
+                        .HasColumnType("time");
+
+                    b.Property<TimeOnly>("DefaultWorkShiftEnd")
+                        .HasColumnType("time");
+
+                    b.Property<TimeOnly>("DefaultWorkShiftStart")
                         .HasColumnType("time");
 
                     b.Property<byte>("LeaveCredits")
@@ -106,12 +197,6 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<TimeOnly>("WorkShiftEnd")
-                        .HasColumnType("time");
-
-                    b.Property<TimeOnly>("WorkShiftStart")
-                        .HasColumnType("time");
 
                     b.HasKey("EmployeeId");
 
@@ -241,17 +326,11 @@ namespace InfrastructureLayer.Migrations
                     b.ToTable("EmployeeAccountInfoModel");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendance.EmployeeAttendanceModel", b =>
+            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendanceLog.EmployeeAttendanceLogModel", b =>
                 {
                     b.Property<Guid>("EmployeeAttendanceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<TimeOnly>("BreakTimeIn")
-                        .HasColumnType("time");
-
-                    b.Property<TimeOnly>("BreakTimeOut")
-                        .HasColumnType("time");
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date");
@@ -259,23 +338,17 @@ namespace InfrastructureLayer.Migrations
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<byte>("OTStatus")
+                    b.Property<byte>("EventType")
                         .HasColumnType("tinyint");
 
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint");
-
-                    b.Property<TimeOnly>("TimeIn")
-                        .HasColumnType("time");
-
-                    b.Property<TimeOnly>("TimeOut")
+                    b.Property<TimeOnly>("TimeStamp")
                         .HasColumnType("time");
 
                     b.HasKey("EmployeeAttendanceId");
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeAttendanceModel");
+                    b.ToTable("EmployeeAttendanceLogModel");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeAttendanceRequest.EmployeeAttendanceRequestModel", b =>
@@ -307,6 +380,49 @@ namespace InfrastructureLayer.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("EmployeeAttendanceRequestModel");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.EmployeeEvaluatedAttendance.EmployeeEvaluatedAttendanceModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("ActualWorkHours")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid?>("BreakTimeInReference")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BreakTimeOutReference")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<byte>("DayStatus")
+                        .HasColumnType("tinyint");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EvaluationTimeStamp")
+                        .HasColumnType("datetime");
+
+                    b.Property<decimal>("ExpectedWorkHours")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid?>("TimeInReference")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("TimeOutReference")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("EmployeeEvaluatedAttendanceModel");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeLeave.EmployeeLeaveModel", b =>
@@ -524,6 +640,39 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DomainLayer.Models.ContractorAccountInformation.ContractorAccountInformationModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Contractor.ContractorModel", "Contractor")
+                        .WithOne("ContractorAccountInformation")
+                        .HasForeignKey("DomainLayer.Models.ContractorAccountInformation.ContractorAccountInformationModel", "ContractorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contractor");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.ContractorAttendanceLog.ContractorAttendanceLogModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Contractor.ContractorModel", "Contractor")
+                        .WithMany("ContractorAttendanceLogs")
+                        .HasForeignKey("ContractorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contractor");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.ContractorPayslip.ContractorPayslipModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Contractor.ContractorModel", "Contractor")
+                        .WithMany("ContractorPayslips")
+                        .HasForeignKey("ContractorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contractor");
+                });
+
             modelBuilder.Entity("DomainLayer.Models.Employee.EmployeeModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.User.UserModel", "User")
@@ -546,10 +695,10 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendance.EmployeeAttendanceModel", b =>
+            modelBuilder.Entity("DomainLayer.Models.EmployeeAttendanceLog.EmployeeAttendanceLogModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
-                        .WithMany("EmployeeAttendances")
+                        .WithMany("EmployeeAttendanceLogs")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -568,10 +717,21 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("Employee");
                 });
 
+            modelBuilder.Entity("DomainLayer.Models.EmployeeEvaluatedAttendance.EmployeeEvaluatedAttendanceModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
+                        .WithMany("EmployeeEvaluatedAttendances")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("DomainLayer.Models.EmployeeLeave.EmployeeLeaveModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
-                        .WithMany("EmployeeLeaves")
+                        .WithMany("EmployeeLeaveRequests")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -609,6 +769,15 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("DomainLayer.Models.Contractor.ContractorModel", b =>
+                {
+                    b.Navigation("ContractorAccountInformation");
+
+                    b.Navigation("ContractorAttendanceLogs");
+
+                    b.Navigation("ContractorPayslips");
+                });
+
             modelBuilder.Entity("DomainLayer.Models.Department.DepartmentModel", b =>
                 {
                     b.Navigation("Users");
@@ -618,11 +787,13 @@ namespace InfrastructureLayer.Migrations
                 {
                     b.Navigation("EmployeeAccountInfo");
 
+                    b.Navigation("EmployeeAttendanceLogs");
+
                     b.Navigation("EmployeeAttendanceRequests");
 
-                    b.Navigation("EmployeeAttendances");
+                    b.Navigation("EmployeeEvaluatedAttendances");
 
-                    b.Navigation("EmployeeLeaves");
+                    b.Navigation("EmployeeLeaveRequests");
 
                     b.Navigation("EmployeePayslips");
                 });

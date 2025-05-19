@@ -305,11 +305,8 @@
                                               HorizontalScrollBarVisibility="Disabled">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Date" Width="120" Binding="{Binding Date}"/>
-                                            <DataGridTextColumn Header="Time In" Width="120" Binding="{Binding TimeIn}"/>
-                                            <DataGridTextColumn Header="Time Out" Width="120" Binding="{Binding TimeOut}"/>
-                                            <DataGridTextColumn Header="Status" Width="120" Binding="{Binding Status}"/>
-                                            <DataGridTextColumn Header="Overtime" Width="120" Binding="{Binding Overtime}"/>
-                                            <DataGridTextColumn Header="OT Duration" Width="120" Binding="{Binding OTDuration}"/>
+                                            <DataGridTextColumn Header="Time Stamp" Width="120" Binding="{Binding TimeStamp}"/>
+                                            <DataGridTextColumn Header="Event Type" Width="120" Binding="{Binding EventType}"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </ScrollViewer>

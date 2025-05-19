@@ -108,7 +108,7 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
 
         private async void ExecuteSendRequest(object? obj)
         {
-            var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "EmployeeLeaves");
+            var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "EmployeeLeaveRequests");
             if (employee != null && StartDate.HasValue && ReturnDate.HasValue)
             {
                 var leave = new EmployeeLeaveModel()
@@ -121,7 +121,7 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
                     Duration = this.Duration,
                     Type = this.SelectedLeaveType
                 };
-                employee.EmployeeLeaves.Add(leave);
+                employee.EmployeeLeaveRequests.Add(leave);
                 await _unitOfWork.Save();
                 System.Windows.MessageBox.Show("Leave Request Filled!");
             }

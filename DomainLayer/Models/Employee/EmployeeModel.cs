@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using DomainLayer.Models.EmployeeAccountInfo;
-using DomainLayer.Models.EmployeeAttendance;
+using DomainLayer.Models.EmployeeAttendanceLog;
 using DomainLayer.Models.EmployeeAttendanceRequest;
+using DomainLayer.Models.EmployeeEvaluatedAttendance;
 using DomainLayer.Models.EmployeeLeave;
 using DomainLayer.Models.EmployeePayslip;
 using DomainLayer.Models.User;
@@ -26,16 +27,16 @@ namespace DomainLayer.Models.Employee
         public decimal BasicDailyRate { get; set; } = 0;
 
         [Column(TypeName = "time")]
-        public TimeOnly WorkShiftStart { get; set; } = new TimeOnly(8, 0, 0);
+        public TimeOnly DefaultWorkShiftStart { get; set; } = new TimeOnly(8, 0, 0);
 
         [Column(TypeName = "time")]
-        public TimeOnly WorkShiftEnd { get; set; } = new TimeOnly(17, 0, 0);
+        public TimeOnly DefaultWorkShiftEnd { get; set; } = new TimeOnly(17, 0, 0);
 
         [Column(TypeName = "time")]
-        public TimeOnly BreakTimeStart { get; set; } = new TimeOnly(12, 0, 0);
+        public TimeOnly DefaultBreakTimeStart { get; set; } = new TimeOnly(12, 0, 0);
 
         [Column(TypeName = "time")]
-        public TimeOnly BreakTimeEnd { get; set; } = new TimeOnly(13, 0, 0);
+        public TimeOnly DefaultBreakTimeEnd { get; set; } = new TimeOnly(13, 0, 0);
         [Column(TypeName = "tinyint")]
         public uint LeaveCredits { get; set; } = 0;
         [Column(TypeName = "tinyint")]
@@ -43,9 +44,10 @@ namespace DomainLayer.Models.Employee
 
         //Navigation
         public EmployeeAccountInfoModel? EmployeeAccountInfo { get; set; }
-        public ICollection<EmployeeAttendanceModel> EmployeeAttendances { get; } = [];
-        public ICollection<EmployeeLeaveModel> EmployeeLeaves { get; } = [];
-        public ICollection<EmployeePayslipModel> EmployeePayslips { get; } = [];
+        public ICollection<EmployeeAttendanceLogModel> EmployeeAttendanceLogs { get; } = [];
         public ICollection<EmployeeAttendanceRequestModel> EmployeeAttendanceRequests { get; } = [];
+        public ICollection<EmployeeEvaluatedAttendanceModel> EmployeeEvaluatedAttendances { get; } = [];
+        public ICollection<EmployeeLeaveModel> EmployeeLeaveRequests { get; } = [];
+        public ICollection<EmployeePayslipModel> EmployeePayslips { get; } = [];
     }
 }

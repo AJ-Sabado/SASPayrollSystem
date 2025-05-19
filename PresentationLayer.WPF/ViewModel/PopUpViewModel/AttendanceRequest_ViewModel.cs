@@ -46,8 +46,8 @@ namespace PresentationLayer.WPF.ViewModel
                 EmployeeID = employee.EmployeeAccountInfo.CompanyId;
                 Department = user.Department.Name;
                 Role = employee.EmployeeAccountInfo.Role;
-                TimeIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.WorkShiftStart.Hour, employee.WorkShiftStart.Minute, employee.WorkShiftStart.Second);
-                TimeOut = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.WorkShiftEnd.Hour, employee.WorkShiftEnd.Minute, employee.WorkShiftEnd.Second);
+                TimeIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.DefaultWorkShiftStart.Hour, employee.DefaultWorkShiftStart.Minute, employee.DefaultWorkShiftStart.Second);
+                TimeOut = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.DefaultWorkShiftEnd.Hour, employee.DefaultWorkShiftEnd.Minute, employee.DefaultWorkShiftEnd.Second);
                 //TO DO - Add AttendanceRequestModel
             }
             else

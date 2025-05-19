@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace InfrastructureLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -103,7 +103,9 @@ namespace InfrastructureLayer.Migrations
                 columns: table => new
                 {
                     ContractorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BasicHourlyRate = table.Column<decimal>(type: "money", nullable: false),
+                    MaximumWeeklyHours = table.Column<byte>(type: "tinyint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -124,10 +126,10 @@ namespace InfrastructureLayer.Migrations
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BasicMonthlyRate = table.Column<decimal>(type: "money", nullable: false),
                     BasicDailyRate = table.Column<decimal>(type: "money", nullable: false),
-                    WorkShiftStart = table.Column<TimeOnly>(type: "time", nullable: false),
-                    WorkShiftEnd = table.Column<TimeOnly>(type: "time", nullable: false),
-                    BreakTimeStart = table.Column<TimeOnly>(type: "time", nullable: false),
-                    BreakTimeEnd = table.Column<TimeOnly>(type: "time", nullable: false),
+                    DefaultWorkShiftStart = table.Column<TimeOnly>(type: "time", nullable: false),
+                    DefaultWorkShiftEnd = table.Column<TimeOnly>(type: "time", nullable: false),
+                    DefaultBreakTimeStart = table.Column<TimeOnly>(type: "time", nullable: false),
+                    DefaultBreakTimeEnd = table.Column<TimeOnly>(type: "time", nullable: false),
                     LeaveCredits = table.Column<byte>(type: "tinyint", nullable: false),
                     Absences = table.Column<byte>(type: "tinyint", nullable: false)
                 },
@@ -139,6 +141,70 @@ namespace InfrastructureLayer.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContractorAccountInformationModel",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ContractorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContractorAccountInformationModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ContractorAccountInformationModel_Contractors_ContractorId",
+                        column: x => x.ContractorId,
+                        principalTable: "Contractors",
+                        principalColumn: "ContractorId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContractorAttendanceLogModel",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ContractorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Date = table.Column<DateOnly>(type: "date", nullable: false),
+                    TimeIn = table.Column<TimeOnly>(type: "time", nullable: true),
+                    TimeOut = table.Column<TimeOnly>(type: "time", nullable: true),
+                    ReviewStatus = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContractorAttendanceLogModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ContractorAttendanceLogModel_Contractors_ContractorId",
+                        column: x => x.ContractorId,
+                        principalTable: "Contractors",
+                        principalColumn: "ContractorId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContractorPayslipModel",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ContractorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PeriodStart = table.Column<DateOnly>(type: "date", nullable: false),
+                    PeriodEnd = table.Column<DateOnly>(type: "date", nullable: false),
+                    PayDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    AppliedHourlyRate = table.Column<decimal>(type: "money", nullable: false),
+                    TotalHoursWorked = table.Column<byte>(type: "tinyint", nullable: false),
+                    NetPay = table.Column<decimal>(type: "money", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContractorPayslipModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ContractorPayslipModel_Contractors_ContractorId",
+                        column: x => x.ContractorId,
+                        principalTable: "Contractors",
+                        principalColumn: "ContractorId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -186,24 +252,20 @@ namespace InfrastructureLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmployeeAttendanceModel",
+                name: "EmployeeAttendanceLogModel",
                 columns: table => new
                 {
                     EmployeeAttendanceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateOnly>(type: "date", nullable: false),
-                    TimeIn = table.Column<TimeOnly>(type: "time", nullable: false),
-                    BreakTimeIn = table.Column<TimeOnly>(type: "time", nullable: false),
-                    BreakTimeOut = table.Column<TimeOnly>(type: "time", nullable: false),
-                    TimeOut = table.Column<TimeOnly>(type: "time", nullable: false),
-                    Status = table.Column<byte>(type: "tinyint", nullable: false),
-                    OTStatus = table.Column<byte>(type: "tinyint", nullable: false)
+                    TimeStamp = table.Column<TimeOnly>(type: "time", nullable: false),
+                    EventType = table.Column<byte>(type: "tinyint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeAttendanceModel", x => x.EmployeeAttendanceId);
+                    table.PrimaryKey("PK_EmployeeAttendanceLogModel", x => x.EmployeeAttendanceId);
                     table.ForeignKey(
-                        name: "FK_EmployeeAttendanceModel_Employees_EmployeeId",
+                        name: "FK_EmployeeAttendanceLogModel_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
@@ -219,13 +281,41 @@ namespace InfrastructureLayer.Migrations
                     RequestDate = table.Column<DateOnly>(type: "date", nullable: false),
                     AttendanceDate = table.Column<DateOnly>(type: "date", nullable: false),
                     TimeIn = table.Column<TimeOnly>(type: "time", nullable: false),
-                    TimeOut = table.Column<TimeOnly>(type: "time", nullable: false)
+                    TimeOut = table.Column<TimeOnly>(type: "time", nullable: false),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EmployeeAttendanceRequestModel", x => x.Id);
                     table.ForeignKey(
                         name: "FK_EmployeeAttendanceRequestModel_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeEvaluatedAttendanceModel",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Date = table.Column<DateOnly>(type: "date", nullable: false),
+                    DayStatus = table.Column<byte>(type: "tinyint", nullable: false),
+                    ExpectedWorkHours = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ActualWorkHours = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    EvaluationTimeStamp = table.Column<DateTime>(type: "datetime", nullable: false),
+                    TimeInReference = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    BreakTimeInReference = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    BreakTimeOutReference = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    TimeOutReference = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeEvaluatedAttendanceModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmployeeEvaluatedAttendanceModel_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
@@ -303,6 +393,22 @@ namespace InfrastructureLayer.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_ContractorAccountInformationModel_ContractorId",
+                table: "ContractorAccountInformationModel",
+                column: "ContractorId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContractorAttendanceLogModel_ContractorId",
+                table: "ContractorAttendanceLogModel",
+                column: "ContractorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContractorPayslipModel_ContractorId",
+                table: "ContractorPayslipModel",
+                column: "ContractorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Contractors_UserId",
                 table: "Contractors",
                 column: "UserId",
@@ -315,13 +421,18 @@ namespace InfrastructureLayer.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeAttendanceModel_EmployeeId",
-                table: "EmployeeAttendanceModel",
+                name: "IX_EmployeeAttendanceLogModel_EmployeeId",
+                table: "EmployeeAttendanceLogModel",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeeAttendanceRequestModel_EmployeeId",
                 table: "EmployeeAttendanceRequestModel",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeEvaluatedAttendanceModel_EmployeeId",
+                table: "EmployeeEvaluatedAttendanceModel",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
@@ -358,16 +469,25 @@ namespace InfrastructureLayer.Migrations
                 name: "Admins");
 
             migrationBuilder.DropTable(
-                name: "Contractors");
+                name: "ContractorAccountInformationModel");
+
+            migrationBuilder.DropTable(
+                name: "ContractorAttendanceLogModel");
+
+            migrationBuilder.DropTable(
+                name: "ContractorPayslipModel");
 
             migrationBuilder.DropTable(
                 name: "EmployeeAccountInfoModel");
 
             migrationBuilder.DropTable(
-                name: "EmployeeAttendanceModel");
+                name: "EmployeeAttendanceLogModel");
 
             migrationBuilder.DropTable(
                 name: "EmployeeAttendanceRequestModel");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeEvaluatedAttendanceModel");
 
             migrationBuilder.DropTable(
                 name: "EmployeeLeaveModel");
@@ -377,6 +497,9 @@ namespace InfrastructureLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Holidays");
+
+            migrationBuilder.DropTable(
+                name: "Contractors");
 
             migrationBuilder.DropTable(
                 name: "Employees");

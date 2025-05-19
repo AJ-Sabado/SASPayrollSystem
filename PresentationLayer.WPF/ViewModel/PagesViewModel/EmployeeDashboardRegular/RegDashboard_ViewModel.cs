@@ -1,13 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
-using DomainLayer.Enums;
-using DomainLayer.Models.EmployeeAttendance;
+using DomainLayer.Enums.EmployeeAttendanceLog;
+using DomainLayer.Models.Employee;
+using DomainLayer.Models.EmployeeAttendanceLog;
 using PresentationLayer.WPF.Services;
-using PresentationLayer.WPF.ViewModel.Tables;
 using SASPayrolSystemProject;
 using ServicesLayer;
-using Syncfusion.XlsIO.Parser.Biff_Records;
 
 namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular
 {
@@ -15,10 +13,19 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWindowService _windowService;
-        private EmployeeAttendanceModel? _currentAttendance = null;
+        private EmployeeModel? _employee;
         private AttendanceState _attendanceState = AttendanceState.NoAttendance;
 
-        public IList<AttendanceLog> AttendanceLogList { get; set; } = [];
+        private IList<EmployeeAttendanceLogModel> _attendanceLogList = [];
+        public IList<EmployeeAttendanceLogModel> AttendanceLogList 
+        { 
+            get => _attendanceLogList; 
+            private set
+            {
+                _attendanceLogList = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         //Information Panel Binded Data
@@ -153,17 +160,35 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
             switch (_attendanceState)
             {
                 case AttendanceState.NoAttendance:
-                    _currentAttendance.TimeIn = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+                    //_currentAttendance.TimeStamp = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+                    await AddAttendanceLog(AttendanceLogEventType.TimeIn);
                     _attendanceState = AttendanceState.TimedIn;
                     break;
                 case AttendanceState.DoneBreak:
-                    _currentAttendance.TimeOut = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-                    _currentAttendance.Status = AttendanceStatus.Present;
+                    //_currentAttendance.TimeOut = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+                    //_currentAttendance.Status = AttendanceStatus.Present;
+                    await AddAttendanceLog(AttendanceLogEventType.TimeOut);
                     _attendanceState = AttendanceState.TimedOut;
                     break;
             }
             await _unitOfWork.Save();
             UpdateAttendanceState();
+        }
+
+        private async Task AddAttendanceLog(AttendanceLogEventType eventType)
+        {
+            if (_employee != null)
+            {
+                var attendanceLog = new EmployeeAttendanceLogModel()
+                {
+                    EmployeeId = _employee.EmployeeId,
+                    Employee = _employee,
+                    Date = DateOnly.FromDateTime(DateTime.Now),
+                    TimeStamp = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second),
+                    EventType = eventType
+                };
+                _employee.EmployeeAttendanceLogs.Add(attendanceLog);
+            }
         }
 
         private void UpdateAttendanceState()
@@ -197,21 +222,21 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
                     IsTimeEnabled = false;
                     IsBreakEnabled = false;
                     break;
-                //Handle invalid attendance
+                    //Handle invalid attendance
             }
-
+            LoadAttendanceLog();
         }
 
         private async void BreakBtn(object? parameter)
         {
-            switch(_attendanceState)
+            switch (_attendanceState)
             {
                 case AttendanceState.TimedIn:
-                    _currentAttendance.BreakTimeIn = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+                    await AddAttendanceLog(AttendanceLogEventType.BreakStart);
                     _attendanceState = AttendanceState.OnBreak;
                     break;
                 case AttendanceState.OnBreak:
-                    _currentAttendance.BreakTimeOut = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+                    await AddAttendanceLog(AttendanceLogEventType.BreakEnd);
                     _attendanceState = AttendanceState.DoneBreak;
                     break;
             }
@@ -232,11 +257,22 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
             _windowService.ShowWindow<MainWindow>();
         }
 
+        private void LoadAttendanceLog()
+        {
+            if (_employee != null)
+            {
+                AttendanceLogList = _employee.EmployeeAttendanceLogs.ToList();
+            }
+        }
+
         private async void LoadUserData()
         {
-            var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "User,EmployeeAccountInfo,EmployeeAttendances");
+            
+            var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid,
+                includeProperties: "EmployeeAccountInfo,EmployeeAttendanceLogs");
             if (employee != null)
             {
+                _employee = employee;
                 //Load Side Bar Info
                 if (employee.EmployeeAccountInfo != null)
                 {
@@ -247,23 +283,19 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
 
                 //Load today's attendance
                 var today = DateOnly.FromDateTime(DateTime.Now);
-                _currentAttendance = employee.EmployeeAttendances.FirstOrDefault(x => x.Date == today);
-                if (_currentAttendance != null)
+                if (employee.EmployeeAttendanceLogs != null && employee.EmployeeAttendanceLogs.Count > 0)
                 {
-                    //If attendance record for today exists, set the current attendance
-                    //MessageBox.Show("Reloaded attendance data for today!");
-
-                    //checks for updating state
-                    if (_currentAttendance.TimeIn != TimeOnly.MinValue)
+                    var attendances = employee.EmployeeAttendanceLogs.Where(x => x.Date == today).ToList();
+                    if (attendances.Count > 0 && attendances.FirstOrDefault(a => a.EventType == AttendanceLogEventType.TimeIn) != null)
                     {
                         _attendanceState = AttendanceState.TimedIn;
-                        if (_currentAttendance.BreakTimeIn != TimeOnly.MinValue)
+                        if (attendances.FirstOrDefault(a => a.EventType == AttendanceLogEventType.BreakStart) != null)
                         {
                             _attendanceState = AttendanceState.OnBreak;
-                            if (_currentAttendance.BreakTimeOut != TimeOnly.MinValue)
+                            if (attendances.FirstOrDefault(a => a.EventType == AttendanceLogEventType.BreakEnd) != null)
                             {
                                 _attendanceState = AttendanceState.DoneBreak;
-                                if (_currentAttendance.TimeOut != TimeOnly.MinValue)
+                                if (attendances.FirstOrDefault(a => a.EventType == AttendanceLogEventType.TimeOut) != null)
                                 {
                                     _attendanceState = AttendanceState.TimedOut;
                                 }
@@ -272,48 +304,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
                     }
 
                 }
-                //New attendance is added
-                else
-                {
-                    MessageBox.Show("No attendance data for today!");
-                    _currentAttendance = new EmployeeAttendanceModel
-                    {
-                        EmployeeId = employee.EmployeeId,
-                        Employee = employee,
-                        Date = today,
-                        TimeIn = new TimeOnly(0, 0, 0),
-                        BreakTimeIn = new TimeOnly(0, 0, 0),
-                        BreakTimeOut = new TimeOnly(0, 0, 0),
-                        TimeOut = new TimeOnly(0, 0, 0),
-                        Status = AttendanceStatus.Absent,
-                        OTStatus = FormStatus.Pending
-                    };
-                    employee.EmployeeAttendances.Add(_currentAttendance);
-                    await _unitOfWork.Save();
-                }
                 UpdateAttendanceState();
-
-                //Load Attendance Log Table
-                if (employee.EmployeeAttendances.Count > 0 && AttendanceLogList.Count == 0)
-                {
-                    foreach (var attendance in employee.EmployeeAttendances)
-                    {
-                        if (attendance.Date == DateOnly.FromDateTime(DateTime.Now) && attendance.TimeOut == TimeOnly.MinValue)
-                        {
-                            // Skip today's attendance record to avoid duplication
-                            continue;
-                        }
-                        AttendanceLogList.Add(new AttendanceLog
-                        {
-                            Date = attendance.Date,
-                            TimeIn = attendance.TimeIn,
-                            TimeOut = attendance.TimeOut,
-                            Status = attendance.Status.ToString(),
-                            Overtime = attendance.OTStatus.ToString(),
-                            OTDuration = $"{attendance.OTHours} hours"
-                        });
-                    }
-                }
             }
         }
     }

@@ -336,46 +336,6 @@ namespace ServicesLayer
         public async Task EvaluateEmployeeAttendanceLog(Guid EmployeeId)
         {
             //TO DO - Add logic to update employee attendance records
-            var employee = await EmployeeRepository.GetAsync(e => e.EmployeeId == EmployeeId, includeProperties: "User,EmployeeAttendances,EmployeeLeaves,EmployeePayslips");
-            if (employee != null && employee.EmployeeAttendances != null && employee.EmployeePayslips != null)
-            {
-                var today = DateOnly.FromDateTime(DateTime.Now);
-                DateOnly startDate;
-                DateOnly endDate;
-                if (today.Day < 16)
-                {
-                    startDate = new DateOnly(today.Year, today.Month, 1);
-                    endDate = new DateOnly(today.Year, today.Month, 15);
-                }
-                else
-                {
-                    startDate = new DateOnly(today.Year, today.Month, 16);
-                    endDate = new DateOnly(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
-                }
-                //Get all employee attendance records between start and end date
-                var attendances = employee.EmployeeAttendances.Where(a => IsDateBetween(a.Date, startDate, endDate)).ToList();
-                var holidays = await HolidayRepository.GetManyAsync(h => IsDateBetween(h.Date, startDate, today));
-
-                var payslip = employee.EmployeePayslips.FirstOrDefault(p => p.PeriodStart == startDate && p.PeriodEnd == endDate);
-
-                //Iterate through work days
-                for (DateOnly date = startDate; date < today; date = date.AddDays(1))
-                {
-
-                    var attendance = attendances.FirstOrDefault(a => a.Date == date);
-                    var holiday = holidays.FirstOrDefault(h => h.Date == date);
-                    if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
-                    {
-                        //Rest Days Work Calculation Here
-                        continue;
-                    }
-                    if (holiday != null)
-                    {
-                        //Holiday Work Calculation Here
-                        continue;
-                    }
-                }
-            }
 
             await Save();
         }

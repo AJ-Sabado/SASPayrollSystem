@@ -261,7 +261,7 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <TextBlock Grid.Column="0" Text="Basic Salary" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                            <TextBlock Grid.Column="0" Text="Basic Pay" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
                                             <TextBlock Grid.Column="1" x:Name="txtEmployeeBaseSalary" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
@@ -446,7 +446,7 @@
                                                             CanUserResizeColumns="False"
                                                             Margin="0,5,0,5"
                                                             IsReadOnly="True"
-                                                            ItemsSource="{Binding AttendanceLogList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                            ItemsSource="{Binding AttendanceLogList}"
                                                             EnableRowVirtualization="True"
                                                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                             ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -461,11 +461,10 @@
 
                                                     <DataGrid.Columns>
                                                         <DataGridTextColumn Header="Date" Width="150" Binding="{Binding Date}"/>
-                                                        <DataGridTextColumn Header="Status" Width="150" Binding="{Binding Status}"/>
-                                                        <DataGridTextColumn Header="Time In" Width="150" Binding="{Binding TimeIn}"/>
-                                                        <DataGridTextColumn Header="Time Out" Width="150" Binding="{Binding TimeOut}"/>
-                                                        <DataGridTextColumn Header="Overtime" Width="150" Binding="{Binding Overtime}"/>
-                                                        <DataGridTextColumn Header="OT Duration" Width="150" Binding="{Binding OTDuration}"/>
+                                                        <DataGridTextColumn Header="Day Status" Width="150" Binding="{Binding DayStatus}"/>
+                                                        <DataGridTextColumn Header="Expected Work Hours" Width="150" Binding="{Binding ExpectedWorkHours}"/>
+                                                        <DataGridTextColumn Header="Actual Work Hours" Width="150" Binding="{Binding ActualWorkHours}"/>
+                                                        <DataGridTextColumn Header="Evaluation Time Stamp" Width="150" Binding="{Binding EvaluationTimeStamp}"/>
                                                     </DataGrid.Columns>
                                                 </DataGrid>
                                             </ScrollViewer>
@@ -569,11 +568,11 @@
                                                 </DataGrid.Resources>
 
                                                 <DataGrid.Columns>
-                                                    <DataGridTextColumn Header="Request Date" Binding="{Binding RequestDate}" Width="120"/>
-                                                    <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" Width="120"/>
-                                                    <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}" Width="120"/>
-                                                    <DataGridTextColumn Header="Total Days" Binding="{Binding TotalDays}" Width="100"/>
-                                                    <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" Width="100" CanUserSort="False"/>
+                                                    <DataGridTextColumn Header="Request Date" Binding="{Binding DateOfFiling}" Width="120"/>
+                                                    <DataGridTextColumn Header="Start Date" Binding="{Binding DateOfAbsenceStart}" Width="120"/>
+                                                    <DataGridTextColumn Header="End Date" Binding="{Binding DateOfAbsenceEnd}" Width="120"/>
+                                                    <DataGridTextColumn Header="Total Days" Binding="{Binding Duration}" Width="100"/>
+                                                    <DataGridTextColumn Header="Reason" Binding="{Binding Type}" Width="100" CanUserSort="False"/>
                                                     <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
                                                     <DataGridTemplateColumn Header="Actions" Width="150">
                                                         <DataGridTemplateColumn.CellTemplate>
