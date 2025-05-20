@@ -477,8 +477,8 @@
                                                     <DataGrid.Columns>
                                                         <DataGridTextColumn Header="Date" Width="150" Binding="{Binding Date}"/>
                                                         <DataGridTextColumn Header="Day Status" Width="150" Binding="{Binding DayStatus}"/>
-                                                        <DataGridTextColumn Header="Expected Work Hours" Width="150" Binding="{Binding ExpectedWorkHours}"/>
-                                                        <DataGridTextColumn Header="Actual Work Hours" Width="150" Binding="{Binding ActualWorkHours}"/>
+                                                        <DataGridTextColumn Header="Expected Work Hours" Width="150" Binding="{Binding ExpectedWorkHours, StringFormat=F2}"/>
+                                                        <DataGridTextColumn Header="Actual Work Hours" Width="150" Binding="{Binding ActualWorkHours, StringFormat=F2}"/>
                                                         <DataGridTextColumn Header="OT Verification Status" Width="150" Binding="{Binding OvertimeVerificationStatus}"/>
                                                         <DataGridTextColumn Header="Evaluation Time Stamp" Width="150" Binding="{Binding EvaluationTimeStamp}"/>
                                                     </DataGrid.Columns>
@@ -588,7 +588,7 @@
                                                 <DataGrid.Columns>
                                                     <DataGridTextColumn Header="Request Date" Binding="{Binding DateOfFiling}" Width="120"/>
                                                     <DataGridTextColumn Header="Start Date" Binding="{Binding DateOfAbsenceStart}" Width="120"/>
-                                                    <DataGridTextColumn Header="Return Date" Binding="{Binding DateOfReturn,StringFormat=F2}" Width="120"/>
+                                                    <DataGridTextColumn Header="Return Date" Binding="{Binding DateOfReturn}" Width="120"/>
                                                     <DataGridTextColumn Header="Total Days" Binding="{Binding Duration}" Width="100"/>
                                                     <DataGridTextColumn Header="Reason" Binding="{Binding Type}" Width="100" CanUserSort="False"/>
                                                     <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
