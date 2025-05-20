@@ -1,5 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Windows;
 using System.Windows.Input;
+using DomainLayer.Enums;
 using DomainLayer.Enums.EmployeePersonalInfo;
 using DomainLayer.Models.EmployeeAttendanceRequest;
 using DomainLayer.Models.EmployeeEvaluatedAttendance;
@@ -14,14 +15,18 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
     {
         private readonly IPopUpService _popUpService;
         private readonly IUnitOfWork _unitOfWork;
-
+        
+        //Commands
         public ICommand FileLeaveCommand { get; }
         public ICommand AttendanceRequestCommand { get; }
+        public ICommand EditAttendanceRequest { get; }
+        public ICommand DeleteAttendanceRequest { get; }
 
+        //Tables
         private IList<EmployeeEvaluatedAttendanceModel> _evaluatedAttendanceList = [];
-        public IList<EmployeeEvaluatedAttendanceModel> EvaluatedAttendanceList 
-        { 
-            get => _evaluatedAttendanceList; 
+        public IList<EmployeeEvaluatedAttendanceModel> EvaluatedAttendanceList
+        {
+            get => _evaluatedAttendanceList;
             private set
             {
                 _evaluatedAttendanceList = value;
@@ -29,9 +34,9 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
             }
         }
         private IList<EmployeeAttendanceRequestModel> _attendanceRequestList = [];
-        public IList<EmployeeAttendanceRequestModel> AttendanceRequestList 
-        { 
-            get => _attendanceRequestList; 
+        public IList<EmployeeAttendanceRequestModel> AttendanceRequestList
+        {
+            get => _attendanceRequestList;
             private set
             {
                 _attendanceRequestList = value;
@@ -39,9 +44,9 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
             }
         }
         private IList<EmployeeLeaveModel> _leaveRequestList = [];
-        public IList<EmployeeLeaveModel> LeaveRequestList 
-        {  
-            get => _leaveRequestList; 
+        public IList<EmployeeLeaveModel> LeaveRequestList
+        {
+            get => _leaveRequestList;
             private set
             {
                 _leaveRequestList = value;
@@ -298,11 +303,14 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         {
             _unitOfWork = unitOfWork;
             _popUpService = popUpService;
-            LoadUserData();
             FileLeaveCommand = new RelayCommand(FileLeave);
             AttendanceRequestCommand = new RelayCommand(AttendanceRequest);
+            EditAttendanceRequest = new RelayCommand(ExecuteEditAttendanceRequest);
+            DeleteAttendanceRequest = new RelayCommand(ExecuteDeleteAttendanceRequest);
+            LoadUserData();
         }
 
+        //Methods
         private async void LoadUserData()
         {
             var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Employee,Department");
@@ -336,19 +344,19 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                     }
 
                     //Load Attendance Requests
-                    if (employee.EmployeeAttendanceRequests != null && employee.EmployeeAttendanceRequests.Count > 0)
+                    if (employee.EmployeeAttendanceRequests != null)
                     {
                         AttendanceRequestList = employee.EmployeeAttendanceRequests.ToList();
                     }
 
                     //Load Leaves
-                    if (employee.EmployeeLeaveRequests != null && employee.EmployeeLeaveRequests.Count > 0)
+                    if (employee.EmployeeLeaveRequests != null)
                     {
                         LeaveRequestList = employee.EmployeeLeaveRequests.ToList();
                     }
 
                     //Load Payslips
-                    if (employee.EmployeePayslips != null && employee.EmployeePayslips.Count > 0)
+                    if (employee.EmployeePayslips != null)
                     {
                         var payslip = employee.EmployeePayslips.LastOrDefault();
                         if (payslip != null)
@@ -374,6 +382,53 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                     {
                         PayrollStatus = "No payslip information available.";
                     }
+                }
+            }
+        }
+
+        private async void ExecuteDeleteAttendanceRequest(object? item)
+        {
+            var attendanceRequest = item as EmployeeAttendanceRequestModel;
+            var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == Properties.Settings.Default.CurrentUserGuid,
+                includeProperties: "EmployeeAttendanceRequests");
+            if (employee != null && employee.EmployeeAttendanceRequests != null && attendanceRequest != null)
+            {
+                // Check if the attendance request is pending
+                if (attendanceRequest.Status == FormStatus.Pending)
+                {
+                    var result = MessageBox.Show("Are you sure you want to delete this attendance request?", "Delete Attendance Request", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        employee.EmployeeAttendanceRequests.Remove(attendanceRequest);
+                        await _unitOfWork.Save();
+                        MessageBox.Show("Attendance request deleted successfuly!");
+                        LoadUserData();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You cannot delete this attendance request because it is already approved or rejected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Operation failed!");
+            }
+        }
+
+        private void ExecuteEditAttendanceRequest(object? item)
+        {
+            var attendanceRequest = item as EmployeeAttendanceRequestModel;
+            if (attendanceRequest != null)
+            {
+                // Check if the attendance request is pending
+                if (attendanceRequest.Status == FormStatus.Pending)
+                {
+                    _popUpService.ShowPopUp<AttendanceRequest_View>(attendanceRequest.Id);
+                }
+                else
+                {
+                    MessageBox.Show("You cannot edit this attendance request because it is already approved or rejected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

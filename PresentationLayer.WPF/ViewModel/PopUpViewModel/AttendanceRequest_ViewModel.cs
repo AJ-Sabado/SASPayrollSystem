@@ -25,6 +25,7 @@ namespace PresentationLayer.WPF.ViewModel
         private DateTime? _timeOut;
         private string _totalHours = "0 hours";
         private string _proofFiles = "Attach File";
+        private string _reason = string.Empty;
 
         public AttendanceRequest_ViewModel(IUnitOfWork unitOfWork, IPopUpService popUpService)
         {
@@ -46,9 +47,27 @@ namespace PresentationLayer.WPF.ViewModel
                 EmployeeID = employee.EmployeeAccountInfo.CompanyId;
                 Department = user.Department.Name;
                 Role = employee.EmployeeAccountInfo.Role;
-                TimeIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.DefaultWorkShiftStart.Hour, employee.DefaultWorkShiftStart.Minute, employee.DefaultWorkShiftStart.Second);
-                TimeOut = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.DefaultWorkShiftEnd.Hour, employee.DefaultWorkShiftEnd.Minute, employee.DefaultWorkShiftEnd.Second);
-                //TO DO - Add AttendanceRequestModel
+                if (_popUpService.IdSource != null)
+                {
+                    var currentAttendanceRequest = employee.EmployeeAttendanceRequests.FirstOrDefault(r => r.Id == _popUpService.IdSource);
+                    if (currentAttendanceRequest != null)
+                    {
+                        Date = currentAttendanceRequest.AttendanceDate.ToDateTime(new TimeOnly());
+                        TimeIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, currentAttendanceRequest.TimeIn.Hour, currentAttendanceRequest.TimeIn.Minute, currentAttendanceRequest.TimeIn.Second);
+                        TimeOut = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, currentAttendanceRequest.TimeOut.Hour, currentAttendanceRequest.TimeOut.Minute, currentAttendanceRequest.TimeOut.Second);
+                        Reason = currentAttendanceRequest.Reason;
+                        TotalHours = $"{currentAttendanceRequest.TotalHours} hours";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Attendance request not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    TimeIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.DefaultWorkShiftStart.Hour, employee.DefaultWorkShiftStart.Minute, employee.DefaultWorkShiftStart.Second);
+                    TimeOut = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.DefaultWorkShiftEnd.Hour, employee.DefaultWorkShiftEnd.Minute, employee.DefaultWorkShiftEnd.Second);
+                }
             }
             else
             {
@@ -122,6 +141,12 @@ namespace PresentationLayer.WPF.ViewModel
             }
         }
 
+        public string Reason
+        {
+            get => _reason;
+            set => SetProperty(ref _reason, value);
+        }
+
 
         public string TotalHours
         {
@@ -142,19 +167,52 @@ namespace PresentationLayer.WPF.ViewModel
             var employee = await _unitOfWork.EmployeeRepository.GetByIdAsync(_employeeId);
             if (employee != null && TimeIn.HasValue && TimeOut.HasValue)
             {
-                var attendanceRequest = new EmployeeAttendanceRequestModel()
+                //Checks
+                if (TimeIn > TimeOut)
                 {
-                    EmployeeId = employee.EmployeeId,
-                    Employee = employee,
-                    RequestDate = DateOnly.FromDateTime(DateTime.Now),
-                    AttendanceDate = DateOnly.FromDateTime(this.Date),
-                    TimeIn = TimeOnly.FromDateTime((DateTime)this.TimeIn),
-                    TimeOut = TimeOnly.FromDateTime((DateTime)this.TimeOut),
-                    Status = FormStatus.Pending
-                };
-                employee.EmployeeAttendanceRequests.Add(attendanceRequest);
-                await _unitOfWork.Save();
-                MessageBox.Show("Attendance request submitted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Time Out cannot be earlier than Time In.", "Invalid Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(Reason))
+                {
+                    MessageBox.Show("Please provide a reason for the attendance request.", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (_popUpService.IdSource != null)
+                {
+                    var currentAttendanceRequest = employee.EmployeeAttendanceRequests.FirstOrDefault(r => r.Id == _popUpService.IdSource);
+                    if (currentAttendanceRequest != null)
+                    {
+                        currentAttendanceRequest.TimeIn = TimeOnly.FromDateTime((DateTime)this.TimeIn);
+                        currentAttendanceRequest.TimeOut = TimeOnly.FromDateTime((DateTime)this.TimeOut);
+                        currentAttendanceRequest.Reason = this.Reason;
+                        currentAttendanceRequest.Status = FormStatus.Pending;
+                        await _unitOfWork.Save();
+                        MessageBox.Show("Attendance request updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Attendance request not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    var attendanceRequest = new EmployeeAttendanceRequestModel()
+                    {
+                        EmployeeId = employee.EmployeeId,
+                        Employee = employee,
+                        RequestDate = DateOnly.FromDateTime(DateTime.Now),
+                        AttendanceDate = DateOnly.FromDateTime(this.Date),
+                        TimeIn = TimeOnly.FromDateTime((DateTime)this.TimeIn),
+                        TimeOut = TimeOnly.FromDateTime((DateTime)this.TimeOut),
+                        Status = FormStatus.Pending,
+                        Reason = this.Reason
+                    };
+                    employee.EmployeeAttendanceRequests.Add(attendanceRequest);
+                    await _unitOfWork.Save();
+                    MessageBox.Show("Attendance request submitted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
             _popUpService.ClosePopup();
         }

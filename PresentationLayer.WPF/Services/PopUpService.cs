@@ -7,6 +7,8 @@ namespace PresentationLayer.WPF.Services
         private IServiceProvider _serviceProvider;
         private Window? _currentPopup;
 
+        public Guid? IdSource { get; private set; }
+
         public PopUpService(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
@@ -18,12 +20,18 @@ namespace PresentationLayer.WPF.Services
             {
                 _currentPopup.Close();
                 _currentPopup = null;
+                IdSource = Guid.Empty;
+                IdSource = null;
             }
         }
 
-        public void ShowPopUp<T>() where T : Window
+        public void ShowPopUp<T>(Guid? idSource = null) where T : Window
         {
             ClosePopup();
+            if (idSource != null)
+            {
+                IdSource = idSource;
+            }
             _currentPopup = DIGetRequiredService<T>(_serviceProvider);
             _currentPopup.Show();
         }

@@ -160,35 +160,62 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
             switch (_attendanceState)
             {
                 case AttendanceState.NoAttendance:
-                    //_currentAttendance.TimeStamp = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-                    await AddAttendanceLog(AttendanceLogEventType.TimeIn);
-                    _attendanceState = AttendanceState.TimedIn;
+                    if (await AddAttendanceLog(AttendanceLogEventType.TimeIn))
+                        _attendanceState = AttendanceState.TimedIn;
                     break;
                 case AttendanceState.DoneBreak:
-                    //_currentAttendance.TimeOut = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-                    //_currentAttendance.Status = AttendanceStatus.Present;
-                    await AddAttendanceLog(AttendanceLogEventType.TimeOut);
-                    _attendanceState = AttendanceState.TimedOut;
+                    if (await AddAttendanceLog(AttendanceLogEventType.TimeOut))
+                        _attendanceState = AttendanceState.TimedOut;
                     break;
             }
-            await _unitOfWork.Save();
             UpdateAttendanceState();
         }
 
-        private async Task AddAttendanceLog(AttendanceLogEventType eventType)
+        private async Task<bool> AddAttendanceLog(AttendanceLogEventType eventType)
         {
-            if (_employee != null)
+            var date = DateOnly.FromDateTime(DateTime.Now);
+            var time = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+
+            string title = string.Empty, message = string.Empty;
+
+            switch (_attendanceState)
+            {
+                case AttendanceState.NoAttendance:
+                    title = "Time in";
+                    message = "Are you sure your want to time in?";
+                    break;
+                case AttendanceState.TimedIn:
+                    title = "Break time";
+                    message = "Are you sure you want to take a break?";
+                    break;
+                case AttendanceState.OnBreak:
+                    title = "Resume work";
+                    message = "Are you sure you want to resume work?";
+                    break;
+                case AttendanceState.DoneBreak:
+                    title = "Time out";
+                    message = "Are you sure you want to time out?";
+                    break;
+            }
+
+            var result = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            
+            if (_employee != null && result == MessageBoxResult.Yes)
             {
                 var attendanceLog = new EmployeeAttendanceLogModel()
                 {
                     EmployeeId = _employee.EmployeeId,
                     Employee = _employee,
-                    Date = DateOnly.FromDateTime(DateTime.Now),
-                    TimeStamp = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second),
+                    Date = date,
+                    TimeStamp = time,
                     EventType = eventType
                 };
                 _employee.EmployeeAttendanceLogs.Add(attendanceLog);
+                await _unitOfWork.Save();
+                return true;
             }
+
+            return false;
         }
 
         private void UpdateAttendanceState()
@@ -232,15 +259,14 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
             switch (_attendanceState)
             {
                 case AttendanceState.TimedIn:
-                    await AddAttendanceLog(AttendanceLogEventType.BreakStart);
-                    _attendanceState = AttendanceState.OnBreak;
+                    if (await AddAttendanceLog(AttendanceLogEventType.BreakStart))
+                        _attendanceState = AttendanceState.OnBreak;
                     break;
                 case AttendanceState.OnBreak:
-                    await AddAttendanceLog(AttendanceLogEventType.BreakEnd);
-                    _attendanceState = AttendanceState.DoneBreak;
+                    if (await AddAttendanceLog(AttendanceLogEventType.BreakEnd))
+                        _attendanceState = AttendanceState.DoneBreak;
                     break;
             }
-            await _unitOfWork.Save();
             UpdateAttendanceState();
         }
 

@@ -524,13 +524,15 @@
                                                         <DataGridTextColumn Header="Attendance Date" Width="150" Binding="{Binding AttendanceDate}"/>
                                                         <DataGridTextColumn Header="Time In" Width="150" Binding="{Binding TimeIn}"/>
                                                         <DataGridTextColumn Header="Time Out" Width="150" Binding="{Binding TimeOut}"/>
+                                                        <DataGridTextColumn Header="Total Hours" Width="150" Binding="{Binding TotalHours}"/>
+                                                        <DataGridTextColumn Header="Reason" Width="150" Binding="{Binding Reason}"/>
                                                         <DataGridTextColumn Header="Status" Width="150" Binding="{Binding Status}"/>
                                                         <DataGridTemplateColumn Header="Actions" Width="150">
                                                             <DataGridTemplateColumn.CellTemplate>
                                                                 <DataTemplate>
                                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                                        <Button Content="View" Margin="2,0"/>
-                                                                        <Button Content="Edit" Margin="2,0"/>
+                                                                        <Button Content="Edit" Margin="2,0" Command="{Binding DataContext.EditAttendanceRequest, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"/>
+                                                                        <Button Content="Delete" Margin="2,0" Background="Red" Command="{Binding DataContext.DeleteAttendanceRequest, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"/>
                                                                     </StackPanel>
                                                                 </DataTemplate>
                                                             </DataGridTemplateColumn.CellTemplate>
