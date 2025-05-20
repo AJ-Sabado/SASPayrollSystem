@@ -296,6 +296,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
             
             var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid,
                 includeProperties: "EmployeeAccountInfo,EmployeeAttendanceLogs,EmployeePayslips");
+            var today = DateOnly.FromDateTime(DateTime.Now);
             if (employee != null)
             {
                 _employee = employee;
@@ -317,11 +318,13 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
                 }
                 else
                 {
-                    Upcoming = "-";
+
+                    Upcoming = today.Day < 16 ? 
+                        (new DateOnly(today.Year, today.Month, 15)).ToString("MMMM dd, yyyy") :
+                        (new DateOnly(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month))).ToString("MMMM dd, yyyy");
                 }
 
-                    //Load today's attendance
-                    var today = DateOnly.FromDateTime(DateTime.Now);
+                //Load today's attendance
                 if (employee.EmployeeAttendanceLogs != null && employee.EmployeeAttendanceLogs.Count > 0)
                 {
                     var attendances = employee.EmployeeAttendanceLogs.Where(x => x.Date == today).ToList();

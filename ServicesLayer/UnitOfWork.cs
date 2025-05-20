@@ -333,17 +333,17 @@ namespace ServicesLayer
         public async Task EvaluateAllEmployeeAttendanceLog(DateOnly periodStart, DateOnly periodEnd)
         {
             var employees = await EmployeeRepository.GetManyAsync(includeProperties: "EmployeeAttendanceLogs,EmployeeAttendanceRequests,EmployeeLeaveRequests,EmployeeEvaluatedAttendances");
-            var holidays = await HolidayRepository.GetManyAsync(h => IsDateBetween(h.Date, periodStart, periodEnd));
+            var holidays = await HolidayRepository.GetManyAsync(h => h.Date >= periodStart && h.Date <= periodEnd);
             foreach (var employee in employees)
             {
                 var attendanceLogs = employee.EmployeeAttendanceLogs
-                    .Where(log => IsDateBetween(log.Date, periodStart, periodEnd))
+                    .Where(h => h.Date >= periodStart && h.Date <= periodEnd)
                     .ToList();
                 var attendanceRequests = employee.EmployeeAttendanceRequests
-                    .Where(request => IsDateBetween(request.RequestDate, periodStart, periodEnd))
+                    .Where(h => h.AttendanceDate >= periodStart && h.AttendanceDate <= periodEnd)
                     .ToList();
                 var leaveRequests = employee.EmployeeLeaveRequests
-                    .Where(request => IsDateBetween(request.DateOfAbsenceStart, periodStart, periodEnd))
+                    .Where(h => h.DateOfAbsenceStart >= periodStart && h.DateOfAbsenceStart <= periodEnd)
                     .ToList();
 
                 var today = DateOnly.FromDateTime(DateTime.Now);
@@ -483,10 +483,10 @@ namespace ServicesLayer
 
             if (timeIn != null && timeOut != null)
             {
-                result = (decimal)Math.Floor((timeOut.TimeStamp - timeIn.TimeStamp).TotalHours);
+                result = (decimal)((timeOut.TimeStamp - timeIn.TimeStamp).TotalHours);
                 if (breakStart != null && breakEnd != null)
                 {
-                    result -= (decimal)Math.Floor((breakEnd.TimeStamp - breakStart.TimeStamp).TotalHours);
+                    result -= (decimal)((breakEnd.TimeStamp - breakStart.TimeStamp).TotalHours);
                 }
                 else
                     result = 0;

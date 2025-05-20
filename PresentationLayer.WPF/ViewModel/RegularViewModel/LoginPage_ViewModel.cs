@@ -1,6 +1,7 @@
 ﻿using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages;
 using ServicesLayer;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PresentationLayer.WPF.ViewModel.RegularViewModel
@@ -122,7 +123,20 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 Properties.Settings.Default.Save();
                 await Task.Delay(2000);
                 if (user.Role.NormalizedName == "EMPLOYEE")
-                    _windowService.ShowWindow<EmployeeDahboard_View>();
+                {
+                    //Test attendance evaluation
+                    var periodStart = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 16);
+                    var periodEnd = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 31);
+                    try
+                    {
+                        //await _unitOfWork.EvaluateAllEmployeeAttendanceLog(periodStart, periodEnd);
+                        _windowService.ShowWindow<EmployeeDahboard_View>();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
                 else if (user.Role.NormalizedName == "ADMIN")
                     System.Windows.MessageBox.Show("Admin Functionality to be added");
                 else if (user.Role.NormalizedName == "CONTRACTOR")

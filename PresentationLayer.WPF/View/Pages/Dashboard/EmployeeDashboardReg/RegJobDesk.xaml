@@ -461,7 +461,7 @@
                                                             CanUserResizeColumns="False"
                                                             Margin="0,5,0,5"
                                                             IsReadOnly="True"
-                                                            ItemsSource="{Binding AttendanceLogList}"
+                                                            ItemsSource="{Binding EvaluatedAttendanceList}"
                                                             EnableRowVirtualization="True"
                                                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                             ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -588,7 +588,7 @@
                                                 <DataGrid.Columns>
                                                     <DataGridTextColumn Header="Request Date" Binding="{Binding DateOfFiling}" Width="120"/>
                                                     <DataGridTextColumn Header="Start Date" Binding="{Binding DateOfAbsenceStart}" Width="120"/>
-                                                    <DataGridTextColumn Header="End Date" Binding="{Binding DateOfAbsenceEnd}" Width="120"/>
+                                                    <DataGridTextColumn Header="Return Date" Binding="{Binding DateOfReturn,StringFormat=F2}" Width="120"/>
                                                     <DataGridTextColumn Header="Total Days" Binding="{Binding Duration}" Width="100"/>
                                                     <DataGridTextColumn Header="Reason" Binding="{Binding Type}" Width="100" CanUserSort="False"/>
                                                     <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>

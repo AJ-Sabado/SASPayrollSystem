@@ -56,7 +56,7 @@ namespace DomainLayer.Models.Employee
                 else
                 {
                     //Accounts for 1 hour unpaid break
-                    return (decimal)Math.Floor(workSpan.TotalHours) - (decimal)Math.Floor(breakSpan.TotalHours);
+                    return (decimal)(workSpan.TotalHours) - (decimal)(breakSpan.TotalHours);
                 }
             }
         }
