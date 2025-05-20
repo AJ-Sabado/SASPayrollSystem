@@ -38,9 +38,28 @@ namespace DomainLayer.Models.Employee
         [Column(TypeName = "time")]
         public TimeOnly DefaultBreakTimeEnd { get; set; } = new TimeOnly(13, 0, 0);
         [Column(TypeName = "tinyint")]
-        public uint LeaveCredits { get; set; } = 0;
+        public uint LeaveCredits { get; set; } = 5;
         [Column(TypeName = "tinyint")]
         public uint Absences { get; set; } = 0;
+
+        [NotMapped]
+        public decimal ExpectedWorkHours
+        {
+            get 
+            {
+                var workSpan = DefaultWorkShiftEnd - DefaultWorkShiftStart;
+                var breakSpan = DefaultBreakTimeEnd - DefaultBreakTimeStart;
+                if (workSpan < TimeSpan.Zero || breakSpan < TimeSpan.Zero)
+                {
+                    return 0;
+                }
+                else
+                {
+                    //Accounts for 1 hour unpaid break
+                    return (decimal)Math.Floor(workSpan.TotalHours) - (decimal)Math.Floor(breakSpan.TotalHours);
+                }
+            }
+        }
 
         //Navigation
         public EmployeeAccountInfoModel? EmployeeAccountInfo { get; set; }

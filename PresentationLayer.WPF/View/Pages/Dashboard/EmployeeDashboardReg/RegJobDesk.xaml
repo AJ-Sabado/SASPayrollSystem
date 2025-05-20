@@ -479,6 +479,7 @@
                                                         <DataGridTextColumn Header="Day Status" Width="150" Binding="{Binding DayStatus}"/>
                                                         <DataGridTextColumn Header="Expected Work Hours" Width="150" Binding="{Binding ExpectedWorkHours}"/>
                                                         <DataGridTextColumn Header="Actual Work Hours" Width="150" Binding="{Binding ActualWorkHours}"/>
+                                                        <DataGridTextColumn Header="OT Verification Status" Width="150" Binding="{Binding OvertimeVerificationStatus}"/>
                                                         <DataGridTextColumn Header="Evaluation Time Stamp" Width="150" Binding="{Binding EvaluationTimeStamp}"/>
                                                     </DataGrid.Columns>
                                                 </DataGrid>

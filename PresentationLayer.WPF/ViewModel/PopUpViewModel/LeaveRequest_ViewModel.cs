@@ -135,7 +135,7 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
                     if (currentLeave != null)
                     {
                         currentLeave.DateOfAbsenceStart = DateOnly.FromDateTime(StartDate.Value);
-                        currentLeave.DateOfAbsenceEnd = DateOnly.FromDateTime(ReturnDate.Value);
+                        currentLeave.DateOfReturn = DateOnly.FromDateTime(ReturnDate.Value);
                         currentLeave.Duration = this.Duration;
                         currentLeave.Type = this.SelectedLeaveType;
                         System.Windows.MessageBox.Show("Leave Request Updated!");
@@ -154,7 +154,7 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
                         Employee = employee,
                         DateOfFiling = DateOnly.FromDateTime(DateTime.Now),
                         DateOfAbsenceStart = DateOnly.FromDateTime(StartDate.Value),
-                        DateOfAbsenceEnd = DateOnly.FromDateTime(ReturnDate.Value),
+                        DateOfReturn = DateOnly.FromDateTime(ReturnDate.Value),
                         Duration = this.Duration,
                         Type = this.SelectedLeaveType
                     };
@@ -180,7 +180,7 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
                     if (leave != null)
                     {
                         StartDate = leave.DateOfAbsenceStart.ToDateTime(new TimeOnly(0, 0));
-                        ReturnDate = leave.DateOfAbsenceEnd.ToDateTime(new TimeOnly(0, 0));
+                        ReturnDate = leave.DateOfReturn.ToDateTime(new TimeOnly(0, 0));
                         Duration = leave.Duration;
                         SelectedLeaveType = leave.Type;
                     }

@@ -26,7 +26,7 @@ namespace ServicesLayer
         Task InitialSeeding();
         Task<UserModel?> Login(string usernameOrEmail, string password);
         Task<RegisterUserResult> RegisterUser(string username, string email, string password, string confirmPassword, string roleName = null, string departmentName = null);
-        Task EvaluateEmployeeAttendanceLog(Guid EmployeeId);
+        Task EvaluateAllEmployeeAttendanceLog(DateOnly periodStart, DateOnly periodEnd);
         Task Save();
     }
 }

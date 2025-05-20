@@ -1,10 +1,15 @@
 ﻿using DomainLayer.Defaults;
+using DomainLayer.Enums;
+using DomainLayer.Enums.EmployeeAttendanceLog;
+using DomainLayer.Enums.EmployeeEvaluatedAttendance;
 using DomainLayer.Enums.EmployeePersonalInfo;
 using DomainLayer.Models.Admin;
 using DomainLayer.Models.Contractor;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.EmployeeAccountInfo;
+using DomainLayer.Models.EmployeeAttendanceLog;
+using DomainLayer.Models.EmployeeEvaluatedAttendance;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
@@ -96,7 +101,6 @@ namespace ServicesLayer
             await SeedRoles();
             await SeedDepartments();
             await SeedHolidays();
-            //await Save();
             await SeedAdminUser();
             await SeedEmployeeUser();
             await Save();
@@ -164,9 +168,6 @@ namespace ServicesLayer
                 };
                 employeeRole.Users.Add(user);
                 department.Users.Add(user);
-
-                //await RoleRepository.UpdateAsync(employeeRole);
-                //await DepartmentRepository.UpdateAsync(department);
             }
         }
         private async Task SeedHolidays()
@@ -253,7 +254,6 @@ namespace ServicesLayer
                     Role = adminRole,
                     DepartmentId = department.DepartmentId,
                     Department = department,
-                    //Status = FormStatus.Approved
                 };
 
                 user.Admin = new AdminModel()
@@ -325,19 +325,173 @@ namespace ServicesLayer
             role.Users.Add(newUser);
             department.Users.Add(newUser);
 
-            //await RoleRepository.UpdateAsync(role);
-            //await DepartmentRepository.UpdateAsync(department);
-
             await Save();
 
             return RegisterUserResult.Success;
         }
 
-        public async Task EvaluateEmployeeAttendanceLog(Guid EmployeeId)
+        public async Task EvaluateAllEmployeeAttendanceLog(DateOnly periodStart, DateOnly periodEnd)
         {
-            //TO DO - Add logic to update employee attendance records
+            var employees = await EmployeeRepository.GetManyAsync(includeProperties: "EmployeeAttendanceLogs,EmployeeAttendanceRequests,EmployeeLeaveRequests,EmployeeEvaluatedAttendances");
+            var holidays = await HolidayRepository.GetManyAsync(h => IsDateBetween(h.Date, periodStart, periodEnd));
+            foreach (var employee in employees)
+            {
+                var attendanceLogs = employee.EmployeeAttendanceLogs
+                    .Where(log => IsDateBetween(log.Date, periodStart, periodEnd))
+                    .ToList();
+                var attendanceRequests = employee.EmployeeAttendanceRequests
+                    .Where(request => IsDateBetween(request.RequestDate, periodStart, periodEnd))
+                    .ToList();
+                var leaveRequests = employee.EmployeeLeaveRequests
+                    .Where(request => IsDateBetween(request.DateOfAbsenceStart, periodStart, periodEnd))
+                    .ToList();
 
+                var today = DateOnly.FromDateTime(DateTime.Now);
+
+                //Reset absences
+                if (employee.Absences > 0)
+                {
+                    employee.Absences = 0;
+                }
+
+                // Day to day evaluation
+                for (var currentDay = periodStart; currentDay <= periodEnd; currentDay = currentDay.AddDays(1))
+                {
+                    //Check if attendance is still ongoing
+                    if (currentDay > today)
+                    {
+                        break;
+                    }
+
+                    //Check whether an evaluated attendance already exists
+                    var evaluatedAttendance = employee.EmployeeEvaluatedAttendances
+                        .FirstOrDefault(e => e.Date == currentDay);
+                    //Creates new evaluated attendance if none exists
+                    if (evaluatedAttendance == null)
+                    {
+                        evaluatedAttendance = new EmployeeEvaluatedAttendanceModel()
+                        {
+                            EmployeeId = employee.EmployeeId,
+                            Employee = employee,
+                            Date = currentDay,
+                        };
+                        employee.EmployeeEvaluatedAttendances.Add(evaluatedAttendance);
+                    }
+                    evaluatedAttendance.EvaluationTimeStamp = DateTime.Now;
+
+                    //Check if the day is a holiday
+                    var holiday = holidays
+                        .FirstOrDefault(h => h.Date == currentDay);
+                    if (holiday != null)
+                    {
+                        evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Holiday;
+                        evaluatedAttendance.ExpectedWorkHours = 0;
+                        evaluatedAttendance.ActualWorkHours = 0;
+                        continue;
+                    }
+
+                    //Check if the day is a weekend
+                    if (currentDay.DayOfWeek == DayOfWeek.Saturday || currentDay.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.RestDay;
+                        evaluatedAttendance.ExpectedWorkHours = 0;
+                        evaluatedAttendance.ActualWorkHours = 0;
+                        continue;
+                    }
+
+                    //Check if there are any approved leave requests for the day
+                    var leaveRequest = leaveRequests
+                        .FirstOrDefault(l => l.DateOfAbsenceStart <= currentDay && l.DateOfReturn > currentDay && l.Status == FormStatus.Approved);
+                    if (leaveRequest != null)
+                    {
+                        //Spend leave credits
+                        if (employee.LeaveCredits > 0)
+                        {
+                            employee.LeaveCredits -= 1;
+                        }
+                        else
+                        {
+                            employee.Absences += 1;
+                        }
+
+                        evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.OnLeave;
+                        evaluatedAttendance.ExpectedWorkHours = 0;
+                        evaluatedAttendance.ActualWorkHours = 0;
+                        continue;
+                    }
+
+                    //Check if there are any approved attendance requests for the day
+                    var attendanceRequest = attendanceRequests.FirstOrDefault(r => r.AttendanceDate == currentDay && r.Status == FormStatus.Approved);
+                    if (attendanceRequest != null)
+                    {
+                        evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Present;
+                        evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
+                        evaluatedAttendance.ActualWorkHours = attendanceRequest.TotalHours;
+                        continue;
+                    }
+
+                    //Obtains valid attendance logs for current day
+                    var logsToday = attendanceLogs
+                    .Where(log => log.Date == currentDay)
+                    .ToList();
+
+                    //Check if present, ongoing, or absent
+                    if (currentDay == today)
+                    {
+                        if (logsToday.Count < 4)
+                        {
+                            evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.OnGoing;
+                            evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
+                            evaluatedAttendance.ActualWorkHours = 0;
+                        }
+                        else
+                        {
+                            evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Present;
+                            evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
+                            evaluatedAttendance.ActualWorkHours = CalculateActualWorkHours(logsToday);
+                        }
+                    }
+                    else
+                    {
+                        if (logsToday.Count < 4)
+                        {
+                            evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Absent;
+                            evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
+                            evaluatedAttendance.ActualWorkHours = 0;
+                            employee.Absences += 1;
+                        }
+                        else
+                        {
+                            evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Present;
+                            evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
+                            evaluatedAttendance.ActualWorkHours = CalculateActualWorkHours(logsToday);
+                        }
+                    }
+                }
+            }
             await Save();
+        }
+
+        private decimal CalculateActualWorkHours(IEnumerable<EmployeeAttendanceLogModel> logsToday)
+        {
+            var timeIn = logsToday.FirstOrDefault(l => l.EventType == AttendanceLogEventType.TimeIn);
+            var breakStart = logsToday.FirstOrDefault(l => l.EventType == AttendanceLogEventType.BreakStart);
+            var breakEnd = logsToday.FirstOrDefault(l => l.EventType == AttendanceLogEventType.BreakEnd);
+            var timeOut = logsToday.FirstOrDefault(l => l.EventType == AttendanceLogEventType.TimeOut);
+
+            decimal result = 0;
+
+            if (timeIn != null && timeOut != null)
+            {
+                result = (decimal)Math.Floor((timeOut.TimeStamp - timeIn.TimeStamp).TotalHours);
+                if (breakStart != null && breakEnd != null)
+                {
+                    result -= (decimal)Math.Floor((breakEnd.TimeStamp - breakStart.TimeStamp).TotalHours);
+                }
+                else
+                    result = 0;
+            }
+            return result;
         }
 
         private bool IsDateBetween(DateOnly date, DateOnly startDate, DateOnly endDate)

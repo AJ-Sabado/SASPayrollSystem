@@ -6,6 +6,7 @@
         Absent,
         RestDay,
         Holiday,
-        OnLeave
+        OnLeave,
+        OnGoing
     }
 }
