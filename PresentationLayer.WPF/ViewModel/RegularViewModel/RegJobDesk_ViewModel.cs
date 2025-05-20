@@ -21,6 +21,8 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         public ICommand AttendanceRequestCommand { get; }
         public ICommand EditAttendanceRequest { get; }
         public ICommand DeleteAttendanceRequest { get; }
+        public ICommand EditLeaveRequest { get; }
+        public ICommand DeleteLeaveRequest { get; }
 
         //Tables
         private IList<EmployeeEvaluatedAttendanceModel> _evaluatedAttendanceList = [];
@@ -307,10 +309,58 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
             AttendanceRequestCommand = new RelayCommand(AttendanceRequest);
             EditAttendanceRequest = new RelayCommand(ExecuteEditAttendanceRequest);
             DeleteAttendanceRequest = new RelayCommand(ExecuteDeleteAttendanceRequest);
+            EditLeaveRequest = new RelayCommand(ExecuteEditLeaveRequest);
+            DeleteLeaveRequest = new RelayCommand(ExecuteDeleteLeaveRequest);
             LoadUserData();
         }
 
+        private async void ExecuteDeleteLeaveRequest(object? item)
+        {
+            var leaveRequest = item as EmployeeLeaveModel;
+            if (leaveRequest != null)
+            {
+                // Check if the leave request is pending
+                if (leaveRequest.Status == FormStatus.Pending)
+                {
+                    var result = MessageBox.Show("Are you sure you want to delete this leave request?", "Delete Leave Request", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == Properties.Settings.Default.CurrentUserGuid,
+                            includeProperties: "EmployeeLeaveRequests");
+                        if (employee != null && employee.EmployeeLeaveRequests != null)
+                        {
+                            employee.EmployeeLeaveRequests.Remove(leaveRequest);
+                            await _unitOfWork.Save();
+                            MessageBox.Show("Leave request deleted successfuly!");
+                            LoadUserData();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You cannot delete this leave request because it is already approved or rejected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+
         //Methods
+        private void ExecuteEditLeaveRequest(object? item)
+        {
+            var leaveRequest = item as EmployeeLeaveModel;
+            if (leaveRequest != null)
+            {
+                // Check if the leave request is pending
+                if (leaveRequest.Status == FormStatus.Pending)
+                {
+                    _popUpService.ShowPopUp<FileLeaveForm_View>(leaveRequest.EmployeeLeaveId);
+                }
+                else
+                {
+                    MessageBox.Show("You cannot edit this leave request because it is already approved or rejected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
         private async void LoadUserData()
         {
             var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Employee,Department");

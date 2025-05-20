@@ -595,8 +595,8 @@
                                                         <DataGridTemplateColumn.CellTemplate>
                                                             <DataTemplate>
                                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                                    <Button Content="View" Margin="2,0"/>
-                                                                    <Button Content="Edit" Margin="2,0"/>
+                                                                    <Button Content="Edit" Margin="2,0" Command="{Binding DataContext.EditLeaveRequest, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"/>
+                                                                    <Button Content="Delete" Margin="2,0" Background="Red" Command="{Binding DataContext.DeleteLeaveRequest, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}"/>
                                                                 </StackPanel>
                                                             </DataTemplate>
                                                         </DataGridTemplateColumn.CellTemplate>
