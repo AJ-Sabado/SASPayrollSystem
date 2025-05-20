@@ -96,13 +96,9 @@
 
                         <StackPanel Grid.Column="2">
                             <TextBlock x:Name="tbReason" Text="Reason" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" VerticalAlignment="Center"/>
-                            <ComboBox x:Name="cbReason" 
-                                      FontFamily="{StaticResource PoppinsLight}" FontSize="12"
-                                      Margin="0,5">
-                                <ComboBoxItem Content="Sick Leave"/>
-                                <ComboBoxItem Content="Vacation Leave"/>
-                                <ComboBoxItem Content="Emergency Leave"/>
-                            </ComboBox>
+                            <TextBox x:Name="tboxReason" Text="{Binding Reason}" 
+                                     FontFamily="{StaticResource PoppinsLight}" FontSize="12"
+                                     Margin="0,5" VerticalScrollBarVisibility="Auto"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -134,7 +130,7 @@
                                                         SelectedTime="{Binding TimeOut}"/>
                         </StackPanel>
 
-                        <userControls:LabeledTextBox x:Name="ltbTotalHours" Grid.Column="4" Label="Total Hours" Text="{Binding TotalHours}" />
+                        <userControls:LabeledTextBox x:Name="ltbTotalHours" Grid.Column="4" Label="Total Hours" Text="{Binding TotalHours}" IsEnabled="False"/>
                     
                     </Grid>
                 </Grid>

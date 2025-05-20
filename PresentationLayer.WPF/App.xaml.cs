@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using InfrastructureLayer.DataAccess;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages;
@@ -74,9 +75,13 @@ namespace SASPayrolSystemProject
             services.AddTransient<AttendanceRequest_ViewModel>();
             services.AddTransient<FileLeaveForm_View>();
 
-            //Services
-            services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            //DbContext
             services.AddDbContext<AppDbContext>();
+            //Code below is used when actually connecting to the database
+            //services.AddDbContext<AppDbContext>(optionsBuilder => optionsBuilder.UseSqlServer(CONNECTION_STRING));
+
+            //Other Services
+            services.AddSingleton<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IWindowService, WindowService>();
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<IPopUpService, PopUpService>();

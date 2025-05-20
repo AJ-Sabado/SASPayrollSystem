@@ -1,8 +1,12 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
+using DomainLayer.Enums;
 using DomainLayer.Enums.EmployeePersonalInfo;
+using DomainLayer.Models.EmployeeAttendanceRequest;
+using DomainLayer.Models.EmployeeEvaluatedAttendance;
+using DomainLayer.Models.EmployeeLeave;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Windows;
-using PresentationLayer.WPF.ViewModel.Tables;
 using ServicesLayer;
 
 namespace PresentationLayer.WPF.ViewModel.RegularViewModel
@@ -11,13 +15,46 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
     {
         private readonly IPopUpService _popUpService;
         private readonly IUnitOfWork _unitOfWork;
-
+        
+        //Commands
         public ICommand FileLeaveCommand { get; }
         public ICommand AttendanceRequestCommand { get; }
+        public ICommand EditAttendanceRequest { get; }
+        public ICommand DeleteAttendanceRequest { get; }
+        public ICommand EditLeaveRequest { get; }
+        public ICommand DeleteLeaveRequest { get; }
 
-        public IList<AttendanceLog> AttendanceLogList { get; set; } = []; 
-        public IList<AttendanceRequest> AttendanceRequestList { get; set; } = [];
-        public IList<LeaveRequest> LeaveRequestList { get; set; } = [];
+        //Tables
+        private IList<EmployeeEvaluatedAttendanceModel> _evaluatedAttendanceList = [];
+        public IList<EmployeeEvaluatedAttendanceModel> EvaluatedAttendanceList
+        {
+            get => _evaluatedAttendanceList;
+            private set
+            {
+                _evaluatedAttendanceList = value;
+                OnPropertyChanged();
+            }
+        }
+        private IList<EmployeeAttendanceRequestModel> _attendanceRequestList = [];
+        public IList<EmployeeAttendanceRequestModel> AttendanceRequestList
+        {
+            get => _attendanceRequestList;
+            private set
+            {
+                _attendanceRequestList = value;
+                OnPropertyChanged();
+            }
+        }
+        private IList<EmployeeLeaveModel> _leaveRequestList = [];
+        public IList<EmployeeLeaveModel> LeaveRequestList
+        {
+            get => _leaveRequestList;
+            private set
+            {
+                _leaveRequestList = value;
+                OnPropertyChanged();
+            }
+        }
 
         //Information
         private string _fullName = "Full Name";
@@ -111,31 +148,236 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 OnPropertyChanged();
             }
         }
+
+        //Payslip
+        private string _basicPay = "Php 0.00";
+        public string BasicPay
+        {
+            get => _basicPay;
+            set
+            {
+                _basicPay = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _holidayPay = "Php 0.00";
+        public string HolidayPay
+        {
+            get => _holidayPay;
+            set
+            {
+                _holidayPay = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _nightDifferentialPay = "Php 0.00";
+        public string NightDifferentialPay
+        {
+            get => _nightDifferentialPay;
+            set
+            {
+                _nightDifferentialPay = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _overtimePay = "Php 0.00";
+        public string OvertimePay
+        {
+            get => _overtimePay;
+            set
+            {
+                _overtimePay = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _paidLeaves = "Php 0.00";
+        public string PaidLeaves
+        {
+            get => _paidLeaves;
+            set
+            {
+                _paidLeaves = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _bonus = "Php 0.00";
+        public string Bonus
+        {
+            get => _bonus;
+            set
+            {
+                _bonus = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _allowances = "Php 0.00";
+        public string Allowances
+        {
+            get => _allowances;
+            set
+            {
+                _allowances = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _grossPay = "Php 0.00";
+        public string GrossPay
+        {
+            get => _grossPay;
+            set
+            {
+                _grossPay = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _withholdingTax = "Php 0.00";
+        public string WithholdingTax
+        {
+            get => _withholdingTax;
+            set
+            {
+                _withholdingTax = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _governmentContributions = "Php 0.00";
+        public string GovernmentContributions
+        {
+            get => _governmentContributions;
+            set
+            {
+                _governmentContributions = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _loanDeductions = "Php 0.00";
+        public string LoanDeductions
+        {
+            get => _loanDeductions;
+            set
+            {
+                _loanDeductions = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _uTDeductions = "Php 0.00";
+        public string UTDeductions
+        {
+            get => _uTDeductions;
+            set
+            {
+                _uTDeductions = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _netSalary = "Php 0.00";
+        public string NetSalary
+        {
+            get => _netSalary;
+            set
+            {
+                _netSalary = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _payrollDate = "-";
+        public string PayrollDate
+        {
+            get => _payrollDate;
+            set
+            {
+                _payrollDate = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _payrollStatus = "No payslip information available.";
+        public string PayrollStatus
+        {
+            get => _payrollStatus;
+            set
+            {
+                _payrollStatus = value;
+                OnPropertyChanged();
+            }
+        }
+
         public RegJobDesk_ViewModel(IPopUpService popUpService, IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _popUpService = popUpService;
-            LoadUserData();
             FileLeaveCommand = new RelayCommand(FileLeave);
             AttendanceRequestCommand = new RelayCommand(AttendanceRequest);
+            EditAttendanceRequest = new RelayCommand(ExecuteEditAttendanceRequest);
+            DeleteAttendanceRequest = new RelayCommand(ExecuteDeleteAttendanceRequest);
+            EditLeaveRequest = new RelayCommand(ExecuteEditLeaveRequest);
+            DeleteLeaveRequest = new RelayCommand(ExecuteDeleteLeaveRequest);
+            LoadUserData();
         }
 
+        private async void ExecuteDeleteLeaveRequest(object? item)
+        {
+            var leaveRequest = item as EmployeeLeaveModel;
+            if (leaveRequest != null)
+            {
+                // Check if the leave request is pending
+                if (leaveRequest.Status == FormStatus.Pending)
+                {
+                    var result = MessageBox.Show("Are you sure you want to delete this leave request?", "Delete Leave Request", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == Properties.Settings.Default.CurrentUserGuid,
+                            includeProperties: "EmployeeLeaveRequests");
+                        if (employee != null && employee.EmployeeLeaveRequests != null)
+                        {
+                            employee.EmployeeLeaveRequests.Remove(leaveRequest);
+                            await _unitOfWork.Save();
+                            MessageBox.Show("Leave request deleted successfuly!");
+                            LoadUserData();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You cannot delete this leave request because it is already approved or rejected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+
+        //Methods
+        private void ExecuteEditLeaveRequest(object? item)
+        {
+            var leaveRequest = item as EmployeeLeaveModel;
+            if (leaveRequest != null)
+            {
+                // Check if the leave request is pending
+                if (leaveRequest.Status == FormStatus.Pending)
+                {
+                    _popUpService.ShowPopUp<FileLeaveForm_View>(leaveRequest.EmployeeLeaveId);
+                }
+                else
+                {
+                    MessageBox.Show("You cannot edit this leave request because it is already approved or rejected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
         private async void LoadUserData()
         {
             var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Employee,Department");
             if (user != null)
             {
-                var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == user.UserId, includeProperties: "EmployeeAccountInfo,EmployeeAttendances,EmployeeLeaves,EmployeePayslips,EmployeeAttendanceRequests");
+                var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == user.UserId,
+                    includeProperties: "EmployeeAccountInfo,EmployeeEvaluatedAttendances,EmployeeLeaveRequests,EmployeePayslips,EmployeeAttendanceRequests");
                 if (employee != null)
                 {
                     // Load Side Bar Data
                     if (employee.EmployeeAccountInfo != null)
-                    { 
+                    {
                         FullName = employee.EmployeeAccountInfo.FullName;
                         Role = employee.EmployeeAccountInfo.Role;
                         Department = user.Department.Name;
                         DailyRate = $"Php {employee.BasicDailyRate.ToString("N2")} per day";
-                        WorkShift = $"{employee.WorkShiftStart} - {employee.WorkShiftEnd}";
+                        WorkShift = $"{employee.DefaultWorkShiftStart} - {employee.DefaultWorkShiftEnd}";
                         Email = user.Email;
                         Phone = employee.EmployeeAccountInfo.PrimaryPhoneNumber;
                         Website = employee.EmployeeAccountInfo.WebsiteUrl;
@@ -145,58 +387,98 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                             EmploymentStatus = "Independent Contractor";
                     }
 
-                    //Load Attendances
-                    if (employee.EmployeeAttendances != null && employee.EmployeeAttendances.Count > 0)
+                    //Load Attendance Logs
+                    if (employee.EmployeeEvaluatedAttendances != null && employee.EmployeeEvaluatedAttendances.Count > 0)
                     {
-                        AttendanceLogList.Clear();
-                        foreach (var attendance in employee.EmployeeAttendances)
-                        {
-                            AttendanceLogList.Add(new AttendanceLog
-                            {
-                                Date = attendance.Date,
-                                TimeIn = attendance.TimeIn,
-                                TimeOut = attendance.TimeOut,
-                                Status = attendance.Status.ToString(),
-                                Overtime = attendance.OTStatus.ToString(),
-                                OTDuration = $"{attendance.OTHours} hours"
-                            });
-                        }
+                        EvaluatedAttendanceList = employee.EmployeeEvaluatedAttendances.ToList();
                     }
 
                     //Load Attendance Requests
-                    if (employee.EmployeeAttendanceRequests != null && employee.EmployeeAttendanceRequests.Count > 0)
+                    if (employee.EmployeeAttendanceRequests != null)
                     {
-                        AttendanceRequestList.Clear();
-                        foreach (var request in employee.EmployeeAttendanceRequests)
-                        {
-                            AttendanceRequestList.Add(new AttendanceRequest
-                            {
-                                RequestDate = request.RequestDate,
-                                AttendanceDate = request.AttendanceDate,
-                                TimeIn = request.TimeIn,
-                                TimeOut = request.TimeOut,
-                                Status = request.Status.ToString(),
-                            });
-                        }
+                        AttendanceRequestList = employee.EmployeeAttendanceRequests.ToList();
                     }
 
                     //Load Leaves
-                    if (employee.EmployeeLeaves != null && employee.EmployeeLeaves.Count > 0)
+                    if (employee.EmployeeLeaveRequests != null)
                     {
-                        LeaveRequestList.Clear();
-                        foreach (var leave in employee.EmployeeLeaves)
+                        LeaveRequestList = employee.EmployeeLeaveRequests.ToList();
+                    }
+
+                    //Load Payslips
+                    if (employee.EmployeePayslips != null)
+                    {
+                        var payslip = employee.EmployeePayslips.LastOrDefault();
+                        if (payslip != null)
                         {
-                            LeaveRequestList.Add(new LeaveRequest
-                            {
-                                RequestDate = leave.DateOfFiling,
-                                StartDate = leave.DateOfAbsenceStart,
-                                EndDate = leave.DateOfAbsenceEnd,
-                                TotalDays = $"{leave.Duration} days",
-                                Reason = leave.Type.ToString(),
-                                Status = leave.Status.ToString()
-                            });
+                            BasicPay = $"Php {payslip.BasicPay.ToString("N2")}";
+                            HolidayPay = $"Php {payslip.HolidayHours.ToString("N2")}";
+                            NightDifferentialPay = $"Php {payslip.NightDifferentialPay.ToString("N2")}";
+                            OvertimePay = $"Php {payslip.OvertimePay.ToString("N2")}";
+                            PaidLeaves = $"Php {payslip.PaidLeaves.ToString("N2")}";
+                            Bonus = $"Php {payslip.Bonus.ToString("N2")}";
+                            Allowances = $"Php {payslip.Allowances.ToString("N2")}";
+                            GrossPay = $"Php {payslip.GrossPay.ToString("N2")}";
+                            WithholdingTax = $"Php {payslip.WithholdingTax.ToString("N2")}";
+                            GovernmentContributions = $"Php {payslip.GovernmentContributions.ToString("N2")}";
+                            LoanDeductions = $"Php {payslip.LoanDeductions.ToString("N2")}";
+                            UTDeductions = $"Php {payslip.UTDeductions.ToString("N2")}";
+                            NetSalary = $"Php {payslip.NetSalary.ToString("N2")}";
+                            PayrollDate = $"{payslip.PeriodStart:MMMM dd, yyyy} - {payslip.PeriodEnd:MMMM dd, yyyy}";
+                            PayrollStatus = $"{payslip.PayslipStatus.ToString()} - {payslip.PayDate:MMMM dd, yyyy}";
                         }
                     }
+                    else
+                    {
+                        PayrollStatus = "No payslip information available.";
+                    }
+                }
+            }
+        }
+
+        private async void ExecuteDeleteAttendanceRequest(object? item)
+        {
+            var attendanceRequest = item as EmployeeAttendanceRequestModel;
+            var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == Properties.Settings.Default.CurrentUserGuid,
+                includeProperties: "EmployeeAttendanceRequests");
+            if (employee != null && employee.EmployeeAttendanceRequests != null && attendanceRequest != null)
+            {
+                // Check if the attendance request is pending
+                if (attendanceRequest.Status == FormStatus.Pending)
+                {
+                    var result = MessageBox.Show("Are you sure you want to delete this attendance request?", "Delete Attendance Request", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        employee.EmployeeAttendanceRequests.Remove(attendanceRequest);
+                        await _unitOfWork.Save();
+                        MessageBox.Show("Attendance request deleted successfuly!");
+                        LoadUserData();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You cannot delete this attendance request because it is already approved or rejected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Operation failed!");
+            }
+        }
+
+        private void ExecuteEditAttendanceRequest(object? item)
+        {
+            var attendanceRequest = item as EmployeeAttendanceRequestModel;
+            if (attendanceRequest != null)
+            {
+                // Check if the attendance request is pending
+                if (attendanceRequest.Status == FormStatus.Pending)
+                {
+                    _popUpService.ShowPopUp<AttendanceRequest_View>(attendanceRequest.Id);
+                }
+                else
+                {
+                    MessageBox.Show("You cannot edit this attendance request because it is already approved or rejected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

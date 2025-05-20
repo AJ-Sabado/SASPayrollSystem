@@ -364,17 +364,10 @@
                                             </Grid>
 
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                <Button Name="btnChangePassword" Margin="0,0,30,0" Width="175">
+                                                <Button Name="btnChangePassword" Margin="0,0,30,0" Width="175" Command="{Binding ChangePassword}">
                                                     <StackPanel Orientation="Horizontal">
                                                         <materialDesign:PackIcon Kind="KeyChange" Height="20" Width="20" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
                                                         <TextBlock Text="Change Password" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="12" Foreground="White" VerticalAlignment="Center"/>
-                                                    </StackPanel>
-                                                </Button>
-
-                                                <Button Name="btnForgotPassword" Width="175">
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <materialDesign:PackIcon Kind="ForgotPassword" Height="20" Width="20" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                        <TextBlock Text="Forgot Password" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="12" Foreground="White" VerticalAlignment="Center"/>
                                                     </StackPanel>
                                                 </Button>
                                             </StackPanel>

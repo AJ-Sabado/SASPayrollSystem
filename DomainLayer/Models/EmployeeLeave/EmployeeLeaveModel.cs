@@ -21,7 +21,7 @@ namespace DomainLayer.Models.EmployeeLeave
         public DateOnly DateOfAbsenceStart { get; set; }
 
         [Column(TypeName = "date")]
-        public DateOnly DateOfAbsenceEnd { get; set; }
+        public DateOnly DateOfReturn { get; set; }
 
         [Column(TypeName = "smallint")]
         public uint Duration { get; set; }

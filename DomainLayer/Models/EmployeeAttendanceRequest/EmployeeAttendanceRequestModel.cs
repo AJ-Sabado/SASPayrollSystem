@@ -25,6 +25,8 @@ namespace DomainLayer.Models.EmployeeAttendanceRequest
         [Column(TypeName = "time")]
         public TimeOnly TimeOut { get; set; }
 
+        public string Reason { get; set; } = string.Empty;
+
         [Column(TypeName = "tinyint")]
         public FormStatus Status { get; set; } = FormStatus.Pending;
 

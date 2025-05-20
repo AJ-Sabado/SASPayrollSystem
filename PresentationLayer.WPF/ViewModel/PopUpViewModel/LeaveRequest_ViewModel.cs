@@ -108,25 +108,62 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
 
         private async void ExecuteSendRequest(object? obj)
         {
-            var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "EmployeeLeaves");
+            var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "EmployeeLeaveRequests");
             if (employee != null && StartDate.HasValue && ReturnDate.HasValue)
             {
-                var leave = new EmployeeLeaveModel()
+                //Checks
+                if (StartDate.Value < DateTime.Now)
                 {
-                    EmployeeId = employee.EmployeeId,
-                    Employee = employee,
-                    DateOfFiling = DateOnly.FromDateTime(DateTime.Now),
-                    DateOfAbsenceStart = DateOnly.FromDateTime(StartDate.Value),
-                    DateOfAbsenceEnd = DateOnly.FromDateTime(ReturnDate.Value),
-                    Duration = this.Duration,
-                    Type = this.SelectedLeaveType
-                };
-                employee.EmployeeLeaves.Add(leave);
+                    System.Windows.MessageBox.Show("Start date cannot be in the past!");
+                    return;
+                }
+                if (ReturnDate.Value < StartDate.Value)
+                {
+                    System.Windows.MessageBox.Show("Return date cannot be before start date!");
+                    return;
+                }
+                if (Duration == 0)
+                {
+                    System.Windows.MessageBox.Show("Duration cannot be 0!");
+                    return;
+                }
+
+                //Update leave
+                if (_popUpService.IdSource != null)
+                {
+                    var currentLeave = employee.EmployeeLeaveRequests.FirstOrDefault(l => l.EmployeeLeaveId == _popUpService.IdSource);
+                    if (currentLeave != null)
+                    {
+                        currentLeave.DateOfAbsenceStart = DateOnly.FromDateTime(StartDate.Value);
+                        currentLeave.DateOfReturn = DateOnly.FromDateTime(ReturnDate.Value);
+                        currentLeave.Duration = this.Duration;
+                        currentLeave.Type = this.SelectedLeaveType;
+                        System.Windows.MessageBox.Show("Leave Request Updated!");
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Leave request not found!");
+                    }
+                }
+                //Add new leave
+                else
+                {
+                    var leave = new EmployeeLeaveModel()
+                    {
+                        EmployeeId = employee.EmployeeId,
+                        Employee = employee,
+                        DateOfFiling = DateOnly.FromDateTime(DateTime.Now),
+                        DateOfAbsenceStart = DateOnly.FromDateTime(StartDate.Value),
+                        DateOfReturn = DateOnly.FromDateTime(ReturnDate.Value),
+                        Duration = this.Duration,
+                        Type = this.SelectedLeaveType
+                    };
+                    employee.EmployeeLeaveRequests.Add(leave);
+                    System.Windows.MessageBox.Show("Leave Request Filled!");
+                }
                 await _unitOfWork.Save();
-                System.Windows.MessageBox.Show("Leave Request Filled!");
             }
             _popUpService.ClosePopup();
-
         }
 
         private async void LoadData()
@@ -137,7 +174,24 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
                 EmployeeName = user.Employee.EmployeeAccountInfo.FullName;
                 EmployeeId = user.Employee.EmployeeAccountInfo.CompanyId;
                 Department = user.Department.Name;
-
+                if (_popUpService.IdSource != null)
+                {
+                    var leave = user.Employee.EmployeeLeaveRequests.FirstOrDefault(l => l.EmployeeLeaveId == _popUpService.IdSource);
+                    if (leave != null)
+                    {
+                        StartDate = leave.DateOfAbsenceStart.ToDateTime(new TimeOnly(0, 0));
+                        ReturnDate = leave.DateOfReturn.ToDateTime(new TimeOnly(0, 0));
+                        Duration = leave.Duration;
+                        SelectedLeaveType = leave.Type;
+                    }
+                }
+                else
+                {
+                    StartDate = DateTime.Now;
+                    ReturnDate = DateTime.Now.AddDays(1);
+                    Duration = 1;
+                    SelectedLeaveType = LeaveType.Sick;
+                }
             }
         }
     }

@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net.Mime;
+using System.Reflection.Metadata.Ecma335;
+using DomainLayer.Enums.EmployeePayslip;
 using DomainLayer.Models.Employee;
 
 namespace DomainLayer.Models.EmployeePayslip
@@ -44,20 +46,20 @@ namespace DomainLayer.Models.EmployeePayslip
 
 
         [Column(TypeName = "smallint")]
-        public uint LegalHolidaysHours { get; set; } = 0;
+        public uint HolidayHours { get; set; } = 0;
         [NotMapped]
-        public decimal LegalHolidaysPay
+        public decimal HolidayPay
         {
             get
             {
-                return LegalHolidaysHours * LegalHolidaysHours;
+                return AppliedHourlyRate * HolidayHours;
             }
         }
 
         [Column(TypeName = "smallint")]
         public uint NDOnWorkingDayHours { get; set; } = 0;
         [NotMapped]
-        public decimal NDOnWorkingDayPay
+        public decimal NightDifferentialPay
         {
             get
             {
@@ -68,11 +70,36 @@ namespace DomainLayer.Models.EmployeePayslip
         [Column(TypeName = "smallint")]
         public uint OTHoursWorkedRegular { get; set; } = 0;
         [NotMapped]
-        public decimal OTHoursWorkedRegularPay
+        public decimal OvertimePay
         {
             get
             {
                 return OTHoursWorkedRegular * AppliedHourlyRate * AppliedOvertimeRate;
+            }
+        }
+
+        [Column(TypeName = "smallint")]
+        public uint PaidLeaveHours { get; set; } = 0;
+        [NotMapped]
+        public decimal PaidLeaves
+        {
+            get
+            {
+                return PaidLeaveHours * AppliedHourlyRate;
+            }
+        }
+
+        //Bonus
+        [Column(TypeName = "money")]
+        public decimal Legal13thMonthPay { get; set; } = 0;
+        [Column(TypeName = "money")]
+        public decimal PerfectAttendanceBonus { get; set; } = 0;
+        [NotMapped]
+        public decimal Bonus
+        {
+            get
+            {
+                return Legal13thMonthPay + PerfectAttendanceBonus;
             }
         }
 
@@ -84,11 +111,21 @@ namespace DomainLayer.Models.EmployeePayslip
         public decimal MealAllowance { get; set; } = 0;
         [Column(TypeName = "money")]
         public decimal LoadAllowance { get; set; } = 0;
+        [NotMapped]
+        public decimal Allowances
+        {
+            get
+            {
+                return UtilityAllowance + MealAllowance + LoadAllowance;
+            }
+        }
 
         [Column(TypeName = "money")]
-        public decimal TotalGrossPay { get; set; }
+        public decimal GrossPay { get; set; }
 
         //Deductions
+        [Column(TypeName = "money")]
+        public decimal WithholdingTax { get; set; } = 0;
         [Column(TypeName = "money")]
         public decimal PHIC { get; set; } = 0;
         [Column(TypeName = "money")]
@@ -97,14 +134,48 @@ namespace DomainLayer.Models.EmployeePayslip
         public decimal DecemberSSS { get; set; } = 0;
         [Column(TypeName = "money")]
         public decimal DecemberHDMF { get; set; } = 0;
+
+        [NotMapped]
+        public decimal GovernmentContributions
+        {
+            get
+            {
+                return PHIC + HDMF + DecemberSSS + DecemberHDMF;
+            }
+        }
+
         [Column(TypeName = "money")]
-        public decimal WithholdingTax { get; set; } = 0;
+        public decimal GovernmentLoans { get; set; } = 0;
+        [Column(TypeName = "money")]
+        public decimal CompanyLoans { get; set; } = 0;
+        [NotMapped]
+        public decimal LoanDeductions
+        {
+            get 
+            {
+                return GovernmentLoans + CompanyLoans;
+            }
+        }
+
+        [Column(TypeName = "smallint")]
+        public uint UTMinutes { get; set; } = 0;
+        [NotMapped]
+        public decimal UTDeductions
+        {
+            get
+            {
+                return UTMinutes * AppliedHourlyRate / 60;
+            }
+        }
+
 
         [Column(TypeName = "money")]
         public decimal TotalDeductions { get; set; } = 0;
 
         [Column(TypeName = "money")]
-        public decimal NetPay { get; set; } = 0;
+        public decimal NetSalary { get; set; } = 0;
 
+        [Column(TypeName = "tinyint")]
+        public EmployeePayslipStatus PayslipStatus = EmployeePayslipStatus.Pending;
     }
 }

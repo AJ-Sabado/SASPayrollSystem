@@ -5,24 +5,24 @@
 namespace InfrastructureLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedStatusColumnOnEmployeeRequestModel : Migration
+    public partial class AddedReasonInAttendanceRequest : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<byte>(
-                name: "Status",
+            migrationBuilder.AddColumn<string>(
+                name: "Reason",
                 table: "EmployeeAttendanceRequestModel",
-                type: "tinyint",
+                type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: (byte)0);
+                defaultValue: "");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Status",
+                name: "Reason",
                 table: "EmployeeAttendanceRequestModel");
         }
     }

@@ -17,7 +17,12 @@ namespace PresentationLayer.WPF.View.Windows.Main
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            // Check if the left mouse button is pressed
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                // Allow the window to be dragged
+                DragMove();
+            }
         }
     }
 }

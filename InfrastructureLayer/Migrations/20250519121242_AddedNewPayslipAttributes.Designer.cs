@@ -4,6 +4,7 @@ using InfrastructureLayer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250519121242_AddedNewPayslipAttributes")]
+    partial class AddedNewPayslipAttributes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -360,10 +363,6 @@ namespace InfrastructureLayer.Migrations
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Reason")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateOnly>("RequestDate")
                         .HasColumnType("date");
 
@@ -413,9 +412,6 @@ namespace InfrastructureLayer.Migrations
                     b.Property<decimal>("ExpectedWorkHours")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<byte>("OvertimeVerificationStatus")
-                        .HasColumnType("tinyint");
-
                     b.Property<Guid?>("TimeInReference")
                         .HasColumnType("uniqueidentifier");
 
@@ -435,13 +431,13 @@ namespace InfrastructureLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateOnly>("DateOfAbsenceEnd")
+                        .HasColumnType("date");
+
                     b.Property<DateOnly>("DateOfAbsenceStart")
                         .HasColumnType("date");
 
                     b.Property<DateOnly>("DateOfFiling")
-                        .HasColumnType("date");
-
-                    b.Property<DateOnly>("DateOfReturn")
                         .HasColumnType("date");
 
                     b.Property<short>("Duration")

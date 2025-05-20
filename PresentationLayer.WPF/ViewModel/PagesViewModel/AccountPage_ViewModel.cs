@@ -398,6 +398,10 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
                 OnPropertyChanged();
             }
         }
+
+        //Change password bindings
+        public string Password { private get; set; } = string.Empty;
+
         public AccountPage_ViewModel(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -411,6 +415,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
         public ICommand EditBasicInfoButton { get; set; }
         public ICommand EditContactInfoButton { get; set; }
         public ICommand EditFinancialInfoButton { get; set; }
+        public ICommand ChangePassword { get; }
 
         public void EditFinancialInfoButton_Click(object? obj)
         {
