@@ -18,7 +18,11 @@ namespace InfrastructureLayer.DataAccess
         private const string connectionStringNoreen = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SASPayrollDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+<<<<<<< HEAD
             optionsBuilder.UseSqlServer(connectionStringNoreen);
+=======
+            optionsBuilder.UseSqlServer(connectionStringTim);
+>>>>>>> d00592e97eb77297d04c749003370eda26f38a17
             base.OnConfiguring(optionsBuilder);
         }
 
