@@ -4,6 +4,7 @@ using InfrastructureLayer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250521054227_UpdatedEvaluationModel")]
+    partial class UpdatedEvaluationModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -508,11 +511,11 @@ namespace InfrastructureLayer.Migrations
                     b.Property<decimal>("HDMF")
                         .HasColumnType("money");
 
-                    b.Property<decimal>("HolidayHours")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<short>("HolidayHours")
+                        .HasColumnType("smallint");
 
-                    b.Property<decimal>("HoursWorkedRegular")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<short>("HoursWorkedRegular")
+                        .HasColumnType("smallint");
 
                     b.Property<decimal>("Legal13thMonthPay")
                         .HasColumnType("money");
@@ -523,20 +526,20 @@ namespace InfrastructureLayer.Migrations
                     b.Property<decimal>("MealAllowance")
                         .HasColumnType("money");
 
-                    b.Property<decimal>("NDOnWorkingDayHours")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<short>("NDOnWorkingDayHours")
+                        .HasColumnType("smallint");
 
                     b.Property<decimal>("NetSalary")
                         .HasColumnType("money");
 
-                    b.Property<decimal>("OTHoursWorkedRegular")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<short>("OTHoursWorkedRegular")
+                        .HasColumnType("smallint");
 
                     b.Property<decimal>("PHIC")
                         .HasColumnType("money");
 
-                    b.Property<decimal>("PaidLeaveHours")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<short>("PaidLeaveHours")
+                        .HasColumnType("smallint");
 
                     b.Property<DateOnly>("PayDate")
                         .HasColumnType("date");
@@ -553,8 +556,8 @@ namespace InfrastructureLayer.Migrations
                     b.Property<decimal>("TotalDeductions")
                         .HasColumnType("money");
 
-                    b.Property<decimal>("UTMinutes")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<short>("UTMinutes")
+                        .HasColumnType("smallint");
 
                     b.Property<decimal>("UtilityAllowance")
                         .HasColumnType("money");

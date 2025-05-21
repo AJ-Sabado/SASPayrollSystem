@@ -127,9 +127,11 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                     //Test attendance evaluation
                     var periodStart = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 16);
                     var periodEnd = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 31);
+                    var payDate = new DateOnly(DateTime.Now.Year, DateTime.Now.Month + 1, 15);
                     try
                     {
                         //await _unitOfWork.EvaluateAllEmployeeAttendanceLog(periodStart, periodEnd);
+                        //await _unitOfWork.GenerateAllEmployeePayslips(periodStart, periodEnd, payDate);
                         _windowService.ShowWindow<EmployeeDahboard_View>();
                     }
                     catch (Exception ex)
