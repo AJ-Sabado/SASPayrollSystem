@@ -17,7 +17,7 @@ namespace InfrastructureLayer.DataAccess
         private const string connectionStringAFA = "Data Source=(localdb)\\ProjectModels;Initial Catalog=SASPayrollDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionStringAFA);
+            optionsBuilder.UseSqlServer(connectionStringTim);
             base.OnConfiguring(optionsBuilder);
         }
 

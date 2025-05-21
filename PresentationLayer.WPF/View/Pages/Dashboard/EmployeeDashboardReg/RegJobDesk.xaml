@@ -237,7 +237,8 @@
                                 <!--PAYSLIP-->
                                 <TabItem Header="Payslip">
                                     <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                                  HorizontalScrollBarVisibility="Disabled">
+                                                  HorizontalScrollBarVisibility="Disabled"
+                                                  >
                                         <StackPanel Orientation="Vertical" Margin="30,10,30,20">
                                             <Grid Margin="0,3">
                                                 <Grid.ColumnDefinitions>
