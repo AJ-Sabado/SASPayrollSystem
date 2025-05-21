@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainLayer.Models.EmployeeAccountInfo
 {
-    public class EmployeeAccountInfoModel
+    public class AccountInfoModel
     {
         private string _firstName = string.Empty;
         private string _lastName = string.Empty;
@@ -16,9 +16,9 @@ namespace DomainLayer.Models.EmployeeAccountInfo
         [Key]
         public Guid EmployeeAccountInfoId { get; set; }
 
-        [ForeignKey(nameof(EmployeeId))]
-        public required Guid EmployeeId { get; set; }
-        public required EmployeeModel Employee { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public required Guid UserId { get; set; }
+        public required UserModel User { get; set; }
 
         //BASIC INFORMATION
         [StringLength(20)]
@@ -86,7 +86,7 @@ namespace DomainLayer.Models.EmployeeAccountInfo
         public string Telephone { get; set; } = string.Empty;
 
         [NotMapped]
-        public string PrimaryEmail { get => GetEmail(Employee.User); }
+        public string PrimaryEmail { get => GetEmail(User); }
 
         [EmailAddress(ErrorMessage = "Must be a valid email address")]
         public string SecondaryEmail { get; set; } = string.Empty;
@@ -121,7 +121,7 @@ namespace DomainLayer.Models.EmployeeAccountInfo
         public string Role { get; set; } = string.Empty;
 
         [NotMapped]
-        public string Department { get => Employee.User.Department.Name; }
+        public string Department { get => User.Department.Name; }
 
         [Column(TypeName = "tinyint")]
         public EmploymentType EmploymentType { get; set; }

@@ -4,6 +4,7 @@ using DomainLayer.Models.Admin;
 using DomainLayer.Models.Contractor;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
+using DomainLayer.Models.EmployeeAccountInfo;
 using DomainLayer.Models.Role;
 using DomainLayer.Services;
 
@@ -60,5 +61,7 @@ namespace DomainLayer.Models.User
         public AdminModel? Admin { get; set; }
         public ContractorModel? Contractor { get; set; }
         public EmployeeModel? Employee { get; set; }
+        
+        public AccountInfoModel? AccountInfo { get; set; }
     }
 }

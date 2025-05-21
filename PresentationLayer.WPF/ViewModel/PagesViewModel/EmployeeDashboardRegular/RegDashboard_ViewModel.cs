@@ -151,7 +151,15 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
             Logout = new RelayCommand(LogoutExecute);
             ToggleTimeCommand = new RelayCommand(ToggleTimeIn);
             BreakCommand = new RelayCommand(BreakBtn);
-            LoadUserData();
+            try
+            {
+
+                LoadUserData();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
         }
 
         //Methods
@@ -293,19 +301,19 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
 
         private async void LoadUserData()
         {
-            
+            var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties:"AccountInfo");
             var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid,
-                includeProperties: "EmployeeAccountInfo,EmployeeAttendanceLogs,EmployeePayslips");
+                includeProperties: "EmployeeAttendanceLogs,EmployeePayslips");
             var today = DateOnly.FromDateTime(DateTime.Now);
-            if (employee != null)
+            if (user != null && employee != null)
             {
                 _employee = employee;
                 //Load Side Bar Info
-                if (employee.EmployeeAccountInfo != null)
+                if (user.AccountInfo != null)
                 {
-                    EmployeeFirstName = employee.EmployeeAccountInfo.FirstName;
-                    EmployeeCompanyId = employee.EmployeeAccountInfo.CompanyId;
-                    EmployeeRole = employee.EmployeeAccountInfo.Role;
+                    EmployeeFirstName = user.AccountInfo.FirstName;
+                    EmployeeCompanyId = user.AccountInfo.CompanyId;
+                    EmployeeRole = user.AccountInfo.Role;
                     Leaves = employee.LeaveCredits.ToString();
                     Absences = employee.Absences.ToString();
                 }

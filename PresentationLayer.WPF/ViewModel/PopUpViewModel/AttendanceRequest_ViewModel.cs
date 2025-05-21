@@ -38,15 +38,15 @@ namespace PresentationLayer.WPF.ViewModel
 
         private async void LoadEmployeeData()
         {
-            var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "EmployeeAccountInfo");
-            var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Department");
-            if (employee != null && employee.EmployeeAccountInfo != null && user.Department != null)
+            var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == Properties.Settings.Default.CurrentUserGuid);
+            var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Department,AccountInfo");
+            if (employee != null && user.AccountInfo != null && user.Department != null)
             {
                 _employeeId = employee.EmployeeId;
-                EmployeeName = employee.EmployeeAccountInfo.FullName;
-                EmployeeID = employee.EmployeeAccountInfo.CompanyId;
+                EmployeeName = user.AccountInfo.FullName;
+                EmployeeID = user.AccountInfo.CompanyId;
                 Department = user.Department.Name;
-                Role = employee.EmployeeAccountInfo.Role;
+                Role = user.AccountInfo.Role;
                 if (_popUpService.IdSource != null)
                 {
                     var currentAttendanceRequest = employee.EmployeeAttendanceRequests.FirstOrDefault(r => r.Id == _popUpService.IdSource);

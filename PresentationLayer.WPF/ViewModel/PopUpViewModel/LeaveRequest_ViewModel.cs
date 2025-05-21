@@ -168,11 +168,11 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
 
         private async void LoadData()
         {
-            var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Employee,Department");
-            if (user != null && user.Employee != null && user.Employee.EmployeeAccountInfo != null)
+            var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Employee,Department,AccountInfo");
+            if (user != null && user.Employee != null && user.AccountInfo != null)
             {
-                EmployeeName = user.Employee.EmployeeAccountInfo.FullName;
-                EmployeeId = user.Employee.EmployeeAccountInfo.CompanyId;
+                EmployeeName = user.AccountInfo.FullName;
+                EmployeeId = user.AccountInfo.CompanyId;
                 Department = user.Department.Name;
                 if (_popUpService.IdSource != null)
                 {

@@ -134,10 +134,10 @@ namespace ServicesLayer
                     BasicMonthlyRate = monthlyRate,
                     BasicDailyRate = SalaryConverter.ConvertMonthlyToDaily(monthlyRate)
                 };
-                user.Employee.EmployeeAccountInfo = new EmployeeAccountInfoModel()
+                user.AccountInfo = new AccountInfoModel()
                 {
-                    EmployeeId = user.Employee.EmployeeId,
-                    Employee = user.Employee,
+                    UserId = user.UserId,
+                    User = user,
 
                     //TO DO - Add employee information after EmployeeAccountInfoModel is adjusted.
                     FirstName = "Jane John",
