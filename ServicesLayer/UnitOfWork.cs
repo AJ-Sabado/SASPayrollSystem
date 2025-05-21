@@ -448,7 +448,7 @@ namespace ServicesLayer
                         {
                             evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Present;
                             evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
-                            evaluatedAttendance.ActualWorkHours = CalculateActualWorkHours(logsToday);
+                            evaluatedAttendance.ActualWorkHours = CalculateActualWorkHours(logsToday, employee.ExpectedWorkHours);
                         }
                     }
                     else
@@ -464,7 +464,7 @@ namespace ServicesLayer
                         {
                             evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Present;
                             evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
-                            evaluatedAttendance.ActualWorkHours = CalculateActualWorkHours(logsToday);
+                            evaluatedAttendance.ActualWorkHours = CalculateActualWorkHours(logsToday, employee.ExpectedWorkHours);
                         }
                     }
                 }
@@ -472,7 +472,7 @@ namespace ServicesLayer
             await Save();
         }
 
-        private decimal CalculateActualWorkHours(IEnumerable<EmployeeAttendanceLogModel> logsToday)
+        private decimal CalculateActualWorkHours(IEnumerable<EmployeeAttendanceLogModel> logsToday, decimal expectedWorkHours)
         {
             var timeIn = logsToday.FirstOrDefault(l => l.EventType == AttendanceLogEventType.TimeIn);
             var breakStart = logsToday.FirstOrDefault(l => l.EventType == AttendanceLogEventType.BreakStart);
@@ -491,12 +491,14 @@ namespace ServicesLayer
                 else
                     result = 0;
             }
-            return result;
+            if (result < expectedWorkHours)
+                return result;
+            return Math.Floor(result);
         }
 
-        private bool IsDateBetween(DateOnly date, DateOnly startDate, DateOnly endDate)
-        {
-            return date >= startDate && date <= endDate;
-        }
+        //private bool IsDateBetween(DateOnly date, DateOnly startDate, DateOnly endDate)
+        //{
+        //    return date >= startDate && date <= endDate;
+        //}
     }
 }
