@@ -23,6 +23,8 @@ namespace DomainLayer.Models.EmployeeEvaluatedAttendance
 
         public decimal ExpectedWorkHours { get; set; } = 0;
         public decimal ActualWorkHours { get; set; } = 0;
+        public decimal OvertimeHours { get; set; } = 0;
+        public decimal NightDifferentialHours { get; set; } = 0;
 
         [Column(TypeName = "datetime")]
         public DateTime EvaluationTimeStamp { get; set; }

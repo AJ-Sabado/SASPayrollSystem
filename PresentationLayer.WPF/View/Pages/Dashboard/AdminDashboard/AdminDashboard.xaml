@@ -52,8 +52,8 @@
 
                             <!--SIGN OUT BUTTON-->
                             <Button Grid.Column="1" x:Name="btnLogOut" Style="{StaticResource HeaderButtons}" 
-                                        Height="30" Width="30" HorizontalAlignment="Right"
-                                        Command="{Binding Logout}">
+                        Height="30" Width="30" HorizontalAlignment="Right"
+                        Command="{Binding Logout}">
                                 <materialDesign:PackIcon Kind="SignOutVariant" Height="20" Width="20"/>
                             </Button>
                         </Grid>

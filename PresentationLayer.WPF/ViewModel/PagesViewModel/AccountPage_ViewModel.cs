@@ -469,109 +469,87 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
         }
 
         private async void SaveData()
-        { 
-            var user = await _unitOfWork.UserRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Employee,Admin,Contractor,Department");
-            if (user != null)
+        {
+            var user = await _unitOfWork.UserRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "AccountInfo");
+            //var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == user.UserId, includeProperties: "EmployeeAccountInfo");
+            if (user != null && user.AccountInfo != null)
             {
-                if (user.Employee != null)
-                {
-                    var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == user.UserId, includeProperties: "EmployeeAccountInfo");
-                    if (employee != null && employee.EmployeeAccountInfo != null)
-                    {
-                        // Update employee data
-                        user.Username = Username;
-                        user.Email = PrimaryEmail;
+                // Update employee data
+                user.Username = Username;
+                user.Email = PrimaryEmail;
 
-                        await _unitOfWork.UserRepository.UpdateAsync(user);
+                await _unitOfWork.UserRepository.UpdateAsync(user);
 
-                        employee.EmployeeAccountInfo.FirstName = FirstName;
-                        employee.EmployeeAccountInfo.LastName = LastName;
-                        employee.EmployeeAccountInfo.MiddleInitial = MiddleInitial;
-                        employee.EmployeeAccountInfo.DateOfBirth = DateOnly.FromDateTime(DateOfBirth);
-                        employee.EmployeeAccountInfo.Gender = SelectedGender;
-                        employee.EmployeeAccountInfo.Nationality = SelectedNationality;
+                user.AccountInfo.FirstName = FirstName;
+                user.AccountInfo.LastName = LastName;
+                user.AccountInfo.MiddleInitial = MiddleInitial;
+                user.AccountInfo.DateOfBirth = DateOnly.FromDateTime(DateOfBirth);
+                user.AccountInfo.Gender = SelectedGender;
+                user.AccountInfo.Nationality = SelectedNationality;
 
-                        employee.EmployeeAccountInfo.PrimaryPhoneNumber = PrimaryPhoneNumber;
-                        employee.EmployeeAccountInfo.SecondaryPhoneNumber = SecondaryPhoneNumber;
-                        employee.EmployeeAccountInfo.Telephone = Telephone;
-                        employee.EmployeeAccountInfo.MailingAddress = MailingAddress;
-                        employee.EmployeeAccountInfo.SecondaryEmail = SecondaryEmail;
-                        employee.EmployeeAccountInfo.FacebookUrl = FacebookLink;
-                        employee.EmployeeAccountInfo.LinkedInUrl = LinkedInLink;
-                        employee.EmployeeAccountInfo.WebsiteUrl = WebsiteLink;
+                user.AccountInfo.PrimaryPhoneNumber = PrimaryPhoneNumber;
+                user.AccountInfo.SecondaryPhoneNumber = SecondaryPhoneNumber;
+                user.AccountInfo.Telephone = Telephone;
+                user.AccountInfo.MailingAddress = MailingAddress;
+                user.AccountInfo.SecondaryEmail = SecondaryEmail;
+                user.AccountInfo.FacebookUrl = FacebookLink;
+                user.AccountInfo.LinkedInUrl = LinkedInLink;
+                user.AccountInfo.WebsiteUrl = WebsiteLink;
 
-                        employee.EmployeeAccountInfo.TaxIdNumber = TaxIdentificationNumber;
-                        employee.EmployeeAccountInfo.SSSIdNumber = SSSIdNumber;
-                        employee.EmployeeAccountInfo.PhilHealthIdNumber = PhilHealthIdNumber;
-                        employee.EmployeeAccountInfo.PagIbigIdNumber = PagIbigIdNumber;
-                        employee.EmployeeAccountInfo.BankName = BankName;
-                        employee.EmployeeAccountInfo.BankAccountName = BankAccountName;
-                        employee.EmployeeAccountInfo.BankAccountId = BankAccountNumber;
+                user.AccountInfo.TaxIdNumber = TaxIdentificationNumber;
+                user.AccountInfo.SSSIdNumber = SSSIdNumber;
+                user.AccountInfo.PhilHealthIdNumber = PhilHealthIdNumber;
+                user.AccountInfo.PagIbigIdNumber = PagIbigIdNumber;
+                user.AccountInfo.BankName = BankName;
+                user.AccountInfo.BankAccountName = BankAccountName;
+                user.AccountInfo.BankAccountId = BankAccountNumber;
 
-                        await _unitOfWork.Save();
-                        LoadUserData();
-                    }
-                }
+                await _unitOfWork.Save();
+                LoadUserData();
             }
         }
         private async void LoadUserData()
         {
-            var user = await _unitOfWork.UserRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Employee,Admin,Contractor,Department");
-            if (user != null)
+            var user = await _unitOfWork.UserRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "AccountInfo,Department");
+            if (user != null && user.AccountInfo != null)
             {
-                if (user.Employee != null)
-                {
-                    // Load employee data
-                    var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == user.UserId, includeProperties: "EmployeeAccountInfo");
-                    if (employee != null && employee.EmployeeAccountInfo != null)
-                    {
 
-                        //Basic Info
-                        FullName = employee.EmployeeAccountInfo.FullName;
-                        Role = employee.EmployeeAccountInfo.Role;
-                        FirstName = employee.EmployeeAccountInfo.FirstName;
-                        LastName = employee.EmployeeAccountInfo.LastName;
-                        MiddleInitial = employee.EmployeeAccountInfo.MiddleInitial;
-                        Username = user.Username;
-                        DateOfBirth = employee.EmployeeAccountInfo.DateOfBirth.ToDateTime(TimeOnly.MinValue);
-                        SelectedGender = employee.EmployeeAccountInfo.Gender;
-                        SelectedNationality = employee.EmployeeAccountInfo.Nationality;
+                //Basic Info
+                FullName = user.AccountInfo.FullName;
+                Role = user.AccountInfo.Role;
+                FirstName = user.AccountInfo.FirstName;
+                LastName = user.AccountInfo.LastName;
+                MiddleInitial = user.AccountInfo.MiddleInitial;
+                Username = user.Username;
+                DateOfBirth = user.AccountInfo.DateOfBirth.ToDateTime(TimeOnly.MinValue);
+                SelectedGender = user.AccountInfo.Gender;
+                SelectedNationality = user.AccountInfo.Nationality;
 
-                        //Contact Info
-                        PrimaryPhoneNumber = employee.EmployeeAccountInfo.PrimaryPhoneNumber;
-                        SecondaryPhoneNumber = employee.EmployeeAccountInfo.SecondaryPhoneNumber;
-                        Telephone = employee.EmployeeAccountInfo.Telephone;
-                        PrimaryEmail = user.Email;
-                        MailingAddress = employee.EmployeeAccountInfo.MailingAddress;
-                        SecondaryEmail = employee.EmployeeAccountInfo.SecondaryEmail;
-                        FacebookLink = employee.EmployeeAccountInfo.FacebookUrl;
-                        LinkedInLink = employee.EmployeeAccountInfo.LinkedInUrl;
-                        WebsiteLink = employee.EmployeeAccountInfo.WebsiteUrl;
+                //Contact Info
+                PrimaryPhoneNumber = user.AccountInfo.PrimaryPhoneNumber;
+                SecondaryPhoneNumber = user.AccountInfo.SecondaryPhoneNumber;
+                Telephone = user.AccountInfo.Telephone;
+                PrimaryEmail = user.Email != null ? user.Email : string.Empty;
+                MailingAddress = user.AccountInfo.MailingAddress;
+                SecondaryEmail = user.AccountInfo.SecondaryEmail;
+                FacebookLink = user.AccountInfo.FacebookUrl;
+                LinkedInLink = user.AccountInfo.LinkedInUrl;
+                WebsiteLink = user.AccountInfo.WebsiteUrl;
 
-                        //Financial Info
-                        TaxIdentificationNumber = employee.EmployeeAccountInfo.TaxIdNumber;
-                        SSSIdNumber = employee.EmployeeAccountInfo.SSSIdNumber;
-                        PhilHealthIdNumber = employee.EmployeeAccountInfo.PhilHealthIdNumber;
-                        PagIbigIdNumber = employee.EmployeeAccountInfo.PagIbigIdNumber;
-                        BankName = employee.EmployeeAccountInfo.BankName;
-                        BankAccountName = employee.EmployeeAccountInfo.BankAccountName;
-                        BankAccountNumber = employee.EmployeeAccountInfo.BankAccountId;
+                //Financial Info
+                TaxIdentificationNumber = user.AccountInfo.TaxIdNumber;
+                SSSIdNumber = user.AccountInfo.SSSIdNumber;
+                PhilHealthIdNumber = user.AccountInfo.PhilHealthIdNumber;
+                PagIbigIdNumber = user.AccountInfo.PagIbigIdNumber;
+                BankName = user.AccountInfo.BankName;
+                BankAccountName = user.AccountInfo.BankAccountName;
+                BankAccountNumber = user.AccountInfo.BankAccountId;
 
-                        //Employment Info
-                        CompanyId = employee.EmployeeAccountInfo.CompanyId.ToString();
-                        Department = user.Department.Name;
-                        EmploymentType = employee.EmployeeAccountInfo.EmploymentType.ToString();
-                        DateHired = employee.EmployeeAccountInfo.DateHired.ToString("yyyy-MM-dd");
-                    }
-                }
-                else if (user.Admin != null)
-                {
-                    // Load admin data
-                }
-                else if (user.Contractor != null)
-                {
-                    // Load contractor data
-                }
+                //Employment Info
+                CompanyId = user.AccountInfo.CompanyId.ToString();
+                Department = user.Department.Name;
+                EmploymentType = user.AccountInfo.EmploymentType.ToString();
+                DateHired = user.AccountInfo.DateHired.ToString("yyyy-MM-dd");
             }
         }
     }

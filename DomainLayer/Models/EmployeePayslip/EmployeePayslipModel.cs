@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Net.Mime;
-using System.Reflection.Metadata.Ecma335;
 using DomainLayer.Enums.EmployeePayslip;
 using DomainLayer.Models.Employee;
 
@@ -33,10 +31,9 @@ namespace DomainLayer.Models.EmployeePayslip
 
 
         //Gross Salary
-        [Column(TypeName = "smallint")]
-        public uint HoursWorkedRegular { get; set; } = 0;
+        public decimal HoursWorkedRegular { get; set; } = 0;
         [NotMapped]
-        public decimal BasicPay 
+        public decimal BasicPay
         {
             get
             {
@@ -44,9 +41,7 @@ namespace DomainLayer.Models.EmployeePayslip
             }
         }
 
-
-        [Column(TypeName = "smallint")]
-        public uint HolidayHours { get; set; } = 0;
+        public decimal HolidayHours { get; set; } = 0;
         [NotMapped]
         public decimal HolidayPay
         {
@@ -56,8 +51,7 @@ namespace DomainLayer.Models.EmployeePayslip
             }
         }
 
-        [Column(TypeName = "smallint")]
-        public uint NDOnWorkingDayHours { get; set; } = 0;
+        public decimal NDOnWorkingDayHours { get; set; } = 0;
         [NotMapped]
         public decimal NightDifferentialPay
         {
@@ -67,8 +61,7 @@ namespace DomainLayer.Models.EmployeePayslip
             }
         }
 
-        [Column(TypeName = "smallint")]
-        public uint OTHoursWorkedRegular { get; set; } = 0;
+        public decimal OTHoursWorkedRegular { get; set; } = 0;
         [NotMapped]
         public decimal OvertimePay
         {
@@ -78,8 +71,7 @@ namespace DomainLayer.Models.EmployeePayslip
             }
         }
 
-        [Column(TypeName = "smallint")]
-        public uint PaidLeaveHours { get; set; } = 0;
+        public decimal PaidLeaveHours { get; set; } = 0;
         [NotMapped]
         public decimal PaidLeaves
         {
@@ -108,9 +100,9 @@ namespace DomainLayer.Models.EmployeePayslip
         [Column(TypeName = "money")]
         public decimal UtilityAllowance { get; set; } = 0;
         [Column(TypeName = "money")]
-        public decimal MealAllowance { get; set; } = 0;
+        public decimal MealAllowance { get; set; } = 750;
         [Column(TypeName = "money")]
-        public decimal LoadAllowance { get; set; } = 0;
+        public decimal LoadAllowance { get; set; } = 300;
         [NotMapped]
         public decimal Allowances
         {
@@ -126,6 +118,7 @@ namespace DomainLayer.Models.EmployeePayslip
         //Deductions
         [Column(TypeName = "money")]
         public decimal WithholdingTax { get; set; } = 0;
+
         [Column(TypeName = "money")]
         public decimal PHIC { get; set; } = 0;
         [Column(TypeName = "money")]
@@ -151,14 +144,13 @@ namespace DomainLayer.Models.EmployeePayslip
         [NotMapped]
         public decimal LoanDeductions
         {
-            get 
+            get
             {
                 return GovernmentLoans + CompanyLoans;
             }
         }
 
-        [Column(TypeName = "smallint")]
-        public uint UTMinutes { get; set; } = 0;
+        public decimal UTMinutes { get; set; } = 0;
         [NotMapped]
         public decimal UTDeductions
         {

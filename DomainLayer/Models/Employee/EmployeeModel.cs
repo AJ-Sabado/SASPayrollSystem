@@ -62,7 +62,7 @@ namespace DomainLayer.Models.Employee
         }
 
         //Navigation
-        public EmployeeAccountInfoModel? EmployeeAccountInfo { get; set; }
+        //public EmployeeAccountInfoModel? EmployeeAccountInfo { get; set; }
         public ICollection<EmployeeAttendanceLogModel> EmployeeAttendanceLogs { get; } = [];
         public ICollection<EmployeeAttendanceRequestModel> EmployeeAttendanceRequests { get; } = [];
         public ICollection<EmployeeEvaluatedAttendanceModel> EmployeeEvaluatedAttendances { get; } = [];

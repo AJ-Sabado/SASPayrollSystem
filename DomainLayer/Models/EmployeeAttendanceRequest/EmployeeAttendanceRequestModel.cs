@@ -25,6 +25,11 @@ namespace DomainLayer.Models.EmployeeAttendanceRequest
         [Column(TypeName = "time")]
         public TimeOnly TimeOut { get; set; }
 
+        [Column(TypeName = "time")]
+        public TimeOnly? BreakStart { get; set; } = null;
+        [Column(TypeName = "time")]
+        public TimeOnly? BreakEnd { get; set; } = null;
+
         public string Reason { get; set; } = string.Empty;
 
         [Column(TypeName = "tinyint")]
@@ -42,8 +47,22 @@ namespace DomainLayer.Models.EmployeeAttendanceRequest
                 }
                 else
                 {
-                    //Accounts for 1 hour unpaid break
-                    return (uint)Math.Floor(span.TotalHours) - 1;
+                    if (BreakStart.HasValue && BreakEnd.HasValue)
+                    {
+                        var breakSpan = BreakEnd.Value - BreakStart.Value;
+                        if (breakSpan < TimeSpan.Zero)
+                        {
+                            return 0;
+                        }
+                        else
+                        {
+                            //Accounts for 1 hour unpaid break
+                            return (uint)Math.Floor(span.TotalHours - breakSpan.TotalHours);
+                        }
+                    }
+
+                    //No break time
+                    return (uint)Math.Floor(span.TotalHours);
                 }
             }
         }

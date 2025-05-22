@@ -363,25 +363,25 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         }
         private async void LoadUserData()
         {
-            var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "Employee,Department");
+            var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "AccountInfo,Employee,Department");
             if (user != null)
             {
                 var employee = await _unitOfWork.EmployeeRepository.GetAsync(e => e.UserId == user.UserId,
-                    includeProperties: "EmployeeAccountInfo,EmployeeEvaluatedAttendances,EmployeeLeaveRequests,EmployeePayslips,EmployeeAttendanceRequests");
+                    includeProperties: "EmployeeEvaluatedAttendances,EmployeeLeaveRequests,EmployeePayslips,EmployeeAttendanceRequests");
                 if (employee != null)
                 {
                     // Load Side Bar Data
-                    if (employee.EmployeeAccountInfo != null)
+                    if (user.AccountInfo != null)
                     {
-                        FullName = employee.EmployeeAccountInfo.FullName;
-                        Role = employee.EmployeeAccountInfo.Role;
+                        FullName = user.AccountInfo.FullName;
+                        Role = user.AccountInfo.Role;
                         Department = user.Department.Name;
                         DailyRate = $"Php {employee.BasicDailyRate.ToString("N2")} per day";
                         WorkShift = $"{employee.DefaultWorkShiftStart} - {employee.DefaultWorkShiftEnd}";
-                        Email = user.Email;
-                        Phone = employee.EmployeeAccountInfo.PrimaryPhoneNumber;
-                        Website = employee.EmployeeAccountInfo.WebsiteUrl;
-                        if (employee.EmployeeAccountInfo.EmploymentType == EmploymentType.Regular)
+                        Email = user.Email != null ? user.Email : string.Empty;
+                        Phone = user.AccountInfo.PrimaryPhoneNumber;
+                        Website = user.AccountInfo.WebsiteUrl;
+                        if (user.AccountInfo.EmploymentType == EmploymentType.Regular)
                             EmploymentStatus = "Regular Employee";
                         else
                             EmploymentStatus = "Independent Contractor";

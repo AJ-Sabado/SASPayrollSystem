@@ -20,13 +20,11 @@ namespace ServicesLayer
         IBaseServices<RoleModel> RoleRepository { get; }
         IBaseServices<UserModel> UserRepository { get; }
 
-        //Task ApproveNewUserRequest(string requestEmail, string roleName = null);
-        //Task ForgotPasswordRequest(string username, string email, string password, string confirmPassword);
-        //Task NewUserRequest(string username, string password, string email);
         Task InitialSeeding();
         Task<UserModel?> Login(string usernameOrEmail, string password);
         Task<RegisterUserResult> RegisterUser(string username, string email, string password, string confirmPassword, string roleName = null, string departmentName = null);
         Task EvaluateAllEmployeeAttendanceLog(DateOnly periodStart, DateOnly periodEnd);
+        Task GenerateAllEmployeePayslips(DateOnly periodStart, DateOnly periodEnd, DateOnly payDate);
         Task Save();
     }
 }

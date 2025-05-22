@@ -4,6 +4,7 @@ using InfrastructureLayer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250521063930_ElevatedHoursDatatypes")]
+    partial class ElevatedHoursDatatypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -203,7 +206,7 @@ namespace InfrastructureLayer.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.EmployeeAccountInfo.AccountInfoModel", b =>
+            modelBuilder.Entity("DomainLayer.Models.EmployeeAccountInfo.EmployeeAccountInfoModel", b =>
                 {
                     b.Property<Guid>("EmployeeAccountInfoId")
                         .ValueGeneratedOnAdd()
@@ -231,6 +234,9 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("date");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<byte>("EmploymentType")
                         .HasColumnType("tinyint");
@@ -308,19 +314,16 @@ namespace InfrastructureLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("WebsiteUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeAccountInfoId");
 
-                    b.HasIndex("UserId")
+                    b.HasIndex("EmployeeId")
                         .IsUnique();
 
-                    b.ToTable("AccountInfoModel");
+                    b.ToTable("EmployeeAccountInfoModel");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeAttendanceLog.EmployeeAttendanceLogModel", b =>
@@ -356,12 +359,6 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<DateOnly>("AttendanceDate")
                         .HasColumnType("date");
-
-                    b.Property<TimeOnly?>("BreakEnd")
-                        .HasColumnType("time");
-
-                    b.Property<TimeOnly?>("BreakStart")
-                        .HasColumnType("time");
 
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
@@ -718,15 +715,15 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.EmployeeAccountInfo.AccountInfoModel", b =>
+            modelBuilder.Entity("DomainLayer.Models.EmployeeAccountInfo.EmployeeAccountInfoModel", b =>
                 {
-                    b.HasOne("DomainLayer.Models.User.UserModel", "User")
-                        .WithOne("AccountInfo")
-                        .HasForeignKey("DomainLayer.Models.EmployeeAccountInfo.AccountInfoModel", "UserId")
+                    b.HasOne("DomainLayer.Models.Employee.EmployeeModel", "Employee")
+                        .WithOne("EmployeeAccountInfo")
+                        .HasForeignKey("DomainLayer.Models.EmployeeAccountInfo.EmployeeAccountInfoModel", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeAttendanceLog.EmployeeAttendanceLogModel", b =>
@@ -819,6 +816,8 @@ namespace InfrastructureLayer.Migrations
 
             modelBuilder.Entity("DomainLayer.Models.Employee.EmployeeModel", b =>
                 {
+                    b.Navigation("EmployeeAccountInfo");
+
                     b.Navigation("EmployeeAttendanceLogs");
 
                     b.Navigation("EmployeeAttendanceRequests");
@@ -837,8 +836,6 @@ namespace InfrastructureLayer.Migrations
 
             modelBuilder.Entity("DomainLayer.Models.User.UserModel", b =>
                 {
-                    b.Navigation("AccountInfo");
-
                     b.Navigation("Admin");
 
                     b.Navigation("Contractor");

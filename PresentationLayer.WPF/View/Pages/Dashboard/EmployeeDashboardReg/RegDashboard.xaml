@@ -301,15 +301,15 @@
                                     <DataGrid x:Name="dataGridDashboardAttendanceLog"
                                               AutoGenerateColumns="False" FontSize="14"
                                               ItemsSource="{Binding AttendanceLogList, Mode=OneWay}"
-                                              IsManipulationEnabled="False"
+                                              ColumnWidth="Auto"
                                               IsReadOnly="True"
-                                              HorizontalScrollBarVisibility="Hidden"
-                                              Width="726.5">
-                                        
+                                              HorizontalScrollBarVisibility="Disabled"
+                                              Width="726.5"
+                                              >
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Date" Width="*" IsReadOnly="True" Binding="{Binding Date, Mode=OneWay}"/>
-                                            <DataGridTextColumn Header="Time Stamp" Width="*" IsReadOnly="True" Binding="{Binding TimeStamp, Mode=OneWay}"/>
-                                            <DataGridTextColumn Header="Event Type" Width="*" IsReadOnly="True" Binding="{Binding EventType, Mode=OneWay}"/>
+                                            <DataGridTextColumn Header="Date" IsReadOnly="True" Width="*" Binding="{Binding Date, Mode=OneWay}"/>
+                                            <DataGridTextColumn Header="Time Stamp" IsReadOnly="True" Width="*" Binding="{Binding TimeStamp, Mode=OneWay}"/>
+                                            <DataGridTextColumn Header="Event Type" IsReadOnly="True" Width="*"  Binding="{Binding EventType, Mode=OneWay}"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </ScrollViewer>

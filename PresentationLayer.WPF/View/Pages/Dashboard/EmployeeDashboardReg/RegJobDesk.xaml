@@ -237,8 +237,7 @@
                                 <!--PAYSLIP-->
                                 <TabItem Header="Payslip">
                                     <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                                  HorizontalScrollBarVisibility="Disabled"
-                                                  >
+                                                  HorizontalScrollBarVisibility="Disabled">
                                         <StackPanel Orientation="Vertical" Margin="30,10,30,20">
                                             <Grid Margin="0,3">
                                                 <Grid.ColumnDefinitions>
@@ -465,8 +464,8 @@
                                                             ItemsSource="{Binding EvaluatedAttendanceList}"
                                                             EnableRowVirtualization="True"
                                                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                                            ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                                            Style="{StaticResource MaterialDesignDataGrid}">
+                                                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                                            Style="{StaticResource MaterialDesignDataGrid}" Width="655">
 
                                                     <DataGrid.Resources>
                                                         <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
@@ -476,12 +475,14 @@
                                                     </DataGrid.Resources>
 
                                                     <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="Date" Width="150" Binding="{Binding Date}"/>
-                                                        <DataGridTextColumn Header="Day Status" Width="150" Binding="{Binding DayStatus}"/>
-                                                        <DataGridTextColumn Header="Expected Work Hours" Width="150" Binding="{Binding ExpectedWorkHours, StringFormat=F2}"/>
-                                                        <DataGridTextColumn Header="Actual Work Hours" Width="150" Binding="{Binding ActualWorkHours, StringFormat=F2}"/>
-                                                        <DataGridTextColumn Header="OT Verification Status" Width="150" Binding="{Binding OvertimeVerificationStatus}"/>
-                                                        <DataGridTextColumn Header="Evaluation Time Stamp" Width="150" Binding="{Binding EvaluationTimeStamp}"/>
+                                                        <DataGridTextColumn Header="Date" Width="Auto"  Binding="{Binding Date}" SortDirection="Descending"/>
+                                                        <DataGridTextColumn Header="Day Status" Width="Auto" Binding="{Binding DayStatus}"/>
+                                                        <DataGridTextColumn Header="Expected Work Hours" Width="Auto" Binding="{Binding ExpectedWorkHours, StringFormat=F2}"/>
+                                                        <DataGridTextColumn Header="Actual Work Hours" Width="Auto" Binding="{Binding ActualWorkHours, StringFormat=F2}"/>
+                                                        <DataGridTextColumn Header="OT Verification Status" Width="Auto" Binding="{Binding OvertimeVerificationStatus}"/>
+                                                        <DataGridTextColumn Header="OT Hours" Width="Auto" Binding="{Binding OvertimeHours, StringFormat=F2}"/>
+                                                        <DataGridTextColumn Header="ND Hours" Width="Auto" Binding="{Binding NightDifferentialHours, StringFormat=F2}"/>
+                                                        <DataGridTextColumn Header="Evaluation Time Stamp" Width="Auto" Binding="{Binding EvaluationTimeStamp}"/>
                                                     </DataGrid.Columns>
                                                 </DataGrid>
                                             </ScrollViewer>
@@ -512,7 +513,7 @@
                                                             EnableRowVirtualization="True"
                                                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                             ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                                            Style="{StaticResource MaterialDesignDataGrid}">
+                                                            Style="{StaticResource MaterialDesignDataGrid}" Width="655">
 
                                                     <DataGrid.Resources>
                                                         <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
@@ -522,14 +523,16 @@
 
                                                     <DataGrid.Columns>
                                                         
-                                                        <DataGridTextColumn Header="Request Date" Width="150" Binding="{Binding RequestDate}"/>
-                                                        <DataGridTextColumn Header="Attendance Date" Width="150" Binding="{Binding AttendanceDate}"/>
-                                                        <DataGridTextColumn Header="Time In" Width="150" Binding="{Binding TimeIn}"/>
-                                                        <DataGridTextColumn Header="Time Out" Width="150" Binding="{Binding TimeOut}"/>
-                                                        <DataGridTextColumn Header="Total Hours" Width="150" Binding="{Binding TotalHours}"/>
-                                                        <DataGridTextColumn Header="Reason" Width="150" Binding="{Binding Reason}"/>
-                                                        <DataGridTextColumn Header="Status" Width="150" Binding="{Binding Status}"/>
-                                                        <DataGridTemplateColumn Header="Actions" Width="150">
+                                                        <DataGridTextColumn Header="Request Date" Width="Auto" Binding="{Binding RequestDate}"/>
+                                                        <DataGridTextColumn Header="Attendance Date" Width="Auto" Binding="{Binding AttendanceDate}"/>
+                                                        <DataGridTextColumn Header="Time In" Width="Auto" Binding="{Binding TimeIn}"/>
+                                                        <DataGridTextColumn Header="Time Out" Width="Auto" Binding="{Binding TimeOut}"/>
+                                                        <DataGridTextColumn Header="Break Start" Width="Auto" Binding="{Binding BreakStart}"/>
+                                                        <DataGridTextColumn Header="Break End" Width="Auto" Binding="{Binding BreakEnd}"/>
+                                                        <DataGridTextColumn Header="Total Hours" Width="Auto" Binding="{Binding TotalHours}"/>
+                                                        <DataGridTextColumn Header="Reason" Width="Auto" MaxWidth="150" Binding="{Binding Reason}"/>
+                                                        <DataGridTextColumn Header="Status" Width="Auto" Binding="{Binding Status}"/>
+                                                        <DataGridTemplateColumn Header="Actions" Width="Auto">
                                                             <DataGridTemplateColumn.CellTemplate>
                                                                 <DataTemplate>
                                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -578,7 +581,7 @@
                                                         ItemsSource="{Binding LeaveRequestList}"    
                                                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                                        Style="{StaticResource MaterialDesignDataGrid}">
+                                                        Style="{StaticResource MaterialDesignDataGrid}" Width="655">
 
                                                 <DataGrid.Resources>
                                                     <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
@@ -587,13 +590,13 @@
                                                 </DataGrid.Resources>
 
                                                 <DataGrid.Columns>
-                                                    <DataGridTextColumn Header="Request Date" Binding="{Binding DateOfFiling}" Width="120"/>
-                                                    <DataGridTextColumn Header="Start Date" Binding="{Binding DateOfAbsenceStart}" Width="120"/>
-                                                    <DataGridTextColumn Header="Return Date" Binding="{Binding DateOfReturn}" Width="120"/>
-                                                    <DataGridTextColumn Header="Total Days" Binding="{Binding Duration}" Width="100"/>
-                                                    <DataGridTextColumn Header="Reason" Binding="{Binding Type}" Width="100" CanUserSort="False"/>
-                                                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
-                                                    <DataGridTemplateColumn Header="Actions" Width="150">
+                                                    <DataGridTextColumn Header="Request Date" Binding="{Binding DateOfFiling}" Width="Auto"/>
+                                                    <DataGridTextColumn Header="Start Date" Binding="{Binding DateOfAbsenceStart}" Width="Auto"/>
+                                                    <DataGridTextColumn Header="Return Date" Binding="{Binding DateOfReturn}" Width="Auto"/>
+                                                    <DataGridTextColumn Header="Total Days" Binding="{Binding Duration}" Width="Auto"/>
+                                                    <DataGridTextColumn Header="Reason" Binding="{Binding Type}" Width="Auto" CanUserSort="False"/>
+                                                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto"/>
+                                                    <DataGridTemplateColumn Header="Actions" Width="Auto">
                                                         <DataGridTemplateColumn.CellTemplate>
                                                             <DataTemplate>
                                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

@@ -10,6 +10,7 @@ using DomainLayer.Models.Employee;
 using DomainLayer.Models.EmployeeAccountInfo;
 using DomainLayer.Models.EmployeeAttendanceLog;
 using DomainLayer.Models.EmployeeEvaluatedAttendance;
+using DomainLayer.Models.EmployeePayslip;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
@@ -18,6 +19,8 @@ using InfrastructureLayer.DataAccess;
 using InfrastructureLayer.DataAccess.Repositories.Common;
 using ServicesLayer.Common;
 using ServicesLayer.Enums;
+using Syncfusion.XlsIO.Implementation.PivotAnalysis;
+using Syncfusion.XPS;
 
 
 
@@ -131,10 +134,10 @@ namespace ServicesLayer
                     BasicMonthlyRate = monthlyRate,
                     BasicDailyRate = SalaryConverter.ConvertMonthlyToDaily(monthlyRate)
                 };
-                user.Employee.EmployeeAccountInfo = new EmployeeAccountInfoModel()
+                user.AccountInfo = new AccountInfoModel()
                 {
-                    EmployeeId = user.Employee.EmployeeId,
-                    Employee = user.Employee,
+                    UserId = user.UserId,
+                    User = user,
 
                     //TO DO - Add employee information after EmployeeAccountInfoModel is adjusted.
                     FirstName = "Jane John",
@@ -332,7 +335,8 @@ namespace ServicesLayer
 
         public async Task EvaluateAllEmployeeAttendanceLog(DateOnly periodStart, DateOnly periodEnd)
         {
-            var employees = await EmployeeRepository.GetManyAsync(includeProperties: "EmployeeAttendanceLogs,EmployeeAttendanceRequests,EmployeeLeaveRequests,EmployeeEvaluatedAttendances");
+            var employees = await EmployeeRepository
+                .GetManyAsync(includeProperties: "EmployeeAttendanceLogs,EmployeeAttendanceRequests,EmployeeLeaveRequests,EmployeeEvaluatedAttendances");
             var holidays = await HolidayRepository.GetManyAsync(h => h.Date >= periodStart && h.Date <= periodEnd);
             foreach (var employee in employees)
             {
@@ -345,8 +349,14 @@ namespace ServicesLayer
                 var leaveRequests = employee.EmployeeLeaveRequests
                     .Where(h => h.DateOfAbsenceStart >= periodStart && h.DateOfAbsenceStart <= periodEnd)
                     .ToList();
-
                 var today = DateOnly.FromDateTime(DateTime.Now);
+                var defaultShift = new TimeSheet()
+                {
+                    TimeIn = employee.DefaultWorkShiftStart,
+                    TimeOut = employee.DefaultWorkShiftEnd,
+                    BreakStart = employee.DefaultBreakTimeStart,
+                    BreakEnd = employee.DefaultBreakTimeEnd
+                };
 
                 //Reset absences
                 if (employee.Absences > 0)
@@ -377,7 +387,22 @@ namespace ServicesLayer
                         };
                         employee.EmployeeEvaluatedAttendances.Add(evaluatedAttendance);
                     }
+                    //Sets default values
+                    evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
+                    evaluatedAttendance.ActualWorkHours = 0;
                     evaluatedAttendance.EvaluationTimeStamp = DateTime.Now;
+
+                    //Obtains valid attendance logs for current day
+                    var logsTodayList = attendanceLogs
+                    .Where(log => log.Date == currentDay)
+                    .ToList();
+                    var logsToday = new TimeSheet()
+                    {
+                        TimeIn = logsTodayList.FirstOrDefault(l => l.EventType == AttendanceLogEventType.TimeIn)?.TimeStamp,
+                        BreakStart = logsTodayList.FirstOrDefault(l => l.EventType == AttendanceLogEventType.BreakStart)?.TimeStamp,
+                        BreakEnd = logsTodayList.FirstOrDefault(l => l.EventType == AttendanceLogEventType.BreakEnd)?.TimeStamp,
+                        TimeOut = logsTodayList.FirstOrDefault(l => l.EventType == AttendanceLogEventType.TimeOut)?.TimeStamp
+                    };
 
                     //Check if the day is a holiday
                     var holiday = holidays
@@ -386,7 +411,6 @@ namespace ServicesLayer
                     {
                         evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Holiday;
                         evaluatedAttendance.ExpectedWorkHours = 0;
-                        evaluatedAttendance.ActualWorkHours = 0;
                         continue;
                     }
 
@@ -395,7 +419,6 @@ namespace ServicesLayer
                     {
                         evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.RestDay;
                         evaluatedAttendance.ExpectedWorkHours = 0;
-                        evaluatedAttendance.ActualWorkHours = 0;
                         continue;
                     }
 
@@ -416,7 +439,6 @@ namespace ServicesLayer
 
                         evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.OnLeave;
                         evaluatedAttendance.ExpectedWorkHours = 0;
-                        evaluatedAttendance.ActualWorkHours = 0;
                         continue;
                     }
 
@@ -425,46 +447,41 @@ namespace ServicesLayer
                     if (attendanceRequest != null)
                     {
                         evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Present;
-                        evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
-                        evaluatedAttendance.ActualWorkHours = attendanceRequest.TotalHours;
+                        var timeSheet = new TimeSheet()
+                        {
+                            TimeIn = attendanceRequest.TimeIn,
+                            BreakStart = attendanceRequest.BreakStart,
+                            BreakEnd = attendanceRequest.BreakEnd,
+                            TimeOut = attendanceRequest.TimeOut
+                        };
+                        CalculateWorkHours(evaluatedAttendance, defaultShift, timeSheet, false);
                         continue;
                     }
-
-                    //Obtains valid attendance logs for current day
-                    var logsToday = attendanceLogs
-                    .Where(log => log.Date == currentDay)
-                    .ToList();
 
                     //Check if present, ongoing, or absent
                     if (currentDay == today)
                     {
-                        if (logsToday.Count < 4)
+                        if (logsTodayList.Count < 4)
                         {
                             evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.OnGoing;
-                            evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
-                            evaluatedAttendance.ActualWorkHours = 0;
                         }
                         else
                         {
                             evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Present;
-                            evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
-                            evaluatedAttendance.ActualWorkHours = CalculateActualWorkHours(logsToday);
+                            CalculateWorkHours(evaluatedAttendance, defaultShift, logsToday);
                         }
                     }
                     else
                     {
-                        if (logsToday.Count < 4)
+                        if (logsTodayList.Count < 4)
                         {
                             evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Absent;
-                            evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
-                            evaluatedAttendance.ActualWorkHours = 0;
                             employee.Absences += 1;
                         }
                         else
                         {
                             evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Present;
-                            evaluatedAttendance.ExpectedWorkHours = employee.ExpectedWorkHours;
-                            evaluatedAttendance.ActualWorkHours = CalculateActualWorkHours(logsToday);
+                            CalculateWorkHours(evaluatedAttendance, defaultShift, logsToday);
                         }
                     }
                 }
@@ -472,31 +489,169 @@ namespace ServicesLayer
             await Save();
         }
 
-        private decimal CalculateActualWorkHours(IEnumerable<EmployeeAttendanceLogModel> logsToday)
+        private void CalculateWorkHours(EmployeeEvaluatedAttendanceModel evaluatedAttendance, TimeSheet defaultWorkshift, TimeSheet logsToday, bool isFromAttendanceLog = true)
         {
-            var timeIn = logsToday.FirstOrDefault(l => l.EventType == AttendanceLogEventType.TimeIn);
-            var breakStart = logsToday.FirstOrDefault(l => l.EventType == AttendanceLogEventType.BreakStart);
-            var breakEnd = logsToday.FirstOrDefault(l => l.EventType == AttendanceLogEventType.BreakEnd);
-            var timeOut = logsToday.FirstOrDefault(l => l.EventType == AttendanceLogEventType.TimeOut);
-
-            decimal result = 0;
-
-            if (timeIn != null && timeOut != null)
+            //Calculate actual hours worked from attendance log
+            if (isFromAttendanceLog && logsToday.TimeIn.HasValue && logsToday.TimeOut.HasValue && defaultWorkshift.TimeIn.HasValue && defaultWorkshift.TimeOut.HasValue)
             {
-                result = (decimal)((timeOut.TimeStamp - timeIn.TimeStamp).TotalHours);
-                if (breakStart != null && breakEnd != null)
+                TimeOnly start = logsToday.TimeIn.Value > defaultWorkshift.TimeIn.Value ? logsToday.TimeIn.Value : defaultWorkshift.TimeIn.Value;
+                TimeOnly end = logsToday.TimeOut.Value < defaultWorkshift.TimeOut.Value ? logsToday.TimeOut.Value : defaultWorkshift.TimeOut.Value;
+
+                var span = start - end;
+                evaluatedAttendance.ActualWorkHours = (decimal)span.TotalHours;
+                if (logsToday.BreakStart.HasValue && logsToday.BreakEnd.HasValue)
                 {
-                    result -= (decimal)((breakEnd.TimeStamp - breakStart.TimeStamp).TotalHours);
+                    var breakSpan = (TimeOnly)logsToday.BreakStart - (TimeOnly)logsToday.BreakEnd;
+                    evaluatedAttendance.ActualWorkHours -= (decimal)breakSpan.TotalHours;
                 }
-                else
-                    result = 0;
             }
-            return result;
+
+            //If attendance request
+            if (!isFromAttendanceLog && logsToday.TimeIn.HasValue && logsToday.TimeOut.HasValue)
+            {
+                var span = (TimeOnly)logsToday.TimeIn - (TimeOnly)logsToday.TimeOut;
+                evaluatedAttendance.ActualWorkHours = (decimal)span.TotalHours;
+                if (logsToday.BreakStart.HasValue && logsToday.BreakEnd.HasValue)
+                {
+                    var breakSpan = (TimeOnly)logsToday.BreakStart - (TimeOnly)logsToday.BreakEnd;
+                    evaluatedAttendance.ActualWorkHours -= (decimal)breakSpan.TotalHours;
+                }
+            }
+
+            //Ends if no work hours
+            if (evaluatedAttendance.ActualWorkHours == 0)
+                return;
+            else
+            {
+                evaluatedAttendance.ActualWorkHours = Math.Abs(evaluatedAttendance.ActualWorkHours);
+                if (evaluatedAttendance.ActualWorkHours >= evaluatedAttendance.ExpectedWorkHours)
+                {
+                    evaluatedAttendance.ActualWorkHours = Math.Floor(evaluatedAttendance.ActualWorkHours);
+                }
+            }
+
+            //Calculate overtime hours
+            if (logsToday.TimeIn.HasValue && logsToday.TimeOut.HasValue && defaultWorkshift.TimeOut.HasValue && logsToday.TimeOut.Value > defaultWorkshift.TimeOut.Value)
+            {
+                var intervalStart = logsToday.TimeIn.Value > defaultWorkshift.TimeOut.Value ? logsToday.TimeIn.Value : defaultWorkshift.TimeOut.Value;
+                var span = (TimeOnly)logsToday.TimeOut - intervalStart;
+                evaluatedAttendance.OvertimeHours = (decimal)Math.Floor(span.TotalHours);
+            }
+
+            //Calculate night differential hours
+            var START_HOUR = 22;
+            var END_HOUR = 6;
+
+            if (logsToday.TimeIn.HasValue && logsToday.TimeOut.HasValue)
+            {
+                DateTime workStart = DateTime.Today.Add(logsToday.TimeIn.Value.ToTimeSpan());
+                DateTime workEnd = DateTime.Today.Add(logsToday.TimeOut.Value.ToTimeSpan());
+                if (logsToday.TimeOut.Value < logsToday.TimeIn.Value)
+                {
+                    workEnd = workEnd.AddDays(1);
+                }
+                DateTime nightStart = DateTime.Today.AddHours(START_HOUR);
+                DateTime nightEnd = DateTime.Today.AddDays(1).AddHours(END_HOUR);
+
+                DateTime overlapStart = workStart > nightStart ? workStart : nightStart;
+                DateTime overlapEnd = workEnd < nightEnd ? workEnd : nightEnd;
+
+                if (overlapStart < overlapEnd)
+                {
+                    TimeSpan overlap = overlapEnd - overlapStart;
+                    evaluatedAttendance.NightDifferentialHours = (decimal)Math.Floor(overlap.TotalHours);
+                }
+            }
         }
 
-        private bool IsDateBetween(DateOnly date, DateOnly startDate, DateOnly endDate)
+        public async Task GenerateAllEmployeePayslips(DateOnly periodStart, DateOnly periodEnd, DateOnly payDate)
         {
-            return date >= startDate && date <= endDate;
+            var employees = await EmployeeRepository.GetManyAsync(includeProperties: "EmployeeEvaluatedAttendances,EmployeePayslips");
+            foreach (var employee in employees)
+            {
+                var payslip = employee.EmployeePayslips.FirstOrDefault(p => p.PeriodStart == periodStart && p.PeriodEnd == periodEnd && p.PayDate == payDate);
+                if (payslip == null)
+                {
+                    payslip = new EmployeePayslipModel()
+                    {
+                        EmployeeId = employee.EmployeeId,
+                        Employee = employee,
+                        PeriodStart = periodStart,
+                        PeriodEnd = periodEnd,
+                        PayDate = payDate
+                    };
+                    employee.EmployeePayslips.Add(payslip);
+                }
+                //Update historical data
+                payslip.AppliedHourlyRate = SalaryConverter.ConvertDailyToHourly(employee.BasicDailyRate, employee.ExpectedWorkHours);
+
+                //Reset calculated time values
+                payslip.HoursWorkedRegular = 0;
+                payslip.HolidayHours = 0;
+                payslip.NDOnWorkingDayHours = 0;
+                payslip.OTHoursWorkedRegular = 0;
+                payslip.PaidLeaveHours = 0;
+                payslip.UTMinutes = 0;
+
+                //Fill in bonuses, allowances, contributions
+                if (employee.Absences == 0)
+                    payslip.PerfectAttendanceBonus = 1000;  //Magic value for now, will be stored and fetched somewhere later
+                else
+                    payslip.PerfectAttendanceBonus = 0;
+                payslip.PHIC = ContributionCalculator.CalculatePhilHealthAmount(employee.BasicMonthlyRate);
+                payslip.HDMF = ContributionCalculator.CalculatePagIbigAmount(employee.BasicMonthlyRate);
+                payslip.DecemberSSS = ContributionCalculator.CalculateSSSAmount(employee.BasicMonthlyRate);
+
+                var validEvaluatedAttedances = employee.EmployeeEvaluatedAttendances
+                    .Where(e => e.Date >= periodStart && e.Date <= periodEnd)
+                    .ToList();
+
+                //Evaluated attendances
+                foreach (var evaluatedAttendance in validEvaluatedAttedances)
+                {
+                    if (evaluatedAttendance.DayStatus == EvaluatedAttendanceDayStatus.OnGoing 
+                        || evaluatedAttendance.DayStatus == EvaluatedAttendanceDayStatus.Absent
+                        || evaluatedAttendance.DayStatus == EvaluatedAttendanceDayStatus.RestDay)
+                        continue;
+                    else if (evaluatedAttendance.DayStatus == EvaluatedAttendanceDayStatus.Present)
+                    {
+                        payslip.HoursWorkedRegular += evaluatedAttendance.ExpectedWorkHours;
+                        payslip.NDOnWorkingDayHours += evaluatedAttendance.NightDifferentialHours;
+                        if (evaluatedAttendance.OvertimeVerificationStatus == FormStatus.Approved)
+                            payslip.OTHoursWorkedRegular += evaluatedAttendance.OvertimeHours;
+                        var utMinutes = evaluatedAttendance.ActualWorkHours < evaluatedAttendance.ExpectedWorkHours ?
+                            (evaluatedAttendance.ExpectedWorkHours - evaluatedAttendance.ActualWorkHours) * 60
+                            : 0;
+                        payslip.UTMinutes += utMinutes;
+                    }
+                    else if (evaluatedAttendance.DayStatus == EvaluatedAttendanceDayStatus.Holiday)
+                    {
+                        payslip.HolidayHours += employee.ExpectedWorkHours;
+                    }
+                    else if (evaluatedAttendance.DayStatus == EvaluatedAttendanceDayStatus.OnLeave)
+                    {
+                        payslip.PaidLeaveHours += employee.ExpectedWorkHours;
+                    }
+                }
+
+                //Calculating totals
+                payslip.GrossPay 
+                    = payslip.BasicPay + payslip.HolidayPay + payslip.NightDifferentialPay + payslip.OvertimePay + payslip.PaidLeaves
+                        + payslip.Bonus + payslip.Allowances;
+                payslip.WithholdingTax = ContributionCalculator.CalculateWithholdingTax(payslip.GrossPay);
+                payslip.TotalDeductions = payslip.WithholdingTax + payslip.GovernmentContributions 
+                    + payslip.LoanDeductions + payslip.UTDeductions;
+                payslip.NetSalary = payslip.GrossPay - payslip.TotalDeductions;
+            }
+            await Save();
         }
+    }
+
+    class TimeSheet
+    {
+        public TimeOnly? TimeIn { get; set; }
+        public TimeOnly? BreakStart { get; set; }
+        public TimeOnly? BreakEnd { get; set; }
+        public TimeOnly? TimeOut { get; set; }
     }
 }

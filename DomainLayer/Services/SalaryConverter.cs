@@ -9,7 +9,7 @@
             return monthlySalary * 12 / _factor;
         }
 
-        public static decimal ConvertDailyToHourly(decimal dailySalary, uint hoursPerDay)
+        public static decimal ConvertDailyToHourly(decimal dailySalary, decimal hoursPerDay)
         {
             return dailySalary / hoursPerDay;
         }
