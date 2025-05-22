@@ -92,6 +92,7 @@ namespace SASPayrolSystemProject
             services.AddSingleton<IWindowService, WindowService>();
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<IPopUpService, PopUpService>();
+            services.AddSingleton<IContractorTrackerService, ContractorTrackerService>();
         }
 
         //Resolves GetRequiredService for DI conflict

@@ -4,6 +4,7 @@ using InfrastructureLayer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250522105819_UpdatedContratorModels")]
+    partial class UpdatedContratorModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,6 +54,9 @@ namespace InfrastructureLayer.Migrations
                     b.Property<decimal>("MaximumWeeklyHours")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("TotalHoursRendered")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -60,6 +66,23 @@ namespace InfrastructureLayer.Migrations
                         .IsUnique();
 
                     b.ToTable("Contractors");
+                });
+
+            modelBuilder.Entity("DomainLayer.Models.ContractorAccountInformation.ContractorAccountInformationModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ContractorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContractorId")
+                        .IsUnique();
+
+                    b.ToTable("ContractorAccountInformationModel");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.ContractorAttendanceLog.ContractorAttendanceLogModel", b =>
@@ -111,8 +134,8 @@ namespace InfrastructureLayer.Migrations
                     b.Property<DateOnly>("PeriodStart")
                         .HasColumnType("date");
 
-                    b.Property<decimal>("TotalHoursRendered")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<byte>("TotalHoursWorked")
+                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 
@@ -654,6 +677,17 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DomainLayer.Models.ContractorAccountInformation.ContractorAccountInformationModel", b =>
+                {
+                    b.HasOne("DomainLayer.Models.Contractor.ContractorModel", "Contractor")
+                        .WithOne("ContractorAccountInformation")
+                        .HasForeignKey("DomainLayer.Models.ContractorAccountInformation.ContractorAccountInformationModel", "ContractorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contractor");
+                });
+
             modelBuilder.Entity("DomainLayer.Models.ContractorAttendanceLog.ContractorAttendanceLogModel", b =>
                 {
                     b.HasOne("DomainLayer.Models.Contractor.ContractorModel", "Contractor")
@@ -774,6 +808,8 @@ namespace InfrastructureLayer.Migrations
 
             modelBuilder.Entity("DomainLayer.Models.Contractor.ContractorModel", b =>
                 {
+                    b.Navigation("ContractorAccountInformation");
+
                     b.Navigation("ContractorAttendanceLogs");
 
                     b.Navigation("ContractorPayslips");

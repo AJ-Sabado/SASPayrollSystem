@@ -24,9 +24,8 @@ namespace DomainLayer.Models.ContractorPayslip
 
         [Column(TypeName = "money")]
         public decimal AppliedHourlyRate { get; set; }
-
-        [Column(TypeName = "tinyint")]
-        public uint TotalHoursWorked { get; set; } = 0;
+        
+        public decimal TotalHoursRendered { get; set; } = 0;
 
         [Column(TypeName = "money")]
         public decimal NetPay { get; set; } = 0;

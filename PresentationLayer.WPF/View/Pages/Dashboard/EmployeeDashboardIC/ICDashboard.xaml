@@ -110,13 +110,13 @@
 
                                 <Viewbox Grid.Row="3">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button x:Name="btnTimeIn" Background="LightGreen" BorderBrush="DarkGreen" BorderThickness="2" >
+                                        <Button x:Name="btnTimeIn" Background="LightGreen" BorderBrush="DarkGreen" BorderThickness="2" Command="{Binding TimeIn}" IsEnabled="{Binding IsTimeInEnabled}">
                                             <StackPanel Orientation="Horizontal">
                                                 <materialDesign:PackIcon Kind="DoorOpen" Foreground="DarkGreen"/>
                                                 <TextBlock Text="   Time In" Foreground="DarkGreen"/>
                                             </StackPanel>
                                         </Button>
-                                        <Button x:Name="btnTimeOut" Background="LightPink" BorderBrush="DarkRed" BorderThickness="2" Margin="10,0,0,0">
+                                        <Button x:Name="btnTimeOut" Background="LightPink" BorderBrush="DarkRed" BorderThickness="2" Margin="10,0,0,0" Command="{Binding TimeOut}" IsEnabled="{Binding IsTimeOutEnabled}">
                                             <StackPanel Orientation="Horizontal">
                                                 <materialDesign:PackIcon Kind="DoorClosed" Foreground="DarkRed"/>
                                                 <TextBlock Text="  Time Out" Foreground="DarkRed"/>
@@ -140,7 +140,7 @@
 
                                 <StackPanel Grid.Column="0">
                                     <TextBlock Text="Upcoming" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
-                                    <TextBlock x:Name="txtUpcomingPayroll" Text="January 15, 2025" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                    <TextBlock x:Name="txtUpcomingPayroll" Text="{Binding Upcoming, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
                                 </StackPanel>
 
                                 <materialDesign:PackIcon Grid.Column="2" 
@@ -165,7 +165,7 @@
                                 <StackPanel Grid.Column="0">
                                     <TextBlock Text="Target" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock x:Name="txtWeeklyHourTarget" Text="40 hours per week" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                        <TextBlock x:Name="txtWeeklyHourTarget" Text="{Binding Target, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
                                     </StackPanel>
                                 </StackPanel>
 
@@ -191,7 +191,7 @@
                                 <StackPanel Grid.Column="0">
                                     <TextBlock Text="Hourly Rate" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock x:Name="txtHourlyRate" Text="$20.00 per hour" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
+                                        <TextBlock x:Name="txtHourlyRate" Text="{Binding HourlyRate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
                                     </StackPanel>
                                 </StackPanel>
 
@@ -219,7 +219,7 @@
                                 <TextBlock Grid.Row="0" Text="Hours Rendered" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
                                 
                                 <lvc:Gauge Grid.Row="2" Grid.Column="1"
-                                            From="0" To="100" Value="50"
+                                            From="0" To="{Binding TargetHours, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="{Binding HoursRendered, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                             LabelsVisibility="Collapsed"
                                             Margin="0,20,0,15"
                                            Width="260" Height="130">
@@ -234,7 +234,7 @@
                                     </lvc:Gauge.GaugeActiveFill>
                                 </lvc:Gauge>
 
-                                <TextBlock x:Name="txtHoursRemaining" Text="30 hours remaining" FontFamily="{StaticResource PoppinsRegular}" FontSize="16" HorizontalAlignment="Center"/>
+                                <TextBlock x:Name="txtHoursRemaining" Text="{Binding HoursRemaining, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="{StaticResource PoppinsRegular}" FontSize="16" HorizontalAlignment="Center"/>
 
                             </StackPanel>
 

@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using System.Threading.Tasks;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages;
+using PresentationLayer.WPF.View.Windows.Main;
 using ServicesLayer;
 
 namespace PresentationLayer.WPF.ViewModel.RegularViewModel
@@ -123,8 +123,10 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 Properties.Settings.Default.CurrentUserGuid = user.UserId;
                 Properties.Settings.Default.Save();
                 await Task.Delay(2000);
-                if (user.Role.NormalizedName == "EMPLOYEE")
+                if (user.Role.NormalizedName == "EMPLOYEE" && user.Employee != null)
                 {
+
+
                     //Test attendance evaluation
                     var periodStart = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 16);
                     var periodEnd = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 31);
@@ -140,10 +142,19 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                         MessageBox.Show(ex.Message);
                     }
                 }
-                else if (user.Role.NormalizedName == "ADMIN")
+                else if (user.Role.NormalizedName == "ADMIN" && user.Admin != null)
                     System.Windows.MessageBox.Show("Admin Functionality to be added");
-                else if (user.Role.NormalizedName == "CONTRACTOR")
-                    System.Windows.MessageBox.Show("Contractor Functionality to be added");
+                else if (user.Role.NormalizedName == "CONTRACTOR" && user.Contractor != null)
+                {
+                    try
+                    {
+                        _windowService.ShowWindow<EmployeeDashboardIC_View>();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
                 else
                     System.Windows.MessageBox.Show("Please contact admin to verify account!");
             }
