@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages;
 using PresentationLayer.WPF.View.Pages.Dashboard;
+using PresentationLayer.WPF.View.Pages.Dashboard.AdminDashboard;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardIC;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg;
 using PresentationLayer.WPF.View.Windows;
@@ -62,6 +63,8 @@ namespace SASPayrolSystemProject
             services.AddTransient<RegDashboard_ViewModel>();
             services.AddTransient<RegJobDesk_ViewModel>();
             services.AddTransient<AccountPage_ViewModel>();
+
+            services.AddTransient<AdminDashboard>();
 
             services.AddTransient<ICDashboard>();
             services.AddTransient<ICDashboard_ViewModel>();

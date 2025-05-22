@@ -18,9 +18,9 @@ namespace PresentationLayer.WPF.View.Pages.Dashboard.AdminDashboard
     /// <summary>
     /// Interaction logic for AdmingDashboard.xaml
     /// </summary>
-    public partial class AdmingDashboard : UserControl
+    public partial class AdminDashboard : UserControl
     {
-        public AdmingDashboard()
+        public AdminDashboard()
         {
             InitializeComponent();
         }

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PresentationLayer.WPF.View.Pages.Dashboard.AdminDashboard.AdmingDashboard"
+﻿<UserControl x:Class="PresentationLayer.WPF.View.Pages.Dashboard.AdminDashboard.AdminDashboard"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -27,8 +27,8 @@
 
                     <!--ADMIN DETAILS-->
                     <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,10" 
-                    VerticalAlignment="Stretch" Background="White" UniformCornerRadius="10" BorderBrush="LightGray" 
-                    BorderThickness="1" Effect="{StaticResource CardEffects}">
+                                        VerticalAlignment="Stretch" Background="White" UniformCornerRadius="10" BorderBrush="LightGray" 
+                                        BorderThickness="1" Effect="{StaticResource CardEffects}">
                         <Grid Margin="20,10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="8*"/>
@@ -52,16 +52,37 @@
 
                             <!--SIGN OUT BUTTON-->
                             <Button Grid.Column="1" x:Name="btnLogOut" Style="{StaticResource HeaderButtons}" 
-                        Height="30" Width="30" HorizontalAlignment="Right" Click="btnLogOut_Click"
-                        Command="{Binding Logout}">
+                                        Height="30" Width="30" HorizontalAlignment="Right"
+                                        Command="{Binding Logout}">
                                 <materialDesign:PackIcon Kind="SignOutVariant" Height="20" Width="20"/>
                             </Button>
                         </Grid>
                     </materialDesign:Card>
 
                     <Grid Grid.Row="2">
-                        <!-- Additional content goes here -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="130"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Margin="0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <materialDesign:Card Grid.Column="0" HorizontalAlignment="Stretch" 
+                                                VerticalAlignment="Stretch" 
+                                                 Background="White" UniformCornerRadius="10" 
+                                                 BorderBrush="LightGray" 
+                                                BorderThickness="1" Effect="{StaticResource CardEffects}">
+                            </materialDesign:Card>
+                        </Grid>
                     </Grid>
+                    
                 </Grid>
             </ScrollViewer>
 
