@@ -6,10 +6,10 @@ namespace ServicesLayer
     public class ContractorTrackerService : IContractorTrackerService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private ContractorAttendanceLogModel? _currentAttendanceLog;
 
         public ContractorModel? CurrentContractor { get; private set; }
-        public IList<ContractorAttendanceLogModel> _currentWeekAttendanceLogs { get; private set; } = [];
+        public ContractorAttendanceLogModel? CurrentAttendanceLog { get; private set; }
+        public IList<ContractorAttendanceLogModel> CurrentWeekAttendanceLogs { get; private set; } = [];
 
         public ContractorTrackerService(IUnitOfWork unitOfWork)
         {
@@ -27,13 +27,13 @@ namespace ServicesLayer
             {
                 if (CurrentContractor.UserId == UserId)
                     return CurrentContractor;
-                if (_currentAttendanceLog != null)
+                if (CurrentAttendanceLog != null)
                 {
-                    _currentAttendanceLog.TimeOut = DateTime.Now;
+                    CurrentAttendanceLog.TimeOut = DateTime.Now;
                     await _unitOfWork.Save();
-                    _currentAttendanceLog = null;
+                    CurrentAttendanceLog = null;
                 }
-                _currentWeekAttendanceLogs.Clear();
+                CurrentWeekAttendanceLogs.Clear();
             }
 
             CurrentContractor = await _unitOfWork.ContractorRepository.GetAsync(c => c.UserId == UserId, includeProperties: "ContractorAttendanceLogs");
@@ -46,20 +46,18 @@ namespace ServicesLayer
         {
             if (CurrentContractor == null)
                 return null;
-            if (_currentAttendanceLog != null)
-                return _currentAttendanceLog;
-            _currentAttendanceLog = new ContractorAttendanceLogModel()
+            if (CurrentAttendanceLog != null)
+                return CurrentAttendanceLog;
+            CurrentAttendanceLog = new ContractorAttendanceLogModel()
             {
                 ContractorId = CurrentContractor.ContractorId,
                 Contractor = CurrentContractor,
                 Date = DateOnly.FromDateTime(DateTime.Now),
                 TimeIn = DateTime.Now
             };
-            CurrentContractor.ContractorAttendanceLogs.Add(_currentAttendanceLog);
+            CurrentContractor.ContractorAttendanceLogs.Add(CurrentAttendanceLog);
             await _unitOfWork.Save();
-
-            UpdateCurrentWeekAttendanceLog();
-            return _currentAttendanceLog;
+            return CurrentAttendanceLog;
         }
 
         public async Task<ContractorAttendanceLogModel?> EndSession()
@@ -67,19 +65,18 @@ namespace ServicesLayer
             //Checks if the current contractor is null, if the current attendance log is null, and if the time out is already set.
             if (CurrentContractor == null)
                 return null;
-            if (_currentAttendanceLog == null)
+            if (CurrentAttendanceLog == null)
                 return null;
-            if (_currentAttendanceLog.TimeOut != null)
-                return _currentAttendanceLog;
-            if (_currentAttendanceLog.TimeIn == null)
-                return _currentAttendanceLog;
-
-            _currentAttendanceLog.TimeOut = DateTime.Now;
+            if (CurrentAttendanceLog.TimeOut != null)
+                return CurrentAttendanceLog;
+            if (CurrentAttendanceLog.TimeIn == null)
+                return CurrentAttendanceLog;
+            CurrentAttendanceLog.TimeOut = DateTime.Now;
             await _unitOfWork.Save();
 
-            //Sets the current attendance log to null and returns the current attendance log.
-            var attendanceLog = _currentAttendanceLog;
-            _currentAttendanceLog = null;
+            //Set CurrentAttendanceLog to null
+            var attendanceLog = CurrentAttendanceLog;
+            CurrentAttendanceLog = null;
 
             UpdateCurrentWeekAttendanceLog();
             return attendanceLog;
@@ -91,10 +88,10 @@ namespace ServicesLayer
             {
                 if (CurrentContractor == null)
                     return 0;
-                var totalHours = _currentWeekAttendanceLogs.Sum(log => log.Duration);
-                if (_currentAttendanceLog != null && _currentAttendanceLog.TimeIn.HasValue)
+                var totalHours = CurrentWeekAttendanceLogs.Sum(log => log.Duration);
+                if (CurrentAttendanceLog != null && CurrentAttendanceLog.TimeIn.HasValue)
                 {
-                    var currentDuration = _currentAttendanceLog.TimeOut != null ? _currentAttendanceLog.Duration : (decimal)(DateTime.Now - _currentAttendanceLog.TimeIn.Value).TotalHours;
+                    var currentDuration = CurrentAttendanceLog.TimeOut != null ? CurrentAttendanceLog.Duration : (decimal)(DateTime.Now - CurrentAttendanceLog.TimeIn.Value).TotalHours;
                     totalHours += currentDuration;
                 }
                 return totalHours > CurrentContractor.MaximumWeeklyHours ? CurrentContractor.MaximumWeeklyHours : totalHours;
@@ -107,7 +104,7 @@ namespace ServicesLayer
                 return;
             var today = DateTime.Today;
             var sunday = today.AddDays(-(int)today.DayOfWeek);
-            _currentWeekAttendanceLogs = CurrentContractor.ContractorAttendanceLogs
+            CurrentWeekAttendanceLogs = CurrentContractor.ContractorAttendanceLogs
                 .Where(log => log.Date >= DateOnly.FromDateTime(sunday))
                 .ToList();
         }
