@@ -446,9 +446,15 @@ namespace ServicesLayer
                     var attendanceRequest = attendanceRequests.FirstOrDefault(r => r.AttendanceDate == currentDay && r.Status == FormStatus.Approved);
                     if (attendanceRequest != null)
                     {
-                        //TO DO - Update employee attendance request model to include optional break start and end
                         evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Present;
-                        evaluatedAttendance.ActualWorkHours = attendanceRequest.TotalHours;
+                        var timeSheet = new TimeSheet()
+                        {
+                            TimeIn = attendanceRequest.TimeIn,
+                            BreakStart = attendanceRequest.BreakStart,
+                            BreakEnd = attendanceRequest.BreakEnd,
+                            TimeOut = attendanceRequest.TimeOut
+                        };
+                        CalculateWorkHours(evaluatedAttendance, defaultShift, timeSheet, false);
                         continue;
                     }
 
@@ -483,10 +489,10 @@ namespace ServicesLayer
             await Save();
         }
 
-        private void CalculateWorkHours(EmployeeEvaluatedAttendanceModel evaluatedAttendance, TimeSheet defaultWorkshift, TimeSheet logsToday)
+        private void CalculateWorkHours(EmployeeEvaluatedAttendanceModel evaluatedAttendance, TimeSheet defaultWorkshift, TimeSheet logsToday, bool isFromAttendanceLog = true)
         {
-            //Calculate actual hours worked
-            if (logsToday.TimeIn.HasValue && logsToday.TimeOut.HasValue && defaultWorkshift.TimeIn.HasValue && defaultWorkshift.TimeOut.HasValue)
+            //Calculate actual hours worked from attendance log
+            if (isFromAttendanceLog && logsToday.TimeIn.HasValue && logsToday.TimeOut.HasValue && defaultWorkshift.TimeIn.HasValue && defaultWorkshift.TimeOut.HasValue)
             {
                 TimeOnly start = logsToday.TimeIn.Value > defaultWorkshift.TimeIn.Value ? logsToday.TimeIn.Value : defaultWorkshift.TimeIn.Value;
                 TimeOnly end = logsToday.TimeOut.Value < defaultWorkshift.TimeOut.Value ? logsToday.TimeOut.Value : defaultWorkshift.TimeOut.Value;
@@ -498,8 +504,18 @@ namespace ServicesLayer
                     var breakSpan = (TimeOnly)logsToday.BreakStart - (TimeOnly)logsToday.BreakEnd;
                     evaluatedAttendance.ActualWorkHours -= (decimal)breakSpan.TotalHours;
                 }
-                else
-                    evaluatedAttendance.ActualWorkHours = 0;
+            }
+
+            //If attendance request
+            if (!isFromAttendanceLog && logsToday.TimeIn.HasValue && logsToday.TimeOut.HasValue)
+            {
+                var span = (TimeOnly)logsToday.TimeIn - (TimeOnly)logsToday.TimeOut;
+                evaluatedAttendance.ActualWorkHours = (decimal)span.TotalHours;
+                if (logsToday.BreakStart.HasValue && logsToday.BreakEnd.HasValue)
+                {
+                    var breakSpan = (TimeOnly)logsToday.BreakStart - (TimeOnly)logsToday.BreakEnd;
+                    evaluatedAttendance.ActualWorkHours -= (decimal)breakSpan.TotalHours;
+                }
             }
 
             //Ends if no work hours
@@ -515,9 +531,10 @@ namespace ServicesLayer
             }
 
             //Calculate overtime hours
-            if (logsToday.TimeOut.HasValue && defaultWorkshift.TimeOut.HasValue && logsToday.TimeOut.Value > defaultWorkshift.TimeOut.Value)
+            if (logsToday.TimeIn.HasValue && logsToday.TimeOut.HasValue && defaultWorkshift.TimeOut.HasValue && logsToday.TimeOut.Value > defaultWorkshift.TimeOut.Value)
             {
-                var span = (TimeOnly)logsToday.TimeOut - (TimeOnly)defaultWorkshift.TimeOut;
+                var intervalStart = logsToday.TimeIn.Value > defaultWorkshift.TimeOut.Value ? logsToday.TimeIn.Value : defaultWorkshift.TimeOut.Value;
+                var span = (TimeOnly)logsToday.TimeOut - intervalStart;
                 evaluatedAttendance.OvertimeHours = (decimal)Math.Floor(span.TotalHours);
             }
 
