@@ -3,12 +3,14 @@ using Microsoft.Extensions.DependencyInjection;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages;
 using PresentationLayer.WPF.View.Pages.Dashboard;
+using PresentationLayer.WPF.View.Pages.Dashboard.AdminDashboard;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardIC;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg;
 using PresentationLayer.WPF.View.Windows;
 using PresentationLayer.WPF.View.Windows.Main;
 using PresentationLayer.WPF.ViewModel;
 using PresentationLayer.WPF.ViewModel.PagesViewModel;
+using PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard;
 using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC;
 using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular;
 using PresentationLayer.WPF.ViewModel.PopUpViewModel;
@@ -39,7 +41,7 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-            windowService.ShowWindow<MainWindow>();
+            windowService.ShowWindow<AdminDashboard_View>();
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -65,12 +67,13 @@ namespace SASPayrolSystemProject
             services.AddTransient<RegJobDesk_ViewModel>();
             services.AddTransient<AccountPage_ViewModel>();
 
-            services.AddTransient<AdminDashboard>();
-
             services.AddTransient<ICDashboard>();
             services.AddTransient<ICDashboard_ViewModel>();
             services.AddTransient<ICJobDesk>();
             services.AddTransient<ICJobDesk_ViewModel>();
+
+            services.AddTransient<AdminDashPage_View>();
+            services.AddTransient<AdminDashPage_ViewModel>();
 
             //Popups
             services.AddTransient<FileLeaveForm_View>();
