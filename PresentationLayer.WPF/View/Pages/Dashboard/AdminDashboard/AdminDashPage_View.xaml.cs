@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PresentationLayer.WPF.View.Pages.Dashboard.AdminDashboard
 {
     /// <summary>
-    /// Interaction logic for AdmingDashboard.xaml
+    /// Interaction logic for AdminDashPage_View.xaml
     /// </summary>
-    public partial class AdminDashboard : UserControl
+    public partial class AdminDashPage_View : UserControl
     {
-        public AdminDashboard()
+        public AdminDashPage_View()
         {
             InitializeComponent();
         }

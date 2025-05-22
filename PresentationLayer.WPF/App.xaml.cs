@@ -1,11 +1,8 @@
-﻿using System.Windows;
-using InfrastructureLayer.DataAccess;
-using Microsoft.EntityFrameworkCore;
+﻿using InfrastructureLayer.DataAccess;
 using Microsoft.Extensions.DependencyInjection;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages;
 using PresentationLayer.WPF.View.Pages.Dashboard;
-using PresentationLayer.WPF.View.Pages.Dashboard.AdminDashboard;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardIC;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg;
 using PresentationLayer.WPF.View.Windows;
@@ -17,6 +14,7 @@ using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular;
 using PresentationLayer.WPF.ViewModel.PopUpViewModel;
 using PresentationLayer.WPF.ViewModel.RegularViewModel;
 using ServicesLayer;
+using System.Windows;
 
 namespace SASPayrolSystemProject
 {
@@ -55,6 +53,9 @@ namespace SASPayrolSystemProject
 
             services.AddTransient<EmployeeDashboardIC_View>();
             services.AddTransient<EmployeeDashboardIC_ViewModel>();
+
+            services.AddTransient<AdminDashboard_View>();
+            services.AddTransient<AdminDashboard_ViewModel>();
 
             //Pages
             services.AddTransient<RegDashboard>();
