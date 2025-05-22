@@ -24,5 +24,13 @@ namespace PresentationLayer.WPF.View.Windows.Main
                 DragMove();
             }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (MessageBoxResult.No == MessageBox.Show("Are you sure you want to exit? This will end your current work session.", "Exit Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning))
+            {
+                e.Cancel = true; // Cancel the closing event
+            }
+        }
     }
 }

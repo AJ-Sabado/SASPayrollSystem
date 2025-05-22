@@ -78,13 +78,14 @@ namespace ServicesLayer
         public async Task<UserModel?> Login(string usernameOrEmail, string password)
         {
             UserModel? user = null;
+            string includeProperties = "Role,Department,Employee,Admin,Contractor";
             if (_modelDataAnnotationsCheck.IsValidEmail(usernameOrEmail))
             {
-                user = await UserRepository.GetAsync(u => u.Email == usernameOrEmail, includeProperties: "Role,Department");
+                user = await UserRepository.GetAsync(u => u.Email == usernameOrEmail, includeProperties: includeProperties);
             }
             else
             {
-                user = await UserRepository.GetAsync(u => u.Username == usernameOrEmail, includeProperties: "Role,Department");
+                user = await UserRepository.GetAsync(u => u.Username == usernameOrEmail, includeProperties: includeProperties);
             }
             if (user != null)
             {

@@ -468,8 +468,19 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
             }
         }
 
+        private string SetStringValue(string oldValue, string newValue)
+        {
+            return string.IsNullOrEmpty(newValue) ? oldValue : newValue;
+        }
+
         private async void SaveData()
         {
+            if (Properties.Settings.Default.CurrentUserGuid == Guid.Empty)
+            {
+                System.Windows.MessageBox.Show("User not found. Saving is disabled");
+                return;
+            }
+
             var user = await _unitOfWork.UserRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "AccountInfo");
             //var employee = await _unitOfWork.EmployeeRepository.GetAsync(x => x.UserId == user.UserId, includeProperties: "EmployeeAccountInfo");
             if (user != null && user.AccountInfo != null)
@@ -480,36 +491,48 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
 
                 await _unitOfWork.UserRepository.UpdateAsync(user);
 
-                user.AccountInfo.FirstName = FirstName;
-                user.AccountInfo.LastName = LastName;
-                user.AccountInfo.MiddleInitial = MiddleInitial;
+                user.AccountInfo.FirstName = SetStringValue(user.AccountInfo.FirstName, FirstName);
+                user.AccountInfo.LastName = SetStringValue(user.AccountInfo.LastName, LastName);
+                user.AccountInfo.MiddleInitial = SetStringValue(user.AccountInfo.MiddleInitial, MiddleInitial);
                 user.AccountInfo.DateOfBirth = DateOnly.FromDateTime(DateOfBirth);
                 user.AccountInfo.Gender = SelectedGender;
                 user.AccountInfo.Nationality = SelectedNationality;
 
-                user.AccountInfo.PrimaryPhoneNumber = PrimaryPhoneNumber;
-                user.AccountInfo.SecondaryPhoneNumber = SecondaryPhoneNumber;
-                user.AccountInfo.Telephone = Telephone;
-                user.AccountInfo.MailingAddress = MailingAddress;
-                user.AccountInfo.SecondaryEmail = SecondaryEmail;
-                user.AccountInfo.FacebookUrl = FacebookLink;
-                user.AccountInfo.LinkedInUrl = LinkedInLink;
-                user.AccountInfo.WebsiteUrl = WebsiteLink;
+                user.AccountInfo.PrimaryPhoneNumber = SetStringValue(user.AccountInfo.PrimaryPhoneNumber, PrimaryPhoneNumber);
+                user.AccountInfo.SecondaryPhoneNumber = SetStringValue(user.AccountInfo.SecondaryPhoneNumber, SecondaryPhoneNumber);
+                user.AccountInfo.Telephone = SetStringValue(user.AccountInfo.Telephone, Telephone);
+                user.AccountInfo.MailingAddress = SetStringValue(user.AccountInfo.MailingAddress, MailingAddress);
+                user.AccountInfo.SecondaryEmail = SetStringValue(user.AccountInfo.SecondaryEmail, SecondaryEmail);
+                user.AccountInfo.FacebookUrl = SetStringValue(user.AccountInfo.FacebookUrl, FacebookLink);
+                user.AccountInfo.LinkedInUrl = SetStringValue(user.AccountInfo.LinkedInUrl, LinkedInLink);
+                user.AccountInfo.WebsiteUrl = SetStringValue(user.AccountInfo.WebsiteUrl, WebsiteLink);
 
-                user.AccountInfo.TaxIdNumber = TaxIdentificationNumber;
-                user.AccountInfo.SSSIdNumber = SSSIdNumber;
-                user.AccountInfo.PhilHealthIdNumber = PhilHealthIdNumber;
-                user.AccountInfo.PagIbigIdNumber = PagIbigIdNumber;
-                user.AccountInfo.BankName = BankName;
-                user.AccountInfo.BankAccountName = BankAccountName;
-                user.AccountInfo.BankAccountId = BankAccountNumber;
+                user.AccountInfo.TaxIdNumber = SetStringValue(user.AccountInfo.TaxIdNumber, TaxIdentificationNumber);
+                user.AccountInfo.SSSIdNumber = SetStringValue(user.AccountInfo.SSSIdNumber, SSSIdNumber);
+                user.AccountInfo.PhilHealthIdNumber = SetStringValue(user.AccountInfo.PhilHealthIdNumber, PhilHealthIdNumber);
+                user.AccountInfo.PagIbigIdNumber = SetStringValue(user.AccountInfo.PagIbigIdNumber, PagIbigIdNumber);
+                user.AccountInfo.BankName = SetStringValue(user.AccountInfo.BankName, BankName);
+                user.AccountInfo.BankAccountName = SetStringValue(user.AccountInfo.BankAccountName, BankAccountName);
+                user.AccountInfo.BankAccountId = SetStringValue(user.AccountInfo.BankAccountId, BankAccountNumber);
 
-                await _unitOfWork.Save();
+                try
+                { await _unitOfWork.Save(); }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show($"An error occurred while saving data: {ex.Message}");
+                    return;
+                }
                 LoadUserData();
             }
         }
         private async void LoadUserData()
         {
+            if (Properties.Settings.Default.CurrentUserGuid == Guid.Empty)
+            {
+                System.Windows.MessageBox.Show("User not found.");
+                return;
+            }
+
             var user = await _unitOfWork.UserRepository.GetAsync(x => x.UserId == Properties.Settings.Default.CurrentUserGuid, includeProperties: "AccountInfo,Department");
             if (user != null && user.AccountInfo != null)
             {

@@ -17,6 +17,7 @@
         WindowStartupLocation="CenterScreen"
         Title="Strategic Assistant Staffing Employee Dashboard"
         MouseDown="Window_MouseDown"
+        Closing="Window_Closing"
         ResizeMode="CanResize"
         WindowState="Maximized">
     
