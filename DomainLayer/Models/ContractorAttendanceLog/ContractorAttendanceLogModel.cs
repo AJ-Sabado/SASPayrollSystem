@@ -17,11 +17,24 @@ namespace DomainLayer.Models.ContractorAttendanceLog
         [Column(TypeName = "date")]
         public DateOnly Date { get; set; }
 
-        [Column(TypeName = "time")]
-        public TimeOnly? TimeIn { get; set; }
-        [Column(TypeName = "time")]
-        public TimeOnly? TimeOut { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? TimeIn { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? TimeOut { get; set; }
 
-        public FormStatus ReviewStatus { get; set; } = FormStatus.Pending;
+        [NotMapped]
+        public decimal Duration
+        {
+            get
+            {
+                if (TimeIn.HasValue && TimeOut.HasValue)
+                {
+                    var span = TimeIn.Value - TimeOut.Value;
+                    return span.TotalHours > 0 ? (decimal)span.TotalHours : 0;
+                }
+                else
+                    return 0;
+            }
+        }
     }
 }

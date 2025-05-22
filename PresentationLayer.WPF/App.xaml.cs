@@ -40,7 +40,7 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-            windowService.ShowWindow<EmployeeDashboardIC_View>();
+            windowService.ShowWindow<MainWindow>();
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -85,6 +85,7 @@ namespace SASPayrolSystemProject
             services.AddSingleton<IWindowService, WindowService>();
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<IPopUpService, PopUpService>();
+            services.AddSingleton<IContractorTrackerService, ContractorTrackerService>();
         }
 
         //Resolves GetRequiredService for DI conflict

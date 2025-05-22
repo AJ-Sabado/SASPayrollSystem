@@ -1,9 +1,8 @@
-﻿using DomainLayer.Models.ContractorAccountInformation;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using DomainLayer.Models.ContractorAttendanceLog;
 using DomainLayer.Models.ContractorPayslip;
 using DomainLayer.Models.User;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainLayer.Models.Contractor
 {
@@ -19,13 +18,10 @@ namespace DomainLayer.Models.Contractor
 
         [Column(TypeName = "money")]
         public decimal BasicHourlyRate { get; set; } = 0;
+        public decimal MaximumWeeklyHours { get; set; } = 0;
 
-        [Column(TypeName = "tinyint")]
-        public uint MaximumWeeklyHours { get; set; } = 0;
 
         public ICollection<ContractorAttendanceLogModel> ContractorAttendanceLogs { get; } = [];
         public ICollection<ContractorPayslipModel> ContractorPayslips { get; } = [];
-        public ContractorAccountInformationModel? ContractorAccountInformation { get; set; }
-
     }
 }

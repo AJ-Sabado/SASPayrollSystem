@@ -8,7 +8,6 @@ using DomainLayer.Models.Contractor;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.EmployeeAccountInfo;
-using DomainLayer.Models.EmployeeAttendanceLog;
 using DomainLayer.Models.EmployeeEvaluatedAttendance;
 using DomainLayer.Models.EmployeePayslip;
 using DomainLayer.Models.Holiday;
@@ -19,8 +18,6 @@ using InfrastructureLayer.DataAccess;
 using InfrastructureLayer.DataAccess.Repositories.Common;
 using ServicesLayer.Common;
 using ServicesLayer.Enums;
-using Syncfusion.XlsIO.Implementation.PivotAnalysis;
-using Syncfusion.XPS;
 
 
 
@@ -107,13 +104,14 @@ namespace ServicesLayer
             await SeedHolidays();
             await SeedAdminUser();
             await SeedEmployeeUser();
+            await SeedContractorUser();
             await Save();
         }
 
         private async Task SeedEmployeeUser()
         {
             var employeeRole = await RoleRepository.GetAsync(r => r.NormalizedName == "employee".ToUpperInvariant(), includeProperties: "Users");
-            if (employeeRole.Users.Count() == 0)
+            if (employeeRole.Users.Count == 0)
             {
                 var department = await DepartmentRepository.GetAsync(d => d.NormalizedName == "Finance & Operations".ToUpperInvariant(), includeProperties: "Users");
                 var user = new UserModel()
@@ -125,7 +123,6 @@ namespace ServicesLayer
                     Role = employeeRole,
                     DepartmentId = department.DepartmentId,
                     Department = department,
-                    //Status = FormStatus.Approved
                 };
                 decimal monthlyRate = 15000;
                 user.Employee = new EmployeeModel()
@@ -185,7 +182,6 @@ namespace ServicesLayer
                 await Save();
             }
         }
-
         private async Task SeedDepartments()
         {
             var departments = await DepartmentRepository.GetManyAsync();
@@ -213,7 +209,6 @@ namespace ServicesLayer
                 await Save();
             }
         }
-
         private async Task SeedRoles()
         {
             string[] defaultRoles =
@@ -240,7 +235,67 @@ namespace ServicesLayer
             }
 
         }
+        private async Task SeedContractorUser()
+        {
+            var contractorRole = await RoleRepository.GetAsync(r => r.NormalizedName == "contractor".ToUpperInvariant(), includeProperties: "Users");
+            if (contractorRole.Users.Count == 0)
+            {
+                var department = await DepartmentRepository.GetAsync(d => d.NormalizedName == "Individual Contractor".ToUpperInvariant(), includeProperties: "Users");
+                var user = new UserModel()
+                {
+                    Username = "contractor",
+                    Password = "password",
+                    Email = "contractor@site.com",
+                    RoleId = contractorRole.RoleId,
+                    Role = contractorRole,
+                    DepartmentId = department.DepartmentId,
+                    Department = department
+                };
+                user.Contractor = new ContractorModel()
+                {
+                    UserId = user.UserId,
+                    User = user,
+                    BasicHourlyRate = 125m,
+                    MaximumWeeklyHours = 40m
+                };
+                user.AccountInfo = new AccountInfoModel()
+                {
+                    User = user,
+                    UserId = user.UserId,
 
+                    FirstName = "Jane John",
+                    LastName = "Doe",
+                    MiddleInitial = "S.",
+                    Gender = Gender.Male,
+                    DateOfBirth = new DateOnly(2025, 1, 26),
+                    Nationality = Nationality.Filipino,
+
+                    PrimaryPhoneNumber = "+639000000001",
+                    SecondaryPhoneNumber = "+639000000002",
+                    Telephone = "(8)123-4567",
+                    SecondaryEmail = "secondary@test.com",
+                    MailingAddress = "Blk 4, Lot 47, Villa Amparo Subdivision, Brgy. Sylvacion, Panabo City",
+                    FacebookUrl = "https://www.facebook.com/",
+                    LinkedInUrl = "https://www.linkedin.com/",
+                    WebsiteUrl = "https://github.com/",
+
+                    TaxIdNumber = "123-456-789-012",
+                    SSSIdNumber = "123-4567890-0",
+                    PhilHealthIdNumber = "12-34567890-1",
+                    PagIbigIdNumber = "1434-5678-9012",
+                    BankName = "Landbank",
+                    BankAccountName = "JANE JOHN S. DOE",
+                    BankAccountId = "4748-4478-9012-3456",
+
+                    CompanyId = "#599991",
+                    Role = "Virtual Assistant",
+                    EmploymentType = EmploymentType.Regular,
+                    DateHired = new DateOnly(1997, 1, 27)
+                };
+                contractorRole.Users.Add(user);
+                department.Users.Add(user);
+            }
+        }
         private async Task SeedAdminUser()
         {
             var adminRole = await RoleRepository.GetAsync(r => r.NormalizedName == "ADMIN", includeProperties: "Users");
@@ -273,12 +328,10 @@ namespace ServicesLayer
                 //await DepartmentRepository.UpdateAsync(department);
             }
         }
-
         public async Task Save()
         {
             await _context.SaveChangesAsync();
         }
-
         public async Task<RegisterUserResult> RegisterUser(string username, string email, string password, string confirmPassword, string roleName = null, string departmentName = null)
         {
             var user = await UserRepository.GetAsync(u => u.Username == username || u.Email == email);
@@ -333,7 +386,6 @@ namespace ServicesLayer
 
             return RegisterUserResult.Success;
         }
-
         public async Task EvaluateAllEmployeeAttendanceLog(DateOnly periodStart, DateOnly periodEnd)
         {
             var employees = await EmployeeRepository
@@ -489,7 +541,6 @@ namespace ServicesLayer
             }
             await Save();
         }
-
         private void CalculateWorkHours(EmployeeEvaluatedAttendanceModel evaluatedAttendance, TimeSheet defaultWorkshift, TimeSheet logsToday, bool isFromAttendanceLog = true)
         {
             //Calculate actual hours worked from attendance log
@@ -564,7 +615,6 @@ namespace ServicesLayer
                 }
             }
         }
-
         public async Task GenerateAllEmployeePayslips(DateOnly periodStart, DateOnly periodEnd, DateOnly payDate)
         {
             var employees = await EmployeeRepository.GetManyAsync(includeProperties: "EmployeeEvaluatedAttendances,EmployeePayslips");
@@ -610,7 +660,7 @@ namespace ServicesLayer
                 //Evaluated attendances
                 foreach (var evaluatedAttendance in validEvaluatedAttedances)
                 {
-                    if (evaluatedAttendance.DayStatus == EvaluatedAttendanceDayStatus.OnGoing 
+                    if (evaluatedAttendance.DayStatus == EvaluatedAttendanceDayStatus.OnGoing
                         || evaluatedAttendance.DayStatus == EvaluatedAttendanceDayStatus.Absent
                         || evaluatedAttendance.DayStatus == EvaluatedAttendanceDayStatus.RestDay)
                         continue;
@@ -636,18 +686,17 @@ namespace ServicesLayer
                 }
 
                 //Calculating totals
-                payslip.GrossPay 
+                payslip.GrossPay
                     = payslip.BasicPay + payslip.HolidayPay + payslip.NightDifferentialPay + payslip.OvertimePay + payslip.PaidLeaves
                         + payslip.Bonus + payslip.Allowances;
                 payslip.WithholdingTax = ContributionCalculator.CalculateWithholdingTax(payslip.GrossPay);
-                payslip.TotalDeductions = payslip.WithholdingTax + payslip.GovernmentContributions 
+                payslip.TotalDeductions = payslip.WithholdingTax + payslip.GovernmentContributions
                     + payslip.LoanDeductions + payslip.UTDeductions;
                 payslip.NetSalary = payslip.GrossPay - payslip.TotalDeductions;
             }
             await Save();
         }
     }
-
     class TimeSheet
     {
         public TimeOnly? TimeIn { get; set; }

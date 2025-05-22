@@ -1,6 +1,6 @@
-﻿using PresentationLayer.WPF.ViewModel.RegularViewModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
+using PresentationLayer.WPF.ViewModel.RegularViewModel;
 
 namespace PresentationLayer.WPF.View.Windows.Main
 {
@@ -27,10 +27,12 @@ namespace PresentationLayer.WPF.View.Windows.Main
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (MessageBoxResult.No == MessageBox.Show("Are you sure you want to exit? This will end your current work session.", "Exit Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning))
+            if (MessageBoxResult.No == MessageBox.Show("Are you sure you want to logout/exit? This will end your current work session.", "Exit Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning))
             {
                 e.Cancel = true; // Cancel the closing event
             }
+            else
+                ((EmployeeDashboardIC_ViewModel)DataContext).OnClosing();
         }
     }
 }
