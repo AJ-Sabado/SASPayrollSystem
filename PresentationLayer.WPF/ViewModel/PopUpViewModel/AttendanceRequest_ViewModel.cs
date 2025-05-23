@@ -23,6 +23,8 @@ namespace PresentationLayer.WPF.ViewModel
         private DateTime _date = DateTime.Now;
         private DateTime? _timeIn;
         private DateTime? _timeOut;
+        private DateTime? _breakStart;
+        private DateTime? _breakEnd;
         private string _totalHours = "0 hours";
         private string _proofFiles = "Attach File";
         private string _reason = string.Empty;
@@ -55,6 +57,10 @@ namespace PresentationLayer.WPF.ViewModel
                         Date = currentAttendanceRequest.AttendanceDate.ToDateTime(new TimeOnly());
                         TimeIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, currentAttendanceRequest.TimeIn.Hour, currentAttendanceRequest.TimeIn.Minute, currentAttendanceRequest.TimeIn.Second);
                         TimeOut = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, currentAttendanceRequest.TimeOut.Hour, currentAttendanceRequest.TimeOut.Minute, currentAttendanceRequest.TimeOut.Second);
+                        if (currentAttendanceRequest.BreakStart.HasValue)
+                            BreakStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, currentAttendanceRequest.BreakStart.Value.Hour, currentAttendanceRequest.BreakStart.Value.Minute, currentAttendanceRequest.BreakStart.Value.Second);
+                        if (currentAttendanceRequest.BreakEnd.HasValue)
+                            BreakEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, currentAttendanceRequest.BreakEnd.Value.Hour, currentAttendanceRequest.BreakEnd.Value.Minute, currentAttendanceRequest.BreakEnd.Value.Second);
                         Reason = currentAttendanceRequest.Reason;
                         TotalHours = $"{currentAttendanceRequest.TotalHours} hours";
                     }
@@ -131,13 +137,68 @@ namespace PresentationLayer.WPF.ViewModel
             }
         }
 
+        public DateTime? BreakStart
+        {
+            get => _breakStart;
+            set
+            {
+                if (SetProperty(ref _breakStart, value))
+                {
+                    ValidateTimes();
+                    CalculateTotalHours();
+                }
+            }
+        }
+
+        public DateTime? BreakEnd
+        {
+            get => _breakEnd;
+            set
+            {
+                if (SetProperty(ref _breakEnd, value))
+                {
+                    ValidateTimes();
+                    CalculateTotalHours();
+                }
+            }
+        }
+
+        private string _totalBreakHours = "0 hours";
+        public string TotalBreakHours
+        {
+            get => _totalBreakHours;
+            set => SetProperty(ref _totalBreakHours, value);
+        }
+
         private void ValidateTimes()
         {
             if (TimeIn.HasValue && TimeOut.HasValue && TimeOut < TimeIn)
             {
                 MessageBox.Show("Time Out cannot be earlier than Time In.", "Invalid Time", MessageBoxButton.OK, MessageBoxImage.Warning);
                 // Reset TimeOut back to null (or TimeIn, whichever you want)
+                TimeIn = null;
                 TimeOut = null;
+            }
+            //Break checks
+            if (BreakStart.HasValue && BreakEnd.HasValue)
+            {
+                if (BreakEnd < BreakStart)
+                {
+                    MessageBox.Show("Break End cannot be earlier than Break Start.", "Invalid Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    BreakStart = null;
+                    BreakEnd = null;
+                }
+            }
+            if (TimeIn.HasValue && TimeOut.HasValue && BreakStart.HasValue && BreakEnd.HasValue)
+            {
+                //Check if breaks are within time in and time out
+                bool pass = BreakStart < BreakEnd && TimeIn < BreakStart && TimeOut > BreakEnd;
+                if (!pass)
+                {
+                    MessageBox.Show("Breaks must be between Time In and Time Out.", "Invalid Time", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    BreakStart = null;
+                    BreakEnd = null;
+                }
             }
         }
 
@@ -236,8 +297,15 @@ namespace PresentationLayer.WPF.ViewModel
             if (TimeIn.HasValue && TimeOut.HasValue)
             {
                 var hours = (TimeOut.Value - TimeIn.Value).TotalHours;
+                if (BreakStart.HasValue && BreakEnd.HasValue)
+                {
+                    var breakHours = (BreakEnd.Value - BreakStart.Value).TotalHours;
+                    breakHours = Math.Max(0, breakHours);
+                    TotalBreakHours = $"{breakHours:0.#} hour{(breakHours == 1 ? "" : "s")}";
+                    hours -= breakHours;
+                }
                 //Account mandated work break
-                hours = Math.Max(0, hours) - 1;
+                hours = Math.Max(0, hours);
                 TotalHours = $"{hours:0.#} hour{(hours == 1 ? "" : "s")}";
             }
             else

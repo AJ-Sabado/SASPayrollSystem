@@ -153,7 +153,7 @@
                             <materialDesign:TimePicker x:Name="tpBreakStart" Margin="0,5" 
                                         FontFamily="{StaticResource PoppinsLight}"
                                         FontSize="12"
-                                        SelectedTime="{Binding TimeIn}"/>
+                                        SelectedTime="{Binding BreakStart}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="2">
@@ -161,10 +161,10 @@
                             <materialDesign:TimePicker x:Name="tpBreakEnd" Margin="0,5" 
                                         FontFamily="{StaticResource PoppinsLight}"
                                         FontSize="12"
-                                        SelectedTime="{Binding TimeOut}"/>
+                                        SelectedTime="{Binding BreakEnd}"/>
                         </StackPanel>
 
-                        <userControls:LabeledTextBox Grid.Column="4" Label="Break Total" Text="{Binding TotalHours}" IsEnabled="False"/>
+                        <userControls:LabeledTextBox Grid.Column="4" Label="Break Total" Text="{Binding TotalBreakHours}" IsEnabled="False"/>
 
                     </Grid>
                 </Grid>
