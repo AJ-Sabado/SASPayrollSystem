@@ -131,8 +131,8 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                     //Test attendance evaluation
                     try
                     {
-                        await _unitOfWork.EvaluateAllEmployeeAttendanceLog(periodStart, periodEnd);
-                        await _unitOfWork.GenerateAllEmployeePayslips(periodStart, periodEnd, payDate);
+                        //await _unitOfWork.EvaluateAllEmployeeAttendanceLog(periodStart, periodEnd);
+                        //await _unitOfWork.GenerateAllEmployeePayslips(periodStart, periodEnd, payDate);
                         _windowService.ShowWindow<EmployeeDahboard_View>();
                     }
                     catch (Exception ex)
@@ -146,7 +146,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 {
                     try
                     {
-                        //await _unitOfWork.GenerateAllContractorPayslips(periodStart, periodEnd, payDate);
+                        await _unitOfWork.GenerateAllContractorPayslips(periodStart, periodEnd, payDate);
                         _windowService.ShowWindow<EmployeeDashboardIC_View>();
                     }
                     catch (Exception ex)
