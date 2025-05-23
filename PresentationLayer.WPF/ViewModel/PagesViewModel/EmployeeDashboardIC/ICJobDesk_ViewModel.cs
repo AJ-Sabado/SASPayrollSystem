@@ -45,8 +45,8 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
                     TotalHoursRendered = $"{currentPayslip.TotalHoursRendered:F2} hours";
                     GrossPay = $"Php {currentPayslip.NetPay:F2}";
                     NetSalary = $"Php {currentPayslip.NetPay:F2}";
-                    PayrollDate = $"{currentPayslip.PeriodStart} - {currentPayslip.PeriodEnd}";
-                    PayrollStatus = $"{currentPayslip.PayslipStatus.ToString()} - {currentPayslip.PayDate}";
+                    PayrollDate = $"{currentPayslip.PeriodStart:MMMM dd, yyyy} - {currentPayslip.PeriodEnd:MMMM dd, yyyy}";
+                    PayrollStatus = $"{currentPayslip.PayslipStatus.ToString()} - {currentPayslip.PayDate:MMMM dd, yyyy}";
                 }
             }
             return Task.CompletedTask;

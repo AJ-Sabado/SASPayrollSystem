@@ -25,6 +25,7 @@ namespace ServicesLayer
         Task<RegisterUserResult> RegisterUser(string username, string email, string password, string confirmPassword, string roleName = null, string departmentName = null);
         Task EvaluateAllEmployeeAttendanceLog(DateOnly periodStart, DateOnly periodEnd);
         Task GenerateAllEmployeePayslips(DateOnly periodStart, DateOnly periodEnd, DateOnly payDate);
+        Task GenerateAllContractorPayslips(DateOnly periodStart, DateOnly periodEnd, DateOnly payDate);
         Task Save();
     }
 }
