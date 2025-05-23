@@ -41,7 +41,7 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-            windowService.ShowWindow<MainWindow>();
+            windowService.ShowWindow<AdminDashboard_View>();
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -80,6 +80,8 @@ namespace SASPayrolSystemProject
             services.AddTransient<AdminWorkforce_ViewModel>();
             services.AddTransient<AdminAdminPage_View>();
             services.AddTransient<AdminAdminPage_ViewModel>();
+            services.AddTransient<AdminPayrollPage_View>();
+            services.AddTransient<AdminPayrollPage_ViewModel>();
 
             //Popups
             services.AddTransient<FileLeaveForm_View>();
