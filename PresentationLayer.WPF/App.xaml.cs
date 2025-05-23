@@ -76,6 +76,8 @@ namespace SASPayrolSystemProject
             services.AddTransient<AdminDashPage_ViewModel>();
             services.AddTransient<AdminEmployee_View>();
             services.AddTransient<AdminEmployee_ViewModel>();
+            services.AddTransient<AdminWorkforce_View>();
+            services.AddTransient<AdminWorkforce_ViewModel>();
 
             //Popups
             services.AddTransient<FileLeaveForm_View>();

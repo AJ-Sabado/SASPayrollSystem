@@ -37,7 +37,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
 
             ShowDashboardCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<AdminDashPage_View>(), "Dashboard"));
             ShowJobDeskCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<AdminEmployee_View>(), "JobDesk"));
-            ShowAccountsCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<AccountsPage>(), "Accounts"));
+            ShowAccountsCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<AdminWorkforce_View>(), "Accounts"));
 
             // Set the default page and selected menu when opening
             ShowDashboardCommand.Execute(null);
