@@ -20,7 +20,6 @@ using InfrastructureLayer.DataAccess;
 using InfrastructureLayer.DataAccess.Repositories.Common;
 using ServicesLayer.Common;
 using ServicesLayer.Enums;
-using Syncfusion.XlsIO.Parser.Biff_Records;
 
 
 
@@ -636,6 +635,7 @@ namespace ServicesLayer
                     };
                     employee.EmployeePayslips.Add(payslip);
                 }
+
                 //Update historical data
                 payslip.AppliedHourlyRate = SalaryConverter.ConvertDailyToHourly(employee.BasicDailyRate, employee.ExpectedWorkHours);
 
@@ -735,7 +735,7 @@ namespace ServicesLayer
                 foreach (var week in groupedWeeklyAttendanceLogs)
                 {
                     decimal totalWeeklyHours = 0;
-                    foreach(var log in week)
+                    foreach (var log in week)
                     {
                         totalWeeklyHours += log.Duration;
                     }

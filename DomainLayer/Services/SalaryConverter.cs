@@ -11,7 +11,7 @@
 
         public static decimal ConvertDailyToHourly(decimal dailySalary, decimal hoursPerDay)
         {
-            return Math.Floor(dailySalary / hoursPerDay * 100) / 100;
+            return dailySalary / hoursPerDay;
         }
     }
 }
