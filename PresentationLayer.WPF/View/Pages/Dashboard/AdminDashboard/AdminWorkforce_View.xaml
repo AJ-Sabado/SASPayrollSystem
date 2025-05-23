@@ -344,34 +344,37 @@
 
                             <!-- TITLE -->
                             <TextBlock Grid.Row="0" Text="LEAVE" 
-                                       FontFamily="{StaticResource PoppinsBold}" 
-                                       FontSize="30" Foreground="Black" 
-                                       HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                   FontFamily="{StaticResource PoppinsBold}" 
+                   FontSize="30" Foreground="Black" 
+                   HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
                             <!--SUMMARIES-->
                             <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" 
-                                                 VerticalAlignment="Stretch" Background="White" 
-                                                 UniformCornerRadius="10" BorderBrush="LightGray" 
-                                                 BorderThickness="1" Effect="{StaticResource CardEffects}"
-                                                 Padding="20,15" Margin="0,7.5">
+                             VerticalAlignment="Stretch" Background="White" 
+                             UniformCornerRadius="10" BorderBrush="LightGray" 
+                             BorderThickness="1" Effect="{StaticResource CardEffects}"
+                             Padding="20,15" Margin="0,7.5">
 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="3*"/>
-                                        <!-- Search Bar columnspan of 3 -->
+                                        <ColumnDefinition Width="2*"/>
+                                        <!-- Search -->
                                         <ColumnDefinition Width="40"/>
-                                        <ColumnDefinition Width="1.2*"/>
+                                        <ColumnDefinition Width="1*"/>
                                         <!-- Total Employees -->
-                                        <ColumnDefinition Width="40"/>
-                                        <ColumnDefinition Width="1.2*"/>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="1*"/>
                                         <!-- On Leave -->
-                                        <ColumnDefinition Width="40"/>
-                                        <ColumnDefinition Width="1.2*"/>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="1*"/>
                                         <!-- Leave Requests -->
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- Assign Leave -->
                                     </Grid.ColumnDefinitions>
 
                                     <!-- SEARCH BAR -->
-                                    <Grid Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Grid Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
@@ -389,7 +392,7 @@
                                                      materialDesign:HintAssist.Hint="Search Employee Name or ID"
                                                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                                      BorderThickness="0"
-                                                     VerticalAlignment="Center" Margin="0,5" Width="300" Height="45"
+                                                     VerticalAlignment="Center" Margin="0,5" Width="200" Height="45"
                                                      Padding="10"
                                                      FontFamily="{StaticResource PoppinsLight}" FontSize="10"/>
                                             <Button x:Name="SearchBtn2" Background="Transparent" Foreground="{StaticResource BaseColorSCB}"
@@ -399,9 +402,11 @@
                                             </Button>
                                         </StackPanel>
                                     </Grid>
+
+                                    <!-- Separators -->
                                     <Rectangle Grid.Column="1" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
-                                    <Rectangle Grid.Column="3" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
-                                    <Rectangle Grid.Column="5" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
+                                    <Rectangle Grid.Column="7" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
+                                    
 
                                     <!-- Total Employees -->
                                     <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -465,6 +470,19 @@
                                                    Foreground="Black"
                                                    HorizontalAlignment="Left"/>
                                     </Grid>
+
+                                    <!-- ASSIGN LEAVE BUTTON -->
+                                    <Button Grid.Column="8"
+                                            HorizontalAlignment="Right" VerticalAlignment="Center"
+                                            Margin="10,0,0,0" Height="35" Padding="20,0"
+                                            FontFamily="{StaticResource PoppinsMedium}"
+                                            FontSize="12"
+                                            Background="LightGoldenrodYellow" Foreground="DarkGoldenrod" BorderBrush="DarkGoldenrod">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Add"/>
+                                            <TextBlock Text="   Assign Leave" FontFamily="{StaticResource PoppinsSemiBold}"/>
+                                        </StackPanel>
+                                    </Button>
                                 </Grid>
                             </materialDesign:Card>
 
@@ -517,6 +535,7 @@
                         </Grid>
                     </TabItem>
 
+                    <!--LEAVE REQUESTS-->
                     <TabItem Header="Leave Requests">
                         <Grid Margin="20,0,0,0" Background="White">
                             <Grid.RowDefinitions>
