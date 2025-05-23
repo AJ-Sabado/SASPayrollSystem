@@ -693,8 +693,8 @@ namespace ServicesLayer
                     = payslip.BasicPay + payslip.HolidayPay + payslip.NightDifferentialPay + payslip.OvertimePay + payslip.PaidLeaves
                         + payslip.Bonus + payslip.Allowances;
                 payslip.WithholdingTax = ContributionCalculator.CalculateWithholdingTax(payslip.GrossPay);
-                payslip.TotalDeductions = payslip.WithholdingTax + payslip.GovernmentContributions
-                    + payslip.LoanDeductions + payslip.UTDeductions;
+                payslip.TotalDeductions = Math.Ceiling((payslip.WithholdingTax + payslip.GovernmentContributions
+                    + payslip.LoanDeductions + payslip.UTDeductions) * 100) / 100;
                 payslip.NetSalary = payslip.GrossPay - payslip.TotalDeductions;
             }
             await Save();

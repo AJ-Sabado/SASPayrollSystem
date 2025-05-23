@@ -37,7 +37,7 @@ namespace DomainLayer.Models.EmployeePayslip
         {
             get
             {
-                return Math.Ceiling(AppliedHourlyRate * HoursWorkedRegular * 100) / 100;
+                return Math.Floor(AppliedHourlyRate * HoursWorkedRegular * 100) / 100;
             }
         }
 
@@ -47,7 +47,7 @@ namespace DomainLayer.Models.EmployeePayslip
         {
             get
             {
-                return Math.Ceiling(AppliedHourlyRate * HolidayHours * 100) / 100;
+                return Math.Floor(AppliedHourlyRate * HolidayHours * 100) / 100;
             }
         }
 
@@ -57,7 +57,7 @@ namespace DomainLayer.Models.EmployeePayslip
         {
             get
             {
-                return Math.Ceiling(NDOnWorkingDayHours * AppliedHourlyRate * AppliedNDRate * 100) / 100;
+                return Math.Floor(NDOnWorkingDayHours * AppliedHourlyRate * AppliedNDRate * 100) / 100;
             }
         }
 
@@ -67,7 +67,7 @@ namespace DomainLayer.Models.EmployeePayslip
         {
             get
             {
-                return Math.Ceiling(OTHoursWorkedRegular * AppliedHourlyRate * AppliedOvertimeRate * 100) / 100;
+                return Math.Floor(OTHoursWorkedRegular * AppliedHourlyRate * AppliedOvertimeRate * 100) / 100;
             }
         }
 
@@ -77,7 +77,7 @@ namespace DomainLayer.Models.EmployeePayslip
         {
             get
             {
-                return Math.Ceiling(PaidLeaveHours * AppliedHourlyRate * 100) / 100;
+                return Math.Floor(PaidLeaveHours * AppliedHourlyRate * 100) / 100;
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using DomainLayer.Enums;
 using DomainLayer.Models.Employee;
+using DomainLayer.Services;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -31,5 +32,7 @@ namespace DomainLayer.Models.EmployeeLeave
 
         [Column(TypeName = "tinyint")]
         public FormStatus Status { get; set; } = FormStatus.Pending;
+
+        public string BusinessId { get; set; } = BusinessIdGenerator.GenerateEmployeeLeaveId();
     }
 }
