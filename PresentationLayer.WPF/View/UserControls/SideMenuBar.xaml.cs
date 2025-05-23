@@ -4,9 +4,9 @@
 
     namespace PresentationLayer.WPF.View.UserControls
     {
-        public partial class SideMenuBar : UserControl
+        public partial class SideMenuBar_Admin : UserControl
         {
-            public SideMenuBar()
+            public SideMenuBar_Admin()
             {
                 InitializeComponent();
             }
@@ -17,7 +17,7 @@
                 set => SetValue(DashboardCommandProperty, value);
             }
             public static readonly DependencyProperty DashboardCommandProperty =
-                DependencyProperty.Register(nameof(DashboardCommand), typeof(ICommand), typeof(SideMenuBar));
+                DependencyProperty.Register(nameof(DashboardCommand), typeof(ICommand), typeof(SideMenuBar_Admin));
 
             public ICommand JobDeskCommand
             {
@@ -25,7 +25,7 @@
                 set => SetValue(JobDeskCommandProperty, value);
             }
             public static readonly DependencyProperty JobDeskCommandProperty =
-                DependencyProperty.Register(nameof(JobDeskCommand), typeof(ICommand), typeof(SideMenuBar));
+                DependencyProperty.Register(nameof(JobDeskCommand), typeof(ICommand), typeof(SideMenuBar_Admin));
 
             public ICommand AccountsCommand
             {
@@ -33,7 +33,7 @@
                 set => SetValue(AccountsCommandProperty, value);
             }
             public static readonly DependencyProperty AccountsCommandProperty =
-                DependencyProperty.Register(nameof(AccountsCommand), typeof(ICommand), typeof(SideMenuBar));
+                DependencyProperty.Register(nameof(AccountsCommand), typeof(ICommand), typeof(SideMenuBar_Admin));
 
             public string SelectedMenu
             {
@@ -41,6 +41,6 @@
                 set => SetValue(SelectedMenuProperty, value);
             }
             public static readonly DependencyProperty SelectedMenuProperty =
-                DependencyProperty.Register(nameof(SelectedMenu), typeof(string), typeof(SideMenuBar));
+                DependencyProperty.Register(nameof(SelectedMenu), typeof(string), typeof(SideMenuBar_Admin));
         }
     }
