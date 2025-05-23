@@ -5,8 +5,9 @@ namespace ServicesLayer
 {
     public interface IContractorTrackerService
     {
-        IList<ContractorAttendanceLogModel> _currentWeekAttendanceLogs { get; }
+        IList<ContractorAttendanceLogModel> CurrentWeekAttendanceLogs { get; }
         ContractorModel? CurrentContractor { get; }
+        ContractorAttendanceLogModel? CurrentAttendanceLog { get; }
         decimal TotalWeeklyHoursRendered { get; }
 
         Task<ContractorAttendanceLogModel?> EndSession();

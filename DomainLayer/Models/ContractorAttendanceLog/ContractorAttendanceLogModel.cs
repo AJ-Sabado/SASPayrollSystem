@@ -30,7 +30,8 @@ namespace DomainLayer.Models.ContractorAttendanceLog
                 if (TimeIn.HasValue && TimeOut.HasValue)
                 {
                     var span = TimeIn.Value - TimeOut.Value;
-                    return span.TotalHours > 0 ? (decimal)span.TotalHours : 0;
+                    var result = Math.Abs(span.TotalHours);
+                    return result > 0 ? (decimal)result : 0;
                 }
                 else
                     return 0;

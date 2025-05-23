@@ -59,12 +59,20 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         }
 
         //Methods
-        public void OnClosing()
+        public async void OnClosing()
         {
-            // Perform any cleanup or save state here
-            // For example, you might want to save the current state of the dashboard
-            // or close any open connections to databases or services.
-            MessageBox.Show("Closing the dashboard. Please save your work.", "Closing", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (_contractorTrackerService.CurrentAttendanceLog != null)
+            {
+                var log = await _contractorTrackerService.EndSession();
+                if (log != null)
+                {
+                    Properties.Settings.Default.CurrentUserGuid = Guid.Empty;
+                    Properties.Settings.Default.Save();
+                    MessageBox.Show("Session ended. Any time in will be timed out.", "Closing", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                    MessageBox.Show("There was a problem with");
+            }
         }
     }
 }

@@ -1,7 +1,10 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using DomainLayer.Models.ContractorAttendanceLog;
 using LiveCharts;
 using LiveCharts.Wpf;
 using Microsoft.IdentityModel.Tokens;
@@ -15,7 +18,16 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
         private readonly IUnitOfWork _unitOfWork;
         private readonly IContractorTrackerService _contractorTrackerService;
 
-        public SeriesCollection SeriesCollection { get; set; }
+        private SeriesCollection _seriesCollection;
+        public SeriesCollection SeriesCollection 
+        { 
+            get => _seriesCollection; 
+            set
+            {
+                _seriesCollection = value;
+                OnPropertyChanged(nameof(SeriesCollection));
+            }
+        }
         public string[] Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
 
@@ -95,7 +107,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
 
         public string HoursRemaining
         {
-            get => $"{(_targetHours - _hoursRendered):G29} hours remaining";
+            get => $"{(_targetHours - _hoursRendered):F2} hours remaining";
         }
 
         private string _hourlyRate = "Php 0.00 per hour";
@@ -131,10 +143,20 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
             }
         }
 
+        //Attendance Log List
+        public IList<ContractorAttendanceLogModel> AttendanceLogList
+        {
+            get => _contractorTrackerService.CurrentWeekAttendanceLogs;
+        }
+
         //Commands
         public ICommand TimeIn { get; set; }
         public ICommand TimeOut { get; set; }
         public ICommand Logout { get; set; }
+
+        //Not live yet :(
+        private decimal[] _weeklyHoursChartValues = { 0, 0, 0, 0 ,0 ,0 ,0};
+
 
         //Constructor
         public ICDashboard_ViewModel(IUnitOfWork unitOfWork, IContractorTrackerService contractorTrackerService)
@@ -142,12 +164,23 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
             _unitOfWork = unitOfWork;
             _contractorTrackerService = contractorTrackerService;
 
+            CalculateChartValues();
+
+            //Table
             SeriesCollection = new SeriesCollection
             {
                 new LineSeries
                 {
                     Title = "Daily\nHours",
-                    Values = new ChartValues<double> { 4, 6, 5, 2, 4, 1, 0.5 },
+                    Values = new ChartValues<decimal> 
+                    { 
+                        _weeklyHoursChartValues[0], 
+                        _weeklyHoursChartValues[1],
+                        _weeklyHoursChartValues[2],
+                        _weeklyHoursChartValues[3], 
+                        _weeklyHoursChartValues[4],
+                        _weeklyHoursChartValues[5],
+                        _weeklyHoursChartValues[6] },
                     PointGeometry = DefaultGeometries.Circle,
                     PointGeometrySize = 5,
                     Stroke = Brushes.DodgerBlue,
@@ -176,13 +209,23 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
             Logout = new RelayCommand(ExecuteLogout, _ => true);
 
 
-            LoadUserAccountInfoData();
-            ReloadContractorInfo();
-            //TestProgressBar();
+            LoadOnceInfo();
+            RealTimeInfo();
+        }
+
+        private void CalculateChartValues()
+        {
+            if (_contractorTrackerService.CurrentContractor != null)
+            {
+                foreach (var attendanceLog in _contractorTrackerService.CurrentContractor.ContractorAttendanceLogs)
+                {
+                    _weeklyHoursChartValues[(int)attendanceLog.Date.DayOfWeek] += attendanceLog.Duration;
+                }
+            }
         }
 
         //Methods
-        private async void LoadUserAccountInfoData()
+        private async void LoadOnceInfo()
         {
             var user = await _unitOfWork.UserRepository.GetAsync(u => u.UserId == Properties.Settings.Default.CurrentUserGuid
             , includeProperties: "AccountInfo");
@@ -191,26 +234,32 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
                 EmployeeFirstName = user.AccountInfo.FirstName;
                 EmployeeCompanyId = user.AccountInfo.CompanyId.ToString();
                 EmployeeRole = user.AccountInfo.Role.ToString();
+                if (_contractorTrackerService.CurrentContractor != null)
+                {
+                    TargetHours = _contractorTrackerService.CurrentContractor.MaximumWeeklyHours;
+                    HourlyRate = $"Php {_contractorTrackerService.CurrentContractor.BasicHourlyRate:F2}";
+                }
+                if (_contractorTrackerService.CurrentAttendanceLog != null && _contractorTrackerService.CurrentAttendanceLog.TimeIn.HasValue)
+                {
+                    UpdateTimeInOutState();
+                }
             }
         }
 
-        private void ReloadContractorInfo()
+        private async void RealTimeInfo()
         {
-            var contractor = _contractorTrackerService.CurrentContractor;
-            if (contractor != null)
+            if (_contractorTrackerService.CurrentContractor != null)
             {
-                TargetHours = contractor.MaximumWeeklyHours;
-                HoursRendered = _contractorTrackerService.TotalWeeklyHoursRendered;
-                HourlyRate = $"Php {contractor.BasicHourlyRate:F2}";
+                await Task.Run(() =>
+                {
+                    while (true)
+                    {
+                        HoursRendered = Math.Floor(_contractorTrackerService.TotalWeeklyHoursRendered * 100) / 100;
+                        Task.Delay(1000).Wait();
+                    }
+                });
             }
-            else
-                MessageBox.Show("Not loaded");
         }
-
-        //private async void UpdateGraphsLiveAsync()
-        //{
-
-        //}
 
         private void UpdateTimeInOutState()
         {
@@ -230,17 +279,28 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
 
         private void ExecuteLogout(object? obj)
         {
-            MessageBox.Show("Not implemented yet!");
+            
         }
 
-        private void ExecuteTimeOut(object? obj)
+        private async void ExecuteTimeOut(object? obj)
         {
-            UpdateTimeInOutState();
+            var log = await _contractorTrackerService.EndSession();
+            if (log != null)
+            {
+                OnPropertyChanged(nameof(AttendanceLogList));
+                UpdateTimeInOutState();
+            }
+            else
+                MessageBox.Show("Log not saved properly! Please contact administrator.");
         }
 
-        private void ExecuteTimeIn(object? obj)
+        private async void ExecuteTimeIn(object? obj)
         {
-            UpdateTimeInOutState();
+            var log = await _contractorTrackerService.StartSession();
+            if (log != null)
+                UpdateTimeInOutState();
+            else
+                MessageBox.Show("Session was not started properly! Please contact administrator.");
         }
 
         //Tests
