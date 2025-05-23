@@ -304,7 +304,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Grid.Column="0" Text="N/A" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeSalaryTax" Text="Php 00.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeSalaryTax" Text="Php 0.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
                                         

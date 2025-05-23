@@ -61,6 +61,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
                 FullName = user.AccountInfo.FullName;
                 Role = user.AccountInfo.Role;
                 Department = user.Department.Name;
+                EmploymentStatus = user.AccountInfo.EmploymentType.ToString();
                 WeeklyTarget = $"{_contractorTrackerService.CurrentContractor.MaximumWeeklyHours:G29} hours per week";
                 HourlyRate = $"Php {_contractorTrackerService.CurrentContractor.BasicHourlyRate:F2} per hour";
                 Email = user.Email != null ? user.Email : Email;
