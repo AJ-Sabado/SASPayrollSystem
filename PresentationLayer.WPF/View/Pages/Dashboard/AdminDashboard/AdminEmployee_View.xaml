@@ -13,233 +13,324 @@
 
     <Viewbox>
         <Grid x:Name="Canvas" Height="688" Width="1088">
-            <Grid x:Name="Base" Margin="20" Background="White">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="7*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="73*"/>
-                </Grid.RowDefinitions>
+            <Grid x:Name="Base" Margin="0,20,20,20" Background="White">
+                
+                <TabControl TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" 
+                                                    FontSize="10" 
+                                                    VerticalAlignment="Center"
+                                                   Width="100"
+                                                    TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.Resources>
 
-                <!-- TITLE -->
-                <TextBlock Grid.Row="0" Text="EMPLOYEE" 
-                       FontFamily="{StaticResource PoppinsBold}" 
-                       FontSize="30" Foreground="Black" 
-                       HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-                <!--SUMMARIES-->
-                <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" 
-                         VerticalAlignment="Stretch" Background="White" 
-                         UniformCornerRadius="10" BorderBrush="LightGray" 
-                         BorderThickness="1" Effect="{StaticResource CardEffects}"
-                         Padding="20,15" Margin="0,7.5">
-
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width=".7*"/>
-                            <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width="1.2*"/>
-                            <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width="1.1*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <!-- SEARCH BAR -->
-                        <Grid Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <!--ALL EMPLOYEES-->
+                    <TabItem Header="All Employee">
+                        <Grid Margin="20,0,0,0" Background="White">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="7*"/>
+                                <RowDefinition Height="20*"/>
+                                <RowDefinition Height="73*"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Row="0"
-                                       Text="Quick Search"
-                                       FontFamily="{StaticResource PoppinsMedium}" 
-                                       FontSize="15"
-                                       Foreground="Black"
-                                       HorizontalAlignment="Left"/>
+                            <!-- TITLE -->
+                            <TextBlock Grid.Row="0" Text="EMPLOYEE" 
+                                       FontFamily="{StaticResource PoppinsBold}" 
+                                       FontSize="30" Foreground="Black" 
+                                       HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-                            <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                <TextBox Grid.Row="1"
-                                         x:Name="tbSearchNameID"
-                                         materialDesign:HintAssist.Hint="Search Employee Name or ID"
-                                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                         BorderThickness="0"
-                                         VerticalAlignment="Center" Margin="0,5" Width="180" Height="30"
-                                         Padding="5"
-                                         FontFamily="{StaticResource PoppinsLight}" FontSize="10"/>
-                                <Button x:Name="SearchBtn" Background="Transparent" Foreground="{StaticResource BaseColorSCB}"
-                                        BorderBrush="Transparent" Style="{StaticResource MaterialDesignIconButton}"
-                                        Height="35" Width="35" Margin="5,0,0,0">
-                                    <materialDesign:PackIcon Kind="Search"/>
-                                </Button>
-                            </StackPanel>
+                            <!--SUMMARIES-->
+                            <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" 
+                                                 VerticalAlignment="Stretch" Background="White" 
+                                                 UniformCornerRadius="10" BorderBrush="LightGray" 
+                                                 BorderThickness="1" Effect="{StaticResource CardEffects}"
+                                                 Padding="20,15" Margin="0,7.5">
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width=".7*"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="1.2*"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="1.1*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- SEARCH BAR -->
+                                    <Grid Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0"
+                                                   Text="Quick Search"
+                                                   FontFamily="{StaticResource PoppinsMedium}" 
+                                                   FontSize="15"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                            <TextBox Grid.Row="1"
+                                                     x:Name="tbSearchNameID"
+                                                     materialDesign:HintAssist.Hint="Search Employee Name or ID"
+                                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                                     BorderThickness="0"
+                                                     VerticalAlignment="Center" Margin="0,5" Width="180" Height="30"
+                                                     Padding="5"
+                                                     FontFamily="{StaticResource PoppinsLight}" FontSize="10"/>
+                                            <Button x:Name="SearchBtn" Background="Transparent" Foreground="{StaticResource BaseColorSCB}"
+                                                    BorderBrush="Transparent" Style="{StaticResource MaterialDesignIconButton}"
+                                                    Height="35" Width="35" Margin="5,0,0,0">
+                                                <materialDesign:PackIcon Kind="Search"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <Rectangle Grid.Column="1" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
+                                    <Rectangle Grid.Column="3" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
+                                    <Rectangle Grid.Column="5" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
+
+                                    <!--Employee COunt-->
+                                    <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0"
+                                                   Text="250"
+                                                   FontFamily="{StaticResource PoppinsSemiBold}" 
+                                                   FontSize="25"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+                                        <TextBlock Grid.Row="1"
+                                                   Text="Total Number of Employees"
+                                                   FontFamily="{StaticResource PoppinsLight}" 
+                                                   FontSize="10"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+                                    </Grid>
+
+                                    <!-- Filters -->
+                                    <Grid Grid.Column="4" VerticalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0"
+                                                   Text="Filters"
+                                                   FontFamily="{StaticResource PoppinsMedium}" 
+                                                   FontSize="15"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+
+                                        <Grid Grid.Row="1" Margin="0,5,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Status Filter -->
+                                            <ComboBox x:Name="cbStatusFilter" Grid.Column="0"
+                                                      FontFamily="{StaticResource PoppinsRegular}"
+                                                      FontSize="13"
+                                                      SelectedIndex="0"
+                                                      materialDesign:HintAssist.Hint="Status">
+                                                <ComboBoxItem Content=""/>
+                                                <ComboBoxItem Content="Regular"/>
+                                                <ComboBoxItem Content="Independent Contractor"/>
+                                            </ComboBox>
+
+                                            <!-- Department Filter -->
+                                            <ComboBox x:Name="cbDepartmentFilter" Grid.Column="2"
+                                                      FontFamily="{StaticResource PoppinsRegular}"
+                                                      FontSize="13"
+                                                      SelectedIndex="0"
+                                                      materialDesign:HintAssist.Hint="Department">
+                                                <ComboBoxItem Content=""/>
+                                                <ComboBoxItem Content="HR"/>
+                                                <ComboBoxItem Content="IT"/>
+                                                <ComboBoxItem Content="Finance"/>
+                                            </ComboBox>
+                                        </Grid>
+                                    </Grid>
+
+                                    <!-- ACTIONS -->
+                                    <Grid Grid.Column="6" VerticalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0"
+                                                   Text="Actions"
+                                                   FontFamily="{StaticResource PoppinsMedium}" 
+                                                   FontSize="15"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+
+                                        <Grid Grid.Row="1" Margin="0,5,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="15"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Button x:Name="btnAddEmployee" Grid.Column="0"
+                                                    Background="LightGoldenrodYellow" Foreground="DarkGoldenrod"
+                                                    Height="30">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="AddCircleOutline" Height="18" Width="18"/>
+                                                    <TextBlock Text="  Add" FontFamily="{StaticResource PoppinsRegular}"
+                                                                FontSize="12"/>
+                                                </StackPanel>
+                                            </Button>
+
+                                            <Button x:Name="btnDeleteEmployee" Grid.Column="2"
+                                                        Background="Pink" BorderBrush="DarkRed" Foreground="DarkRed"
+                                                        Height="30">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="DeleteCircleOutline" Height="18" Width="18"/>
+                                                    <TextBlock Text="  Delete" FontFamily="{StaticResource PoppinsRegular}"
+                                                                FontSize="12"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </Grid>
+
+                                    </Grid>
+
+                                </Grid>
+                            </materialDesign:Card>
+
+                            <!--DATAGRID-->
+                            <materialDesign:Card Grid.Row="2" HorizontalAlignment="Stretch" 
+                                                 VerticalAlignment="Stretch" Background="White" 
+                                                 UniformCornerRadius="10" BorderBrush="LightGray" 
+                                                 BorderThickness="1" Effect="{StaticResource CardEffects}"
+                                                 Padding="20,15" Margin="0,7.5">
+
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                                VerticalScrollBarVisibility="Auto">
+                                    <DataGrid AutoGenerateColumns="False"
+                                              HeadersVisibility="Column"
+                                              CanUserAddRows="False"
+                                              Margin="0"
+                                              ItemsSource="{Binding Employees}"
+                                              SelectedItem="{Binding SelectedEmployee}"
+                                              materialDesign:DataGridAssist.CellPadding="10"
+                                              materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
+                                              RowHeight="40"
+                                              FontSize="14"
+                                              IsReadOnly="True"
+                                              HorizontalScrollBarVisibility="Auto"
+                                              VerticalScrollBarVisibility="Auto"
+                                              Background="Transparent">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="0.7*" />
+                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*" />
+                                            <DataGridTextColumn Header="Role" Binding="{Binding Position}" Width="1.5*" />
+                                            <DataGridTextColumn Header="Department" Binding="{Binding Department}" Width="2*" />
+                                            <DataGridTextColumn Header="Status" Binding="{Binding Name}" Width="1.3*" />
+                                            <DataGridTemplateColumn Header="Actions" Width="1.5*">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button Content="View" 
+                                                                Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                CommandParameter="{Binding}" 
+                                                                Style="{StaticResource MaterialDesignFlatButton}" 
+                                                                Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </ScrollViewer>
+
+                            </materialDesign:Card>
                         </Grid>
-
-                        <Rectangle Grid.Column="1" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
-                        <Rectangle Grid.Column="3" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
-                        <Rectangle Grid.Column="5" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
-
-                        <!--Employee COunt-->
-                        <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    </TabItem>
+                    
+                    <!--ONBOARDING REQUEST-->
+                    <TabItem Header="Requests">
+                        <Grid Margin="20,0,0,0" Background="White">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="7*"/>
+                                <RowDefinition Height="93*"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Row="0"
-                                       Text="250"
-                                       FontFamily="{StaticResource PoppinsSemiBold}" 
-                                       FontSize="25"
-                                       Foreground="Black"
-                                       HorizontalAlignment="Left"/>
-                            <TextBlock Grid.Row="1"
-                                       Text="Total Number of Employees"
-                                       FontFamily="{StaticResource PoppinsLight}" 
-                                       FontSize="10"
-                                       Foreground="Black"
-                                       HorizontalAlignment="Left"/>
-                        </Grid>
+                            <!-- TITLE -->
+                            <TextBlock Grid.Row="0" Text="ONBOARDING REQUESTS" 
+                                       FontFamily="{StaticResource PoppinsBold}" 
+                                       FontSize="30" Foreground="Black" 
+                                       HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-                        <!-- Filters -->
-                        <Grid Grid.Column="4" VerticalAlignment="Center">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                            <!--DATAGRID-->
+                            <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" 
+                                                 VerticalAlignment="Stretch" Background="White" 
+                                                 UniformCornerRadius="10" BorderBrush="LightGray" 
+                                                 BorderThickness="1" Effect="{StaticResource CardEffects}"
+                                                 Padding="20,15" Margin="0,7.5">
 
-                            <TextBlock Grid.Row="0"
-                                       Text="Filters"
-                                       FontFamily="{StaticResource PoppinsMedium}" 
-                                       FontSize="15"
-                                       Foreground="Black"
-                                       HorizontalAlignment="Left"/>
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                                VerticalScrollBarVisibility="Auto">
+                                    <DataGrid AutoGenerateColumns="False"
+                                              HeadersVisibility="Column"
+                                              CanUserAddRows="False"
+                                              Margin="0"
+                                              ItemsSource="{Binding Employees}"
+                                              SelectedItem="{Binding SelectedEmployee}"
+                                              materialDesign:DataGridAssist.CellPadding="10"
+                                              materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
+                                              RowHeight="40"
+                                              FontSize="14"
+                                              IsReadOnly="True"
+                                              HorizontalScrollBarVisibility="Auto"
+                                              VerticalScrollBarVisibility="Auto"
+                                              Background="Transparent">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Request ID" Binding="{Binding Id}" Width="1*" />
+                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1.5*" />
+                                            <DataGridTextColumn Header="Username" Binding="{Binding Name}" Width="1.5*" />
+                                            <DataGridTextColumn Header="Email" Binding="{Binding Name}" Width="1.5*" />
+                                            <DataGridTextColumn Header="Application Date" Binding="{Binding Position}" Width="1.5*" />
+                                            <DataGridTemplateColumn Header="Actions" Width="1.5*">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Button Content="View" 
+                                                                Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                CommandParameter="{Binding}" 
+                                                                Style="{StaticResource MaterialDesignFlatButton}" 
+                                                                Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </ScrollViewer>
 
-                            <Grid Grid.Row="1" Margin="0,5,0,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="20"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                            </materialDesign:Card>
 
-                                <!-- Status Filter -->
-                                <ComboBox x:Name="cbStatusFilter" Grid.Column="0"
-                                          FontFamily="{StaticResource PoppinsRegular}"
-                                          FontSize="13"
-                                          SelectedIndex="0"
-                                          materialDesign:HintAssist.Hint="Status">
-                                    <ComboBoxItem Content=""/>
-                                    <ComboBoxItem Content="Regular"/>
-                                    <ComboBoxItem Content="Independent Contractor"/>
-                                </ComboBox>
 
-                                <!-- Department Filter -->
-                                <ComboBox x:Name="cbDepartmentFilter" Grid.Column="2"
-                                          FontFamily="{StaticResource PoppinsRegular}"
-                                          FontSize="13"
-                                          SelectedIndex="0"
-                                          materialDesign:HintAssist.Hint="Department">
-                                    <ComboBoxItem Content=""/>
-                                    <ComboBoxItem Content="HR"/>
-                                    <ComboBoxItem Content="IT"/>
-                                    <ComboBoxItem Content="Finance"/>
-                                </ComboBox>
-                            </Grid>
-                        </Grid>
-
-                        <!-- ACTIONS -->
-                        <Grid Grid.Column="6" VerticalAlignment="Center">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Grid.Row="0"
-                                       Text="Actions"
-                                       FontFamily="{StaticResource PoppinsMedium}" 
-                                       FontSize="15"
-                                       Foreground="Black"
-                                       HorizontalAlignment="Left"/>
-
-                            <Grid Grid.Row="1" Margin="0,5,0,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="15"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Button x:Name="btnAddEmployee" Grid.Column="0"
-                                        Background="LightGoldenrodYellow" Foreground="DarkGoldenrod"
-                                        Height="30">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="AddCircleOutline" Height="18" Width="18"/>
-                                        <TextBlock Text="  Add" FontFamily="{StaticResource PoppinsRegular}"
-                                                   FontSize="12"/>
-                                    </StackPanel>
-                                </Button>
-
-                                <Button x:Name="btnDeleteEmployee" Grid.Column="2"
-                                        Background="Pink" BorderBrush="DarkRed" Foreground="DarkRed"
-                                        Height="30">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="DeleteCircleOutline" Height="18" Width="18"/>
-                                        <TextBlock Text="  Delete" FontFamily="{StaticResource PoppinsRegular}"
-                                                        FontSize="12"/>
-                                    </StackPanel>
-                                </Button>
-                            </Grid>
 
                         </Grid>
+                    </TabItem>
 
-                    </Grid>
-                </materialDesign:Card>
-
-                <!--DATAGRID-->
-                <materialDesign:Card Grid.Row="2" HorizontalAlignment="Stretch" 
-                                     VerticalAlignment="Stretch" Background="White" 
-                                     UniformCornerRadius="10" BorderBrush="LightGray" 
-                                     BorderThickness="1" Effect="{StaticResource CardEffects}"
-                                     Padding="20,15" Margin="0,7.5">
-
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                                  VerticalScrollBarVisibility="Auto">
-                        <DataGrid AutoGenerateColumns="False"
-                                  HeadersVisibility="Column"
-                                  CanUserAddRows="False"
-                                  Margin="0"
-                                  ItemsSource="{Binding Employees}"
-                                  SelectedItem="{Binding SelectedEmployee}"
-                                  materialDesign:DataGridAssist.CellPadding="10"
-                                  materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
-                                  RowHeight="40"
-                                  FontSize="14"
-                                  IsReadOnly="True"
-                                  HorizontalScrollBarVisibility="Auto"
-                                  VerticalScrollBarVisibility="Auto"
-                                  Background="Transparent">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="0.7*" />
-                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*" />
-                                <DataGridTextColumn Header="Role" Binding="{Binding Position}" Width="1.5*" />
-                                <DataGridTextColumn Header="Department" Binding="{Binding Department}" Width="2*" />
-                                <DataGridTextColumn Header="Status" Binding="{Binding Name}" Width="1.3*" />
-                                <DataGridTemplateColumn Header="Actions" Width="1.5*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Content="View" 
-                                    Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                    CommandParameter="{Binding}" 
-                                    Style="{StaticResource MaterialDesignFlatButton}" 
-                                    Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </ScrollViewer>
-
-                </materialDesign:Card>
+                </TabControl>
 
 
+                
 
             </Grid>
         </Grid>
