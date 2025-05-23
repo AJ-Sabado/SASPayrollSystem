@@ -36,7 +36,7 @@ namespace ServicesLayer
                 CurrentWeekAttendanceLogs.Clear();
             }
 
-            CurrentContractor = await _unitOfWork.ContractorRepository.GetAsync(c => c.UserId == UserId, includeProperties: "ContractorAttendanceLogs");
+            CurrentContractor = await _unitOfWork.ContractorRepository.GetAsync(c => c.UserId == UserId, includeProperties: "ContractorAttendanceLogs,ContractorPayslips");
 
             UpdateCurrentWeekAttendanceLog();
             return CurrentContractor;

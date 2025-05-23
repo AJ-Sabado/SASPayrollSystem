@@ -515,6 +515,14 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
                 user.AccountInfo.BankAccountName = SetStringValue(user.AccountInfo.BankAccountName, BankAccountName);
                 user.AccountInfo.BankAccountId = SetStringValue(user.AccountInfo.BankAccountId, BankAccountNumber);
 
+
+                //To be added - model data validation later
+                //try
+                //{
+                //    _unitOfWork.
+                //}
+
+
                 try
                 { await _unitOfWork.Save(); }
                 catch (Exception ex)

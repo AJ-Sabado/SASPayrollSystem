@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using DomainLayer.Enums.EmployeeAttendanceLog;
 using DomainLayer.Models.Employee;
+using DomainLayer.Services;
 
 namespace DomainLayer.Models.EmployeeAttendanceLog
 {
@@ -21,5 +22,7 @@ namespace DomainLayer.Models.EmployeeAttendanceLog
 
         [Column(TypeName = "tinyint")]
         public AttendanceLogEventType EventType { get; set; } = AttendanceLogEventType.TimeIn;
+
+        public string BusinessId { get; set; } = BusinessIdGenerator.GenerateEmployeeAttendanceLogId();
     }
 }

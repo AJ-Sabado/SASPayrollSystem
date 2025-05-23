@@ -20,6 +20,7 @@
         MouseDown="Window_MouseDown"
         ResizeMode="CanResize"
         WindowState="Maximized">
+    
     <Window.Resources>
         <helpers:MenuSelectionConverter x:Key="MenuSelectionConverter"/>
     </Window.Resources>
@@ -30,14 +31,16 @@
                 <ColumnDefinition Width="15*" />
                 <ColumnDefinition Width="85*" />
             </Grid.ColumnDefinitions>
-
-            <customControl:SideMenuBar 
-             SelectedMenu="{Binding SelectedMenu}" 
-             DashboardCommand="{Binding ShowDashboardCommand}"
-             JobDeskCommand="{Binding ShowJobDeskCommand}"
-             AccountsCommand="{Binding ShowAccountsCommand}"
-             Grid.Column="0" />
-
+            <customControl:AdminSideMenuBar
+                SelectedMenu="{Binding SelectedMenu}" 
+                DashboardCommand="{Binding ShowDashboardCommand}"
+                PayrollCommand="{Binding ShowPayrollCommand}"
+                EmployeeCommand="{Binding ShowEmployeeCommand}"
+                WorkLogsCommand="{Binding ShowWorkLogsCommand}"
+                AdministrationCommand="{Binding ShowAdministrationCommand}"
+                AccountCommand="{Binding ShowAccountCommand}"
+                Grid.Column="0"/>
+            
             <Grid Grid.Column ="1" x:Name="_showArea">
                 <ContentControl Content="{Binding CurrentView}" />
             </Grid>

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 
 namespace PresentationLayer.WPF.Services
 {
@@ -7,6 +8,7 @@ namespace PresentationLayer.WPF.Services
         private IServiceProvider _serviceProvider;
 
         private Window? _currentWindow = null;
+        private Window? _nextWindow = null;
 
         public WindowService(IServiceProvider serviceProvider)
         {
@@ -22,10 +24,25 @@ namespace PresentationLayer.WPF.Services
             }
             else
             {
-                var window = DIGetRequiredService<T>(_serviceProvider);
-                window.Show();
+                _nextWindow = DIGetRequiredService<T>(_serviceProvider);
                 _currentWindow.Close();
-                _currentWindow = window;
+            }
+            _currentWindow.Closed += OnWindowClosed;
+        }
+
+        private void OnWindowClosed(object? sender, EventArgs e)
+        {
+            if (_nextWindow != null && _currentWindow != null)
+            {
+                _currentWindow = _nextWindow;
+                _nextWindow = null;
+                _currentWindow.Show();
+                return;
+            }
+
+            if (_currentWindow != null)
+            {
+                _currentWindow.Close();
             }
         }
 

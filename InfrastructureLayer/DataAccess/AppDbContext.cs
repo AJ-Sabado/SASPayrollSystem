@@ -2,6 +2,7 @@
 using DomainLayer.Models.Contractor;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
+using DomainLayer.Models.EmployeePayslip;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
@@ -18,7 +19,11 @@ namespace InfrastructureLayer.DataAccess
         private const string connectionStringNoreen = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SASPayrollDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+<<<<<<< HEAD
             optionsBuilder.UseSqlServer(connectionStringNoreen);
+=======
+            optionsBuilder.UseSqlServer(connectionStringAFA);
+>>>>>>> 25effef1cfba1c623c6219a8bcb2a3d445dcdf3f
             base.OnConfiguring(optionsBuilder);
         }
 

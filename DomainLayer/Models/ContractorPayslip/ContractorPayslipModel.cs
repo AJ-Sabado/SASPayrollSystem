@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using DomainLayer.Enums.EmployeePayslip;
 using DomainLayer.Models.Contractor;
 
 namespace DomainLayer.Models.ContractorPayslip
@@ -21,13 +22,14 @@ namespace DomainLayer.Models.ContractorPayslip
         public DateOnly PayDate { get; set; }
 
         //For historical accuracy
-
         [Column(TypeName = "money")]
         public decimal AppliedHourlyRate { get; set; }
-        
         public decimal TotalHoursRendered { get; set; } = 0;
 
         [Column(TypeName = "money")]
         public decimal NetPay { get; set; } = 0;
+
+        [Column(TypeName = "tinyint")]
+        public EmployeePayslipStatus PayslipStatus { get; set; } = EmployeePayslipStatus.Pending;
     }
 }

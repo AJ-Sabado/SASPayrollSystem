@@ -1,4 +1,5 @@
-﻿using InfrastructureLayer.DataAccess;
+﻿using System.Windows;
+using InfrastructureLayer.DataAccess;
 using Microsoft.Extensions.DependencyInjection;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages;
@@ -17,7 +18,6 @@ using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular;
 using PresentationLayer.WPF.ViewModel.PopUpViewModel;
 using PresentationLayer.WPF.ViewModel.RegularViewModel;
 using ServicesLayer;
-using System.Windows;
 
 namespace SASPayrolSystemProject
 {
@@ -42,7 +42,11 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
+<<<<<<< HEAD
             windowService.ShowWindow<Warning_View>();
+=======
+            windowService.ShowWindow<MainWindow>();
+>>>>>>> 25effef1cfba1c623c6219a8bcb2a3d445dcdf3f
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -75,6 +79,14 @@ namespace SASPayrolSystemProject
 
             services.AddTransient<AdminDashPage_View>();
             services.AddTransient<AdminDashPage_ViewModel>();
+            services.AddTransient<AdminEmployee_View>();
+            services.AddTransient<AdminEmployee_ViewModel>();
+            services.AddTransient<AdminWorkforce_View>();
+            services.AddTransient<AdminWorkforce_ViewModel>();
+            services.AddTransient<AdminAdminPage_View>();
+            services.AddTransient<AdminAdminPage_ViewModel>();
+            services.AddTransient<AdminPayrollPage_View>();
+            services.AddTransient<AdminPayrollPage_ViewModel>();
 
             //Popups
             services.AddTransient<FileLeaveForm_View>();

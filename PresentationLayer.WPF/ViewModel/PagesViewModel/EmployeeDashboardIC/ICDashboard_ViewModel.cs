@@ -8,6 +8,8 @@ using DomainLayer.Models.ContractorAttendanceLog;
 using LiveCharts;
 using LiveCharts.Wpf;
 using Microsoft.IdentityModel.Tokens;
+using PresentationLayer.WPF.Services;
+using SASPayrolSystemProject;
 using ServicesLayer;
 
 namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
@@ -17,6 +19,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
         private TimeInOut _timeInOutState = TimeInOut.TimeIn;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IContractorTrackerService _contractorTrackerService;
+        private readonly IWindowService _windowService;
 
         private SeriesCollection _seriesCollection;
         public SeriesCollection SeriesCollection 
@@ -159,10 +162,11 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
 
 
         //Constructor
-        public ICDashboard_ViewModel(IUnitOfWork unitOfWork, IContractorTrackerService contractorTrackerService)
+        public ICDashboard_ViewModel(IUnitOfWork unitOfWork, IContractorTrackerService contractorTrackerService, IWindowService windowService)
         {
             _unitOfWork = unitOfWork;
             _contractorTrackerService = contractorTrackerService;
+            _windowService = windowService;
 
             CalculateChartValues();
 
@@ -217,7 +221,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
         {
             if (_contractorTrackerService.CurrentContractor != null)
             {
-                foreach (var attendanceLog in _contractorTrackerService.CurrentContractor.ContractorAttendanceLogs)
+                foreach (var attendanceLog in _contractorTrackerService.CurrentWeekAttendanceLogs)
                 {
                     _weeklyHoursChartValues[(int)attendanceLog.Date.DayOfWeek] += attendanceLog.Duration;
                 }
@@ -279,11 +283,22 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
 
         private void ExecuteLogout(object? obj)
         {
-            
+            try
+            {
+                _windowService.ShowWindow<MainWindow>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private async void ExecuteTimeOut(object? obj)
         {
+            //Add message box verfication
+            var result = MessageBox.Show("Are you sure you want to end session?", "End Session", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.No)
+                return;
             var log = await _contractorTrackerService.EndSession();
             if (log != null)
             {

@@ -296,6 +296,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
             if (_employee != null)
             {
                 AttendanceLogList = _employee.EmployeeAttendanceLogs.ToList();
+                OnPropertyChanged(nameof(AttendanceLogList));
             }
         }
 

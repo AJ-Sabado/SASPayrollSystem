@@ -1,10 +1,12 @@
-﻿using DomainLayer.Defaults;
+﻿using System.Globalization;
+using DomainLayer.Defaults;
 using DomainLayer.Enums;
 using DomainLayer.Enums.EmployeeAttendanceLog;
 using DomainLayer.Enums.EmployeeEvaluatedAttendance;
 using DomainLayer.Enums.EmployeePersonalInfo;
 using DomainLayer.Models.Admin;
 using DomainLayer.Models.Contractor;
+using DomainLayer.Models.ContractorPayslip;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.EmployeeAccountInfo;
@@ -460,7 +462,7 @@ namespace ServicesLayer
                     //Check if the day is a holiday
                     var holiday = holidays
                         .FirstOrDefault(h => h.Date == currentDay);
-                    if (holiday != null)
+                    if (holiday != null && holiday.Type != HolidayType.SpecialWorking)
                     {
                         evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Holiday;
                         evaluatedAttendance.ExpectedWorkHours = 0;
@@ -580,6 +582,10 @@ namespace ServicesLayer
                 {
                     evaluatedAttendance.ActualWorkHours = Math.Floor(evaluatedAttendance.ActualWorkHours);
                 }
+                else
+                {
+                    evaluatedAttendance.ActualWorkHours = Math.Ceiling(evaluatedAttendance.ActualWorkHours * 100) / 100;
+                }
             }
 
             //Calculate overtime hours
@@ -633,6 +639,7 @@ namespace ServicesLayer
                     };
                     employee.EmployeePayslips.Add(payslip);
                 }
+
                 //Update historical data
                 payslip.AppliedHourlyRate = SalaryConverter.ConvertDailyToHourly(employee.BasicDailyRate, employee.ExpectedWorkHours);
 
@@ -690,9 +697,56 @@ namespace ServicesLayer
                     = payslip.BasicPay + payslip.HolidayPay + payslip.NightDifferentialPay + payslip.OvertimePay + payslip.PaidLeaves
                         + payslip.Bonus + payslip.Allowances;
                 payslip.WithholdingTax = ContributionCalculator.CalculateWithholdingTax(payslip.GrossPay);
-                payslip.TotalDeductions = payslip.WithholdingTax + payslip.GovernmentContributions
-                    + payslip.LoanDeductions + payslip.UTDeductions;
+                payslip.TotalDeductions = Math.Ceiling((payslip.WithholdingTax + payslip.GovernmentContributions
+                    + payslip.LoanDeductions + payslip.UTDeductions) * 100) / 100;
                 payslip.NetSalary = payslip.GrossPay - payslip.TotalDeductions;
+            }
+            await Save();
+        }
+
+        public async Task GenerateAllContractorPayslips(DateOnly periodStart, DateOnly periodEnd, DateOnly payDate)
+        {
+            var contractors = await ContractorRepository.GetManyAsync(includeProperties: "ContractorAttendanceLogs,ContractorPayslips");
+            foreach (var contractor in contractors)
+            {
+                var payslip = contractor.ContractorPayslips.FirstOrDefault(p => p.PeriodStart == periodStart && p.PeriodEnd == periodEnd && p.PayDate == payDate);
+                if (payslip == null)
+                {
+                    payslip = new ContractorPayslipModel()
+                    {
+                        ContractorId = contractor.ContractorId,
+                        Contractor = contractor,
+                        PeriodStart = periodStart,
+                        PeriodEnd = periodEnd,
+                        PayDate = payDate
+                    };
+                    contractor.ContractorPayslips.Add(payslip);
+                }
+                payslip.AppliedHourlyRate = contractor.BasicHourlyRate;
+                //Reset hours rendered value
+                payslip.TotalHoursRendered = 0;
+                //Obtains valid attendance logs within period
+                var validAttendanceLogs = contractor.ContractorAttendanceLogs.Where(c => c.Date >= periodStart && c.Date <= periodEnd);
+                //Groups attendance logs by weekly
+                var groupedWeeklyAttendanceLogs = validAttendanceLogs
+                    .GroupBy(date => CultureInfo.InvariantCulture.Calendar
+                        .GetWeekOfYear(
+                            date.Date.ToDateTime(TimeOnly.MinValue),
+                            CalendarWeekRule.FirstDay,
+                            DayOfWeek.Sunday)
+                    ).OrderBy(group => group.Key);
+                //Processes total duration by weekly
+                foreach (var week in groupedWeeklyAttendanceLogs)
+                {
+                    decimal totalWeeklyHours = 0;
+                    foreach (var log in week)
+                    {
+                        totalWeeklyHours += log.Duration;
+                    }
+                    payslip.TotalHoursRendered += totalWeeklyHours < contractor.MaximumWeeklyHours ? totalWeeklyHours : contractor.MaximumWeeklyHours;
+                }
+                payslip.TotalHoursRendered = Math.Floor(payslip.TotalHoursRendered * 100) / 100;
+                payslip.NetPay = Math.Floor(payslip.TotalHoursRendered * payslip.AppliedHourlyRate * 100) / 100;
             }
             await Save();
         }

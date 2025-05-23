@@ -14,5 +14,7 @@ namespace DomainLayer.Models.Holiday
 
         [Column(TypeName = "tinyint")]
         public HolidayType Type { get; set; } = HolidayType.Regular;
+
+        public string Description { get; set; } = string.Empty;
     }
 }

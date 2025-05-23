@@ -32,7 +32,7 @@
                 <ColumnDefinition Width="85*" />
             </Grid.ColumnDefinitions>
 
-            <customControl:SideMenuBar 
+            <customControl:SideMenuBar_Admin 
                 SelectedMenu="{Binding SelectedMenu}" 
                 DashboardCommand="{Binding ShowDashboardCommand}"
                 JobDeskCommand="{Binding ShowJobDeskCommand}"

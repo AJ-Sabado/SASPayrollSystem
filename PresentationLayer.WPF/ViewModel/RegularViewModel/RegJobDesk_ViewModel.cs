@@ -481,6 +481,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                     MessageBox.Show("You cannot edit this attendance request because it is already approved or rejected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+            OnPropertyChanged(nameof(AttendanceRequestList));
         }
 
         private void FileLeave(object? obj)

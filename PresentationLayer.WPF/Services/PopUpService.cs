@@ -33,7 +33,7 @@ namespace PresentationLayer.WPF.Services
                 IdSource = idSource;
             }
             _currentPopup = DIGetRequiredService<T>(_serviceProvider);
-            _currentPopup.Show();
+            bool? dialog = _currentPopup.ShowDialog();
         }
 
         //Resolves GetRequiredService for DI conflict

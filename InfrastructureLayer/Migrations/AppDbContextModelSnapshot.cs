@@ -68,6 +68,10 @@ namespace InfrastructureLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("BusinessId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("ContractorId")
                         .HasColumnType("uniqueidentifier");
 
@@ -104,6 +108,9 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<DateOnly>("PayDate")
                         .HasColumnType("date");
+
+                    b.Property<byte>("PayslipStatus")
+                        .HasColumnType("tinyint");
 
                     b.Property<DateOnly>("PeriodEnd")
                         .HasColumnType("date");
@@ -309,6 +316,10 @@ namespace InfrastructureLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("BusinessId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date");
 
@@ -342,6 +353,10 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<TimeOnly?>("BreakStart")
                         .HasColumnType("time");
+
+                    b.Property<string>("BusinessId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
@@ -427,6 +442,10 @@ namespace InfrastructureLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("BusinessId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateOnly>("DateOfAbsenceStart")
                         .HasColumnType("date");
 
@@ -462,7 +481,7 @@ namespace InfrastructureLayer.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("AppliedHourlyRate")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("money");
 
                     b.Property<decimal>("AppliedLegalHolidayRate")
                         .HasColumnType("decimal(18,2)");
@@ -565,6 +584,10 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("Type")
                         .HasColumnType("tinyint");

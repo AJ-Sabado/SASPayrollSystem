@@ -307,6 +307,7 @@
                                               Width="726.5"
                                               >
                                         <DataGrid.Columns>
+                                            <DataGridTextColumn Header="ID" IsReadOnly="True" Width="*" Binding="{Binding BusinessId, Mode=OneWay}"/>
                                             <DataGridTextColumn Header="Date" IsReadOnly="True" Width="*" Binding="{Binding Date, Mode=OneWay}"/>
                                             <DataGridTextColumn Header="Time Stamp" IsReadOnly="True" Width="*" Binding="{Binding TimeStamp, Mode=OneWay}"/>
                                             <DataGridTextColumn Header="Event Type" IsReadOnly="True" Width="*"  Binding="{Binding EventType, Mode=OneWay}"/>
