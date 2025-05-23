@@ -24,7 +24,9 @@ namespace DomainLayer.Models.EmployeePayslip
         public DateOnly PayDate { get; set; }
 
         //Historical Data
+        [Column(TypeName = "money")]
         public decimal AppliedHourlyRate { get; set; } = 0;
+
         public decimal AppliedNDRate { get; set; } = 0.1m;
         public decimal AppliedLegalHolidayRate { get; set; } = 1.3m;
         public decimal AppliedOvertimeRate { get; set; } = 1.25m;
