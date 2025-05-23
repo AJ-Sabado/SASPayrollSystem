@@ -22,10 +22,8 @@ namespace DomainLayer.Models.ContractorPayslip
         public DateOnly PayDate { get; set; }
 
         //For historical accuracy
-
         [Column(TypeName = "money")]
         public decimal AppliedHourlyRate { get; set; }
-
         public decimal TotalHoursRendered { get; set; } = 0;
 
         [Column(TypeName = "money")]

@@ -123,18 +123,18 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 Properties.Settings.Default.CurrentUserGuid = user.UserId;
                 Properties.Settings.Default.Save();
                 await Task.Delay(2000);
+                var periodStart = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 16);
+                var periodEnd = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 31);
+                var payDate = new DateOnly(DateTime.Now.Year, DateTime.Now.Month + 1, 15);
                 if (user.Role.NormalizedName == "EMPLOYEE" && user.Employee != null)
                 {
 
 
                     //Test attendance evaluation
-                    var periodStart = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 16);
-                    var periodEnd = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 31);
-                    var payDate = new DateOnly(DateTime.Now.Year, DateTime.Now.Month + 1, 15);
                     try
                     {
-                        await _unitOfWork.EvaluateAllEmployeeAttendanceLog(periodStart, periodEnd);
-                        await _unitOfWork.GenerateAllEmployeePayslips(periodStart, periodEnd, payDate);
+                        //await _unitOfWork.EvaluateAllEmployeeAttendanceLog(periodStart, periodEnd);
+                        //await _unitOfWork.GenerateAllEmployeePayslips(periodStart, periodEnd, payDate);
                         _windowService.ShowWindow<EmployeeDahboard_View>();
                     }
                     catch (Exception ex)
@@ -148,6 +148,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 {
                     try
                     {
+                        //await _unitOfWork.GenerateAllContractorPayslips(periodStart, periodEnd, payDate);
                         _windowService.ShowWindow<EmployeeDashboardIC_View>();
                     }
                     catch (Exception ex)
