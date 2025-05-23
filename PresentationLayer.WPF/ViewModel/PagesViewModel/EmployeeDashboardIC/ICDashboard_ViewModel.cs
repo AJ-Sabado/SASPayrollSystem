@@ -8,6 +8,8 @@ using DomainLayer.Models.ContractorAttendanceLog;
 using LiveCharts;
 using LiveCharts.Wpf;
 using Microsoft.IdentityModel.Tokens;
+using PresentationLayer.WPF.Services;
+using SASPayrolSystemProject;
 using ServicesLayer;
 
 namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
@@ -17,6 +19,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
         private TimeInOut _timeInOutState = TimeInOut.TimeIn;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IContractorTrackerService _contractorTrackerService;
+        private readonly IWindowService _windowService;
 
         private SeriesCollection _seriesCollection;
         public SeriesCollection SeriesCollection 
@@ -159,10 +162,11 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
 
 
         //Constructor
-        public ICDashboard_ViewModel(IUnitOfWork unitOfWork, IContractorTrackerService contractorTrackerService)
+        public ICDashboard_ViewModel(IUnitOfWork unitOfWork, IContractorTrackerService contractorTrackerService, IWindowService windowService)
         {
             _unitOfWork = unitOfWork;
             _contractorTrackerService = contractorTrackerService;
+            _windowService = windowService;
 
             CalculateChartValues();
 
@@ -279,7 +283,14 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
 
         private void ExecuteLogout(object? obj)
         {
-            
+            try
+            {
+                _windowService.ShowWindow<MainWindow>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private async void ExecuteTimeOut(object? obj)

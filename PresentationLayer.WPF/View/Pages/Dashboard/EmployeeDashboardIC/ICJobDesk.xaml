@@ -61,10 +61,10 @@
                                     </Image>
 
                                     <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                        <TextBlock x:Name="txtEmployeeName" Text="John Jane S. Doe Smoth"
+                                        <TextBlock x:Name="txtEmployeeName" Text="{Binding FullName}"
                                                     FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                      HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                        <TextBlock x:Name="txtEmployeePosition" Text="Senior Software Developer"
+                                        <TextBlock x:Name="txtEmployeePosition" Text="{Binding Role}"
                                                     FontFamily="{StaticResource PoppinsLight}" FontSize="12"
                                                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                     </StackPanel>
@@ -87,7 +87,7 @@
                                 </Border>
 
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock x:Name="txtEmployeeDepartment" Text="Front End Developer"
+                                    <TextBlock x:Name="txtEmployeeDepartment" Text="{Binding Department}"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                     <TextBlock Text="Department"
@@ -106,7 +106,7 @@
                                 </Border>
 
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock x:Name="txtEmployeeStatus" Text="Regular Employee"
+                                    <TextBlock x:Name="txtEmployeeStatus" Text="{Binding EmploymentStatus}"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                     <TextBlock Text="Employment Status"
@@ -125,7 +125,7 @@
                                 </Border>
 
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock x:Name="txtEmployeeShift" Text="40 hours per week"
+                                    <TextBlock x:Name="txtEmployeeShift" Text="{Binding WeeklyTarget}"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                  HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                     <TextBlock Text="Weekly Target"
@@ -144,7 +144,7 @@
                                 </Border>
 
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <TextBlock x:Name="txtEmployeeRate" Text="Php 500.00 per hour"
+                                    <TextBlock x:Name="txtEmployeeRate" Text="{Binding HourlyRate}"
                                                     FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                     <TextBlock Text="Hourly Rate"
@@ -168,7 +168,7 @@
                                     <TextBlock Text="Email"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                    <TextBlock  x:Name="txtEmployeeEmail" Text="j.smith@umindanao.edu.ph"
+                                    <TextBlock  x:Name="txtEmployeeEmail" Text="{Binding Email}"
                                                 FontFamily="{StaticResource PoppinsLight}" FontSize="12"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 </StackPanel>
@@ -186,7 +186,7 @@
                                     <TextBlock  Text="Phone"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                    <TextBlock x:Name="txtEmployeePhoneNumber" Text="+63 945 784 1258"
+                                    <TextBlock x:Name="txtEmployeePhoneNumber" Text="{Binding Phone}"
                                                 FontFamily="{StaticResource PoppinsLight}" FontSize="12"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 </StackPanel>
@@ -204,7 +204,7 @@
                                     <TextBlock Text="Website"
                                                 FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                    <TextBlock  x:Name="txtEmployeeWebsite" Text="www.github.com/wafu"
+                                    <TextBlock  x:Name="txtEmployeeWebsite" Text="{Binding Website}"
                                                 FontFamily="{StaticResource PoppinsLight}" FontSize="12"
                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 </StackPanel>
@@ -264,7 +264,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Grid.Column="0" Text="Hourly Rate" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtPayslipHourlyRate" Text="Php 40.00 per Hour" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtPayslipHourlyRate" Text="{Binding HourlyRate}" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
                                         <!--TOTAL HOURS RENDERED-->
@@ -275,7 +275,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Grid.Column="0" Text="Total Hours Rendered" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeBonus" Text="40 Hours" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeBonus" Text="{Binding TotalHoursRendered}" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
                                         <Rectangle Fill="Gray" Height="0.5" Margin="0,2"/>
@@ -288,7 +288,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Grid.Column="0" Text="Gross Pay" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Foreground="{StaticResource BaseColorSCB}"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeGrossPay" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Foreground="{StaticResource BaseColorSCB}" HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeGrossPay" Text="{Binding GrossPay}" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Foreground="{StaticResource BaseColorSCB}" HorizontalAlignment="Right"/>
                                         </Grid>
 
                                         <Rectangle Fill="Gray" Height="0.5" Margin="0,2"/>
@@ -304,7 +304,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Grid.Column="0" Text="N/A" FontFamily="{StaticResource PoppinsRegular}" FontSize="16"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeSalaryTax" Text="Php 00.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeSalaryTax" Text="Php 0.00" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
                                         
@@ -319,7 +319,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Grid.Column="0" Text="Net Salary" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="16" Foreground="DarkGreen"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeNetSalary" Text="Php 10,000.00" FontFamily="{StaticResource PoppinsSemiBold}" Foreground="DarkGreen" FontSize="16" HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtEmployeeNetSalary" Text="{Binding NetSalary}" FontFamily="{StaticResource PoppinsSemiBold}" Foreground="DarkGreen" FontSize="16" HorizontalAlignment="Right"/>
                                         </Grid>
 
                                         <Rectangle Fill="Gray" Height="0.5" Margin="0,2"/>
@@ -332,7 +332,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Grid.Column="0" Text="Payroll Date" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="10"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtPayrollDate" Text="January 15, 2025 - February 01, 2025" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="10" HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtPayrollDate" Text="{Binding PayrollDate}" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="10" HorizontalAlignment="Right"/>
                                         </Grid>
 
                                         <!--Payroll Status-->
@@ -343,7 +343,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <TextBlock Grid.Column="0" Text="Payroll Status" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="10"/>
-                                            <TextBlock Grid.Column="1" x:Name="txtPayrollStatus" Text="Released (February 05, 2025)" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="10" HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Column="1" x:Name="txtPayrollStatus" Text="{Binding PayrollStatus}" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="10" HorizontalAlignment="Right"/>
                                         </Grid>
                                     </StackPanel>
                                 </TabItem>
@@ -373,7 +373,9 @@
                                                             EnableRowVirtualization="True"
                                                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                             ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                                            Style="{StaticResource MaterialDesignDataGrid}">
+                                                            ItemsSource="{Binding AttendanceLogList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                            IsReadOnly="True"
+                                                            Style="{StaticResource MaterialDesignDataGrid}" Width="665">
 
                                                     <DataGrid.Resources>
                                                         <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
@@ -383,11 +385,10 @@
                                                     </DataGrid.Resources>
 
                                                     <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="Date" Width="150"/>
-                                                        <DataGridTextColumn Header="Time In" Width="150"/>
-                                                        <DataGridTextColumn Header="Time Out" Width="150"/>
-                                                        <DataGridTextColumn Header="Status" Width="150"/>
-                                                        <DataGridTextColumn Header="Duration" Width="150"/>
+                                                        <DataGridTextColumn Header="Date" Width="*" Binding="{Binding Date}"/>
+                                                        <DataGridTextColumn Header="Time In" Width="*" Binding="{Binding TimeIn, StringFormat='{}{0:hh:mm:ss tt}'}"/>
+                                                        <DataGridTextColumn Header="Time Out" Width="*" Binding="{Binding TimeOut, StringFormat='{}{0:hh:mm:ss tt}'}"/>
+                                                        <DataGridTextColumn Header="Duration" Width="*" Binding="{Binding Duration, StringFormat=F2}"/>
                                                     </DataGrid.Columns>
                                                 </DataGrid>
                                             </ScrollViewer>
@@ -408,7 +409,7 @@
                                                     <TextBlock Text="Total Hours Taken"
                                                                 FontFamily="{StaticResource PoppinsMedium}" FontSize="16"
                                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                                    <TextBlock Text="36 Hours"
+                                                    <TextBlock Text="{Binding SummaryTotalHoursTaken}"
                                                                 FontFamily="{StaticResource PoppinsRegular}" FontStyle="Italic" FontSize="14"
                                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                                 </StackPanel>
@@ -417,7 +418,7 @@
                                                     <TextBlock Text="Total Hours Remaining"
                                                                 FontFamily="{StaticResource PoppinsMedium}" FontSize="16"
                                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                                    <TextBlock Text="36 Hours"
+                                                    <TextBlock Text="{Binding SummaryTotalHoursRemaining}"
                                                                 FontFamily="{StaticResource PoppinsRegular}" FontStyle="Italic" FontSize="14"
                                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                                 </StackPanel>
@@ -433,7 +434,7 @@
                                                     <TextBlock Text="Average Daily Hours"
                                                                 FontFamily="{StaticResource PoppinsMedium}" FontSize="16"
                                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                                    <TextBlock Text="36 Hours"
+                                                    <TextBlock Text="{Binding SummaryAverageDailyHours}"
                                                                 FontFamily="{StaticResource PoppinsRegular}" FontStyle="Italic" FontSize="14"
                                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                                 </StackPanel>
@@ -442,7 +443,7 @@
                                                     <TextBlock Text="Longest Session"
                                                                 FontFamily="{StaticResource PoppinsMedium}" FontSize="16"
                                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                                    <TextBlock Text="36 Hours"
+                                                    <TextBlock Text="{Binding SummaryLongestSession}"
                                                                 FontFamily="{StaticResource PoppinsRegular}" FontStyle="Italic" FontSize="14"
                                                                 HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                                 </StackPanel>

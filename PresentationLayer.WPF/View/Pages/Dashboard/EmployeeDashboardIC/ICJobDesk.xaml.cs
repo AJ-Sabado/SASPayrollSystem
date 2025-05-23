@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC;
 
 namespace PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardIC
 {
@@ -20,9 +21,12 @@ namespace PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardIC
     /// </summary>
     public partial class ICJobDesk : UserControl
     {
-        public ICJobDesk()
+        public ICJobDesk(ICJobDesk_ViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
+
+        
     }
 }
