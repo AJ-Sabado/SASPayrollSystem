@@ -19,9 +19,34 @@ namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
     /// </summary>
     public partial class Success_View : Window
     {
+        public string MessageText
+        {
+            get { return MessageTextBlock.Text; }
+            set { MessageTextBlock.Text = value; }
+        }
+
+        public SuccessResult Result { get; private set; } = SuccessResult.NONE;
+
         public Success_View()
         {
             InitializeComponent();
+
+            btnOkay.Click += BtnOkay_Click;
         }
+
+        private void BtnOkay_Click(object sender, RoutedEventArgs e)
+        {
+            Result = SuccessResult.OKAY;
+            this.DialogResult = true;  // optional
+            this.Close();
+        }
+
     }
+
+    public enum SuccessResult
+    {
+        OKAY,
+        NONE
+    }
+
 }
