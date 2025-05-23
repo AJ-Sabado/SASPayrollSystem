@@ -171,7 +171,8 @@
                                           IsReadOnly="True"
                                           HorizontalScrollBarVisibility="Auto"
                                           VerticalScrollBarVisibility="Auto"
-                                          Background="Transparent">
+                                          Background="Transparent"
+                                          >
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Employee ID" Binding="{Binding Id}" Width="1*" />
                                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*" />

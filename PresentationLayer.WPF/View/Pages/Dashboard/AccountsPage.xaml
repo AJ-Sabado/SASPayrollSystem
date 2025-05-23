@@ -117,8 +117,6 @@
                                                           ItemsSource="{helpers:EnumBindingSource domainAccountInfo:Nationality}"
                                                             SelectedItem="{Binding SelectedNationality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                           />
-
-
                                             </StackPanel>
                                         </Grid>
                                     </StackPanel>

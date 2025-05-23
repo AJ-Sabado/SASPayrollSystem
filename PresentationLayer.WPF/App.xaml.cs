@@ -42,11 +42,8 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-<<<<<<< HEAD
-            windowService.ShowWindow<Warning_View>();
-=======
-            windowService.ShowWindow<MainWindow>();
->>>>>>> 25effef1cfba1c623c6219a8bcb2a3d445dcdf3f
+
+            windowService.ShowWindow<PasswordPrompt_View>();
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -98,6 +95,7 @@ namespace SASPayrolSystemProject
             services.AddTransient<Question_View>();
             services.AddTransient<Success_View>();
             services.AddTransient<Warning_View>();
+            services.AddTransient<PasswordPrompt_View>();
 
 
 

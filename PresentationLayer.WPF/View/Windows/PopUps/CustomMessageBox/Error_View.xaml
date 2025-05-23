@@ -3,25 +3,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-       
-        WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Height="277" 
-        Width="366">
-    <Grid Margin="10">
+        Width="400"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterScreen"
+        Title="Error">
 
-        <materialDesign:PackIcon Grid.Column="0" Grid.Row="0" 
-                         Kind="Error" Foreground="Red" Width="50" Height="50"/>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <TextBlock Text="ERROR!" VerticalAlignment="Top"
-            FontFamily="{StaticResource PoppinsBold}" FontSize="25" Margin="53,6,104,0"/>
-        
-        <Button Content="Okay" HorizontalAlignment="Left" Margin="238,169,0,0" VerticalAlignment="Top"
-                FontFamily="{StaticResource PoppinsBold}" />
+        <!-- Header Icon and Title -->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 0 10">
+            <materialDesign:PackIcon Kind="AlertCircle" Foreground="Red" Width="40" Height="40"/>
+            <TextBlock Text="Error!" FontFamily="{StaticResource PoppinsBold}" 
+                       FontSize="24" VerticalAlignment="Center" Margin="10 0 0 0"/>
+        </StackPanel>
 
+        <!-- Message Text -->
+        <TextBlock Grid.Row="1"
+                   x:Name="MessageTextBlock"
+                   Text="Something went wrong. Please try again or contact support." 
+                   FontSize="14" TextWrapping="Wrap"
+                   Margin="0,10,0,10"
+                   HorizontalAlignment="Center"
+                   TextAlignment="Left" Width="360"/>
 
+        <!-- Button -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">
+            <Button x:Name="btnOkay"
+                    Content="Okay"
+                    Width="100"
+                    FontFamily="{StaticResource PoppinsBold}"/>
 
+        </StackPanel>
     </Grid>
 </Window>

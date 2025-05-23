@@ -122,6 +122,7 @@
                                  HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" />
                     <userControls:CustomPasswordBox Grid.Row="7"
                                 Margin="0,1"
+                                Background="{StaticResource tbBGSCB}"
                                 x:Name="SignUpPasswordBox"                               
                                 PlaceholderText="Enter Password"/>
 
@@ -134,6 +135,7 @@
 
                     <userControls:CustomPasswordBox Grid.Row="9"
                                 Margin="0,1"
+                                Background="{StaticResource tbBGSCB}"
                                 x:Name="SignUpConfirmPasswordBox"
                                 PlaceholderText="Confirm Password"/>
 
@@ -204,6 +206,7 @@
                         <userControls:CustomPasswordBox Grid.Row="5"
                                                         Margin="0,7"
                                                         PlaceholderText="Password"
+                                                        Background="{StaticResource tbBGSCB}"
                                                         x:Name="SignInPasswordBox"
                                                         />
                     </Grid>

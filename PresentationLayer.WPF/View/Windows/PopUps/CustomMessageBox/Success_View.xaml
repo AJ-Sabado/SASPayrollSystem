@@ -3,23 +3,59 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-    Height="277" 
-    Width="366">
-    <Grid Margin="10">
+        Width="400"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterScreen"
+        Title="Success">
 
-        <materialDesign:PackIcon Grid.Column="0" Grid.Row="0" 
-                     Kind="SuccessCircle" Foreground="Green" Width="50" Height="50"/>
+    <Grid Margin="20,10,20,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <TextBlock Text="Success!" VerticalAlignment="Top"
-        FontFamily="{StaticResource PoppinsBold}" FontSize="25" Margin="53,6,104,0"/>
+        <!-- Header Icon and Title -->
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Margin="0,0,0,10">
+            <materialDesign:PackIcon Kind="CheckCircle"
+                                     Foreground="Green"
+                                     Width="40"
+                                     Height="40"/>
+            <TextBlock Text="Success!"
+                       FontFamily="{StaticResource PoppinsBold}"
+                       FontSize="24"
+                       VerticalAlignment="Center"
+                       Margin="10,0,0,0"/>
+        </StackPanel>
 
-        <Button Content="Okay" HorizontalAlignment="Left" Margin="238,169,0,0" VerticalAlignment="Top"
-            FontFamily="{StaticResource PoppinsBold}" />
+        <!-- Message Text -->
+        <TextBlock Grid.Row="1"
+                   x:Name="MessageTextBlock"
+                   Text="The operation completed successfully."
+                   FontSize="14"
+                   FontFamily="{StaticResource PoppinsRegular}"
+                   TextWrapping="Wrap"
+                   Margin="0,10,0,10"
+                   HorizontalAlignment="Center"
+                   TextAlignment="Left"
+                   Width="360"/>
 
+        <!-- Button -->
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,20,0,0">
+            <Button x:Name="btnOkay"
+                    Content="Okay"
+                    Width="100"
+                    FontFamily="{StaticResource PoppinsBold}"/>
 
-
+        </StackPanel>
     </Grid>
 </Window>
