@@ -267,8 +267,7 @@
                         <Grid Margin="20,0,0,0" Background="White">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="7*"/>
-                                <RowDefinition Height="20*"/>
-                                <RowDefinition Height="73*"/>
+                                <RowDefinition Height="93*"/>
                             </Grid.RowDefinitions>
 
                             <!-- TITLE -->
@@ -277,31 +276,8 @@
                                        FontSize="30" Foreground="Black" 
                                        HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-                            <!--SUMMARIES-->
-                            <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" 
-                                                 VerticalAlignment="Stretch" Background="White" 
-                                                 UniformCornerRadius="10" BorderBrush="LightGray" 
-                                                 BorderThickness="1" Effect="{StaticResource CardEffects}"
-                                                 Padding="20,15" Margin="0,7.5">
-
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="40"/>
-                                        <ColumnDefinition Width=".7*"/>
-                                        <ColumnDefinition Width="40"/>
-                                        <ColumnDefinition Width="1.2*"/>
-                                        <ColumnDefinition Width="40"/>
-                                        <ColumnDefinition Width="1.1*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                   
-                                    
-                                </Grid>
-                            </materialDesign:Card>
-
                             <!--DATAGRID-->
-                            <materialDesign:Card Grid.Row="2" HorizontalAlignment="Stretch" 
+                            <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" 
                                                  VerticalAlignment="Stretch" Background="White" 
                                                  UniformCornerRadius="10" BorderBrush="LightGray" 
                                                  BorderThickness="1" Effect="{StaticResource CardEffects}"
@@ -324,11 +300,11 @@
                                               VerticalScrollBarVisibility="Auto"
                                               Background="Transparent">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="0.7*" />
-                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*" />
-                                            <DataGridTextColumn Header="Role" Binding="{Binding Position}" Width="1.5*" />
-                                            <DataGridTextColumn Header="Department" Binding="{Binding Department}" Width="2*" />
-                                            <DataGridTextColumn Header="Status" Binding="{Binding Name}" Width="1.3*" />
+                                            <DataGridTextColumn Header="Request ID" Binding="{Binding Id}" Width="1*" />
+                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1.5*" />
+                                            <DataGridTextColumn Header="Username" Binding="{Binding Name}" Width="1.5*" />
+                                            <DataGridTextColumn Header="Email" Binding="{Binding Name}" Width="1.5*" />
+                                            <DataGridTextColumn Header="Application Date" Binding="{Binding Position}" Width="1.5*" />
                                             <DataGridTemplateColumn Header="Actions" Width="1.5*">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
