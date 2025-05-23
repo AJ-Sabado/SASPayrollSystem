@@ -1,0 +1,500 @@
+﻿<UserControl x:Class="PresentationLayer.WPF.View.Pages.Dashboard.AdminDashboard.AdminPayrollPage_View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresentationLayer.WPF.View.Pages.Dashboard.AdminDashboard"
+            
+             xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+            xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+            mc:Ignorable="d" 
+            d:DesignHeight="688" d:DesignWidth="1088">
+    <Viewbox>
+        <Grid x:Name="Canvas" Height="688" Width="1088">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="115*"/>
+                <ColumnDefinition Width="21*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="Base" Margin="0,20,20,20" Background="White" Grid.ColumnSpan="2">
+
+                <TabControl TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" 
+                                                FontSize="10" 
+                                                VerticalAlignment="Center"
+                                               Width="100"
+                                                TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.Resources>
+
+                    <!--REGULAR EMPLOYEE PAYROLL-->
+                    <TabItem Header="Regular Employee">
+                        <Grid Margin="20,0,0,0" Background="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="7*"/>
+                                <RowDefinition Height="20*"/>
+                                <RowDefinition Height="73*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- TITLE -->
+                            <TextBlock Grid.Row="0" Text="REGULAR EMPLOYEE PAYROLL" 
+                                       FontFamily="{StaticResource PoppinsBold}" 
+                                       FontSize="30" Foreground="Black" 
+                                       HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                            <!-- PAYROLL SUMMARY -->
+                            <materialDesign:Card Grid.Row="1"
+                                                 HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Stretch"
+                                                 Background="White"
+                                                 UniformCornerRadius="10"
+                                                 BorderBrush="LightGray"
+                                                 BorderThickness="1"
+                                                 Effect="{StaticResource CardEffects}"
+                                                 Padding="20,15"
+                                                 Margin="0,7.5">
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.3*"/>
+                                        <!-- Search -->
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width=".8*"/>
+                                        <!-- Payroll Duration -->
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width=".7*"/>
+                                        <!-- Count -->
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- Payroll Total -->
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- Print -->
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- SEARCH BAR -->
+                                    <Grid Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0"
+                                                   Text="Quick Search"
+                                                   FontFamily="{StaticResource PoppinsMedium}" 
+                                                   FontSize="15"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                            <TextBox x:Name="tbSearchNameID"
+                                                     materialDesign:HintAssist.Hint="Search Employee Name or ID"
+                                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                                     BorderThickness="0"
+                                                     VerticalAlignment="Center" Margin="0,5" Width="180" Height="30"
+                                                     Padding="5"
+                                                     FontFamily="{StaticResource PoppinsLight}" FontSize="10"/>
+                                            <Button x:Name="SearchBtn" Background="Transparent" Foreground="{StaticResource BaseColorSCB}"
+                                                        BorderBrush="Transparent" Style="{StaticResource MaterialDesignIconButton}"
+                                                        Height="35" Width="35" Margin="5,0,0,0">
+                                                <materialDesign:PackIcon Kind="Search"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <!-- SEPARATOR -->
+                                    <Rectangle Grid.Column="1" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
+                                    <Rectangle Grid.Column="3" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
+                                    <Rectangle Grid.Column="5" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
+
+                                    <!-- PAYROLL DURATION TEXT -->
+                                    <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                        <TextBlock Text="Payroll Duration"
+                                                   FontFamily="{StaticResource PoppinsMedium}" 
+                                                   FontSize="15"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+                                        <TextBlock Text="April 16 - April 30, 2025"
+                                                   FontFamily="{StaticResource PoppinsLight}" 
+                                                   FontSize="12"
+                                                   Foreground="Gray"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="0,5,0,0"/>
+                                    </StackPanel>
+
+                                    <!-- EMPLOYEE COUNT -->
+                                    <Grid Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0"
+                                                   Text="250"
+                                                   FontFamily="{StaticResource PoppinsSemiBold}" 
+                                                   FontSize="25"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+                                        <TextBlock Grid.Row="1"
+                                                   Text="Regular Employees"
+                                                   FontFamily="{StaticResource PoppinsLight}" 
+                                                   FontSize="9"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+                                    </Grid>
+
+                                    <!-- PAYROLL TOTAL -->
+                                    <Grid Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0"
+                                                   Text="P 1,200,000.00"
+                                                   FontFamily="{StaticResource PoppinsBold}" 
+                                                   FontSize="25"
+                                                   Foreground="DarkGreen"
+                                                   HorizontalAlignment="Left"/>
+                                        <TextBlock Grid.Row="1"
+                                                   Text="Regular Employee Payroll Total"
+                                                   FontFamily="{StaticResource PoppinsLight}" 
+                                                   FontSize="9"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+                                    </Grid>
+
+                                    <!-- PRINT ENTIRE PAYROLL BUTTON -->
+                                    <Button Grid.Column="8"
+                                            ToolTip="Print Entire Payroll"
+                                            Command="{Binding PrintAllPayrollCommand}"
+                                            Style="{StaticResource MaterialDesignIconButton}"
+                                            Foreground="{StaticResource BaseColorSCB}"
+                                            Background="Transparent"
+                                            Height="40" Width="40"
+                                            VerticalAlignment="Center">
+                                        <materialDesign:PackIcon Kind="Printer" Width="24" Height="24"/>
+                                    </Button>
+
+                                </Grid>
+                            </materialDesign:Card>
+
+                            <!-- REGULAR DATAGRID -->
+                            <materialDesign:Card Grid.Row="2"
+                                                 HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Stretch"
+                                                 Background="White"
+                                                 UniformCornerRadius="10"
+                                                 BorderBrush="LightGray"
+                                                 BorderThickness="1"
+                                                 Effect="{StaticResource CardEffects}"
+                                                 Padding="20,15"
+                                                 Margin="0,7.5">
+
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                VerticalScrollBarVisibility="Auto">
+                                    <DataGrid AutoGenerateColumns="False"
+                                              HeadersVisibility="Column"
+                                              CanUserAddRows="False"
+                                              ItemsSource="{Binding Employees}"
+                                              SelectedItem="{Binding SelectedEmployee}"
+                                              materialDesign:DataGridAssist.CellPadding="10"
+                                              materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
+                                              RowHeight="40"
+                                              FontSize="12"
+                                              IsReadOnly="True"
+                                              HorizontalScrollBarVisibility="Auto"
+                                              VerticalScrollBarVisibility="Auto"
+                                              Background="Transparent"
+                                              MinWidth="1700">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Employee ID" Binding="{Binding EmployeeID}" Width="100"/>
+                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="150"/>
+                                            <DataGridTextColumn Header="Basic Pay" Binding="{Binding BasicPay}" Width="100"/>
+                                            <DataGridTextColumn Header="Holiday Pay" Binding="{Binding HolidayPay}" Width="120"/>
+                                            <DataGridTextColumn Header="Overtime Pay" Binding="{Binding OvertimePay}" Width="120"/>
+                                            <DataGridTextColumn Header="Paid Leaves" Binding="{Binding PaidLeaves}" Width="100"/>
+                                            <DataGridTextColumn Header="Bonus" Binding="{Binding Bonus}" Width="100"/>
+                                            <DataGridTextColumn Header="Allowance" Binding="{Binding Allowance}" Width="100"/>
+                                            <DataGridTextColumn Header="Gross Pay" Binding="{Binding GrossPay}" Width="120"/>
+                                            <DataGridTextColumn Header="Withholding Tax" Binding="{Binding WithholdingTax}" Width="130"/>
+                                            <DataGridTextColumn Header="Government Contributions" Binding="{Binding GovernmentContributions}" Width="180"/>
+                                            <DataGridTextColumn Header="Loan Deductions" Binding="{Binding LoanDeductions}" Width="140"/>
+                                            <DataGridTextColumn Header="Late/Undertime Deductions" Binding="{Binding LateUndertimeDeductions}" Width="180"/>
+                                            <DataGridTextColumn Header="Net Salary" Binding="{Binding NetSalary}" Width="120"/>
+
+                                            <!-- ACTIONS COLUMN -->
+                                            <DataGridTemplateColumn Header="Actions" Width="100">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                                            <!-- Edit Button -->
+                                                            <Button ToolTip="Edit"
+                                                                    Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                    CommandParameter="{Binding}"
+                                                                    Style="{StaticResource MaterialDesignToolButton}">
+                                                                <materialDesign:PackIcon Kind="SquareEditOutline" Width="20" Height="20"/>
+                                                            </Button>
+
+                                                            <!-- Print Button -->
+                                                            <Button ToolTip="Print"
+                                                                    Command="{Binding DataContext.PrintCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                    CommandParameter="{Binding}"
+                                                                    Style="{StaticResource MaterialDesignToolButton}">
+                                                                <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+                                                            </Button>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </ScrollViewer>
+
+                            </materialDesign:Card>
+
+                        </Grid>
+                    </TabItem>
+
+
+                    <!--INDEPENDENT CONTRACTORS PAYROLL-->
+                    <TabItem Header="Independent Contractors">
+                        <Grid Margin="20,0,0,0" Background="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="7*"/>
+                                <RowDefinition Height="20*"/>
+                                <RowDefinition Height="73*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- TITLE -->
+                            <TextBlock Grid.Row="0" Text="INDEPENDENT CONTRACTORS PAYROLL" 
+                                       FontFamily="{StaticResource PoppinsBold}" 
+                                       FontSize="30" Foreground="Black" 
+                                       HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                            <!-- PAYROLL SUMMARY -->
+                            <materialDesign:Card Grid.Row="1"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"
+                             Background="White"
+                             UniformCornerRadius="10"
+                             BorderBrush="LightGray"
+                             BorderThickness="1"
+                             Effect="{StaticResource CardEffects}"
+                             Padding="20,15"
+                             Margin="0,7.5">
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.3*"/>
+                                        <!-- Search -->
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width=".8*"/>
+                                        <!-- Payroll Duration -->
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width=".7*"/>
+                                        <!-- Count -->
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- Payroll Total -->
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- Print -->
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- SEARCH BAR -->
+                                    <Grid Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0"
+                                                   Text="Quick Search"
+                                                   FontFamily="{StaticResource PoppinsMedium}" 
+                                                   FontSize="15"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                            <TextBox x:Name="tbSearchNameID2"
+                                                     materialDesign:HintAssist.Hint="Search Employee Name or ID"
+                                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                                     BorderThickness="0"
+                                                     VerticalAlignment="Center" Margin="0,5" Width="180" Height="30"
+                                                     Padding="5"
+                                                     FontFamily="{StaticResource PoppinsLight}" FontSize="10"/>
+                                            <Button x:Name="SearchBtn2" Background="Transparent" Foreground="{StaticResource BaseColorSCB}"
+                                                        BorderBrush="Transparent" Style="{StaticResource MaterialDesignIconButton}"
+                                                        Height="35" Width="35" Margin="5,0,0,0">
+                                                <materialDesign:PackIcon Kind="Search"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <!-- SEPARATOR -->
+                                    <Rectangle Grid.Column="1" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
+                                    <Rectangle Grid.Column="3" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
+                                    <Rectangle Grid.Column="5" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
+
+                                    <!-- PAYROLL DURATION TEXT -->
+                                    <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                        <TextBlock Text="Payroll Duration"
+                                                   FontFamily="{StaticResource PoppinsMedium}" 
+                                                   FontSize="15"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+                                        <TextBlock Text="April 16 - April 30, 2025"
+                                                   FontFamily="{StaticResource PoppinsLight}" 
+                                                   FontSize="12"
+                                                   Foreground="Gray"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="0,5,0,0"/>
+                                    </StackPanel>
+
+
+
+                                    <!-- EMPLOYEE COUNT -->
+                                    <Grid Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0"
+                                                   Text="250"
+                                                   FontFamily="{StaticResource PoppinsSemiBold}" 
+                                                   FontSize="25"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+                                        <TextBlock Grid.Row="1"
+                                                   Text="Regular Employees"
+                                                   FontFamily="{StaticResource PoppinsLight}" 
+                                                   FontSize="9"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+                                    </Grid>
+
+                                    <!-- PAYROLL TOTAL -->
+                                    <Grid Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0"
+                                                   Text="P 1,200,000.00"
+                                                   FontFamily="{StaticResource PoppinsBold}" 
+                                                   FontSize="25"
+                                                   Foreground="DarkGreen"
+                                                   HorizontalAlignment="Left"/>
+                                        <TextBlock Grid.Row="1"
+                                                   Text="Independent Contractors Payroll Total"
+                                                   FontFamily="{StaticResource PoppinsLight}" 
+                                                   FontSize="9"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Left"/>
+                                    </Grid>
+
+                                    <!-- PRINT ENTIRE PAYROLL BUTTON -->
+                                    <Button Grid.Column="8"
+                                            ToolTip="Print Entire Payroll"
+                                            Command="{Binding PrintAllPayrollCommand}"
+                                            Style="{StaticResource MaterialDesignIconButton}"
+                                            Foreground="{StaticResource BaseColorSCB}"
+                                            Background="Transparent"
+                                            Height="40" Width="40"
+                                            VerticalAlignment="Center">
+                                        <materialDesign:PackIcon Kind="Printer" Width="24" Height="24"/>
+                                    </Button>
+
+                                </Grid>
+                            </materialDesign:Card>
+
+
+                            <!-- REGULAR DATAGRID -->
+                            <materialDesign:Card Grid.Row="2"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"
+                             Background="White"
+                             UniformCornerRadius="10"
+                             BorderBrush="LightGray"
+                             BorderThickness="1"
+                             Effect="{StaticResource CardEffects}"
+                             Padding="20,15"
+                             Margin="0,7.5">
+
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                                VerticalScrollBarVisibility="Auto">
+                                    <DataGrid AutoGenerateColumns="False"
+                                              HeadersVisibility="Column"
+                                              CanUserAddRows="False"
+                                              ItemsSource="{Binding Employees}"
+                                              SelectedItem="{Binding SelectedEmployee}"
+                                              materialDesign:DataGridAssist.CellPadding="10"
+                                              materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
+                                              RowHeight="40"
+                                              FontSize="12"
+                                              IsReadOnly="True"
+                                              HorizontalScrollBarVisibility="Auto"
+                                              VerticalScrollBarVisibility="Auto"
+                                              Background="Transparent"
+                                              Width="864">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Employee ID" Binding="{Binding EmployeeID}" Width="110*"/>
+                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="160*"/>
+                                            <DataGridTextColumn Header="Rate" Binding="{Binding BasicPay}" Width="90*"/>
+                                            <DataGridTextColumn Header="Total Hours" Binding="{Binding HolidayPay}" Width="110*"/>
+                                            <DataGridTextColumn Header="Deductions" Binding="{Binding PaidLeaves}" Width="110*"/>
+                                            <DataGridTextColumn Header="Net Salary" Binding="{Binding OvertimePay}" Width="120*"/>
+                                            <!-- ACTIONS COLUMN -->
+                                            <DataGridTemplateColumn Header="Actions" Width="80*">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                            <!-- Edit Button -->
+                                                            <Button ToolTip="Edit"
+                                                                    Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                    CommandParameter="{Binding}"
+                                                                    Style="{StaticResource MaterialDesignToolButton}">
+                                                                <materialDesign:PackIcon Kind="Pencil" Width="20" Height="20"/>
+                                                            </Button>
+
+                                                            <!-- Print Button -->
+                                                            <Button ToolTip="Print"
+                                                                    Command="{Binding DataContext.PrintCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                    CommandParameter="{Binding}"
+                                                                    Style="{StaticResource MaterialDesignToolButton}">
+                                                                <materialDesign:PackIcon Kind="Printer" Width="20" Height="20"/>
+                                                            </Button>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </ScrollViewer>
+
+                            </materialDesign:Card>
+
+                        </Grid>
+                    </TabItem>
+
+                </TabControl>
+
+
+
+
+            </Grid>
+        </Grid>
+    </Viewbox>
+
+</UserControl>
