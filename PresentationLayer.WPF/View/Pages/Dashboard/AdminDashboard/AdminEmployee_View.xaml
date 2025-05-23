@@ -116,7 +116,7 @@
                                         <TextBlock Grid.Row="1"
                                                    Text="Total Number of Employees"
                                                    FontFamily="{StaticResource PoppinsLight}" 
-                                                   FontSize="10"
+                                                   FontSize="9"
                                                    Foreground="Black"
                                                    HorizontalAlignment="Left"/>
                                     </Grid>
@@ -232,7 +232,7 @@
                                               materialDesign:DataGridAssist.CellPadding="10"
                                               materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
                                               RowHeight="40"
-                                              FontSize="14"
+                                              FontSize="12"
                                               IsReadOnly="True"
                                               HorizontalScrollBarVisibility="Auto"
                                               VerticalScrollBarVisibility="Auto"
@@ -294,17 +294,16 @@
                                               materialDesign:DataGridAssist.CellPadding="10"
                                               materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
                                               RowHeight="40"
-                                              FontSize="14"
+                                              FontSize="12"
                                               IsReadOnly="True"
                                               HorizontalScrollBarVisibility="Auto"
                                               VerticalScrollBarVisibility="Auto"
                                               Background="Transparent">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Header="Request ID" Binding="{Binding Id}" Width="1*" />
-                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1.5*" />
-                                            <DataGridTextColumn Header="Username" Binding="{Binding Name}" Width="1.5*" />
-                                            <DataGridTextColumn Header="Email" Binding="{Binding Name}" Width="1.5*" />
+                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*" />
                                             <DataGridTextColumn Header="Application Date" Binding="{Binding Position}" Width="1.5*" />
+                              
                                             <DataGridTemplateColumn Header="Actions" Width="1.5*">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
