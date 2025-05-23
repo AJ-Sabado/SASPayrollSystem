@@ -8,6 +8,7 @@ using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardIC;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg;
 using PresentationLayer.WPF.View.Windows;
 using PresentationLayer.WPF.View.Windows.Main;
+using PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox;
 using PresentationLayer.WPF.ViewModel;
 using PresentationLayer.WPF.ViewModel.PagesViewModel;
 using PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard;
@@ -41,7 +42,7 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-            windowService.ShowWindow<AdminDashboard_View>();
+            windowService.ShowWindow<Warning_View>();
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -81,6 +82,12 @@ namespace SASPayrolSystemProject
             services.AddTransient<AttendanceRequest_View>();
             services.AddTransient<AttendanceRequest_ViewModel>();
             services.AddTransient<FileLeaveForm_View>();
+            services.AddTransient<Error_View>();
+            services.AddTransient<Question_View>();
+            services.AddTransient<Success_View>();
+            services.AddTransient<Warning_View>();
+
+
 
             //DbContext
             services.AddDbContext<AppDbContext>();
