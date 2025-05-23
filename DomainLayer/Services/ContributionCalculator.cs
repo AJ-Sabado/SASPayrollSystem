@@ -19,7 +19,7 @@
         {
             decimal finalAmount;
             if (taxableIncome <= 10417)
-                finalAmount = 0;
+                return 0;
             else if (taxableIncome > 10417 && taxableIncome <= 16667)
                 finalAmount = 0.15m * (taxableIncome - 10416.67m);
             else if (taxableIncome > 16667 && taxableIncome <= 33333)
@@ -31,7 +31,7 @@
             else
                 finalAmount = 0.35m * (taxableIncome - 333333.33m) + 91770.83m;
 
-            return finalAmount;
+            return Math.Ceiling(finalAmount * 100) / 100;
         }
 
         public static decimal CalculatePhilHealthAmount(decimal basicMonthlySalary)
@@ -40,14 +40,14 @@
                 return _minimumPhilHealthMonthlyContribution / 4;
             else if (basicMonthlySalary >= _maximumPhilHealthMonthlySalaryCap)
                 return _maximumPhilHealthMonthlyContribution / 4;
-            return basicMonthlySalary * _currentPhilHealthMonthlyRate / 4;
+            return Math.Ceiling(basicMonthlySalary * _currentPhilHealthMonthlyRate / 4 * 100) / 100;
         }
 
         public static decimal CalculatePagIbigAmount(decimal basicMonthlySalary)
         {
             if (basicMonthlySalary <= _minimumPagIbigMonthlyComp)
                 return basicMonthlySalary * 0.01m / 2;
-            var result = basicMonthlySalary * 0.02m / 2;
+            var result = Math.Ceiling(basicMonthlySalary * 0.02m / 2 * 100) / 100;
             return result < 100 ? result : 100;
         }
 
@@ -63,7 +63,7 @@
                 decimal baseCompensation = basicMonthlySalary - _minimumSSSMonthlyCompRange;
                 finalMonthlyAmount = 25 * (Math.Floor(baseCompensation / 500) + 1) + _minimumSSSMonthlyContribution;
             }
-            return finalMonthlyAmount / 2;
+            return Math.Ceiling(finalMonthlyAmount / 2 * 100) / 100;
         }
     }
 }

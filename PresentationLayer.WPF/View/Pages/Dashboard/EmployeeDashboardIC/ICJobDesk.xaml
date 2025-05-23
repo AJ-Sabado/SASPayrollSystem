@@ -385,6 +385,7 @@
                                                     </DataGrid.Resources>
 
                                                     <DataGrid.Columns>
+                                                        <DataGridTextColumn Header="ID" Width="*" Binding="{Binding BusinessId}"/>
                                                         <DataGridTextColumn Header="Date" Width="*" Binding="{Binding Date}"/>
                                                         <DataGridTextColumn Header="Time In" Width="*" Binding="{Binding TimeIn, StringFormat='{}{0:hh:mm:ss tt}'}"/>
                                                         <DataGridTextColumn Header="Time Out" Width="*" Binding="{Binding TimeOut, StringFormat='{}{0:hh:mm:ss tt}'}"/>

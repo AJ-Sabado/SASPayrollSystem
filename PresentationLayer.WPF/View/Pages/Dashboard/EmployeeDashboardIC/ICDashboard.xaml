@@ -282,6 +282,7 @@
                                             IsReadOnly="True"
                                             HorizontalScrollBarVisibility="Auto">
                                         <DataGrid.Columns>
+                                            <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding BusinessId}"/>
                                             <DataGridTextColumn Header="Date" Width="Auto" Binding="{Binding Date}"/>
                                             <DataGridTextColumn Header="Time In" Width="Auto" Binding="{Binding TimeIn, StringFormat='{}{0:hh:mm tt}'}"/>
                                             <DataGridTextColumn Header="Time Out" Width="Auto" Binding="{Binding TimeOut,  StringFormat='{}{0:hh:mm tt}'}"/>

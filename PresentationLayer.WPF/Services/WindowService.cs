@@ -37,6 +37,12 @@ namespace PresentationLayer.WPF.Services
                 _currentWindow = _nextWindow;
                 _nextWindow = null;
                 _currentWindow.Show();
+                return;
+            }
+
+            if (_currentWindow != null)
+            {
+                _currentWindow.Close();
             }
         }
 

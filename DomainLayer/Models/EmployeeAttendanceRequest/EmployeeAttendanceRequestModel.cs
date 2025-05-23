@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using DomainLayer.Enums;
 using DomainLayer.Models.Employee;
+using DomainLayer.Services;
 
 namespace DomainLayer.Models.EmployeeAttendanceRequest
 {
@@ -34,6 +35,8 @@ namespace DomainLayer.Models.EmployeeAttendanceRequest
 
         [Column(TypeName = "tinyint")]
         public FormStatus Status { get; set; } = FormStatus.Pending;
+
+        public string BusinessId { get; set; } = BusinessIdGenerator.GenerateEmployeeAttendanceRequestId();
 
         [NotMapped]
         public uint TotalHours

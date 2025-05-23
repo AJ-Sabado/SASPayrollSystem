@@ -6,7 +6,7 @@
 
         public static decimal ConvertMonthlyToDaily(decimal monthlySalary)
         {
-            return monthlySalary * 12 / _factor;
+            return Math.Floor(monthlySalary * 12 / _factor * 100) / 100;
         }
 
         public static decimal ConvertDailyToHourly(decimal dailySalary, decimal hoursPerDay)

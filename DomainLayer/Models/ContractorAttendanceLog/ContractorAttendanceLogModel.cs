@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using DomainLayer.Enums;
 using DomainLayer.Models.Contractor;
+using DomainLayer.Services;
 
 namespace DomainLayer.Models.ContractorAttendanceLog
 {
@@ -21,6 +22,8 @@ namespace DomainLayer.Models.ContractorAttendanceLog
         public DateTime? TimeIn { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? TimeOut { get; set; }
+
+        public string BusinessId { get; private set; } = BusinessIdGenerator.GenerateContractorAttendanceLogId();
 
         [NotMapped]
         public decimal Duration

@@ -523,6 +523,7 @@
 
                                                     <DataGrid.Columns>
                                                         
+                                                        <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding BusinessId}"/>
                                                         <DataGridTextColumn Header="Request Date" Width="Auto" Binding="{Binding RequestDate}"/>
                                                         <DataGridTextColumn Header="Attendance Date" Width="Auto" Binding="{Binding AttendanceDate}"/>
                                                         <DataGridTextColumn Header="Time In" Width="Auto" Binding="{Binding TimeIn}"/>
@@ -590,6 +591,7 @@
                                                 </DataGrid.Resources>
 
                                                 <DataGrid.Columns>
+                                                    <DataGridTextColumn Header="ID" Binding="{Binding BusinessId}" Width="Auto"/>
                                                     <DataGridTextColumn Header="Request Date" Binding="{Binding DateOfFiling}" Width="Auto"/>
                                                     <DataGridTextColumn Header="Start Date" Binding="{Binding DateOfAbsenceStart}" Width="Auto"/>
                                                     <DataGridTextColumn Header="Return Date" Binding="{Binding DateOfReturn}" Width="Auto"/>

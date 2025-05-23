@@ -1,4 +1,5 @@
-﻿using InfrastructureLayer.DataAccess;
+﻿using System.Windows;
+using InfrastructureLayer.DataAccess;
 using Microsoft.Extensions.DependencyInjection;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages;
@@ -16,7 +17,6 @@ using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular;
 using PresentationLayer.WPF.ViewModel.PopUpViewModel;
 using PresentationLayer.WPF.ViewModel.RegularViewModel;
 using ServicesLayer;
-using System.Windows;
 
 namespace SASPayrolSystemProject
 {
@@ -41,7 +41,7 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-            windowService.ShowWindow<AdminDashboard_View>();
+            windowService.ShowWindow<MainWindow>();
         }
 
         private void ConfigureServices(IServiceCollection services)

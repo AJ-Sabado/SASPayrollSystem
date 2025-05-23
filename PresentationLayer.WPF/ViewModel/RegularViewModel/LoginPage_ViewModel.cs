@@ -45,6 +45,18 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
             }
         }
 
+        private bool _enableSignIn = true;
+        public bool EnableSignIn
+        {
+            get => _enableSignIn;
+            set
+            {
+                _enableSignIn = value;
+                OnPropertyChanged();
+            }
+
+        }
+
         public LoginPage_ViewModel(IUnitOfWork unitOfWork, IWindowService windowService)
         {
             _unitOfWork = unitOfWork;
@@ -108,10 +120,12 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
 
         private async void AuthenticateUser(object? parameter)
         {
+            EnableSignIn = false;
             if (string.IsNullOrEmpty(UsernameSignIn) || string.IsNullOrEmpty(PasswordSignIn))
             {
                 ForegroundColor = "Black";
                 LoginMessage = "Please fill in the fields.";
+                EnableSignIn = true;
                 return;
             }
 
@@ -128,8 +142,6 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 var payDate = new DateOnly(DateTime.Now.Year, DateTime.Now.Month + 1, 15);
                 if (user.Role.NormalizedName == "EMPLOYEE" && user.Employee != null)
                 {
-
-
                     //Test attendance evaluation
                     try
                     {
@@ -143,7 +155,10 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                     }
                 }
                 else if (user.Role.NormalizedName == "ADMIN" && user.Admin != null)
+                {
+                    EnableSignIn = true;
                     System.Windows.MessageBox.Show("Admin Functionality to be added");
+                }
                 else if (user.Role.NormalizedName == "CONTRACTOR" && user.Contractor != null)
                 {
                     try
@@ -157,12 +172,16 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                     }
                 }
                 else
+                {
+                    EnableSignIn = true;
                     System.Windows.MessageBox.Show("Please contact admin to verify account!");
+                }
             }
             else
             {
                 ForegroundColor = "Red";
                 LoginMessage = "Invalid username or password!";
+                EnableSignIn = true;
             }
         }
     }

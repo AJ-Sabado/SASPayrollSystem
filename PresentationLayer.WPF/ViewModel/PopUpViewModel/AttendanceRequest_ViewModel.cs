@@ -245,8 +245,13 @@ namespace PresentationLayer.WPF.ViewModel
                     var currentAttendanceRequest = employee.EmployeeAttendanceRequests.FirstOrDefault(r => r.Id == _popUpService.IdSource);
                     if (currentAttendanceRequest != null)
                     {
+                        currentAttendanceRequest.AttendanceDate = DateOnly.FromDateTime(Date);
                         currentAttendanceRequest.TimeIn = TimeOnly.FromDateTime((DateTime)this.TimeIn);
                         currentAttendanceRequest.TimeOut = TimeOnly.FromDateTime((DateTime)this.TimeOut);
+                        if (BreakStart.HasValue)
+                            currentAttendanceRequest.BreakStart = TimeOnly.FromDateTime((DateTime)this.BreakStart);
+                        if (BreakEnd.HasValue)
+                            currentAttendanceRequest.BreakEnd = TimeOnly.FromDateTime((DateTime)this.BreakEnd);
                         currentAttendanceRequest.Reason = this.Reason;
                         currentAttendanceRequest.Status = FormStatus.Pending;
                         await _unitOfWork.Save();
@@ -267,6 +272,8 @@ namespace PresentationLayer.WPF.ViewModel
                         AttendanceDate = DateOnly.FromDateTime(this.Date),
                         TimeIn = TimeOnly.FromDateTime((DateTime)this.TimeIn),
                         TimeOut = TimeOnly.FromDateTime((DateTime)this.TimeOut),
+                        BreakStart = this.BreakStart.HasValue ? TimeOnly.FromDateTime((DateTime)this.BreakStart) : null,
+                        BreakEnd = this.BreakEnd.HasValue ? TimeOnly.FromDateTime((DateTime)this.BreakEnd) : null,
                         Status = FormStatus.Pending,
                         Reason = this.Reason
                     };
