@@ -462,7 +462,7 @@ namespace ServicesLayer
                     //Check if the day is a holiday
                     var holiday = holidays
                         .FirstOrDefault(h => h.Date == currentDay);
-                    if (holiday != null)
+                    if (holiday != null && holiday.Type != HolidayType.SpecialWorking)
                     {
                         evaluatedAttendance.DayStatus = EvaluatedAttendanceDayStatus.Holiday;
                         evaluatedAttendance.ExpectedWorkHours = 0;
@@ -581,6 +581,10 @@ namespace ServicesLayer
                 if (evaluatedAttendance.ActualWorkHours >= evaluatedAttendance.ExpectedWorkHours)
                 {
                     evaluatedAttendance.ActualWorkHours = Math.Floor(evaluatedAttendance.ActualWorkHours);
+                }
+                else
+                {
+                    evaluatedAttendance.ActualWorkHours = Math.Ceiling(evaluatedAttendance.ActualWorkHours * 100) / 100;
                 }
             }
 

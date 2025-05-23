@@ -221,7 +221,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
         {
             if (_contractorTrackerService.CurrentContractor != null)
             {
-                foreach (var attendanceLog in _contractorTrackerService.CurrentContractor.ContractorAttendanceLogs)
+                foreach (var attendanceLog in _contractorTrackerService.CurrentWeekAttendanceLogs)
                 {
                     _weeklyHoursChartValues[(int)attendanceLog.Date.DayOfWeek] += attendanceLog.Duration;
                 }
@@ -295,6 +295,10 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
 
         private async void ExecuteTimeOut(object? obj)
         {
+            //Add message box verfication
+            var result = MessageBox.Show("Are you sure you want to end session?", "End Session", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.No)
+                return;
             var log = await _contractorTrackerService.EndSession();
             if (log != null)
             {
