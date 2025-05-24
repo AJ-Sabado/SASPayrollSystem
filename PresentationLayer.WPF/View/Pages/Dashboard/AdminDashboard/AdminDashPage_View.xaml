@@ -94,45 +94,91 @@
                         </materialDesign:Card>
 
                     <!--EMPLOYEE LOGIN-->
-                    <materialDesign:Card Grid.Row="2" HorizontalAlignment="Stretch" 
-                         VerticalAlignment="Stretch" Background="White" 
-                         UniformCornerRadius="10" BorderBrush="LightGray" 
-                         BorderThickness="1" Effect="{StaticResource CardEffects}"
-                         Padding="20">
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <StackPanel>
-                            <TextBlock Grid.Row="0" Text="Employee Login" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="20"/>
+                            <materialDesign:Card Grid.Column="0" HorizontalAlignment="Stretch" 
+                                                 VerticalAlignment="Stretch" Background="White" 
+                                                 UniformCornerRadius="10" BorderBrush="LightGray" 
+                                                 BorderThickness="1" Effect="{StaticResource CardEffects}"
+                                                 Padding="20">
 
-                            <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                                <DataGrid x:Name="dataGridDashboardAttendanceLog"
-                                          AutoGenerateColumns="False"
-                                          FontSize="14"
-                                          ItemsSource="{Binding AttendanceLogList, Mode=OneWay}"
-                                          ColumnWidth="Auto"
-                                          IsReadOnly="True"
-                                          HorizontalScrollBarVisibility="Disabled"
-                                          Width="686.5" Height="150">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding ID}" />
+                                <StackPanel>
+                                    <TextBlock Grid.Row="0" Text="Regular Employee Time Log" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Margin="0,0,0,10"/>
 
-                                        <DataGridTemplateColumn Header="Photo" Width="Auto">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Image Source="{Binding Photo}" Height="40" Width="40"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
+                                    <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                        <DataGrid x:Name="dgRegTimeLog"
+                                                  AutoGenerateColumns="False"
+                                                  FontSize="10"
+                                                  ItemsSource="{Binding AttendanceLogList, Mode=OneWay}"
+                                                  ColumnWidth="Auto"
+                                                  IsReadOnly="True"
+                                                  HorizontalScrollBarVisibility="Disabled"
+                                                  Width="515" Height="150">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding ID}" />
 
-                                        <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
-                                        <DataGridTextColumn Header="Time In" Width="*" Binding="{Binding TimeIn}" />
-                                        <DataGridTextColumn Header="Time Out" Width="*" Binding="{Binding TimeOut}" />
-                                        <DataGridTextColumn Header="Total Hours" Width="*" Binding="{Binding TotalHours}" />
-                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Status}" />
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </ScrollViewer>
-                        </StackPanel>
-                    </materialDesign:Card>
+                                                <DataGridTemplateColumn Header="Photo" Width="Auto">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Image Source="{Binding Photo}" Height="40" Width="40"/>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+
+                                                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
+                                                <DataGridTextColumn Header="Log Type" Width="*" Binding="{Binding TimeIn}" />
+                                                <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Status}" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </materialDesign:Card>
+
+                            <materialDesign:Card Grid.Column="2" HorizontalAlignment="Stretch" 
+                                                 VerticalAlignment="Stretch" Background="White" 
+                                                 UniformCornerRadius="10" BorderBrush="LightGray" 
+                                                 BorderThickness="1" Effect="{StaticResource CardEffects}"
+                                                 Padding="20">
+
+                                <StackPanel>
+                                    <TextBlock Grid.Row="0" Text="Independent Contractors Time Log" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Margin="0,0,0,10"/>
+
+                                    <ScrollViewer Grid.Column="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                        <DataGrid x:Name="dgICAteendanceLog"
+                                                  AutoGenerateColumns="False"
+                                                  FontSize="10"
+                                                  ItemsSource="{Binding AttendanceLogList, Mode=OneWay}"
+                                                  ColumnWidth="Auto"
+                                                  IsReadOnly="True"
+                                                  HorizontalScrollBarVisibility="Disabled"
+                                                  Width="512" Height="150">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding ID}" />
+
+                                                <DataGridTemplateColumn Header="Photo" Width="Auto">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Image Source="{Binding Photo}" Height="40" Width="40"/>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+
+                                                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
+                                                <DataGridTextColumn Header="Log Type" Width="*" Binding="{Binding TimeIn}" />
+                                                <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Status}" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </materialDesign:Card>
+
+                        </Grid>
+
                 </Grid>
 
                 <!--SUMMARIES -->
