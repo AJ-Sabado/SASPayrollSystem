@@ -13,7 +13,8 @@
         xmlns:helpers="clr-namespace:PresentationLayer.WPF.Helpers"
         
         mc:Ignorable="d"
-        Height="720" Width="1280" Icon="/Resources/Images/SASLogo.png" 
+        Height="720" Width="1280" 
+        Icon="/Resources/Images/SASLogo.png" 
         WindowStartupLocation="CenterScreen"
         Title="Strategic Assistant Staffing Employee Dashboard"
         MouseDown="Window_MouseDown"
