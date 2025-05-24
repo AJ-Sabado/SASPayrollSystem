@@ -1,16 +1,12 @@
-﻿using System.Diagnostics.Contracts;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
-using DomainLayer.Models.ContractorAttendanceLog;
+﻿using DomainLayer.Models.ContractorAttendanceLog;
 using LiveCharts;
 using LiveCharts.Wpf;
-using Microsoft.IdentityModel.Tokens;
 using PresentationLayer.WPF.Services;
 using SASPayrolSystemProject;
 using ServicesLayer;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
 {
