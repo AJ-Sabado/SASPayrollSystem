@@ -4,14 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer.WPF.View.Windows.PopUps"
-        
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
-        
         mc:Ignorable="d"
         Title="Add Employee" Height="600" Width="600"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
         Icon="/Resources/Images/SASLogo.png">
 
     <Grid>
@@ -24,22 +22,23 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height=".5*"/>
             </Grid.RowDefinitions>
 
+            <!-- Header -->
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
                 <materialDesign:PackIcon Kind="Worker" Width="40" Height="40"/>
-                <TextBlock Grid.Column="2" Text="   Add Employee" VerticalAlignment="Center"
-                            FontFamily="{StaticResource PoppinsBold}" FontSize="28"/>
+                <TextBlock Text="   Add Employee" VerticalAlignment="Center"
+                           FontFamily="{StaticResource PoppinsBold}" FontSize="28"/>
             </StackPanel>
 
-            <userControls:LabeledTextBox Grid.Row="2" Label="Employee Name" 
-                                         Text="Full Name"/>
-            <userControls:LabeledTextBox Grid.Row="3" Label="Employee Email" 
-                             Text="Full Name"/>
-            <userControls:LabeledTextBox Grid.Row="4" Label="Account Username" 
-                             Text="Full Name"/>
-            
+            <!-- Employee Info -->
+            <userControls:LabeledTextBox Grid.Row="2" Label="Employee Name" Text="Full Name"/>
+            <userControls:LabeledTextBox Grid.Row="3" Label="Employee Email" Text="Email Address"/>
+            <userControls:LabeledTextBox Grid.Row="4" Label="Account Username" Text="Username"/>
+
+            <!-- Employment Status & Weekly Hours -->
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -50,20 +49,16 @@
                 <StackPanel Grid.Column="0">
                     <TextBlock Text="Employment Status" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
                     <ComboBox x:Name="cbEmploymentStatus" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2"
-                            IsEnabled="{Binding EditBasicInfo, UpdateSourceTrigger=PropertyChanged}">
+                              IsEnabled="{Binding EditBasicInfo, UpdateSourceTrigger=PropertyChanged}">
                         <ComboBoxItem Content="Regular Employee" />
                         <ComboBoxItem Content="Independent Contractor" />
                     </ComboBox>
                 </StackPanel>
 
-                <StackPanel Grid.Column="2">
-                    <TextBlock Text="Shift" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
-                    <ComboBox x:Name="cbShift" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" 
-                                IsEnabled="{Binding EditBasicInfo, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
-
+                <userControls:LabeledTextBox Grid.Column="2" Label="Weekly Hours" Text="00"/>
             </Grid>
 
+            <!-- Shift Times -->
             <Grid Grid.Row="6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -72,20 +67,37 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0">
-                    <TextBlock Text="Department" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
-                    <ComboBox x:Name="cbDepartment" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" 
-                                IsEnabled="{Binding EditBasicInfo, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="Time In" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
+                    <materialDesign:TimePicker x:Name="tpTimeIn" Height="35"/>
                 </StackPanel>
-                
-                <userControls:LabeledTextBox Grid.Column="2" Label="Role" 
-                 Text="Job Role"/>
 
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Time Out" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
+                    <materialDesign:TimePicker x:Name="tpTimeOut" Height="35"/>
+                </StackPanel>
             </Grid>
 
-            <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <!-- Department & Role -->
+            <Grid Grid.Row="7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Department" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
+                    <ComboBox x:Name="cbDepartment" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2"
+                              IsEnabled="{Binding EditBasicInfo, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <userControls:LabeledTextBox Grid.Column="2" Label="Role" Text="Job Role"/>
+            </Grid>
+
+            <!-- Buttons -->
+            <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                 <Button x:Name="btnAddEmployee" Content="Add" 
                         FontFamily="{StaticResource PoppinsBold}" FontSize="12" 
-                        HorizontalAlignment="Center"
                         Width="100" Height="35"
                         materialDesign:ButtonAssist.CornerRadius="17.5"
                         Style="{StaticResource MaterialDesignRaisedButton}"
@@ -93,9 +105,9 @@
                         Foreground="DarkGoldenrod"
                         Background="LightGoldenrodYellow"
                         BorderBrush="DarkGoldenrod"/>
+
                 <Button x:Name="btnCancel" Content="Cancel" 
                         FontFamily="{StaticResource PoppinsBold}" FontSize="12" 
-                        HorizontalAlignment="Center"
                         Width="100" Height="35"
                         materialDesign:ButtonAssist.CornerRadius="17.5"
                         Style="{StaticResource MaterialDesignOutlinedButton}"
