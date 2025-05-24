@@ -9,6 +9,7 @@ using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardIC;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg;
 using PresentationLayer.WPF.View.Windows;
 using PresentationLayer.WPF.View.Windows.Main;
+using PresentationLayer.WPF.View.Windows.PopUps;
 using PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox;
 using PresentationLayer.WPF.ViewModel;
 using PresentationLayer.WPF.ViewModel.PagesViewModel;
@@ -42,7 +43,7 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-            windowService.ShowWindow<PasswordPrompt_View>();
+            windowService.ShowWindow<AdminDashboard_View>();
 
         }
 
@@ -96,6 +97,8 @@ namespace SASPayrolSystemProject
             services.AddTransient<Success_View>();
             services.AddTransient<Warning_View>();
             services.AddTransient<PasswordPrompt_View>();
+            
+            services.AddTransient<EmployeeAdd_View>();
 
 
 
