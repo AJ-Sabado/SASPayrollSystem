@@ -43,7 +43,7 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-            windowService.ShowWindow<AdminDashboard_View>();
+            windowService.ShowWindow<MainWindow>();
 
         }
 
