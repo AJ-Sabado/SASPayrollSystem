@@ -145,8 +145,8 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                     //Test attendance evaluation
                     try
                     {
-                        await _unitOfWork.EvaluateAllEmployeeAttendanceLog(periodStart, periodEnd);
-                        await _unitOfWork.GenerateAllEmployeePayslips(periodStart, periodEnd, payDate);
+                        //await _unitOfWork.EvaluateAllEmployeeAttendanceLog(periodStart, periodEnd);
+                        //await _unitOfWork.GenerateAllEmployeePayslips(periodStart, periodEnd, payDate);
                         _windowService.ShowWindow<EmployeeDahboard_View>();
                     }
                     catch (Exception ex)
@@ -154,16 +154,22 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                         MessageBox.Show(ex.Message);
                     }
                 }
-                else if (user.Role.NormalizedName == "ADMIN" && user.Admin != null)
+                else if (user.Role.NormalizedName == "ADMIN")
                 {
-                    EnableSignIn = true;
-                    System.Windows.MessageBox.Show("Admin Functionality to be added");
+                    try
+                    {
+                        _windowService.ShowWindow<AdminDashboard_View>();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
                 else if (user.Role.NormalizedName == "CONTRACTOR" && user.Contractor != null)
                 {
                     try
                     {
-                        await _unitOfWork.GenerateAllContractorPayslips(periodStart, periodEnd, payDate);
+                        //await _unitOfWork.GenerateAllContractorPayslips(periodStart, periodEnd, payDate);
                         _windowService.ShowWindow<EmployeeDashboardIC_View>();
                     }
                     catch (Exception ex)

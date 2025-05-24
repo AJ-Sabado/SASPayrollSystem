@@ -10,7 +10,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
     public class AdminDashboard_ViewModel : Base_ViewModel
     {
         private readonly IPageService _pageService;
-
+        private readonly IAdminOperationsService _adminOperationService;
         private object _currentView;
         public object CurrentView
         {
@@ -32,9 +32,12 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         public ICommand ShowAdministrationCommand { get; }
         public ICommand ShowAccountCommand { get; }
 
-        public AdminDashboard_ViewModel(IUnitOfWork unitOfWork, IPageService pageService)
+        public AdminDashboard_ViewModel(IPageService pageService, IAdminOperationsService adminOperationsService)
         {
             _pageService = pageService;
+            _adminOperationService = adminOperationsService;
+
+            InitializeServices();
 
             ShowDashboardCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<AdminDashPage_View>(), "Dashboard"));
             ShowPayrollCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<AdminPayrollPage_View>(), "Payroll"));
@@ -45,6 +48,12 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
 
             // Initialize with Dashboard page and menu selected
             ShowDashboardCommand.Execute(null);
+        }
+
+        private async void InitializeServices()
+        {
+            if (Properties.Settings.Default.CurrentUserGuid != Guid.Empty)
+                await _adminOperationService.InitializeService(Properties.Settings.Default.CurrentUserGuid);
         }
 
         private void ShowView(object view, string menu)
