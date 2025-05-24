@@ -9,6 +9,7 @@
         xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
 
         mc:Ignorable="d"
+        Icon="/Resources/Images/SASLogo.png"
         Title="Onboarding Request" Height="600" Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">

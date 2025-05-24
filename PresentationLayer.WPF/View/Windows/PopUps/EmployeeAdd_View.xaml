@@ -12,6 +12,7 @@
         Title="Add Employee" Height="600" Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
+        Icon="/Resources/Images/SASLogo.png">
 
     <Grid>
         <Grid Margin="30,20,30,30">

@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         ResizeMode="NoResize"
+        Icon="/Resources/Images/SASLogo.png"
         Width="400"
         SizeToContent="Height"
         WindowStartupLocation="CenterScreen"
