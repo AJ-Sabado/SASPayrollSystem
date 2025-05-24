@@ -10,7 +10,8 @@
         
         mc:Ignorable="d"
         Title="Add Employee" Height="600" Width="600"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
 
     <Grid>
         <Grid Margin="30,20,30,30">
@@ -87,14 +88,19 @@
                         Width="100" Height="35"
                         materialDesign:ButtonAssist.CornerRadius="17.5"
                         Style="{StaticResource MaterialDesignRaisedButton}"
-                        Margin="0,0,5,0"/>
+                        Margin="0,0,5,0"
+                        Foreground="DarkGoldenrod"
+                        Background="LightGoldenrodYellow"
+                        BorderBrush="DarkGoldenrod"/>
                 <Button x:Name="btnCancel" Content="Cancel" 
                         FontFamily="{StaticResource PoppinsBold}" FontSize="12" 
                         HorizontalAlignment="Center"
                         Width="100" Height="35"
                         materialDesign:ButtonAssist.CornerRadius="17.5"
                         Style="{StaticResource MaterialDesignOutlinedButton}"
-                        Margin="5,0,0,0"/>
+                        Margin="5,0,0,0"
+                        BorderBrush="DarkGoldenrod"
+                        Foreground="DarkGoldenrod"/>
             </StackPanel>
         </Grid>
     </Grid>
