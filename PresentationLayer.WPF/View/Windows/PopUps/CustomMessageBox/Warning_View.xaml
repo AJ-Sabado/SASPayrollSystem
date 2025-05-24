@@ -38,13 +38,17 @@
         <!-- Message Text -->
         <TextBlock Grid.Row="1"
                    x:Name="MessageTextBlock"
-                   Text="Are you sure you want to proceed? This action cannot be undone and may affect system settings."
                    FontSize="14"
                    FontFamily="{StaticResource PoppinsRegular}"
                    TextWrapping="Wrap"
-                   Margin="0,10,0,10"
+                   Padding="10"
+                   Margin="0"
+                   ClipToBounds="False"
+                   TextTrimming="None"
                    HorizontalAlignment="Center"
-                   TextAlignment="Left"
+                   VerticalAlignment="Center"
+                   TextAlignment="Justify"
+                   Text="Warning Message"
                    Width="360"/>
 
         <!-- Buttons -->
@@ -58,7 +62,7 @@
                     Margin="0,0,10,0"
                     FontFamily="{StaticResource PoppinsBold}"/>
             <Button x:Name="btnOkay"
-                    Content="Okay"
+                    Content="Continue"
                     Width="100"
                     FontFamily="{StaticResource PoppinsBold}"/>
         </StackPanel>

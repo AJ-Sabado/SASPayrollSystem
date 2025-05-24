@@ -43,8 +43,12 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-            windowService.ShowWindow<AdminDashboard_View>();
+<<<<<<< HEAD
+            windowService.ShowWindow<ChangePassword_View>();
 
+=======
+            windowService.ShowWindow<MainWindow>();
+>>>>>>> b0fa85620f478873a33199ec1be9449fb07fee28
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -92,12 +96,7 @@ namespace SASPayrolSystemProject
             services.AddTransient<AttendanceRequest_View>();
             services.AddTransient<AttendanceRequest_ViewModel>();
             services.AddTransient<FileLeaveForm_View>();
-            services.AddTransient<Error_View>();
-            services.AddTransient<Question_View>();
-            services.AddTransient<Success_View>();
-            services.AddTransient<Warning_View>();
-            services.AddTransient<PasswordPrompt_View>();
-            
+>>>>>>> b0fa85620f478873a33199ec1be9449fb07fee28
             services.AddTransient<EmployeeAdd_View>();
             services.AddTransient<OnboardingRequest_View>();
             services.AddTransient<EmployeeDetails_View>();
@@ -109,6 +108,16 @@ namespace SASPayrolSystemProject
             services.AddTransient<AddHolidays_View>();
             services.AddTransient<RegPayslip_View>();
             services.AddTransient<ICPayslip>();
+
+            //Custom Message Box
+            services.AddTransient<Error_View>();
+            services.AddTransient<Question_View>();
+            services.AddTransient<Success_View>();
+            services.AddTransient<Warning_View>();
+            services.AddTransient<PasswordPrompt_View>();
+            services.AddTransient<ChangePassword_View>();
+            services.AddTransient<ForgotPassword_View>();
+
 
 
 
@@ -123,6 +132,8 @@ namespace SASPayrolSystemProject
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<IPopUpService, PopUpService>();
             services.AddSingleton<IContractorTrackerService, ContractorTrackerService>();
+            services.AddSingleton<IAdminOperationsService, AdminOperationsService>();
+            services.AddSingleton<MyMessageBox>();
         }
 
         //Resolves GetRequiredService for DI conflict

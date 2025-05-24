@@ -29,7 +29,7 @@ namespace SASPayrolSystemProject
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
 
         private void btnForgotPassword_Click(object sender, RoutedEventArgs e)

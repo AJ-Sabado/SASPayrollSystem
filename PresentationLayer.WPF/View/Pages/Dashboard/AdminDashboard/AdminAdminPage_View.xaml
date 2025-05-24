@@ -75,7 +75,7 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0"
-                                                   Text="250"
+                                                   Text="{Binding EmployeeCount}"
                                                    FontFamily="{StaticResource PoppinsSemiBold}" 
                                                    FontSize="35"
                                                    Foreground="Black"
@@ -96,7 +96,7 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0"
-                                                    Text="10"
+                                                    Text="{Binding DepartmentsCount}"
                                                     FontFamily="{StaticResource PoppinsSemiBold}" 
                                                     FontSize="35"
                                                     Foreground="Black"
@@ -117,7 +117,7 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0"
-                                                    Text="50"
+                                                    Text="{Binding RolesCount}"
                                                     FontFamily="{StaticResource PoppinsSemiBold}" 
                                                     FontSize="35"
                                                     Foreground="Black"
@@ -178,8 +178,7 @@
                                                   HeadersVisibility="Column" 
                                                   CanUserAddRows="False" 
                                                   Margin="0,10,0,0" 
-                                                  ItemsSource="{Binding Departments}" 
-                                                  SelectedItem="{Binding SelectedDepartment}" 
+                                                  ItemsSource="{Binding DepartmentsTable}"
                                                   materialDesign:DataGridAssist.CellPadding="10" 
                                                   materialDesign:DataGridAssist.ColumnHeaderPadding="10,5" 
                                                   RowHeight="40" 
@@ -189,10 +188,10 @@
                                                   VerticalScrollBarVisibility="Auto"
                                                   Background="Transparent">
                                             <DataGrid.Columns>
-                                                <DataGridTextColumn Header="ID" Binding="{Binding DepartmentID}" Width="1*" />
-                                                <DataGridTextColumn Header="Department Name" Binding="{Binding Name}" Width="3*" />
-                                                <DataGridTextColumn Header="Code" Binding="{Binding DepartmentCode}" Width="2*" />
-                                                <DataGridTemplateColumn Header="Actions" Width="1.5*">
+ 
+                                                <DataGridTextColumn Header="Department Name" Binding="{Binding Name}" Width="Auto" />
+                                                <DataGridTextColumn Header="Normalized Name" Binding="{Binding NormalizedName}" Width="Auto" />
+                                                <DataGridTemplateColumn Header="Actions" Width="Auto">
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <Button Content="{materialDesign:PackIcon Kind=Delete}"  
@@ -238,8 +237,7 @@
                                                   HeadersVisibility="Column" 
                                                   CanUserAddRows="False" 
                                                   Margin="0,10,0,0" 
-                                                  ItemsSource="{Binding Departments}" 
-                                                  SelectedItem="{Binding SelectedDepartment}" 
+                                                  ItemsSource="{Binding RolesTable}" 
                                                   materialDesign:DataGridAssist.CellPadding="10" 
                                                   materialDesign:DataGridAssist.ColumnHeaderPadding="10,5" 
                                                   RowHeight="40" 
@@ -249,10 +247,10 @@
                                                   VerticalScrollBarVisibility="Auto"
                                                   Background="Transparent">
                                             <DataGrid.Columns>
-                                                <DataGridTextColumn Header="ID" Binding="{Binding DepartmentID}" Width="1*" />
-                                                <DataGridTextColumn Header="Role Name" Binding="{Binding Name}" Width="3*" />
-                                                <DataGridTextColumn Header="Parent Department" Binding="{Binding DepartmentCode}" Width="2.5*" />
-                                                <DataGridTemplateColumn Header="Actions" Width="1.5*">
+                                                
+                                                <DataGridTextColumn Header="Role Name" Binding="{Binding Name}" Width="Auto" />
+                                                <DataGridTextColumn Header="Normalized Name" Binding="{Binding NormalizedName}" Width="Auto" />
+                                                <DataGridTemplateColumn Header="Actions" Width="Auto">
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <Button Content="{materialDesign:PackIcon Kind=Delete}" 
@@ -316,18 +314,17 @@
                                               HeadersVisibility="Column"
                                               CanUserAddRows="False"
                                               Margin="0"
-                                              ItemsSource="{Binding Holidays}"
-                                              SelectedItem="{Binding SelectedHoliday}"
+                                              ItemsSource="{Binding HolidaysTable}"
                                               materialDesign:DataGridAssist.CellPadding="10"
                                               materialDesign:DataGridAssist.ColumnHeaderPadding="10"
-                                              RowHeight="40"
+                                              RowHeight="50"
                                               FontSize="12"
                                               Background="Transparent">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Holiday Name" Binding="{Binding Name}" Width="200*"/>
-                                            <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="100*"/>
-                                            <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="250*"/>
-                                            <DataGridTemplateColumn Header="Actions" Width="100*">
+                                            <DataGridTextColumn Header="Holiday Name" Binding="{Binding Description}" Width="*"/>
+                                            <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="*"/>
+                                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*"/>
+                                            <DataGridTemplateColumn Header="Actions" Width="*">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <Button Content="Delete"

@@ -1,5 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
+using ServicesLayer;
 using System.Globalization;
 using System.Windows.Media;
 
@@ -7,13 +8,18 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 {
     public class AdminDashPage_ViewModel:Base_ViewModel
     {
+        private readonly IAdminOperationsService _adminOperationsService;
+
         public SeriesCollection SeriesCollection { get; set; }
         public SeriesCollection PayrollSeries { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
 
-        public AdminDashPage_ViewModel()
+        public AdminDashPage_ViewModel(IAdminOperationsService adminOperationService)
         {
+            _adminOperationsService = adminOperationService;
+            
+            //Charts
             LoadPieChartData();
             LoadLineChartData();
         }

@@ -10,7 +10,7 @@
         SizeToContent="Height"
         Icon="/Resources/Images/SASLogo.png"
         WindowStartupLocation="CenterScreen"
-        Title="Question">
+        Title="Confirm">
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -30,10 +30,16 @@
         <TextBlock Grid.Row="1"
                    x:Name="MessageTextBlock"
                    Text="This action might have consequences. Do you want to proceed?" 
-                   FontSize="14" TextWrapping="Wrap"
-                   Margin="0,10,0,10"
+                   FontSize="14" 
+                   TextWrapping="Wrap"
+                   Padding="10"
+                   Margin="0"
+                   ClipToBounds="False"
+                   TextTrimming="None"
                    HorizontalAlignment="Center"
-                   TextAlignment="Left" Width="360"/>
+                   VerticalAlignment="Center"
+                   TextAlignment="Justify" 
+                   Width="360"/>
 
         <!-- Buttons -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">

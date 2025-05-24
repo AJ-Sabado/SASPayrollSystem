@@ -42,7 +42,7 @@ namespace ServicesLayer
             return CurrentContractor;
         }
 
-        public async Task<ContractorAttendanceLogModel?> StartSession()
+        public async Task<ContractorAttendanceLogModel?> StartSession(DateTime? timeStamp = null)
         {
             if (CurrentContractor == null)
                 return null;
@@ -52,15 +52,15 @@ namespace ServicesLayer
             {
                 ContractorId = CurrentContractor.ContractorId,
                 Contractor = CurrentContractor,
-                Date = DateOnly.FromDateTime(DateTime.Now),
-                TimeIn = DateTime.Now
+                Date = DateOnly.FromDateTime(timeStamp ?? DateTime.Now),
+                TimeIn = timeStamp ?? DateTime.Now,
             };
             CurrentContractor.ContractorAttendanceLogs.Add(CurrentAttendanceLog);
             await _unitOfWork.Save();
             return CurrentAttendanceLog;
         }
 
-        public async Task<ContractorAttendanceLogModel?> EndSession()
+        public async Task<ContractorAttendanceLogModel?> EndSession(DateTime? timeStamp = null)
         {
             //Checks if the current contractor is null, if the current attendance log is null, and if the time out is already set.
             if (CurrentContractor == null)
@@ -71,7 +71,7 @@ namespace ServicesLayer
                 return CurrentAttendanceLog;
             if (CurrentAttendanceLog.TimeIn == null)
                 return CurrentAttendanceLog;
-            CurrentAttendanceLog.TimeOut = DateTime.Now;
+            CurrentAttendanceLog.TimeOut = timeStamp ?? DateTime.Now;
             await _unitOfWork.Save();
 
             //Set CurrentAttendanceLog to null
