@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using PresentationLayer.WPF.Services;
 
 namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
 {
@@ -13,7 +14,7 @@ namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
             set { MessageTextBlock.Text = value; }
         }
 
-        public ErrorResult Result { get; private set; } = ErrorResult.NONE;
+        public MyMessageBoxDialogResult Result { get; private set; } = MyMessageBoxDialogResult.None;
 
         public Error_View()
         {
@@ -24,16 +25,9 @@ namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
 
         private void BtnOkay_Click(object sender, RoutedEventArgs e)
         {
-            Result = ErrorResult.OKAY;
+            Result = MyMessageBoxDialogResult.Okay;
             this.DialogResult = true; // Optional
             this.Close();
         }
     }
-
-    public enum ErrorResult
-    {
-        OKAY,
-        NONE
-    }
-
 }

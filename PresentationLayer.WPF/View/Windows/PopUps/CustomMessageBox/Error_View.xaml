@@ -30,10 +30,16 @@
         <TextBlock Grid.Row="1"
                    x:Name="MessageTextBlock"
                    Text="Something went wrong. Please try again or contact support." 
-                   FontSize="14" TextWrapping="Wrap"
-                   Margin="0,10,0,10"
+                   FontSize="14"
+                   TextWrapping="Wrap"
+                   Padding="10"
+                   Margin="0"
+                   ClipToBounds="False"
+                   TextTrimming="None"
                    HorizontalAlignment="Center"
-                   TextAlignment="Left" Width="360"/>
+                   VerticalAlignment="Center"
+                   TextAlignment="Justify"
+                   Width="360"/>
 
         <!-- Button -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">

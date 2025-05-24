@@ -96,12 +96,16 @@ namespace SASPayrolSystemProject
             services.AddTransient<AttendanceRequest_View>();
             services.AddTransient<AttendanceRequest_ViewModel>();
             services.AddTransient<FileLeaveForm_View>();
+<<<<<<< HEAD
             services.AddTransient<Error_View>();
             services.AddTransient<Question_View>();
             services.AddTransient<Success_View>();
             services.AddTransient<Warning_View>();
             services.AddTransient<PasswordPrompt_View>();
 
+=======
+>>>>>>> b0fa85620f478873a33199ec1be9449fb07fee28
+>>>>>>> cb27481a499b49cf3e6e0e7a4e94a35fba07b1ca
             services.AddTransient<EmployeeAdd_View>();
             services.AddTransient<OnboardingRequest_View>();
             services.AddTransient<EmployeeDetails_View>();
@@ -109,7 +113,17 @@ namespace SASPayrolSystemProject
             services.AddTransient<AttendanceRequestAction_View>();
             services.AddTransient<AssignLeave_View>();
             services.AddTransient<LeaveRequests_View>();
+            services.AddTransient<AddDepartment_View>();
+            services.AddTransient<AddHolidays_View>();
+            services.AddTransient<RegPayslip_View>();
+            services.AddTransient<ICPayslip>();
 
+            //Custom Message Box
+            services.AddTransient<Error_View>();
+            services.AddTransient<Question_View>();
+            services.AddTransient<Success_View>();
+            services.AddTransient<Warning_View>();
+            services.AddTransient<PasswordPrompt_View>();
             services.AddTransient<ChangePassword_View>();
             services.AddTransient<ForgotPassword_View>();
 
@@ -128,6 +142,7 @@ namespace SASPayrolSystemProject
             services.AddSingleton<IPopUpService, PopUpService>();
             services.AddSingleton<IContractorTrackerService, ContractorTrackerService>();
             services.AddSingleton<IAdminOperationsService, AdminOperationsService>();
+            services.AddSingleton<MyMessageBox>();
         }
 
         //Resolves GetRequiredService for DI conflict

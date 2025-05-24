@@ -1,4 +1,6 @@
-﻿using DomainLayer.Models.Department;
+﻿using DomainLayer.Models.Contractor;
+using DomainLayer.Models.Department;
+using DomainLayer.Models.Employee;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
@@ -12,6 +14,12 @@ namespace ServicesLayer
 
         public UserModel? AdminUser { get; private set; }
 
+        //Cached Tables and data
+        public IList<ContractorModel> Contractors { get; private set; } = [];
+        public IList<DepartmentModel> Departments { get; private set; } = [];
+        public IList<EmployeeModel> Employees { get; private set; } = [];
+        public IList<HolidayModel> Holidays { get; private set; } = [];
+        public IList<RoleModel> Roles { get; private set; } = [];
 
         public AdminOperationsService(IUnitOfWork unitOfWork)
         {
@@ -31,6 +39,14 @@ namespace ServicesLayer
                 throw new ArgumentException("This user has no administrator privillages!");
 
             AdminUser = user;
+
+            //Load Tables
+            await RefreshHolidaysTable();
+            await RefreshDepartmentsTable();
+            await RefreshRolesTable();
+            await RefreshContractorsTable();
+            await RefreshEmployeesTable();
+
             return AdminUser;
         }
 
@@ -46,44 +62,34 @@ namespace ServicesLayer
             return false;
         }
 
-        //Admin Page Operations
-        public async Task<IList<DepartmentModel>> GetDepartmentsList()
+        public async Task RefreshHolidaysTable()
         {
-            if (AdminUser == null)
-                ThrowAccessDeniedException();
-
-            var departments = await _unitOfWork.DepartmentRepository.GetManyAsync(d => d.NormalizedName != "UNASSIGNED".ToUpperInvariant());
-            return [.. departments];
-        }
-        public async Task<IList<RoleModel>> GetRolesList()
-        {
-            if (AdminUser == null)
-                ThrowAccessDeniedException();
-            var roles = await _unitOfWork.RoleRepository.GetManyAsync(r => r.NormalizedName != "no access".ToUpperInvariant());
-            return [.. roles];
-        }
-        public async Task<IList<HolidayModel>> GetHolidayList()
-        {
-            if (AdminUser == null)
-                ThrowAccessDeniedException();
-
             var holidays = await _unitOfWork.HolidayRepository.GetAllAsync();
-            return [.. holidays];
+            Holidays = holidays.ToList();
         }
-        public async Task<int> GetEmployeeCount()
+
+        public async Task RefreshDepartmentsTable()
         {
-            if (AdminUser == null)
-                ThrowAccessDeniedException();
-            var employees1 = await _unitOfWork.EmployeeRepository.GetAllAsync();
-            var employees2 = await _unitOfWork.ContractorRepository.GetAllAsync();
-
-            return employees1.Count() + employees2.Count();
+            var departments = await _unitOfWork.DepartmentRepository.GetManyAsync(d => d.NormalizedName != "unassigned".ToUpperInvariant());
+            Departments = departments.ToList();
         }
 
-        private static void ThrowAccessDeniedException()
+        public async Task RefreshRolesTable()
         {
-            throw new ArgumentException("Access denied!");
+            var roles = await _unitOfWork.RoleRepository.GetManyAsync(r => r.NormalizedName != "no access".ToUpperInvariant());
+            Roles = roles.ToList();
         }
 
+        public async Task RefreshContractorsTable()
+        {
+            var contractors = await _unitOfWork.ContractorRepository.GetAllAsync();
+            Contractors = contractors.ToList();
+        }
+
+        public async Task RefreshEmployeesTable()
+        {
+            var employees = await _unitOfWork.EmployeeRepository.GetAllAsync();
+            Employees = employees.ToList();
+        }
     }
 }

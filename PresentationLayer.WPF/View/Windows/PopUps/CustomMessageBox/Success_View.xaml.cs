@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PresentationLayer.WPF.Services;
 
 namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
 {
@@ -25,7 +26,7 @@ namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
             set { MessageTextBlock.Text = value; }
         }
 
-        public SuccessResult Result { get; private set; } = SuccessResult.NONE;
+        public MyMessageBoxDialogResult Result { get; private set; } = MyMessageBoxDialogResult.None;
 
         public Success_View()
         {
@@ -36,17 +37,10 @@ namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
 
         private void BtnOkay_Click(object sender, RoutedEventArgs e)
         {
-            Result = SuccessResult.OKAY;
+            Result = MyMessageBoxDialogResult.Okay;
             this.DialogResult = true;  // optional
             this.Close();
         }
 
     }
-
-    public enum SuccessResult
-    {
-        OKAY,
-        NONE
-    }
-
 }

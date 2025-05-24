@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using DomainLayer.Services;
 
 namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
 {
@@ -7,7 +8,9 @@ namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
     /// </summary>
     public partial class PasswordPrompt_View : Window
     {
-        public string EnteredPassword { get; private set; }
+        public bool PasswordMatch { get; private set; } = false;
+        public byte[] PasswordHash { private get; set; } = [];
+        public byte[] Salt { private get; set; } = [];
 
         public PasswordPrompt_View()
         {
@@ -22,10 +25,11 @@ namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            // Retrieve the password from the custom password box
-            EnteredPassword = customPasswordBox.pbPasswordBox.Password;
+            var encryption = new Encryption();
+            var enteredPassHash = encryption.GenerateHash(customPasswordBox.pbPasswordBox.Password, Salt);
+            PasswordMatch = enteredPassHash.SequenceEqual(PasswordHash);
             DialogResult = true;
-            Close();
+            this.Close();
         }
     }
 }

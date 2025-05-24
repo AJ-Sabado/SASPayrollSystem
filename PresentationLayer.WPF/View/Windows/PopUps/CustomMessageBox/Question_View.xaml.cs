@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PresentationLayer.WPF.Services;
 
 namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
 {
@@ -25,7 +26,7 @@ namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
             set { MessageTextBlock.Text = value; }
         }
 
-        public QuestionResult Result { get; private set; } = QuestionResult.CANCEL; // Default
+        public MyMessageBoxDialogResult Result { get; private set; } = MyMessageBoxDialogResult.Cancel;
 
         public Question_View()
         {
@@ -38,32 +39,24 @@ namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            Result = QuestionResult.CANCEL;
+            Result = MyMessageBoxDialogResult.Cancel;
             this.DialogResult = false;  // optional
             this.Close();
         }
 
         private void BtnNo_Click(object sender, RoutedEventArgs e)
         {
-            Result = QuestionResult.NO;
+            Result = MyMessageBoxDialogResult.No;
             this.DialogResult = false;  // optional
             this.Close();
         }
 
         private void BtnYes_Click(object sender, RoutedEventArgs e)
         {
-            Result = QuestionResult.YES;
+            Result = MyMessageBoxDialogResult.Yes;
             this.DialogResult = true;   // optional
             this.Close();
         }
 
     }
-
-    public enum QuestionResult
-    {
-        YES,
-        NO,
-        CANCEL
-    }
-
 }

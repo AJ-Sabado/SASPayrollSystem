@@ -39,8 +39,8 @@
                         <Grid Margin="20,0,0,0" Background="White">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="7*"/>
-                                <RowDefinition Height="20*"/>
-                                <RowDefinition Height="73*"/>
+                                <RowDefinition Height="15*"/>
+                                <RowDefinition Height="78*"/>
                             </Grid.RowDefinitions>
 
                             <!-- TITLE -->
@@ -54,7 +54,7 @@
                                              VerticalAlignment="Stretch" Background="White" 
                                              UniformCornerRadius="10" BorderBrush="LightGray" 
                                              BorderThickness="1" Effect="{StaticResource CardEffects}"
-                                             Padding="20,15" Margin="0,7.5">
+                                             Padding="20,10" Margin="0,7.5">
 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -87,12 +87,12 @@
                                                  materialDesign:HintAssist.Hint="Search Employee Name or ID"
                                                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                                  BorderThickness="0"
-                                                 VerticalAlignment="Center" Margin="0,5" Width="310" Height="45"
-                                                 Padding="10"
+                                                 VerticalAlignment="Center" Width="310" Height="30"
+                                                 Padding="5"
                                                  FontFamily="{StaticResource PoppinsLight}" FontSize="12"/>
                                             <Button x:Name="SearchBtn" Background="Transparent" Foreground="{StaticResource BaseColorSCB}"
                                                 BorderBrush="Transparent" Style="{StaticResource MaterialDesignIconButton}"
-                                                Height="45" Width="45" Margin="5,0,0,0">
+                                                Height="30" Width="30" Margin="5,0,0,0">
                                                 <materialDesign:PackIcon Kind="Search"/>
                                             </Button>
                                         </StackPanel>
@@ -150,51 +150,117 @@
                             </materialDesign:Card>
 
                             <!--DATAGRID-->
-                            <materialDesign:Card Grid.Row="2" HorizontalAlignment="Stretch" 
-                                             VerticalAlignment="Stretch" Background="White" 
-                                             UniformCornerRadius="10" BorderBrush="LightGray" 
-                                             BorderThickness="1" Effect="{StaticResource CardEffects}"
-                                             Padding="20,15" Margin="0,7.5">
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="6*"/>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition Width="4*"/>
+                                </Grid.ColumnDefinitions>
 
-                                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                                            VerticalScrollBarVisibility="Auto">
-                                    <DataGrid AutoGenerateColumns="False"
-                                          HeadersVisibility="Column"
-                                          CanUserAddRows="False"
-                                          Margin="0"
-                                          ItemsSource="{Binding Employees}"
-                                          SelectedItem="{Binding SelectedEmployee}"
-                                          materialDesign:DataGridAssist.CellPadding="10"
-                                          materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
-                                          RowHeight="40"
-                                          FontSize="12"
-                                          IsReadOnly="True"
-                                          HorizontalScrollBarVisibility="Auto"
-                                          VerticalScrollBarVisibility="Auto"
-                                          Background="Transparent"
-                                          >
-                                        <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Employee ID" Binding="{Binding Id}" Width="1*" />
-                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*" />
-                                            <DataGridTextColumn Header="Role" Binding="{Binding Position}" Width="1.5*" />
-                                            <DataGridTextColumn Header="Department" Binding="{Binding Department}" Width="2*" />
-                                            <DataGridTextColumn Header="Status" Binding="{Binding Name}" Width="1.3*" />
-                                            <DataGridTemplateColumn Header="Actions" Width="1.5*">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <Button Content="View" 
-                                                            Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                            CommandParameter="{Binding}" 
-                                                            Style="{StaticResource MaterialDesignFlatButton}" 
-                                                            Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
-                                        </DataGrid.Columns>
-                                    </DataGrid>
-                                </ScrollViewer>
 
-                            </materialDesign:Card>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Grid.Column="0" Text="RE Evaluated Attendance" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="22" Margin="0,10"/>
+
+                                    <materialDesign:Card HorizontalAlignment="Stretch" 
+                                       VerticalAlignment="Stretch" Background="White" 
+                                       UniformCornerRadius="10" BorderBrush="LightGray" 
+                                       BorderThickness="1" Effect="{StaticResource CardEffects}"
+                                       Padding="20,15" Height="450">
+
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                        VerticalScrollBarVisibility="Auto">
+                                            <DataGrid AutoGenerateColumns="False"
+                                                        HeadersVisibility="Column"
+                                                        CanUserAddRows="False"
+                                                        Margin="0"
+                                                        ItemsSource="{Binding Employees}"
+                                                        SelectedItem="{Binding SelectedEmployee}"
+                                                        materialDesign:DataGridAssist.CellPadding="10"
+                                                        materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
+                                                        RowHeight="40"
+                                                        FontSize="12"
+                                                        IsReadOnly="True"
+                                                        HorizontalScrollBarVisibility="Auto"
+                                                        VerticalScrollBarVisibility="Auto"
+                                                        Background="Transparent"
+>
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Header="Employee ID" Binding="{Binding Id}" Width="100" />
+                                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="180" />
+                                                    <DataGridTextColumn Header="Role" Binding="{Binding Position}" Width="140" />
+                                                    <DataGridTextColumn Header="Department" Binding="{Binding Department}" Width="200" />
+                                                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100" />
+                                                    <DataGridTemplateColumn Header="Actions" Width="100">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <Button Content="View" 
+                                                                          Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                          CommandParameter="{Binding}" 
+                                                                          Style="{StaticResource MaterialDesignFlatButton}" 
+                                                                          Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                </DataGrid.Columns>
+
+                                            </DataGrid>
+                                        </ScrollViewer>
+
+                                    </materialDesign:Card>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Grid.Column="0" Text="IC Attendance Logs" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="22" Margin="0,10"/>
+
+                                    <materialDesign:Card HorizontalAlignment="Stretch" 
+                                       VerticalAlignment="Stretch" Background="White" 
+                                       UniformCornerRadius="10" BorderBrush="LightGray" 
+                                       BorderThickness="1" Effect="{StaticResource CardEffects}"
+                                       Padding="20,15" Height="450">
+
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                                        VerticalScrollBarVisibility="Auto">
+                                            <DataGrid AutoGenerateColumns="False"
+                                                        HeadersVisibility="Column"
+                                                        CanUserAddRows="False"
+                                                        Margin="0"
+                                                        ItemsSource="{Binding Employees}"
+                                                        SelectedItem="{Binding SelectedEmployee}"
+                                                        materialDesign:DataGridAssist.CellPadding="10"
+                                                        materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
+                                                        RowHeight="40"
+                                                        FontSize="12"
+                                                        IsReadOnly="True"
+                                                        HorizontalScrollBarVisibility="Auto"
+                                                        VerticalScrollBarVisibility="Auto"
+                                                        Background="Transparent"
+>
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Header="Employee ID" Binding="{Binding Id}" Width="100" />
+                                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="180" />
+                                                    <DataGridTextColumn Header="Role" Binding="{Binding Position}" Width="140" />
+                                                    <DataGridTextColumn Header="Department" Binding="{Binding Department}" Width="200" />
+                                                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100" />
+                                                    <DataGridTemplateColumn Header="Actions" Width="100">
+                                                        <DataGridTemplateColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <Button Content="View" 
+                                                                          Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                          CommandParameter="{Binding}" 
+                                                                          Style="{StaticResource MaterialDesignFlatButton}" 
+                                                                          Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                            </DataTemplate>
+                                                        </DataGridTemplateColumn.CellTemplate>
+                                                    </DataGridTemplateColumn>
+                                                </DataGrid.Columns>
+
+                                            </DataGrid>
+                                        </ScrollViewer>
+
+                                    </materialDesign:Card>
+                                </StackPanel>
+
+                            </Grid>
                         </Grid>
                     </TabItem>
 

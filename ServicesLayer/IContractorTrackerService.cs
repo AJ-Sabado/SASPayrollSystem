@@ -10,8 +10,8 @@ namespace ServicesLayer
         ContractorAttendanceLogModel? CurrentAttendanceLog { get; }
         decimal TotalWeeklyHoursRendered { get; }
 
-        Task<ContractorAttendanceLogModel?> EndSession();
+        Task<ContractorAttendanceLogModel?> EndSession(DateTime? timeStamp = null);
         Task<ContractorModel?> InitializeService(Guid UserId);
-        Task<ContractorAttendanceLogModel?> StartSession();
+        Task<ContractorAttendanceLogModel?> StartSession(DateTime? timeStamp = null);
     }
 }
