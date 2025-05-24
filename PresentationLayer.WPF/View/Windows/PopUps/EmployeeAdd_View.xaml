@@ -10,6 +10,7 @@
         
         mc:Ignorable="d"
         Title="Add Employee" Height="600" Width="600"
+        Icon="/Resources/Images/SASLogo.png"
         WindowStartupLocation="CenterScreen">
 
     <Grid>
