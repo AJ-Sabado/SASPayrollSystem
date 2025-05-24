@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Pages.Dashboard;
@@ -29,6 +30,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         public ICommand ShowDashboardCommand { get; }
         public ICommand ShowJobDeskCommand { get; }
         public ICommand ShowAccountsCommand { get; }
+        public ICommand WindowClosing { get; }
 
         public EmployeeDashboardIC_ViewModel(IPageService pageService, IContractorTrackerService contractorTrackerService)
         {
@@ -40,9 +42,31 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
             ShowDashboardCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<ICDashboard>(), "Dashboard"));
             ShowJobDeskCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<ICJobDesk>(), "JobDesk"));
             ShowAccountsCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<AccountsPage>(), "Accounts"));
+            WindowClosing = new RelayCommand(ExecuteOnClosing, _ => true);
 
             // Set the default page and selected menu when opening
             InitializeServices();
+        }
+
+        private async void ExecuteOnClosing(object? parameter)
+        {
+            if (parameter is CancelEventArgs e)
+            {
+                if (! await CanCloseWindow())
+                    e.Cancel = true;
+            }
+        }
+
+        private async Task<bool> CanCloseWindow()
+        {
+            var result = MessageBox.Show("Are you sure you want to logout/exit?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                await _contractorTrackerService.EndSession();
+                MessageBox.Show("Your current session has ended.", "Ended Session");
+                return true;
+            }
+            return false;
         }
 
         private async void InitializeServices()
@@ -59,20 +83,20 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         }
 
         //Methods
-        public async void OnClosing()
-        {
-            if (_contractorTrackerService.CurrentAttendanceLog != null)
-            {
-                var log = await _contractorTrackerService.EndSession();
-                if (log != null)
-                {
-                    Properties.Settings.Default.CurrentUserGuid = Guid.Empty;
-                    Properties.Settings.Default.Save();
-                    MessageBox.Show("Session ended. Any time in will be timed out.", "Closing", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                    MessageBox.Show("There was a problem with");
-            }
-        }
+        //public async void OnClosing()
+        //{
+        //    if (_contractorTrackerService.CurrentAttendanceLog != null)
+        //    {
+        //        var log = await _contractorTrackerService.EndSession();
+        //        if (log != null)
+        //        {
+        //            Properties.Settings.Default.CurrentUserGuid = Guid.Empty;
+        //            Properties.Settings.Default.Save();
+        //            MessageBox.Show("Session ended. Any time in will be timed out.", "Closing", MessageBoxButton.OK, MessageBoxImage.Information);
+        //        }
+        //        else
+        //            MessageBox.Show("There was a problem with");
+        //    }
+        //}
     }
 }

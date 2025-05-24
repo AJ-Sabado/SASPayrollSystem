@@ -11,13 +11,15 @@
         mc:Ignorable="d"
         Icon="/Resources/Images/SASLogo.png"
         Title="Onboarding Request" Height="600" Width="600"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
 
     <Grid>
         <Grid Margin="30,20,30,30">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -38,7 +40,8 @@
                           Text="Full Name"/>
             <userControls:LabeledTextBox Grid.Row="4" Label="Account Username" 
                           Text="Full Name"/>
-
+            
+            <!--EMPLOYEE STATUS-->
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -55,15 +58,31 @@
                     </ComboBox>
                 </StackPanel>
 
-                <StackPanel Grid.Column="2">
-                    <TextBlock Text="Shift" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
-                    <ComboBox x:Name="cbShift" FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="2" 
-                             IsEnabled="{Binding EditBasicInfo, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
+                <userControls:LabeledTextBox Grid.Column="2"  x:Name="uscWeeklyHours" Label="Weekly Hours"  Text="00"/>
 
             </Grid>
-
+            
+            <!--SHIFT-->
             <Grid Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Time In" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
+                    <materialDesign:TimePicker x:Name="tpTimeIn" Height="35"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Time Out" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" Margin="2"/>
+                    <materialDesign:TimePicker x:Name="tpTimeOut" Height="35"/>
+                </StackPanel>
+            </Grid>
+
+            <!--DEPT AND ROLES-->
+            <Grid Grid.Row="7">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="15"/>
@@ -81,21 +100,36 @@
 
             </Grid>
 
-            <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <Button x:Name="btnAddEmployee" Content="Add" 
-                     FontFamily="{StaticResource PoppinsBold}" FontSize="12" 
-                     HorizontalAlignment="Center"
-                     Width="100" Height="35"
-                     materialDesign:ButtonAssist.CornerRadius="17.5"
-                     Style="{StaticResource MaterialDesignRaisedButton}"
-                     Margin="0,0,5,0"/>
+            <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button x:Name="btnApproveEmployee" Content="Approve" 
+                        FontFamily="{StaticResource PoppinsBold}" FontSize="12" 
+                        HorizontalAlignment="Center"
+                        Width="110" Height="35"
+                        materialDesign:ButtonAssist.CornerRadius="17.5"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Margin="0,0,5,0"
+                        Foreground="DarkGoldenrod"
+                        Background="LightGoldenrodYellow"
+                        BorderBrush="DarkGoldenrod"/>
+                <Button x:Name="btnAddEmployee" Content="Disapprove" 
+                        FontFamily="{StaticResource PoppinsBold}" FontSize="12" 
+                        HorizontalAlignment="Center"
+                        Width="110" Height="35"
+                        materialDesign:ButtonAssist.CornerRadius="17.5"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Margin="0,0,5,0"
+                        Foreground="DarkRed"
+                        Background="LightPink"
+                        BorderBrush="DarkRed"/>
                 <Button x:Name="btnCancel" Content="Cancel" 
-                     FontFamily="{StaticResource PoppinsBold}" FontSize="12" 
-                     HorizontalAlignment="Center"
-                     Width="100" Height="35"
-                     materialDesign:ButtonAssist.CornerRadius="17.5"
-                     Style="{StaticResource MaterialDesignOutlinedButton}"
-                     Margin="5,0,0,0"/>
+                        FontFamily="{StaticResource PoppinsBold}" FontSize="12" 
+                        HorizontalAlignment="Center"
+                        Width="100" Height="35"
+                        materialDesign:ButtonAssist.CornerRadius="17.5"
+                        Style="{StaticResource MaterialDesignOutlinedButton}"
+                        Margin="5,0,0,0" Click="btnCancel_Click"
+                        BorderBrush="DarkGoldenrod"
+                        Foreground="DarkGoldenrod"/>
             </StackPanel>
         </Grid>
     </Grid>

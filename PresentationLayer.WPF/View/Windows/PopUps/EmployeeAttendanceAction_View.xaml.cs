@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace PresentationLayer.WPF.View.Windows.PopUps
 {
     /// <summary>
-    /// Interaction logic for OnboardingRequest_View.xaml
+    /// Interaction logic for EmployeeAttendanceAction_View.xaml
     /// </summary>
-    public partial class OnboardingRequest_View : Window
+    public partial class EmployeeAttendanceAction_View : Window
     {
-        public OnboardingRequest_View()
+        public EmployeeAttendanceAction_View()
         {
             InitializeComponent();
-        }
-
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

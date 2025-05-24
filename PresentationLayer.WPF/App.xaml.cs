@@ -43,8 +43,12 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
+<<<<<<< HEAD
             windowService.ShowWindow<ChangePassword_View>();
 
+=======
+            windowService.ShowWindow<MainWindow>();
+>>>>>>> b0fa85620f478873a33199ec1be9449fb07fee28
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -97,7 +101,17 @@ namespace SASPayrolSystemProject
             services.AddTransient<Success_View>();
             services.AddTransient<Warning_View>();
             services.AddTransient<PasswordPrompt_View>();
+<<<<<<< HEAD
+=======
+
+>>>>>>> b0fa85620f478873a33199ec1be9449fb07fee28
             services.AddTransient<EmployeeAdd_View>();
+            services.AddTransient<OnboardingRequest_View>();
+            services.AddTransient<EmployeeDetails_View>();
+            services.AddTransient<EmployeeAttendanceAction_View>();
+            services.AddTransient<AttendanceRequestAction_View>();
+            services.AddTransient<AssignLeave_View>();
+            services.AddTransient<LeaveRequests_View>();
 
             services.AddTransient<ChangePassword_View>();
             services.AddTransient<ForgotPassword_View>();
@@ -116,6 +130,7 @@ namespace SASPayrolSystemProject
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<IPopUpService, PopUpService>();
             services.AddSingleton<IContractorTrackerService, ContractorTrackerService>();
+            services.AddSingleton<IAdminOperationsService, AdminOperationsService>();
         }
 
         //Resolves GetRequiredService for DI conflict

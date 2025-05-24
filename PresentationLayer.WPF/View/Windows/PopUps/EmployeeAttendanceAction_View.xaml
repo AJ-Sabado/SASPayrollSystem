@@ -1,0 +1,158 @@
+﻿<Window x:Class="PresentationLayer.WPF.View.Windows.PopUps.EmployeeAttendanceAction_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer.WPF.View.Windows.PopUps"
+       
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
+
+        mc:Ignorable="d"
+        Height="500" Width="500" Icon="/Resources/Images/SASLogo.png"
+        WindowStartupLocation="CenterScreen"
+        Title="Attendance Request" 
+        ResizeMode="CanResize">
+
+    <Viewbox>
+        <Grid Height="500" Width="500">
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height=".5*"/>
+                </Grid.RowDefinitions>
+
+                <!--TITLE HEADER-->
+                <Grid Grid.Row="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <materialDesign:PackIcon x:Name="piPersonCheck" Kind="PersonCheck" Height="60" Width="60"
+                                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        <TextBlock Grid.Column="2" Text=" Employee Attendance" VerticalAlignment="Center"
+                               FontFamily="{StaticResource PoppinsBold}" FontSize="30"/>
+                    </Grid>
+                </Grid>
+
+                <!--EMPLOYEE INFO-->
+                <Grid Grid.Row="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <userControls:LabeledTextBox x:Name="ltbEmployeeName" Grid.Column="0" Label="Employee Name" Text="{Binding EmployeeName}" IsEnabled="False"/>
+                        <userControls:LabeledTextBox x:Name="ltbEmployeeID" Grid.Column="2" Label="Employee ID" Text="{Binding EmployeeID}" IsEnabled="False" />
+                    </Grid>
+                </Grid>
+
+                <!--DEPARTMENT-->
+                <Grid Grid.Row="4">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <userControls:LabeledTextBox x:Name="ltbDepartment" Grid.Column="0" Label="Department" Text="{Binding Department}" IsEnabled="False"/>
+                        <userControls:LabeledTextBox x:Name="ltbRole" Grid.Column="2" Label="Role" Text="{Binding Role}" IsEnabled="False"/>
+                    </Grid>
+                </Grid>
+
+                <!--DATE AND REASON-->
+                <Grid Grid.Row="6">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Grid.ColumnSpan="3">
+                            <TextBlock x:Name="tbDate" Text="Date" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" VerticalAlignment="Center"/>
+                            <DatePicker x:Name="dpDate" SelectedDate="{Binding Date}" 
+                                    FontFamily="{StaticResource PoppinsLight}" FontSize="12"
+                                    Margin="0,5"/>
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+
+                <!--TIME IN, OUT, TOTAL-->
+                <Grid Grid.Row="8">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock x:Name="tbTimeIn" Text="Time In" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" VerticalAlignment="Center"/>
+                            <materialDesign:TimePicker x:Name="tpTimeIn" Margin="0,5" 
+                                                    FontFamily="{StaticResource PoppinsLight}"
+                                                    FontSize="12"
+                                                    SelectedTime="{Binding TimeIn}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock x:Name="tbTimeOut" Text="Time Out" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" VerticalAlignment="Center"/>
+                            <materialDesign:TimePicker x:Name="tpTimeOut" Margin="0,5" 
+                                                    FontFamily="{StaticResource PoppinsLight}"
+                                                    FontSize="12"
+                                                    SelectedTime="{Binding TimeOut}"/>
+                        </StackPanel>
+
+                        <userControls:LabeledTextBox x:Name="ltbTotalHours" Grid.Column="4" Label="Total Hours" Text="{Binding TotalHours}" IsEnabled="False"/>
+
+                    </Grid>
+                </Grid>
+
+                <!--APPLY BUTTON-->
+                <!--APPLY BUTTON-->
+                <StackPanel Grid.Row="14" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Button x:Name="btnEdit" Content="Request" 
+                            FontFamily="{StaticResource PoppinsBold}" FontSize="12" 
+                            Width="110" Height="35"
+                            materialDesign:ButtonAssist.CornerRadius="17.5"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Margin="0,0,5,0"
+                            Foreground="DarkGoldenrod"
+                            Background="LightGoldenrodYellow"
+                            BorderBrush="DarkGoldenrod"
+                            Command="{Binding Request}"/>
+
+                    <Button x:Name="btnCancel" Content="Cancel" 
+                            FontFamily="{StaticResource PoppinsBold}" FontSize="12" 
+                            Width="100" Height="35"
+                            materialDesign:ButtonAssist.CornerRadius="17.5"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            Margin="5,0,0,0"
+                            BorderBrush="DarkGoldenrod"
+                            Foreground="DarkGoldenrod"
+                            Command="{Binding Cancel}"/>
+                </StackPanel>
+
+
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>

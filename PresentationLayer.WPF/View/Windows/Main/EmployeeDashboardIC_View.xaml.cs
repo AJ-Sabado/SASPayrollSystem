@@ -27,12 +27,10 @@ namespace PresentationLayer.WPF.View.Windows.Main
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (MessageBoxResult.No == MessageBox.Show("Are you sure you want to logout/exit? This will end your current work session.", "Exit Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning))
+            if (DataContext is EmployeeDashboardIC_ViewModel vm && vm.WindowClosing.CanExecute(e))
             {
-                e.Cancel = true; // Cancel the closing event
+                vm.WindowClosing.Execute(e);
             }
-            else
-                ((EmployeeDashboardIC_ViewModel)DataContext).OnClosing();
         }
     }
 }
