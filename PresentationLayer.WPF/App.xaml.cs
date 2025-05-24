@@ -43,12 +43,7 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-<<<<<<< HEAD
-            windowService.ShowWindow<ChangePassword_View>();
-
-=======
             windowService.ShowWindow<MainWindow>();
->>>>>>> b0fa85620f478873a33199ec1be9449fb07fee28
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -95,8 +90,6 @@ namespace SASPayrolSystemProject
             services.AddTransient<LeaveRequest_ViewModel>();
             services.AddTransient<AttendanceRequest_View>();
             services.AddTransient<AttendanceRequest_ViewModel>();
-            services.AddTransient<FileLeaveForm_View>();
->>>>>>> b0fa85620f478873a33199ec1be9449fb07fee28
             services.AddTransient<EmployeeAdd_View>();
             services.AddTransient<OnboardingRequest_View>();
             services.AddTransient<EmployeeDetails_View>();
@@ -112,7 +105,7 @@ namespace SASPayrolSystemProject
             services.AddTransient<Warning_View>();
             services.AddTransient<PasswordPrompt_View>();
             services.AddTransient<ChangePassword_View>();
-            services.AddTransient<ForgotPassword_View>();
+            //services.AddTransient<ForgotPassword_View>();
 
 
 
