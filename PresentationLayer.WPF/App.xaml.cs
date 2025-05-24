@@ -43,7 +43,7 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-            windowService.ShowWindow<AdminDashboard_View>();
+            windowService.ShowWindow<ChangePassword_View>();
 
         }
 
@@ -97,8 +97,11 @@ namespace SASPayrolSystemProject
             services.AddTransient<Success_View>();
             services.AddTransient<Warning_View>();
             services.AddTransient<PasswordPrompt_View>();
-            
             services.AddTransient<EmployeeAdd_View>();
+
+            services.AddTransient<ChangePassword_View>();
+            services.AddTransient<ForgotPassword_View>();
+
 
 
 

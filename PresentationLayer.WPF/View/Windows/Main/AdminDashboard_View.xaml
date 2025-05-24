@@ -16,7 +16,7 @@
         mc:Ignorable="d"
         Height="720" Width="1280" Icon="/Resources/Images/SASLogo.png" 
         WindowStartupLocation="CenterScreen"
-        Title="Strategic Assistant Staffing Employee Dashboard"
+        Title="Strategic Assistant Staffing Admin Dashboard"
         MouseDown="Window_MouseDown"
         ResizeMode="CanResize"
         WindowState="Maximized">

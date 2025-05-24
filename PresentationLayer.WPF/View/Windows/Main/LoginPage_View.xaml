@@ -8,6 +8,7 @@
         
         mc:Ignorable="d"
         Title="LoginView" Height="450" Width="800"
+        Icon="/Resources/Images/SASLogo.png" 
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
