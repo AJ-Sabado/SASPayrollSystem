@@ -82,9 +82,16 @@ namespace InfrastructureLayer.DataAccess.Repositories.Common
             return Task.CompletedTask;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync(Func<IQueryable<T>, IQueryable<T>> include = null)
         {
-            return await _dbSet.ToListAsync();
+            IQueryable<T> query = _dbSet;
+
+            if (include != null)
+            {
+                query = include(query);
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(Guid id)

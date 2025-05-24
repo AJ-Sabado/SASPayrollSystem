@@ -1,10 +1,14 @@
 ﻿using DomainLayer.Models.Contractor;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
+using DomainLayer.Models.EmployeeAttendanceLog;
+using DomainLayer.Models.EmployeeAttendanceRequest;
+using DomainLayer.Models.EmployeeEvaluatedAttendance;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
 using DomainLayer.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace ServicesLayer
 {
@@ -17,9 +21,13 @@ namespace ServicesLayer
         //Cached Tables and data
         public IList<ContractorModel> Contractors { get; private set; } = [];
         public IList<DepartmentModel> Departments { get; private set; } = [];
+        public IList<EmployeeAttendanceLogModel> EmployeeAttendanceLogs { get; private set; } = [];
+        public IList<EmployeeEvaluatedAttendanceModel> EvaluatedAttendances { get; private set; } = [];
+        public IList<EmployeeAttendanceRequestModel> EmployeeAttendanceRequests { get; private set; } = [];
         public IList<EmployeeModel> Employees { get; private set; } = [];
         public IList<HolidayModel> Holidays { get; private set; } = [];
         public IList<RoleModel> Roles { get; private set; } = [];
+
 
         public AdminOperationsService(IUnitOfWork unitOfWork)
         {
@@ -46,6 +54,7 @@ namespace ServicesLayer
             await RefreshRolesTable();
             await RefreshContractorsTable();
             await RefreshEmployeesTable();
+            await RefreshEmployeeAttendanceRequests();
 
             return AdminUser;
         }
@@ -90,6 +99,32 @@ namespace ServicesLayer
         {
             var employees = await _unitOfWork.EmployeeRepository.GetAllAsync();
             Employees = employees.ToList();
+        }
+
+        public async Task RefreshEvaluatedAttendances(DepartmentModel? department = null, DateTime? date = null)
+        {
+            var eval = await _unitOfWork.EmployeeEvaluatedAttendanceRepository.GetAllAsync(include =>
+                include.Include(e => e.Employee.User.AccountInfo).Include(e => e.Employee.User.Department));
+            if (date.HasValue)
+                eval = eval.Where(e => e.Date == DateOnly.FromDateTime(date.Value));
+            if (department != null)
+                eval = eval.Where(e => e.Employee.User.Department.DepartmentId.Equals(department.DepartmentId));
+            EvaluatedAttendances = eval.ToList();
+        }
+
+        public async Task RefreshEmployeeAttendanceLogs(DateTime? date = null)
+        {
+            var logs = await _unitOfWork.EmployeeAttendanceLogRepository.GetAllAsync(include =>
+                include.Include(e => e.Employee.User.AccountInfo));
+            if (date.HasValue)
+                logs = logs.Where(l => l.Date == DateOnly.FromDateTime(date.Value));
+            EmployeeAttendanceLogs = logs.ToList();
+        }
+
+        public async Task RefreshEmployeeAttendanceRequests()
+        {
+            var requests = await _unitOfWork.EmployeeAttendanceRequestRepository.GetAllAsync();
+            EmployeeAttendanceRequests = requests.ToList();
         }
     }
 }
