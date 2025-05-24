@@ -12,6 +12,7 @@
         Title="Leave Request"
         Height="600" Width="900"
         WindowStartupLocation="CenterScreen"
+        Icon="/Resources/Images/SASLogo.png"
         ResizeMode="NoResize">
 
     <Viewbox>
