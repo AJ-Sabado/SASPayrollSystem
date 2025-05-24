@@ -43,35 +43,52 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 
         private async void LoadData()
         {
-            await LoadEmployeeCount();
-            await LoadDepartmentsTable();
+            await LoadHolidayTable();
+            await LoadDepartmentTable();
             await LoadRolesTable();
-            await LoadHolidaysTable();
-        }
-        private async Task LoadEmployeeCount()
-        {
-            _employeeCount = await _adminOperationsService.GetEmployeeCount();
-            OnPropertyChanged(nameof(EmployeeCount));
-        }
-        private async Task LoadDepartmentsTable()
-        {
-            DepartmentsTable = await _adminOperationsService.GetDepartmentsList();
-            OnPropertyChanged(nameof(DepartmentsTable));
-            OnPropertyChanged(nameof(DepartmentsCount));
+            await LoadEmployeeCount();
         }
 
-        private async Task LoadRolesTable()
+        private Task LoadEmployeeCount()
         {
-            RolesTable = await _adminOperationsService.GetRolesList();
-            OnPropertyChanged(nameof(RolesTable));
-            OnPropertyChanged(nameof(RolesCount));
+            if (_adminOperationsService.AdminUser != null)
+            {
+                _employeeCount = _adminOperationsService.Employees.Count + _adminOperationsService.Contractors.Count;
+                OnPropertyChanged(nameof(EmployeeCount));
+            }
+            return Task.CompletedTask;
         }
 
-
-        private async Task LoadHolidaysTable()
+        private Task LoadHolidayTable()
         {
-            HolidaysTable = await _adminOperationsService.GetHolidayList();
-            OnPropertyChanged(nameof(HolidaysTable));
+            if (_adminOperationsService.AdminUser != null)
+            {
+                HolidaysTable = _adminOperationsService.Holidays;
+                OnPropertyChanged(nameof(HolidaysTable));
+            }
+            return Task.CompletedTask;
+        }
+
+        private Task LoadDepartmentTable()
+        {
+            if (_adminOperationsService.AdminUser != null)
+            {
+                DepartmentsTable = _adminOperationsService.Departments;
+                OnPropertyChanged(nameof(DepartmentsTable));
+                OnPropertyChanged(nameof(DepartmentsCount));
+            }
+            return Task.CompletedTask;
+        }
+
+        private Task LoadRolesTable()
+        {
+            if (_adminOperationsService.AdminUser != null)
+            {
+                RolesTable = _adminOperationsService.Roles;
+                OnPropertyChanged(nameof(RolesTable));
+                OnPropertyChanged(nameof(RolesCount));
+            }
+            return Task.CompletedTask;
         }
     }
 }

@@ -91,12 +91,6 @@ namespace SASPayrolSystemProject
             services.AddTransient<AttendanceRequest_View>();
             services.AddTransient<AttendanceRequest_ViewModel>();
             services.AddTransient<FileLeaveForm_View>();
-            services.AddTransient<Error_View>();
-            services.AddTransient<Question_View>();
-            services.AddTransient<Success_View>();
-            services.AddTransient<Warning_View>();
-            services.AddTransient<PasswordPrompt_View>();
-
             services.AddTransient<EmployeeAdd_View>();
             services.AddTransient<OnboardingRequest_View>();
             services.AddTransient<EmployeeDetails_View>();
@@ -105,6 +99,12 @@ namespace SASPayrolSystemProject
             services.AddTransient<AssignLeave_View>();
             services.AddTransient<LeaveRequests_View>();
 
+            //Custom Message Box
+            services.AddTransient<Error_View>();
+            services.AddTransient<Question_View>();
+            services.AddTransient<Success_View>();
+            services.AddTransient<Warning_View>();
+            services.AddTransient<PasswordPrompt_View>();
 
 
             //DbContext
@@ -119,6 +119,7 @@ namespace SASPayrolSystemProject
             services.AddSingleton<IPopUpService, PopUpService>();
             services.AddSingleton<IContractorTrackerService, ContractorTrackerService>();
             services.AddSingleton<IAdminOperationsService, AdminOperationsService>();
+            services.AddSingleton<MyMessageBox>();
         }
 
         //Resolves GetRequiredService for DI conflict

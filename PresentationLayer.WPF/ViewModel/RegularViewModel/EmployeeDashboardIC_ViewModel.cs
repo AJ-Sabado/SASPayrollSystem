@@ -13,6 +13,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         private object _currentView;
         private readonly IContractorTrackerService _contractorTrackerService;
         private readonly IPageService _pageService;
+        private readonly MyMessageBox _messageBox;
 
         public object CurrentView
         {
@@ -32,11 +33,13 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         public ICommand ShowAccountsCommand { get; }
         public ICommand WindowClosing { get; }
 
-        public EmployeeDashboardIC_ViewModel(IPageService pageService, IContractorTrackerService contractorTrackerService)
+        public EmployeeDashboardIC_ViewModel(IPageService pageService, 
+            IContractorTrackerService contractorTrackerService,
+            MyMessageBox messageBox)
         {
             _contractorTrackerService = contractorTrackerService;
             _pageService = pageService;
-
+            _messageBox = messageBox;
             
 
             ShowDashboardCommand = new RelayCommand(_ => ShowView(_pageService.GetPage<ICDashboard>(), "Dashboard"));
@@ -59,11 +62,10 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
 
         private async Task<bool> CanCloseWindow()
         {
-            var result = MessageBox.Show("Are you sure you want to logout/exit?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes)
+            var result = _messageBox.ShowDialog("You are about to logout/exit. This will end your session.");
+            if (result == null || result.MyMessageBoxDialogResult == MyMessageBoxDialogResult.Yes)
             {
                 await _contractorTrackerService.EndSession();
-                MessageBox.Show("Your current session has ended.", "Ended Session");
                 return true;
             }
             return false;

@@ -4,6 +4,7 @@ using LiveCharts.Wpf;
 using PresentationLayer.WPF.Services;
 using SASPayrolSystemProject;
 using ServicesLayer;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -16,7 +17,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
         private readonly IUnitOfWork _unitOfWork;
         private readonly IContractorTrackerService _contractorTrackerService;
         private readonly IWindowService _windowService;
-
+        private readonly MyMessageBox _messageBox;
         private SeriesCollection _seriesCollection;
         public SeriesCollection SeriesCollection 
         { 
@@ -158,11 +159,12 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
 
 
         //Constructor
-        public ICDashboard_ViewModel(IUnitOfWork unitOfWork, IContractorTrackerService contractorTrackerService, IWindowService windowService)
+        public ICDashboard_ViewModel(IUnitOfWork unitOfWork, IContractorTrackerService contractorTrackerService, IWindowService windowService, MyMessageBox messageBox)
         {
             _unitOfWork = unitOfWork;
             _contractorTrackerService = contractorTrackerService;
             _windowService = windowService;
+            _messageBox = messageBox;
 
             CalculateChartValues();
 
@@ -292,10 +294,11 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
         private async void ExecuteTimeOut(object? obj)
         {
             //Add message box verfication
-            var result = MessageBox.Show("Are you sure you want to end session?", "End Session", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.No)
+            var now = DateTime.Now;
+            var result = _messageBox.ShowDialog($"End session? Time stamp: {now:hh:mm:ss tt}", MyMessageBoxType.Confirmation);
+            if (result == null || result.MyMessageBoxDialogResult != MyMessageBoxDialogResult.Yes)
                 return;
-            var log = await _contractorTrackerService.EndSession();
+            var log = await _contractorTrackerService.EndSession(now);
             if (log != null)
             {
                 OnPropertyChanged(nameof(AttendanceLogList));
@@ -307,26 +310,17 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
 
         private async void ExecuteTimeIn(object? obj)
         {
-            var log = await _contractorTrackerService.StartSession();
+            var now = DateTime.Now;
+            var message = $"Start session? Time stamp: {now:hh:mm:ss tt}";
+            var dialog = _messageBox.ShowDialog(message, MyMessageBoxType.Confirmation);
+            if (dialog == null || dialog.MyMessageBoxDialogResult != MyMessageBoxDialogResult.Yes)
+                return;
+            var log = await _contractorTrackerService.StartSession(now);
             if (log != null)
                 UpdateTimeInOutState();
             else
-                MessageBox.Show("Session was not started properly! Please contact administrator.");
+                _messageBox.ShowDialog("Session was not started properly! Please contact administator.", MyMessageBoxType.Error);
         }
-
-        //Tests
-        //private async void TestProgressBar()
-        //{
-        //    await Task.Run(() => 
-        //    {
-        //        for (decimal i = 0; i <= TargetHours; i += 1m)
-        //        {
-        //            HoursRendered = i;
-        //            Task.Delay(1000).Wait();
-        //        }
-        //    });
-        //}
-
     }
     enum TimeInOut
     {

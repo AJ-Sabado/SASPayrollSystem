@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using PresentationLayer.WPF.Services;
 
 namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
 {
@@ -13,7 +14,7 @@ namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
             set { MessageTextBlock.Text = value; }
         }
 
-        public WarningResult Result { get; private set; } = WarningResult.CANCEL;  // Default to CANCEL
+        public MyMessageBoxDialogResult Result { get; private set; } = MyMessageBoxDialogResult.Cancel;  // Default to CANCEL
 
         public Warning_View()
         {
@@ -26,23 +27,17 @@ namespace PresentationLayer.WPF.View.Windows.PopUps.CustomMessageBox
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            Result = WarningResult.CANCEL;
+            Result = MyMessageBoxDialogResult.Cancel;
             this.DialogResult = false;  // Optional: for standard dialog usage
             this.Close();
         }
 
         private void BtnOkay_Click(object sender, RoutedEventArgs e)
         {
-            Result = WarningResult.YES;
+            Result = MyMessageBoxDialogResult.Yes;
             this.DialogResult = true;   // Optional
             this.Close();
         }
-        
-    }
 
-    public enum WarningResult
-    {
-        YES,
-        CANCEL
     }
 }

@@ -42,9 +42,13 @@
                    FontSize="14"
                    FontFamily="{StaticResource PoppinsRegular}"
                    TextWrapping="Wrap"
-                   Margin="0,10,0,10"
+                   Padding="10"
+                   Margin="0"
+                   ClipToBounds="False"
+                   TextTrimming="None"
                    HorizontalAlignment="Center"
-                   TextAlignment="Left"
+                   VerticalAlignment="Center"
+                   TextAlignment="Justify"
                    Width="360"/>
 
         <!-- Button -->
