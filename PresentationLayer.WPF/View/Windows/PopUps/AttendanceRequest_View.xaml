@@ -4,9 +4,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:PresentationLayer.WPF.View.Windows"
+    x:Class="PresentationLayer.WPF.View.Windows.AttendanceRequest_View"
+    
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
-    x:Class="PresentationLayer.WPF.View.Windows.AttendanceRequest_View"
     
     mc:Ignorable="d"
     Height="600" Width="500" Icon="/Resources/Images/SASLogo.png"
@@ -32,7 +33,7 @@
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="10"/>
-                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height=".6*"/>
                 </Grid.RowDefinitions>
 
                 <!--TITLE HEADER-->
@@ -184,17 +185,33 @@
                                 Command="{Binding AttachFileCommand}"
                                 FontFamily="{StaticResource PoppinsSemiBold}"
                                 Content="{materialDesign:PackIcon Kind=Folder, Size=20}"
-                                Foreground="White"
+                                Foreground="DarkGoldenrod"
+                                Background="LightGoldenrodYellow"
+                                BorderBrush="DarkGoldenrod"
+                                BorderThickness="2"
+                                materialDesign:ButtonAssist.CornerRadius="5"
                                 HorizontalAlignment="Right"
-                                VerticalAlignment="Center"/>
+                                VerticalAlignment="Center"
+                                />
                         
                     </Grid>
                 </Grid>
 
                 <!--APPLY BUTTON-->
                 <Grid Grid.Row="14">
-                    <Button x:Name="btnRequest" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Request" Foreground="White" Command="{Binding Request}"/>
+                    <Button x:Name="btnRequest"
+                            Content="Request"
+                            FontFamily="{StaticResource PoppinsBold}" FontSize="12"
+                            Width="110" Height="35"
+                            HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            materialDesign:ButtonAssist.CornerRadius="17.5"
+                            Foreground="DarkGoldenrod"
+                            Background="LightGoldenrodYellow"
+                            BorderBrush="DarkGoldenrod"
+                            Command="{Binding Request}"/>
                 </Grid>
+
 
             </Grid>
         </Grid>
