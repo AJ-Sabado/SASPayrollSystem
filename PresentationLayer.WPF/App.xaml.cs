@@ -105,6 +105,10 @@ namespace SASPayrolSystemProject
             services.AddTransient<AttendanceRequestAction_View>();
             services.AddTransient<AssignLeave_View>();
             services.AddTransient<LeaveRequests_View>();
+            services.AddTransient<AddDepartment_View>();
+            services.AddTransient<AddHolidays_View>();
+            services.AddTransient<RegPayslip_View>();
+            services.AddTransient<ICPayslip>();
 
 
 

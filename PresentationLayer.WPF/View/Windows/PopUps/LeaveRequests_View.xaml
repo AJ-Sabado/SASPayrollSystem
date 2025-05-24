@@ -9,7 +9,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
         mc:Ignorable="d"
-        Title="View Leave Request"
+        Title="Leave Request"
         Height="600" Width="900"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">

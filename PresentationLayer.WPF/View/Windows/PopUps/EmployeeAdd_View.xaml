@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
         mc:Ignorable="d"
-        Title="Add Employee" Height="600" Width="600"
+        Title="Add Employee" Height="650" Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Icon="/Resources/Images/SASLogo.png">
@@ -23,7 +23,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height=".5*"/>
+                <RowDefinition Height=".6*"/>
             </Grid.RowDefinitions>
 
             <!-- Header -->
