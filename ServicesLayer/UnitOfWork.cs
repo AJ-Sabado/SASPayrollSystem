@@ -6,11 +6,15 @@ using DomainLayer.Enums.EmployeeEvaluatedAttendance;
 using DomainLayer.Enums.EmployeePersonalInfo;
 using DomainLayer.Models.Admin;
 using DomainLayer.Models.Contractor;
+using DomainLayer.Models.ContractorAttendanceLog;
 using DomainLayer.Models.ContractorPayslip;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.EmployeeAccountInfo;
+using DomainLayer.Models.EmployeeAttendanceLog;
+using DomainLayer.Models.EmployeeAttendanceRequest;
 using DomainLayer.Models.EmployeeEvaluatedAttendance;
+using DomainLayer.Models.EmployeeLeave;
 using DomainLayer.Models.EmployeePayslip;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Role;
@@ -29,13 +33,20 @@ namespace ServicesLayer
     {
 
         //Repositories
-        private IBaseRepository<AdminModel> _adminRepository;
-        private IBaseRepository<ContractorModel> _contractorRepository;
-        private IBaseRepository<DepartmentModel> _departmentRepository;
-        private IBaseRepository<EmployeeModel> _employeeRepository;
-        private IBaseRepository<HolidayModel> _holidayRepository;
-        private IBaseRepository<RoleModel> _roleRepository;
-        private IBaseRepository<UserModel> _userRepository;
+        private readonly IBaseRepository<AdminModel> _adminRepository;
+        private readonly IBaseRepository<ContractorAttendanceLogModel> _contractorAttendanceLogRepository;
+        private readonly IBaseRepository<ContractorPayslipModel> _contractorPayslipRepository;
+        private readonly IBaseRepository<ContractorModel> _contractorRepository;
+        private readonly IBaseRepository<DepartmentModel> _departmentRepository;
+        private readonly IBaseRepository<EmployeeAttendanceLogModel> _employeeAttendanceLogRepository;
+        private readonly IBaseRepository<EmployeeAttendanceRequestModel> _employeeAttendanceRequestRepository;
+        private readonly IBaseRepository<EmployeeEvaluatedAttendanceModel> _employeeEvaluatedAttendanceRepository;
+        private readonly IBaseRepository<EmployeeLeaveModel> _employeeLeaveRepository;
+        private readonly IBaseRepository<EmployeePayslipModel> _employeePayslipRepository;
+        private readonly IBaseRepository<EmployeeModel> _employeeRepository;
+        private readonly IBaseRepository<HolidayModel> _holidayRepository;
+        private readonly IBaseRepository<RoleModel> _roleRepository;
+        private readonly IBaseRepository<UserModel> _userRepository;
 
         //Common Services
         private IModelDataAnnotationsCheck _modelDataAnnotationsCheck;
@@ -43,7 +54,14 @@ namespace ServicesLayer
         //Services List
         public IBaseServices<AdminModel> AdminRepository { get; private set; }
         public IBaseServices<ContractorModel> ContractorRepository { get; private set; }
+        public IBaseServices<ContractorAttendanceLogModel> ContractorAttendanceLogRepository { get; private set; }
+        public IBaseServices<ContractorPayslipModel> ContractorPayslipRepository { get; private set; }
         public IBaseServices<DepartmentModel> DepartmentRepository { get; private set; }
+        public IBaseServices<EmployeeAttendanceLogModel> EmployeeAttendanceLogRepository { get; private set; }
+        public IBaseServices<EmployeeAttendanceRequestModel> EmployeeAttendanceRequestRepository { get; private set; }
+        public IBaseServices<EmployeeEvaluatedAttendanceModel> EmployeeEvaluatedAttendanceRepository { get; private set; }
+        public IBaseServices<EmployeeLeaveModel> EmployeeLeaveRepository { get; private set; }
+        public IBaseServices<EmployeePayslipModel> EmployeePayslipRepository { get; private set; }
         public IBaseServices<EmployeeModel> EmployeeRepository { get; private set; }
         public IBaseServices<HolidayModel> HolidayRepository { get; private set; }
         public IBaseServices<RoleModel> RoleRepository { get; private set; }
@@ -56,8 +74,15 @@ namespace ServicesLayer
             _context = context ?? throw new ArgumentNullException(nameof(AppDbContext));
 
             _adminRepository ??= new BaseRepository<AdminModel>(_context);
+            _contractorAttendanceLogRepository ??= new BaseRepository<ContractorAttendanceLogModel>(_context);
+            _contractorPayslipRepository ??= new BaseRepository<ContractorPayslipModel>(_context);
             _contractorRepository ??= new BaseRepository<ContractorModel>(_context);
             _departmentRepository ??= new BaseRepository<DepartmentModel>(_context);
+            _employeeAttendanceLogRepository ??= new BaseRepository<EmployeeAttendanceLogModel>(_context);
+            _employeeAttendanceRequestRepository ??= new BaseRepository<EmployeeAttendanceRequestModel>(_context);
+            _employeeEvaluatedAttendanceRepository ??= new BaseRepository<EmployeeEvaluatedAttendanceModel>(_context);
+            _employeeLeaveRepository ??= new BaseRepository<EmployeeLeaveModel>(_context);
+            _employeePayslipRepository ??= new BaseRepository<EmployeePayslipModel>(_context);
             _employeeRepository ??= new BaseRepository<EmployeeModel>(_context);
             _holidayRepository ??= new BaseRepository<HolidayModel>(_context);
             _roleRepository ??= new BaseRepository<RoleModel>(_context);
@@ -66,8 +91,15 @@ namespace ServicesLayer
             _modelDataAnnotationsCheck ??= new ModelDataAnnotationsCheck();
 
             AdminRepository ??= new BaseServices<AdminModel>(_adminRepository, _modelDataAnnotationsCheck);
+            ContractorAttendanceLogRepository ??= new BaseServices<ContractorAttendanceLogModel>(_contractorAttendanceLogRepository, _modelDataAnnotationsCheck);
+            ContractorPayslipRepository ??= new BaseServices<ContractorPayslipModel>(_contractorPayslipRepository, _modelDataAnnotationsCheck);
             ContractorRepository ??= new BaseServices<ContractorModel>(_contractorRepository, _modelDataAnnotationsCheck);
             DepartmentRepository ??= new BaseServices<DepartmentModel>(_departmentRepository, _modelDataAnnotationsCheck);
+            EmployeeAttendanceLogRepository ??= new BaseServices<EmployeeAttendanceLogModel>(_employeeAttendanceLogRepository, _modelDataAnnotationsCheck);
+            EmployeeAttendanceRequestRepository ??= new BaseServices<EmployeeAttendanceRequestModel>(_employeeAttendanceRequestRepository, _modelDataAnnotationsCheck);
+            EmployeeEvaluatedAttendanceRepository ??= new BaseServices<EmployeeEvaluatedAttendanceModel>(_employeeEvaluatedAttendanceRepository, _modelDataAnnotationsCheck);
+            EmployeeLeaveRepository ??= new BaseServices<EmployeeLeaveModel>(_employeeLeaveRepository, _modelDataAnnotationsCheck);
+            EmployeePayslipRepository ??= new BaseServices<EmployeePayslipModel>(_employeePayslipRepository, _modelDataAnnotationsCheck);
             EmployeeRepository ??= new BaseServices<EmployeeModel>(_employeeRepository, _modelDataAnnotationsCheck);
             HolidayRepository ??= new BaseServices<HolidayModel>(_holidayRepository, _modelDataAnnotationsCheck);
             RoleRepository ??= new BaseServices<RoleModel>(_roleRepository, _modelDataAnnotationsCheck);
