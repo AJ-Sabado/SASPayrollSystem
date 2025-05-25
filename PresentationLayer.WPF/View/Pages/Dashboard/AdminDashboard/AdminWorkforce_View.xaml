@@ -151,65 +151,117 @@
 
                             <!--DATAGRID-->
                             <Grid Grid.Row="2">
-                                
+
                                 <StackPanel>
-                                    <materialDesign:Card HorizontalAlignment="Stretch" 
-                                       VerticalAlignment="Stretch" Background="White" 
-                                       UniformCornerRadius="10" BorderBrush="LightGray" 
-                                       BorderThickness="1" Effect="{StaticResource CardEffects}"
-                                       Padding="20,15" Height="500">
+                                    <materialDesign:Card HorizontalAlignment="Stretch"
+                                                         VerticalAlignment="Stretch"
+                                                         Background="White"
+                                                         UniformCornerRadius="10"
+                                                         BorderBrush="LightGray"
+                                                         BorderThickness="1"
+                                                         Effect="{StaticResource CardEffects}"
+                                                         Padding="20,15"
+                                                         Height="500">
 
                                         <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                                                        VerticalScrollBarVisibility="Auto">
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      CanContentScroll="False">
                                             <DataGrid AutoGenerateColumns="False"
-                                                        HeadersVisibility="Column"
-                                                        CanUserAddRows="False"
-                                                        Margin="0"
-                                                        ItemsSource="{Binding EvaluatedAttendances}"
-                                                        materialDesign:DataGridAssist.CellPadding="10"
-                                                        materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
-                                                        RowHeight="50"
-                                                        FontSize="12"
-                                                        IsReadOnly="True"
-                                                        HorizontalScrollBarVisibility="Auto"
-                                                        VerticalScrollBarVisibility="Auto"
-                                                        Background="Transparent"
->
+                                                      HeadersVisibility="Column"
+                                                      CanUserAddRows="False"
+                                                      Margin="0"
+                                                      ItemsSource="{Binding EvaluatedAttendances}"
+                                                      materialDesign:DataGridAssist.CellPadding="5"
+                                                      materialDesign:DataGridAssist.ColumnHeaderPadding="5,5"
+                                                      RowHeight="40"
+                                                      FontSize="12"
+                                                      IsReadOnly="True"
+                                                      Background="Transparent"
+                                                      VerticalContentAlignment="Center"
+                                                      HorizontalAlignment="Stretch"
+                                                      HorizontalScrollBarVisibility="Auto">
+
                                                 <DataGrid.Columns>
-                                                    <DataGridTextColumn Header="Employee" Binding="{Binding Employee.User.AccountInfo.FullName}" Width="Auto" />
-                                                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="Auto" />
-                                                    <DataGridTextColumn Header="Day Status" Binding="{Binding DayStatus}" Width="Auto" />
-                                                    <DataGridTextColumn Header="Expected Work Hours" Binding="{Binding ExpectedWorkHours}" Width="Auto" />
-                                                    <DataGridTextColumn Header="Actual Work Hours" Binding="{Binding ActualWorkHours}" Width="Auto" />
-                                                    <DataGridTextColumn Header="OT Verified Status" Binding="{Binding OvertimeVerificationStatus}" Width="Auto" />
-                                                    <DataGridTextColumn Header="OT Hours" Binding="{Binding OvertimeHours, StringFormat=F2}" Width="Auto" />
-                                                    <DataGridTextColumn Header="ND Hours" Binding="{Binding NightDifferentialHours, StringFormat=F2}" Width="Auto" />
-                                                    <DataGridTemplateColumn Header="Actions" Width="Auto">
+                                                    <DataGridTextColumn Header="Employee"
+                                                                        Binding="{Binding Employee.User.AccountInfo.FullName}"
+                                                                        Width="2*"
+                                                                        MinWidth="150"
+                                                                        ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                                    <DataGridTextColumn Header="Date"
+                                                                        Binding="{Binding Date}"
+                                                                        Width="1.3*"
+                                                                        MinWidth="100"
+                                                                        ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                                    <DataGridTextColumn Header="Day Status"
+                                                                        Binding="{Binding DayStatus}"
+                                                                        Width="1.3*"
+                                                                        MinWidth="120"
+                                                                        ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                                    <DataGridTextColumn Header="Expected Work Hours"
+                                                                        Binding="{Binding ExpectedWorkHours}"
+                                                                        Width="1.5*"
+                                                                        MinWidth="130"
+                                                                        ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                                    <DataGridTextColumn Header="Actual Work Hours"
+                                                                        Binding="{Binding ActualWorkHours}"
+                                                                        Width="1.5*"
+                                                                        MinWidth="130"
+                                                                        ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                                    <DataGridTextColumn Header="OT Verified Status"
+                                                                        Binding="{Binding OvertimeVerificationStatus}"
+                                                                        Width="1.5*"
+                                                                        MinWidth="140"
+                                                                        ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                                    <DataGridTextColumn Header="OT Hours"
+                                                                        Binding="{Binding OvertimeHours, StringFormat=F2}"
+                                                                        Width="1*"
+                                                                        MinWidth="100"
+                                                                        ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                                    <DataGridTextColumn Header="ND Hours"
+                                                                        Binding="{Binding NightDifferentialHours, StringFormat=F2}"
+                                                                        Width="1*"
+                                                                        MinWidth="100"
+                                                                        ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                                    <DataGridTemplateColumn Header="Actions"
+                                                                            MinWidth="100">
                                                         <DataGridTemplateColumn.CellTemplate>
                                                             <DataTemplate>
-                                                                <Button Content="View" 
-                                                                          Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                                          CommandParameter="{Binding}" 
-                                                                          Style="{StaticResource MaterialDesignFlatButton}" 
-                                                                          Foreground="{DynamicResource PrimaryHueMidBrush}"
-                                                                          />
+                                                                <Button Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                        CommandParameter="{Binding}"
+                                                                        Style="{StaticResource MaterialDesignToolButton}"
+                                                                        ToolTip="View Evaluated Attendance Details"
+                                                                        HorizontalAlignment="Center"
+                                                                        Margin="2,0">
+                                                                    <materialDesign:PackIcon Kind="Eye"
+                                                                                            Width="18"
+                                                                                            Height="18"
+                                                                                            Foreground="{DynamicResource PrimaryHueMidBrush}" />
+                                                                </Button>
                                                             </DataTemplate>
                                                         </DataGridTemplateColumn.CellTemplate>
                                                     </DataGridTemplateColumn>
-                                                </DataGrid.Columns>
 
+                                                </DataGrid.Columns>
                                             </DataGrid>
                                         </ScrollViewer>
-
                                     </materialDesign:Card>
+
                                 </StackPanel>
 
-                                
+
 
                             </Grid>
                         </Grid>
                     </TabItem>
-                    
+
                     <!--ATTENDANCE LOGS-->
                     <TabItem Header="Attendance Logs">
                         <Grid Margin="20,0,0,0" Background="White">
@@ -293,54 +345,109 @@
                                    HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
                             <!--DATAGRID-->
-                            <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" 
-                                                 VerticalAlignment="Stretch" Background="White" 
-                                                 UniformCornerRadius="10" BorderBrush="LightGray" 
-                                                 BorderThickness="1" Effect="{StaticResource CardEffects}"
-                                                 Padding="20,15" Margin="0,7.5">
-
+                            <materialDesign:Card Grid.Row="1"
+                                                 HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Stretch"
+                                                 Background="White"
+                                                 UniformCornerRadius="10"
+                                                 BorderBrush="LightGray"
+                                                 BorderThickness="1"
+                                                 Effect="{StaticResource CardEffects}"
+                                                 Padding="20,15"
+                                                 Margin="0,7.5">
                                 <ScrollViewer HorizontalScrollBarVisibility="Auto"
                                               VerticalScrollBarVisibility="Auto"
                                               CanContentScroll="False">
-                                    <DataGrid AutoGenerateColumns="False"
+                                    <DataGrid x:Name="EmployeeAttendanceRequestsDataGrid"
+                                              AutoGenerateColumns="False"
                                               HeadersVisibility="Column"
                                               CanUserAddRows="False"
                                               Margin="0"
                                               ItemsSource="{Binding EmployeeAttendanceRequests}"
-                                              materialDesign:DataGridAssist.CellPadding="10"
-                                              materialDesign:DataGridAssist.ColumnHeaderPadding="10,10"
+                                              materialDesign:DataGridAssist.CellPadding="5"
+                                              materialDesign:DataGridAssist.ColumnHeaderPadding="5,5"
                                               RowHeight="40"
                                               FontSize="12"
                                               IsReadOnly="True"
-                                              Background="Transparent">
+                                              Background="Transparent"
+                                              VerticalContentAlignment="Center"
+                                              HorizontalScrollBarVisibility="Auto" Width="Auto">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Request ID" Binding="{Binding BusinessId}" Width="Auto" />
-                                            <DataGridTextColumn Header="Request Date" Binding="{Binding RequestDate}" Width="Auto" />
-                                            <DataGridTextColumn Header="Employee" Binding="{Binding Employee.User.AccountInfo.FullName}" Width="Auto" />
-                                            <DataGridTextColumn Header="Attendance Date" Binding="{Binding AttendanceDate}" Width="Auto" />
-                                            <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" Width="Auto" MaxWidth="120"/>
-                                            <DataGridTextColumn Header="Time In" Binding="{Binding TimeIn}" Width="Auto" />
-                                            <DataGridTextColumn Header="Time Out" Binding="{Binding TimeOut}" Width="Auto" />
-                                            <DataGridTextColumn Header="Break Start" Binding="{Binding BreakStart}" Width="Auto" />
-                                            <DataGridTextColumn Header="Break End" Binding="{Binding BreakEnd}" Width="Auto" />
-                                            <DataGridTextColumn Header="Total Hours" Binding="{Binding TotalHours}" Width="Auto" />
-                                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto" />
-                                            <DataGridTemplateColumn Header="Actions" Width="120">
+                                            <DataGridTextColumn Header="Request ID"
+                                                                Binding="{Binding BusinessId}"
+                                                                Width="100"
+                                                                MinWidth="80"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                            <DataGridTextColumn Header="Request Date"
+                                                                Binding="{Binding RequestDate}"
+                                                                Width="1.5*"
+                                                                MinWidth="120"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                            <DataGridTextColumn Header="Employee"
+                                                                Binding="{Binding Employee.User.AccountInfo.FullName}"
+                                                                Width="2*"
+                                                                MinWidth="150"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                            <DataGridTextColumn Header="Attendance Date"
+                                                                Binding="{Binding AttendanceDate}"
+                                                                Width="1.5*"
+                                                                MinWidth="120"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                            <DataGridTextColumn Header="Reason"
+                                                                Binding="{Binding Reason}"
+                                                                Width="1.5*"
+                                                                MinWidth="120"
+                                                                MaxWidth="150"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                            <DataGridTextColumn Header="Time In"
+                                                                Binding="{Binding TimeIn}"
+                                                                Width="1*"
+                                                                MinWidth="80"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                            <DataGridTextColumn Header="Time Out"
+                                                                Binding="{Binding TimeOut}"
+                                                                Width="1*"
+                                                                MinWidth="80"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                            <DataGridTextColumn Header="Break Start"
+                                                                Binding="{Binding BreakStart}"
+                                                                Width="1*"
+                                                                MinWidth="80"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                            <DataGridTextColumn Header="Break End"
+                                                                Binding="{Binding BreakEnd}"
+                                                                Width="1*"
+                                                                MinWidth="80"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                            <DataGridTextColumn Header="Total Hours"
+                                                                Binding="{Binding TotalHours}"
+                                                                Width="1*"
+                                                                MinWidth="80"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                            <DataGridTextColumn Header="Status"
+                                                                Binding="{Binding Status}"
+                                                                Width="1*"
+                                                                MinWidth="100"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                            <DataGridTemplateColumn Header="Actions" MinWidth="100">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <Button Content="View" 
-                                                                Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                                CommandParameter="{Binding}" 
-                                                                Style="{StaticResource MaterialDesignFlatButton}" 
-                                                                Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                        <Button Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                CommandParameter="{Binding}"
+                                                                Style="{StaticResource MaterialDesignToolButton}"
+                                                                ToolTip="View Attendance Request Details"
+                                                                Margin="2,0"
+                                                                HorizontalAlignment="Center">
+                                                            <materialDesign:PackIcon Kind="Eye" Width="18" Height="18" Foreground="{DynamicResource PrimaryHueMidBrush}" />
+                                                        </Button>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </ScrollViewer>
-
                             </materialDesign:Card>
+
 
                         </Grid>
                     </TabItem>
@@ -418,7 +525,7 @@
                                     <!-- Separators -->
                                     <Rectangle Grid.Column="1" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
                                     <Rectangle Grid.Column="7" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
-                                    
+
 
                                     <!-- Total Employees -->
                                     <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -499,50 +606,89 @@
                             </materialDesign:Card>
 
                             <!--DATAGRID-->
-                            <materialDesign:Card Grid.Row="2" HorizontalAlignment="Stretch" 
-                                                 VerticalAlignment="Stretch" Background="White" 
-                                                 UniformCornerRadius="10" BorderBrush="LightGray" 
-                                                 BorderThickness="1" Effect="{StaticResource CardEffects}"
-                                                 Padding="20,15" Margin="0,7.5">
-
+                            <materialDesign:Card Grid.Row="2"
+                                                 HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Stretch"
+                                                 Background="White"
+                                                 UniformCornerRadius="10"
+                                                 BorderBrush="LightGray"
+                                                 BorderThickness="1"
+                                                 Effect="{StaticResource CardEffects}"
+                                                 Padding="20,15"
+                                                 Margin="0,7.5">
                                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                                                VerticalScrollBarVisibility="Auto">
-                                    <DataGrid AutoGenerateColumns="False"
-                                              HeadersVisibility="Column"
-                                              CanUserAddRows="False"
-                                              Margin="0"
-                                              ItemsSource="{Binding EmployeesOnLeave}"
-                                              materialDesign:DataGridAssist.CellPadding="10"
-                                              materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
-                                              RowHeight="40"
-                                              FontSize="14"
-                                              IsReadOnly="True"
-                                              HorizontalScrollBarVisibility="Auto"
-                                              VerticalScrollBarVisibility="Auto"
-                                              Background="Transparent">
-                                        <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Emloyee ID" Binding="{Binding Employee.User.AccountInfo.CompanyId}" Width="1*" />
-                                            <DataGridTextColumn Header="Employee" Binding="{Binding Employee.User.AccountInfo.FullName}" Width="2*" />
-                                            <DataGridTextColumn Header="Leave Type" Binding="{Binding Type}" Width="1.3*" />
-                                            <DataGridTextColumn Header="Date of Leave" Binding="{Binding DateOfAbsenceStart}" Width="1.3*" />
-                                            <DataGridTextColumn Header="Date of Return" Binding="{Binding DateOfReturn}" Width="1.3*" />
-                                            <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="1.3*" />
-                                            <DataGridTemplateColumn Header="Actions" Width="1*">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <Button Content="View" 
-                                                                Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                                CommandParameter="{Binding}" 
-                                                                Style="{StaticResource MaterialDesignFlatButton}" 
-                                                                Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
-                                        </DataGrid.Columns>
-                                    </DataGrid>
-                                </ScrollViewer>
+                                            VerticalScrollBarVisibility="Auto">
+                                    <Grid>
+                                        <DataGrid x:Name="EmployeesOnLeaveDataGrid"
+                                                  AutoGenerateColumns="False"
+                                                  HeadersVisibility="Column"
+                                                  CanUserAddRows="False"
+                                                  Margin="0"
+                                                  ItemsSource="{Binding EmployeesOnLeave}"
+                                                  materialDesign:DataGridAssist.CellPadding="5"
+                                                  materialDesign:DataGridAssist.ColumnHeaderPadding="5,5"
+                                                  RowHeight="40"
+                                                  FontSize="12"
+                                                  IsReadOnly="True"
+                                                  HorizontalScrollBarVisibility="Auto"
+                                                  VerticalScrollBarVisibility="Auto"
+                                                  Background="Transparent"
+                                                  VerticalContentAlignment="Center">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Employee ID"
+                                                                    Binding="{Binding Employee.User.AccountInfo.CompanyId}"
+                                                                    Width="1*"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Employee"
+                                                                    Binding="{Binding Employee.User.AccountInfo.FullName}"
+                                                                    Width="2*"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Leave Type"
+                                                                    Binding="{Binding Type}"
+                                                                    Width="1.3*"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Date of Leave"
+                                                                    Binding="{Binding DateOfAbsenceStart}"
+                                                                    Width="1.3*"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Date of Return"
+                                                                    Binding="{Binding DateOfReturn}"
+                                                                    Width="1.3*"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Duration"
+                                                                    Binding="{Binding Duration}"
+                                                                    Width="1.3*"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTemplateColumn Header="Actions" Width="1*">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                                <Button Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                        CommandParameter="{Binding}"
+                                                                        Style="{StaticResource MaterialDesignToolButton}"
+                                                                        ToolTip="View Leave Details"
+                                                                        Margin="2,0">
+                                                                    <materialDesign:PackIcon Kind="Eye" Width="18" Height="18" Foreground="#1976D2"/>
+                                                                </Button>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
 
+                                        <!-- No data message -->
+                                        <TextBlock Text="No data available"
+                                                   FontSize="16"
+                                                   FontWeight="Bold"
+                                                   Foreground="Gray"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                       Visibility="{Binding EmployeesOnLeave.Count, Converter={StaticResource ZeroToVisibilityConverter}}"/>
+                                    </Grid>
+                                </ScrollViewer>
                             </materialDesign:Card>
+
                         </Grid>
                     </TabItem>
 
@@ -561,53 +707,109 @@
                                        HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
                             <!--DATAGRID-->
-                            <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" 
-                                                 VerticalAlignment="Stretch" Background="White" 
-                                                 UniformCornerRadius="10" BorderBrush="LightGray" 
-                                                 BorderThickness="1" Effect="{StaticResource CardEffects}"
-                                                 Padding="20,15" Margin="0,7.5">
-
+                            <materialDesign:Card Grid.Row="1"
+                                                 HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Stretch"
+                                                 Background="White"
+                                                 UniformCornerRadius="10"
+                                                 BorderBrush="LightGray"
+                                                 BorderThickness="1"
+                                                 Effect="{StaticResource CardEffects}"
+                                                 Padding="20,15"
+                                                 Margin="0,7.5">
                                 <ScrollViewer HorizontalScrollBarVisibility="Auto"
                                               VerticalScrollBarVisibility="Auto"
                                               CanContentScroll="False">
-                                    <DataGrid AutoGenerateColumns="False"
-                                              HeadersVisibility="Column"
-                                              CanUserAddRows="False"
-                                              Margin="0"
-                                              ItemsSource="{Binding EmployeeLeaveRequests}"
-                                              materialDesign:DataGridAssist.CellPadding="10"
-                                              materialDesign:DataGridAssist.ColumnHeaderPadding="10"
-                                              RowHeight="40"
-                                              FontSize="12"
-                                              IsReadOnly="True"
-                                              Background="Transparent">
-                                        <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Request ID" Binding="{Binding BusinessId}" Width="Auto" />
-                                            <DataGridTextColumn Header="Employee" Binding="{Binding Employee.User.AccountInfo.FullName}" Width="Auto" />
-                                            <DataGridTextColumn Header="Date of Filing" Binding="{Binding DateOfFiling}" Width="Auto" />
-                                            <DataGridTextColumn Header="Reason" Binding="{Binding Type}" Width="Auto" />
-                                            <DataGridTextColumn Header="Start of Leave" Binding="{Binding DateOfAbsenceStart}" Width="Auto" />
-                                            <DataGridTextColumn Header="Return from Leave" Binding="{Binding DateOfReturn}" Width="Auto" />
-                                            <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="Auto" />
-                                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto" />
-                                            <DataGridTemplateColumn Header="Actions" Width="Auto">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <Button Content="View" 
-                                                                Command="{Binding DataContext.ViewLeaveCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                                CommandParameter="{Binding}" 
-                                                                Style="{StaticResource MaterialDesignFlatButton}" 
-                                                                Foreground="{DynamicResource PrimaryHueMidBrush}"/>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
-                                        </DataGrid.Columns>
-                                    </DataGrid>
-                                </ScrollViewer>
+                                    <Grid>
+                                        <DataGrid x:Name="EmployeeLeaveRequestsDataGrid"
+                                                      AutoGenerateColumns="False"
+                                                      HeadersVisibility="Column"
+                                                      CanUserAddRows="False"
+                                                      Margin="0"
+                                                      ItemsSource="{Binding EmployeeLeaveRequests}"
+                                                      materialDesign:DataGridAssist.CellPadding="5"
+                                                      materialDesign:DataGridAssist.ColumnHeaderPadding="5,5"
+                                                      RowHeight="40"
+                                                      FontSize="12"
+                                                      IsReadOnly="True"
+                                                      Background="Transparent"
+                                                      VerticalContentAlignment="Center"
+                                                      HorizontalAlignment="Stretch"
+                                                      HorizontalScrollBarVisibility="Auto">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Request ID"
+                                                                    Binding="{Binding BusinessId}"
+                                                                    Width="100"
+                                                                    MinWidth="80"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Employee"
+                                                                    Binding="{Binding Employee.User.AccountInfo.FullName}"
+                                                                    Width="2*"
+                                                                    MinWidth="150"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Date of Filing"
+                                                                    Binding="{Binding DateOfFiling}"
+                                                                    Width="1.5*"
+                                                                    MinWidth="120"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Reason"
+                                                                    Binding="{Binding Type}"
+                                                                    Width="1.5*"
+                                                                    MinWidth="120"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Start of Leave"
+                                                                    Binding="{Binding DateOfAbsenceStart}"
+                                                                    Width="1.5*"
+                                                                    MinWidth="120"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Return from Leave"
+                                                                    Binding="{Binding DateOfReturn}"
+                                                                    Width="1.5*"
+                                                                    MinWidth="120"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Duration"
+                                                                    Binding="{Binding Duration}"
+                                                                    Width="1*"
+                                                                    MinWidth="80"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Status"
+                                                                    Binding="{Binding Status}"
+                                                                    Width="1*"
+                                                                    MinWidth="100"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTemplateColumn Header="Actions" Width="1*">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Button Command="{Binding DataContext.ViewLeaveCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                    CommandParameter="{Binding}"
+                                                                    Style="{StaticResource MaterialDesignToolButton}"
+                                                                    ToolTip="View Leave Request Details"
+                                                                    Margin="2,0">
+                                                                <materialDesign:PackIcon Kind="Eye" Width="18" Height="18" Foreground="#1976D2" />
+                                                            </Button>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
 
+                                        <!-- No data message -->
+                                        <TextBlock Text="No data available"
+                                                   FontSize="16"
+                                                   FontWeight="Bold"
+                                                   Foreground="Gray"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Visibility="{Binding EmployeeLeaveRequests.Count, Converter={StaticResource ZeroToVisibilityConverter}}" />
+                                    </Grid>
+                                </ScrollViewer>
                             </materialDesign:Card>
+
+
                         </Grid>
                     </TabItem>
+
+
                     <TabItem IsEnabled="False" IsHitTestVisible="False" />
                     <TabItem Header="Independent Contractors" IsEnabled="False" IsHitTestVisible="False"/>
                     <TabItem Header="Attendance Logs">
