@@ -669,6 +669,7 @@
                                         <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="*"/>
                                         <DataGridTextColumn Header="Start of Session" Binding="{Binding TimeIn, StringFormat='{}{0:hh:mm:ss tt}'}" Width="*"/>
                                         <DataGridTextColumn Header="End of Session" Binding="{Binding TimeOut, StringFormat='{}{0:hh:mm:ss tt}'}" Width="*"/>
+                                        <DataGridTextColumn Header="Total Hours" Binding="{Binding Duration, StringFormat=F2}" Width="*"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
 

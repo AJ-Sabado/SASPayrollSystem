@@ -15,5 +15,6 @@ namespace DomainLayer.Models.User
         Guid RoleId { get; set; }
         byte[] Salt { get; set; }
         string Username { get; set; }
+        DateTime? DateOfRegistry { get; set; }
     }
 }

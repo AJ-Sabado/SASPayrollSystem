@@ -30,6 +30,8 @@ namespace ServicesLayer
         IList<HolidayModel> Holidays { get; }
         IList<RoleModel> Roles { get; }
         IList<ContractorAttendanceLogModel> ContractorAttendanceLogs { get; }
+        IList<UserModel> CurrentEmployees { get; }
+        IList<UserModel> EmployeeRequests { get; }
 
         Task RefreshHolidaysTable();
         Task RefreshDepartmentsTable();
@@ -41,6 +43,7 @@ namespace ServicesLayer
         Task RefreshEmployeeAttendanceRequests();
         Task RefreshEmployeeLeaves(string employeeName = null);
         Task RefreshContractorAttendanceLogs(DateTime? date = null);
+        Task RefreshEmployees(string name = null, RoleModel? role = null, DepartmentModel? department = null);
 
         Task<UserModel?> InitializeService(Guid adminUserGuid);
     }

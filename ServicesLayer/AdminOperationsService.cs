@@ -1,8 +1,10 @@
 ﻿using DomainLayer.Enums;
+using DomainLayer.Enums.EmployeePersonalInfo;
 using DomainLayer.Models.Contractor;
 using DomainLayer.Models.ContractorAttendanceLog;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
+using DomainLayer.Models.EmployeeAccountInfo;
 using DomainLayer.Models.EmployeeAttendanceLog;
 using DomainLayer.Models.EmployeeAttendanceRequest;
 using DomainLayer.Models.EmployeeEvaluatedAttendance;
@@ -21,7 +23,7 @@ namespace ServicesLayer
 
         public UserModel? AdminUser { get; private set; }
 
-        //Cached Tables and data
+        //To List
         public IList<ContractorModel> Contractors { get; private set; } = [];
         public IList<DepartmentModel> Departments { get; private set; } = [];
         public IList<EmployeeAttendanceLogModel> EmployeeAttendanceLogs { get; private set; } = [];
@@ -33,6 +35,8 @@ namespace ServicesLayer
         public IList<EmployeeLeaveModel> EmployeesOnLeave { get; private set; } = [];
         public IList<EmployeeLeaveModel> EmployeeLeaveRequests { get; private set; } = [];
         public IList<ContractorAttendanceLogModel> ContractorAttendanceLogs { get; private set; } = [];
+        public IList<UserModel> CurrentEmployees { get; private set; } = [];
+        public IList<UserModel> EmployeeRequests { get; private set; } = [];
 
         public AdminOperationsService(IUnitOfWork unitOfWork)
         {
@@ -158,6 +162,32 @@ namespace ServicesLayer
             if (date.HasValue)
                 logs = logs.Where(l => l.Date == DateOnly.FromDateTime(date.Value));
             ContractorAttendanceLogs = logs.ToList();
+        }
+
+        public async Task RefreshEmployees(string? name = null, RoleModel? role = null, DepartmentModel? department = null)
+        {
+            
+
+            var user = await _unitOfWork.UserRepository
+                .GetManyAsync(includeProperties: "AccountInfo,Department,Role");
+
+            //Populate Current Employee List
+            var filteredUser = user
+                .Where(u => u.Department.NormalizedName != "unassigned".ToUpperInvariant() 
+                && u.Role.NormalizedName != "no access".ToUpperInvariant());
+            if (!string.IsNullOrEmpty(name))
+                filteredUser = filteredUser.Where(u => u.AccountInfo.FullName.Contains(name));
+            if (role != null)
+                filteredUser = filteredUser.Where(u => u.RoleId == role.RoleId);
+            if (department != null)
+                filteredUser = filteredUser.Where(u => u.DepartmentId == department.DepartmentId);
+            CurrentEmployees = filteredUser.ToList();
+
+            //Populate Requests
+            EmployeeRequests = user
+                .Where(u => u.Department.NormalizedName == "unassigned".ToUpperInvariant())
+                .Where(u => u.Role.NormalizedName == "no access".ToUpperInvariant())
+                .ToList();
         }
     }
 }
