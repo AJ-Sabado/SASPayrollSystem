@@ -43,7 +43,7 @@
                                 <RowDefinition Height="20*"/>
                                 <RowDefinition Height="73*"/>
                             </Grid.RowDefinitions>
-                            
+
                             <!-- TITLE -->
                             <TextBlock Grid.Row="0" Text="REGULAR EMPLOYEE PAYROLL" 
                                        FontFamily="{StaticResource PoppinsBold}" 
@@ -220,10 +220,10 @@
                                             <DataGridTextColumn IsReadOnly="True" Header="Employee" Binding="{Binding Employee.User.AccountInfo.FullName}" Width="Auto"/>
                                             <DataGridTextColumn IsReadOnly="True" Header="Monthly Rate" Binding="{Binding Employee.BasicMonthlyRate, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn IsReadOnly="True" Header="Daily Rate" Binding="{Binding Employee.BasicDailyRate, StringFormat=F2}" Width="Auto"/>
-                                            
+
                                             <!-- Applied Hourly Rate -->
                                             <DataGridTextColumn Header="*Applied Hourly Rate" Binding="{Binding AppliedHourlyRate}" Width="Auto"/>
-                                            
+
                                             <!-- Basic Hours and Pay -->
                                             <DataGridTextColumn Header="*Basic Hours" Binding="{Binding HoursWorkedRegular, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn IsReadOnly="True" Header="Basic Pay" Binding="{Binding BasicPay, StringFormat=F2}" Width="Auto"/>
@@ -244,43 +244,43 @@
                                             <DataGridTextColumn Header="*Legal 13th Month Pay" Binding="{Binding Legal13thMonthPay, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn Header="*Perfect Attendance Bonus" Binding="{Binding PerfectAttendanceBonus, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn IsReadOnly="True" Header="Total Bonus" Binding="{Binding Bonus, StringFormat=F2}" Width="Auto"/>
-                                            
+
                                             <!-- Allowances -->
                                             <DataGridTextColumn Header="*Utility Allowance" Binding="{Binding UtilityAllowance, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn Header="*Meal Allowance" Binding="{Binding MealAllowance, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn Header="*Load Allowance" Binding="{Binding LoadAllowance, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn IsReadOnly ="True" Header="Total Allowance" Binding="{Binding Allowances, StringFormat=F2}" Width="Auto"/>
-                                            
+
                                             <!-- Gross Pay -->
                                             <DataGridTextColumn Header="*Gross Pay" Binding="{Binding GrossPay, StringFormat=F2}" Width="Auto"/>
-                                            
+
                                             <!-- Withholding Tax -->
                                             <DataGridTextColumn Header="*Withholding Tax" Binding="{Binding WithholdingTax, StringFormat=F2}" Width="Auto"/>
-                                            
+
                                             <!-- Government Contributions -->
                                             <DataGridTextColumn Header="*PHIC" Binding="{Binding PHIC, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn Header="*HDMF" Binding="{Binding HDMF, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn Header="*SSS" Binding="{Binding DecemberSSS, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn IsReadOnly="True" Header="Govt. Contributions" Binding="{Binding GovernmentContributions, StringFormat=F2}" Width="Auto"/>
-                                            
+
                                             <!-- Loans -->
                                             <DataGridTextColumn Header="*Govt. Loans" Binding="{Binding GovernmentLoans, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn Header="*Company Loans" Binding="{Binding CompanyLoans, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn IsReadOnly="True" Header="Total Loans" Binding="{Binding LoanDeductions, StringFormat=F2}" Width="Auto"/>
-                                            
+
                                             <!-- Lates/UT -->
                                             <DataGridTextColumn Header="*Late/UT Minutes" Binding="{Binding UTMinutes, StringFormat=F2}" Width="Auto"/>
                                             <DataGridTextColumn IsReadOnly="True" Header="Late/Undertime Deductions" Binding="{Binding UTDeductions, StringFormat=F2}" Width="Auto"/>
-                                            
+
                                             <!-- Total Deductions -->
                                             <DataGridTextColumn Header="*Total Deductions" Binding="{Binding TotalDeductions, StringFormat=F2}" Width="Auto"/>
-                                            
+
                                             <!-- Net Salary -->
                                             <DataGridTextColumn Header="*Net Salary" Binding="{Binding NetSalary, StringFormat=F2}" Width="Auto"/>
-                                            
+
                                             <!-- Payslip Status -->
                                             <DataGridTextColumn IsReadOnly="True" Header="Payslip Status" Binding="{Binding PayslipStatus}" Width="Auto"/>
-                                            
+
                                             <!-- ACTIONS COLUMN -->
                                             <DataGridTemplateColumn Header="Actions" Width="Auto">
                                                 <DataGridTemplateColumn.CellTemplate>
@@ -319,9 +319,9 @@
                     <TabItem Header="Independent Contractors">
                         <Grid Margin="20,0,0,0" Background="White">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="7*"/>
-                                <RowDefinition Height="20*"/>
-                                <RowDefinition Height="73*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="130*"/>
+                                <RowDefinition Height="473*"/>
                             </Grid.RowDefinitions>
 
                             <!-- TITLE -->
@@ -457,7 +457,7 @@
                                     <!-- PRINT ENTIRE PAYROLL BUTTON -->
                                     <Button Grid.Column="8"
                                             ToolTip="Print Entire Payroll"
-                                            Command="{Binding PrintAllPayrollCommand}"
+                                            Command="{Binding PrintICPayroll}"
                                             Style="{StaticResource MaterialDesignIconButton}"
                                             Foreground="{StaticResource BaseColorSCB}"
                                             Background="Transparent"
