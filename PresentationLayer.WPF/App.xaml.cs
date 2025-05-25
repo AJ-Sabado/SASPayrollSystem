@@ -7,6 +7,7 @@ using PresentationLayer.WPF.View.Pages.Dashboard;
 using PresentationLayer.WPF.View.Pages.Dashboard.AdminDashboard;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardIC;
 using PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg;
+using PresentationLayer.WPF.View.Payslips;
 using PresentationLayer.WPF.View.Windows;
 using PresentationLayer.WPF.View.Windows.Main;
 using PresentationLayer.WPF.View.Windows.PopUps;
@@ -18,6 +19,7 @@ using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC;
 using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular;
 using PresentationLayer.WPF.ViewModel.PopUpViewModel;
 using PresentationLayer.WPF.ViewModel.RegularViewModel;
+using PresentationLayer.WPF.ViewModel.ServicesViewModels;
 using ServicesLayer;
 
 namespace SASPayrolSystemProject
@@ -43,12 +45,7 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-<<<<<<< HEAD
-            windowService.ShowWindow<ChangePassword_View>();
-
-=======
-            windowService.ShowWindow<MainWindow>();
->>>>>>> b0fa85620f478873a33199ec1be9449fb07fee28
+            windowService.ShowWindow<EmployeeDashboardIC_View>();
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -90,13 +87,14 @@ namespace SASPayrolSystemProject
             services.AddTransient<AdminPayrollPage_View>();
             services.AddTransient<AdminPayrollPage_ViewModel>();
 
+            services.AddTransient<PayslipRegTemplate>();
+
             //Popups
             services.AddTransient<FileLeaveForm_View>();
             services.AddTransient<LeaveRequest_ViewModel>();
             services.AddTransient<AttendanceRequest_View>();
             services.AddTransient<AttendanceRequest_ViewModel>();
             services.AddTransient<FileLeaveForm_View>();
->>>>>>> b0fa85620f478873a33199ec1be9449fb07fee28
             services.AddTransient<EmployeeAdd_View>();
             services.AddTransient<OnboardingRequest_View>();
             services.AddTransient<EmployeeDetails_View>();
@@ -109,6 +107,11 @@ namespace SASPayrolSystemProject
             services.AddTransient<RegPayslip_View>();
             services.AddTransient<ICPayslip>();
 
+            services.AddTransient<PayslipPreview_View>();
+            services.AddTransient<PayslipPreview_ViewModel>();
+            services.AddTransient<PayslipPrint_View>();
+            services.AddTransient<PayslipPrint_ViewModel>();
+
             //Custom Message Box
             services.AddTransient<Error_View>();
             services.AddTransient<Question_View>();
@@ -116,7 +119,6 @@ namespace SASPayrolSystemProject
             services.AddTransient<Warning_View>();
             services.AddTransient<PasswordPrompt_View>();
             services.AddTransient<ChangePassword_View>();
-            services.AddTransient<ForgotPassword_View>();
 
 
 
@@ -134,6 +136,10 @@ namespace SASPayrolSystemProject
             services.AddSingleton<IContractorTrackerService, ContractorTrackerService>();
             services.AddSingleton<IAdminOperationsService, AdminOperationsService>();
             services.AddSingleton<MyMessageBox>();
+            services.AddSingleton<IPdfExportService, PdfExportService>();
+
+
+            services.AddSingleton<IPrintService, PrintService>();
         }
 
         //Resolves GetRequiredService for DI conflict

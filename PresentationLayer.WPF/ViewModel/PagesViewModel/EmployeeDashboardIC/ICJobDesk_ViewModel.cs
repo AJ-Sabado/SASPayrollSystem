@@ -1,5 +1,8 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Input;
 using DomainLayer.Models.ContractorAttendanceLog;
+using PresentationLayer.WPF.Services;
+using PresentationLayer.WPF.View.Payslips;
 using ServicesLayer;
 
 namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
@@ -7,12 +10,17 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
     public class ICJobDesk_ViewModel : Base_ViewModel
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IPopUpService _popUpService;
         private readonly IContractorTrackerService _contractorTrackerService;
 
-        public ICJobDesk_ViewModel(IUnitOfWork unitOfWork, IContractorTrackerService contractorTrackerService)
+        public ICJobDesk_ViewModel(IUnitOfWork unitOfWork, IContractorTrackerService contractorTrackerService, IPopUpService popUpService)
         {
             _unitOfWork = unitOfWork;
+            _popUpService = popUpService;
             _contractorTrackerService = contractorTrackerService;
+
+            PreviewPayslipCommand = new RelayCommand(previewPayslip);
+            PrintPayslipCommand = new RelayCommand(ExecutePrintPayslip);
 
             LoadUserData();
         }
@@ -276,8 +284,20 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardIC
         }
 
         //Commands
+        public ICommand PreviewPayslipCommand { get; }
+        public ICommand PrintPayslipCommand { get; }
+
 
         //Methods
+        private void ExecutePrintPayslip(object? item)
+        {
+            _popUpService.ShowPopUp<PayslipPrint_View>();
+        }
+
+        private void previewPayslip(object? item)
+        {
+            _popUpService.ShowPopUp<PayslipPreview_View>();
+        }
 
     }
 }

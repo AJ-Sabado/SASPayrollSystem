@@ -5,17 +5,19 @@ using DomainLayer.Enums.EmployeePersonalInfo;
 using DomainLayer.Models.EmployeeAttendanceRequest;
 using DomainLayer.Models.EmployeeEvaluatedAttendance;
 using DomainLayer.Models.EmployeeLeave;
+using PresentationLayer.WPF.Helpers;
 using PresentationLayer.WPF.Services;
+using PresentationLayer.WPF.View.Payslips;
 using PresentationLayer.WPF.View.Windows;
 using ServicesLayer;
 
-namespace PresentationLayer.WPF.ViewModel.RegularViewModel
+namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular
 {
     public class RegJobDesk_ViewModel : Base_ViewModel
     {
         private readonly IPopUpService _popUpService;
         private readonly IUnitOfWork _unitOfWork;
-        
+
         //Commands
         public ICommand FileLeaveCommand { get; }
         public ICommand AttendanceRequestCommand { get; }
@@ -23,6 +25,10 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
         public ICommand DeleteAttendanceRequest { get; }
         public ICommand EditLeaveRequest { get; }
         public ICommand DeleteLeaveRequest { get; }
+
+        public ICommand PreviewPayslipCommand { get; }
+        public ICommand PrintPayslipCommand { get; }
+
 
         //Tables
         private IList<EmployeeEvaluatedAttendanceModel> _evaluatedAttendanceList = [];
@@ -301,16 +307,21 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
             }
         }
 
-        public RegJobDesk_ViewModel(IPopUpService popUpService, IUnitOfWork unitOfWork)
+        public RegJobDesk_ViewModel(IPopUpService popUpService, IUnitOfWork unitOfWork, IPrintService printService)
         {
             _unitOfWork = unitOfWork;
             _popUpService = popUpService;
+
+
             FileLeaveCommand = new RelayCommand(FileLeave);
             AttendanceRequestCommand = new RelayCommand(AttendanceRequest);
             EditAttendanceRequest = new RelayCommand(ExecuteEditAttendanceRequest);
             DeleteAttendanceRequest = new RelayCommand(ExecuteDeleteAttendanceRequest);
             EditLeaveRequest = new RelayCommand(ExecuteEditLeaveRequest);
             DeleteLeaveRequest = new RelayCommand(ExecuteDeleteLeaveRequest);
+            PreviewPayslipCommand = new RelayCommand(previewPayslip);
+            PrintPayslipCommand = new RelayCommand(ExecutePrintPayslip);
+
             LoadUserData();
         }
 
@@ -345,6 +356,16 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
 
 
         //Methods
+
+        private void ExecutePrintPayslip(object? item)
+        {
+            _popUpService.ShowPopUp<PayslipPrint_View>();
+        }
+
+        private void previewPayslip(object? item)
+        {
+            _popUpService.ShowPopUp<PayslipPreview_View>();
+        }
         private void ExecuteEditLeaveRequest(object? item)
         {
             var leaveRequest = item as EmployeeLeaveModel;

@@ -247,13 +247,42 @@
 
                                             <TextBlock Grid.Column="0" Text="Payslip" FontFamily="{StaticResource PoppinsSemiBold}"
                                                         FontSize="24" Width="515"/>
-                                            <!--BUTTONS-->
-                                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                                <Button Name="btnPreviewPayslip" Content="Preview" FontFamily="{StaticResource PoppinsMedium}"
-                                                        FontSize="10" Height="25" Width="71" Foreground="White"/>
-                                                <Button Name="btnPrintPayslip" Content="Print" FontFamily="{StaticResource PoppinsMedium}"
-                                                        FontSize="10" Height="25" Width="71" Foreground="White" Margin="10,0,10,0"/>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0">
+                                                <!-- Preview Button -->
+                                                <Button x:Name="btnPreviewPayslip"
+                                                        FontFamily="{StaticResource PoppinsBold}"
+                                                        FontSize="12"
+                                                        Width="110" Height="35"
+                                                        materialDesign:ButtonAssist.CornerRadius="17.5"
+                                                        Style="{StaticResource MaterialDesignOutlinedButton}"
+                                                        Margin="0,0,10,0"
+                                                        BorderBrush="DarkGoldenrod"
+                                                        Foreground="DarkGoldenrod"
+                                                        Command="{Binding PreviewPayslipCommand}">
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                        <materialDesign:PackIcon Kind="Eye" Width="16" Height="16" Margin="0,0,5,0"/>
+                                                        <TextBlock Text="Preview"/>
+                                                    </StackPanel>
+                                                </Button>
+
+                                                <!-- Print Button -->
+                                                <Button x:Name="btnPrintPayslip"
+                                                        FontFamily="{StaticResource PoppinsBold}"
+                                                        FontSize="12"
+                                                        Width="110" Height="35"
+                                                        materialDesign:ButtonAssist.CornerRadius="17.5"
+                                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                                        Background="LightGoldenrodYellow"
+                                                        BorderBrush="DarkGoldenrod"
+                                                        Foreground="DarkGoldenrod"
+                                                        Command="{Binding PrintPayslipCommand}">
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                        <materialDesign:PackIcon Kind="Printer" Width="16" Height="16" Margin="0,0,5,0"/>
+                                                        <TextBlock Text="Print"/>
+                                                    </StackPanel>
+                                                </Button>
                                             </StackPanel>
+
                                         </Grid>
 
                                         <!--RATE-->
@@ -287,7 +316,7 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <TextBlock Grid.Column="0" Text="Gross Pay" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Foreground="{StaticResource BaseColorSCB}"/>
+                                            <TextBlock Grid.Column="0" Text="Gross Pay" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Foreground="DarkGoldenrod"/>
                                             <TextBlock Grid.Column="1" x:Name="txtEmployeeGrossPay" Text="{Binding GrossPay}" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Foreground="{StaticResource BaseColorSCB}" HorizontalAlignment="Right"/>
                                         </Grid>
 
