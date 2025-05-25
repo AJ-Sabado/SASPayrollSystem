@@ -9,6 +9,7 @@ using PresentationLayer.WPF.Helpers;
 using PresentationLayer.WPF.Services;
 using PresentationLayer.WPF.View.Payslips;
 using PresentationLayer.WPF.View.Windows;
+using SASPayrolSystemProject;
 using ServicesLayer;
 
 namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular
@@ -17,6 +18,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
     {
         private readonly IPopUpService _popUpService;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IPrintService _printService;
 
         //Commands
         public ICommand FileLeaveCommand { get; }
@@ -311,7 +313,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
         {
             _unitOfWork = unitOfWork;
             _popUpService = popUpService;
-
+            _printService = printService;
 
             FileLeaveCommand = new RelayCommand(FileLeave);
             AttendanceRequestCommand = new RelayCommand(AttendanceRequest);
@@ -359,13 +361,18 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
 
         private void ExecutePrintPayslip(object? item)
         {
+            // Set the template type to PayslipRegTemplate before opening the print preview
+            _printService.SetCurrentPrintTemplate(PrintTemplateType.PayslipRegTemplate);
             _popUpService.ShowPopUp<PayslipPrint_View>();
         }
 
         private void previewPayslip(object? item)
         {
+            // Set the template type to PayslipRegTemplate before opening the preview
+            _printService.SetCurrentPrintTemplate(PrintTemplateType.PayslipRegTemplate);
             _popUpService.ShowPopUp<PayslipPreview_View>();
         }
+
         private void ExecuteEditLeaveRequest(object? item)
         {
             var leaveRequest = item as EmployeeLeaveModel;

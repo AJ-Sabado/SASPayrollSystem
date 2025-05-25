@@ -1,6 +1,7 @@
 ﻿using PresentationLayer.WPF.ViewModel.ServicesViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,17 +19,31 @@ namespace PresentationLayer.WPF.View.Payslips
     /// <summary>
     /// Interaction logic for PayslipPrint_View.xaml
     /// </summary>
-    public partial class PayslipPrint_View : Window
+    public partial class PayslipPrint_View : Window, INotifyPropertyChanged
     {
+        private PayslipPrint_ViewModel _viewModel;
+
         public PayslipPrint_View(PayslipPrint_ViewModel vm)
         {
             InitializeComponent();
-            DataContext = vm;
+            _viewModel = vm;
+            DataContext = _viewModel;
+
+            // Update bindings when the window loads
+            Loaded += (s, e) => {
+                OnPropertyChanged(nameof(DataContext));
+            };
         }
 
         private void btnPreviewPayslip_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -7,19 +7,17 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:psTemp="clr-namespace:PresentationLayer.WPF.View.Payslips"
     
-        Title="Employee Payslip"
+        Title="{Binding WindowTitle}"
         WindowStartupLocation="CenterScreen"
         Width="750" Height="900" 
         Background="White">
-
     <Grid Margin="0.5in">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <TextBlock Text="Print Employee Payslip" 
+            <TextBlock Text="{Binding HeaderText}" 
                    FontFamily="{StaticResource PoppinsBold}" 
                    FontSize="24" 
                    HorizontalAlignment="Left" 
@@ -45,9 +43,8 @@
                 BorderBrush="DarkGreen"
                 Command="{Binding PrintPayslipCommand}"/>
         </StackPanel>
-
         <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" Margin="0,10">
-            <psTemp:PayslipRegTemplate/>
+            <ContentPresenter Content="{Binding CurrentTemplate}"/>
         </Border>
     </Grid>
 </Window>
