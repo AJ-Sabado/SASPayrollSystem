@@ -20,24 +20,16 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
     {
         private readonly IPopUpService _popUpService;
         private readonly IPrintService _printService;
-        private readonly IUnitOfWork _unitOfWork;
 
         public ICommand PrintAllPayrollCommand { get; set; }
-
-        public AdminPayrollPage_ViewModel(IUnitOfWork unitOfWork, IPopUpService popUpService, IPrintService printService)
-        {
-            _popUpService = popUpService;
-            _printService = printService;
-            _unitOfWork = unitOfWork;
-
-            PrintAllPayrollCommand = new RelayCommand(PrintAllPayroll);
-        }
 
         private void PrintAllPayroll(object? obj)
         {
             // Set the template type to PayrollReport before opening the print preview
             _printService.SetCurrentPrintTemplate(PrintTemplateType.PayrollReport);
             _popUpService.ShowPopUp<PayslipPrint_View>();
+        }
+
         private IAdminOperationsService _adminOperationsService;
         private MyMessageBox _messageBox;
 
@@ -128,11 +120,14 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         public ICommand PrintContractorPayroll { get; set; }
         public ICommand QuickSearchContractor { get; set; }
 
-        public AdminPayrollPage_ViewModel(IAdminOperationsService adminOperationsService, MyMessageBox myMessageBox)
+        public AdminPayrollPage_ViewModel(IAdminOperationsService adminOperationsService, MyMessageBox myMessageBox, IPrintService printService, IPopUpService popUpService)
         {
             _adminOperationsService = adminOperationsService;
             _messageBox = myMessageBox;
+            _printService = printService;
+            _popUpService = popUpService;
 
+            PrintAllPayrollCommand = new RelayCommand(PrintAllPayroll);
             QuickSearchRegular = new RelayCommand(ExecuteQuickSearchRegular, _ => true);
             QuickSearchContractor = new RelayCommand(ExecuteQuickSearchContractor, _ => true);
 
