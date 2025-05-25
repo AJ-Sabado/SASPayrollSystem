@@ -43,7 +43,7 @@ namespace SASPayrolSystemProject
 
             //This determines the startup window
             var windowService = DIGetRequiredService<IWindowService>(_serviceProvider);
-            windowService.ShowWindow<MainWindow>();
+            windowService.ShowWindow<UpdateEvaluation_View>();
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -101,6 +101,8 @@ namespace SASPayrolSystemProject
             services.AddTransient<AddHolidays_View>();
             services.AddTransient<RegPayslip_View>();
             services.AddTransient<ICPayslip>();
+            services.AddTransient<UpdateEvaluation_View>();
+
 
             //Custom Message Box
             services.AddTransient<Error_View>();
