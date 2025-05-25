@@ -74,5 +74,10 @@ namespace ServicesLayer.Common
         {
             return await _repository.GetByIdAsync(id);
         }
+
+        public async Task<IEnumerable<T>> GetAllAsync(Func<IQueryable<T>, IQueryable<T>> include = null)
+        {
+            return await _repository.GetAllAsync(include);
+        }
     }
 }

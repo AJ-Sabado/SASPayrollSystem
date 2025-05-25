@@ -12,6 +12,7 @@
         
         mc:Ignorable="d"
         Title="Employee Infromation" Height="600" Width="900"
+        Icon="/Resources/Images/SASLogo.png"
         WindowStartupLocation="CenterScreen">
 
     <Viewbox>

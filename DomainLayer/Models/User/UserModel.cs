@@ -48,6 +48,9 @@ namespace DomainLayer.Models.User
         [EmailAddress(ErrorMessage = "Must be a valid email address")]
         public string? Email { get; set; }
 
+        [Column(TypeName = "datetime")]
+        public DateTime? DateOfRegistry { get; set; } = DateTime.Now;
+
         [ForeignKey(nameof(RoleId))]
         public Guid RoleId { get; set; }
         public RoleModel Role { get; set; } = null!;

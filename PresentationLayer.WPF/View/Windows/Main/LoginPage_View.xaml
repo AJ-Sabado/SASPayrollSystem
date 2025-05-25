@@ -7,7 +7,7 @@
         xmlns:userControls="clr-namespace:SASPayrolSystemProject.View.UserControls"
         
         mc:Ignorable="d"
-        Title="LoginView" Height="450" Width="800"
+        Title="Login View" Height="450" Width="800"
         Icon="/Resources/Images/SASLogo.png" 
         WindowStyle="None"
         AllowsTransparency="True"

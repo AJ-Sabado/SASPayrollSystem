@@ -106,6 +106,8 @@ namespace SASPayrolSystemProject
             services.AddTransient<AddHolidays_View>();
             services.AddTransient<RegPayslip_View>();
             services.AddTransient<ICPayslip>();
+            services.AddTransient<UpdateEvaluation_View>();
+
 
             services.AddTransient<PayslipPreview_View>();
             services.AddTransient<PayslipPreview_ViewModel>();
@@ -119,6 +121,7 @@ namespace SASPayrolSystemProject
             services.AddTransient<Warning_View>();
             services.AddTransient<PasswordPrompt_View>();
             services.AddTransient<ChangePassword_View>();
+            services.AddTransient<ForgotPassword_View>();
 
 
 

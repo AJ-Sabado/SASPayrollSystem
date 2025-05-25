@@ -355,6 +355,42 @@ namespace ServicesLayer
                     User = user
                 };
 
+                user.AccountInfo = new AccountInfoModel()
+                {
+                    UserId = user.UserId,
+                    User = user,
+
+                    //TO DO - Add employee information after EmployeeAccountInfoModel is adjusted.
+                    FirstName = "Jane John Admin",
+                    LastName = "Doe",
+                    MiddleInitial = "S.",
+                    Gender = Gender.Male,
+                    DateOfBirth = new DateOnly(2025, 1, 26),
+                    Nationality = Nationality.Filipino,
+
+                    PrimaryPhoneNumber = "+639000000001",
+                    SecondaryPhoneNumber = "+639000000002",
+                    Telephone = "(8)123-4567",
+                    SecondaryEmail = "secondary@test.com",
+                    MailingAddress = "Blk 4, Lot 47, Villa Amparo Subdivision, Brgy. Sylvacion, Panabo City",
+                    FacebookUrl = "https://www.facebook.com/",
+                    LinkedInUrl = "https://www.linkedin.com/",
+                    WebsiteUrl = "https://github.com/",
+
+                    TaxIdNumber = "123-456-789-012",
+                    SSSIdNumber = "123-4567890-0",
+                    PhilHealthIdNumber = "12-34567890-1",
+                    PagIbigIdNumber = "1434-5678-9012",
+                    BankName = "Landbank",
+                    BankAccountName = "JANE JOHN S. DOE",
+                    BankAccountId = "4748-4478-9012-3456",
+
+                    CompanyId = "#000000",
+                    Role = "HR Assistant",
+                    EmploymentType = EmploymentType.Regular,
+                    DateHired = new DateOnly(1997, 1, 27)
+                };
+
                 adminRole.Users.Add(user);
                 department.Users.Add(user);
 

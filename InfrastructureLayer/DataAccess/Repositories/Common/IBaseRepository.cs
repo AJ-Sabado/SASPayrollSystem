@@ -6,7 +6,7 @@ namespace InfrastructureLayer.DataAccess.Repositories.Common
     {
         Task AddAsync(T entity);
         Task AddRangeAsync(IEnumerable<T> entities);
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync(Func<IQueryable<T>, IQueryable<T>> include = null);
         Task<IEnumerable<T>> GetManyAsync(Expression<Func<T, bool>> filter = null, string? includeProperties = null);
         Task<T> GetAsync(Expression<Func<T, bool>> filter, string? includeProperties = null);
         Task<T> GetByIdAsync(Guid id);

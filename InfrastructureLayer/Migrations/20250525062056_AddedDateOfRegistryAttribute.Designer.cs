@@ -4,6 +4,7 @@ using InfrastructureLayer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250525062056_AddedDateOfRegistryAttribute")]
+    partial class AddedDateOfRegistryAttribute
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +39,7 @@ namespace InfrastructureLayer.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Admins", (string)null);
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Contractor.ContractorModel", b =>
@@ -59,7 +62,7 @@ namespace InfrastructureLayer.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Contractors", (string)null);
+                    b.ToTable("Contractors");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.ContractorAttendanceLog.ContractorAttendanceLogModel", b =>
@@ -88,7 +91,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("ContractorId");
 
-                    b.ToTable("ContractorAttendanceLogs", (string)null);
+                    b.ToTable("ContractorAttendanceLogs");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.ContractorPayslip.ContractorPayslipModel", b =>
@@ -125,7 +128,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("ContractorId");
 
-                    b.ToTable("ContractorPayslips", (string)null);
+                    b.ToTable("ContractorPayslips");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Department.DepartmentModel", b =>
@@ -146,7 +149,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasKey("DepartmentId");
 
-                    b.ToTable("Departments", (string)null);
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Employee.EmployeeModel", b =>
@@ -187,7 +190,7 @@ namespace InfrastructureLayer.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Employees", (string)null);
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeAccountInfo.AccountInfoModel", b =>
@@ -307,7 +310,7 @@ namespace InfrastructureLayer.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("AccountInfoModel", (string)null);
+                    b.ToTable("AccountInfoModel");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeAttendanceLog.EmployeeAttendanceLogModel", b =>
@@ -336,7 +339,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeAttendanceLogs", (string)null);
+                    b.ToTable("EmployeeAttendanceLogs");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeAttendanceRequest.EmployeeAttendanceRequestModel", b =>
@@ -381,7 +384,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeAttendanceRequests", (string)null);
+                    b.ToTable("EmployeeAttendanceRequests");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeEvaluatedAttendance.EmployeeEvaluatedAttendanceModel", b =>
@@ -433,7 +436,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeEvaluatedAttendances", (string)null);
+                    b.ToTable("EmployeeEvaluatedAttendances");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeLeave.EmployeeLeaveModel", b =>
@@ -471,7 +474,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeLeaves", (string)null);
+                    b.ToTable("EmployeeLeaves");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeePayslip.EmployeePayslipModel", b =>
@@ -571,7 +574,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeePayslips", (string)null);
+                    b.ToTable("EmployeePayslips");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Holiday.HolidayModel", b =>
@@ -594,7 +597,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasKey("HolidayId");
 
-                    b.ToTable("Holidays", (string)null);
+                    b.ToTable("Holidays");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Role.RoleModel", b =>
@@ -615,7 +618,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasKey("RoleId");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.User.UserModel", b =>
@@ -655,7 +658,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Admin.AdminModel", b =>
