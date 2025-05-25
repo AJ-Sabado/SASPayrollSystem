@@ -88,6 +88,7 @@ namespace SASPayrolSystemProject
             services.AddTransient<AdminPayrollPage_ViewModel>();
 
             services.AddTransient<PayslipRegTemplate>();
+            services.AddTransient<PayrollReport>();
 
             //Popups
             services.AddTransient<FileLeaveForm_View>();
@@ -139,6 +140,8 @@ namespace SASPayrolSystemProject
             services.AddSingleton<IAdminOperationsService, AdminOperationsService>();
             services.AddSingleton<MyMessageBox>();
             services.AddSingleton<IPdfExportService, PdfExportService>();
+
+
             services.AddSingleton<IPrintService, PrintService>();
         }
 

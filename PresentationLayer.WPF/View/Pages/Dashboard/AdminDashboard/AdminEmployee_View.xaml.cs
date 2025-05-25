@@ -11,5 +11,10 @@ namespace PresentationLayer.WPF.View.Pages.Dashboard.AdminDashboard
             InitializeComponent();
             DataContext = vm;
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

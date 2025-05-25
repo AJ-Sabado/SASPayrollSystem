@@ -174,36 +174,53 @@
                                         </Grid>
 
                                         <DataGrid Grid.Row="2"
-                                                  AutoGenerateColumns="False" 
-                                                  HeadersVisibility="Column" 
-                                                  CanUserAddRows="False" 
-                                                  Margin="0,10,0,0" 
+                                                  AutoGenerateColumns="False"
+                                                  HeadersVisibility="Column"
+                                                  CanUserAddRows="False"
+                                                  Margin="0,10,0,0"
                                                   ItemsSource="{Binding DepartmentsTable}"
-                                                  materialDesign:DataGridAssist.CellPadding="10" 
-                                                  materialDesign:DataGridAssist.ColumnHeaderPadding="10,5" 
-                                                  RowHeight="40" 
-                                                  FontSize="12" 
-                                                  IsReadOnly="True" 
-                                                  HorizontalScrollBarVisibility="Auto" 
+                                                  materialDesign:DataGridAssist.CellPadding="5"
+                                                  materialDesign:DataGridAssist.ColumnHeaderPadding="5,5"
+                                                  RowHeight="40"
+                                                  FontSize="12"
+                                                  IsReadOnly="True"
+                                                  HorizontalScrollBarVisibility="Auto"
                                                   VerticalScrollBarVisibility="Auto"
-                                                  Background="Transparent">
+                                                  Background="Transparent"
+                                                  VerticalContentAlignment="Center">
+
                                             <DataGrid.Columns>
- 
-                                                <DataGridTextColumn Header="Department Name" Binding="{Binding Name}" Width="Auto" />
-                                                <DataGridTextColumn Header="Normalized Name" Binding="{Binding NormalizedName}" Width="Auto" />
-                                                <DataGridTemplateColumn Header="Actions" Width="Auto">
+                                                <DataGridTextColumn Header="Department Name"
+                                                                    Binding="{Binding Name}"
+                                                                    Width="2*"
+                                                                    MinWidth="150"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                                <DataGridTextColumn Header="Normalized Name"
+                                                                    Binding="{Binding NormalizedName}"
+                                                                    Width="2*"
+                                                                    MinWidth="150"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                                <DataGridTemplateColumn Header="Actions"
+                                                                        Width="100">
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <Button Content="{materialDesign:PackIcon Kind=Delete}"  
-                                                                    Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                                    CommandParameter="{Binding}" 
-                                                                    Style="{StaticResource MaterialDesignFlatButton}" 
-                                                                    Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                            <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                    CommandParameter="{Binding}"
+                                                                    Style="{StaticResource MaterialDesignToolButton}"
+                                                                    ToolTip="Delete Department"
+                                                                    HorizontalAlignment="Center"
+                                                                    Margin="2,0">
+                                                                <materialDesign:PackIcon Kind="Delete"
+                                                                                    Width="18"
+                                                                                    Height="18"
+                                                                                    Foreground="{DynamicResource PrimaryHueMidBrush}" />
+                                                            </Button>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
                                             </DataGrid.Columns>
-
                                         </DataGrid>
                                     </Grid>
                                 </materialDesign:Card>
@@ -233,37 +250,55 @@
                                         </Grid>
 
                                         <DataGrid Grid.Row="2"
-                                                  AutoGenerateColumns="False" 
-                                                  HeadersVisibility="Column" 
-                                                  CanUserAddRows="False" 
-                                                  Margin="0,10,0,0" 
-                                                  ItemsSource="{Binding RolesTable}" 
-                                                  materialDesign:DataGridAssist.CellPadding="10" 
-                                                  materialDesign:DataGridAssist.ColumnHeaderPadding="10,5" 
-                                                  RowHeight="40" 
-                                                  FontSize="12" 
-                                                  IsReadOnly="True" 
-                                                  HorizontalScrollBarVisibility="Auto" 
+                                                  AutoGenerateColumns="False"
+                                                  HeadersVisibility="Column"
+                                                  CanUserAddRows="False"
+                                                  Margin="0,10,0,0"
+                                                  ItemsSource="{Binding RolesTable}"
+                                                  materialDesign:DataGridAssist.CellPadding="5"
+                                                  materialDesign:DataGridAssist.ColumnHeaderPadding="5,5"
+                                                  RowHeight="40"
+                                                  FontSize="12"
+                                                  IsReadOnly="True"
+                                                  HorizontalScrollBarVisibility="Auto"
                                                   VerticalScrollBarVisibility="Auto"
-                                                  Background="Transparent">
+                                                  Background="Transparent"
+                                                  VerticalContentAlignment="Center">
+
                                             <DataGrid.Columns>
-                                                
-                                                <DataGridTextColumn Header="Role Name" Binding="{Binding Name}" Width="Auto" />
-                                                <DataGridTextColumn Header="Normalized Name" Binding="{Binding NormalizedName}" Width="Auto" />
-                                                <DataGridTemplateColumn Header="Actions" Width="Auto">
+                                                <DataGridTextColumn Header="Role Name"
+                                                                    Binding="{Binding Name}"
+                                                                    Width="2*"
+                                                                    MinWidth="150"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                                <DataGridTextColumn Header="Normalized Name"
+                                                                    Binding="{Binding NormalizedName}"
+                                                                    Width="2*"
+                                                                    MinWidth="150"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                                <DataGridTemplateColumn Header="Actions"
+                                                                        Width="100">
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <Button Content="{materialDesign:PackIcon Kind=Delete}" 
-                                                                    Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                                    CommandParameter="{Binding}" 
-                                                                    Style="{StaticResource MaterialDesignFlatButton}" 
-                                                                    Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                                                            <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                    CommandParameter="{Binding}"
+                                                                    Style="{StaticResource MaterialDesignToolButton}"
+                                                                    ToolTip="Delete Role"
+                                                                    HorizontalAlignment="Center"
+                                                                    Margin="2,0">
+                                                                <materialDesign:PackIcon Kind="Delete"
+                                                                                         Width="18"
+                                                                                         Height="18"
+                                                                                         Foreground="{DynamicResource PrimaryHueMidBrush}" />
+                                                            </Button>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
                                             </DataGrid.Columns>
-
                                         </DataGrid>
+
                                     </Grid>
                                 </materialDesign:Card>
                             </Grid>
@@ -301,13 +336,18 @@
                             </StackPanel>
 
                             <!-- HOLIDAYS DATAGRID -->
-                            <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" 
-                                                 VerticalAlignment="Stretch" Background="White" 
-                                                 UniformCornerRadius="10" BorderBrush="LightGray" 
-                                                 BorderThickness="1" Effect="{StaticResource CardEffects}"
-                                                 Padding="20,15">
+                            <materialDesign:Card Grid.Row="1"
+                                                 HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Stretch"
+                                                 Background="White"
+                                                 UniformCornerRadius="10"
+                                                 BorderBrush="LightGray"
+                                                 BorderThickness="1"
+                                                 Effect="{StaticResource CardEffects}"
+                                                 Padding="20,15"
+                                                 Margin="0,10,0,0">
 
-                                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto"
                                               VerticalScrollBarVisibility="Auto"
                                               CanContentScroll="False">
                                     <DataGrid AutoGenerateColumns="False"
@@ -316,30 +356,56 @@
                                               Margin="0"
                                               ItemsSource="{Binding HolidaysTable}"
                                               materialDesign:DataGridAssist.CellPadding="10"
-                                              materialDesign:DataGridAssist.ColumnHeaderPadding="10"
+                                              materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
                                               RowHeight="50"
                                               FontSize="12"
+                                              IsReadOnly="True"
+                                              HorizontalScrollBarVisibility="Auto"
+                                              VerticalScrollBarVisibility="Auto"
                                               Background="Transparent">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Holiday Name" Binding="{Binding Description}" Width="*"/>
-                                            <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="*"/>
-                                            <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*"/>
-                                            <DataGridTemplateColumn Header="Actions" Width="*">
+                                            <DataGridTextColumn Header="Holiday Name"
+                                                Binding="{Binding Description}"
+                                                Width="2*"
+                                                MinWidth="250"
+                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                            <DataGridTextColumn Header="Date"
+                                                                Binding="{Binding Date, StringFormat=d}"
+                                                                Width="1.5*"
+                                                                MinWidth="250"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                            <DataGridTextColumn Header="Type"
+                                                                Binding="{Binding Type}"
+                                                                Width="1*"
+                                                                MinWidth="250"
+                                                                ElementStyle="{StaticResource TextBlockWrapStyle}" />
+
+                                            <DataGridTemplateColumn Header="Actions"
+                                                                    Width="1*"
+                                                                MinWidth="50">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <Button Content="Delete"
-                                                                Command="{Binding DataContext.DeleteHolidayCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                        <Button Command="{Binding DataContext.DeleteHolidayCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                                                 CommandParameter="{Binding}"
-                                                                Style="{StaticResource MaterialDesignFlatButton}"
-                                                                Foreground="Red"/>
+                                                                Style="{StaticResource MaterialDesignToolButton}"
+                                                                ToolTip="Delete Holiday"
+                                                                HorizontalAlignment="Center"
+                                                                Margin="2,0">
+                                                            <materialDesign:PackIcon Kind="Delete"
+                                                         Width="18"
+                                                         Height="18"
+                                                         Foreground="Red"/>
+                                                        </Button>
                                                     </DataTemplate>
                                                 </DataGridTemplateColumn.CellTemplate>
                                             </DataGridTemplateColumn>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </ScrollViewer>
-
                             </materialDesign:Card>
+
                         </Grid>
                     </TabItem>
 

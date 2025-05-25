@@ -7,8 +7,15 @@
              xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+             
+
              mc:Ignorable="d" 
              d:DesignHeight="688" d:DesignWidth="1088">
+
+    <UserControl.Resources>
+        
+    </UserControl.Resources>
+
 
     <Viewbox>
         <Grid x:Name="Canvas" Height="688" Width="1088">
@@ -126,31 +133,61 @@
                             <!-- DATA GRID -->
                             <materialDesign:Card Grid.Row="2" Background="White" UniformCornerRadius="10" BorderBrush="LightGray" BorderThickness="1" Effect="{StaticResource CardEffects}" Padding="20,15" Margin="0,7.5">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                    <DataGrid AutoGenerateColumns="False" HeadersVisibility="Column" CanUserAddRows="False" Margin="0" ItemsSource="{Binding CurrentEmployees}" materialDesign:DataGridAssist.CellPadding="10" materialDesign:DataGridAssist.ColumnHeaderPadding="10,5" RowHeight="40" FontSize="12" IsReadOnly="True" Background="Transparent">
-                                        <DataGrid.Columns>
-                                            <DataGridTextColumn Header="ID" Binding="{Binding AccountInfo.CompanyId}" Width="0.7*"/>
-                                            <DataGridTextColumn Header="Name" Binding="{Binding AccountInfo.FullName}" Width="2*"/>
-                                            <DataGridTextColumn Header="Role" Binding="{Binding Role.Name}" Width="1.5*"/>
-                                            <DataGridTextColumn Header="Department" Binding="{Binding Department.Name}" Width="2*"/>
-                                            <DataGridTextColumn Header="Job Title" Binding="{Binding AccountInfo.Role}" Width="2*"/>
-                                            <DataGridTemplateColumn Header="Actions" Width="1.5*">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                            <Button Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignToolButton}">
-                                                                <materialDesign:PackIcon Kind="Eye" Width="18" Height="18"/>
-                                                            </Button>
-                                                            <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignToolButton}">
-                                                                <materialDesign:PackIcon Kind="Delete" Width="18" Height="18"/>
-                                                            </Button>
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
-                                        </DataGrid.Columns>
-                                    </DataGrid>
+                                    <Grid>
+                                        <DataGrid x:Name="EmployeesDataGrid"
+                                                  AutoGenerateColumns="False" HeadersVisibility="Column" CanUserAddRows="False" Margin="0"
+                                                  ItemsSource="{Binding CurrentEmployees}" 
+                                                  materialDesign:DataGridAssist.CellPadding="5"
+                                                  materialDesign:DataGridAssist.ColumnHeaderPadding="5,5"
+                                                  RowHeight="40" FontSize="12" IsReadOnly="True" Background="Transparent"
+                                                  VerticalContentAlignment="Center">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="ID" Binding="{Binding AccountInfo.CompanyId}" Width="0.7*" />
+                                                <DataGridTextColumn Header="Name" Binding="{Binding AccountInfo.FullName}" Width="2*" 
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Role" Binding="{Binding Role.Name}" Width="1.5*" 
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Department" Binding="{Binding Department.Name}" Width="2*" 
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Job Title" Binding="{Binding AccountInfo.Role}" Width="2*" 
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTemplateColumn Header="Actions" Width="1.5*">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                                <Button Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                                                        CommandParameter="{Binding}" 
+                                                                        Style="{StaticResource MaterialDesignToolButton}"
+                                                                        ToolTip="View Employee Details"
+                                                                        Margin="2,0">
+                                                                    <materialDesign:PackIcon Kind="Eye" Width="18" Height="18" Foreground="#1976D2"/>
+                                                                </Button>
+                                                                <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                                                        CommandParameter="{Binding}" 
+                                                                        Style="{StaticResource MaterialDesignToolButton}"
+                                                                        ToolTip="Delete Employee"
+                                                                        Margin="2,0">
+                                                                    <materialDesign:PackIcon Kind="Delete" Width="18" Height="18" Foreground="#D32F2F"/>
+                                                                </Button>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+
+                                        <!-- No data message -->
+                                        <TextBlock Text="No data available"
+                                                   FontSize="16"
+                                                   FontWeight="Bold"
+                                                   Foreground="Gray"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Visibility="{Binding CurrentEmployees.Count, Converter={StaticResource ZeroToVisibilityConverter}}"/>
+                                    </Grid>
                                 </ScrollViewer>
                             </materialDesign:Card>
+
                         </Grid>
                     </TabItem>
 
@@ -166,29 +203,69 @@
 
                             <materialDesign:Card Grid.Row="1" Background="White" UniformCornerRadius="10" BorderBrush="LightGray" BorderThickness="1" Effect="{StaticResource CardEffects}" Padding="20,15" Margin="0,7.5">
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                    <DataGrid AutoGenerateColumns="False" HeadersVisibility="Column" CanUserAddRows="False" ItemsSource="{Binding EmployeeRequests}" materialDesign:DataGridAssist.CellPadding="10" materialDesign:DataGridAssist.ColumnHeaderPadding="10,5" RowHeight="40" FontSize="12" IsReadOnly="True" Background="Transparent">
-                                        <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Application Date" Binding="{Binding DateOfRegistry}" Width="1.5*"/>
-                                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="2*"/>
-                                            <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="2*"/>
-                                            <DataGridTemplateColumn Header="Actions" Width="1.5*">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                            <Button Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignToolButton}">
-                                                                <materialDesign:PackIcon Kind="Eye" Width="18" Height="18"/>
-                                                            </Button>
-                                                            <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Style="{StaticResource MaterialDesignToolButton}">
-                                                                <materialDesign:PackIcon Kind="Delete" Width="18" Height="18"/>
-                                                            </Button>
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
-                                        </DataGrid.Columns>
-                                    </DataGrid>
+                                    <Grid>
+                                        <DataGrid x:Name="EmployeeRequestsDataGrid"
+                                                  AutoGenerateColumns="False"
+                                                  HeadersVisibility="Column"
+                                                  CanUserAddRows="False"
+                                                  ItemsSource="{Binding EmployeeRequests}"
+                                                  materialDesign:DataGridAssist.CellPadding="5"
+                                                  materialDesign:DataGridAssist.ColumnHeaderPadding="5,5"
+                                                  RowHeight="40"
+                                                  FontSize="12"
+                                                  IsReadOnly="True"
+                                                  Background="Transparent"
+                                                  VerticalContentAlignment="Center">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Application Date"
+                                                                    Binding="{Binding DateOfRegistry}"
+                                                                    Width="1.5*"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Email"
+                                                                    Binding="{Binding Email}"
+                                                                    Width="2*"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTextColumn Header="Username"
+                                                                    Binding="{Binding Username}"
+                                                                    Width="2*"
+                                                                    ElementStyle="{StaticResource TextBlockWrapStyle}" />
+                                                <DataGridTemplateColumn Header="Actions" Width="1.5*">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                                <Button Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                        CommandParameter="{Binding}"
+                                                                        Style="{StaticResource MaterialDesignToolButton}"
+                                                                        ToolTip="View Request Details"
+                                                                        Margin="2,0">
+                                                                    <materialDesign:PackIcon Kind="Eye" Width="18" Height="18" Foreground="#1976D2"/>
+                                                                </Button>
+                                                                <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                        CommandParameter="{Binding}"
+                                                                        Style="{StaticResource MaterialDesignToolButton}"
+                                                                        ToolTip="Delete Request"
+                                                                        Margin="2,0">
+                                                                    <materialDesign:PackIcon Kind="Delete" Width="18" Height="18" Foreground="#D32F2F"/>
+                                                                </Button>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+
+                                        <!-- No data message -->
+                                        <TextBlock Text="No data available"
+                                                   FontSize="16"
+                                                   FontWeight="Bold"
+                                                   Foreground="Gray"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Visibility="{Binding EmployeeRequests.Count, Converter={StaticResource ZeroToVisibilityConverter}}"/>
+                                    </Grid>
                                 </ScrollViewer>
                             </materialDesign:Card>
+
                         </Grid>
                     </TabItem>
                 </TabControl>

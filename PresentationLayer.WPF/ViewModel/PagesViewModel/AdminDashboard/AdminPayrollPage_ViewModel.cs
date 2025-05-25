@@ -1,16 +1,60 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using DomainLayer.Models.ContractorPayslip;
 using DomainLayer.Models.EmployeePayslip;
+using PresentationLayer.WPF.Helpers;
 using PresentationLayer.WPF.Services;
+using PresentationLayer.WPF.View.Payslips;
 using ServicesLayer;
 
 namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 {
     public class AdminPayrollPage_ViewModel : Base_ViewModel
     {
-        private IAdminOperationsService _adminOperationsService;
-        private MyMessageBox _messageBox;
+        private readonly IPopUpService _popUpService;
+        private readonly IPrintService _printService;
+        private readonly IAdminOperationsService _adminOperationsService;
+        private readonly MyMessageBox _messageBox;
+
+        public ICommand QuickSearchRegular { get; set; }
+        public ICommand PrintRegularPayroll { get; set; }
+        public ICommand PrintContractorPayroll { get; set; }
+        public ICommand QuickSearchContractor { get; set; }
+        public ICommand PrintICPayroll { get; set; }
+
+        // Single constructor with all dependencies
+        public AdminPayrollPage_ViewModel(
+            IAdminOperationsService adminOperationsService,
+            MyMessageBox myMessageBox,
+            IPrintService printService,
+            IPopUpService popUpService)
+        {
+            // Initialize all dependencies
+            _adminOperationsService = adminOperationsService;
+            _messageBox = myMessageBox;
+            _printService = printService;
+            _popUpService = popUpService;
+
+            // Initialize commands
+            PrintICPayroll = new RelayCommand(PrintAllPayroll);
+            PrintRegularPayroll = new RelayCommand(PrintAllPayroll);
+            PrintContractorPayroll = new RelayCommand(PrintAllPayroll);
+            QuickSearchRegular = new RelayCommand(ExecuteQuickSearchRegular, _ => true);
+            QuickSearchContractor = new RelayCommand(ExecuteQuickSearchContractor, _ => true);
+
+            // Load data
+            LoadDbData();
+        }
+
+        private void PrintAllPayroll(object? obj)
+        {
+            // Set the template type to PayrollReport before opening the print preview
+            _printService.SetCurrentPrintTemplate(PrintTemplateType.PayrollReport);
+            _popUpService.ShowPopUp<PayslipPrint_View>();
+        }
 
         private string _quickSearchEmployeeFilter = string.Empty;
         public string QuickSearchEmployeeFilter
@@ -93,22 +137,6 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
             get => $"Php {ContractorsPayrollTotalAmount:F2}";
         }
         public IList<ContractorPayslipModel> ContractorPayslips { get; private set; } = [];
-
-        public ICommand QuickSearchRegular { get; set; }
-        public ICommand PrintRegularPayroll { get; set; }
-        public ICommand PrintContractorPayroll { get; set; }
-        public ICommand QuickSearchContractor { get; set; }
-
-        public AdminPayrollPage_ViewModel(IAdminOperationsService adminOperationsService, MyMessageBox myMessageBox)
-        {
-            _adminOperationsService = adminOperationsService;
-            _messageBox = myMessageBox;
-
-            QuickSearchRegular = new RelayCommand(ExecuteQuickSearchRegular, _ => true);
-            QuickSearchContractor = new RelayCommand(ExecuteQuickSearchContractor, _ => true);
-
-            LoadDbData();
-        }
 
         private async void LoadDbData()
         {
