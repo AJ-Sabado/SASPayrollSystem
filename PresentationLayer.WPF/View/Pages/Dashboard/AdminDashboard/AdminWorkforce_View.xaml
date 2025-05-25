@@ -86,6 +86,7 @@
                                             <TextBox Grid.Row="1"
                                                  x:Name="tbSearchNameID"
                                                  materialDesign:HintAssist.Hint="Search Employee Name or ID"
+                                                 Text="{Binding EmployeeEvaluatedAttendanceNameFilter}"
                                                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                                  BorderThickness="0"
                                                  VerticalAlignment="Center" Width="310" Height="30"
@@ -93,7 +94,7 @@
                                                  FontFamily="{StaticResource PoppinsLight}" FontSize="12"/>
                                             <Button x:Name="SearchBtn" Background="Transparent" Foreground="{StaticResource BaseColorSCB}"
                                                 BorderBrush="Transparent" Style="{StaticResource MaterialDesignIconButton}"
-                                                Height="30" Width="30" Margin="5,0,0,0">
+                                                Height="30" Width="30" Margin="5,0,0,0" Command="{Binding FilterEvaluatedAttendanceByName}">
                                                 <materialDesign:PackIcon Kind="Search"/>
                                             </Button>
                                         </StackPanel>
@@ -221,7 +222,7 @@
                             </Grid.RowDefinitions>
 
                             <!-- TITLE -->
-                            <TextBlock Grid.Row="0" Text="ATTENDANCE LOGS" 
+                            <TextBlock Grid.Row="0" Text="EMPLOYEE ATTENDANCE LOGS" 
                                        FontFamily="{StaticResource PoppinsBold}" 
                                        FontSize="30" Foreground="Black" 
                                        HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -323,6 +324,7 @@
                                             <DataGridTextColumn Header="Break Start" Binding="{Binding BreakStart}" Width="Auto" />
                                             <DataGridTextColumn Header="Break End" Binding="{Binding BreakEnd}" Width="Auto" />
                                             <DataGridTextColumn Header="Total Hours" Binding="{Binding TotalHours}" Width="Auto" />
+                                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto" />
                                             <DataGridTemplateColumn Header="Actions" Width="120">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
@@ -403,10 +405,11 @@
                                                      BorderThickness="0"
                                                      VerticalAlignment="Center" Margin="0,5" Width="200" Height="45"
                                                      Padding="10"
+                                                     Text="{Binding LeaveNameFilter}"
                                                      FontFamily="{StaticResource PoppinsLight}" FontSize="10"/>
                                             <Button x:Name="SearchBtn2" Background="Transparent" Foreground="{StaticResource BaseColorSCB}"
                                                     BorderBrush="Transparent" Style="{StaticResource MaterialDesignIconButton}"
-                                                    Height="45" Width="45" Margin="5,0,0,0">
+                                                    Height="45" Width="45" Margin="5,0,0,0" Command="{Binding FilterLeaveByName}">
                                                 <materialDesign:PackIcon Kind="Search"/>
                                             </Button>
                                         </StackPanel>
@@ -425,7 +428,7 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0"
-                                                   Text="250"
+                                                   Text="{Binding EmployeeCount}"
                                                    FontFamily="{StaticResource PoppinsSemiBold}" 
                                                    FontSize="25"
                                                    Foreground="Black"
@@ -446,7 +449,7 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0"
-                                                   Text="15"
+                                                   Text="{Binding EmployeesOnLeaveCount}"
                                                    FontFamily="{StaticResource PoppinsSemiBold}" 
                                                    FontSize="25"
                                                    Foreground="Black"
@@ -467,7 +470,7 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0"
-                                                   Text="8"
+                                                   Text="{Binding EmployeeLeaveRequestsCount}"
                                                    FontFamily="{StaticResource PoppinsSemiBold}" 
                                                    FontSize="25"
                                                    Foreground="Black"
@@ -508,8 +511,7 @@
                                               HeadersVisibility="Column"
                                               CanUserAddRows="False"
                                               Margin="0"
-                                              ItemsSource="{Binding Employees}"
-                                              SelectedItem="{Binding SelectedEmployee}"
+                                              ItemsSource="{Binding EmployeesOnLeave}"
                                               materialDesign:DataGridAssist.CellPadding="10"
                                               materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
                                               RowHeight="40"
@@ -519,12 +521,12 @@
                                               VerticalScrollBarVisibility="Auto"
                                               Background="Transparent">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Emloyee ID" Binding="{Binding Id}" Width="1*" />
-                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*" />
-                                            <DataGridTextColumn Header="Leave Type" Binding="{Binding Position}" Width="1.3*" />
-                                            <DataGridTextColumn Header="Leave Date" Binding="{Binding Department}" Width="1.3*" />
-                                            <DataGridTextColumn Header="Leave Duration" Binding="{Binding Department}" Width="1.3*" />
-                                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="1.3*" />
+                                            <DataGridTextColumn Header="Emloyee ID" Binding="{Binding Employee.User.AccountInfo.CompanyId}" Width="1*" />
+                                            <DataGridTextColumn Header="Employee" Binding="{Binding Employee.User.AccountInfo.FullName}" Width="2*" />
+                                            <DataGridTextColumn Header="Leave Type" Binding="{Binding Type}" Width="1.3*" />
+                                            <DataGridTextColumn Header="Date of Leave" Binding="{Binding DateOfAbsenceStart}" Width="1.3*" />
+                                            <DataGridTextColumn Header="Date of Return" Binding="{Binding DateOfReturn}" Width="1.3*" />
+                                            <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="1.3*" />
                                             <DataGridTemplateColumn Header="Actions" Width="1*">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
@@ -572,8 +574,7 @@
                                               HeadersVisibility="Column"
                                               CanUserAddRows="False"
                                               Margin="0"
-                                              ItemsSource="{Binding LeaveRequests}" 
-                                              SelectedItem="{Binding SelectedLeaveRequest}"
+                                              ItemsSource="{Binding EmployeeLeaveRequests}"
                                               materialDesign:DataGridAssist.CellPadding="10"
                                               materialDesign:DataGridAssist.ColumnHeaderPadding="10"
                                               RowHeight="40"
@@ -581,16 +582,15 @@
                                               IsReadOnly="True"
                                               Background="Transparent">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Request ID" Binding="{Binding RequestId}" Width="100" />
-                                            <DataGridTextColumn Header="Employee ID" Binding="{Binding EmployeeId}" Width="120" />
-                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200" />
-                                            <DataGridTextColumn Header="Department" Binding="{Binding Department}" Width="150" />
-                                            <DataGridTextColumn Header="Leave Type" Binding="{Binding LeaveType}" Width="150" />
-                                            <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" Width="120" />
-                                            <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}" Width="120" />
-                                            <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" Width="250" />
-                                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100" />
-                                            <DataGridTemplateColumn Header="Actions" Width="100">
+                                            <DataGridTextColumn Header="Request ID" Binding="{Binding BusinessId}" Width="Auto" />
+                                            <DataGridTextColumn Header="Employee" Binding="{Binding Employee.User.AccountInfo.FullName}" Width="Auto" />
+                                            <DataGridTextColumn Header="Date of Filing" Binding="{Binding DateOfFiling}" Width="Auto" />
+                                            <DataGridTextColumn Header="Reason" Binding="{Binding Type}" Width="Auto" />
+                                            <DataGridTextColumn Header="Start of Leave" Binding="{Binding DateOfAbsenceStart}" Width="Auto" />
+                                            <DataGridTextColumn Header="Return from Leave" Binding="{Binding DateOfReturn}" Width="Auto" />
+                                            <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="Auto" />
+                                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto" />
+                                            <DataGridTemplateColumn Header="Actions" Width="Auto">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <Button Content="View" 
@@ -610,7 +610,72 @@
                     </TabItem>
                     <TabItem IsEnabled="False" IsHitTestVisible="False" />
                     <TabItem Header="Independent Contractors" IsEnabled="False" IsHitTestVisible="False"/>
-                    <TabItem Header="Attendance Logs"/>
+                    <TabItem Header="Attendance Logs">
+                        <Grid Margin="20,0,0,0" Background="White">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="7*"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="5*"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="88*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- TITLE -->
+                            <TextBlock Grid.Row="0" Text="INDEPENDENT CONTRACTOR ATTENDANCE LOGS" 
+                            FontFamily="{StaticResource PoppinsBold}" 
+                            FontSize="30" Foreground="Black" 
+                            HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center">
+                                <TextBlock Text="Date:    " FontSize="18" FontFamily="{StaticResource PoppinsSemiBold}"/>
+                                <DatePicker x:Name="dpDateContractor" 
+                                            SelectedDate="{Binding SelectedDateICAttendanceLog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                            FontFamily="{StaticResource PoppinsRegular}" 
+                                            FontSize="15" 
+                                            Margin="5,0,0,0" 
+                                            Width="200" 
+                                            HorizontalAlignment="Left"
+                                            DisplayDateEnd="{x:Static sys:DateTime.Today}" />
+                            </StackPanel>
+
+                            <!-- DATAGRID -->
+                            <materialDesign:Card Grid.Row="4"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Stretch"
+                                                Background="White"
+                                                UniformCornerRadius="10"
+                                                BorderBrush="LightGray"
+                                                BorderThickness="1"
+                                                Effect="{StaticResource CardEffects}"
+                                                Padding="20,15"
+                                                Margin="0,7.5">
+
+                                <DataGrid AutoGenerateColumns="False"
+                                            HeadersVisibility="Column"
+                                            CanUserAddRows="False"
+                                            Margin="0"
+                                            ItemsSource="{Binding ContractorAttendanceLogs}"
+                                            materialDesign:DataGridAssist.CellPadding="10"
+                                            materialDesign:DataGridAssist.ColumnHeaderPadding="10,10"
+                                            RowHeight="40"
+                                            FontSize="12"
+                                            IsReadOnly="True"
+                                            Background="Transparent"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Log ID" Binding="{Binding BusinessId}" Width="*"/>
+                                        <DataGridTextColumn Header="Employee" Binding="{Binding Contractor.User.AccountInfo.FullName}" Width="*"/>
+                                        <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="*"/>
+                                        <DataGridTextColumn Header="Start of Session" Binding="{Binding TimeIn, StringFormat='{}{0:hh:mm:ss tt}'}" Width="*"/>
+                                        <DataGridTextColumn Header="End of Session" Binding="{Binding TimeOut, StringFormat='{}{0:hh:mm:ss tt}'}" Width="*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+
+                            </materialDesign:Card>
+
+                        </Grid>
+                    </TabItem>
                 </TabControl>
 
             </Grid>

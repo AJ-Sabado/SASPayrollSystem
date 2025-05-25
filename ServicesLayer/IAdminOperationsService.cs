@@ -5,6 +5,7 @@ using DomainLayer.Models.Employee;
 using DomainLayer.Models.EmployeeAttendanceLog;
 using DomainLayer.Models.EmployeeAttendanceRequest;
 using DomainLayer.Models.EmployeeEvaluatedAttendance;
+using DomainLayer.Models.EmployeeLeave;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
@@ -23,18 +24,23 @@ namespace ServicesLayer
         IList<EmployeeEvaluatedAttendanceModel> EvaluatedAttendances { get; }
         IList<EmployeeAttendanceLogModel> EmployeeAttendanceLogs { get; }
         IList<EmployeeAttendanceRequestModel> EmployeeAttendanceRequests { get; }
+        IList<EmployeeLeaveModel> EmployeesOnLeave { get; }
+        IList<EmployeeLeaveModel> EmployeeLeaveRequests { get; }
         IList<EmployeeModel> Employees { get; }
         IList<HolidayModel> Holidays { get; }
         IList<RoleModel> Roles { get; }
+        IList<ContractorAttendanceLogModel> ContractorAttendanceLogs { get; }
 
         Task RefreshHolidaysTable();
         Task RefreshDepartmentsTable();
         Task RefreshRolesTable();
         Task RefreshContractorsTable();
         Task RefreshEmployeesTable();
-        Task RefreshEvaluatedAttendances(DepartmentModel? department = null, DateTime? date = null);
+        Task RefreshEvaluatedAttendances(DepartmentModel? department = null, DateTime? date = null, string employeeName = null);
         Task RefreshEmployeeAttendanceLogs(DateTime? date = null);
         Task RefreshEmployeeAttendanceRequests();
+        Task RefreshEmployeeLeaves(string employeeName = null);
+        Task RefreshContractorAttendanceLogs(DateTime? date = null);
 
         Task<UserModel?> InitializeService(Guid adminUserGuid);
     }
