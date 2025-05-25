@@ -20,6 +20,9 @@ namespace ServicesLayer
 
         bool ConfirmAction(string password);
 
+        int EmployeeCount { get; }
+        int ContractorCount { get; }
+
         //Tables
         IList<ContractorModel> Contractors { get; }
         IList<DepartmentModel> Departments { get; }
@@ -36,6 +39,7 @@ namespace ServicesLayer
         IList<UserModel> EmployeeRequests { get; }
         IList<EmployeePayslipModel> EmployeePayslips { get; }
         IList<ContractorPayslipModel> ContractorPayslips { get; }
+        IDictionary<string, PayDateTotalPair> SummarizedPayrolls { get; }
 
         Task RefreshHolidaysTable();
         Task RefreshDepartmentsTable();
@@ -50,6 +54,8 @@ namespace ServicesLayer
         Task RefreshEmployees(string name = null, RoleModel? role = null, DepartmentModel? department = null);
         Task RefreshEmployeePayslips();
         Task RefreshContractorPayslips();
+        Task RecountPopulation();
+        Task SummarizePayrolls();
 
         Task<UserModel?> InitializeService(Guid adminUserGuid);
     }

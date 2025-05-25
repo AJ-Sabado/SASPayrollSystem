@@ -36,7 +36,7 @@ namespace InfrastructureLayer.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Contractor.ContractorModel", b =>
@@ -59,7 +59,7 @@ namespace InfrastructureLayer.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Contractors");
+                    b.ToTable("Contractors", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.ContractorAttendanceLog.ContractorAttendanceLogModel", b =>
@@ -88,7 +88,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("ContractorId");
 
-                    b.ToTable("ContractorAttendanceLogs");
+                    b.ToTable("ContractorAttendanceLogs", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.ContractorPayslip.ContractorPayslipModel", b =>
@@ -125,7 +125,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("ContractorId");
 
-                    b.ToTable("ContractorPayslips");
+                    b.ToTable("ContractorPayslips", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Department.DepartmentModel", b =>
@@ -146,7 +146,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasKey("DepartmentId");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Employee.EmployeeModel", b =>
@@ -187,7 +187,7 @@ namespace InfrastructureLayer.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeAccountInfo.AccountInfoModel", b =>
@@ -307,7 +307,7 @@ namespace InfrastructureLayer.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("AccountInfoModel");
+                    b.ToTable("AccountInfoModel", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeAttendanceLog.EmployeeAttendanceLogModel", b =>
@@ -336,7 +336,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeAttendanceLogs");
+                    b.ToTable("EmployeeAttendanceLogs", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeAttendanceRequest.EmployeeAttendanceRequestModel", b =>
@@ -381,7 +381,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeAttendanceRequests");
+                    b.ToTable("EmployeeAttendanceRequests", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeEvaluatedAttendance.EmployeeEvaluatedAttendanceModel", b =>
@@ -433,7 +433,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeEvaluatedAttendances");
+                    b.ToTable("EmployeeEvaluatedAttendances", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeeLeave.EmployeeLeaveModel", b =>
@@ -471,7 +471,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeLeaves");
+                    b.ToTable("EmployeeLeaves", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.EmployeePayslip.EmployeePayslipModel", b =>
@@ -574,7 +574,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeePayslips");
+                    b.ToTable("EmployeePayslips", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Holiday.HolidayModel", b =>
@@ -597,7 +597,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasKey("HolidayId");
 
-                    b.ToTable("Holidays");
+                    b.ToTable("Holidays", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Role.RoleModel", b =>
@@ -618,7 +618,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasKey("RoleId");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.User.UserModel", b =>
@@ -658,7 +658,7 @@ namespace InfrastructureLayer.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Admin.AdminModel", b =>

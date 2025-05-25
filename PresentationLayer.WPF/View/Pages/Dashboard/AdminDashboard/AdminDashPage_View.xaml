@@ -40,14 +40,14 @@
                     <StackPanel Grid.Column="0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Welcome Back, " FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25" />
-                            <TextBlock Name="txtEmployeeFirstName" Text="Juan" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
+                            <TextBlock Name="txtEmployeeFirstName" Text="{Binding FirstName}" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Name="txtEmployeeID" Text="EMP-00123" 
+                            <TextBlock Name="txtEmployeeID" Text="{Binding CompanyId}" 
                                        FontFamily="{StaticResource PoppinsLight}" FontSize="14" FontStyle="Italic"/>
                             <TextBlock Text="   |   " 
                                        FontFamily="{StaticResource PoppinsLight}" FontSize="14" FontStyle="Italic"/>
-                            <TextBlock Name="txtEmployeePosition" Text="Software Engineer" 
+                            <TextBlock Name="txtEmployeePosition" Text="{Binding Role}" 
                                        FontFamily="{StaticResource PoppinsLight}" FontSize="14" FontStyle="Italic"/>
                         </StackPanel>
                     </StackPanel>
@@ -108,31 +108,23 @@
                                                  Padding="20">
 
                                 <StackPanel>
-                                    <TextBlock Grid.Row="0" Text="Regular Employee Time Log" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Margin="0,0,0,10"/>
+                                    <TextBlock Grid.Row="0" Text="Regular Employee Recent Logs" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Margin="0,0,0,10"/>
 
                                     <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                         <DataGrid x:Name="dgRegTimeLog"
                                                   AutoGenerateColumns="False"
                                                   FontSize="10"
-                                                  ItemsSource="{Binding AttendanceLogList, Mode=OneWay}"
+                                                  ItemsSource="{Binding EmployeeAttendanceLogs, Mode=OneWay}"
                                                   ColumnWidth="Auto"
                                                   IsReadOnly="True"
                                                   HorizontalScrollBarVisibility="Disabled"
                                                   Width="515" Height="150">
                                             <DataGrid.Columns>
-                                                <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding ID}" />
-
-                                                <DataGridTemplateColumn Header="Photo" Width="Auto">
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <Image Source="{Binding Photo}" Height="40" Width="40"/>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
-
-                                                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
-                                                <DataGridTextColumn Header="Log Type" Width="*" Binding="{Binding TimeIn}" />
-                                                <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Status}" />
+                                                <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding BusinessId}" />
+                                                <DataGridTextColumn Header="Employee" Width="Auto" Binding="{Binding Employee.User.AccountInfo.LastName}" />
+                                                <DataGridTextColumn Header="Date" Width="Auto" Binding="{Binding Date}" />
+                                                <DataGridTextColumn Header="Time" Width="Auto" Binding="{Binding TimeStamp, StringFormat='{}{0:hh:mm:ss tt}'}" />
+                                                <DataGridTextColumn Header="Log Type" Width="Auto" Binding="{Binding EventType}" />
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </ScrollViewer>
@@ -146,31 +138,23 @@
                                                  Padding="20">
 
                                 <StackPanel>
-                                    <TextBlock Grid.Row="0" Text="Independent Contractors Time Log" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Margin="0,0,0,10"/>
+                                    <TextBlock Grid.Row="0" Text="Contractor Recent Logs" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="18" Margin="0,0,0,10"/>
 
                                     <ScrollViewer Grid.Column="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                         <DataGrid x:Name="dgICAteendanceLog"
                                                   AutoGenerateColumns="False"
                                                   FontSize="10"
-                                                  ItemsSource="{Binding AttendanceLogList, Mode=OneWay}"
+                                                  ItemsSource="{Binding ContractorAttendanceLogModels, Mode=OneWay}"
                                                   ColumnWidth="Auto"
                                                   IsReadOnly="True"
                                                   HorizontalScrollBarVisibility="Disabled"
                                                   Width="512" Height="150">
                                             <DataGrid.Columns>
-                                                <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding ID}" />
-
-                                                <DataGridTemplateColumn Header="Photo" Width="Auto">
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <Image Source="{Binding Photo}" Height="40" Width="40"/>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
-
-                                                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
-                                                <DataGridTextColumn Header="Log Type" Width="*" Binding="{Binding TimeIn}" />
-                                                <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Status}" />
+                                                <DataGridTextColumn Header="ID" Width="Auto" Binding="{Binding BusinessId}" />
+                                                <DataGridTextColumn Header="Employee" Width="Auto" Binding="{Binding Contractor.User.AccountInfo.LastName}" />
+                                                <DataGridTextColumn Header="Date" Width="Auto" Binding="{Binding Date}" />
+                                                <DataGridTextColumn Header="Time In" Width="Auto" Binding="{Binding TimeIn, StringFormat='{}{0:hh:mm tt}'}" />
+                                                <DataGridTextColumn Header="Time Out" Width="Auto" Binding="{Binding TimeOut, StringFormat='{}{0:hh:mm tt}'}" />
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </ScrollViewer>
@@ -235,11 +219,11 @@
                                         <TextBlock Text="  Previous Payroll" 
                                             FontFamily="{StaticResource PoppinsMedium}" FontSize="14"/>
                                     </StackPanel>
-                                    <TextBlock Text="Php 1,200,345.00" 
+                                    <TextBlock Text="{Binding PreviousAmount}" 
                                             FontFamily="{StaticResource PoppinsBold}" FontSize="25"
                                                Margin="0,3" Foreground="DarkGoldenrod"/>
 
-                                    <TextBlock Text="January 24, 2025" 
+                                    <TextBlock Text="{Binding PreviousDate}" 
                                             FontFamily="{StaticResource PoppinsRegular}" FontSize="10"
                                                Margin="0,0,0,0"/>
                                 </StackPanel>
@@ -254,14 +238,14 @@
                                 <StackPanel>
                                     <StackPanel Grid.Column="0" Orientation="Horizontal" >
                                         <materialDesign:PackIcon Kind="PaymentOnDelivery" Width="18" Height="18"/>
-                                        <TextBlock Text="  Upcoming Payroll" 
+                                        <TextBlock Text="  Current Payroll" 
                                                     FontFamily="{StaticResource PoppinsMedium}" FontSize="14"/>
                                     </StackPanel>
-                                    <TextBlock Text="Php 1,200,345.00" 
+                                    <TextBlock Text="{Binding CurrentAmount}" 
                                                 FontFamily="{StaticResource PoppinsBold}" FontSize="25"
                                                    Margin="0,3" Foreground="DarkGreen"/>
 
-                                    <TextBlock Text="January 24, 2025" 
+                                    <TextBlock Text="{Binding CurrentDate}" 
                                             FontFamily="{StaticResource PoppinsRegular}" FontSize="10"
                                                Margin="0,0,0,0"/>
                                 </StackPanel>

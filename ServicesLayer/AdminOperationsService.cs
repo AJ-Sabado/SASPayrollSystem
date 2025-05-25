@@ -37,10 +37,13 @@ namespace ServicesLayer
         public IList<ContractorAttendanceLogModel> ContractorAttendanceLogs { get; private set; } = [];
         public IList<UserModel> CurrentEmployees { get; private set; } = [];
         public IList<UserModel> EmployeeRequests { get; private set; } = [];
-
         public IList<EmployeePayslipModel> EmployeePayslips { get; private set; } = [];
-
         public IList<ContractorPayslipModel> ContractorPayslips { get; private set; } = [];
+
+        public int EmployeeCount { get; private set; } = 0;
+        public int ContractorCount { get; private set; } = 0;
+
+        public IDictionary<string, PayDateTotalPair> SummarizedPayrolls { get; private set; } = new Dictionary<string, PayDateTotalPair>();
 
         public AdminOperationsService(IUnitOfWork unitOfWork)
         {
@@ -51,7 +54,7 @@ namespace ServicesLayer
         {
             var user = await _unitOfWork.UserRepository
                 .GetAsync(u => u.UserId == adminUserGuid
-                    , includeProperties: "Role,Admin");
+                    , includeProperties: "Role,Admin,AccountInfo");
 
             if (user == null)
                 throw new ArgumentException("User not found.");
@@ -60,8 +63,6 @@ namespace ServicesLayer
                 throw new ArgumentException("This user has no administrator privillages!");
 
             AdminUser = user;
-
-            //Load Tables
             await RefreshHolidaysTable();
             await RefreshDepartmentsTable();
             await RefreshRolesTable();
@@ -69,11 +70,17 @@ namespace ServicesLayer
             await RefreshContractorsTable();
             await RefreshEmployeesTable();
 
+            await RefreshEmployeeAttendanceLogs();
+            await RefreshContractorAttendanceLogs();
+
             await RefreshEmployeeAttendanceRequests();
             await RefreshEmployeeLeaves();
 
             await RefreshEmployeePayslips();
             await RefreshContractorPayslips();
+
+            await RecountPopulation();
+            await SummarizePayrolls();
 
             return AdminUser;
         }
@@ -210,5 +217,73 @@ namespace ServicesLayer
                 include.Include(c => c.Contractor.User.AccountInfo));
             ContractorPayslips = contractorPayslips.ToList();
         }
+
+        public async Task RecountPopulation()
+        {
+            var noAccessRole = await _unitOfWork.RoleRepository.GetAsync(r => r.NormalizedName == "no access".ToUpperInvariant());
+            var users = await _unitOfWork.UserRepository.GetManyAsync(u => u.RoleId != noAccessRole.RoleId, includeProperties: "Role,Department");
+            int total = users.Count();
+            ContractorCount = users.Where(u => u.Role.NormalizedName == "contractor".ToUpperInvariant()).Count();
+            EmployeeCount = total - ContractorCount;
+        }
+
+        public async Task SummarizePayrolls()
+        {
+            //This summarizes the whole payslip history
+
+            var employeePayslips = await _unitOfWork.EmployeePayslipRepository.GetAllAsync();
+            var contractorPayslips = await _unitOfWork.ContractorPayslipRepository.GetAllAsync();
+
+            var groupedEmployeePayslips = employeePayslips.OrderBy(e => e.PeriodStart).GroupBy(e => e.PayPeriod);
+            var groupedContractorPayslips = contractorPayslips.OrderBy(c => c.PeriodStart).GroupBy(e => e.PayPeriod);
+
+            var dictionary = new Dictionary<string, PayDateTotalPair>();
+
+            foreach (var group in groupedEmployeePayslips)
+            {
+                var sum = group.Sum(p => p.NetSalary);
+                if (!dictionary.ContainsKey(group.Key))
+                {
+                    dictionary
+                        .Add(group.Key,
+                            new PayDateTotalPair()
+                            {
+                                PayDate = group.First().PayDate.ToString("MMMM dd, yyyy"),
+                                Total = sum
+                            });
+                }
+                else
+                {
+                    dictionary[group.Key].Total += sum;
+                }
+            }
+
+            foreach (var group in groupedContractorPayslips)
+            {
+                var sum = group.Sum(c => c.NetPay);
+                if (!dictionary.ContainsKey(group.Key))
+                {
+                    dictionary
+                        .Add(group.Key,
+                            new PayDateTotalPair()
+                            {
+                                PayDate = group.First().PayDate.ToString("MMMM dd, yyyy")
+                            });
+
+                }
+                else
+                {
+                    dictionary[group.Key].Total += sum;
+                }
+            }
+
+            SummarizedPayrolls = dictionary;
+        }
+    }
+    public class PayDateTotalPair
+    {
+        public string PayDate { get; set; } = string.Empty;
+        public decimal Total { get; set; }
+
     }
 }

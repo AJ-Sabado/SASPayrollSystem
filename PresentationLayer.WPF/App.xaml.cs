@@ -94,7 +94,6 @@ namespace SASPayrolSystemProject
             services.AddTransient<LeaveRequest_ViewModel>();
             services.AddTransient<AttendanceRequest_View>();
             services.AddTransient<AttendanceRequest_ViewModel>();
-            services.AddTransient<FileLeaveForm_View>();
             services.AddTransient<EmployeeAdd_View>();
             services.AddTransient<OnboardingRequest_View>();
             services.AddTransient<EmployeeDetails_View>();
@@ -140,8 +139,6 @@ namespace SASPayrolSystemProject
             services.AddSingleton<IAdminOperationsService, AdminOperationsService>();
             services.AddSingleton<MyMessageBox>();
             services.AddSingleton<IPdfExportService, PdfExportService>();
-
-
             services.AddSingleton<IPrintService, PrintService>();
         }
 

@@ -32,6 +32,6 @@ namespace DomainLayer.Models.ContractorPayslip
         [Column(TypeName = "tinyint")]
         public EmployeePayslipStatus PayslipStatus { get; set; } = EmployeePayslipStatus.Pending;
 
-        public string Period => $"{PeriodStart} - {PeriodEnd}";
+        public string PayPeriod => $"{PeriodStart} - {PeriodEnd}";
     }
 }

@@ -11,6 +11,8 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWindowService _windowService;
+        private readonly IContractorTrackerService _contractorTrackerService;
+        private readonly IAdminOperationsService _adminOperationsService;
 
         public string Role { get; private set; } = string.Empty;
 
@@ -57,11 +59,14 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
 
         }
 
-        public LoginPage_ViewModel(IUnitOfWork unitOfWork, IWindowService windowService)
+        public LoginPage_ViewModel(IUnitOfWork unitOfWork, IWindowService windowService, IContractorTrackerService contractorTrackerService, IAdminOperationsService adminOperationsService)
         {
             _unitOfWork = unitOfWork;
             _windowService = windowService;
+            _contractorTrackerService = contractorTrackerService;
+            _adminOperationsService = adminOperationsService;
             _unitOfWork.InitialSeeding();
+
 
             SignIn = new RelayCommand(AuthenticateUser, _ => true);
             SignUp = new RelayCommand(SignUpNewUser, _ => true);
@@ -158,6 +163,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 {
                     try
                     {
+                        await _adminOperationsService.InitializeService(user.UserId);
                         _windowService.ShowWindow<AdminDashboard_View>();
                     }
                     catch(Exception ex)
@@ -169,7 +175,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 {
                     try
                     {
-                        //await _unitOfWork.GenerateAllContractorPayslips(periodStart, periodEnd, payDate);
+                        await _unitOfWork.GenerateAllContractorPayslips(periodStart, periodEnd, payDate);
                         _windowService.ShowWindow<EmployeeDashboardIC_View>();
                     }
                     catch (Exception ex)
