@@ -1,11 +1,13 @@
 ﻿using DomainLayer.Models.Contractor;
 using DomainLayer.Models.ContractorAttendanceLog;
+using DomainLayer.Models.ContractorPayslip;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
 using DomainLayer.Models.EmployeeAttendanceLog;
 using DomainLayer.Models.EmployeeAttendanceRequest;
 using DomainLayer.Models.EmployeeEvaluatedAttendance;
 using DomainLayer.Models.EmployeeLeave;
+using DomainLayer.Models.EmployeePayslip;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
@@ -32,6 +34,8 @@ namespace ServicesLayer
         IList<ContractorAttendanceLogModel> ContractorAttendanceLogs { get; }
         IList<UserModel> CurrentEmployees { get; }
         IList<UserModel> EmployeeRequests { get; }
+        IList<EmployeePayslipModel> EmployeePayslips { get; }
+        IList<ContractorPayslipModel> ContractorPayslips { get; }
 
         Task RefreshHolidaysTable();
         Task RefreshDepartmentsTable();
@@ -44,6 +48,8 @@ namespace ServicesLayer
         Task RefreshEmployeeLeaves(string employeeName = null);
         Task RefreshContractorAttendanceLogs(DateTime? date = null);
         Task RefreshEmployees(string name = null, RoleModel? role = null, DepartmentModel? department = null);
+        Task RefreshEmployeePayslips();
+        Task RefreshContractorPayslips();
 
         Task<UserModel?> InitializeService(Guid adminUserGuid);
     }

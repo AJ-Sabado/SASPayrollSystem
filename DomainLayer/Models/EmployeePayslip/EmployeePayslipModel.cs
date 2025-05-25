@@ -170,6 +170,8 @@ namespace DomainLayer.Models.EmployeePayslip
         public decimal NetSalary { get; set; } = 0;
 
         [Column(TypeName = "tinyint")]
-        public EmployeePayslipStatus PayslipStatus = EmployeePayslipStatus.Pending;
+        public EmployeePayslipStatus PayslipStatus { get; set; } = EmployeePayslipStatus.Pending;
+
+        public string Period => $"{PeriodStart} - {PeriodEnd}";
     }
 }
