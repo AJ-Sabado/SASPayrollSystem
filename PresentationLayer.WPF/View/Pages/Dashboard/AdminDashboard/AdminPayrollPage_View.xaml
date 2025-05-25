@@ -43,7 +43,7 @@
                                 <RowDefinition Height="20*"/>
                                 <RowDefinition Height="73*"/>
                             </Grid.RowDefinitions>
-
+                            
                             <!-- TITLE -->
                             <TextBlock Grid.Row="0" Text="REGULAR EMPLOYEE PAYROLL" 
                                        FontFamily="{StaticResource PoppinsBold}" 
@@ -101,10 +101,11 @@
                                                      BorderThickness="0"
                                                      VerticalAlignment="Center" Margin="0,5" Width="180" Height="30"
                                                      Padding="5"
+                                                     Text="{Binding QuickSearchEmployeeFilter}"
                                                      FontFamily="{StaticResource PoppinsLight}" FontSize="10"/>
                                             <Button x:Name="SearchBtn" Background="Transparent" Foreground="{StaticResource BaseColorSCB}"
                                                         BorderBrush="Transparent" Style="{StaticResource MaterialDesignIconButton}"
-                                                        Height="35" Width="35" Margin="5,0,0,0">
+                                                        Height="35" Width="35" Margin="5,0,0,0" Command="{Binding QuickSearchRegular}">
                                                 <materialDesign:PackIcon Kind="Search"/>
                                             </Button>
                                         </StackPanel>
@@ -138,7 +139,7 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0"
-                                                   Text="250"
+                                                   Text="{Binding RegularEmployeesCount}"
                                                    FontFamily="{StaticResource PoppinsSemiBold}" 
                                                    FontSize="25"
                                                    Foreground="Black"
@@ -159,7 +160,7 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0"
-                                                   Text="P 1,200,000.00"
+                                                   Text="{Binding RegularEmployeesPayrollTotal}"
                                                    FontFamily="{StaticResource PoppinsBold}" 
                                                    FontSize="25"
                                                    Foreground="DarkGreen"
@@ -175,7 +176,7 @@
                                     <!-- PRINT ENTIRE PAYROLL BUTTON -->
                                     <Button Grid.Column="8"
                                             ToolTip="Print Entire Payroll"
-                                            Command="{Binding PrintAllPayrollCommand}"
+                                            Command="{Binding PrintRegularPayroll}"
                                             Style="{StaticResource MaterialDesignIconButton}"
                                             Foreground="{StaticResource BaseColorSCB}"
                                             Background="Transparent"
@@ -204,44 +205,93 @@
                                     <DataGrid AutoGenerateColumns="False"
                                               HeadersVisibility="Column"
                                               CanUserAddRows="False"
-                                              ItemsSource="{Binding Employees}"
-                                              SelectedItem="{Binding SelectedEmployee}"
+                                              ItemsSource="{Binding EmployeePayslips}"
                                               materialDesign:DataGridAssist.CellPadding="10"
                                               materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
                                               RowHeight="40"
                                               FontSize="12"
-                                              IsReadOnly="True"
                                               HorizontalScrollBarVisibility="Auto"
                                               VerticalScrollBarVisibility="Auto"
                                               Background="Transparent"
                                               MinWidth="1700">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Employee ID" Binding="{Binding EmployeeID}" Width="100"/>
-                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="150"/>
-                                            <DataGridTextColumn Header="Basic Pay" Binding="{Binding BasicPay}" Width="100"/>
-                                            <DataGridTextColumn Header="Holiday Pay" Binding="{Binding HolidayPay}" Width="120"/>
-                                            <DataGridTextColumn Header="Overtime Pay" Binding="{Binding OvertimePay}" Width="120"/>
-                                            <DataGridTextColumn Header="Paid Leaves" Binding="{Binding PaidLeaves}" Width="100"/>
-                                            <DataGridTextColumn Header="Bonus" Binding="{Binding Bonus}" Width="100"/>
-                                            <DataGridTextColumn Header="Allowance" Binding="{Binding Allowance}" Width="100"/>
-                                            <DataGridTextColumn Header="Gross Pay" Binding="{Binding GrossPay}" Width="120"/>
-                                            <DataGridTextColumn Header="Withholding Tax" Binding="{Binding WithholdingTax}" Width="130"/>
-                                            <DataGridTextColumn Header="Government Contributions" Binding="{Binding GovernmentContributions}" Width="180"/>
-                                            <DataGridTextColumn Header="Loan Deductions" Binding="{Binding LoanDeductions}" Width="140"/>
-                                            <DataGridTextColumn Header="Late/Undertime Deductions" Binding="{Binding LateUndertimeDeductions}" Width="180"/>
-                                            <DataGridTextColumn Header="Net Salary" Binding="{Binding NetSalary}" Width="120"/>
+                                            <!-- Employee Information -->
+                                            <DataGridTextColumn IsReadOnly="True" Header="Employee ID" Binding="{Binding Employee.User.AccountInfo.CompanyId}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Employee" Binding="{Binding Employee.User.AccountInfo.FullName}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Monthly Rate" Binding="{Binding Employee.BasicMonthlyRate, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Daily Rate" Binding="{Binding Employee.BasicDailyRate, StringFormat=F2}" Width="Auto"/>
+                                            
+                                            <!-- Applied Hourly Rate -->
+                                            <DataGridTextColumn Header="*Applied Hourly Rate" Binding="{Binding AppliedHourlyRate}" Width="Auto"/>
+                                            
+                                            <!-- Basic Hours and Pay -->
+                                            <DataGridTextColumn Header="*Basic Hours" Binding="{Binding HoursWorkedRegular, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Basic Pay" Binding="{Binding BasicPay, StringFormat=F2}" Width="Auto"/>
 
+                                            <!-- Holiday Hours and Pay -->
+                                            <DataGridTextColumn Header="*Holiday Hours" Binding="{Binding HolidayHours, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Holiday Pay" Binding="{Binding HolidayPay, StringFormat=F2}" Width="Auto"/>
+
+                                            <!-- Overtime Hours and Pay -->
+                                            <DataGridTextColumn Header="*Overtime Hours" Binding="{Binding OTHoursWorkedRegular, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Overtime Pay" Binding="{Binding OvertimePay, StringFormat=F2}" Width="Auto"/>
+
+                                            <!-- Paid Leave Hours and Pay -->
+                                            <DataGridTextColumn Header="*Paid Leave Hours" Binding="{Binding PaidLeaveHours, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Paid Leaves" Binding="{Binding PaidLeaves, StringFormat=F2}" Width="Auto"/>
+
+                                            <!-- Bonus -->
+                                            <DataGridTextColumn Header="*Legal 13th Month Pay" Binding="{Binding Legal13thMonthPay, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn Header="*Perfect Attendance Bonus" Binding="{Binding PerfectAttendanceBonus, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Total Bonus" Binding="{Binding Bonus, StringFormat=F2}" Width="Auto"/>
+                                            
+                                            <!-- Allowances -->
+                                            <DataGridTextColumn Header="*Utility Allowance" Binding="{Binding UtilityAllowance, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn Header="*Meal Allowance" Binding="{Binding MealAllowance, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn Header="*Load Allowance" Binding="{Binding LoadAllowance, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly ="True" Header="Total Allowance" Binding="{Binding Allowances, StringFormat=F2}" Width="Auto"/>
+                                            
+                                            <!-- Gross Pay -->
+                                            <DataGridTextColumn Header="*Gross Pay" Binding="{Binding GrossPay, StringFormat=F2}" Width="Auto"/>
+                                            
+                                            <!-- Withholding Tax -->
+                                            <DataGridTextColumn Header="*Withholding Tax" Binding="{Binding WithholdingTax, StringFormat=F2}" Width="Auto"/>
+                                            
+                                            <!-- Government Contributions -->
+                                            <DataGridTextColumn Header="*PHIC" Binding="{Binding PHIC, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn Header="*HDMF" Binding="{Binding HDMF, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn Header="*SSS" Binding="{Binding DecemberSSS, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Govt. Contributions" Binding="{Binding GovernmentContributions, StringFormat=F2}" Width="Auto"/>
+                                            
+                                            <!-- Loans -->
+                                            <DataGridTextColumn Header="*Govt. Loans" Binding="{Binding GovernmentLoans, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn Header="*Company Loans" Binding="{Binding CompanyLoans, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Total Loans" Binding="{Binding LoanDeductions, StringFormat=F2}" Width="Auto"/>
+                                            
+                                            <!-- Lates/UT -->
+                                            <DataGridTextColumn Header="*Late/UT Minutes" Binding="{Binding UTMinutes, StringFormat=F2}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Late/Undertime Deductions" Binding="{Binding UTDeductions, StringFormat=F2}" Width="Auto"/>
+                                            
+                                            <!-- Total Deductions -->
+                                            <DataGridTextColumn Header="*Total Deductions" Binding="{Binding TotalDeductions, StringFormat=F2}" Width="Auto"/>
+                                            
+                                            <!-- Net Salary -->
+                                            <DataGridTextColumn Header="*Net Salary" Binding="{Binding NetSalary, StringFormat=F2}" Width="Auto"/>
+                                            
+                                            <!-- Payslip Status -->
+                                            <DataGridTextColumn IsReadOnly="True" Header="Payslip Status" Binding="{Binding PayslipStatus}" Width="Auto"/>
+                                            
                                             <!-- ACTIONS COLUMN -->
-                                            <DataGridTemplateColumn Header="Actions" Width="100">
+                                            <DataGridTemplateColumn Header="Actions" Width="Auto">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                                                            <!-- Edit Button -->
-                                                            <Button ToolTip="Edit"
-                                                                    Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                            <!-- Save Button -->
+                                                            <Button ToolTip="Save"
+                                                                    Command="{Binding DataContext.SavePayrollChanges, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                                                     CommandParameter="{Binding}"
                                                                     Style="{StaticResource MaterialDesignToolButton}">
-                                                                <materialDesign:PackIcon Kind="SquareEditOutline" Width="20" Height="20"/>
+                                                                <materialDesign:PackIcon Kind="Floppy" Width="20" Height="20"/>
                                                             </Button>
 
                                                             <!-- Print Button -->
@@ -331,6 +381,7 @@
                                                      BorderThickness="0"
                                                      VerticalAlignment="Center" Margin="0,5" Width="180" Height="30"
                                                      Padding="5"
+                                                     Text="{Binding QuickSearchContractorFilter}"
                                                      FontFamily="{StaticResource PoppinsLight}" FontSize="10"/>
                                             <Button x:Name="SearchBtn2" Background="Transparent" Foreground="{StaticResource BaseColorSCB}"
                                                         BorderBrush="Transparent" Style="{StaticResource MaterialDesignIconButton}"
@@ -339,7 +390,6 @@
                                             </Button>
                                         </StackPanel>
                                     </Grid>
-
                                     <!-- SEPARATOR -->
                                     <Rectangle Grid.Column="1" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
                                     <Rectangle Grid.Column="3" Width="0.5" Height="70" Fill="Gray" HorizontalAlignment="Center"/>
@@ -370,13 +420,13 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0"
-                                                   Text="250"
+                                                   Text="{Binding ContractorsCount}"
                                                    FontFamily="{StaticResource PoppinsSemiBold}" 
                                                    FontSize="25"
                                                    Foreground="Black"
                                                    HorizontalAlignment="Left"/>
                                         <TextBlock Grid.Row="1"
-                                                   Text="Regular Employees"
+                                                   Text="Independent Contractors"
                                                    FontFamily="{StaticResource PoppinsLight}" 
                                                    FontSize="9"
                                                    Foreground="Black"
@@ -391,7 +441,7 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0"
-                                                   Text="P 1,200,000.00"
+                                                   Text="{Binding ContractorsPayrollTotal}"
                                                    FontFamily="{StaticResource PoppinsBold}" 
                                                    FontSize="25"
                                                    Foreground="DarkGreen"
@@ -437,26 +487,24 @@
                                     <DataGrid AutoGenerateColumns="False"
                                               HeadersVisibility="Column"
                                               CanUserAddRows="False"
-                                              ItemsSource="{Binding Employees}"
-                                              SelectedItem="{Binding SelectedEmployee}"
+                                              ItemsSource="{Binding ContractorPayslips}"
                                               materialDesign:DataGridAssist.CellPadding="10"
                                               materialDesign:DataGridAssist.ColumnHeaderPadding="10,5"
                                               RowHeight="40"
                                               FontSize="12"
-                                              IsReadOnly="True"
                                               HorizontalScrollBarVisibility="Auto"
                                               VerticalScrollBarVisibility="Auto"
                                               Background="Transparent"
                                               Width="864">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Employee ID" Binding="{Binding EmployeeID}" Width="110*"/>
-                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="160*"/>
-                                            <DataGridTextColumn Header="Rate" Binding="{Binding BasicPay}" Width="90*"/>
-                                            <DataGridTextColumn Header="Total Hours" Binding="{Binding HolidayPay}" Width="110*"/>
-                                            <DataGridTextColumn Header="Deductions" Binding="{Binding PaidLeaves}" Width="110*"/>
-                                            <DataGridTextColumn Header="Net Salary" Binding="{Binding OvertimePay}" Width="120*"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Employee ID" Binding="{Binding Contractor.User.AccountInfo.CompanyId}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Name" Binding="{Binding Contractor.User.AccountInfo.FullName}" Width="Auto"/>
+                                            <DataGridTextColumn Header="*Applied Hourly Rate" Binding="{Binding AppliedHourlyRate}" Width="Auto"/>
+                                            <DataGridTextColumn Header="*Total Hours Rendered" Binding="{Binding TotalHoursRendered}" Width="Auto"/>
+                                            <DataGridTextColumn Header="*Net Salary" Binding="{Binding NetPay}" Width="Auto"/>
+                                            <DataGridTextColumn IsReadOnly="True" Header="Payslip Status" Binding="{Binding PayslipStatus}" Width="Auto"/>
                                             <!-- ACTIONS COLUMN -->
-                                            <DataGridTemplateColumn Header="Actions" Width="80*">
+                                            <DataGridTemplateColumn Header="Actions" Width="Auto">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

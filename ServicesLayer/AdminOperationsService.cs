@@ -1,14 +1,14 @@
 ﻿using DomainLayer.Enums;
-using DomainLayer.Enums.EmployeePersonalInfo;
 using DomainLayer.Models.Contractor;
 using DomainLayer.Models.ContractorAttendanceLog;
+using DomainLayer.Models.ContractorPayslip;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Employee;
-using DomainLayer.Models.EmployeeAccountInfo;
 using DomainLayer.Models.EmployeeAttendanceLog;
 using DomainLayer.Models.EmployeeAttendanceRequest;
 using DomainLayer.Models.EmployeeEvaluatedAttendance;
 using DomainLayer.Models.EmployeeLeave;
+using DomainLayer.Models.EmployeePayslip;
 using DomainLayer.Models.Holiday;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
@@ -38,6 +38,10 @@ namespace ServicesLayer
         public IList<UserModel> CurrentEmployees { get; private set; } = [];
         public IList<UserModel> EmployeeRequests { get; private set; } = [];
 
+        public IList<EmployeePayslipModel> EmployeePayslips { get; private set; } = [];
+
+        public IList<ContractorPayslipModel> ContractorPayslips { get; private set; } = [];
+
         public AdminOperationsService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -61,10 +65,15 @@ namespace ServicesLayer
             await RefreshHolidaysTable();
             await RefreshDepartmentsTable();
             await RefreshRolesTable();
+
             await RefreshContractorsTable();
             await RefreshEmployeesTable();
+
             await RefreshEmployeeAttendanceRequests();
             await RefreshEmployeeLeaves();
+
+            await RefreshEmployeePayslips();
+            await RefreshContractorPayslips();
 
             return AdminUser;
         }
@@ -149,7 +158,7 @@ namespace ServicesLayer
             }
             else
             {
-                EmployeesOnLeave = leaves.Where(l => l.Status == FormStatus.Approved 
+                EmployeesOnLeave = leaves.Where(l => l.Status == FormStatus.Approved
                     && l.Employee.User.AccountInfo.FullName.Contains(employeeName)).ToList();
             }
             EmployeeLeaveRequests = leaves.Where(l => l.Status == FormStatus.Pending || l.Status == FormStatus.Denied).ToList();
@@ -166,14 +175,12 @@ namespace ServicesLayer
 
         public async Task RefreshEmployees(string? name = null, RoleModel? role = null, DepartmentModel? department = null)
         {
-            
-
             var user = await _unitOfWork.UserRepository
                 .GetManyAsync(includeProperties: "AccountInfo,Department,Role");
 
             //Populate Current Employee List
             var filteredUser = user
-                .Where(u => u.Department.NormalizedName != "unassigned".ToUpperInvariant() 
+                .Where(u => u.Department.NormalizedName != "unassigned".ToUpperInvariant()
                 && u.Role.NormalizedName != "no access".ToUpperInvariant());
             if (!string.IsNullOrEmpty(name))
                 filteredUser = filteredUser.Where(u => u.AccountInfo.FullName.Contains(name));
@@ -188,6 +195,20 @@ namespace ServicesLayer
                 .Where(u => u.Department.NormalizedName == "unassigned".ToUpperInvariant())
                 .Where(u => u.Role.NormalizedName == "no access".ToUpperInvariant())
                 .ToList();
+        }
+
+        public async Task RefreshEmployeePayslips()
+        {
+            var employeePayslips = await _unitOfWork.EmployeePayslipRepository.GetAllAsync(include =>
+                include.Include(p => p.Employee.User.AccountInfo));
+            EmployeePayslips = employeePayslips.ToList();
+        }
+
+        public async Task RefreshContractorPayslips()
+        {
+            var contractorPayslips = await _unitOfWork.ContractorPayslipRepository.GetAllAsync(include =>
+                include.Include(c => c.Contractor.User.AccountInfo));
+            ContractorPayslips = contractorPayslips.ToList();
         }
     }
 }
