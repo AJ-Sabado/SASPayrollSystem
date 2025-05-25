@@ -20,6 +20,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Syncfusion.ExcelToPdfConverter.Wpf" Version="29.2.5" />
+    <PackageReference Include="Syncfusion.Pdf.Wpf" Version="29.2.5" />
+    <PackageReference Include="Syncfusion.PdfViewer.WPF" Version="29.2.5" />
+    <PackageReference Include="Syncfusion.XlsIO.Wpf" Version="29.2.5" />
   </ItemGroup>
 
 </Project>

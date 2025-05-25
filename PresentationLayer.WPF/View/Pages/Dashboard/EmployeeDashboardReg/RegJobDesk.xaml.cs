@@ -1,4 +1,4 @@
-﻿using PresentationLayer.WPF.ViewModel.RegularViewModel;
+﻿using PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegular;
 using System.Windows.Controls;
 
 namespace PresentationLayer.WPF.View.Pages.Dashboard.EmployeeDashboardReg
