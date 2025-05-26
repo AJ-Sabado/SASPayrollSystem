@@ -163,7 +163,9 @@
                                             <TextBlock Grid.Column="0" Text="Departments" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="22"/>
 
                                             <Button Grid.Column="1" Background="LightGoldenrodYellow" 
-                                                    Foreground="DarkGoldenrod" BorderBrush="DarkGoldenrod">
+                                                    Foreground="DarkGoldenrod" BorderBrush="DarkGoldenrod"
+                                                    Command="{Binding AddDepartment}"
+                                                    >
                                                 <StackPanel Orientation="Horizontal">
                                                     <materialDesign:PackIcon Kind="AddCircleOutline"/>
                                                     <TextBlock Text="  Add Department" 
@@ -206,7 +208,7 @@
                                                                         Width="100">
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                            <Button Command="{Binding DataContext.DeleteDepartment, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                                                     CommandParameter="{Binding}"
                                                                     Style="{StaticResource MaterialDesignToolButton}"
                                                                     ToolTip="Delete Department"
@@ -277,25 +279,6 @@
                                                                     Width="2*"
                                                                     MinWidth="150"
                                                                     ElementStyle="{StaticResource TextBlockWrapStyle}" />
-
-                                                <DataGridTemplateColumn Header="Actions"
-                                                                        Width="100">
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                                    CommandParameter="{Binding}"
-                                                                    Style="{StaticResource MaterialDesignToolButton}"
-                                                                    ToolTip="Delete Role"
-                                                                    HorizontalAlignment="Center"
-                                                                    Margin="2,0">
-                                                                <materialDesign:PackIcon Kind="Delete"
-                                                                                         Width="18"
-                                                                                         Height="18"
-                                                                                         Foreground="{DynamicResource PrimaryHueMidBrush}" />
-                                                            </Button>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
                                             </DataGrid.Columns>
                                         </DataGrid>
 
@@ -319,7 +302,7 @@
                                            FontFamily="{StaticResource PoppinsBold}" 
                                            FontSize="30" Foreground="Black" 
                                            VerticalAlignment="Center" Margin="0,0,450,0"/>
-                                <Button Command="{Binding AddHolidayCommand}"
+                                <Button Command="{Binding AddHoliday}"
                                             Margin="20,0,0,0"
                                             Padding="10,5"
                                             VerticalAlignment="Center"
@@ -387,7 +370,7 @@
                                                                 MinWidth="50">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <Button Command="{Binding DataContext.DeleteHolidayCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                        <Button Command="{Binding DataContext.DeleteHoliday, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                                                 CommandParameter="{Binding}"
                                                                 Style="{StaticResource MaterialDesignToolButton}"
                                                                 ToolTip="Delete Holiday"

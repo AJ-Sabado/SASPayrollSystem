@@ -39,7 +39,6 @@ namespace ServicesLayer
         public IList<UserModel> EmployeeRequests { get; private set; } = [];
         public IList<EmployeePayslipModel> EmployeePayslips { get; private set; } = [];
         public IList<ContractorPayslipModel> ContractorPayslips { get; private set; } = [];
-
         public int EmployeeCount { get; private set; } = 0;
         public int ContractorCount { get; private set; } = 0;
 
@@ -63,6 +62,7 @@ namespace ServicesLayer
                 throw new ArgumentException("This user has no administrator privillages!");
 
             AdminUser = user;
+
             await RefreshHolidaysTable();
             await RefreshDepartmentsTable();
             await RefreshRolesTable();
@@ -278,6 +278,93 @@ namespace ServicesLayer
             }
 
             SummarizedPayrolls = dictionary;
+        }
+
+        public async Task RevertInitialState()
+        {
+            await _unitOfWork.Save();
+
+            //Clear all lists
+            Contractors.Clear();
+            Departments.Clear();
+            EmployeeAttendanceLogs.Clear();
+            EvaluatedAttendances.Clear();
+            EmployeeAttendanceRequests.Clear();
+            Employees.Clear();
+            Holidays.Clear();
+            Roles.Clear();
+            EmployeesOnLeave.Clear();
+            EmployeeLeaveRequests.Clear();
+            ContractorAttendanceLogs.Clear();
+            CurrentEmployees.Clear();
+            EmployeeRequests.Clear();
+            EmployeePayslips.Clear();
+            ContractorPayslips.Clear();
+
+            EmployeeCount = 0;
+            ContractorCount = 0;
+
+            SummarizedPayrolls.Clear();
+
+
+            //Set adminuser to null
+            AdminUser = null;
+        }
+
+        public async Task AddDepartment(DepartmentModel department)
+        {
+            try
+            {
+                _unitOfWork.DepartmentRepository.ValidateModelDataAnnotations(department);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
+
+            await _unitOfWork.DepartmentRepository.AddAsync(department);
+            await _unitOfWork.Save();
+        }
+
+        public async Task DeleteDepartment(DepartmentModel department)
+        {
+            try
+            {
+                await _unitOfWork.DepartmentRepository.RemoveAsync(department);
+                await _unitOfWork.Save();
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
+        }
+
+        public async Task AddHoliday(HolidayModel holiday)
+        {
+            try
+            {
+                _unitOfWork.HolidayRepository.ValidateModelDataAnnotations(holiday);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
+
+            await _unitOfWork.HolidayRepository.AddAsync(holiday);
+            await _unitOfWork.Save();
+        }
+
+        public async Task DeleteHoliday(HolidayModel holiday)
+        {
+            try
+            {
+                await _unitOfWork.HolidayRepository.RemoveAsync(holiday);
+                await _unitOfWork.Save();
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
         }
     }
     public class PayDateTotalPair

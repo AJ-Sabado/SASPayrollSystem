@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PresentationLayer.WPF.ViewModel.PopUpViewModel;
 
 namespace PresentationLayer.WPF.View.Windows.PopUps
 {
@@ -19,9 +20,10 @@ namespace PresentationLayer.WPF.View.Windows.PopUps
     /// </summary>
     public partial class AddDepartment_View : Window
     {
-        public AddDepartment_View()
+        public AddDepartment_View(AddDepartment_ViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }

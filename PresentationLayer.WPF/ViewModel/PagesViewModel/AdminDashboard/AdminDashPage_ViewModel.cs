@@ -1,9 +1,12 @@
-﻿using System.Windows.Media;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Windows.Media;
 using DomainLayer.Models.ContractorAttendanceLog;
 using DomainLayer.Models.EmployeeAttendanceLog;
 using LiveCharts;
 using LiveCharts.Wpf;
 using PresentationLayer.WPF.Services;
+using SASPayrolSystemProject;
 using ServicesLayer;
 
 namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
@@ -11,6 +14,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
     public class AdminDashPage_ViewModel : Base_ViewModel
     {
         private readonly IAdminOperationsService _adminOperationsService;
+        private readonly IWindowService _windowService;
         private readonly MyMessageBox _myMessageBox;
         private IDictionary<string, PayDateTotalPair> _summarizedPayrolls = new Dictionary<string, PayDateTotalPair>();
 
@@ -97,12 +101,33 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         public IList<EmployeeAttendanceLogModel> EmployeeAttendanceLogs { get; private set; } = [];
         public IList<ContractorAttendanceLogModel> ContractorAttendanceLogModels { get; private set; } = [];
 
-        public AdminDashPage_ViewModel(IAdminOperationsService adminOperationService, MyMessageBox myMessageBox)
+
+        public ICommand Logout { get; set; }
+
+        public AdminDashPage_ViewModel(IAdminOperationsService adminOperationService, MyMessageBox myMessageBox, IWindowService windowService)
         {
             _adminOperationsService = adminOperationService;
             _myMessageBox = myMessageBox;
+            _windowService = windowService;
+
+            Logout = new RelayCommand(ExecuteLogOut, _ => true);
 
             LoadFromDb();
+        }
+
+        private async void ExecuteLogOut(object? obj)
+        {
+            var result = _myMessageBox.ShowDialog("Are your sure you want to logout?", MyMessageBoxType.Confirmation);
+
+            if (result == null || result.MyMessageBoxDialogResult != MyMessageBoxDialogResult.Yes)
+                return;
+
+            await _adminOperationsService.RevertInitialState();
+
+            Properties.Settings.Default.CurrentUserGuid = Guid.Empty;
+            Properties.Settings.Default.Save();
+
+            _windowService.ShowWindow<MainWindow>();
         }
 
         private void LoadFromDb()

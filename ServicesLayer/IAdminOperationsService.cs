@@ -57,6 +57,13 @@ namespace ServicesLayer
         Task RecountPopulation();
         Task SummarizePayrolls();
 
+        Task AddDepartment(DepartmentModel department);
+        Task DeleteDepartment(DepartmentModel department);
+
+        Task AddHoliday(HolidayModel holiday);
+        Task DeleteHoliday(HolidayModel holiday);
+
         Task<UserModel?> InitializeService(Guid adminUserGuid);
+        Task RevertInitialState();
     }
 }
