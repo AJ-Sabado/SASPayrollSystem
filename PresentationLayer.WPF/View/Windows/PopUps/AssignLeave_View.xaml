@@ -9,7 +9,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:userControls="clr-namespace:PresentationLayer.WPF.View.UserControls"
         mc:Ignorable="d"
-        Title="Assign Leave" Height="480" Width="820"
+        Title="Assign Leave" Height="500" Width="820"
         Icon="/Resources/Images/SASLogo.png"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
@@ -19,19 +19,14 @@
             <Grid Margin="20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <!-- Header -->
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
-                    <!-- Employee Details -->
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
-                    <!-- Type & Duration -->
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="*"/>
-                    <!-- Dates -->
                     <RowDefinition Height="10"/>
-                    <RowDefinition Height=".5*"/>
-                    <!-- Apply Button -->
+                    <RowDefinition Height=".6*"/>
                 </Grid.RowDefinitions>
 
                 <!-- Header Title -->
@@ -63,9 +58,9 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <userControls:LabeledTextBox x:Name="lbtbEmployeeName" Grid.Column="0" Label="Employee Name" IsEnabled="False" Text="{Binding EmployeeName}"/>
-                    <userControls:LabeledTextBox x:Name="lbtbEmployeeID" Grid.Column="2" Label="Employee ID" IsEnabled="False" Text="{Binding EmployeeId}"/>
-                    <userControls:LabeledTextBox x:Name="lbtbEmployeeDept" Grid.Column="4" Label="Department" IsEnabled="False" Text="{Binding Department}"/>
+                    <userControls:LabeledTextBox x:Name="lbtbEmployeeName" Grid.Column="0" Label="Employee Name" Text="{Binding EmployeeName}"/>
+                    <userControls:LabeledTextBox x:Name="lbtbEmployeeID" Grid.Column="2" Label="Employee ID" Text="{Binding EmployeeId}"/>
+                    <userControls:LabeledTextBox x:Name="lbtbEmployeeDept" Grid.Column="4" Label="Department" Text="{Binding Department}"/>
                 </Grid>
 
                 <!-- Type & Duration -->
@@ -119,20 +114,38 @@
                     </StackPanel>
                 </Grid>
 
-                <!-- Apply Button -->
-                <Grid Grid.Row="8">
+                <!-- Apply & Cancel Buttons -->
+                <Grid Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
                     <Button x:Name="btnApply"
+                            Grid.Column="0"
                             Content="Assign"
                             FontFamily="{StaticResource PoppinsBold}" FontSize="12"
-                            Width="110" Height="35"
-                            HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Width="110" Height="40"
                             Style="{StaticResource MaterialDesignRaisedButton}"
-                            materialDesign:ButtonAssist.CornerRadius="17.5"
+                            materialDesign:ButtonAssist.CornerRadius="20"
                             Foreground="DarkGoldenrod"
                             Background="LightGoldenrodYellow"
                             BorderBrush="DarkGoldenrod"
                             BorderThickness="2"
                             Command="{Binding AssignCommand}"/>
+
+                    <Button x:Name="btnCancel"
+                            Grid.Column="2"
+                            Content="Cancel"
+                            FontFamily="{StaticResource PoppinsBold}" FontSize="12"
+                            Width="110" Height="40"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            materialDesign:ButtonAssist.CornerRadius="20"
+                            Foreground="DarkGoldenrod"
+                            BorderBrush="DarkGoldenrod"
+                            BorderThickness="2"
+                            Command="{Binding CancelCommand}"/>
                 </Grid>
             </Grid>
         </Grid>

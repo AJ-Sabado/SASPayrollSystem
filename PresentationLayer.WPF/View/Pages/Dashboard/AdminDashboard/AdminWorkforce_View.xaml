@@ -596,7 +596,8 @@
                                             Margin="10,0,0,0" Height="35" Padding="20,0"
                                             FontFamily="{StaticResource PoppinsMedium}"
                                             FontSize="12"
-                                            Background="LightGoldenrodYellow" Foreground="DarkGoldenrod" BorderBrush="DarkGoldenrod">
+                                            Background="LightGoldenrodYellow" Foreground="DarkGoldenrod" BorderBrush="DarkGoldenrod"
+                                            Command="{Binding AssignLeaveCommand}">
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="Add"/>
                                             <TextBlock Text="   Assign Leave" FontFamily="{StaticResource PoppinsSemiBold}"/>
