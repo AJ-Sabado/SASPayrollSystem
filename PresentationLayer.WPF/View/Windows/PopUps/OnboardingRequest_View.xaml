@@ -10,7 +10,7 @@
 
         mc:Ignorable="d"
         Icon="/Resources/Images/SASLogo.png"
-        Title="Onboarding Request" Height="600" Width="600"
+        Title="Onboarding Request" Height="650" Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
@@ -25,7 +25,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height=".5*"/>
+                <RowDefinition Height=".6*"/>
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
@@ -100,7 +100,7 @@
 
             </Grid>
 
-            <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <Button x:Name="btnApproveEmployee" Content="Approve" 
                         FontFamily="{StaticResource PoppinsBold}" FontSize="12" 
                         HorizontalAlignment="Center"
