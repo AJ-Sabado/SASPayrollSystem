@@ -106,6 +106,11 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
             if (_adminOperationsService.AdminUser == null)
                 return;
 
+            var warning = _messageBox.ShowDialog("This will also delete all employees under this department. Make sure to migrate all employees under this department first.");
+
+            if (warning == null || warning.MyMessageBoxDialogResult != MyMessageBoxDialogResult.Yes)
+                return;
+
             var result = _messageBox.ShowDialog("", MyMessageBoxType.Password, _adminOperationsService.AdminUser.Salt, _adminOperationsService.AdminUser.PasswordHash);
 
             if (result == null || result.DialogResult == null || result.DialogResult == false)
