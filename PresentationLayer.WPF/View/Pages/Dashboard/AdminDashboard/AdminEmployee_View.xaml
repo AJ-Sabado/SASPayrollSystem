@@ -64,7 +64,8 @@
                                         </Grid.RowDefinitions>
                                         <TextBlock Grid.Row="0" Text="Quick Search" FontFamily="{StaticResource PoppinsMedium}" FontSize="15" Foreground="Black" HorizontalAlignment="Left"/>
                                         <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                            <TextBox x:Name="tbSearchNameID" materialDesign:HintAssist.Hint="Search Employee Name or ID" Style="{StaticResource MaterialDesignOutlinedTextBox}" BorderThickness="0" VerticalAlignment="Center" Margin="0,5" Width="180" Height="30" Padding="5" FontFamily="{StaticResource PoppinsLight}" FontSize="10"/>
+                                            <TextBox Text="{Binding EmployeeNameFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                x:Name="tbSearchNameID" materialDesign:HintAssist.Hint="Search Employee Name or ID" Style="{StaticResource MaterialDesignOutlinedTextBox}" BorderThickness="0" VerticalAlignment="Center" Margin="0,5" Width="180" Height="30" Padding="5" FontFamily="{StaticResource PoppinsLight}" FontSize="10"/>
                                             <Button x:Name="SearchBtn" Background="Transparent" Foreground="{StaticResource BaseColorSCB}" BorderBrush="Transparent" Style="{StaticResource MaterialDesignIconButton}" Height="35" Width="35" Margin="5,0,0,0">
                                                 <materialDesign:PackIcon Kind="Search"/>
                                             </Button>
@@ -82,7 +83,7 @@
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="0" Text="250" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25" Foreground="Black" HorizontalAlignment="Left"/>
+                                        <TextBlock Grid.Row="0" Text="{Binding EmployeeCount}" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="25" Foreground="Black" HorizontalAlignment="Left"/>
                                         <TextBlock Grid.Row="1" Text="Total Number of Employees" FontFamily="{StaticResource PoppinsLight}" FontSize="9" Foreground="Black" HorizontalAlignment="Left"/>
                                     </Grid>
 
@@ -99,16 +100,14 @@
                                                 <ColumnDefinition Width="20"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <ComboBox x:Name="cbStatusFilter" Grid.Column="0" FontFamily="{StaticResource PoppinsRegular}" FontSize="13" SelectedIndex="0" materialDesign:HintAssist.Hint="Status">
-                                                <ComboBoxItem Content=""/>
-                                                <ComboBoxItem Content="Regular"/>
-                                                <ComboBoxItem Content="Independent Contractor"/>
+                                            <ComboBox x:Name="cbStatusFilter" Grid.Column="0" FontFamily="{StaticResource PoppinsRegular}" FontSize="13" materialDesign:HintAssist.Hint="Role"
+                                                      ItemsSource="{Binding Roles}" SelectedItem="{Binding SelectedRole}" DisplayMemberPath="Name"
+                                                      >
                                             </ComboBox>
-                                            <ComboBox x:Name="cbDepartmentFilter" Grid.Column="2" FontFamily="{StaticResource PoppinsRegular}" FontSize="13" SelectedIndex="0" materialDesign:HintAssist.Hint="Department">
-                                                <ComboBoxItem Content=""/>
-                                                <ComboBoxItem Content="HR"/>
-                                                <ComboBoxItem Content="IT"/>
-                                                <ComboBoxItem Content="Finance"/>
+                                            <ComboBox x:Name="cbDepartmentFilter" Grid.Column="2" FontFamily="{StaticResource PoppinsRegular}" FontSize="13" 
+                                                      ItemsSource="{Binding Departments}"
+                                                      SelectedItem="{Binding SelectedDepartment}" DisplayMemberPath="Name"
+                                                      materialDesign:HintAssist.Hint="Department">
                                             </ComboBox>
                                         </Grid>
                                     </Grid>

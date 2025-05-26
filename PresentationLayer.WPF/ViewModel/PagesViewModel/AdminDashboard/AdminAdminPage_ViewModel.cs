@@ -90,14 +90,14 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 
             _messageBox.ShowDialog("Delete successful!", MyMessageBoxType.Success);
 
-            await _adminOperationsService.RefreshHolidaysTable();
+            await _adminOperationsService.RefreshHolidays();
             await LoadData();
         }
 
         private async void ExecuteAddHoliday(object? obj)
         {
             _popUpService.ShowPopUp<AddHolidays_View>();
-            await _adminOperationsService.RefreshHolidaysTable();
+            await _adminOperationsService.RefreshHolidays();
             await LoadData();
         }
 
@@ -137,14 +137,14 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
             }
             _messageBox.ShowDialog("Delete successful!", MyMessageBoxType.Success);
 
-            await _adminOperationsService.RefreshDepartmentsTable();
+            await _adminOperationsService.RefreshDepartments();
             await LoadData();
         }
 
         private async void ExecuteAddDepartment(object? obj)
         {
             _popUpService.ShowPopUp<AddDepartment_View>();
-            await _adminOperationsService.RefreshDepartmentsTable();
+            await _adminOperationsService.RefreshDepartments();
             await LoadData();
         }
 

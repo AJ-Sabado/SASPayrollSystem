@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
+using DomainLayer.Enums;
 using DomainLayer.Models.ContractorAttendanceLog;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.EmployeeAttendanceLog;
@@ -142,7 +143,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 
         private async Task FilterICAttendanceByDate()
         {
-            await _adminOperationService.RefreshContractorAttendanceLogs(SelectedDateICAttendanceLog);
+            await _adminOperationService.RefreshContractorAttendanceLogs();
             await LoadContractorAttendanceLogs();
         }
 
@@ -183,7 +184,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         {
             if (!string.IsNullOrEmpty(LeaveNameFilter))
             {
-                await _adminOperationService.RefreshEmployeeLeaves(LeaveNameFilter);
+                await _adminOperationService.RefreshEmployeeLeaves();
                 await LoadEmployeeOnLeave();
                 await LoadEmployeeLeaveRequests();
             }
@@ -197,8 +198,8 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 
         private Task LoadEmployeeLeaveRequests()
         {
-            EmployeeLeaveRequests = _adminOperationService.EmployeeLeaveRequests;
-            EmployeeLeaveRequestsCount = (uint)_adminOperationService.EmployeeLeaveRequests.Count;
+            EmployeeLeaveRequests = _adminOperationService.EmployeeLeaves.Where(l => l.Status == FormStatus.Pending).ToList();
+            EmployeeLeaveRequestsCount = (uint)EmployeeLeaveRequests.Count;
             OnPropertyChanged(nameof(EmployeeLeaveRequests));
             OnPropertyChanged(nameof(EmployeeLeaveRequestsCount));
             return Task.CompletedTask;
@@ -206,10 +207,10 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 
         private Task LoadEmployeeOnLeave()
         {
-            EmployeesOnLeave = _adminOperationService.EmployeesOnLeave;
+            EmployeesOnLeave = _adminOperationService.EmployeeLeaves;
             var today = DateOnly.FromDateTime(DateTime.Now);
             //Gets count of employees currently on leave
-            var onLeaveNow = _adminOperationService.EmployeesOnLeave
+            var onLeaveNow = _adminOperationService.EmployeeLeaves
                 .Where(l => l.DateOfAbsenceStart >= today && l.DateOfReturn < today).ToList();
             EmployeesOnLeaveCount = (uint)(onLeaveNow.Count);
             OnPropertyChanged(nameof(EmployeesOnLeave));
@@ -221,12 +222,12 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         {
             if (!string.IsNullOrEmpty(EmployeeEvaluatedAttendanceNameFilter))
             {
-                await _adminOperationService.RefreshEvaluatedAttendances(null, null, EmployeeEvaluatedAttendanceNameFilter);
+                await _adminOperationService.RefreshEmployeeEvaluatedAttendances();
                 await LoadEvaluatedAttendances();
             }
             else
             {
-                await _adminOperationService.RefreshEvaluatedAttendances();
+                await _adminOperationService.RefreshEmployeeEvaluatedAttendances();
                 await LoadEvaluatedAttendances();
             }
         }
@@ -246,7 +247,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 
         private async Task FilterEmployeeAttendanceLogs()
         {
-            await _adminOperationService.RefreshEmployeeAttendanceLogs(SelectedEmployeeAttendanceLogDate);
+            await _adminOperationService.RefreshEmployeeAttendanceLogs();
             await LoadEmployeeAttendanceLogs();
         }
 
@@ -266,13 +267,13 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 
         private async Task FilterEvaluatedAttendances()
         {
-            await _adminOperationService.RefreshEvaluatedAttendances(SelectedDepartment, SelectedEvaluatedAttendanceDate);
+            await _adminOperationService.RefreshEmployeeEvaluatedAttendances();
             await LoadEvaluatedAttendances();
         }
 
         private Task LoadEvaluatedAttendances()
         {
-            EvaluatedAttendances = _adminOperationService.EvaluatedAttendances;
+            EvaluatedAttendances = _adminOperationService.EmployeeEvaluatedAttendances;
             OnPropertyChanged(nameof(EvaluatedAttendances));
             return Task.CompletedTask;
         }
