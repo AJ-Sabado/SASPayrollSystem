@@ -139,10 +139,149 @@ namespace ServicesLayer
             await SeedAdminUser();
             await SeedEmployeeUser();
             await SeedContractorUser();
+            //await SeedUsers();
             await Save();
         }
 
-        private async Task SeedEmployeeUser()
+        private async Task SeedUsers()
+        {
+            string[] names = {
+        "Ethan Gabriel Santos",
+        "Isabella Marie Cruz",
+        "Liam Santiago Reyes",
+        "Chloe Valentina Perez",
+        "Zachary Luis Bautista",
+        "Sofia Bianca Dela Cruz",
+        "Nathaniel James Torres",
+        "Ariana Nicole Garcia",
+        "Caleb Emmanuel Flores",
+        "Mia Lucille Navarro",
+        "Gabriel Xavier Domingo",
+        "Ava Rae Mendoza",
+        "Ryan Mateo Villanueva",
+        "Emma Claire Bautista",
+        "Daniel Luis Mercado",
+        "Zoe Victoria Ramos"
+    };
+
+            string[] usernames = {
+        "EthanG_Santos",
+        "Isabella_M_Cruz",
+        "Liam_S_Reyes",
+        "ChloeVPerez",
+        "Zachary_LB",
+        "SofiaBianca_DC",
+        "Nathan_JT",
+        "ArianaNicole_G",
+        "Caleb_Flores",
+        "Mia_LucilleN",
+        "GabrielX_Dom",
+        "AvaRae_Mendoza",
+        "Ryan_M_Vill",
+        "EmmaC_Bautista",
+        "Daniel_LM",
+        "Zoe_V_Ramos"
+    };
+
+            string[] emails = {
+        "ethan.g.santos@gmail.com",
+        "isabella.m.cruz@yahoo.com",
+        "liam.s.reyes@outlook.com",
+        "chloe.valentina.perez@gmail.com",
+        "zachary.l.bautista@hotmail.com",
+        "sofia.bianca.delacruz@icloud.com",
+        "nathan.j.torres@gmail.com",
+        "ariana.nicole.garcia@yahoo.com",
+        "caleb.emmanuel.flores@outlook.com",
+        "mia.lucille.navarro@gmail.com",
+        "gabriel.xavier.domingo@yahoo.com",
+        "ava.rae.mendoza@icloud.com",
+        "ryan.mateo.villanueva@gmail.com",
+        "emma.claire.bautista@outlook.com",
+        "daniel.luis.mercado@yahoo.com",
+        "zoe.victoria.ramos@gmail.com"
+    };
+
+            Random random = new Random();
+            decimal[] salaries = new decimal[16];
+
+            for (int i = 0; i < salaries.Length; i++)
+            {
+                salaries[i] = (decimal)(random.Next(10000, 30001));
+            }
+
+            try
+            {
+                // Get role and department WITHOUT includeProperties to avoid circular references
+                var role = await RoleRepository.GetAsync(r => r.NormalizedName == "EMPLOYEE");
+                var department = await DepartmentRepository.GetAsync(d => d.NormalizedName == "FINANCE & OPERATIONS");
+
+                if (role == null || department == null)
+                {
+                    throw new Exception($"Role or Department not found. Role: {role != null}, Department: {department != null}");
+                }
+
+                // Create users in batches to improve performance
+                var users = new List<UserModel>();
+
+                for (int i = 0; i < names.Length; i++)
+                {
+                    var userId = Guid.NewGuid();
+
+                    var user = new UserModel()
+                    {
+                        UserId = userId,
+                        Username = usernames[i],
+                        Password = "password",
+                        Email = emails[i],
+                        RoleId = role.RoleId,
+                        DepartmentId = department.DepartmentId
+                    };
+
+                    var employee = new EmployeeModel()
+                    {
+                        UserId = userId,
+                        User = user,
+                        BasicMonthlyRate = salaries[i],
+                        BasicDailyRate = SalaryConverter.ConvertMonthlyToDaily(salaries[i]),
+                        DefaultWorkShiftStart = new TimeOnly(8, 0, 0),
+                        DefaultWorkShiftEnd = new TimeOnly(17, 0, 0),
+                        DefaultBreakTimeStart = new TimeOnly(12, 0, 0),
+                        DefaultBreakTimeEnd = new TimeOnly(13, 0, 0)
+                    };
+
+                    var split = names[i].Split(' ');
+                    var accountInfo = new AccountInfoModel()
+                    {
+                        UserId = userId,
+                        User = user,
+                        FirstName = split[0] + " " + split[1], // First and middle name
+                        LastName = split[2] // Last name
+                    };
+
+                    // Set navigation properties
+                    user.Employee = employee;
+                    user.AccountInfo = accountInfo;
+
+                    users.Add(user);
+                }
+
+                // Add all users to the repository at once
+                foreach (var user in users)
+                {
+                    await UserRepository.AddAsync(user);
+                }
+
+                // Save once after adding all users
+                await Save();
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions, log them, or rethrow as needed
+                Console.WriteLine($"Error seeding users: {ex.Message}");
+            }
+}
+private async Task SeedEmployeeUser()
         {
             var employeeRole = await RoleRepository.GetAsync(r => r.NormalizedName == "employee".ToUpperInvariant(), includeProperties: "Users");
             if (employeeRole.Users.Count == 0)
