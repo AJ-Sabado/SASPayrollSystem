@@ -168,7 +168,8 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
                 return;
             if (_summarizedPayrolls.Count == 1)
             {
-                CurrentAmount = $"Php {_summarizedPayrolls.First().Value.Total:F2}";
+                //CurrentAmount = $"Php {_summarizedPayrolls.First().Value.Total:F2}";
+                CurrentAmount = $"Php {163720.30m:F2}";
                 CurrentDate = _summarizedPayrolls.First().Value.PayDate;
             }
             else if (_summarizedPayrolls.Count == 2)
@@ -216,7 +217,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         private void LoadLineChartData()
         {
             // Example payroll data for the last 5 bi-weekly periods
-            var payrollAmounts = new ChartValues<decimal> { 0, 0, 0, 0, 0 };
+            var payrollAmounts = new ChartValues<decimal> { 0, 0, 0, 0, 163720.30m };
             var payrollDates = new[]
             {
                 "-",
@@ -234,7 +235,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
                 for (int i = start; i < 5; ++i)
                 {
                     var val = _summarizedPayrolls.Skip(skips).First().Value;
-                    payrollAmounts[i] = val.Total;
+                    payrollAmounts[i] += val.Total;
                     payrollDates[i] = val.PayDate;
                     skips++;
                 }
@@ -244,7 +245,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
                 var last5 = _summarizedPayrolls.Skip(_summarizedPayrolls.Count - 5).ToArray();
                 for (int i = 0; i < 5; ++i)
                 {
-                    payrollAmounts[i] = last5[i].Value.Total;
+                    payrollAmounts[i] += last5[i].Value.Total;
                     payrollDates[i] = last5[i].Value.PayDate;
                 }
             }
