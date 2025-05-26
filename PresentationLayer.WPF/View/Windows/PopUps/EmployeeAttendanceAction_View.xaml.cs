@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PresentationLayer.WPF.ViewModel.PopUpViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,10 @@ namespace PresentationLayer.WPF.View.Windows.PopUps
     /// </summary>
     public partial class EmployeeAttendanceAction_View : Window
     {
-        public EmployeeAttendanceAction_View()
+        public EmployeeAttendanceAction_View(EmployeeAttendanceAction_ViewModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
     }
 }

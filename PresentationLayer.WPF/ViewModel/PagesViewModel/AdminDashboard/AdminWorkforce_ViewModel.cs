@@ -7,6 +7,7 @@ using DomainLayer.Models.EmployeeAttendanceRequest;
 using DomainLayer.Models.EmployeeEvaluatedAttendance;
 using DomainLayer.Models.EmployeeLeave;
 using PresentationLayer.WPF.Services;
+using PresentationLayer.WPF.View.Windows.PopUps;
 using ServicesLayer;
 
 namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
@@ -157,16 +158,25 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         //Commands
         public ICommand FilterEvaluatedAttendanceByName { get; private set; }
         public ICommand FilterLeaveByName { get; private set; }
+        public ICommand AssignLeaveCommand { get; set; }
 
-        public AdminWorkforce_ViewModel(IAdminOperationsService adminOperationsService, MyMessageBox messageBox)
+        private readonly IPopUpService _popUpService;
+        public AdminWorkforce_ViewModel(IAdminOperationsService adminOperationsService, MyMessageBox messageBox, IPopUpService popUpService)
         {
             _adminOperationService = adminOperationsService;
             _messageBox = messageBox;
+            _popUpService = popUpService;
 
             FilterEvaluatedAttendanceByName = new RelayCommand(ExecuteEvaluateAttendanceFilterByName, _ => true);
             FilterLeaveByName = new RelayCommand(ExecuteLeaveFilterByName, _ => true);
+            AssignLeaveCommand = new RelayCommand(ExecuteAssignLeave);
 
             LoadDataFromDb();
+        }
+
+        private void ExecuteAssignLeave(object? obj)
+        {
+            _popUpService.ShowPopUp<AssignLeave_View>();
         }
 
         private async void ExecuteLeaveFilterByName(object? obj)
