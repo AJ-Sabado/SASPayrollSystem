@@ -20,6 +20,7 @@ namespace ServicesLayer
 
         bool ConfirmAction(string password);
 
+        //Population Information
         int UserTotalCount { get; }
         int EmployeeCount { get; }
         int ContractorCount { get; }
@@ -33,14 +34,11 @@ namespace ServicesLayer
         IList<EmployeeAttendanceRequestModel> EmployeeAttendanceRequests { get; }
         IList<EmployeeEvaluatedAttendanceModel> EmployeeEvaluatedAttendances { get; }
         IList<EmployeeLeaveModel> EmployeeLeaves { get; }
-        //IList<EmployeeLeaveModel> EmployeeLeaveRequests { get; } Redundant, user EmployeeLeaves
         IList<EmployeePayslipModel> EmployeePayslips { get; }
         IList<EmployeeModel> Employees { get; }
         IList<HolidayModel> Holidays { get; }
         IList<RoleModel> Roles { get; }
         IList<UserModel> Users { get; }
-        //IList<UserModel> EmployeeRequests { get; } Redundant, use Employees then query filters in UI
-
         IDictionary<string, PayDateTotalPair> SummarizedPayrolls { get; }
 
         //Refresh Methods
@@ -60,12 +58,9 @@ namespace ServicesLayer
         Task SummarizePayrolls();
         Task RecountPopulation();
 
-        //Reduntant, use RefreshEmployees
-        //Task RefreshEmployees(string name = null, RoleModel? role = null, DepartmentModel? department = null);
-
-
-
         //Operations
+        Task DeleteUser(UserModel user);
+
         Task AddDepartment(DepartmentModel department);
         Task DeleteDepartment(DepartmentModel department);
 

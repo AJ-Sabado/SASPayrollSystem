@@ -11,7 +11,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         
         mc:Ignorable="d"
-        Title="Employee Infromation" Height="600" Width="900"
+        Title="Employee Information" Height="600" Width="900"
         Icon="/Resources/Images/SASLogo.png"
         WindowStartupLocation="CenterScreen">
 
@@ -45,16 +45,6 @@
                                     <materialDesign:PackIcon Kind="Edit" Width="20" Height="20" VerticalAlignment="Center"/>
                                     <TextBlock Text="   Edit" FontFamily="{StaticResource PoppinsBold}" 
                                                 FontSize="14" Margin="0,5,0,0" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
-
-                            <Button x:Name="btnDelete" Margin="0,0,15,0" Width="120" Height="40"
-                                    materialDesign:ButtonAssist.CornerRadius="20"
-                                    Foreground="DarkRed" BorderBrush="DarkRed" Background="LightPink">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <materialDesign:PackIcon Kind="Delete" Width="20" Height="20" VerticalAlignment="Center"/>
-                                    <TextBlock Text="   Delete" FontFamily="{StaticResource PoppinsBold}" 
-                                    FontSize="14" Margin="0,5,0,0" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -342,6 +332,44 @@
                                     </StackPanel>
                                 </TabItem>
 
+                                <TabItem Header="Work Shift Infomation">
+                                    
+                                </TabItem>
+
+                                <TabItem Header="Account Security">
+                                    <StackPanel Margin="30,0,0,0">
+                                        <TextBlock Text="Account Security" FontFamily="{StaticResource PoppinsBold}"
+                    FontSize="24" Margin="0,0,0,30"/>
+
+                                        <StackPanel Margin="0,0,0,30">
+                                            <Grid Margin="0,0,0,30">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="60*"/>
+                                                    <ColumnDefinition Width="40*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0" Text="Password*" FontFamily="{StaticResource PoppinsSemiBold}"
+                            FontSize="14" Margin="2"/>
+                                                <PasswordBox Grid.Column="1" x:Name="tbPassword" Password="123456789101112" FontFamily="{StaticResource PoppinsLight}"
+                            FontSize="12" Margin="2" IsEnabled="False" HorizontalAlignment="Stretch"/>
+                                            </Grid>
+
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Button Name="btnChangePassword" Margin="0,0,30,0" Width="175" Command="{Binding ChangePassword}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon Kind="KeyChange" Height="20" Width="20" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                                        <TextBlock Text="Change Password**" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="12" Foreground="White" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </Button>
+                                            </StackPanel>
+
+                                        </StackPanel>
+
+                                        <Rectangle Fill="LightGray" Height="0.5"/>
+
+                                    </StackPanel>
+
+                                </TabItem>
 
                             </TabControl>
                         </Grid>

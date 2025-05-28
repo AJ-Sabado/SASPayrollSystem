@@ -148,13 +148,12 @@ namespace ServicesLayer
             ContractorPayslips = contractorPayslips.ToList();
         }
 
-        public async Task RecountPopulation()
+        public Task RecountPopulation()
         {
-            var noAccessRole = await _unitOfWork.RoleRepository.GetAsync(r => r.NormalizedName == "no access".ToUpperInvariant());
-            var users = await _unitOfWork.UserRepository.GetManyAsync(u => u.RoleId != noAccessRole.RoleId, includeProperties: "Role,Department");
-            UserTotalCount = users.Count();
-            ContractorCount = users.Where(u => u.Role.NormalizedName == "contractor".ToUpperInvariant()).Count();
+            UserTotalCount = Users.Where(u => u.Role.NormalizedName != "no access".ToUpperInvariant()).Count();
+            ContractorCount = Users.Where(u => u.Role.NormalizedName == "contractor".ToUpperInvariant()).Count();
             EmployeeCount = UserTotalCount - ContractorCount;
+            return Task.CompletedTask;
         }
 
         public async Task RefreshEmployeeAttendanceLogs()
@@ -323,6 +322,19 @@ namespace ServicesLayer
         {
             var users = await _unitOfWork.UserRepository.GetManyAsync(includeProperties: "Role,Department,AccountInfo");
             Users = users.ToList();
+        }
+
+        public async Task DeleteUser(UserModel user)
+        {
+            try
+            {
+                await _unitOfWork.UserRepository.RemoveAsync(user);
+                await _unitOfWork.Save();
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
         }
     }
     public class PayDateTotalPair

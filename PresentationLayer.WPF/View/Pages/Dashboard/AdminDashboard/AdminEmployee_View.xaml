@@ -13,7 +13,7 @@
              d:DesignHeight="688" d:DesignWidth="1088">
 
     <UserControl.Resources>
-        
+
     </UserControl.Resources>
 
 
@@ -93,7 +93,20 @@
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="0" Text="Filters" FontFamily="{StaticResource PoppinsMedium}" FontSize="15" Foreground="Black" HorizontalAlignment="Left"/>
+                                        <Grid Grid.Row="0" Margin="0,5,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="Filters" Grid.Column="0" FontFamily="{StaticResource PoppinsMedium}" FontSize="15" Foreground="Black" HorizontalAlignment="Left"/>
+                                            <Button x:Name="btnResetFilter" Grid.Column="1" Background="LightGoldenrodYellow" Foreground="DarkGoldenrod" Height="30" Margin="20,-1,0,7" Command="{Binding ResetFiltersCommand}" Grid.ColumnSpan="2">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon Kind="ClearCircle"  Height="18" Width="18"/>
+                                                    <TextBlock Text="  Reset" FontFamily="{StaticResource PoppinsRegular}" FontSize="12"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </Grid>
                                         <Grid Grid.Row="1" Margin="0,5,0,0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
@@ -154,14 +167,14 @@
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                                                <Button Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                                                <Button Command="{Binding DataContext.ViewEmployeeCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
                                                                         CommandParameter="{Binding}" 
                                                                         Style="{StaticResource MaterialDesignToolButton}"
                                                                         ToolTip="View Employee Details"
                                                                         Margin="2,0">
                                                                     <materialDesign:PackIcon Kind="Eye" Width="18" Height="18" Foreground="#1976D2"/>
                                                                 </Button>
-                                                                <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                                                <Button Command="{Binding DataContext.DeleteEmployeeCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
                                                                         CommandParameter="{Binding}" 
                                                                         Style="{StaticResource MaterialDesignToolButton}"
                                                                         ToolTip="Delete Employee"
