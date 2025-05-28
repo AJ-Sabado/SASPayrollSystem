@@ -16,8 +16,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         private readonly IAdminOperationsService _adminOperationsService;
         private readonly MyMessageBox _messageBox;
 
-    //Employees Tab
-
+        //Employees Tab
         //Header
         private string _employeeNameFilter = string.Empty;
         public string EmployeeNameFilter
@@ -74,18 +73,19 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         //Table
         public IList<UserModel> CurrentEmployees { get; private set; } = [];
 
-    //Onboarding Tab
-        
+        //Onboarding Tab
         //Table
         public IList<UserModel> EmployeeRequests { get; private set; } = [];
 
-        //Commands
-    //Employee Tab
+    //Commands
+        //Employee Tab
         public ICommand ResetFiltersCommand { get; set; }
         public ICommand AddEmployeeCommand { get; set; }
         public ICommand ViewEmployeeCommand { get; set; }
         public ICommand DeleteEmployeeCommand { get; set; }
-    //Onboarding Tab
+        //Onboarding Tab
+        public ICommand ViewOnboardingCommand { get; set; }
+        public ICommand  DeleteOnboardingCommand { get; set; }
 
         //CONSTRUCTOR
         public AdminEmployee_ViewModel(IPopUpService popUpService, IAdminOperationsService adminOperationsService, MyMessageBox messageBox)
@@ -99,7 +99,56 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
             ViewEmployeeCommand = new RelayCommand(ExecuteViewEmployee, _ => true);
             DeleteEmployeeCommand = new RelayCommand(ExecuteDeleteEmployee, _ => true);
 
+            ViewOnboardingCommand = new RelayCommand(ExecuteViewOnboarding, _ => true);
+            DeleteOnboardingCommand = new RelayCommand(ExecuteDeleteOnboarding, _ => true);
+
             LoadFromDb();
+        }
+
+        private void ExecuteViewOnboarding(object? obj)
+        {
+            _popUpService.ShowPopUp<OnboardingRequest_View>();
+        }
+
+        //METHODS
+        private async void ExecuteDeleteOnboarding(object? obj)
+        {
+            if (_adminOperationsService.AdminUser == null)
+                return;
+
+            var password = _messageBox.ShowDialog("", MyMessageBoxType.Password, _adminOperationsService.AdminUser.Salt, _adminOperationsService.AdminUser.PasswordHash);
+
+            if (password == null || password.DialogResult != true)
+                return;
+
+            if (!password.PasswordMatch)
+            {
+                _messageBox.ShowDialog("Incorrect password!", MyMessageBoxType.Error);
+                return;
+            }
+
+            if (obj is UserModel)
+            {
+                UserModel? user = obj as UserModel;
+                if (user != null)
+                {
+                    try
+                    {
+                        await _adminOperationsService.DeleteUser(user);
+                    }
+                    catch (Exception ex)
+                    {
+                        _messageBox.ShowDialog($"Error message: {ex.Message}");
+                    }
+                }
+            }
+            await _adminOperationsService.RefreshUsers();
+            EmployeeRequests = _adminOperationsService.Users
+                .Where(e => e.Role.NormalizedName == "no access".ToUpperInvariant())
+                .OrderByDescending(e => e.DateOfRegistry)
+                .ToList();
+            OnPropertyChanged(nameof(EmployeeRequests));
+            _messageBox.ShowDialog("Operation successful!", MyMessageBoxType.Success);
         }
 
         private async void ExecuteDeleteEmployee(object? obj)
@@ -117,7 +166,10 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 
             var password = _messageBox.ShowDialog("", MyMessageBoxType.Password, _adminOperationsService.AdminUser.Salt, _adminOperationsService.AdminUser.PasswordHash);
 
-            if (password == null || !password.PasswordMatch)
+            if (password == null || password.DialogResult != true)
+                return;
+
+            if (!password.PasswordMatch)
             {
                 _messageBox.ShowDialog("Incorrect password!", MyMessageBoxType.Error);
                 return;
@@ -152,9 +204,6 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         {
             _popUpService.ShowPopUp<EmployeeDetails_View>();
         }
-
-
-        //METHODS
         private async void LoadFromDb()
         {
             await _adminOperationsService.RefreshUsers();

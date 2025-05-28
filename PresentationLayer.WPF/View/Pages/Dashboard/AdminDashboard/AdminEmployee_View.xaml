@@ -245,14 +245,14 @@
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                                                <Button Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                <Button Command="{Binding DataContext.ViewOnboardingCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                                                         CommandParameter="{Binding}"
                                                                         Style="{StaticResource MaterialDesignToolButton}"
                                                                         ToolTip="View Request Details"
                                                                         Margin="2,0">
                                                                     <materialDesign:PackIcon Kind="Eye" Width="18" Height="18" Foreground="#1976D2"/>
                                                                 </Button>
-                                                                <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                                <Button Command="{Binding DataContext.DeleteOnboardingCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                                                         CommandParameter="{Binding}"
                                                                         Style="{StaticResource MaterialDesignToolButton}"
                                                                         ToolTip="Delete Request"
