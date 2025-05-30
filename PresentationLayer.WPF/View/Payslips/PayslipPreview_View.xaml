@@ -10,6 +10,7 @@
         xmlns:psTemp="clr-namespace:PresentationLayer.WPF.View.Payslips"
         
         Title="Employee Payslip"
+        Icon="/Resources/Images/SASLogo.png"
         WindowStartupLocation="CenterScreen"
         Width="750" Height="900" 
         Background="White">
