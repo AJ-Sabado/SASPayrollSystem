@@ -18,7 +18,7 @@ namespace DomainLayer.Models.Contractor
 
         [Column(TypeName = "money")]
         public decimal BasicHourlyRate { get; set; } = 0;
-        public decimal MaximumWeeklyHours { get; set; } = 0;
+        public decimal MaximumWeeklyHours { get; set; } = 40;
 
 
         public ICollection<ContractorAttendanceLogModel> ContractorAttendanceLogs { get; } = [];

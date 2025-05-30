@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using DomainLayer.Models.Department;
 using DomainLayer.Models.Role;
@@ -55,7 +54,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
             }
         }
 
-        
+
 
         public IList<DepartmentModel> Departments { get; private set; } = [];
         private DepartmentModel? _selectedDepartment = null;
@@ -77,7 +76,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         //Table
         public IList<UserModel> EmployeeRequests { get; private set; } = [];
 
-    //Commands
+        //Commands
         //Employee Tab
         public ICommand ResetFiltersCommand { get; set; }
         public ICommand AddEmployeeCommand { get; set; }
@@ -85,7 +84,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         public ICommand DeleteEmployeeCommand { get; set; }
         //Onboarding Tab
         public ICommand ViewOnboardingCommand { get; set; }
-        public ICommand  DeleteOnboardingCommand { get; set; }
+        public ICommand DeleteOnboardingCommand { get; set; }
 
         //CONSTRUCTOR
         public AdminEmployee_ViewModel(IPopUpService popUpService, IAdminOperationsService adminOperationsService, MyMessageBox messageBox)
@@ -105,9 +104,22 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
             LoadFromDb();
         }
 
-        private void ExecuteViewOnboarding(object? obj)
+        private async void ExecuteViewOnboarding(object? obj)
         {
-            _popUpService.ShowPopUp<OnboardingRequest_View>();
+            if (obj != null && obj is UserModel)
+            {
+                UserModel? user = obj as UserModel;
+                if (user != null)
+                {
+                    _popUpService.ShowPopUp<OnboardingRequest_View>(user.UserId);
+                    await _adminOperationsService.RefreshUsers();
+                    EmployeeRequests = _adminOperationsService.Users
+                        .Where(e => e.Role.NormalizedName == "no access".ToUpperInvariant())
+                        .OrderByDescending(e => e.DateOfRegistry)
+                        .ToList();
+                    OnPropertyChanged(nameof(EmployeeRequests));
+                }
+            }
         }
 
         //METHODS

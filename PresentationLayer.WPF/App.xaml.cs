@@ -93,14 +93,21 @@ namespace SASPayrolSystemProject
             //Popups
             services.AddTransient<FileLeaveForm_View>();
             services.AddTransient<LeaveRequest_ViewModel>();
+
             services.AddTransient<AttendanceRequest_View>();
             services.AddTransient<AttendanceRequest_ViewModel>();
+
             services.AddTransient<EmployeeAdd_View>();
+
             services.AddTransient<OnboardingRequest_View>();
+            services.AddTransient<OnboardingRequest_ViewModel>();
+
             services.AddTransient<EmployeeDetails_View>();
             services.AddTransient<EmployeeDetails_ViewModel>();
+
             services.AddTransient<EmployeeAttendanceAction_View>();
             services.AddTransient<EmployeeAttendanceAction_ViewModel>();
+
             services.AddTransient<AttendanceRequestAction_View>();
             services.AddTransient<AssignLeave_View>();
             services.AddTransient<LeaveRequests_View>();

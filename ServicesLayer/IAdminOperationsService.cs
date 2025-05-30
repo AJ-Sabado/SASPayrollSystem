@@ -59,6 +59,7 @@ namespace ServicesLayer
         Task RecountPopulation();
 
         //Operations
+        Task UpdateUser(UserModel user);
         Task DeleteUser(UserModel user);
 
         Task AddDepartment(DepartmentModel department);

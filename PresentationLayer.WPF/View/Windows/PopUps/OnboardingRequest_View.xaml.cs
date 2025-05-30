@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PresentationLayer.WPF.ViewModel.PopUpViewModel;
 
 namespace PresentationLayer.WPF.View.Windows.PopUps
 {
@@ -19,14 +20,15 @@ namespace PresentationLayer.WPF.View.Windows.PopUps
     /// </summary>
     public partial class OnboardingRequest_View : Window
     {
-        public OnboardingRequest_View()
+        public OnboardingRequest_View(OnboardingRequest_ViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            //this.Close();
         }
     }
 }

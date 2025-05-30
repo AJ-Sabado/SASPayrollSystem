@@ -1,5 +1,4 @@
-﻿using DomainLayer.Enums;
-using DomainLayer.Models.Contractor;
+﻿using DomainLayer.Models.Contractor;
 using DomainLayer.Models.ContractorAttendanceLog;
 using DomainLayer.Models.ContractorPayslip;
 using DomainLayer.Models.Department;
@@ -329,6 +328,19 @@ namespace ServicesLayer
             try
             {
                 await _unitOfWork.UserRepository.RemoveAsync(user);
+                await _unitOfWork.Save();
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
+        }
+
+        public async Task UpdateUser(UserModel user)
+        {
+            try
+            {
+                await _unitOfWork.UserRepository.UpdateAsync(user);
                 await _unitOfWork.Save();
             }
             catch (Exception ex)
