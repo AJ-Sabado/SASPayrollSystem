@@ -113,11 +113,17 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
                 {
                     _popUpService.ShowPopUp<OnboardingRequest_View>(user.UserId);
                     await _adminOperationsService.RefreshUsers();
+                    await _adminOperationsService.RecountPopulation();
+                    EmployeeCount = _adminOperationsService.UserTotalCount;
                     EmployeeRequests = _adminOperationsService.Users
                         .Where(e => e.Role.NormalizedName == "no access".ToUpperInvariant())
                         .OrderByDescending(e => e.DateOfRegistry)
                         .ToList();
                     OnPropertyChanged(nameof(EmployeeRequests));
+                    CurrentEmployees = _adminOperationsService.Users
+                        .Where(u => u.Role.NormalizedName != "no access".ToUpperInvariant())
+                        .ToList();
+                    OnPropertyChanged(nameof(CurrentEmployees));
                 }
             }
         }

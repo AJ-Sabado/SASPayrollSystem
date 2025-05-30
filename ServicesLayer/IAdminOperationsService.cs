@@ -65,6 +65,9 @@ namespace ServicesLayer
         Task AddDepartment(DepartmentModel department);
         Task DeleteDepartment(DepartmentModel department);
 
+        Task AddEmployee(EmployeeModel employee);
+        Task AddContractor(ContractorModel contractor);
+
         Task AddHoliday(HolidayModel holiday);
         Task DeleteHoliday(HolidayModel holiday);
 

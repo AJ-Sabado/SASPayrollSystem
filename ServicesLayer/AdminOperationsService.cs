@@ -338,9 +338,28 @@ namespace ServicesLayer
 
         public async Task UpdateUser(UserModel user)
         {
+            await _unitOfWork.UserRepository.UpdateAsync(user);
+            await _unitOfWork.Save();
+        }
+
+        public async Task AddEmployee(EmployeeModel employee)
+        {
             try
             {
-                await _unitOfWork.UserRepository.UpdateAsync(user);
+                await _unitOfWork.EmployeeRepository.AddAsync(employee);
+                await _unitOfWork.Save();
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
+        }
+
+        public async Task AddContractor(ContractorModel contractor)
+        {
+            try
+            {
+                await _unitOfWork.ContractorRepository.AddAsync(contractor);
                 await _unitOfWork.Save();
             }
             catch (Exception ex)

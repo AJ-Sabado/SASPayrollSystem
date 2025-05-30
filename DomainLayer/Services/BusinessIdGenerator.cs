@@ -33,5 +33,13 @@
 
             return $"EL-{dateTime}-{guid}";
         }
+
+        public static string GenerateUserId()
+        {
+            string dateTime = DateTime.Now.ToString("yyMMddHH");
+            string guid = Guid.NewGuid().ToString("N").Substring(0, 8);
+
+            return $"SAS-{dateTime}-{guid}";
+        }
     }
 }

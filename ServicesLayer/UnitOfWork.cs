@@ -281,7 +281,7 @@ namespace ServicesLayer
                 Console.WriteLine($"Error seeding users: {ex.Message}");
             }
 }
-private async Task SeedEmployeeUser()
+        private async Task SeedEmployeeUser()
         {
             var employeeRole = await RoleRepository.GetAsync(r => r.NormalizedName == "employee".ToUpperInvariant(), includeProperties: "Users");
             if (employeeRole.Users.Count == 0)

@@ -1,8 +1,11 @@
 ﻿using System.Windows.Input;
+using DomainLayer.Models.Contractor;
 using DomainLayer.Models.Department;
+using DomainLayer.Models.Employee;
 using DomainLayer.Models.EmployeeAccountInfo;
 using DomainLayer.Models.Role;
 using DomainLayer.Models.User;
+using DomainLayer.Services;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
 using PresentationLayer.WPF.Services;
@@ -192,6 +195,7 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
             _currentUser.AccountInfo.MiddleInitial = MiddleInitial;
             _currentUser.AccountInfo.LastName = LastName;
             _currentUser.AccountInfo.Role = JobTitle;
+            _currentUser.AccountInfo.CompanyId = BusinessIdGenerator.GenerateUserId();
 
             _currentUser.DepartmentId = SelectedDepartment.DepartmentId;
             _currentUser.Department = SelectedDepartment;
@@ -202,13 +206,30 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
             try
             {
                 await _adminOperationsService.UpdateUser(_currentUser);
+                if (SelectedRole.NormalizedName == "contractor".ToUpperInvariant())
+                {
+                    var contractor = new ContractorModel()
+                    {
+                        User = _currentUser,
+                        UserId = _currentUser.UserId
+                    };
+                    await _adminOperationsService.AddContractor(contractor);
+                }
+                else
+                {
+                    var employee = new EmployeeModel()
+                    {
+                        User = _currentUser,
+                        UserId = _currentUser.UserId
+                    };
+                    await _adminOperationsService.AddEmployee(employee);
+                }
+                _myMessageBox.ShowDialog("Employee added successful! You can now edit their work information under Employees->View", MyMessageBoxType.Success);
             }
             catch (Exception ex)
             {
                 _myMessageBox.ShowDialog($"Error message: {ex.Message}", MyMessageBoxType.Error);
             }
-
-            _myMessageBox.ShowDialog("Operation successful!", MyMessageBoxType.Success);
         }
     }
 }

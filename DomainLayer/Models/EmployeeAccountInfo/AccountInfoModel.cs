@@ -114,7 +114,6 @@ namespace DomainLayer.Models.EmployeeAccountInfo
         public string BankAccountId { get; set; } = string.Empty;
 
         //EMPLOYMENT INFORMATION
-        [StringLength(20)]
         public string CompanyId { get; set; } = string.Empty;
 
         [StringLength(30, ErrorMessage = "Role must not exceed 30 characters")]
