@@ -1,4 +1,5 @@
-﻿using PresentationLayer.WPF.ViewModel.RegularViewModel;
+﻿using PresentationLayer.WPF.ViewModel.PopUpViewModel;
+using PresentationLayer.WPF.ViewModel.RegularViewModel;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -88,12 +89,23 @@ namespace SASPayrolSystemProject.View.UserControls
         {
             if (this.DataContext != null)
             {
+                //Sign In
                 if (this.Name == "SignInPasswordBox")
                     ((LoginPage_ViewModel)this.DataContext).PasswordSignIn = password;
+
+                //Sign Up
                 if (this.Name == "SignUpPasswordBox")
                     ((LoginPage_ViewModel)this.DataContext).PasswordSignUp = password;
                 if (this.Name == "SignUpConfirmPasswordBox")
                     ((LoginPage_ViewModel)this.DataContext).ConfirmPasswordSignUp = password;
+
+                //Change Password
+                if (this.Name == "ChangePasswordCurrent")
+                    ((ChangePassword_ViewModel)this.DataContext).CurrentPassword = password;
+                if (this.Name == "ChangePasswordNew")
+                    ((ChangePassword_ViewModel)this.DataContext).NewPassword = password;
+                if (this.Name == "ChangePasswordConfirmNew")
+                    ((ChangePassword_ViewModel)this.DataContext).ConfirmNewPassword = password;
             }
         }
 

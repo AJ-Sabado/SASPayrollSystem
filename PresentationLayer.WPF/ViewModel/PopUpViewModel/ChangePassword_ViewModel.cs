@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using DomainLayer.Services;
 using PresentationLayer.WPF.Services;
 using ServicesLayer;
 
@@ -34,6 +35,7 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
 
         private async void ExecuteChangePassword(object? obj)
         {
+
             if (string.IsNullOrEmpty(CurrentPassword) || string.IsNullOrEmpty(NewPassword) || string.IsNullOrEmpty(ConfirmNewPassword))
             {
                 _messageBox.ShowDialog("Please fill in the fields.", MyMessageBoxType.Error);
@@ -43,6 +45,12 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
             if (!NewPassword.Equals(ConfirmNewPassword))
             {
                 _messageBox.ShowDialog("Passwords do not match!", MyMessageBoxType.Error);
+                return;
+            }
+
+            if (CurrentPassword.Equals(NewPassword))
+            {
+                _messageBox.ShowDialog("New password is the same as current password!", MyMessageBoxType.Error);
                 return;
             }
 
@@ -61,10 +69,27 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
                 return;
             }
 
-            user.Password = NewPassword;
-            await _unitOfWork.Save();
+            var encryption = new Encryption();
+            var passwordHash = encryption.GenerateHash(CurrentPassword, user.Salt);
 
-            _popUpService.ClosePopup();
+            if (!user.PasswordHash.SequenceEqual(passwordHash))
+            {
+                _messageBox.ShowDialog("Invalid current password!", MyMessageBoxType.Error);
+                return;
+            }
+
+            user.Password = NewPassword;
+            try
+            {
+                await _unitOfWork.Save();
+                _messageBox.ShowDialog("Password changed successfuly!", MyMessageBoxType.Success);
+                _popUpService.ClosePopup();
+            }
+            catch (Exception ex)
+            {
+                _messageBox.ShowDialog($"Error message: {ex.Message}");
+                _popUpService.ClosePopup();
+            }
         }
     }
 }
