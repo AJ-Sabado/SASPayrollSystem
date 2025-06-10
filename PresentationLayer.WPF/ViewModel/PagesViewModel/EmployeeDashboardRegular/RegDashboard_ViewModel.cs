@@ -13,6 +13,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWindowService _windowService;
+        private readonly MyMessageBox _messageBox;
         private EmployeeModel? _employee;
         private AttendanceState _attendanceState = AttendanceState.NoAttendance;
 
@@ -144,10 +145,11 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
         public string BreakButtonText => _attendanceState == AttendanceState.OnBreak ? "   Resume" : "   Break";
 
         //Constructor
-        public RegDashboard_ViewModel(IUnitOfWork unitOfWork, IWindowService windowService)
+        public RegDashboard_ViewModel(IUnitOfWork unitOfWork, IWindowService windowService, MyMessageBox messageBox)
         {
             _unitOfWork = unitOfWork;
             _windowService = windowService;
+            _messageBox = messageBox;
             Logout = new RelayCommand(LogoutExecute);
             ToggleTimeCommand = new RelayCommand(ToggleTimeIn);
             BreakCommand = new RelayCommand(BreakBtn);
@@ -206,9 +208,10 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.EmployeeDashboardRegula
                     break;
             }
 
-            var result = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            
-            if (_employee != null && result == MessageBoxResult.Yes)
+            //var result = MessageBox.Show(message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var result = _messageBox.ShowDialog(message, MyMessageBoxType.Confirmation);
+
+            if (_employee != null && result != null && result.MyMessageBoxDialogResult == MyMessageBoxDialogResult.Yes)
             {
                 var attendanceLog = new EmployeeAttendanceLogModel()
                 {

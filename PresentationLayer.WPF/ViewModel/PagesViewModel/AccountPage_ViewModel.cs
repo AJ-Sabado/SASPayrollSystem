@@ -3,13 +3,15 @@ using DomainLayer.Enums.EmployeePersonalInfo;
 using ServicesLayer;
 using DomainLayer.Models.User;
 using System.Collections.Specialized;
+using PresentationLayer.WPF.Services;
+using PresentationLayer.WPF.View.Windows.PopUps;
 
 namespace PresentationLayer.WPF.ViewModel.PagesViewModel
 {
     public class AccountPage_ViewModel : Base_ViewModel
     {
-        private IUnitOfWork _unitOfWork;
-
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IPopUpService _popUpService;
 
         //Basic Information
         private bool _editBasicInfo = false;
@@ -402,13 +404,20 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel
         //Change password bindings
         public string Password { private get; set; } = string.Empty;
 
-        public AccountPage_ViewModel(IUnitOfWork unitOfWork)
+        public AccountPage_ViewModel(IUnitOfWork unitOfWork, IPopUpService popUpService)
         {
             _unitOfWork = unitOfWork;
+            _popUpService = popUpService;
             EditBasicInfoButton = new RelayCommand(EditBasicInfoButton_Click);
             EditContactInfoButton = new RelayCommand(EditContactInfoButton_Click);
             EditFinancialInfoButton = new RelayCommand(EditFinancialInfoButton_Click);
+            ChangePassword = new RelayCommand(ExecuteChangePassword, _ => true);
             LoadUserData();
+        }
+
+        private void ExecuteChangePassword(object? obj)
+        {
+            _popUpService.ShowPopUp<ChangePassword_View>();
         }
 
         //Commands

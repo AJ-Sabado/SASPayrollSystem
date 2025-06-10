@@ -225,6 +225,7 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
                     await _adminOperationsService.AddEmployee(employee);
                 }
                 _myMessageBox.ShowDialog("Employee added successful! You can now edit their work information under Employees->View", MyMessageBoxType.Success);
+                _popUpService.ClosePopup();
             }
             catch (Exception ex)
             {

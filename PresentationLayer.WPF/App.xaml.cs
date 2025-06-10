@@ -119,6 +119,8 @@ namespace SASPayrolSystemProject
             services.AddTransient<ICPayslip>();
             services.AddTransient<UpdateEvaluation_View>();
 
+            services.AddTransient<ChangePassword_View>();
+            services.AddTransient<ChangePassword_ViewModel>();
 
             services.AddTransient<PayslipPreview_View>();
             services.AddTransient<PayslipPreview_ViewModel>();
@@ -131,7 +133,6 @@ namespace SASPayrolSystemProject
             services.AddTransient<Success_View>();
             services.AddTransient<Warning_View>();
             services.AddTransient<PasswordPrompt_View>();
-            services.AddTransient<ChangePassword_View>();
             services.AddTransient<ForgotPassword_View>();
 
 
