@@ -367,6 +367,26 @@ namespace ServicesLayer
                 throw new ArgumentException(ex.Message);
             }
         }
+
+        public async Task<EmployeeAttendanceRequestModel?> GetEmployeeAttendanceRequest(Guid requestGuid)
+        {
+            var request = await _unitOfWork.EmployeeAttendanceRequestRepository
+                .GetAsync(r => r.Id == requestGuid, includeProperties: "Employee.User.AccountInfo,Employee.User.Role,Employee.User.Department");
+            return request;
+        }
+
+        public async Task UpdateEmployeeAttendanceRequest(EmployeeAttendanceRequestModel request)
+        {
+            try
+            {
+                await _unitOfWork.EmployeeAttendanceRequestRepository.UpdateAsync(request);
+                await _unitOfWork.Save();
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
+        }
     }
     public class PayDateTotalPair
     {

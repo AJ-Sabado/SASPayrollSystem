@@ -168,8 +168,8 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
                 return;
             if (_summarizedPayrolls.Count == 1)
             {
-                //CurrentAmount = $"Php {_summarizedPayrolls.First().Value.Total:F2}";
-                CurrentAmount = $"Php {163720.30m:F2}";
+                CurrentAmount = $"Php {_summarizedPayrolls.First().Value.Total:F2}";
+                //CurrentAmount = $"Php {163720.30m:F2}";
                 CurrentDate = _summarizedPayrolls.First().Value.PayDate;
             }
             else if (_summarizedPayrolls.Count == 2)
@@ -217,7 +217,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         private void LoadLineChartData()
         {
             // Example payroll data for the last 5 bi-weekly periods
-            var payrollAmounts = new ChartValues<decimal> { 0, 0, 0, 0, 163720.30m };
+            var payrollAmounts = new ChartValues<decimal> { 0, 0, 0, 0, 0 };
             var payrollDates = new[]
             {
                 "-",

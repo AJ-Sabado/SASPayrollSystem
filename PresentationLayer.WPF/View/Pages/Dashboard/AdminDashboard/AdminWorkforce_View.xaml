@@ -432,7 +432,7 @@
                                             <DataGridTemplateColumn Header="Actions" MinWidth="100">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <Button Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                        <Button Command="{Binding DataContext.ViewAttendanceRequest, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                                                 CommandParameter="{Binding}"
                                                                 Style="{StaticResource MaterialDesignToolButton}"
                                                                 ToolTip="View Attendance Request Details"

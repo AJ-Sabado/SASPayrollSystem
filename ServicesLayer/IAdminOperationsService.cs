@@ -68,6 +68,9 @@ namespace ServicesLayer
         Task AddEmployee(EmployeeModel employee);
         Task AddContractor(ContractorModel contractor);
 
+        Task<EmployeeAttendanceRequestModel?> GetEmployeeAttendanceRequest(Guid requestGuid);
+        Task UpdateEmployeeAttendanceRequest(EmployeeAttendanceRequestModel request);
+
         Task AddHoliday(HolidayModel holiday);
         Task DeleteHoliday(HolidayModel holiday);
 

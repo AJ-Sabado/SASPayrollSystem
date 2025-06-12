@@ -73,6 +73,8 @@ namespace PresentationLayer.WPF.ViewModel
                 {
                     TimeIn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.DefaultWorkShiftStart.Hour, employee.DefaultWorkShiftStart.Minute, employee.DefaultWorkShiftStart.Second);
                     TimeOut = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.DefaultWorkShiftEnd.Hour, employee.DefaultWorkShiftEnd.Minute, employee.DefaultWorkShiftEnd.Second);
+                    BreakStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.DefaultBreakTimeStart.Hour, employee.DefaultBreakTimeStart.Minute, employee.DefaultBreakTimeStart.Second);
+                    BreakEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, employee.DefaultBreakTimeEnd.Hour, employee.DefaultBreakTimeEnd.Minute, employee.DefaultBreakTimeEnd.Second);
                 }
             }
             else

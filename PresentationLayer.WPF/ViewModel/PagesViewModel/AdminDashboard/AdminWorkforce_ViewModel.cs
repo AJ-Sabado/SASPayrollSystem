@@ -15,6 +15,10 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 {
     public class AdminWorkforce_ViewModel : Base_ViewModel
     {
+        private readonly IAdminOperationsService _adminOperationService;
+        private readonly IPopUpService _popUpService;
+        private readonly MyMessageBox _messageBox;
+
         //Employee Evaluated Attendance Tab
         public IList<EmployeeEvaluatedAttendanceModel> EvaluatedAttendances { get; private set; } = [];
         public IList<DepartmentModel> Departments { get; private set; } = [];
@@ -58,8 +62,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         }
 
         //Employee Attendance Logs Tab
-        private readonly IAdminOperationsService _adminOperationService;
-        private readonly MyMessageBox _messageBox;
+
 
         private DateTime? _selectedEmployeeAttendanceLogDate = null;
         public DateTime? SelectedEmployeeAttendanceLogDate
@@ -160,8 +163,9 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         public ICommand FilterEvaluatedAttendanceByName { get; private set; }
         public ICommand FilterLeaveByName { get; private set; }
         public ICommand AssignLeaveCommand { get; set; }
+        public ICommand ViewAttendanceRequest { get; set; }
 
-        private readonly IPopUpService _popUpService;
+
         public AdminWorkforce_ViewModel(IAdminOperationsService adminOperationsService, MyMessageBox messageBox, IPopUpService popUpService)
         {
             _adminOperationService = adminOperationsService;
@@ -171,8 +175,36 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
             FilterEvaluatedAttendanceByName = new RelayCommand(ExecuteEvaluateAttendanceFilterByName, _ => true);
             FilterLeaveByName = new RelayCommand(ExecuteLeaveFilterByName, _ => true);
             AssignLeaveCommand = new RelayCommand(ExecuteAssignLeave);
+            ViewAttendanceRequest = new RelayCommand(ExecuteViewAttendanceRequest, _ => true);
 
             LoadDataFromDb();
+        }
+
+        private async void ExecuteViewAttendanceRequest(object? obj)
+        {
+            if (obj != null && obj is EmployeeAttendanceRequestModel attendanceRequest)
+            {
+                if (attendanceRequest.Status != FormStatus.Pending)
+                {
+                    _messageBox.ShowDialog("This attendance request has already been processed.", MyMessageBoxType.Warning);
+                    return;
+                }
+
+                try
+                {
+                    _popUpService.ShowPopUp<AttendanceRequestAction_View>(attendanceRequest.Id);
+                }
+                catch (Exception ex)
+                {
+                    _messageBox.ShowDialog($"Error viewing attendance request: {ex.Message}", MyMessageBoxType.Error);
+                }
+            }
+            else
+            {
+                _messageBox.ShowDialog("Invalid attendance request data.", MyMessageBoxType.Error);
+            }
+            await _adminOperationService.RefreshEmployeeAttendanceRequests();
+            await LoadEmployeeAttendanceRequests();
         }
 
         private void ExecuteAssignLeave(object? obj)

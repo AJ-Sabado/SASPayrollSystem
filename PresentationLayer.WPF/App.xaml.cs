@@ -109,6 +109,8 @@ namespace SASPayrolSystemProject
             services.AddTransient<EmployeeAttendanceAction_ViewModel>();
 
             services.AddTransient<AttendanceRequestAction_View>();
+            services.AddTransient<AttendanceRequestAction_ViewModel>();
+
             services.AddTransient<AssignLeave_View>();
             services.AddTransient<LeaveRequests_View>();
             services.AddTransient<AddDepartment_View>();

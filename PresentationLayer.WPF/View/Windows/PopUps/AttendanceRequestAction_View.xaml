@@ -57,7 +57,7 @@
                     </Grid.ColumnDefinitions>
 
                     <userControls:LabeledTextBox Label="Employee Name" Text="{Binding EmployeeName}" IsEnabled="False"/>
-                    <userControls:LabeledTextBox Grid.Column="2" Label="Employee ID" Text="{Binding EmployeeID}" IsEnabled="False"/>
+                    <userControls:LabeledTextBox Grid.Column="2" Label="Employee ID" Text="{Binding EmployeeId}" IsEnabled="False"/>
                 </Grid>
 
                 <!-- DEPARTMENT -->
@@ -82,13 +82,13 @@
 
                     <StackPanel Grid.Column="0">
                         <TextBlock Text="Date" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14"/>
-                        <DatePicker SelectedDate="{Binding Date}" IsEnabled="False"
+                        <DatePicker SelectedDate="{Binding SelectedDate}" IsEnabled="True"
                                     FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="0,5"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
                         <TextBlock Text="Reason" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14"/>
-                        <TextBox Text="{Binding Reason}" IsReadOnly="True"
+                        <TextBox Text="{Binding Reason}" IsEnabled="False"
                                  FontFamily="{StaticResource PoppinsLight}" FontSize="12"
                                  Margin="0,5" VerticalScrollBarVisibility="Auto"/>
                     </StackPanel>
@@ -106,13 +106,13 @@
 
                     <StackPanel Grid.Column="0">
                         <TextBlock Text="Time In" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14"/>
-                        <materialDesign:TimePicker SelectedTime="{Binding TimeIn}" IsEnabled="False"
+                        <materialDesign:TimePicker SelectedTime="{Binding TimeIn}" IsEnabled="True"
                                                    FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="0,5"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
                         <TextBlock Text="Time Out" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14"/>
-                        <materialDesign:TimePicker SelectedTime="{Binding TimeOut}" IsEnabled="False"
+                        <materialDesign:TimePicker SelectedTime="{Binding TimeOut}" IsEnabled="True"
                                                    FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="0,5"/>
                     </StackPanel>
 
@@ -131,17 +131,17 @@
 
                     <StackPanel Grid.Column="0">
                         <TextBlock Text="Break Start" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14"/>
-                        <materialDesign:TimePicker SelectedTime="{Binding BreakStart}" IsEnabled="False"
+                        <materialDesign:TimePicker SelectedTime="{Binding BreakStart}" IsEnabled="True"
                                                    FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="0,5"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
                         <TextBlock Text="Break End" FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14"/>
-                        <materialDesign:TimePicker SelectedTime="{Binding BreakEnd}" IsEnabled="False"
+                        <materialDesign:TimePicker SelectedTime="{Binding BreakEnd}" IsEnabled="True"
                                                    FontFamily="{StaticResource PoppinsLight}" FontSize="12" Margin="0,5"/>
                     </StackPanel>
 
-                    <userControls:LabeledTextBox Grid.Column="4" Label="Break Total" Text="{Binding TotalBreakHours}" IsEnabled="False"/>
+                    <userControls:LabeledTextBox Grid.Column="4" Label="Break Total" Text="{Binding BreakTotal}" IsEnabled="False"/>
                 </Grid>
 
                 <!-- PROOF -->
@@ -184,7 +184,7 @@
                             Foreground="DarkGreen"
                             Background="LightGreen"
                             BorderBrush="DarkGreen"
-                            Command="{Binding ApproveCommand}"/>
+                            Command="{Binding Approve}"/>
 
                     <Button Grid.Column="2"
                             Content="Disapprove"
@@ -196,7 +196,7 @@
                             Foreground="DarkRed"
                             Background="MistyRose"
                             BorderBrush="DarkRed"
-                            Command="{Binding DisapproveCommand}"/>
+                            Command="{Binding Disapprove}"/>
                 </Grid>
             </Grid>
         </Grid>

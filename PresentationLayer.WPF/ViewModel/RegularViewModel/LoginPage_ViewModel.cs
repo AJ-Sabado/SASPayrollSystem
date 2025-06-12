@@ -144,7 +144,7 @@ namespace PresentationLayer.WPF.ViewModel.RegularViewModel
                 await Task.Delay(2000);
                 //var periodStart = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 16);
                 //var periodEnd = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, 31);
-                var payDate = new DateOnly(DateTime.Now.Year, DateTime.Now.Month + 1, 15);
+                //var payDate = new DateOnly(DateTime.Now.Year, DateTime.Now.Month + 1, 15);
                 if (user.Role.NormalizedName == "EMPLOYEE" && user.Employee != null)
                 {
                     //Test attendance evaluation
