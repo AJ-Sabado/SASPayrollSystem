@@ -387,6 +387,27 @@ namespace ServicesLayer
                 throw new ArgumentException(ex.Message);
             }
         }
+
+        public async Task<EmployeeLeaveModel?> GetEmployeeLeaveRequest(Guid requestGuid)
+        {
+            var request = await _unitOfWork.EmployeeLeaveRepository
+                .GetAsync(r => r.EmployeeLeaveId == requestGuid, includeProperties:
+                    "Employee.User.Department,Employee.User.AccountInfo");
+            return request;
+        }
+
+        public async Task UpdateEmployeeLeaveRequest(EmployeeLeaveModel request)
+        {
+            try
+            {
+                await _unitOfWork.EmployeeLeaveRepository.UpdateAsync(request);
+                await _unitOfWork.Save();
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
+        }
     }
     public class PayDateTotalPair
     {

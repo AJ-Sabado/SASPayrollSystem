@@ -71,6 +71,9 @@ namespace ServicesLayer
         Task<EmployeeAttendanceRequestModel?> GetEmployeeAttendanceRequest(Guid requestGuid);
         Task UpdateEmployeeAttendanceRequest(EmployeeAttendanceRequestModel request);
 
+        Task<EmployeeLeaveModel?> GetEmployeeLeaveRequest(Guid requestGuid);
+        Task UpdateEmployeeLeaveRequest(EmployeeLeaveModel request);
+
         Task AddHoliday(HolidayModel holiday);
         Task DeleteHoliday(HolidayModel holiday);
 

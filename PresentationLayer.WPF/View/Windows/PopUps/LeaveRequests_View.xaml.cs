@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PresentationLayer.WPF.ViewModel.PopUpViewModel;
 
 namespace PresentationLayer.WPF.View.Windows.PopUps
 {
@@ -19,9 +20,10 @@ namespace PresentationLayer.WPF.View.Windows.PopUps
     /// </summary>
     public partial class LeaveRequests_View : Window
     {
-        public LeaveRequests_View()
+        public LeaveRequests_View(LeaveRequestView_ViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }

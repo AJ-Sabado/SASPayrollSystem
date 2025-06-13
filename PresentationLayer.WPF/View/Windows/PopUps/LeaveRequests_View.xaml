@@ -80,7 +80,7 @@
                                   FontSize="14" Margin="0,0,0,10"
                                   ItemsSource="{helpers:EnumBindingSource enum:LeaveType}"
                                   SelectedItem="{Binding SelectedLeaveType}"
-                                  IsEnabled="False"/>
+                                  IsEnabled="True"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
@@ -89,7 +89,7 @@
                                                       FontFamily="{StaticResource PoppinsRegular}"
                                                       FontSize="14"
                                                       Value="{Binding Duration}"
-                                                      IsEnabled="False"/>
+                                                      IsEnabled="True"/>
                     </StackPanel>
                 </Grid>
 
@@ -107,7 +107,7 @@
                                     FontFamily="{StaticResource PoppinsRegular}"
                                     FontSize="14"
                                     SelectedDate="{Binding StartDate}"
-                                    IsEnabled="False"/>
+                                    IsEnabled="True"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">
@@ -116,7 +116,7 @@
                                     FontFamily="{StaticResource PoppinsRegular}"
                                     FontSize="14"
                                     SelectedDate="{Binding ReturnDate}"
-                                    IsEnabled="False"/>
+                                    IsEnabled="True"/>
                     </StackPanel>
                 </Grid>
 
@@ -153,7 +153,7 @@
                                 Foreground="DarkGreen"
                                 BorderBrush="DarkGreen"
                                 BorderThickness="2"
-                                Command="{Binding ApproveCommand}"
+                                Command="{Binding Approve}"
                                 materialDesign:ButtonAssist.CornerRadius="17.5"
                                 Style="{StaticResource MaterialDesignRaisedButton}"
                                 Margin="0,0,20,0"/>
@@ -165,7 +165,7 @@
                                 Foreground="DarkRed"
                                 BorderBrush="DarkRed"
                                 BorderThickness="2"
-                                Command="{Binding DisapproveCommand}"
+                                Command="{Binding Disapprove}"
                                 materialDesign:ButtonAssist.CornerRadius="17.5"
                                 Style="{StaticResource MaterialDesignRaisedButton}"/>
                     </StackPanel>

@@ -781,7 +781,7 @@
                                                 <DataGridTemplateColumn Header="Actions" Width="1*">
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <Button Command="{Binding DataContext.ViewLeaveCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                            <Button Command="{Binding DataContext.ViewLeaveRequest, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                                                     CommandParameter="{Binding}"
                                                                     Style="{StaticResource MaterialDesignToolButton}"
                                                                     ToolTip="View Leave Request Details"

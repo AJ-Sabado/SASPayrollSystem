@@ -72,6 +72,7 @@ namespace PresentationLayer.WPF.ViewModel.PopUpViewModel
             set
             {
                 startDate = value;
+                Duration = (uint)(ReturnDate?.Subtract(StartDate ?? DateTime.Now).TotalDays ?? 0);
                 OnPropertyChanged(nameof(StartDate));
             }
         }

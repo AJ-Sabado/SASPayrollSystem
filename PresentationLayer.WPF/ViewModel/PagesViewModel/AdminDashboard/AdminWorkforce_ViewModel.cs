@@ -164,6 +164,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         public ICommand FilterLeaveByName { get; private set; }
         public ICommand AssignLeaveCommand { get; set; }
         public ICommand ViewAttendanceRequest { get; set; }
+        public ICommand ViewLeaveRequest { get; set; }
 
 
         public AdminWorkforce_ViewModel(IAdminOperationsService adminOperationsService, MyMessageBox messageBox, IPopUpService popUpService)
@@ -176,8 +177,28 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
             FilterLeaveByName = new RelayCommand(ExecuteLeaveFilterByName, _ => true);
             AssignLeaveCommand = new RelayCommand(ExecuteAssignLeave);
             ViewAttendanceRequest = new RelayCommand(ExecuteViewAttendanceRequest, _ => true);
+            ViewLeaveRequest = new RelayCommand(ExecuteViewLeaveRequest, _ => true);
 
             LoadDataFromDb();
+        }
+
+        //METHODS
+        private async void ExecuteViewLeaveRequest(object? obj)
+        {
+            if (obj != null && obj is EmployeeLeaveModel leaveRequest)
+            {
+                try
+                {
+                    _popUpService.ShowPopUp<LeaveRequests_View>(leaveRequest.EmployeeLeaveId);
+                }
+                catch (Exception ex)
+                {
+                    _messageBox.ShowDialog($"Error viewing leave request: {ex.Message}", MyMessageBoxType.Error);
+                }
+            }
+            await _adminOperationService.RefreshEmployeeLeaves();
+            await LoadEmployeeOnLeave();
+            await LoadEmployeeLeaveRequests();
         }
 
         private async void ExecuteViewAttendanceRequest(object? obj)
@@ -239,7 +260,7 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 
         private Task LoadEmployeeOnLeave()
         {
-            EmployeesOnLeave = _adminOperationService.EmployeeLeaves;
+            EmployeesOnLeave = _adminOperationService.EmployeeLeaves.Where(l => l.Status != FormStatus.Pending).OrderByDescending(l => l.DateOfAbsenceStart).ToList();
             var today = DateOnly.FromDateTime(DateTime.Now);
             //Gets count of employees currently on leave
             var onLeaveNow = _adminOperationService.EmployeeLeaves
