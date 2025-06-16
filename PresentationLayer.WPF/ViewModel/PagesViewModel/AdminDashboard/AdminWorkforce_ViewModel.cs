@@ -152,7 +152,17 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 
         private Task LoadContractorAttendanceLogs()
         {
-            ContractorAttendanceLogs = _adminOperationService.ContractorAttendanceLogs;
+            if (SelectedDateICAttendanceLog.HasValue)
+            {
+                ContractorAttendanceLogs = _adminOperationService.ContractorAttendanceLogs
+                    .Where(log => log.Date == DateOnly.FromDateTime(SelectedDateICAttendanceLog.Value))
+                    .ToList();
+            }
+            else
+            {
+                ContractorAttendanceLogs = _adminOperationService.ContractorAttendanceLogs;
+            }
+            //ContractorAttendanceLogs = _adminOperationService.ContractorAttendanceLogs;
             OnPropertyChanged(nameof(ContractorAttendanceLogs));
             return Task.CompletedTask;
         }
@@ -306,7 +316,17 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 
         private Task LoadEmployeeAttendanceLogs()
         {
-            EmployeeAttendanceLogs = _adminOperationService.EmployeeAttendanceLogs;
+            if (SelectedEmployeeAttendanceLogDate.HasValue)
+            {
+                EmployeeAttendanceLogs = _adminOperationService.EmployeeAttendanceLogs
+                    .Where(log => log.Date == DateOnly.FromDateTime(SelectedEmployeeAttendanceLogDate.Value))
+                    .ToList();
+            }
+            else
+            {
+                EmployeeAttendanceLogs = _adminOperationService.EmployeeAttendanceLogs;
+            }
+            //EmployeeAttendanceLogs = _adminOperationService.EmployeeAttendanceLogs;
             OnPropertyChanged(nameof(EmployeeAttendanceLogs));
             return Task.CompletedTask;
         }
