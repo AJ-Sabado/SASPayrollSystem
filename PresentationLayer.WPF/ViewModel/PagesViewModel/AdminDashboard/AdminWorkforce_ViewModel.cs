@@ -271,6 +271,8 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         private Task LoadEmployeeOnLeave()
         {
             EmployeesOnLeave = _adminOperationService.EmployeeLeaves.Where(l => l.Status != FormStatus.Pending).OrderByDescending(l => l.DateOfAbsenceStart).ToList();
+            if (!string.IsNullOrEmpty(LeaveNameFilter))
+                EmployeesOnLeave = EmployeesOnLeave.Where(e => e.Employee.User.AccountInfo.FullName.Contains(LeaveNameFilter, StringComparison.InvariantCultureIgnoreCase)).ToList();
             var today = DateOnly.FromDateTime(DateTime.Now);
             //Gets count of employees currently on leave
             var onLeaveNow = _adminOperationService.EmployeeLeaves
@@ -283,15 +285,15 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
 
         private async void ExecuteEvaluateAttendanceFilterByName(object? obj)
         {
+            //_messageBox.ShowDialog(EmployeeEvaluatedAttendanceNameFilter);
+            await _adminOperationService.RefreshEmployeeEvaluatedAttendances();
+            await LoadEvaluatedAttendances();
             if (!string.IsNullOrEmpty(EmployeeEvaluatedAttendanceNameFilter))
             {
-                await _adminOperationService.RefreshEmployeeEvaluatedAttendances();
-                await LoadEvaluatedAttendances();
-            }
-            else
-            {
-                await _adminOperationService.RefreshEmployeeEvaluatedAttendances();
-                await LoadEvaluatedAttendances();
+                EvaluatedAttendances = EvaluatedAttendances
+                    .Where(e => e.Employee.User.AccountInfo.FullName.Contains(EmployeeEvaluatedAttendanceNameFilter, StringComparison.InvariantCultureIgnoreCase))
+                    .ToList();
+                OnPropertyChanged(nameof(EvaluatedAttendances));
             }
         }
 
@@ -342,12 +344,30 @@ namespace PresentationLayer.WPF.ViewModel.PagesViewModel.AdminDashboard
         {
             await _adminOperationService.RefreshEmployeeEvaluatedAttendances();
             await LoadEvaluatedAttendances();
+            EvaluatedAttendances = EvaluatedAttendances.OrderByDescending(e => e.Date).ToList();
+            OnPropertyChanged(nameof(EvaluatedAttendances));
         }
 
         private Task LoadEvaluatedAttendances()
         {
-            EvaluatedAttendances = _adminOperationService.EmployeeEvaluatedAttendances;
-            OnPropertyChanged(nameof(EvaluatedAttendances));
+            if (SelectedDepartment == null
+                && !SelectedEvaluatedAttendanceDate.HasValue)
+            {
+                EvaluatedAttendances = _adminOperationService.EmployeeEvaluatedAttendances;
+                return Task.CompletedTask;
+            }
+            if (SelectedDepartment != null)
+            {
+                EvaluatedAttendances = _adminOperationService.EmployeeEvaluatedAttendances
+                    .Where(e => e.Employee.User.Department.DepartmentId == SelectedDepartment.DepartmentId)
+                    .ToList();
+            }
+            if (SelectedEvaluatedAttendanceDate.HasValue)
+            {
+                EvaluatedAttendances = _adminOperationService.EmployeeEvaluatedAttendances
+                    .Where(e => e.Date == DateOnly.FromDateTime(SelectedEvaluatedAttendanceDate.Value))
+                    .ToList();
+            }
             return Task.CompletedTask;
         }
 
